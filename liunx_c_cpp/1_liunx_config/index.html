@@ -1,0 +1,607 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>1 Linux 安装及配置 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../flask_bootstrap/">
+            
+                <a href="../../flask_bootstrap/">
+            
+                    
+                    Flask and Bootstrap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Linux, C and CPP
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    1 Linux 安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >1 Linux 安装及配置</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV1A24y1f76Z/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&amp;vd_source=3d4b12fb4a4bfbc98942d43612ae2fb9" target="_blank">https://www.bilibili.com/video/BV1A24y1f76Z/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&amp;vd_source=3d4b12fb4a4bfbc98942d43612ae2fb9</a></li>
+</ul>
+<h1 id="0-&#x5378;&#x8F7D;vmwareworkstation-"><span id="0"> 0 &#x5378;&#x8F7D;VMwareWorkstation </span></h1>
+<p>&#x53C2;&#x8003; <a href="https://blog.csdn.net/weixin_55118477/article/details/121078890" target="_blank">&#x5F7B;&#x5E95;&#x5378;&#x8F7D;VMware&#x865A;&#x62DF;&#x673A;&#x7684;&#x8BE6;&#x7EC6;&#x6B65;&#x9AA4;</a></p>
+<h1 id="1-&#x4E0B;&#x8F7D;vmwareworkstation">1 &#x4E0B;&#x8F7D;VMwareWorkstation</h1>
+<p>&#x6709;&#x4E00;&#x4E2A; <a href="https://github.com/201853910/VMwareWorkstation" target="_blank">github&#x4ED3;&#x5E93;</a> &#x6536;&#x96C6;&#x4E86;&#x5404;&#x79CD;&#x7248;&#x672C;&#x7684;&#x4E0B;&#x8F7D;&#x5730;&#x5740;&#xFF0C;&#x6211;&#x4E0B;&#x8F7D;&#x7684;&#x662F;<code>15.5.0</code>&#x7684;&#x7248;&#x672C;. </p>
+<p>&#x5B89;&#x88C5;&#x65F6;&#x4FEE;&#x6539;&#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#xFF0C;&#x4E00;&#x76F4;&#x70B9;&#x51FB;&#x4E0B;&#x4E00;&#x6B65;&#x5373;&#x53EF;. </p>
+<h1 id="2-&#x4E0B;&#x8F7D;ubuntu">2 &#x4E0B;&#x8F7D;Ubuntu</h1>
+<p>&#x53EF;&#x4EE5;&#x5728; <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/" target="_blank">&#x6E05;&#x534E;&#x5927;&#x5B66;&#x7684;&#x955C;&#x50CF;&#x7AD9;</a> &#x91CC;&#x4E0B;&#x8F7D;&#x5404;&#x4E2A;&#x7248;&#x672C;&#x7684;<code>Ubuntu</code>&#xFF0C;&#x6211;&#x4E0B;&#x8F7D;&#x7684;&#x662F;<code>16.04</code>&#x7684;&#x7248;&#x672C;</p>
+<h1 id="3-&#x521B;&#x5EFA;&#x865A;&#x62DF;&#x673A;">3 &#x521B;&#x5EFA;&#x865A;&#x62DF;&#x673A;</h1>
+<ol>
+<li><p>&#x5728;&#x672C;&#x5730;&#x7535;&#x8111;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x5269;&#x4F59;&#x5BB9;&#x91CF;&#x5927;&#x4E8E;20G&#x7684;&#x786C;&#x76D8;&#xFF0C;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;<code>Ubuntu16.04</code>.</p>
+</li>
+<li><p>&#x8FDB;&#x5165;VMware Workstation&#xFF0C;&#x70B9;&#x51FB;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x865A;&#x62DF;&#x673A;.</p>
+ <div style="text-align: center;">
+     <img src="image.png" alt="alt text" style="width:50%; height:auto;">
+ </div>
+
+
+</li>
+</ol>
+<ol>
+<li><p>&#x9009;&#x62E9;<code>&#x81EA;&#x5B9A;&#x4E49;</code>.</p>
+ <div style="text-align: center;">
+     <img src="image-1.png" alt="alt text" style="width:50%; height:auto;">
+ </div>
+
+
+</li>
+</ol>
+<ol>
+<li><p>&#x70B9;&#x51FB;<code>&#x4E0B;&#x4E00;&#x6B65;</code>.</p>
+<p> <div style="text-align: center;"></div></p>
+<pre><code> &lt;img src=&quot;image-2.png&quot; alt=&quot;alt text&quot; style=&quot;width:50%; height:auto;&quot;&gt;
+</code></pre><p> &lt;/div&gt;
+ <img src="." alt="alt text"></p>
+</li>
+<li><p>&#x9009;&#x62E9;<code>&#x7A0D;&#x540E;&#x5B89;&#x88C5;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;</code>.</p>
+</li>
+</ol>
+<pre><code>![alt text](image-3.png)
+</code></pre><ol>
+<li><p>&#x9009;&#x62E9;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E3A;<code>Linux</code>&#xFF0C;&#x7248;&#x672C;&#x4E3A;<code>Ubuntu 64&#x4F4D;</code>.</p>
+<p> <img src="image-4.png" alt="alt text"></p>
+</li>
+<li><p>&#x4FEE;&#x6539;&#x865A;&#x62DF;&#x673A;&#x540D;&#x79F0;&#xFF08;&#x53EF;&#x9009;&#xFF09;&#xFF0C;&#x4FEE;&#x6539;&#x6587;&#x4EF6;&#x5939;&#x4F4D;&#x7F6E;&#x4E3A;&#x5728;&#x7B2C;1&#x6B65;&#x521B;&#x5EFA;&#x7684;&#x6587;&#x4EF6;&#x5939;</p>
+<p> <img src="image-5.png" alt="alt text"></p>
+</li>
+<li><p>&#x6211;&#x7684;&#x7535;&#x8111;&#x662F;i7&#xFF0C;&#x5185;&#x5B58;&#x662F;16GB&#xFF0C;&#x6240;&#x4EE5;<code>&#x5904;&#x7406;&#x5668;&#x6570;&#x7406;</code>&#x6211;&#x9009;&#x62E9;<code>2</code>&#xFF0C;<code>&#x865A;&#x62DF;&#x673A;&#x5185;&#x5B58;</code>&#x6211;&#x9009;&#x62E9;<code>2GB</code>. </p>
+<p> <img src="image-6.png" alt="alt text"></p>
+<p> <img src="image-7.png" alt="alt text"></p>
+</li>
+<li><p>&#x9009;&#x62E9;<code>&#x6865;&#x63A5;&#x7F51;&#x7EDC;</code></p>
+<p> <img src="image-8.png" alt="alt text"></p>
+</li>
+<li><p>&#x4F7F;&#x7528;<code>&#x63A8;&#x8350;</code>&#x5E76;&#x9009;&#x62E9;<code>&#x4E0B;&#x4E00;&#x6B65;</code></p>
+<p><img src="image-9.png" alt="alt text">
+<img src="image-10.png" alt="alt text"></p>
+</li>
+<li><p>&#x9009;&#x62E9;<code>&#x521B;&#x5EFA;&#x65B0;&#x865A;&#x62DF;&#x78C1;&#x76D8;</code></p>
+<p><img src="image-11.png" alt="alt text"></p>
+</li>
+<li><p>&#x6700;&#x5927;&#x78C1;&#x76D8;&#x5927;&#x5C0F;&#x9009;&#x62E9;<code>20G</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x5C06;&#x865A;&#x62DF;&#x78C1;&#x76D8;&#x5B58;&#x50A8;&#x4E3A;&#x5355;&#x4E2A;&#x6587;&#x4EF6;</code></p>
+<p><img src="image-12.png" alt="alt text"></p>
+</li>
+<li><p>&#x70B9;&#x51FB;<code>&#x4E0B;&#x4E00;&#x6B65;</code></p>
+<p><img src="image-13.png" alt="alt text"></p>
+</li>
+<li><p>&#x70B9;&#x51FB;<code>&#x5B8C;&#x6210;</code></p>
+<p><img src="image-14.png" alt="alt text"></p>
+</li>
+</ol>
+<h1 id="4-&#x7ED9;&#x865A;&#x62DF;&#x673A;&#x914D;&#x7F6E;&#x7CFB;&#x7EDF;">4 &#x7ED9;&#x865A;&#x62DF;&#x673A;&#x914D;&#x7F6E;&#x7CFB;&#x7EDF;</h1>
+<ol>
+<li><p>&#x5355;&#x51FB;<code>CD/DVD</code></p>
+<p> <img src="image-15.png" alt="alt text"></p>
+</li>
+<li><p>&#x8FDE;&#x63A5;&#x9009;&#x62E9;<code>&#x4F7F;&#x7528;iso&#x6620;&#x50CF;&#x6587;&#x4EF6;</code>&#xFF0C;&#x9009;&#x62E9;&#x524D;&#x9762;&#x4E0B;&#x8F7D;&#x7684;<code>iso</code>&#x6587;&#x4EF6;&#xFF0C;&#x70B9;&#x51FB;&#x786E;&#x5B9A;</p>
+<p> <img src="image-16.png" alt="alt text"></p>
+</li>
+<li><p>&#x70B9;&#x51FB;<code>&#x5F00;&#x542F;&#x6B64;&#x865A;&#x62DF;&#x673A;</code>
+ &#x5F04;&#x5230;&#x8FD9;&#x4E00;&#x6B65;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x53D1;&#x73B0;&#x6211;&#x7684;&#x7535;&#x8111;&#x76F4;&#x63A5;&#x84DD;&#x5C4F;&#x4E86;&#xFF0C;&#x7136;&#x540E;&#x53D1;&#x73B0;<code>win11</code>&#x548C;<code>vm15</code>&#x4E0D;&#x517C;&#x5BB9;&#xFF0C;&#x8FD9;&#x6837;&#x6211;&#x5C31;&#x53EA;&#x80FD;&#x5347;&#x7EA7;&#x5230;<code>vm17</code>&#x4E86;&#xFF0C;&#x5378;&#x8F7D;&#x53C2;&#x8003; <a href="#0">0 &#x5378;&#x8F7D;VMwareWorkstation</a>&#xFF0C;&#x524D;&#x9762;&#x521B;&#x5EFA;&#x865A;&#x62DF;&#x673A;&#x7684;&#x6B65;&#x9AA4;&#x65E0;&#x9700;&#x66F4;&#x6539;. </p>
+</li>
+</ol>
+<h1 id="5-&#x5B89;&#x88C5;ubuntu">5 &#x5B89;&#x88C5;Ubuntu</h1>
+<ol>
+<li><p>&#x9009;&#x62E9;<code>English</code>&#xFF0C;&#x9009;&#x62E9;<code>Install Ubuntu</code></p>
+<p> <img src="image-17.png" alt="alt text"></p>
+</li>
+<li><p>&#x90FD;&#x4E0D;&#x9009;&#x62E9;&#xFF0C;&#x70B9;&#x51FB;<code>continue</code></p>
+<p> <img src="image-18.png" alt="alt text"></p>
+</li>
+<li><p>&#x9009;&#x62E9;<code>Erase disk and install Ubuntu</code>&#xFF0C;&#x9009;&#x62E9;<code>install now</code></p>
+<p> <img src="image-19.png" alt="alt text"></p>
+</li>
+<li><p>&#x9009;&#x62E9;<code>continue</code></p>
+<p> <img src="image-20.png" alt="alt text"></p>
+</li>
+<li><p>&#x9009;&#x62E9;<code>Shanghai</code></p>
+<p> <img src="image-21.png" alt="alt text"></p>
+</li>
+<li><p>&#x6309;<code>alt</code>&#x952E;&#x62D6;&#x52A8;&#x7A97;&#x53E3;&#xFF0C;&#x4E24;&#x4E2A;&#x90FD;&#x9009;&#x62E9;<code>English(US)</code>&#xFF0C;&#x9009;&#x62E9;<code>continue</code></p>
+<p> <img src="image-22.png" alt="alt text"></p>
+</li>
+<li><p>&#x8BBE;&#x7F6E;&#x4FE1;&#x606F;&#xFF0C;&#x9009;&#x62E9;<code>continue</code></p>
+<p> <img src="image-23.png" alt="alt text"></p>
+</li>
+<li><p>&#x70B9;&#x51FB;<code>restart now</code></p>
+<p> <img src="image-24.png" alt="alt text"></p>
+</li>
+</ol>
+<h1 id="6-&#x7F51;&#x7EDC;&#x914D;&#x7F6E;">6 &#x7F51;&#x7EDC;&#x914D;&#x7F6E;</h1>
+<ol>
+<li><p>&#x5728;window&#x4E3B;&#x673A;&#x7684;<code>&#x8BBE;&#x7F6E;</code>&#x4E2D;&#x641C;&#x7D22;<code>&#x8BBE;&#x5907;&#x7BA1;&#x7406;&#x5668;</code>&#xFF0C;&#x627E;&#x5230;<code>&#x7F51;&#x7EDC;&#x9002;&#x914D;&#x5668;</code>&#xFF0C;&#x627E;&#x5230;&#x81EA;&#x5DF1;&#x7535;&#x8111;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x7F51;&#x7EDC;&#x7C7B;&#x578B;&#xFF0C;&#x6211;&#x7684;&#x7535;&#x8111;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x662F;wifi
+ <img src="image-25.png" alt="alt text"></p>
+</li>
+<li><p>&#x56DE;&#x5230;<code>VMware Workstation</code>&#xFF0C;&#x70B9;&#x51FB;<code>&#x7F16;&#x8F91;</code>&#xFF0C;&#x70B9;&#x51FB;<code>&#x865A;&#x62DF;&#x7F51;&#x7EDC;&#x7F16;&#x8F91;&#x5668;</code></p>
+<p> <img src="image-26.png" alt="alt text"></p>
+</li>
+<li><p>&#x9009;&#x62E9;<code>&#x66F4;&#x6539;&#x8BBE;&#x7F6E;</code></p>
+<p> <img src="image-27.png" alt="alt text"></p>
+</li>
+<li><p>&#x8BBE;&#x7F6E;<code>VMnet0</code>&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x9009;&#x62E9;<code>&#x6865;&#x63A5;&#x6A21;&#x5F0F;</code>&#xFF0C;&#x9009;&#x62E9;&#x7B2C;1&#x6B65;&#x627E;&#x5230;&#x7684;&#x7F51;&#x7EDC;&#x7C7B;&#x578B;</p>
+<p> <img src="image-28.png" alt="alt text"></p>
+</li>
+</ol>
+<h1 id="7-&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;&#x8BBE;&#x7F6E;">7 &#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;&#x8BBE;&#x7F6E;</h1>
+<ol>
+<li><p>&#x5173;&#x95ED;&#x865A;&#x62DF;&#x673A;</p>
+</li>
+<li><p>&#x9009;&#x62E9;<code>CD/DVD</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x786C;&#x4EF6;</code>&#x9009;&#x62E9;<code>&#x4F7F;&#x7528;&#x7269;&#x7406;&#x9A71;&#x52A8;&#x5668;</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x81EA;&#x52A8;&#x68C0;&#x6D4B;</code>
+ <img src="image-29.png" alt="alt text"></p>
+</li>
+<li><p>&#x5728;win&#x4E3B;&#x673A;&#x4E0B;&#x627E;&#x5230;&#x4E4B;&#x524D;&#x5EFA;&#x7ACB;&#x7684;&#x865A;&#x62DF;&#x673A;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x6211;&#x662F;<code>Ubuntu16.04</code>&#xFF0C;&#x5728;&#x6587;&#x4EF6;&#x5939;&#x5185;&#x90E8;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;<code>share</code>&#x6587;&#x4EF6;&#x5939;</p>
+</li>
+<li><p>&#x56DE;&#x5230;VMware Workstation&#xFF0C;&#x9009;&#x62E9;<code>&#x7F16;&#x8F91;&#x865A;&#x62DF;&#x673A;&#x8BBE;&#x7F6E;</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x9009;&#x9879;</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x603B;&#x662F;&#x542F;&#x7528;</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x6DFB;&#x52A0;</code>&#xFF0C;&#x7136;&#x540E;&#x627E;&#x5230;&#x7B2C;3&#x6B65;&#x8BBE;&#x7F6E;&#x7684;<code>share</code>&#x6587;&#x4EF6;&#x5939;
+ <img src="image-30.png" alt="alt text"></p>
+</li>
+<li><p>&#x9009;&#x62E9;&#x4E0B;&#x4E00;&#x6B65;&#xFF0C;&#x9009;&#x62E9;&#x5B8C;&#x6210;
+ <img src="image-31.png" alt="alt text"></p>
+</li>
+<li><p>&#x5F00;&#x542F;&#x865A;&#x62DF;&#x673A;&#xFF0C;&#x70B9;&#x51FB;<code>&#x5426;</code>
+ <img src="image-32.png" alt="alt text"></p>
+</li>
+<li><p>&#x5B89;&#x88C5;VMware tools&#xFF0C;&#x9009;&#x62E9;&#x4E0A;&#x65B9;&#x9009;&#x62E9;&#x5361;&#xFF0C;&#x9009;&#x62E9;<code>&#x865A;&#x62DF;&#x673A;</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x5B89;&#x88C5;VMware tools</code></p>
+</li>
+</ol>
+<ol>
+<li><p>copy gz&#x6587;&#x4EF6;&#x5230; unbutu desktop
+ <img src="image-33.png" alt="alt text">
+ <img src="image-34.png" alt="alt text"></p>
+</li>
+<li><p>&#x8BBE;&#x7F6E;&#x8D85;&#x7EA7;&#x7BA1;&#x7406;&#x5458;&#x5BC6;&#x7801;&#xFF0C;&#x53F3;&#x952E;&#x9009;&#x62E9;<code>open terminal</code>&#xFF0C;&#x7136;&#x540E;&#x8F93;&#x5165;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#xFF0C;&#x5E76;&#x8BBE;&#x7F6E;&#x5BC6;&#x7801;</p>
+<pre><code class="lang-bash"> sudo passwd
+</code></pre>
+<p> <img src="image-35.png" alt="alt text"></p>
+</li>
+<li><p>&#x8FD0;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x83B7;&#x5F97;&#x8D85;&#x7EA7;&#x7BA1;&#x7406;&#x5458;&#x6743;&#x9650;,&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8F93;&#x5165; <code>exit</code> &#x6216;&#x8005; <code>logout</code> &#x4EE5;&#x8FD4;&#x56DE;&#x5230;&#x666E;&#x901A;&#x7528;&#x6237;. </p>
+<pre><code class="lang-bash">su
+</code></pre>
+</li>
+<li><p>&#x8FD0;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x89E3;&#x538B;gz&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x5B89;&#x88C5;vmare-tools</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> Desktop/
+tar -vxf VMwareTools-10/3/23-16594550.tar.gz
+<span class="hljs-built_in">cd</span> vmware-tools-distrib/
+./vmware-install.pl
+</code></pre>
+</li>
+<li><p>&#x8F93;&#x5165;<code>yes</code>&#xFF0C;&#x5F00;&#x59CB;&#x5B89;&#x88C5;&#xFF0C;&#x7136;&#x540E;&#x4E00;&#x8DEF;&#x56DE;&#x8F66;
+<img src="image-36.png" alt="alt text"></p>
+</li>
+<li><p>&#x51FA;&#x73B0;&#x5982;&#x4E0B;&#x60C5;&#x51B5;&#xFF0C;&#x8868;&#x793A;&#x5B89;&#x88C5;&#x6210;&#x529F;</p>
+<p><img src="image-37.png" alt="alt text"></p>
+</li>
+<li><p>&#x8FD0;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x627E;&#x5230;&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#x8FDB;&#x5165;&#x6839;&#x76EE;&#x5F55;</span>
+<span class="hljs-built_in">cd</span> /
+<span class="hljs-comment"># &#x8FDB;&#x5165;&#x6302;&#x8F7D;&#x6587;&#x4EF6;&#x5939;</span>
+<span class="hljs-built_in">cd</span> mnt
+<span class="hljs-built_in">cd</span> hgfs/
+</code></pre>
+<p><img src="image-38.png" alt="alt text"></p>
+</li>
+<li><p>&#x5728;&#x672C;&#x5730;win&#x4E3B;&#x673A;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;txt&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x653E;&#x5230;share&#x6587;&#x4EF6;&#x5939;&#x5185;&#xFF0C;&#x5207;&#x6362;&#x56DE;&#x865A;&#x62DF;&#x673A;&#x7684;share&#x6587;&#x4EF6;&#x5939;&#x5219;&#x53EF;&#x4EE5;&#x770B;&#x5230;
+<img src="image-40.png" alt="alt text">
+<img src="image-39.png" alt="alt text"></p>
+</li>
+</ol>
+<h1 id="8-&#x4E3B;&#x673A;&#x548C;&#x865A;&#x62DF;&#x673A;&#x590D;&#x5236;&#x7C98;&#x8D34;&#x4E92;&#x901A;">8 &#x4E3B;&#x673A;&#x548C;&#x865A;&#x62DF;&#x673A;&#x590D;&#x5236;&#x7C98;&#x8D34;&#x4E92;&#x901A;</h1>
+<ol>
+<li><p>&#x9009;&#x62E9;<code>&#x7F16;&#x8F91;&#x865A;&#x62DF;&#x673A;&#x8BBE;&#x7F6E;</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x9009;&#x9879;</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x5BA2;&#x6237;&#x673A;&#x9694;&#x79BB;</code>&#xFF0C;&#x9009;&#x62E9;<code>&#x542F;&#x7528;&#x590D;&#x5236;&#x7C98;&#x8D34;</code></p>
+<p> <img src="image-41.png" alt="alt text"></p>
+</li>
+</ol>
+<h1 id="9-&#x4EE3;&#x7406;&#x8BBE;&#x7F6E;">9 &#x4EE3;&#x7406;&#x8BBE;&#x7F6E;</h1>
+<ol>
+<li><p>&#x5728;Ubuntu&#x7684;<code>system setting</code> &#x4E2D;&#x627E;&#x5230;<code>network</code>,
+&#x9009;&#x62E9;<code>Network proxy</code></p>
+</li>
+<li><p><code>method</code>&#x9009;&#x62E9;<code>manual</code>&#xFF0C;
+<code>socks host</code> &#x8F93;&#x5165; <code>windows&#x4E3B;&#x673A;&#x65E0;&#x7EBF;&#x5C40;&#x57DF;&#x7F51;&#x9002;&#x914D;&#x5668;WLAN&#x7684;IPv4&#x5730;&#x5740;</code> &#x548C;&#x4EE3;&#x7406;&#x8F6F;&#x4EF6;&#x4F7F;&#x7528;&#x7684;&#x7AEF;&#x53E3;. (IPv4&#x5730;&#x5740;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;win&#x4E0B;cmd&#x547D;&#x4EE4;<code>ipconfig</code>&#x83B7;&#x5F97;)</p>
+</li>
+</ol>
+<h1 id="10-&#x914D;&#x7F6E;wsl&#x7684;dns">10 &#x914D;&#x7F6E;WSL&#x7684;DNS</h1>
+<ol>
+<li><p>&#x4FEE;&#x6539;<code>/etc/wsl.config</code>&#x6587;&#x4EF6;</p>
+<pre><code class="lang-bash"> sudo gedit /etc/wsl.config
+</code></pre>
+</li>
+<li><p>&#x5728;<code>/etc/wsl.config</code>&#x4E2D;&#x6DFB;&#x52A0;</p>
+<pre><code class="lang-bash"> [network]
+ generateResolvConf = <span class="hljs-literal">false</span>
+</code></pre>
+</li>
+</ol>
+<!-- # 11 换源
+
+Linux配置的默认源并不是国内的服务器，下载更新软件都比较慢. 所以需要换源
+
+参考https://blog.csdn.net/weixin_42301220/article/details/127979124
+
+1. 备份源列表文件`sources.list`：
+
+    ```bash
+    cd /
+    sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup20240731 #备份源列表
+    ```
+
+2. 修改源列表文件
+
+    ```bash
+    sudo gedit /etc/apt/sources.list # 打开sources.list文件
+    ```
+
+3. 复制[清华源网站](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)的代码（注意版本为16.04），编辑`/etc/apt/sources.list`文件，删除原内容，在文件最前面添加镜像源
+    - 清华源
+    ```bash
+    # 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+    deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+    deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+    deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+
+    # 以下安全更新软件源包含了官方源与镜像站配置，如有需要可自行修改注释切换
+    deb http://security.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse
+    # deb-src http://security.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse
+
+    # 预发布软件源，不建议启用
+    # deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+    # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+    ```
+
+4. 换源完成后更新即可。
+    ```bash
+    sudo apt-get update
+    ``` -->
+<h1 id="11-&#x865A;&#x62DF;&#x673A;&#x7EC8;&#x7AEF;&#x4EE3;&#x7406;&#x8BBE;&#x7F6E;">11 &#x865A;&#x62DF;&#x673A;&#x7EC8;&#x7AEF;&#x4EE3;&#x7406;&#x8BBE;&#x7F6E;</h1>
+<p>&#x53C2;&#x8003;&#xFF1A;</p>
+<ul>
+<li><a href="https://blog.pica.icu:4443/2024/05/368/" target="_blank">https://blog.pica.icu:4443/2024/05/368/</a></li>
+<li><p><a href="https://playlab.eu.org/archives/proxychains4" target="_blank">https://playlab.eu.org/archives/proxychains4</a></p>
+</li>
+<li><p>&#x4FEE;&#x6539;<code>.bashrc</code>&#x6587;&#x4EF6;</p>
+<pre><code class="lang-bash"> gedit ~/.bashrc
+</code></pre>
+</li>
+<li><p>&#x5728;&#x91CC;&#x9762;&#x4EFB;&#x610F;&#x4F4D;&#x7F6E;&#x6DFB;&#x52A0;&#x4E0A;&#x5982;&#x4E0B;&#x4E24;&#x884C;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-bash"> <span class="hljs-built_in">export</span> http_proxy=<span class="hljs-string">&apos;http://localhost:33210&apos;</span>
+ <span class="hljs-built_in">export</span> https_proxy=<span class="hljs-string">&apos;http://localhost:33210&apos;</span>
+</code></pre>
+<p> &#x5176;&#x4E2D;&#x7684;<code>33210</code>&#x662F;&#x4EE3;&#x7406;&#x7684;&#x7AEF;&#x53E3;&#x53F7;&#xFF0C;&#x9700;&#x8981;&#x4F9D;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x7AEF;&#x53E3;&#x53F7;&#x5BF9;&#x5E94;&#x4FEE;&#x6539;&#x3002;&#x6DFB;&#x52A0;&#x597D;&#x4E4B;&#x540E;&#x4FDD;&#x5B58;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x7EC8;&#x7AEF;&#x6267;&#x884C;&#xFF1A;</p>
+</li>
+<li><p>&#x4F7F;&#x5F97;&#x4FEE;&#x6539;&#x751F;&#x6548;</p>
+<pre><code class="lang-bash"> <span class="hljs-built_in">source</span> ~/.bashrc
+</code></pre>
+</li>
+</ul>
+<!-- 1. 安装proxychains4
+
+    ```bash
+    sudo apt-get install proxychains4
+    ```
+
+2. 修改proxychains4配置文件
+
+    ```bash
+    sudo nano /etc/proxychains4.conf
+    ```
+    在文件末尾加入 socks5 本机所在局域网中的 IP 地址和端口号
+
+3. 在终端中使用代理，命令前面加上 proxychains4 即可，例如：
+
+    ```bash
+    proxychains git clone github.com/xxx
+
+    ``` -->
+<h1 id="12-vim&#x7F16;&#x8F91;&#x5668;&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;">12 VIM&#x7F16;&#x8F91;&#x5668;&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;</h1>
+<ol>
+<li><p>&#x68C0;&#x67E5;&#x7F51;&#x7EDC;&#x662F;&#x5426;&#x5F00;&#x542F;</p>
+<p> <img src="image-42.png" alt="alt text"></p>
+</li>
+</ol>
+<ol>
+<li><p>&#x8FD0;&#x884C;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x5B89;&#x88C5;VIM</p>
+<pre><code class="lang-bash"> sudo apt-get update
+ sudo apt
+ sudo apt-get install vim
+</code></pre>
+</li>
+<li><p>&#x8BBE;&#x7F6E;&#x7528;vim&#x7F16;&#x8F91;&#x65F6;&#x663E;&#x793A;&#x884C;&#x53F7;&#xFF0C;&#x9996;&#x5148;&#x8FDB;&#x5165;vimrc&#x6587;&#x4EF6;</p>
+<pre><code class="lang-bash"> vim /etc/vim/vimrc
+</code></pre>
+<p> &#x952E;&#x76D8;&#x70B9;&#x51FB;<code>a</code>&#xFF0C;&#x8FDB;&#x5165;&#x7F16;&#x8F91;&#x6A21;&#x5F0F;&#xFF0C;&#x8F93;&#x5165;</p>
+<pre><code class="lang-bash"> <span class="hljs-built_in">set</span> number
+ <span class="hljs-built_in">set</span> ts=4
+</code></pre>
+<p> &#x70B9;&#x51FB;<code>esc</code>&#xFF0C;&#x8F93;&#x5165;<code>:w !sudo tee %</code>&#xFF0C;&#x70B9;&#x51FB;<code>enter</code>&#xFF0C;&#x8F93;&#x5165;<code>:q!</code>&#xFF0C;&#x70B9;&#x51FB;<code>enter</code></p>
+</li>
+<li><p>&#x67E5;&#x770B;vimrc&#x6587;&#x4EF6;&#xFF0C;&#x53D1;&#x73B0;&#x7F16;&#x8F91;&#x6210;&#x529F;</p>
+<pre><code class="lang-bash"> cat /etc/vim/vimrc
+</code></pre>
+<p> <img src="image-43.png" alt="alt text"></p>
+</li>
+<li><p>&#x7528;vim&#x6253;&#x5F00;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x884C;&#x53F7;&#x51FA;&#x73B0;&#x4E86;</p>
+<pre><code class="lang-bash"> vim /mnt/hgfs/share/test.txt
+</code></pre>
+<p> <img src="image-44.png" alt="alt text"></p>
+</li>
+</ol>
+<h1 id="13-ssh&#x63A7;&#x5236;&#x53F0;&#x767B;&#x5F55;&#x4E0E;&#x6587;&#x4EF6;&#x4F20;&#x8F93;">13 SSH&#x63A7;&#x5236;&#x53F0;&#x767B;&#x5F55;&#x4E0E;&#x6587;&#x4EF6;&#x4F20;&#x8F93;</h1>
+<p>&#x4E0B;&#x9762;&#x4ECB;&#x7ECD;&#x4E00;&#x79CD;&#x4E0D;&#x4F7F;&#x7528;&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x4F46;&#x662F;&#x4E5F;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x6587;&#x4EF6;&#x4F20;&#x8F93;&#x7684;&#x65B9;&#x6CD5;</p>
+<p>&#x53C2;&#x8003;&#xFF1A;</p>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV1A24y1f76Z?p=7&amp;spm_id_from=pageDriver&amp;vd_source=3d4b12fb4a4bfbc98942d43612ae2fb9" target="_blank">https://www.bilibili.com/video/BV1A24y1f76Z?p=7&amp;spm_id_from=pageDriver&amp;vd_source=3d4b12fb4a4bfbc98942d43612ae2fb9</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Linux, C and CPP">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1 Linux 安装及配置","level":"1.3.1","depth":2,"previous":{"title":"Linux, C and CPP","level":"1.3","depth":1,"path":"liunx_c_cpp/README.md","ref":"liunx_c_cpp/README.md","articles":[{"title":"1 Linux 安装及配置","level":"1.3.1","depth":2,"path":"liunx_c_cpp/1_liunx_config/README.md","ref":"liunx_c_cpp/1_liunx_config/README.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing","livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"liunx_c_cpp/1_liunx_config/README.md","mtime":"2024-07-31T09:35:43.936Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-08-02T08:25:18.093Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
