@@ -1,0 +1,542 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3 VTK 安装及配置 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../../flask_web/" />
+    
+    
+    <link rel="prev" href="../2_qt_install_config/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../liunx_c_cpp/README.md">
+            
+                <span>
+            
+                    
+                    Linux, C and CPP
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../1_linux_config/">
+            
+                <a href="../1_linux_config/">
+            
+                    
+                    1 Linux 安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../2_qt_install_config/">
+            
+                <a href="../2_qt_install_config/">
+            
+                    
+                    2 Qt 安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    3 VTK 安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../../flask_web/">
+            
+                <a href="../../flask_web/">
+            
+                    
+                    Flask Web
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="../../flask_web/flask_bootstrap/">
+            
+                <a href="../../flask_web/flask_bootstrap/">
+            
+                    
+                    1 Flask Web 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" >
+            
+                <span>
+            
+                    
+                    2 Flask Vue
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >3 VTK 安装及配置</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="vtk-&#x5B89;&#x88C5;&#x53CA;&#x914D;&#x7F6E;">VTK &#x5B89;&#x88C5;&#x53CA;&#x914D;&#x7F6E;</h1>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://medium.com/@yulin_li/how-to-install-vtk-9-1-on-ubuntu-18-04-a4530ce790da" target="_blank">https://medium.com/@yulin_li/how-to-install-vtk-9-1-on-ubuntu-18-04-a4530ce790da</a></li>
+</ul>
+<h2 id="1-&#x5B89;&#x88C5;&#x4F9D;&#x8D56;">1 &#x5B89;&#x88C5;&#x4F9D;&#x8D56;</h2>
+<pre><code class="lang-bash">sudo apt-get update
+sudo apt install build-essential cmake cmake-curses-gui mesa-common-dev mesa-utils freeglut3-dev git-core ninja-build libxcursor-dev libvulkan-dev doxygen graphviz
+</code></pre>
+<h2 id="2-&#x5229;&#x7528;cmake&#x914D;&#x7F6E;vtk">2 &#x5229;&#x7528;cmake&#x914D;&#x7F6E;vtk</h2>
+<ol>
+<li><p>&#x5728;ubuntu&#x4E2D;&#x8FDB;&#x5165;<a href="https://vtk.org/download/" target="_blank">vtk&#x5B98;&#x7F51;</a>&#x4E0B;&#x8F7D;<code>source</code>&#x6587;&#x4EF6;</p>
+ <div style="text-align: center;">
+ <img src="image.png" alt="alt text" style="width:50%; height:auto;"></div>
+</li>
+<li><p>&#x628A;&#x4E0B;&#x8F7D;&#x6587;&#x4EF6;&#x89E3;&#x538B;&#x5230;<code>/opt/</code>&#x6587;&#x4EF6;&#x5939;</p>
+<pre><code class="lang-bash"> <span class="hljs-built_in">cd</span> ~/Downloads
+ sudo tar -zxvf VTK-9.3.1.tar.gz -C /opt
+</code></pre>
+</li>
+<li><p>&#x5229;&#x7528;cmake&#x8FDB;&#x884C;&#x7F16;&#x8BD1;</p>
+<pre><code class="lang-bash"> <span class="hljs-built_in">cd</span> /opt/VTK-9.3.1
+ sudo mkdir VTK-build
+ <span class="hljs-built_in">cd</span> VTK-build
+ su
+ ccmake ..
+</code></pre>
+</li>
+<li><p>&#x70B9;&#x51FB;<code>c</code>&#x8FDB;&#x884C;configure&#xFF0C;&#x547D;&#x4EE4;&#x8FD0;&#x884C;&#x7ED3;&#x675F;&#x540E;&#xFF0C;&#x70B9;&#x51FB;<code>e</code>&#x8FDB;&#x5165;&#x914D;&#x7F6E;&#x9875;&#x9762;&#xFF0C;&#x914D;&#x7F6E;&#x5B8C;&#x6210;&#x540E;&#x70B9;&#x51FB;<code>c</code>&#x8FDB;&#x884C;configure&#xFF0C;&#x6709;&#x62A5;&#x9519;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x70B9;&#x51FB;<code>e</code>&#x8FD4;&#x56DE;&#x914D;&#x7F6E;&#xFF0C;&#x7136;&#x540E;&#x7EE7;&#x7EED;&#x70B9;&#x51FB;<code>c</code>&#x8FDB;&#x884C;configure&#xFF0C;&#x6211;&#x7684;&#x6240;&#x6709;&#x914D;&#x7F6E;&#x5982;&#x4E0B;&#xFF1A;</p>
+ <div style="text-align: center;">
+ <img src="image-8.png" alt="alt text" style="width:50%; height:auto;"></div>
+
+ <div style="text-align: center;">
+ <img src="image-9.png" alt="alt text" style="width:50%; height:auto;"></div>
+
+ <div style="text-align: center;">
+ <img src="image-10.png" alt="alt text" style="width:50%; height:auto;"></div>
+
+ <div style="text-align: center;">
+ <img src="image-11.png" alt="alt text" style="width:50%; height:auto;"></div>
+</li>
+<li><p>&#x914D;&#x7F6E;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x4F1A;&#x8FD4;&#x56DE;&#x5230;&#x914D;&#x7F6E;&#x754C;&#x9762;&#xFF0C;&#x518D;&#x6B21;&#x70B9;&#x51FB;<code>c</code>&#xFF0C;&#x7136;&#x540E;&#x70B9;&#x51FB;<code>g</code>&#x8FDB;&#x884C;generate&#xFF0C;&#x5B8C;&#x6210;&#x914D;&#x7F6E;.</p>
+</li>
+</ol>
+<h2 id="3-&#x7F16;&#x8BD1;&#x5E76;&#x5B89;&#x88C5;vtk">3 &#x7F16;&#x8BD1;&#x5E76;&#x5B89;&#x88C5;VTK</h2>
+<ol>
+<li><p>&#x8FD0;&#x884C;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-bash"> <span class="hljs-built_in">cd</span> /opt/VTK-9.3.1/VTK-build
+ su
+ make -j$(nproc)
+ make DoxygenDoc
+ make install
+</code></pre>
+</li>
+</ol>
+<h2 id="4-&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;">4 &#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</h2>
+<ol>
+<li><p>&#x6253;&#x5F00;&#x7EC8;&#x7AEF;&#xFF0C;&#x8F93;&#x5165;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x6253;&#x5F00;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x914D;&#x7F6E;&#x6587;&#x4EF6;. </p>
+<pre><code class="lang-bash"> sudo vim /etc/profile
+</code></pre>
+</li>
+<li><p>&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6700;&#x540E;&#x4E00;&#x884C;&#x6DFB;&#x52A0;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#xFF0C;&#x4EE5;&#x4E2A;&#x4EBA;&#x7684;qt&#x5B89;&#x88C5;&#x8DEF;&#x5F84;&#x4E3A;&#x51C6;&#xFF1A;</p>
+<pre><code class="lang-bash"> <span class="hljs-built_in">export</span> VTK_DIR=<span class="hljs-string">&quot;/opt/VTK-9.3.1/VTK-build/&quot;</span>
+</code></pre>
+</li>
+<li><p>&#x4FEE;&#x6539;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x8F93;&#x5165;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x4F7F;&#x5176;&#x751F;&#x6548;&#x5373;&#x53EF;.</p>
+<pre><code class="lang-bash"> sudo <span class="hljs-_">-s</span>
+ <span class="hljs-built_in">source</span> /etc/profile
+</code></pre>
+</li>
+</ol>
+<h2 id="5-&#x6D4B;&#x8BD5;">5 &#x6D4B;&#x8BD5;</h2>
+<ol>
+<li><p>&#x8FDB;&#x5165;<a href="https://examples.vtk.org/site/Cxx/" target="_blank">&#x5B98;&#x7F51;examples&#x754C;&#x9762;</a>&#xFF0C;&#x9009;&#x62E9;<a href="https://examples.vtk.org/site/Cxx/GeometricObjects/CylinderExample/" target="_blank">Hello World</a>&#x7684;&#x4EE3;&#x7801;</p>
+</li>
+<li><p>&#x5728;ubuntu&#x5185;&#x65B0;&#x5EFA;<code>codes</code>&#xFF0C;&#x5E76;&#x65B0;&#x5EFA;cxx&#x6587;&#x4EF6;</p>
+<pre><code class="lang-bash"> <span class="hljs-built_in">cd</span> ~/Documents
+ mkdir codes
+ <span class="hljs-built_in">cd</span> codes 
+ mkdir vtk-examples
+ <span class="hljs-built_in">cd</span> vtk-examples
+ mkdir GeometricObjects
+ <span class="hljs-built_in">cd</span> GeomertricObjects
+ mkdir CylinderExample
+ vim CylinderExample.cxx
+</code></pre>
+</li>
+<li><p>&#x7F16;&#x8F91;cxx&#x6587;&#x4EF6;&#xFF0C;&#x70B9;&#x51FB;<code>esc</code>&#xFF0C;&#x8F93;&#x5165;<code>:wq</code></p>
+<pre><code class="lang-c++"> <span class="hljs-comment">// CylinderExample.cxx</span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkActor.h&gt;</span></span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkCamera.h&gt;</span></span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkCylinderSource.h&gt;</span></span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkNamedColors.h&gt;</span></span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkNew.h&gt;</span></span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkPolyDataMapper.h&gt;</span></span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkProperty.h&gt;</span></span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkRenderWindow.h&gt;</span></span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkRenderWindowInteractor.h&gt;</span></span>
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vtkRenderer.h&gt;</span></span>
+
+ <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;array&gt;</span></span>
+
+ <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">char</span>*[])</span>
+ </span>{
+ vtkNew&lt;vtkNamedColors&gt; colors;
+
+ <span class="hljs-comment">// Set the background color.</span>
+ <span class="hljs-built_in">std</span>::<span class="hljs-built_in">array</span>&lt;<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span>, 4&gt; bkg {<span class="hljs-number">26</span>, <span class="hljs-number">51</span>, <span class="hljs-number">102</span>, <span class="hljs-number">255</span>};
+ colors-&gt;SetColor(<span class="hljs-string">&quot;BkgColor&quot;</span>, bkg.data());
+
+ <span class="hljs-comment">// This creates a polygonal cylinder model with eight circumferential facets</span>
+ <span class="hljs-comment">// (i.e, in practice an octagonal prism).</span>
+ vtkNew&lt;vtkCylinderSource&gt; cylinder;
+ cylinder-&gt;SetResolution(<span class="hljs-number">8</span>);
+
+ <span class="hljs-comment">// The mapper is responsible for pushing the geometry into the graphics</span>
+ <span class="hljs-comment">// library. It may also do color mapping, if scalars or other attributes are</span>
+ <span class="hljs-comment">// defined.</span>
+ vtkNew&lt;vtkPolyDataMapper&gt; cylinderMapper;
+ cylinderMapper-&gt;SetInputConnection(cylinder-&gt;GetOutputPort());
+
+ <span class="hljs-comment">// The actor is a grouping mechanism: besides the geometry (mapper), it</span>
+ <span class="hljs-comment">// also has a property, transformation matrix, and/or texture map.</span>
+ <span class="hljs-comment">// Here we set its color and rotate it around the X and Y axes.</span>
+ vtkNew&lt;vtkActor&gt; cylinderActor;
+ cylinderActor-&gt;SetMapper(cylinderMapper);
+ cylinderActor-&gt;GetProperty()-&gt;SetColor(
+     colors-&gt;GetColor4d(<span class="hljs-string">&quot;Tomato&quot;</span>).GetData());
+ cylinderActor-&gt;RotateX(<span class="hljs-number">30.0</span>);
+ cylinderActor-&gt;RotateY(<span class="hljs-number">-45.0</span>);
+
+ <span class="hljs-comment">// The renderer generates the image</span>
+ <span class="hljs-comment">// which is then displayed on the render window.</span>
+ <span class="hljs-comment">// It can be thought of as a scene to which the actor is added</span>
+ vtkNew&lt;vtkRenderer&gt; renderer;
+ renderer-&gt;AddActor(cylinderActor);
+ renderer-&gt;SetBackground(colors-&gt;GetColor3d(<span class="hljs-string">&quot;BkgColor&quot;</span>).GetData());
+ <span class="hljs-comment">// Zoom in a little by accessing the camera and invoking its &quot;Zoom&quot; method.</span>
+ renderer-&gt;ResetCamera();
+ renderer-&gt;GetActiveCamera()-&gt;Zoom(<span class="hljs-number">1.5</span>);
+
+ <span class="hljs-comment">// The render window is the actual GUI window</span>
+ <span class="hljs-comment">// that appears on the computer screen</span>
+ vtkNew&lt;vtkRenderWindow&gt; renderWindow;
+ renderWindow-&gt;SetSize(<span class="hljs-number">300</span>, <span class="hljs-number">300</span>);
+ renderWindow-&gt;AddRenderer(renderer);
+ renderWindow-&gt;SetWindowName(<span class="hljs-string">&quot;Cylinder&quot;</span>);
+
+ <span class="hljs-comment">// The render window interactor captures mouse events</span>
+ <span class="hljs-comment">// and will perform appropriate camera or actor manipulation</span>
+ <span class="hljs-comment">// depending on the nature of the events.</span>
+ vtkNew&lt;vtkRenderWindowInteractor&gt; renderWindowInteractor;
+ renderWindowInteractor-&gt;SetRenderWindow(renderWindow);
+
+ <span class="hljs-comment">// This starts the event loop and as a side effect causes an initial render.</span>
+ renderWindow-&gt;Render();
+ renderWindowInteractor-&gt;Start();
+
+ <span class="hljs-keyword">return</span> EXIT_SUCCESS;
+ }
+</code></pre>
+</li>
+<li><p>&#x63A5;&#x7740;&#x5728;&#x540C;&#x76EE;&#x5F55;&#x4E0B;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;<code>CMakeLists.txt</code>&#xFF0C;&#x7F16;&#x8F91;<code>CMakeLists.txt</code>&#x6587;&#x4EF6;&#x4EE3;&#xFF0C;&#x70B9;&#x51FB;<code>esc</code>&#xFF0C;&#x8F93;&#x5165;<code>:wq</code></p>
+<pre><code class="lang-bash"> cmake_minimum_required(VERSION 3.12 FATAL_ERROR)
+
+ project(CylinderExample)
+
+ find_package(VTK COMPONENTS 
+ CommonColor
+ CommonCore
+ FiltersSources
+ InteractionStyle
+ RenderingContextOpenGL2
+ RenderingCore
+ RenderingFreeType
+ RenderingGL2PSOpenGL2
+ RenderingOpenGL2
+ )
+
+ <span class="hljs-keyword">if</span> (NOT VTK_FOUND)
+ message(FATAL_ERROR <span class="hljs-string">&quot;CylinderExample: Unable to find the VTK build folder.&quot;</span>)
+ endif()
+
+ <span class="hljs-comment"># Prevent a &quot;command line is too long&quot; failure in Windows.</span>
+ <span class="hljs-built_in">set</span>(CMAKE_NINJA_FORCE_RESPONSE_FILE <span class="hljs-string">&quot;ON&quot;</span> CACHE BOOL <span class="hljs-string">&quot;Force Ninja to use response files.&quot;</span>)
+ add_executable(CylinderExample MACOSX_BUNDLE CylinderExample.cxx )
+ target_link_libraries(CylinderExample PRIVATE <span class="hljs-variable">${VTK_LIBRARIES}</span>
+ )
+ <span class="hljs-comment"># vtk_module_autoinit is needed</span>
+ vtk_module_autoinit(
+ TARGETS CylinderExample
+ MODULES <span class="hljs-variable">${VTK_LIBRARIES}</span>
+ )
+</code></pre>
+</li>
+<li><p>&#x5728;&#x540C;&#x76EE;&#x5F55;&#x4E0B;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;<code>build</code>&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5E76;&#x8FD0;&#x884C;</p>
+<pre><code class="lang-bash"> <span class="hljs-built_in">cd</span> build
+ cmake -DVTK_DIR:PATH=/opt/VTK-9.3.1/VTK_build ..
+ make
+ ./CylinderExample
+</code></pre>
+</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../2_qt_install_config/" class="navigation navigation-prev " aria-label="Previous page: 2 Qt 安装及配置">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../../flask_web/" class="navigation navigation-next " aria-label="Next page: Flask Web">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3 VTK 安装及配置","level":"2.1.3","depth":2,"next":{"title":"Flask Web","level":"2.2","depth":1,"path":"flask_web/README.md","ref":"flask_web/README.md","articles":[{"title":"1 Flask Web 入门","level":"2.2.1","depth":2,"path":"flask_web/flask_bootstrap/README.md","ref":"flask_web/flask_bootstrap/README.md","articles":[]},{"title":"2 Flask Vue","level":"2.2.2","depth":2,"ref":"","articles":[]}]},"previous":{"title":"2 Qt 安装及配置","level":"2.1.2","depth":2,"path":"linux_c_cpp/2_qt_install_config/README.md","ref":"linux_c_cpp/2_qt_install_config/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing","livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"linux_c_cpp/3_vtk_install_config/README.md","mtime":"2024-08-05T12:30:38.594Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-08-05T12:32:12.332Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
