@@ -1,0 +1,659 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>2 Docker安装Mysql8 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../1_docker_install_config/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../linux_c_cpp/">
+            
+                <a href="../../linux_c_cpp/">
+            
+                    
+                    Linux, C and CPP
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../linux_c_cpp/1_linux_config/">
+            
+                <a href="../../linux_c_cpp/1_linux_config/">
+            
+                    
+                    1 Linux 安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Linux, Qt and VTK
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../linux_qt_vtk/1_qt_install_config/">
+            
+                <a href="../../linux_qt_vtk/1_qt_install_config/">
+            
+                    
+                    1 Qt 安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../linux_qt_vtk/2_vtk_install_config/">
+            
+                <a href="../../linux_qt_vtk/2_vtk_install_config/">
+            
+                    
+                    2 VTK 安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../flask_web/">
+            
+                <a href="../../flask_web/">
+            
+                    
+                    Flask Web
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../flask_web/flask_bootstrap/">
+            
+                <a href="../../flask_web/flask_bootstrap/">
+            
+                    
+                    1 Flask Web 入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    2 Flask Vue
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../1_docker_install_config/">
+            
+                <a href="../1_docker_install_config/">
+            
+                    
+                    1 Docker安装及配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    2 Docker安装Mysql8
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" >
+            
+                <span>
+            
+                    
+                    3 Docker安装SCIP求解器
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    ADMM
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    High Dimensional Probability
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Machine Learning
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Deep Learning
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    Reinforcement Learning
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >2 Docker安装Mysql8</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="win11&#x4E0B;&#x5229;&#x7528;docker&#x5B89;&#x88C5;mysql8">Win11&#x4E0B;&#x5229;&#x7528;docker&#x5B89;&#x88C5;mysql8</h1>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><p><a href="https://www.cnblogs.com/sheseido/p/12708864.html" target="_blank">https://www.cnblogs.com/sheseido/p/12708864.html</a> </p>
+</li>
+<li><p><a href="https://blog.csdn.net/weixin_42197001/article/details/138184306" target="_blank">https://blog.csdn.net/weixin_42197001/article/details/138184306</a> </p>
+</li>
+<li><p><a href="https://blog.csdn.net/qq_29907885/article/details/107692317" target="_blank">https://blog.csdn.net/qq_29907885/article/details/107692317</a></p>
+</li>
+<li><p><a href="https://liuyanzhao.com/1526792119954575361.html" target="_blank">https://liuyanzhao.com/1526792119954575361.html</a></p>
+</li>
+</ul>
+<ul>
+<li><a href="https://blog.csdn.net/u014282578/article/details/127920419" target="_blank">https://blog.csdn.net/u014282578/article/details/127920419</a></li>
+</ul>
+<h2 id="1-&#x65B0;&#x5EFA;&#x6302;&#x8F7D;&#x6587;&#x4EF6;">1 &#x65B0;&#x5EFA;&#x6302;&#x8F7D;&#x6587;&#x4EF6;</h2>
+<ol>
+<li><p>&#x5728;C&#x76D8;&#x7528;&#x6237;&#x76EE;&#x5F55;&#x4E0B;&#x65B0;&#x5EFA;&#x4EE5;&#x4E0B;&#x6587;&#x4EF6;&#x5939;</p>
+ <div style="text-align: center;">
+ <img src="image-10.png" alt="alt text" style="width:50%; height:auto;"></div>
+
+
+
+</li>
+</ol>
+<blockquote>
+<h3 id="&#x6302;&#x8F7D;">&#x6302;&#x8F7D;</h3>
+<p>&#x5728; Docker &#x4E2D;&#xFF0C;&#x6302;&#x8F7D;&#xFF08;mount&#xFF09;&#x662F;&#x6307;&#x5C06;&#x5BBF;&#x4E3B;&#x673A;&#x4E0A;&#x7684;&#x76EE;&#x5F55;&#x6216;&#x6587;&#x4EF6;&#x4E0E; Docker &#x5BB9;&#x5668;&#x5185;&#x7684;&#x76EE;&#x5F55;&#x6216;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x8FDE;&#x63A5;&#x3002;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x8BA9;&#x5BB9;&#x5668;&#x8BBF;&#x95EE;&#x5BBF;&#x4E3B;&#x673A;&#x4E0A;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x6570;&#x636E;&#x7684;&#x6301;&#x4E45;&#x5316;&#x548C;&#x5171;&#x4EAB;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x6765;&#x8BF4;&#xFF0C;Docker &#x652F;&#x6301;&#x4E24;&#x79CD;&#x6302;&#x8F7D;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<ol>
+<li><p>&#x7ED1;&#x5B9A;&#x6302;&#x8F7D;&#xFF08;bind mount&#xFF09;&#xFF1A;&#x5C06;&#x5BBF;&#x4E3B;&#x673A;&#x4E0A;&#x7684;&#x7279;&#x5B9A;&#x76EE;&#x5F55;&#x6216;&#x6587;&#x4EF6;&#x76F4;&#x63A5;&#x6302;&#x8F7D;&#x5230;&#x5BB9;&#x5668;&#x5185;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5BB9;&#x5668;&#x5185;&#x7684;&#x6587;&#x4EF6;&#x4F1A;&#x76F4;&#x63A5;&#x53CD;&#x6620;&#x5BBF;&#x4E3B;&#x673A;&#x4E0A;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x53CD;&#x4E4B;&#x4EA6;&#x7136;&#x3002;&#x4F7F;&#x7528;&#x7ED1;&#x5B9A;&#x6302;&#x8F7D;&#x65F6;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x5BBF;&#x4E3B;&#x673A;&#x7684;&#x8DEF;&#x5F84;&#x548C;&#x5BB9;&#x5668;&#x5185;&#x7684;&#x8DEF;&#x5F84;&#x3002;</p>
+<p> &#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-bash"> docker run -v /&#x5BBF;&#x4E3B;&#x673A;&#x8DEF;&#x5F84;:/&#x5BB9;&#x5668;&#x8DEF;&#x5F84; my_image
+</code></pre>
+</li>
+<li><p>&#x6570;&#x636E;&#x5377;&#xFF08;volume&#xFF09;&#xFF1A;Docker &#x7BA1;&#x7406;&#x7684;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x591A;&#x4E2A;&#x5BB9;&#x5668;&#x4E4B;&#x95F4;&#x5171;&#x4EAB;&#x3002;&#x6570;&#x636E;&#x5377;&#x5B58;&#x50A8;&#x5728;&#x5BBF;&#x4E3B;&#x673A;&#x7684;&#x7279;&#x5B9A;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F46;&#x4E0D;&#x76F4;&#x63A5;&#x66B4;&#x9732;&#x7ED9;&#x7528;&#x6237;&#x3002;&#x4F7F;&#x7528;&#x6570;&#x636E;&#x5377;&#x53EF;&#x4EE5;&#x66F4;&#x597D;&#x5730;&#x7BA1;&#x7406;&#x6570;&#x636E;&#xFF0C;&#x4FBF;&#x4E8E;&#x5907;&#x4EFD;&#x548C;&#x8FC1;&#x79FB;&#x3002;</p>
+<p> &#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-bash"> docker run -v my_volume:/&#x5BB9;&#x5668;&#x8DEF;&#x5F84; my_image
+</code></pre>
+</li>
+</ol>
+<p>&#x901A;&#x8FC7;&#x6302;&#x8F7D;&#xFF0C;Docker &#x5BB9;&#x5668;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5BBF;&#x4E3B;&#x673A;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x786E;&#x4FDD;&#x6570;&#x636E;&#x5728;&#x5BB9;&#x5668;&#x91CD;&#x542F;&#x6216;&#x5220;&#x9664;&#x540E;&#x4ECD;&#x7136;&#x5B58;&#x5728;&#x3002;</p>
+</blockquote>
+<h2 id="2-&#x62C9;&#x53D6;mysql">2 &#x62C9;&#x53D6;mysql</h2>
+<ol>
+<li><p>&#x8FDB;&#x5165;<a href="https://hub.docker.com/_/mysql" target="_blank">docker hub</a>&#x67E5;&#x770B;mysql&#x53EF;&#x7528;&#x7248;&#x672C;</p>
+ <div style="text-align: center;">
+ <img src="image-1.png" alt="alt text" style="width:50%; height:auto;"></div>
+</li>
+<li><p>&#x6253;&#x5F00;cmd&#xFF0C;&#x8F93;&#x5165;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x62C9;&#x53D6;mysql8.4.2</p>
+<pre><code class="lang-bash"> docker pull mysql:8.4.2
+</code></pre>
+ <div style="text-align: center;">
+ <img src="image-2.png" alt="alt text" style="width:50%; height:auto;"></div>
+
+</li>
+</ol>
+<h2 id="3-&#x751F;&#x6210;&#x5BB9;&#x5668;">3 &#x751F;&#x6210;&#x5BB9;&#x5668;</h2>
+<ol>
+<li><p>&#x8FD0;&#x884C;&#x955C;&#x50CF;&#x751F;&#x6210;&#x5BB9;&#x5668;&#xFF0C;&#x6253;&#x5F00;cmd&#x8FD0;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;</p>
+<pre><code class="lang-bash"> docker run -p 3306:3306 --name mysql <span class="hljs-_">-e</span> MYSQL_ROOT_PASSWORD=123456 <span class="hljs-_">-d</span> mysql:8.4.2
+</code></pre>
+</li>
+</ol>
+<h2 id="4-&#x5904;&#x7406;mysql&#x914D;&#x7F6E;&#x6587;&#x4EF6;">4 &#x5904;&#x7406;mysql&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h2>
+<ol>
+<li><p>&#x786E;&#x5B9A;mysql&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;</p>
+<pre><code class="lang-bash"> <span class="hljs-comment">#&#x8FDB;&#x5165;docker&#x5BB9;&#x5668;&#xFF0C;mysql&#x4E3A;&#x521A;&#x5B89;&#x88C5;&#x7684;&#x5BB9;&#x5668;&#x540D;&#x79F0;</span>
+ docker <span class="hljs-built_in">exec</span> -it mysql bash
+
+ <span class="hljs-comment"># &#x67E5;&#x627E;Docker&#x5185;&#xFF0C;MySQL&#x914D;&#x7F6E;&#x6587;&#x4EF6;my.cnf&#x7684;&#x4F4D;&#x7F6E;</span>
+ mysql --help | grep my.cnf
+</code></pre>
+ <div style="text-align: center;">
+ <img src="image-15.png" alt="alt text" style="width:50%; height:auto;"></div>
+
+<p> &#x4F7F;&#x7528;<code>ls -l</code>&#x547D;&#x4EE4;&#x9010;&#x4E00;&#x5BFB;&#x627E;&#xFF0C;&#x6700;&#x7EC8;&#x53D1;&#x73B0;&#x6587;&#x4EF6;&#x4E3A;<code>/etc/my.cnf</code></p>
+ <div style="text-align: center;">
+ <img src="image-14.png" alt="alt text" style="width:50%; height:auto;"></div>
+</li>
+<li><p>&#x5C06;&#x5BB9;&#x5668;&#x7684;&#x914D;&#x7F6E;&#x590D;&#x5236;&#x5230;&#x5BBF;&#x4E3B;&#x673A;</p>
+<pre><code class="lang-bash"> docker cp mysql:/etc/my.cnf C:\Users\16587\dockerspace\mysql8\conf\my.cnf
+</code></pre>
+ <div style="text-align: center;">
+ <img src="image-16.png" alt="alt text" style="width:50%; height:auto;"></div>
+
+</li>
+</ol>
+<h2 id="5-&#x91CD;&#x65B0;&#x751F;&#x6210;&#x5BB9;&#x5668;&#x5E76;&#x6302;&#x8F7D;&#x6587;&#x4EF6;">5 &#x91CD;&#x65B0;&#x751F;&#x6210;&#x5BB9;&#x5668;&#x5E76;&#x6302;&#x8F7D;&#x6587;&#x4EF6;</h2>
+<ol>
+<li><p>&#x5220;&#x9664;&#x65E7;&#x5BB9;&#x5668;</p>
+<pre><code class="lang-bash"> docker rm <span class="hljs-_">-f</span> mysql
+</code></pre>
+</li>
+<li><p>&#x91CD;&#x65B0;&#x8FD0;&#x884C;&#x955C;&#x50CF;&#x751F;&#x6210;&#x5BB9;&#x5668;</p>
+<pre><code class="lang-bash"> docker run -p 3306:3306 --name mysql -v C:\Users\16587\dockerspace\mysql8\conf\my.cnf:/etc/my.cnf -v C:\Users\16587\dockerspace\mysql8\logs:/logs -v C:\Users\16587\dockerspace\mysql8\data:/var/lib/mysql <span class="hljs-_">-e</span> MYSQL_ROOT_PASSWORD=123456 <span class="hljs-_">-d</span> mysql:8.4.2 --lower-case-table-names=1
+</code></pre>
+<p> <br></p>
+<ul>
+<li><code>-p 3306:3306</code>&#xFF1A;&#x5C06;&#x5BB9;&#x5668;&#x7684; 3306 &#x7AEF;&#x53E3;&#x6620;&#x5C04;&#x5230;&#x4E3B;&#x673A;&#x7684; 3306 &#x7AEF;&#x53E3;.</li>
+<li><code>-v ...\conf\my.conf:/etc/mysql/my.cnf</code>&#xFF1A;&#x5C06;&#x4E3B;&#x673A;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x7684; conf/my.cnf &#x6302;&#x8F7D;&#x5230;&#x5BB9;&#x5668;&#x7684; /etc/my.cnf.</li>
+<li><code>-v .../logs:/logs</code>&#xFF1A;&#x5C06;&#x4E3B;&#x673A;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x7684; logs &#x76EE;&#x5F55;&#x6302;&#x8F7D;&#x5230;&#x5BB9;&#x5668;&#x7684; /logs.</li>
+<li><code>-v .../data:/var/lib/mysql</code> &#xFF1A;&#x5C06;&#x4E3B;&#x673A;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x7684;data&#x76EE;&#x5F55;&#x6302;&#x8F7D;&#x5230;&#x5BB9;&#x5668;&#x7684; /var/lib/mysql.</li>
+<li><code>-e MYSQL_ROOT_PASSWORD=123456</code>&#xFF1A;&#x521D;&#x59CB;&#x5316; root &#x7528;&#x6237;&#x7684;&#x5BC6;&#x7801;.</li>
+</ul>
+</li>
+</ol>
+<h2 id="6-&#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;">6 &#x4FEE;&#x6539;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</h2>
+<ol>
+<li><p>&#x5728;&#x5BBF;&#x4E3B;&#x673A;win&#x4E0B;&#x4FEE;&#x6539;<code>my.cnf</code>&#x6587;&#x4EF6;</p>
+<pre><code class="lang-bash"> [mysql]
+ <span class="hljs-comment">#&#x8BBE;&#x7F6E;mysql&#x5BA2;&#x6237;&#x7AEF;&#x9ED8;&#x8BA4;&#x5B57;&#x7B26;&#x96C6;</span>
+ default-character-set=UTF8MB4
+ [mysqld]
+ <span class="hljs-comment">#&#x8BBE;&#x7F6E;3306&#x7AEF;&#x53E3;</span>
+ port=3306
+ <span class="hljs-comment">#&#x5141;&#x8BB8;&#x6700;&#x5927;&#x8FDE;&#x63A5;&#x6570;</span>
+ max_connections=200
+ <span class="hljs-comment">#&#x5141;&#x8BB8;&#x8FDE;&#x63A5;&#x5931;&#x8D25;&#x7684;&#x6B21;&#x6570;</span>
+ max_connect_errors=10
+ <span class="hljs-comment">#&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x201C;mysql_native_password&#x201D;&#x63D2;&#x4EF6;&#x8BA4;&#x8BC1;</span>
+ default_authentication_plugin=mysql_native_password
+ <span class="hljs-comment">#&#x670D;&#x52A1;&#x7AEF;&#x4F7F;&#x7528;&#x7684;&#x5B57;&#x7B26;&#x96C6;&#x9ED8;&#x8BA4;&#x4E3A;8&#x6BD4;&#x7279;&#x7F16;&#x7801;&#x7684;latin1&#x5B57;&#x7B26;&#x96C6;</span>
+ character-set-server=UTF8MB4
+ <span class="hljs-comment">#&#x5F00;&#x542F;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;</span>
+ explicit_defaults_<span class="hljs-keyword">for</span>_timestamp=<span class="hljs-literal">true</span>
+ <span class="hljs-comment">#&#x521B;&#x5EFA;&#x65B0;&#x8868;&#x65F6;&#x5C06;&#x4F7F;&#x7528;&#x7684;&#x9ED8;&#x8BA4;&#x5B58;&#x50A8;&#x5F15;&#x64CE;</span>
+ default-storage-engine=INNODB
+ <span class="hljs-comment">#&#x7B49;&#x5F85;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#x79D2;</span>
+ <span class="hljs-built_in">wait</span>_timeout=60
+ <span class="hljs-comment">#&#x4EA4;&#x4E92;&#x5F0F;&#x8FDE;&#x63A5;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#x79D2;</span>
+ interactive-timeout=600
+ <span class="hljs-comment"># &#x5BF9;&#x6570;&#x636E;&#x5E93;&#x8868;&#x5927;&#x5C0F;&#x5199;&#x4E0D;&#x654F;&#x611F;&#x8BBE;&#x7F6E;&#xFF0C;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;&#x4E3A;&#x5C0F;&#x5199;&#xFF0C;&#x6BD4;&#x8F83;&#x4E5F;&#x5168;&#x90E8;&#x8BBE;&#x7F6E;&#x4E3A;&#x5C0F;&#x5199;&#x5728;&#x6BD4;&#x8F83;</span>
+ lower-case-table-names=1
+</code></pre>
+ <div style="text-align: center;">
+ <img src="image-18.png" alt="alt text" style="width:50%; height:auto;"></div>
+</li>
+<li><p>&#x91CD;&#x542F;&#x5BB9;&#x5668;</p>
+<pre><code class="lang-bash"> docker restart mysql
+</code></pre>
+<p> <br></p>
+</li>
+<li><p>&#x8FDB;&#x5165;&#x7EC8;&#x7AEF;MySQL&#xFF0C;&#x67E5;&#x770B;<code>my.conf</code>&#x662F;&#x5426;&#x751F;&#x6548;</p>
+<pre><code class="lang-bash"> docker <span class="hljs-built_in">exec</span> -it mysql /bin/bash
+ mysql -u root -p123456
+</code></pre>
+<p> &#x8F93;&#x5165;</p>
+<pre><code class="lang-bash"> SHOW VARIABLES LIKE <span class="hljs-string">&apos;%time_zone%&apos;</span>;
+</code></pre>
+<p> <code>time-zone</code>&#x663E;&#x793A;<code>+08:00</code>&#xFF0C;&#x5219;&#x8868;&#x793A;&#x914D;&#x7F6E;&#x751F;&#x6548;</p>
+ <div style="text-align: center;">
+ <img src="image-19.png" alt="alt text" style="width:50%; height:auto;"></div>
+
+<p> <br></p>
+<p> &#x5982;&#x679C;&#x51FA;&#x73B0;<code>my.cnf</code>&#x914D;&#x7F6E;&#x4E0D;&#x8D77;&#x6548;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x53EF;&#x80FD;&#x662F;&#x6587;&#x4EF6;&#x7684;&#x6743;&#x9650;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x547D;&#x4EE4;<code>docker logs
+ mysql</code>&#x67E5;&#x770B;<code>.cnf</code>&#x6587;&#x4EF6;&#x662F;&#x5426;&#x88AB;&#x5FFD;&#x7565;</p>
+<p> &#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<ol>
+<li><p>&#x4FEE;&#x6539;&#x6587;&#x4EF6;&#x6743;&#x9650;</p>
+<pre><code class="lang-bash"> docker <span class="hljs-built_in">exec</span> -it mysql /bin/bash
+
+ <span class="hljs-comment"># &#x67E5;&#x770B;&#x6743;&#x9650;</span>
+ ls <span class="hljs-_">-l</span> /etc/my.cnf
+
+ <span class="hljs-comment"># &#x5982;&#x679C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#x8868;&#x793A;&#x6743;&#x9650;&#x3002;</span>
+ <span class="hljs-comment"># &#x5982;&#x679C;&#x6743;&#x9650;&#x662F; -rwxrwxrwx&#xFF0C;&#x5219;&#x8868;&#x793A;&#x8BE5;&#x6587;&#x4EF6;&#x7684;&#x6743;&#x9650;&#x662F; 777&#xFF0C;&#x4FEE;&#x6539;&#x6743;&#x9650;&#x4E3A; 644</span>
+
+ chmod 644 /etc/my.cnf
+</code></pre>
+</li>
+<li><p>&#x518D;&#x6B21;&#x8FDB;&#x5165;mysql</p>
+<pre><code class="lang-bash"> mysql -u root -p123456
+</code></pre>
+<pre><code>&#x5982;&#x679C;&#x51FA;&#x73B0;&#x4EE5;&#x4E0B;&#x62A5;&#x9519;
+</code></pre><pre><code class="lang-bash"> ERROR 2002 (HY000): Can<span class="hljs-string">&apos;t connect to local MySQL server through socket &apos;</span>/var/run/mysqld/mysqld.sock<span class="hljs-string">&apos; (2)
+</span></code></pre>
+<p> &#x68C0;&#x67E5;&#x6587;&#x4EF6;<code>/var/run/mysql/mysqld.sock</code>&#x662F;&#x5426;&#x5B58;&#x5728;&#x3002;&#x82E5;&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x8FDB;&#x884C;&#x624B;&#x52A8;&#x521B;&#x5EFA;&#xFF1A;</p>
+<pre><code class="lang-bash"> touch /var/run/mysqld/mysqld.sock
+</code></pre>
+<p> &#x66F4;&#x6539;&#x6587;&#x4EF6;&#x6743;&#x9650;&#xFF0C;&#x4F7F;&#x5F97;MySQL&#x8FDB;&#x7A0B;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre><code class="lang-bash"> chown mysql /var/run/mysqld/mysqld.sock
+</code></pre>
+</li>
+<li><p>&#x91CD;&#x542F;&#x5BB9;&#x5668;</p>
+<pre><code class="lang-bash"> docker restart mysql
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../1_docker_install_config/" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 1 Docker安装及配置">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"2 Docker安装Mysql8","level":"1.5.2","depth":2,"next":{"title":"3 Docker安装SCIP求解器","level":"1.5.3","depth":2,"ref":"","articles":[]},"previous":{"title":"1 Docker安装及配置","level":"1.5.1","depth":2,"path":"docker_learning/1_docker_install_config/README.md","ref":"docker_learning/1_docker_install_config/README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-sharing","livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"docker_learning/2_docker_sql/README.md","mtime":"2024-08-06T12:37:17.481Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-08-06T13:09:46.886Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
