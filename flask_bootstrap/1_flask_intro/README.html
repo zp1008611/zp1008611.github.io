@@ -1,0 +1,2134 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Flask 入门教程 &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'flask_bootstrap/1_flask_intro/README';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../linux_c_cpp/index.html">Liunx, C and CPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Flask 入门教程</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 项目架构</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2 虚拟环境配置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3 实列初始化</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4 定义并访问数据库</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates">5 Templates（模板）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#static-files">6 Static Files（静态文件）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blueprints-and-views">7 Blueprints and Views（蓝图与视图）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auth-py">8 重点解读<code class="docutils literal notranslate"><span class="pre">auth.py</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blog-py">9 重点解读<code class="docutils literal notranslate"><span class="pre">blog.py</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">9 测试</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pytest-unittest">pytest 和 unittest 之间的主要区别：</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">10 docker部署</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="flask">
+<h1>Flask 入门教程<a class="headerlink" href="#flask" title="Permalink to this heading">#</a></h1>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://flask.palletsprojects.com/en/3.0.x/tutorial/">项目搭建参考</a></p></li>
+<li><p><a class="reference external" href="https://testdriven.io/blog/flask-pytest/">测试参考</a></p></li>
+</ul>
+<p>本文参考官网教程来做一个可以实现注册，登录，创建、修改、删除博客的博客网站，使用的宿主机为ubuntu22.04，源码可从<a class="reference external" href="https://github.com/pallets/flask/tree/2.3.3/examples/tutorial">该网址</a>获得。</p>
+</section>
+<section id="id1">
+<h2>1 项目架构<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>项目文件架构如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/home/user/Projects/flask-tutorial
+├──<span class="w"> </span>flaskr/
+│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>db.py
+│<span class="w">   </span>├──<span class="w"> </span>schema.sql
+│<span class="w">   </span>├──<span class="w"> </span>auth.py
+│<span class="w">   </span>├──<span class="w"> </span>blog.py
+<span class="p">|</span><span class="w">   </span>├──<span class="w"> </span>Dockerfile
+<span class="p">|</span><span class="w">   </span>├──<span class="w"> </span>.dockerignore
+<span class="p">|</span><span class="w">   </span>├──<span class="w"> </span>requirements.txt
+│<span class="w">   </span>├──<span class="w"> </span>templates/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>base.html
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>auth/
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>login.html
+│<span class="w">   </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>register.html
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>blog/
+│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>create.html
+│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>index.html
+│<span class="w">   </span>│<span class="w">       </span>└──<span class="w"> </span>update.html
+│<span class="w">   </span>└──<span class="w"> </span>static/
+│<span class="w">       </span>└──<span class="w"> </span>style.css
+├──<span class="w"> </span>tests/
+│<span class="w">   </span>├──<span class="w"> </span>conftest.py
+│<span class="w">   </span>├──<span class="w"> </span>data.sql
+│<span class="w">   </span>├──<span class="w"> </span>test_factory.py
+│<span class="w">   </span>├──<span class="w"> </span>test_db.py
+│<span class="w">   </span>├──<span class="w"> </span>test_auth.py
+│<span class="w">   </span>└──<span class="w"> </span>test_blog.py
+└──<span class="w">  </span>.venv/
+</pre></div>
+</div>
+<p>这个项目结构是一个 Flask 应用程序的典型布局。下面是各个文件和文件夹的作用介绍：</p>
+<ol>
+<li><p><code class="docutils literal notranslate"><span class="pre">flaskr/</span></code></p>
+<p>这是 Flask 应用的主要包，包含应用的核心代码。</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></strong>: 这个文件用于初始化 Flask 应用。通常在这里创建 Flask 实例，并注册蓝图（Blueprints）、数据库等。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">db.py</span></code></strong>: 该文件通常用于数据库的配置和操作，比如创建数据库连接、定义模型等。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">schema.sql</span></code></strong>: 这个文件包含数据库的创建和初始化语句，通常用于设置数据库表结构。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">auth.py</span></code></strong>: 处理与用户身份验证相关的路由和逻辑，比如登录、注册和登出功能。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">blog.py</span></code></strong>: 处理与博客相关的路由和逻辑，比如创建、更新和显示博客文章。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">templates/</span></code></strong>: 存放 HTML 模板文件的目录，Flask 会从这里加载模板。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, <code class="docutils literal notranslate"><span class="pre">.dockerignore</span></code>, <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></strong>：Docker部署项目时需要用到的文件</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">base.html</span></code></strong>: 基本模板，其他模板通常会继承这个模板，包含公共的 HTML 结构（如头部、底部）。</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">auth/</span></code></strong>: 存放与身份验证相关的模板。</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">login.html</span></code></strong>: 用户登录页面的模板。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">register.html</span></code></strong>: 用户注册页面的模板。</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">blog/</span></code></strong>: 存放与博客相关的模板。</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">create.html</span></code></strong>: 创建新博客文章的页面模板。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">index.html</span></code></strong>: 显示所有博客文章的页面模板。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">update.html</span></code></strong>: 更新现有博客文章的页面模板。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">static/</span></code></strong>: 存放静态文件的目录，如 CSS、JavaScript 和图片等。</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">style.css</span></code></strong>: 应用的样式表文件，用于定义网页的外观。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/</span></code>
+这个目录包含了项目的测试代码，确保应用的各个部分正常工作。</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">conftest.py</span></code></strong>: 用于配置 pytest 的测试设置，通常包括测试夹具（fixtures）。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">data.sql</span></code></strong>: 测试用的数据库初始化数据，可以在测试时加载。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">test_factory.py</span></code></strong>: 测试应用工厂函数的文件，确保应用可以正确创建。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">test_db.py</span></code></strong>: 测试数据库相关功能的文件，确保数据库操作正常。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">test_auth.py</span></code></strong>: 测试身份验证相关功能的文件，确保登录、注册等功能正常。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">test_blog.py</span></code></strong>: 测试博客相关功能的文件，确保博客文章的创建、更新等功能正常。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.venv/</span></code>
+这是 Python 虚拟环境的目录，包含项目所需的所有依赖包。虚拟环境可以隔离项目的依赖，避免与其他项目冲突。</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>2 虚拟环境配置<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>flask-tutorial
+<span class="nb">cd</span><span class="w"> </span>flask-tutorial
+sudo<span class="w"> </span>ln<span class="w"> </span>-fs<span class="w"> </span>/usr/local/bin/python3.11<span class="w"> </span>/usr/bin/python3
+python3.11<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+sudo<span class="w"> </span>ln<span class="w"> </span>-fs<span class="w"> </span>/usr/bin/python3.10<span class="w"> </span>/usr/bin/python3
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+
+<span class="c1"># 如果使用代理运行，取消以下命令注释，并运行</span>
+<span class="c1"># unset all_proxy &amp;&amp; unset ALL_PROXY # 取消所有 socks 代理</span>
+<span class="c1"># pip install pysocks</span>
+
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+pip<span class="w"> </span>install<span class="w"> </span>flask<span class="w"> </span>uwsgi
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>3 实列初始化<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>应用工厂模式介绍
+Flask 应用程序是 Flask 类的一个实例。与应用程序相关的所有内容，例如配置和 URL，都将注册在这个类中。</p>
+<p>创建 Flask 应用程序的传统方式
+最直接的创建 Flask 应用程序的方法是在代码顶部直接创建一个全局的 Flask 实例，例如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from<span class="w"> </span>flask<span class="w"> </span>import<span class="w"> </span>Flask
+
+<span class="nv">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Flask<span class="o">(</span>__name__<span class="o">)</span>
+
+@app.route<span class="o">(</span><span class="s2">&quot;/&quot;</span><span class="o">)</span>
+def<span class="w"> </span>hello_world<span class="o">()</span>:
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;&lt;p&gt;Hello, World!&lt;/p&gt;&quot;</span>
+</pre></div>
+</div>
+<p>虽然这种方法简单且在某些情况下有用，但随着项目的增长，可能会导致一些棘手的问题。</p>
+<p>在应用工厂模式中，您不再在全局范围内创建 Flask 实例，而是将其放在一个函数内部。这个函数被称为”应用工厂”。所有的配置、注册和其他应用程序所需的设置都将在这个函数内部进行，最后返回应用程序实例。</p>
+<p>具体步骤:</p>
+<ol class="simple">
+<li><p>创建应用工厂函数：定义一个函数来创建和配置 Flask 应用实例。</p></li>
+<li><p>配置应用：在函数内部加载配置，例如从文件或环境变量。</p></li>
+<li><p>注册蓝图和扩展：在应用上下文中注册蓝图和其他扩展。</p></li>
+<li><p>返回应用实例：函数最后返回配置好的应用实例。</p></li>
+</ol>
+</li>
+<li><p>创建主代码文件夹和<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 文件的存在告诉 Python 解释器该目录应被视为一个包。这使得您可以在该目录中组织模块，并通过导入语句访问它们。在 Flask 应用程序中，<code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 通常用于定义应用工厂函数。这个函数负责创建和配置 Flask 应用实例，并可以在不同的环境中创建多个实例。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>flaskr
+<span class="nb">cd</span><span class="w"> </span>flaskr
+touch<span class="w"> </span>__init__.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>内容如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>import<span class="w"> </span>os
+
+from<span class="w"> </span>flask<span class="w"> </span>import<span class="w"> </span>Flask
+
+
+def<span class="w"> </span>create_app<span class="o">(</span><span class="nv">test_config</span><span class="o">=</span>None<span class="o">)</span>:
+<span class="w">    </span><span class="c1"># create and configure the app</span>
+<span class="w">    </span><span class="nv">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Flask<span class="o">(</span>__name__,<span class="w"> </span><span class="nv">instance_relative_config</span><span class="o">=</span>True<span class="o">)</span>
+<span class="w">    </span>app.config.from_mapping<span class="o">(</span>
+<span class="w">        </span><span class="nv">SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;dev&#39;</span>,
+<span class="w">        </span><span class="nv">DATABASE</span><span class="o">=</span>os.path.join<span class="o">(</span>app.instance_path,<span class="w"> </span><span class="s1">&#39;flaskr.sqlite&#39;</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">)</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>test_config<span class="w"> </span>is<span class="w"> </span>None:
+<span class="w">        </span><span class="c1"># load the instance config, if it exists, when not testing</span>
+<span class="w">        </span>app.config.from_pyfile<span class="o">(</span><span class="s1">&#39;config.py&#39;</span>,<span class="w"> </span><span class="nv">silent</span><span class="o">=</span>True<span class="o">)</span>
+<span class="w">    </span><span class="k">else</span>:
+<span class="w">        </span><span class="c1"># load the test config if passed in</span>
+<span class="w">        </span>app.config.from_mapping<span class="o">(</span>test_config<span class="o">)</span>
+
+<span class="w">    </span><span class="c1"># ensure the instance folder exists</span>
+<span class="w">    </span>try:
+<span class="w">        </span>os.makedirs<span class="o">(</span>app.instance_path<span class="o">)</span>
+<span class="w">    </span>except<span class="w"> </span>OSError:
+<span class="w">        </span>pass
+
+<span class="w">    </span><span class="c1"># a simple page that says hello</span>
+<span class="w">    </span>@app.route<span class="o">(</span><span class="s1">&#39;/hello&#39;</span><span class="o">)</span>
+<span class="w">    </span>def<span class="w"> </span>hello<span class="o">()</span>:
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s1">&#39;Hello, World!&#39;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>app
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">create_app</span></code> 是应用工厂函数，负责创建和配置 Flask 实例。接下来，我们将详细介绍该函数的各个部分及其作用。</p>
+<ol>
+<li><p>创建 Flask 实例</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">instance_relative_config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__name__</span></code>：当前 Python 模块的名称。Flask 需要知道它的位置，以便设置一些路径。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instance_relative_config=True</span></code>：指示应用程序配置文件相对于实例文件夹。实例文件夹位于 <code class="docutils literal notranslate"><span class="pre">flaskr</span></code> 包之外，可以存放不应提交到版本控制的本地数据，如配置秘密和数据库文件。</p></li>
+</ul>
+</li>
+<li><p>设置默认配置</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_mapping</span><span class="p">(</span>
+    <span class="n">SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;dev&#39;</span><span class="p">,</span>
+    <span class="n">DATABASE</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">instance_path</span><span class="p">,</span> <span class="s1">&#39;flaskr.sqlite&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code></strong>：用于 Flask 和扩展来保护数据。在开发阶段设置为 <code class="docutils literal notranslate"><span class="pre">'dev'</span></code>，但在部署时应用随机值。</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">DATABASE</span></code></strong>：SQLite 数据库文件的保存路径，位于 <code class="docutils literal notranslate"><span class="pre">app.instance_path</span></code> 下，这是 Flask 为实例文件夹选择的路径。</p></li>
+</ul>
+</li>
+<li><p>从配置文件加载配置</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_pyfile</span><span class="p">(</span><span class="s1">&#39;config.py&#39;</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>该方法会覆盖默认配置，使用实例文件夹中的 <code class="docutils literal notranslate"><span class="pre">config.py</span></code> 文件中的值（如果存在）。例如，在部署时，可以使用此方法设置真实的 <code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code>。</p></li>
+</ul>
+</li>
+<li><p>测试配置</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test_config</span></code> 可以传递给工厂函数，并将用于替代实例配置。这使得您在后续编写的测试可以独立于任何开发值进行配置。</p></li>
+</ul>
+</li>
+<li><p>确保实例路径存在</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">instance_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">os.makedirs()</span></code> 确保 <code class="docutils literal notranslate"><span class="pre">app.instance_path</span></code> 存在。Flask 不会自动创建实例文件夹，但需要创建，因为您的项目将在此处创建 SQLite 数据库文件。</p></li>
+</ul>
+</li>
+<li><p>创建简单路由</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/hello&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">&#39;Hello, World!&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;app.route()</span></code> 创建一个简单的路由，使您可以在继续教程之前查看应用程序的工作情况。它将 URL <code class="docutils literal notranslate"><span class="pre">/hello</span></code> 与返回字符串 <code class="docutils literal notranslate"><span class="pre">'Hello,</span> <span class="pre">World!'</span></code> 的函数连接起来。</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id4">
+<h2>4 定义并访问数据库<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<p>该应用程序将使用SQLite数据库来存储用户和帖子。Python内置了对SQLite的支持，通过sqlite3模块实现。</p>
+<p>SQLite的便利之处在于它不需要单独设置数据库服务器，并且与Python紧密集成。然而，如果多个请求同时尝试写入数据库，写入操作将会顺序进行，从而导致性能下降。对于小型应用程序而言，这种影响可能不明显，但一旦应用规模扩大，可能需要考虑切换到其他数据库，如mysql.</p>
+<ol>
+<li><p>连接数据库</p>
+<p>在处理SQLite数据库（以及大多数其他Python数据库库）时，首先要做的就是创建一个与数据库的连接。所有的查询和操作都是通过这个连接来执行的，而在完成工作后会关闭该连接。</p>
+<p>在Web应用程序中，这个连接通常与请求相绑定。在处理请求的某个时刻创建连接，并在发送响应之前关闭连接。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>flaskr
+touch<span class="w"> </span>db.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">db.py</span></code>内容如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>import<span class="w"> </span>sqlite3
+
+import<span class="w"> </span>click
+from<span class="w"> </span>flask<span class="w"> </span>import<span class="w"> </span>current_app,<span class="w"> </span>g
+
+
+def<span class="w"> </span>get_db<span class="o">()</span>:
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;db&#39;</span><span class="w"> </span>not<span class="w"> </span><span class="k">in</span><span class="w"> </span>g:
+<span class="w">        </span>g.db<span class="w"> </span><span class="o">=</span><span class="w"> </span>sqlite3.connect<span class="o">(</span>
+<span class="w">            </span>current_app.config<span class="o">[</span><span class="s1">&#39;DATABASE&#39;</span><span class="o">]</span>,
+<span class="w">            </span><span class="nv">detect_types</span><span class="o">=</span>sqlite3.PARSE_DECLTYPES
+<span class="w">        </span><span class="o">)</span>
+<span class="w">        </span>g.db.row_factory<span class="w"> </span><span class="o">=</span><span class="w"> </span>sqlite3.Row
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>g.db
+
+
+def<span class="w"> </span>close_db<span class="o">(</span><span class="nv">e</span><span class="o">=</span>None<span class="o">)</span>:
+<span class="w">    </span><span class="nv">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>g.pop<span class="o">(</span><span class="s1">&#39;db&#39;</span>,<span class="w"> </span>None<span class="o">)</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>db<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>None:
+<span class="w">        </span>db.close<span class="o">()</span>
+</pre></div>
+</div>
+<p>这段代码是一个用Flask框架和SQLite3数据库进行数据库连接管理的示例。以下是对各部分代码的逐行解释：</p>
+<ul>
+<li><p>导入库</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">current_app</span><span class="p">,</span> <span class="n">g</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sqlite3</span></code>：用于与SQLite数据库交互的模块。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">click</span></code>：Flask用来处理命令行界面的模块。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">current_app</span></code>：Flask的上下文对象，指向当前处理请求的应用程序。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g</span></code>：Flask提供的一个特殊对象，用于存储在一个请求中使用的临时数据。</p></li>
+</ul>
+</li>
+<li><p>获取数据库连接的函数</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s1">&#39;db&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+            <span class="n">current_app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;DATABASE&#39;</span><span class="p">],</span>
+            <span class="n">detect_types</span><span class="o">=</span><span class="n">sqlite3</span><span class="o">.</span><span class="n">PARSE_DECLTYPES</span>
+        <span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">row_factory</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Row</span>
+
+    <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">db</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_db()</span></code>：这个函数用于获取数据库连接。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">'db'</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">g:</span></code>：检查<code class="docutils literal notranslate"><span class="pre">g</span></code>对象中是否已经存在数据库连接。如果不存在，则创建新的连接。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sqlite3.connect(...)</span></code>：使用<code class="docutils literal notranslate"><span class="pre">DATABASE</span></code>配置键所指向的文件名建立数据库连接。<code class="docutils literal notranslate"><span class="pre">detect_types=sqlite3.PARSE_DECLTYPES</span></code>允许SQLite自动将某些类型（如日期）解析为Python对象。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">g.db.row_factory</span> <span class="pre">=</span> <span class="pre">sqlite3.Row</span></code>：设置行工厂，使返回的行可以像字典一样通过列名访问。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">g.db</span></code>：返回数据库连接，供其他函数使用。</p></li>
+</ul>
+</li>
+<li><p>关闭数据库连接的函数</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">close_db</span><span class="p">(</span><span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">db</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">close_db(e=None)</span></code>：这个函数用于关闭之前打开的数据库连接。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">db</span> <span class="pre">=</span> <span class="pre">g.pop('db',</span> <span class="pre">None)</span></code>：从<code class="docutils literal notranslate"><span class="pre">g</span></code>中弹出<code class="docutils literal notranslate"><span class="pre">db</span></code>，如果没有连接则返回<code class="docutils literal notranslate"><span class="pre">None</span></code>。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">db</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">None:</span></code>：检查是否有打开的数据库连接。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">db.close()</span></code>：如果连接存在，则关闭该连接，以释放资源。</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_db</span></code>和<code class="docutils literal notranslate"><span class="pre">close_db</span></code>函数实现了数据库连接的获取和关闭。<code class="docutils literal notranslate"><span class="pre">get_db</span></code>在请求周期内维护一个连接，而<code class="docutils literal notranslate"><span class="pre">close_db</span></code>在请求结束时关闭连接，从而避免每次请求都创建新的连接，提高效率并减少资源占用。通常在Flask应用中，会在请求生命周期的适当位置（如<code class="docutils literal notranslate"><span class="pre">after_request</span></code>）调用<code class="docutils literal notranslate"><span class="pre">close_db</span></code>，以确保每次请求后连接被正确关闭。</p></li>
+</ul>
+</li>
+<li><p>创建数据表</p>
+<p>在SQLite中，数据存储在表和列中。这些表和列需要在存储和检索数据之前创建。Flaskr将会把用户存储在用户表中，把帖子存储在帖子表中。创建一个包含创建空表所需的SQL命令的文件:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>flaskr
+touch<span class="w"> </span>schema.sql
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">schema.sql</span></code>内容如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>DROP<span class="w"> </span>TABLE<span class="w"> </span>IF<span class="w"> </span>EXISTS<span class="w"> </span>user<span class="p">;</span>
+DROP<span class="w"> </span>TABLE<span class="w"> </span>IF<span class="w"> </span>EXISTS<span class="w"> </span>post<span class="p">;</span>
+
+CREATE<span class="w"> </span>TABLE<span class="w"> </span>user<span class="w"> </span><span class="o">(</span>
+<span class="w">    </span>id<span class="w"> </span>INTEGER<span class="w"> </span>PRIMARY<span class="w"> </span>KEY<span class="w"> </span>AUTOINCREMENT,
+<span class="w">    </span>username<span class="w"> </span>TEXT<span class="w"> </span>UNIQUE<span class="w"> </span>NOT<span class="w"> </span>NULL,
+<span class="w">    </span>password<span class="w"> </span>TEXT<span class="w"> </span>NOT<span class="w"> </span>NULL
+<span class="o">)</span><span class="p">;</span>
+
+CREATE<span class="w"> </span>TABLE<span class="w"> </span>post<span class="w"> </span><span class="o">(</span>
+<span class="w">    </span>id<span class="w"> </span>INTEGER<span class="w"> </span>PRIMARY<span class="w"> </span>KEY<span class="w"> </span>AUTOINCREMENT,
+<span class="w">    </span>author_id<span class="w"> </span>INTEGER<span class="w"> </span>NOT<span class="w"> </span>NULL,
+<span class="w">    </span>created<span class="w"> </span>TIMESTAMP<span class="w"> </span>NOT<span class="w"> </span>NULL<span class="w"> </span>DEFAULT<span class="w"> </span>CURRENT_TIMESTAMP,
+<span class="w">    </span>title<span class="w"> </span>TEXT<span class="w"> </span>NOT<span class="w"> </span>NULL,
+<span class="w">    </span>body<span class="w"> </span>TEXT<span class="w"> </span>NOT<span class="w"> </span>NULL,
+<span class="w">    </span>FOREIGN<span class="w"> </span>KEY<span class="w"> </span><span class="o">(</span>author_id<span class="o">)</span><span class="w"> </span>REFERENCES<span class="w"> </span>user<span class="w"> </span><span class="o">(</span>id<span class="o">)</span>
+<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>将运行SQL命令的Python函数添加到db.py文件中:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># flaskr/db.py</span>
+def<span class="w"> </span>init_db<span class="o">()</span>:
+<span class="w">    </span><span class="nv">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>get_db<span class="o">()</span>
+
+<span class="w">    </span>with<span class="w"> </span>current_app.open_resource<span class="o">(</span><span class="s1">&#39;schema.sql&#39;</span><span class="o">)</span><span class="w"> </span>as<span class="w"> </span>f:
+<span class="w">        </span>db.executescript<span class="o">(</span>f.read<span class="o">()</span>.decode<span class="o">(</span><span class="s1">&#39;utf8&#39;</span><span class="o">))</span>
+
+
+@click.command<span class="o">(</span><span class="s1">&#39;init-db&#39;</span><span class="o">)</span>
+def<span class="w"> </span>init_db_command<span class="o">()</span>:
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Clear the existing data and create new tables.&quot;&quot;&quot;</span>
+<span class="w">    </span>init_db<span class="o">()</span>
+<span class="w">    </span>click.echo<span class="o">(</span><span class="s1">&#39;Initialized the database.&#39;</span><span class="o">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">open_resource()</span></code>
+功能： current_app.open_resource(’schema.sql’) 允许你以包相对路径打开文件。在部署应用时，文件的绝对路径可能无法预知，因此使用相对路径确保文件能够正确访问。这种方式特别符合 Flask 应用的结构，使得资源管理更为高效和灵活。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_db()</span></code>
+功能：该函数返回数据库连接，允许你执行数据库操作，例如执行 SQL 语句（如从 schema.sql 中读取的命令）。这样，你可以在独立的函数中管理数据库连接的创建和访问，保持代码的模块化和清晰性。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">click.command()</span></code>
+功能：这是 Click 库提供的装饰器，用于定义新的命令行指令。在这个例子中，它创建了一个名为 init-db 的命令，当用户在命令行中输入 <code class="docutils literal notranslate"><span class="pre">flask</span> <span class="pre">init-db</span></code> 时，这个命令会被触发，调用 init_db_command() 函数。执行函数后，会调用 init_db() 来初始化数据库，然后显示成功消息。</p></li>
+</ul>
+</li>
+<li><p>注册函数</p>
+<p>由于我们使用了应用工厂函数创建app时，所以应用工厂函数外的 <code class="docutils literal notranslate"><span class="pre">close_db</span></code> 和 <code class="docutils literal notranslate"><span class="pre">init_db_command</span></code> 函数并不可用，因此需要编写一个函数来让app接受这些函数</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">flaskr/db.py</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>def<span class="w"> </span>init_app<span class="o">(</span>app<span class="o">)</span>:
+<span class="w">    </span>app.teardown_appcontext<span class="o">(</span>close_db<span class="o">)</span>
+<span class="w">    </span>app.cli.add_command<span class="o">(</span>init_db_command<span class="o">)</span>
+</pre></div>
+</div>
+<p>这个函数的主要作用是将数据库相关的功能注册到 Flask 应用实例中</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flaskr/__init__.py</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>def<span class="w"> </span>create_app<span class="o">()</span>:
+<span class="w">    </span><span class="nv">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>...
+<span class="w">    </span><span class="c1"># existing code omitted</span>
+
+<span class="w">    </span>from<span class="w"> </span>.<span class="w"> </span>import<span class="w"> </span>db
+<span class="w">    </span>db.init_app<span class="o">(</span>app<span class="o">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>app
+</pre></div>
+</div>
+<p>在 Flask 的工厂函数中，我们需要调用 init_app(app) 来确保我们的数据库功能被正确注册</p>
+</li>
+</ul>
+</li>
+<li><p>初始化数据库文件</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">flask</span><span class="o">-</span><span class="n">tutorial</span>
+<span class="n">source</span> <span class="o">.</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+
+<span class="n">flask</span> <span class="o">--</span><span class="n">app</span> <span class="n">flaskr</span> <span class="n">init</span><span class="o">-</span><span class="n">db</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="templates">
+<h2>5 Templates（模板）<a class="headerlink" href="#templates" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>Templates 介绍
+在 Flask 中，templates 目录用于存放 HTML 模板文件。Flask 利用 Jinja2 模板引擎来渲染这些模板。</p>
+<p>主要概念：</p>
+<ul>
+<li><p>模板：模板是包含静态和动态内容的 HTML 文件。通过 Jinja2，你可以在模板中动态插入变量、控制结构（如循环、条件语句）等。</p></li>
+<li><p>渲染模板：Flask 提供了 render_template 函数来渲染模板。当你调用这个函数时，Flask 会将指定的模板文件加载并渲染成最终的 HTML 页面。</p></li>
+<li><p>模板语法：</p>
+<ul>
+<li><p>变量：使用 <code>{{ variable_name }}</code> 语法来插入变量。</p></li>
+<li><p>控制结构：使用 <code>{%…%};</code> 语法来实现逻辑，比如 <code class="docutils literal notranslate"><span class="pre">for</span></code> 循环和 <code class="docutils literal notranslate"><span class="pre">if</span></code> 语句。例如：</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% for item in items %}  
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ item }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>  
+{% endfor %} 
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<p>Flask 的 templates 目录和 Jinja2 模板引擎使得将动态内容与静态 HTML 结合变得非常简单和高效。这对于构建现代 Web 应用程序是一个非常重要的部分。</p>
+</li>
+<li><p>基础布局模板</p>
+<p>在 Flask 中，你可以使用 Jinja2 模板引擎的继承功能来创建一个基本的布局模板（称为基模板）。这个基模板包含应用的公共结构，比如头部、导航栏和底部，而每个具体的页面模板则可以继承这个基模板，并只需要定义特定的内容部分。通过模板继承，Flask 使得重用 HTML 结构变得简单而高效。你只需在基模板中定义一次公共结构，然后在各个页面模板中覆盖特定区域，这样可以减少重复代码，使维护变得更容易。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">flask</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">flaskr</span>
+<span class="n">mkdir</span> <span class="n">templates</span>
+<span class="n">touch</span> <span class="n">base</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">base.html</span></code>内容如下：</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{% block title %}{% endblock %} - Flaskr<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;static&#39;, filename=&#39;style.css&#39;) }}&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Flaskr<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+    {% if g.user %}
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">span</span><span class="p">&gt;</span>{{ g.user[&#39;username&#39;] }}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;auth.logout&#39;) }}&quot;</span><span class="p">&gt;</span>Log Out<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    {% else %}
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;auth.register&#39;) }}&quot;</span><span class="p">&gt;</span>Register<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;auth.login&#39;) }}&quot;</span><span class="p">&gt;</span>Log In<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    {% endif %}
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">section</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+    {% block header %}{% endblock %}
+<span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+{% for message in get_flashed_messages() %}
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;flash&quot;</span><span class="p">&gt;</span>{{ message }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endfor %}
+{% block content %}{% endblock %}
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>在 Flask 的模板中，g 是一个自动可用的对象，常用于存储与当前请求相关的数据。例如，通过 load_logged_in_user 函数设置的 g.user 可以用来判断用户是否已登录。如果 g.user 被设置，模板会显示用户名和退出链接；如果未设置，则会显示注册和登录的链接。</p>
+<p>此外，url_for() 函数也是自动可用的，它用于生成指向视图的 URL，而不是手动编写这些地址，这样能够提高代码的可读性和维护性。</p>
+<p>在页面标题之后，内容之前，模板会循环遍历 get_flashed_messages() 返回的每条消息。你在视图中使用 flash() 函数显示错误信息，这段代码则负责显示这些信息。</p>
+<p>模板中定义了三个块，它们可以在其他模板中被重写：</p>
+<p>{% block title %}：用于更改浏览器标签和窗口标题中显示的内容。
+{% block header %}：类似于标题，但用于改变页面上显示的标题。
+{% block content %}：用于包含每个页面的主要内容，例如登录表单或博客文章等。
+基模板直接放在 templates 目录下，而针对每个蓝图（blueprint）的具体模板则会放在与蓝图同名的子目录中，以便保持组织性和清晰性。这样做可以让项目结构更清晰，便于管理和维护。</p>
+</li>
+</ol>
+</section>
+<section id="static-files">
+<h2>6 Static Files（静态文件）<a class="headerlink" href="#static-files" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>Static Files介绍</p>
+<p>在Flask中，静态文件是指那些不需要经过服务器端处理的文件，例如图像、CSS文件、JavaScript文件等。Flask框架会自动为这些静态文件提供支持，使得开发者能够轻松地在Web应用中使用它们。</p>
+<ul>
+<li><p>静态文件的目录
+Flask默认将静态文件存放在名为static的文件夹中。项目目录结构通常像这样：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>your_flask_app/<span class="w">  </span>
+│<span class="w">  </span>
+├──<span class="w"> </span>app.py<span class="w">  </span>
+└──<span class="w"> </span>static/<span class="w">  </span>
+<span class="w">    </span>├──<span class="w"> </span>css/<span class="w">  </span>
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>style.css<span class="w">  </span>
+<span class="w">    </span>├──<span class="w"> </span>js/<span class="w">  </span>
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>script.js<span class="w">  </span>
+<span class="w">    </span>└──<span class="w"> </span>images/<span class="w">  </span>
+<span class="w">        </span>└──<span class="w"> </span>logo.png<span class="w">  </span>
+</pre></div>
+</div>
+<p>在上面的示例中，static文件夹包含了CSS、JavaScript和图像文件。</p>
+</li>
+<li><p>放置静态文件的方法
+在HTML模板中，你可以使用url_for函数来生成静态文件的URL，确保在更改文件位置或名称后，链接仍然有效。例如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;link<span class="w"> </span><span class="nv">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span><span class="w"> </span><span class="nv">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span><span class="w"> </span><span class="nv">href</span><span class="o">=</span><span class="s2">&quot;{{ url_for(&#39;static&#39;, filename=&#39;css/style.css&#39;) }}&quot;</span>&gt;<span class="w">  </span>
+&lt;img<span class="w"> </span><span class="nv">src</span><span class="o">=</span><span class="s2">&quot;{{ url_for(&#39;static&#39;, filename=&#39;images/logo.png&#39;) }}&quot;</span><span class="w"> </span><span class="nv">alt</span><span class="o">=</span><span class="s2">&quot;Logo&quot;</span>&gt;<span class="w"> </span>
+</pre></div>
+</div>
+</li>
+<li><p>自定义静态文件路径
+你还可以通过自定义Flask应用的配置来更改静态文件的路径。例如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from<span class="w"> </span>flask<span class="w"> </span>import<span class="w"> </span>Flask<span class="w">  </span>
+<span class="nv">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Flask<span class="o">(</span>__name__,<span class="w"> </span><span class="nv">static_url_path</span><span class="o">=</span><span class="s1">&#39;/assets&#39;</span>,<span class="w"> </span><span class="nv">static_folder</span><span class="o">=</span><span class="s1">&#39;my_static&#39;</span><span class="o">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>在这个例子中，css静态文件可以通过/assets/css/style.css这样的路径访问。</p>
+</li>
+</ul>
+<p>Flask中的静态文件为开发者提供了方便的方式来管理和访问不需要服务器处理的文件。通过使用默认的static目录，或者自定义配置，Flask能够有效地加载和提供这些文件。在开发Web应用时合理利用静态文件是非常重要的，可以改善用户体验和应用性能。</p>
+</li>
+<li><p>添加静态文件</p>
+<p>这里简单设置一下css样式</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">flask</span><span class="o">-</span><span class="n">tutorial</span><span class="o">/</span><span class="n">flaskr</span>
+<span class="n">mkdir</span> <span class="n">static</span>
+<span class="n">touch</span> <span class="n">style</span><span class="o">.</span><span class="n">css</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">style.css</span></code>内容如下：</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">html</span><span class="w"> </span><span class="p">{</span>
+<span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#eee</span><span class="p">;</span>
+<span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">960</span><span class="kt">px</span><span class="p">;</span>
+<span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">h1</span><span class="o">,</span><span class="w"> </span><span class="nt">h2</span><span class="o">,</span><span class="w"> </span><span class="nt">h3</span><span class="o">,</span><span class="w"> </span><span class="nt">h4</span><span class="o">,</span><span class="w"> </span><span class="nt">h5</span><span class="o">,</span><span class="w"> </span><span class="nt">h6</span><span class="w"> </span><span class="p">{</span>
+<span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="kc">serif</span><span class="p">;</span>
+<span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#377ba8</span><span class="p">;</span>
+<span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#377ba8</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">hr</span><span class="w"> </span><span class="p">{</span>
+<span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="k">border-top</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">lightgray</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">nav</span><span class="w"> </span><span class="p">{</span>
+<span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="kc">lightgray</span><span class="p">;</span>
+<span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">nav</span><span class="w"> </span><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+<span class="k">flex</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">nav</span><span class="w"> </span><span class="nt">h1</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="kt">rem</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">nav</span><span class="w"> </span><span class="nt">ul</span><span class="w">  </span><span class="p">{</span>
+<span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="k">list-style</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">nav</span><span class="w"> </span><span class="nt">ul</span><span class="w"> </span><span class="nt">li</span><span class="w"> </span><span class="nt">a</span><span class="o">,</span><span class="w"> </span><span class="nt">nav</span><span class="w"> </span><span class="nt">ul</span><span class="w"> </span><span class="nt">li</span><span class="w"> </span><span class="nt">span</span><span class="o">,</span><span class="w"> </span><span class="nt">header</span><span class="w"> </span><span class="p">.</span><span class="nc">action</span><span class="w"> </span><span class="p">{</span>
+<span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">content</span><span class="w"> </span><span class="p">{</span>
+<span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">content</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">header</span><span class="w"> </span><span class="p">{</span>
+<span class="k">border-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="kc">lightgray</span><span class="p">;</span>
+<span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">flex-end</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">content</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">header</span><span class="w"> </span><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+<span class="k">flex</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">0.25</span><span class="kt">rem</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">flash</span><span class="w"> </span><span class="p">{</span>
+<span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#cae6f6</span><span class="p">;</span>
+<span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#377ba8</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">post</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">header</span><span class="w"> </span><span class="p">{</span>
+<span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">flex-end</span><span class="p">;</span>
+<span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.85</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">post</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">header</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">div</span><span class="p">:</span><span class="nd">first-of-type</span><span class="w"> </span><span class="p">{</span>
+<span class="k">flex</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">post</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nt">header</span><span class="w"> </span><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+<span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">em</span><span class="p">;</span>
+<span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">post</span><span class="w"> </span><span class="p">.</span><span class="nc">about</span><span class="w"> </span><span class="p">{</span>
+<span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">slategray</span><span class="p">;</span>
+<span class="k">font-style</span><span class="p">:</span><span class="w"> </span><span class="kc">italic</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">post</span><span class="w"> </span><span class="p">.</span><span class="nc">body</span><span class="w"> </span><span class="p">{</span>
+<span class="k">white-space</span><span class="p">:</span><span class="w"> </span><span class="kc">pre-line</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">content</span><span class="p">:</span><span class="nd">last-child</span><span class="w"> </span><span class="p">{</span>
+<span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">content</span><span class="w"> </span><span class="nt">form</span><span class="w"> </span><span class="p">{</span>
+<span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">content</span><span class="w"> </span><span class="nt">label</span><span class="w"> </span><span class="p">{</span>
+<span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+<span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">content</span><span class="w"> </span><span class="nt">input</span><span class="o">,</span><span class="w"> </span><span class="p">.</span><span class="nc">content</span><span class="w"> </span><span class="nt">textarea</span><span class="w"> </span><span class="p">{</span>
+<span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">content</span><span class="w"> </span><span class="nt">textarea</span><span class="w"> </span><span class="p">{</span>
+<span class="k">min-height</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="kt">em</span><span class="p">;</span>
+<span class="k">resize</span><span class="p">:</span><span class="w"> </span><span class="kc">vertical</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">input</span><span class="p">.</span><span class="nc">danger</span><span class="w"> </span><span class="p">{</span>
+<span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#cc2f2e</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">input</span><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="nt">submit</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
+<span class="k">align-self</span><span class="p">:</span><span class="w"> </span><span class="kc">start</span><span class="p">;</span>
+<span class="k">min-width</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="blueprints-and-views">
+<h2>7 Blueprints and Views（蓝图与视图）<a class="headerlink" href="#blueprints-and-views" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>蓝图和视图介绍</p>
+<p>Flask的蓝图（Blueprint）和视图（View）是构建Flask应用的重要概念。下面是对这两个概念的解释及示例代码。</p>
+<ul>
+<li><p>视图（View）</p>
+<p>视图是处理特定请求的函数。当Flask收到一个请求时，它会根据请求的URL匹配相应的视图函数，并返回视图函数的返回值作为响应。下列代码中的<code class="docutils literal notranslate"><span class="pre">home</span></code>和<code class="docutils literal notranslate"><span class="pre">about</span></code>都是视图函数</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;欢迎来到主页！&quot;</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/about&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">about</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;这是关于页面。&quot;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>蓝图（Blueprint）</p>
+<p>蓝图是Flask应用的一个模块化组件，允许你将应用分成多个部分，以便于管理和维护。每个蓝图可以定义自己的视图、静态文件和模板。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">Blueprint</span>
+
+<span class="c1"># 创建蓝图</span>
+<span class="n">main</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s1">&#39;main&#39;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;欢迎来到主页！&quot;</span>
+
+<span class="nd">@main</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/about&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">about</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">&quot;这是关于页面。&quot;</span>
+
+<span class="c1"># 创建Flask应用</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># 注册蓝图</span>
+<span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>总结</p>
+<ul class="simple">
+<li><p>视图：处理请求的函数，返回响应。</p></li>
+<li><p>蓝图：模块化应用的方式，允许将视图和其他功能分组，便于管理。</p></li>
+</ul>
+<p>通过使用蓝图，可以使大型应用更加结构化和可维护。</p>
+</li>
+</ul>
+<p>下面我们将利用蓝图和视图构建身份验证和博客发布两大功能。</p>
+</li>
+<li><p>身份验证蓝图</p>
+<p>身份验证蓝图将具有注册新用户、登录和注销三个视图。</p>
+<ol>
+<li><p>创建并注册蓝图</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>flask-tutorial/flaskr
+touch<span class="w"> </span>auth.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">auth.py</span></code>内容如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Blueprint</span><span class="p">,</span> <span class="n">flash</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">url_for</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">werkzeug.security</span> <span class="kn">import</span> <span class="n">check_password_hash</span><span class="p">,</span> <span class="n">generate_password_hash</span>
+
+<span class="kn">from</span> <span class="nn">flaskr.db</span> <span class="kn">import</span> <span class="n">get_db</span>
+
+<span class="n">bp</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s1">&#39;/auth&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这段代码创建了一个名为 <code class="docutils literal notranslate"><span class="pre">auth</span></code> 的蓝图。与应用对象类似，蓝图需要知道它是在哪里定义的，所以将 <code class="docutils literal notranslate"><span class="pre">__name__</span></code> 作为第二个参数传入。<code class="docutils literal notranslate"><span class="pre">url_prefix</span></code> 会被添加到所有与该蓝图相关的URL前缀。</p>
+<p>要使用这个蓝图，需要从工厂函数中导入并注册它，使用 <code class="docutils literal notranslate"><span class="pre">app.register_blueprint()</span></code>。将这段新代码放在工厂函数的末尾，在返回应用实例之前进行注册。修改<code class="docutils literal notranslate"><span class="pre">flaskr/__init__.py</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>def<span class="w"> </span>create_app<span class="o">()</span>:
+<span class="w">    </span><span class="nv">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>...
+<span class="w">    </span><span class="c1"># existing code omitted</span>
+
+<span class="w">    </span>from<span class="w"> </span>.<span class="w"> </span>import<span class="w"> </span>auth
+<span class="w">    </span>app.register_blueprint<span class="o">(</span>auth.bp<span class="o">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>app
+</pre></div>
+</div>
+</li>
+<li><p>用户注册视图</p>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/auth.py</span></code> 添加内容：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>@bp.route<span class="o">(</span><span class="s1">&#39;/register&#39;</span>,<span class="w"> </span><span class="nv">methods</span><span class="o">=(</span><span class="s1">&#39;GET&#39;</span>,<span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="o">))</span>
+def<span class="w"> </span>register<span class="o">()</span>:
+<span class="w">    </span><span class="k">if</span><span class="w"> </span>request.method<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span>:
+<span class="w">        </span><span class="nv">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>request.form<span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span>
+<span class="w">        </span><span class="nv">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>request.form<span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
+<span class="w">        </span><span class="nv">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>get_db<span class="o">()</span>
+<span class="w">        </span><span class="nv">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>None
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>username:
+<span class="w">            </span><span class="nv">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Username is required.&#39;</span>
+<span class="w">        </span><span class="k">elif</span><span class="w"> </span>not<span class="w"> </span>password:
+<span class="w">            </span><span class="nv">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Password is required.&#39;</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>error<span class="w"> </span>is<span class="w"> </span>None:
+<span class="w">            </span>try:
+<span class="w">                </span>db.execute<span class="o">(</span>
+<span class="w">                    </span><span class="s2">&quot;INSERT INTO user (username, password) VALUES (?, ?)&quot;</span>,
+<span class="w">                    </span><span class="o">(</span>username,<span class="w"> </span>generate_password_hash<span class="o">(</span>password<span class="o">))</span>,
+<span class="w">                </span><span class="o">)</span>
+<span class="w">                </span>db.commit<span class="o">()</span>
+<span class="w">            </span>except<span class="w"> </span>db.IntegrityError:
+<span class="w">                </span><span class="nv">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f<span class="s2">&quot;User {username} is already registered.&quot;</span>
+<span class="w">            </span><span class="k">else</span>:
+<span class="w">                </span><span class="k">return</span><span class="w"> </span>redirect<span class="o">(</span>url_for<span class="o">(</span><span class="s2">&quot;auth.login&quot;</span><span class="o">))</span>
+
+<span class="w">        </span>flash<span class="o">(</span>error<span class="o">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>render_template<span class="o">(</span><span class="s1">&#39;auth/register.html&#39;</span><span class="o">)</span>
+</pre></div>
+</div>
+<p>这段代码是一个用于处理用户注册的视图函数。当用户访问/auth/register URL时，如果是GET请求，会展示一个注册表单让用户填写；如果是POST请求，表示用户已经提交了注册表单，将对用户输入进行验证并处理注册逻辑。</p>
+<ol class="simple">
+<li><p>当请求方法是POST时，获取用户提交的用户名和密码，并准备进行数据验证。</p></li>
+<li><p>验证用户名和密码是否为空，如果为空，则设定相应的错误信息</p></li>
+<li><p>如果输入验证通过，将用户提供的用户名和哈希过的密码插入到数据库中。</p></li>
+<li><p>为了安全起见，密码不应该直接存储在数据库中，使用generate_password_hash()函数对密码进行加密处理，然后将哈希后的密码存储。</p></li>
+<li><p>如果数据库中已存在相同用户名的用户，将捕获到IntegrityError，并显示相应的错误信息。</p></li>
+<li><p>注册成功后，用户将被重定向到登录页面。redirect()函数生成一个重定向到登录视图的响应。</p></li>
+<li><p>如果验证失败，错误信息将被显示给用户。flash()函数用于存储消息，以便在渲染模板时检索。</p></li>
+<li><p>最后，如果用户是初次访问auth/register页面，或者存在验证错误，将展示一个包含注册表单的HTML页面。render_template()函数将渲染内容包含在HTML中，这部分内容将在本教程的下一步中编写。</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/templates/auth/register.html</span></code> 内容如下：</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &#39;base.html&#39; %}
+
+{% block header %}
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{% block title %}Register{% endblock %}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+{% endblock %}
+
+{% block content %}
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;username&quot;</span><span class="p">&gt;</span>Username<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;password&quot;</span><span class="p">&gt;</span>Password<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Register&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+</li>
+<li><p>用户登录视图</p>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/auth.py</span></code> 添加内容：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>@bp.route<span class="o">(</span><span class="s1">&#39;/login&#39;</span>,<span class="w"> </span><span class="nv">methods</span><span class="o">=(</span><span class="s1">&#39;GET&#39;</span>,<span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="o">))</span>
+<span class="w"> </span>def<span class="w"> </span>login<span class="o">()</span>:
+<span class="w">     </span><span class="k">if</span><span class="w"> </span>request.method<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span>:
+<span class="w">         </span><span class="nv">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>request.form<span class="o">[</span><span class="s1">&#39;username&#39;</span><span class="o">]</span>
+<span class="w">         </span><span class="nv">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>request.form<span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>
+<span class="w">         </span><span class="nv">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>get_db<span class="o">()</span>
+<span class="w">         </span><span class="nv">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>None
+<span class="w">         </span><span class="nv">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>db.execute<span class="o">(</span>
+<span class="w">             </span><span class="s1">&#39;SELECT * FROM user WHERE username = ?&#39;</span>,<span class="w"> </span><span class="o">(</span>username,<span class="o">)</span>
+<span class="w">         </span><span class="o">)</span>.fetchone<span class="o">()</span>
+
+<span class="w">         </span><span class="k">if</span><span class="w"> </span>user<span class="w"> </span>is<span class="w"> </span>None:
+<span class="w">             </span><span class="nv">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Incorrect username.&#39;</span>
+<span class="w">         </span><span class="k">elif</span><span class="w"> </span>not<span class="w"> </span>check_password_hash<span class="o">(</span>user<span class="o">[</span><span class="s1">&#39;password&#39;</span><span class="o">]</span>,<span class="w"> </span>password<span class="o">)</span>:
+<span class="w">             </span><span class="nv">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Incorrect password.&#39;</span>
+
+<span class="w">         </span><span class="k">if</span><span class="w"> </span>error<span class="w"> </span>is<span class="w"> </span>None:
+<span class="w">             </span>session.clear<span class="o">()</span>
+<span class="w">             </span>session<span class="o">[</span><span class="s1">&#39;user_id&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>user<span class="o">[</span><span class="s1">&#39;id&#39;</span><span class="o">]</span>
+<span class="w">             </span><span class="k">return</span><span class="w"> </span>redirect<span class="o">(</span>url_for<span class="o">(</span><span class="s1">&#39;index&#39;</span><span class="o">))</span>
+
+<span class="w">         </span>flash<span class="o">(</span>error<span class="o">)</span>
+
+<span class="w">     </span><span class="k">return</span><span class="w"> </span>render_template<span class="o">(</span><span class="s1">&#39;auth/login.html&#39;</span><span class="o">)</span>
+
+<span class="w"> </span>@bp.before_app_request
+<span class="w"> </span>def<span class="w"> </span>load_logged_in_user<span class="o">()</span>:
+<span class="w">     </span><span class="nv">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>session.get<span class="o">(</span><span class="s1">&#39;user_id&#39;</span><span class="o">)</span>
+
+<span class="w">     </span><span class="k">if</span><span class="w"> </span>user_id<span class="w"> </span>is<span class="w"> </span>None:
+<span class="w">         </span>g.user<span class="w"> </span><span class="o">=</span><span class="w"> </span>None
+<span class="w">     </span><span class="k">else</span>:
+<span class="w">         </span>g.user<span class="w"> </span><span class="o">=</span><span class="w"> </span>get_db<span class="o">()</span>.execute<span class="o">(</span>
+<span class="w">             </span><span class="s1">&#39;SELECT * FROM user WHERE id = ?&#39;</span>,<span class="w"> </span><span class="o">(</span>user_id,<span class="o">)</span>
+<span class="w">         </span><span class="o">)</span>.fetchone<span class="o">()</span>
+</pre></div>
+</div>
+<p>这段代码是用于处理用户登录逻辑的视图函数。用户访问/auth/login URL时，如果是GET请求，将展示一个登录表单；如果是POST请求，表示用户已经提交了登录表单，将对用户的用户名和密码进行验证并处理登录逻辑。</p>
+<ol class="simple">
+<li><p>当请求方法是POST时，获取用户提交的用户名和密码，并准备进行数据验证。</p></li>
+<li><p>根据用户输入的用户名，从数据库中查询对应的用户数据。</p></li>
+<li><p>如果查询结果为空，则设定错误信息提示”用户名不正确”；如果密码不匹配，则设定错误信息提示”密码不正确”。</p></li>
+<li><p>如果验证通过，将用户的ID存储在会话中。会话是一个字典，用于在请求之间存储数据。Flask会将数据以cookie的形式发送到浏览器，并在后续的请求中将其发送回来。Flask会对数据进行安全签名，以确保数据不会被篡改。</p></li>
+<li><p>登录成功后，用户将被重定向到主页。redirect()函数会生成一个重定向到主页视图的响应。</p></li>
+<li><p>如果验证失败，错误信息将被显示给用户。flash()函数用于存储消息，以便在渲染模板时检索。</p></li>
+</ol>
+<p>除了处理登录请求的视图函数外，还有一个名为load_logged_in_user的函数注册到了<code class="docutils literal notranslate"><span class="pre">bp.before_app_request</span></code>中，它会在每次请求之前运行。这个函数用于检查会话中是否存储了用户ID，并将相应的用户数据从数据库中取出并存储在g.user中。g.user是一个特殊的对象，它的作用域仅限于当前请求。如果没有找到用户ID，或者ID不存在，g.user将被设置为None。</p>
+<p>这段代码结合了Flask的会话管理和视图处理，用于处理用户登录请求和会话管理。</p>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/templates/auth/login.html</span></code>内容如下：</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &#39;base.html&#39; %}
+
+{% block header %}
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{% block title %}Log In{% endblock %}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+{% endblock %}
+
+{% block content %}
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;username&quot;</span><span class="p">&gt;</span>Username<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;password&quot;</span><span class="p">&gt;</span>Password<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Log In&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+</li>
+<li><p>用户注销视图</p>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/auth.py</span></code> 添加内容：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>@bp.route<span class="o">(</span><span class="s1">&#39;/logout&#39;</span><span class="o">)</span>
+def<span class="w"> </span>logout<span class="o">()</span>:
+<span class="w">    </span>session.clear<span class="o">()</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>redirect<span class="o">(</span>url_for<span class="o">(</span><span class="s1">&#39;index&#39;</span><span class="o">))</span>
+</pre></div>
+</div>
+</li>
+<li><p>在其他视图中要求身份验证</p>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/auth.py</span></code> 添加内容：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>def<span class="w"> </span>login_required<span class="o">(</span>view<span class="o">)</span>:
+<span class="w">    </span>@functools.wraps<span class="o">(</span>view<span class="o">)</span>
+<span class="w">    </span>def<span class="w"> </span>wrapped_view<span class="o">(</span>**kwargs<span class="o">)</span>:
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>g.user<span class="w"> </span>is<span class="w"> </span>None:
+<span class="w">            </span><span class="k">return</span><span class="w"> </span>redirect<span class="o">(</span>url_for<span class="o">(</span><span class="s1">&#39;auth.login&#39;</span><span class="o">))</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span>view<span class="o">(</span>**kwargs<span class="o">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>wrapped_view
+</pre></div>
+</div>
+<p>这段代码定义了一个装饰器函数login_required，该装饰器函数用于检查用户是否已经登录，如果用户尚未登录，则重定向到登录页面。</p>
+<p>装饰器函数接受一个视图函数作为参数，并返回一个新的视图函数，这个新的函数用于包装原始的视图函数。在包装的函数中，首先检查g.user是否为None（即用户是否已经登录），若用户未登录，则重定向到登录页面；如果用户已经登录，就调用原始的视图函数，并继续执行原始的视图逻辑。</p>
+<p>在使用该装饰器时，可以将其应用于需要用户登录才能进行操作的视图上，这样可以确保用户在执行相关操作之前已经完成了登录，提高了应用的安全性和稳定性。例如，在编写博客视图时，可以使用该装饰器来要求用户必须先登录才能创建、编辑或删除博客文章。</p>
+</li>
+</ol>
+</li>
+<li><p>博客发布蓝图</p>
+<p>博客发布蓝图包括帖子展示、发布帖子、编辑帖子和删除帖子四个视图</p>
+<ol>
+<li><p>创建并注册蓝图</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>flask-tutorial/flaskr
+touch<span class="w"> </span>blog.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">blog.py</span></code>内容如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from<span class="w"> </span>flask<span class="w"> </span>import<span class="w"> </span><span class="o">(</span>
+<span class="w">    </span>Blueprint,<span class="w"> </span>flash,<span class="w"> </span>g,<span class="w"> </span>redirect,<span class="w"> </span>render_template,<span class="w"> </span>request,<span class="w"> </span>url_for
+<span class="o">)</span>
+from<span class="w"> </span>werkzeug.exceptions<span class="w"> </span>import<span class="w"> </span>abort
+
+from<span class="w"> </span>flaskr.auth<span class="w"> </span>import<span class="w"> </span>login_required
+from<span class="w"> </span>flaskr.db<span class="w"> </span>import<span class="w"> </span>get_db
+
+<span class="nv">bp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Blueprint<span class="o">(</span><span class="s1">&#39;blog&#39;</span>,<span class="w"> </span>__name__<span class="o">)</span>
+</pre></div>
+</div>
+<p>注册蓝图，<code class="docutils literal notranslate"><span class="pre">flaskr/__init__.py</span></code>修改如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>def<span class="w"> </span>create_app<span class="o">()</span>:
+<span class="w">    </span><span class="nv">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>...
+<span class="w">    </span><span class="c1"># existing code omitted</span>
+
+<span class="w">    </span>from<span class="w"> </span>.<span class="w"> </span>import<span class="w"> </span>blog
+<span class="w">    </span>app.register_blueprint<span class="o">(</span>blog.bp<span class="o">)</span>
+<span class="w">    </span>app.add_url_rule<span class="o">(</span><span class="s1">&#39;/&#39;</span>,<span class="w"> </span><span class="nv">endpoint</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="o">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>app
+</pre></div>
+</div>
+<p>与身份验证蓝图不同，博客发布蓝图没有url_前缀。索引视图是/，创建视图是/create，等等。博客是flask的主要功能，所以博客索引将成为主要索引是有道理的。</p>
+</li>
+<li><p>博客展示视图</p>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/blog.py</span></code>修改如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="s1">&#39;SELECT p.id, title, body, created, author_id, username&#39;</span>
+        <span class="s1">&#39; FROM post p JOIN user u ON p.author_id = u.id&#39;</span>
+        <span class="s1">&#39; ORDER BY created DESC&#39;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;blog/index.html&#39;</span><span class="p">,</span> <span class="n">posts</span><span class="o">=</span><span class="n">posts</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/templates/blog/index.html</span></code>内容如下：</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &#39;base.html&#39; %}
+
+{% block header %}
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{% block title %}Posts{% endblock %}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+{% if g.user %}
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;action&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;blog.create&#39;) }}&quot;</span><span class="p">&gt;</span>New<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+    <span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ post[&#39;title&#39;] }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;about&quot;</span><span class="p">&gt;</span>by {{ post[&#39;username&#39;] }} on {{ post[&#39;created&#39;].strftime(&#39;%Y-%m-%d&#39;) }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        {% if g.user[&#39;id&#39;] == post[&#39;author_id&#39;] %}
+        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;action&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;blog.update&#39;, id=post[&#39;id&#39;]) }}&quot;</span><span class="p">&gt;</span>Edit<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        {% endif %}
+    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;body&quot;</span><span class="p">&gt;</span>{{ post[&#39;body&#39;] }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+    {% if not loop.last %}
+    <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+    {% endif %}
+{% endfor %}
+{% endblock %}
+</pre></div>
+</div>
+</li>
+<li><p>博客创建视图</p>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/blog.py</span></code>修改如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/create&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">))</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">create</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;Title is required.&#39;</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">flash</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="s1">&#39;INSERT INTO post (title, body, author_id)&#39;</span>
+                <span class="s1">&#39; VALUES (?, ?, ?)&#39;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;blog.index&#39;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;blog/create.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/templates/blog/create.html</span></code>内容如下：</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &#39;base.html&#39; %}
+
+{% block header %}
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{% block title %}New Post{% endblock %}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+{% endblock %}
+
+{% block content %}
+<span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;title&quot;</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;title&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;{{ request.form[&#39;title&#39;] }}&quot;</span> <span class="na">required</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;body&quot;</span><span class="p">&gt;</span>Body<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;body&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;body&quot;</span><span class="p">&gt;</span>{{ request.form[&#39;body&#39;] }}<span class="p">&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Save&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+{% endblock %}
+</pre></div>
+</div>
+</li>
+<li><p>博客编辑视图</p>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/blog.py</span></code>修改如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_post</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">check_author</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="s1">&#39;SELECT p.id, title, body, created, author_id, username&#39;</span>
+        <span class="s1">&#39; FROM post p JOIN user u ON p.author_id = u.id&#39;</span>
+        <span class="s1">&#39; WHERE p.id = ?&#39;</span><span class="p">,</span>
+        <span class="p">(</span><span class="nb">id</span><span class="p">,)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">post</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Post id </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2"> doesn&#39;t exist.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">check_author</span> <span class="ow">and</span> <span class="n">post</span><span class="p">[</span><span class="s1">&#39;author_id&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">post</span>
+
+<span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&lt;int:id&gt;/update&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">))</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">get_post</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">]</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="s1">&#39;Title is required.&#39;</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">flash</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="s1">&#39;UPDATE post SET title = ?, body = ?&#39;</span>
+                <span class="s1">&#39; WHERE id = ?&#39;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;blog.index&#39;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;blog/update.html&#39;</span><span class="p">,</span> <span class="n">post</span><span class="o">=</span><span class="n">post</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/templates/blog/update.html</span></code>内容如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>%<span class="w"> </span>extends<span class="w"> </span><span class="s1">&#39;base.html&#39;</span><span class="w"> </span>%<span class="o">}</span>
+
+<span class="o">{</span>%<span class="w"> </span>block<span class="w"> </span>header<span class="w"> </span>%<span class="o">}</span>
+&lt;h1&gt;<span class="o">{</span>%<span class="w"> </span>block<span class="w"> </span>title<span class="w"> </span>%<span class="o">}</span>Edit<span class="w"> </span><span class="s2">&quot;{{ post[&#39;title&#39;] }}&quot;</span><span class="o">{</span>%<span class="w"> </span>endblock<span class="w"> </span>%<span class="o">}</span>&lt;/h1&gt;
+<span class="o">{</span>%<span class="w"> </span>endblock<span class="w"> </span>%<span class="o">}</span>
+
+<span class="o">{</span>%<span class="w"> </span>block<span class="w"> </span>content<span class="w"> </span>%<span class="o">}</span>
+&lt;form<span class="w"> </span><span class="nv">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span>&gt;
+<span class="w">    </span>&lt;label<span class="w"> </span><span class="k">for</span><span class="o">=</span><span class="s2">&quot;title&quot;</span>&gt;Title&lt;/label&gt;
+<span class="w">    </span>&lt;input<span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;title&quot;</span><span class="w"> </span><span class="nv">id</span><span class="o">=</span><span class="s2">&quot;title&quot;</span>
+<span class="w">    </span><span class="nv">value</span><span class="o">=</span><span class="s2">&quot;{{ request.form[&#39;title&#39;] or post[&#39;title&#39;] }}&quot;</span><span class="w"> </span>required&gt;
+<span class="w">    </span>&lt;label<span class="w"> </span><span class="k">for</span><span class="o">=</span><span class="s2">&quot;body&quot;</span>&gt;Body&lt;/label&gt;
+<span class="w">    </span>&lt;textarea<span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="s2">&quot;body&quot;</span><span class="w"> </span><span class="nv">id</span><span class="o">=</span><span class="s2">&quot;body&quot;</span>&gt;<span class="o">{{</span><span class="w"> </span>request.form<span class="o">[</span><span class="s1">&#39;body&#39;</span><span class="o">]</span><span class="w"> </span>or<span class="w"> </span>post<span class="o">[</span><span class="s1">&#39;body&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">}}</span>&lt;/textarea&gt;
+<span class="w">    </span>&lt;input<span class="w"> </span><span class="nv">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="w"> </span><span class="nv">value</span><span class="o">=</span><span class="s2">&quot;Save&quot;</span>&gt;
+&lt;/form&gt;
+&lt;hr&gt;
+&lt;form<span class="w"> </span><span class="nv">action</span><span class="o">=</span><span class="s2">&quot;{{ url_for(&#39;blog.delete&#39;, id=post[&#39;id&#39;]) }}&quot;</span><span class="w"> </span><span class="nv">method</span><span class="o">=</span><span class="s2">&quot;post&quot;</span>&gt;
+<span class="w">    </span>&lt;input<span class="w"> </span><span class="nv">class</span><span class="o">=</span><span class="s2">&quot;danger&quot;</span><span class="w"> </span><span class="nv">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="w"> </span><span class="nv">value</span><span class="o">=</span><span class="s2">&quot;Delete&quot;</span><span class="w"> </span><span class="nv">onclick</span><span class="o">=</span><span class="s2">&quot;return confirm(&#39;Are you sure?&#39;);&quot;</span>&gt;
+&lt;/form&gt;
+<span class="o">{</span>%<span class="w"> </span>endblock<span class="w"> </span>%<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>博客删除视图</p>
+<p><code class="docutils literal notranslate"><span class="pre">flaskr/blog.py</span></code>修改如下：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&lt;int:id&gt;/delete&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,))</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+    <span class="n">get_post</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;DELETE FROM post WHERE id = ?&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;blog.index&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="auth-py">
+<h2>8 重点解读<code class="docutils literal notranslate"><span class="pre">auth.py</span></code><a class="headerlink" href="#auth-py" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Blueprint</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">flash</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">g</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">session</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">url_for</span>
+<span class="kn">from</span> <span class="nn">werkzeug.security</span> <span class="kn">import</span> <span class="n">check_password_hash</span>
+<span class="kn">from</span> <span class="nn">werkzeug.security</span> <span class="kn">import</span> <span class="n">generate_password_hash</span>
+
+<span class="kn">from</span> <span class="nn">flaskr.db</span> <span class="kn">import</span> <span class="n">get_db</span>
+
+<span class="n">bp</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s2">&quot;auth&quot;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s2">&quot;/auth&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">login_required</span><span class="p">(</span><span class="n">view</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;View decorator that redirects anonymous users to the login page.&quot;&quot;&quot;</span>
+
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapped_view</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;auth.login&quot;</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">view</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wrapped_view</span>
+
+
+<span class="nd">@bp</span><span class="o">.</span><span class="n">before_app_request</span>
+<span class="k">def</span> <span class="nf">load_logged_in_user</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;If a user id is stored in the session, load the user object from</span>
+<span class="sd">    the database into ``g.user``.&quot;&quot;&quot;</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;user_id&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">user_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">get_db</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM user WHERE id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,))</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="p">)</span>
+
+
+<span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/register&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">register</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Register a new user.</span>
+
+<span class="sd">    Validates that the username is not already taken. Hashes the</span>
+<span class="sd">    password for security.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="s2">&quot;Username is required.&quot;</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="s2">&quot;Password is required.&quot;</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                    <span class="s2">&quot;INSERT INTO user (username, password) VALUES (?, ?)&quot;</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">generate_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">)),</span>
+                <span class="p">)</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">db</span><span class="o">.</span><span class="n">IntegrityError</span><span class="p">:</span>
+                <span class="c1"># The username was already taken, which caused the</span>
+                <span class="c1"># commit to fail. Show a validation error.</span>
+                <span class="n">error</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;User </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> is already registered.&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Success, go to the login page.</span>
+                <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;auth.login&quot;</span><span class="p">))</span>
+
+        <span class="n">flash</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;auth/register.html&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/login&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Log in a registered user by adding the user id to the session.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM user WHERE username = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">username</span><span class="p">,)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="s2">&quot;Incorrect username.&quot;</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">check_password_hash</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">],</span> <span class="n">password</span><span class="p">):</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="s2">&quot;Incorrect password.&quot;</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># store the user id in a new session and return to the index</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">session</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">user</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">))</span>
+
+        <span class="n">flash</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;auth/login.html&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/logout&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">logout</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clear the current session, including the stored user id.&quot;&quot;&quot;</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">load_logged_in_user</span></code> 和 <code class="docutils literal notranslate"><span class="pre">login_required</span></code> 两个函数在 Flask 身份验证系统中是互相配合的，确保用户的登录状态得到有效管理。以下是它们如何互相影响的详细解释：</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">load_logged_in_user</span></code> 函数</p>
+<ul class="simple">
+<li><p><strong>目的</strong>：在每个请求之前检查用户是否已登录，并将用户信息加载到 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 中。</p></li>
+<li><p><strong>工作流程</strong>：</p>
+<ol class="simple">
+<li><p>每次请求到达时，<code class="docutils literal notranslate"><span class="pre">load_logged_in_user</span></code> 会被调用。</p></li>
+<li><p>它从会话中获取用户 ID (<code class="docutils literal notranslate"><span class="pre">session.get(&quot;user_id&quot;)</span></code>)。</p></li>
+<li><p>如果用户 ID 存在，则从数据库中查询用户信息，并将其存储在 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 中；如果不存在，则将 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">None</span></code>。</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">login_required</span></code> 装饰器</p>
+<ul class="simple">
+<li><p><strong>目的</strong>：保护特定视图，确保只有已登录用户才能访问。</p></li>
+<li><p><strong>工作流程</strong>：</p>
+<ol class="simple">
+<li><p>当被装饰的视图函数被调用时，<code class="docutils literal notranslate"><span class="pre">login_required</span></code> 装饰器会首先检查 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 的值。</p></li>
+<li><p>如果 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 为 <code class="docutils literal notranslate"><span class="pre">None</span></code>（表示用户未登录），则重定向到登录页面。</p></li>
+<li><p>如果 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 不为 <code class="docutils literal notranslate"><span class="pre">None</span></code>，则表示用户已登录，视图函数继续执行。</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>互相影响的方式</p>
+<ol class="simple">
+<li><p><strong>用户状态的检查</strong>：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">load_logged_in_user</span></code> 在每个请求之前设置 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 的值。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">login_required</span></code> 装饰器依赖于 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 的值来判断用户是否已登录。</p></li>
+</ul>
+</li>
+<li><p><strong>请求的处理</strong>：</p>
+<ul class="simple">
+<li><p>当用户请求一个受保护的视图时，首先执行 <code class="docutils literal notranslate"><span class="pre">load_logged_in_user</span></code>，确保 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 已被正确设置。</p></li>
+<li><p>接着，<code class="docutils literal notranslate"><span class="pre">login_required</span></code> 装饰器会检查 <code class="docutils literal notranslate"><span class="pre">g.user</span></code> 的值，以决定是否允许访问该视图。</p></li>
+</ul>
+</li>
+<li><p><strong>重定向与访问控制</strong>：</p>
+<ul class="simple">
+<li><p>如果用户未登录（<code class="docutils literal notranslate"><span class="pre">g.user</span></code> 为 <code class="docutils literal notranslate"><span class="pre">None</span></code>），<code class="docutils literal notranslate"><span class="pre">load_logged_in_user</span></code> 会将其状态设置为未登录，而 <code class="docutils literal notranslate"><span class="pre">login_required</span></code> 会捕捉到这一点并重定向用户到登录页面。</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>总结</p>
+<ul class="simple">
+<li><p><strong>协作关系</strong>：<code class="docutils literal notranslate"><span class="pre">load_logged_in_user</span></code> 函数负责在每个请求中更新用户的登录状态，而 <code class="docutils literal notranslate"><span class="pre">login_required</span></code> 装饰器则根据这个状态来决定是否允许访问特定的视图。这种协作关系确保了用户在访问应用时的安全性和一致性。</p></li>
+<li><p><strong>用户体验</strong>：通过这种设计，用户在未登录时尝试访问受保护的页面时，会被自动重定向到登录页面，从而提供了良好的用户体验。</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>用户注册流程（register）</p>
+<ol class="simple">
+<li><p><strong>请求处理</strong>：</p>
+<ul class="simple">
+<li><p>用户访问 <code class="docutils literal notranslate"><span class="pre">/auth/register</span></code> 路由，发送一个 GET 请求。</p></li>
+<li><p>Flask 调用 <code class="docutils literal notranslate"><span class="pre">register</span></code> 视图函数，返回注册页面的模板。</p></li>
+</ul>
+</li>
+<li><p><strong>表单提交</strong>：</p>
+<ul class="simple">
+<li><p>用户填写用户名和密码并提交表单，发送一个 POST 请求。</p></li>
+<li><p>Flask 再次调用 <code class="docutils literal notranslate"><span class="pre">register</span></code> 视图函数。</p></li>
+</ul>
+</li>
+<li><p><strong>数据验证</strong>：</p>
+<ul class="simple">
+<li><p>检查用户名和密码是否为空。</p></li>
+<li><p>如果有错误，使用 <code class="docutils literal notranslate"><span class="pre">flash</span></code> 函数显示错误信息，并重新渲染注册页面。</p></li>
+</ul>
+</li>
+<li><p><strong>数据库操作</strong>：</p>
+<ul class="simple">
+<li><p>如果没有错误，尝试将用户信息（用户名和加密后的密码）插入到数据库中。</p></li>
+<li><p>如果用户名已存在，捕获 <code class="docutils literal notranslate"><span class="pre">IntegrityError</span></code> 异常，显示相应的错误信息。</p></li>
+</ul>
+</li>
+<li><p><strong>成功注册</strong>：</p>
+<ul class="simple">
+<li><p>如果插入成功，重定向到登录页面 (<code class="docutils literal notranslate"><span class="pre">/auth/login</span></code>)。</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>用户登录流程（login）</p>
+<ol class="simple">
+<li><p><strong>请求处理</strong>：</p>
+<ul class="simple">
+<li><p>用户访问 <code class="docutils literal notranslate"><span class="pre">/auth/login</span></code> 路由，发送一个 GET 请求。</p></li>
+<li><p>Flask 调用 <code class="docutils literal notranslate"><span class="pre">login</span></code> 视图函数，返回登录页面的模板。</p></li>
+</ul>
+</li>
+<li><p><strong>表单提交</strong>：</p>
+<ul class="simple">
+<li><p>用户输入用户名和密码并提交表单，发送一个 POST 请求。</p></li>
+<li><p>Flask 再次调用 <code class="docutils literal notranslate"><span class="pre">login</span></code> 视图函数。</p></li>
+</ul>
+</li>
+<li><p><strong>数据验证</strong>：</p>
+<ul class="simple">
+<li><p>从数据库中查询用户信息，检查用户名是否存在。</p></li>
+<li><p>如果用户名不存在，返回错误信息。</p></li>
+<li><p>如果用户名存在，再检查密码是否正确。</p></li>
+</ul>
+</li>
+<li><p><strong>成功登录</strong>：</p>
+<ul class="simple">
+<li><p>如果用户名和密码都正确，清空当前会话，并将用户 ID 存储到会话中。</p></li>
+<li><p>重定向到首页 (<code class="docutils literal notranslate"><span class="pre">/index</span></code>)。</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>用户注销流程</p>
+<ol class="simple">
+<li><p><strong>请求处理</strong>：</p>
+<ul class="simple">
+<li><p>用户访问 <code class="docutils literal notranslate"><span class="pre">/auth/logout</span></code> 路由，发送一个 GET 请求。</p></li>
+<li><p>Flask 调用 <code class="docutils literal notranslate"><span class="pre">logout</span></code> 视图函数。</p></li>
+</ul>
+</li>
+<li><p><strong>清空会话</strong>：</p>
+<ul class="simple">
+<li><p>调用 <code class="docutils literal notranslate"><span class="pre">session.clear()</span></code> 清空当前会话，包括存储的用户 ID。</p></li>
+</ul>
+</li>
+<li><p><strong>重定向</strong>：</p>
+<ul class="simple">
+<li><p>重定向到首页 (<code class="docutils literal notranslate"><span class="pre">/index</span></code>)。</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>总结</p>
+<ul class="simple">
+<li><p>注册：用户填写信息，验证后将其存入数据库。</p></li>
+<li><p>登录：用户输入凭证，验证后将其 ID 存入会话。</p></li>
+<li><p>注销：清空会话信息，用户退出。</p></li>
+<li><p>用户状态管理：load_logged_in_user 函数在每个请求中检查用户的登录状态，并将用户信息存储在 g 对象中，方便后续使用。</p></li>
+<li><p>安全性：login_required 装饰器保护敏感视图，确保只有已登录用户才能访问。</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="blog-py">
+<h2>9 重点解读<code class="docutils literal notranslate"><span class="pre">blog.py</span></code><a class="headerlink" href="#blog-py" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Blueprint</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">flash</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">g</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">url_for</span>
+<span class="kn">from</span> <span class="nn">werkzeug.exceptions</span> <span class="kn">import</span> <span class="n">abort</span>
+
+<span class="kn">from</span> <span class="nn">flaskr.auth</span> <span class="kn">import</span> <span class="n">login_required</span>
+<span class="kn">from</span> <span class="nn">flaskr.db</span> <span class="kn">import</span> <span class="n">get_db</span>
+
+<span class="n">bp</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s2">&quot;blog&quot;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Show all the posts, most recent first.&quot;&quot;&quot;</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+        <span class="s2">&quot;SELECT p.id, title, body, created, author_id, username&quot;</span>
+        <span class="s2">&quot; FROM post p JOIN user u ON p.author_id = u.id&quot;</span>
+        <span class="s2">&quot; ORDER BY created DESC&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;blog/index.html&quot;</span><span class="p">,</span> <span class="n">posts</span><span class="o">=</span><span class="n">posts</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_post</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">check_author</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a post and its author by id.</span>
+
+<span class="sd">    Checks that the id exists and optionally that the current user is</span>
+<span class="sd">    the author.</span>
+
+<span class="sd">    :param id: id of post to get</span>
+<span class="sd">    :param check_author: require the current user to be the author</span>
+<span class="sd">    :return: the post with author information</span>
+<span class="sd">    :raise 404: if a post with the given id doesn&#39;t exist</span>
+<span class="sd">    :raise 403: if the current user isn&#39;t the author</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">get_db</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT p.id, title, body, created, author_id, username&quot;</span>
+            <span class="s2">&quot; FROM post p JOIN user u ON p.author_id = u.id&quot;</span>
+            <span class="s2">&quot; WHERE p.id = ?&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="nb">id</span><span class="p">,),</span>
+        <span class="p">)</span>
+        <span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">post</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Post id </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2"> doesn&#39;t exist.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">check_author</span> <span class="ow">and</span> <span class="n">post</span><span class="p">[</span><span class="s2">&quot;author_id&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span>
+        <span class="n">abort</span><span class="p">(</span><span class="mi">403</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">post</span>
+
+
+<span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/create&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">))</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">create</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a new post for the current user.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">]</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="s2">&quot;Title is required.&quot;</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">flash</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="s2">&quot;INSERT INTO post (title, body, author_id) VALUES (?, ?, ?)&quot;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]),</span>
+            <span class="p">)</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;blog.index&quot;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;blog/create.html&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&lt;int:id&gt;/update&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="s2">&quot;POST&quot;</span><span class="p">))</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Update a post if the current user is the author.&quot;&quot;&quot;</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">get_post</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s2">&quot;body&quot;</span><span class="p">]</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="s2">&quot;Title is required.&quot;</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">flash</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="s2">&quot;UPDATE post SET title = ?, body = ? WHERE id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;blog.index&quot;</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;blog/update.html&quot;</span><span class="p">,</span> <span class="n">post</span><span class="o">=</span><span class="n">post</span><span class="p">)</span>
+
+
+<span class="nd">@bp</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&lt;int:id&gt;/delete&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;POST&quot;</span><span class="p">,))</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delete a post.</span>
+
+<span class="sd">    Ensures that the post exists and that the logged in user is the</span>
+<span class="sd">    author of the post.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">get_post</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DELETE FROM post WHERE id = ?&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nb">id</span><span class="p">,))</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;blog.index&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ol>
+<li><p>博客展示 (<code class="docutils literal notranslate"><span class="pre">index</span></code> 函数)</p>
+<p>流程：</p>
+<ol class="simple">
+<li><p><strong>路由匹配</strong>：当用户访问 <code class="docutils literal notranslate"><span class="pre">/</span></code> 路径时，Flask 会调用 <code class="docutils literal notranslate"><span class="pre">index</span></code> 函数。</p></li>
+<li><p><strong>数据库查询</strong>：</p>
+<ul class="simple">
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">get_db()</span></code> 获取数据库连接。</p></li>
+<li><p>执行 SQL 查询，获取</p>
+<ul>
+<li><p>id：文章的唯一标识符（主键）。</p></li>
+<li><p>title：文章的标题。</p></li>
+<li><p>body：文章的内容（正文）。</p></li>
+<li><p>created：文章的创建时间（通常是一个时间戳）。</p></li>
+<li><p>author_id：作者的唯一标识符（指向用户表中的用户 ID）。</p></li>
+<li><p>username：作者的用户名（从用户表中获取。</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>渲染模板</strong>：</p>
+<ul class="simple">
+<li><p>将SQL查询结果（即所有文章）传递给 <code class="docutils literal notranslate"><span class="pre">render_template</span></code> 函数，渲染 <code class="docutils literal notranslate"><span class="pre">blog/index.html</span></code> 模板。</p></li>
+</ul>
+</li>
+<li><p><strong>返回响应</strong>：将渲染后的 HTML 页面返回给用户。</p></li>
+</ol>
+</li>
+<li><p>博客创建 (<code class="docutils literal notranslate"><span class="pre">create</span></code> 函数)</p>
+<p>流程：</p>
+<ol class="simple">
+<li><p><strong>路由匹配</strong>：当用户访问 <code class="docutils literal notranslate"><span class="pre">/create</span></code> 路径时，Flask 会调用 <code class="docutils literal notranslate"><span class="pre">create</span></code> 函数。</p></li>
+<li><p><strong>登录检查</strong>：由于使用了 <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> 装饰器，首先会检查用户是否已登录。如果未登录，则会重定向到登录页面。</p></li>
+<li><p><strong>处理 POST 请求</strong>：</p>
+<ul class="simple">
+<li><p>如果请求方法为 <code class="docutils literal notranslate"><span class="pre">POST</span></code>，则获取表单中的 <code class="docutils literal notranslate"><span class="pre">title</span></code> 和 <code class="docutils literal notranslate"><span class="pre">body</span></code>。</p></li>
+<li><p>检查标题是否为空：</p></li>
+<li><p>如果为空，使用 <code class="docutils literal notranslate"><span class="pre">flash</span></code> 函数存储错误消息。</p></li>
+<li><p>如果不为空，执行插入操作。</p></li>
+</ul>
+</li>
+<li><p><strong>数据库插入</strong>：</p>
+<ul class="simple">
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">get_db()</span></code> 获取数据库连接，并执行插入 SQL 语句，将新博客文章添加到数据库中。</p></li>
+<li><p>提交更改。</p></li>
+</ul>
+</li>
+<li><p><strong>重定向</strong>：插入成功后，重定向到博客文章列表页（<code class="docutils literal notranslate"><span class="pre">blog.index</span></code>）。</p></li>
+<li><p><strong>渲染模板</strong>：如果请求方法为 <code class="docutils literal notranslate"><span class="pre">GET</span></code>，则渲染 <code class="docutils literal notranslate"><span class="pre">blog/create.html</span></code> 模板，显示创建文章的表单。</p></li>
+</ol>
+</li>
+<li><p>博客编辑 (<code class="docutils literal notranslate"><span class="pre">update</span></code> 函数)</p>
+<p>流程：</p>
+<ol class="simple">
+<li><p><strong>路由匹配</strong>：当用户访问 <code class="docutils literal notranslate"><span class="pre">/\&lt;int:id&gt;/update</span></code> 路径时，Flask 会调用 <code class="docutils literal notranslate"><span class="pre">update</span></code> 函数，<code class="docutils literal notranslate"><span class="pre">id</span></code> 是要编辑的文章的 ID。</p></li>
+<li><p><strong>登录检查</strong>：同样，由于使用了 <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> 装饰器，首先会检查用户是否已登录。</p></li>
+<li><p><strong>获取文章</strong>：</p>
+<ul class="simple">
+<li><p>调用 <code class="docutils literal notranslate"><span class="pre">get_post(id)</span></code> 函数，获取指定 ID 的文章。如果文章不存在或用户不是作者，则会抛出 <code class="docutils literal notranslate"><span class="pre">404</span></code> 或 <code class="docutils literal notranslate"><span class="pre">403</span></code> 错误。</p></li>
+</ul>
+</li>
+<li><p><strong>处理 POST 请求</strong>：</p>
+<ul class="simple">
+<li><p>如果请求方法为 <code class="docutils literal notranslate"><span class="pre">POST</span></code>，获取表单中的 <code class="docutils literal notranslate"><span class="pre">title</span></code> 和 <code class="docutils literal notranslate"><span class="pre">body</span></code>。</p></li>
+<li><p>检查标题是否为空：</p></li>
+<li><p>如果为空，使用 <code class="docutils literal notranslate"><span class="pre">flash</span></code> 存储错误消息。</p></li>
+<li><p>如果不为空，执行更新操作。</p></li>
+</ul>
+</li>
+<li><p><strong>数据库更新</strong>：</p>
+<ul class="simple">
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">get_db()</span></code> 获取数据库连接，并执行更新 SQL 语句，更新指定文章的标题和内容。</p></li>
+<li><p>提交更改。</p></li>
+</ul>
+</li>
+<li><p><strong>重定向</strong>：更新成功后，重定向到博客文章列表页（<code class="docutils literal notranslate"><span class="pre">blog.index</span></code>）。</p></li>
+<li><p><strong>渲染模板</strong>：如果请求方法为 <code class="docutils literal notranslate"><span class="pre">GET</span></code>，则渲染 <code class="docutils literal notranslate"><span class="pre">blog/update.html</span></code> 模板，并传递要编辑的文章信息。</p></li>
+</ol>
+</li>
+<li><p>博客删除 (<code class="docutils literal notranslate"><span class="pre">delete</span></code> 函数)</p>
+<p>流程：</p>
+<ol class="simple">
+<li><p><strong>路由匹配</strong>：当用户访问 <code class="docutils literal notranslate"><span class="pre">/\&lt;int:id&gt;/delete</span></code> 路径时，Flask 会调用 <code class="docutils literal notranslate"><span class="pre">delete</span></code> 函数。</p></li>
+<li><p><strong>登录检查</strong>：同样，由于使用了 <code class="docutils literal notranslate"><span class="pre">&#64;login_required</span></code> 装饰器，首先会检查用户是否已登录。</p></li>
+<li><p><strong>获取文章</strong>：</p>
+<ul class="simple">
+<li><p>调用 <code class="docutils literal notranslate"><span class="pre">get_post(id)</span></code> 函数，确保要删除的文章存在，并且用户是作者。如果不满足条件，则抛出相应的错误。</p></li>
+</ul>
+</li>
+<li><p><strong>数据库删除</strong>：</p>
+<ul class="simple">
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">get_db()</span></code> 获取数据库连接，并执行删除 SQL 语句，删除指定 ID 的文章。</p></li>
+<li><p>提交更改。</p></li>
+</ul>
+</li>
+<li><p><strong>重定向</strong>：删除成功后，重定向到博客文章列表页（<code class="docutils literal notranslate"><span class="pre">blog.index</span></code>）。</p></li>
+</ol>
+</li>
+<li><p>总结</p>
+<ul class="simple">
+<li><p><strong>展示</strong>：用户访问 <code class="docutils literal notranslate"><span class="pre">/</span></code>，获取并显示所有文章。</p></li>
+<li><p><strong>创建</strong>：用户访问 <code class="docutils literal notranslate"><span class="pre">/create</span></code>，提交表单创建新文章。</p></li>
+<li><p><strong>编辑</strong>：用户访问 <code class="docutils literal notranslate"><span class="pre">/\&lt;int:id&gt;/update</span></code>，修改指定文章。</p></li>
+<li><p><strong>删除</strong>：用户访问 <code class="docutils literal notranslate"><span class="pre">/\&lt;int:id&gt;/delete</span></code>，删除指定文章。</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id5">
+<h2>9 测试<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>为什么要写测试？</p>
+<p>一般来说，测试有助于确保您的应用程序能够按预期工作，以满足最终用户的需求。</p>
+<p>软件项目的高测试覆盖率虽然不能保证完美，但它是软件质量的一个良好初步指标。此外，可测试的代码通常是良好软件架构的标志，这就是为什么高级开发人员在整个开发生命周期中都考虑测试的原因。</p>
+<p>测试可以分为三个层次：</p>
+<ul class="simple">
+<li><p><strong>单元测试</strong></p></li>
+<li><p><strong>功能测试（或集成测试）</strong></p></li>
+<li><p><strong>端到端测试</strong></p></li>
+</ul>
+<p><strong>单元测试</strong>测试的是与其依赖项隔离的单个代码单元的功能。它们是防止代码库中错误和不一致的第一道防线。单元测试从内部向外测试，从程序员的角度出发。</p>
+<p><strong>功能测试</strong>测试软件产品的多个组件，以确保这些组件能够正确协同工作。通常，这些测试关注用户将要使用的功能。从外部向内测试，从最终用户的角度出发。</p>
+<p>单元测试和功能测试都是测试驱动开发（TDD）过程中的基本部分。</p>
+<p>测试提高了代码的可维护性。</p>
+<p>可维护性指的是对代码进行错误修复或增强，或其他开发人员在未来需要更新您的代码时的便利性。</p>
+<p>测试应与持续集成（CI）过程结合使用，以确保您的测试能够不断执行，理想情况下是在每次提交到代码库时。一个完善的测试套件对于快速捕捉缺陷至关重要，可以在开发过程中尽早发现问题，防止最终用户在生产环境中遇到这些问题。</p>
+</li>
+<li><p>测试什么？</p>
+<p>应该测试什么？</p>
+<p>单元测试应专注于隔离测试小的代码单元。</p>
+<p>例如，在 Flask 应用中，您可以使用单元测试来测试：</p>
+<ul class="simple">
+<li><p>数据库模型（通常在 models.py 中定义）</p></li>
+<li><p>实用函数（例如，您的视图函数调用的服务器端验证检查）</p></li>
+</ul>
+<p>功能测试则应专注于视图函数的操作。</p>
+<p>例如：</p>
+<p>视图函数的正常条件（GET、POST 等）
+无效的 HTTP 方法是否得到正确处理
+向视图函数传递无效数据
+请专注于测试最终用户将会交互的场景。用户在您产品中的体验至关重要！</p>
+</li>
+<li><p>pytest vs. unittest</p></li>
+</ol>
+<p><strong>pytest</strong> 是一个用于 Python 的测试框架，用于编写、组织和运行测试用例。在设置好基本的测试结构后，pytest 使得编写测试变得简单，并提供了很多灵活性来运行测试。pytest 满足良好测试环境的关键方面：</p>
+<ul class="simple">
+<li><p>测试编写有趣</p></li>
+<li><p>可以快速编写测试，利用辅助函数（fixtures）</p></li>
+<li><p>测试可以通过单个命令执行</p></li>
+<li><p>测试运行速度快</p></li>
+</ul>
+<p>pytest 非常出色！我强烈推荐在任何用 Python 编写的应用程序或脚本中使用它。如果您有兴趣深入学习 pytest 的各个方面，我强烈推荐 Brian Okken 的《Python Testing with pytest》一书。</p>
+<p>Python 还有一个内置的测试框架叫做 <strong>unittest</strong>，这也是一个很好的测试选择。unittest 模块受 xUnit 测试框架的启发。</p>
+<p>它提供以下功能：</p>
+<ul class="simple">
+<li><p>构建单元测试的工具，包括完整的断言语句套件用于执行检查</p></li>
+<li><p>开发单元测试和单元测试套件的结构</p></li>
+<li><p>执行测试的测试运行器</p></li>
+</ul>
+<section id="pytest-unittest">
+<h3>pytest 和 unittest 之间的主要区别：<a class="headerlink" href="#pytest-unittest" title="Permalink to this heading">#</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>特性</th>
+<th>pytest</th>
+<th>unittest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安装</td>
+<td>第三方库</td>
+<td>核心标准库的一部分</td>
+</tr>
+<tr>
+<td>测试设置和拆卸</td>
+<td>fixtures</td>
+<td>setUp() 和 tearDown() 方法</td>
+</tr>
+<tr>
+<td>断言格式</td>
+<td>内置 assert</td>
+<td>assert* 风格的方法</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>函数式</td>
+<td>面向对象</td>
+</tr>
+</tbody>
+</table><p>这两个框架都适合测试 Flask 项目。不过，我更喜欢 pytest，因为它：</p>
+<ul class="simple">
+<li><p>需要更少的样板代码，使您的测试套件更易读。</p></li>
+<li><p>支持普通的 assert 语句，比 unittest 中的 assertSomething 方法（如 assertEquals、assertTrue 和 assertContains）更易读和记忆。</p></li>
+<li><p>更新频率更高，因为它不是 Python 标准库的一部分。</p></li>
+<li><p>简化了测试状态的设置和拆卸。</p></li>
+<li><p>采用函数式方法。</p></li>
+<li><p>支持 fixtures。</p></li>
+</ul>
+</section>
+</section>
+<section id="docker">
+<h2>10 docker部署<a class="headerlink" href="#docker" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 项目架构</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2 虚拟环境配置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3 实列初始化</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4 定义并访问数据库</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templates">5 Templates（模板）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#static-files">6 Static Files（静态文件）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blueprints-and-views">7 Blueprints and Views（蓝图与视图）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auth-py">8 重点解读<code class="docutils literal notranslate"><span class="pre">auth.py</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blog-py">9 重点解读<code class="docutils literal notranslate"><span class="pre">blog.py</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">9 测试</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pytest-unittest">pytest 和 unittest 之间的主要区别：</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">10 docker部署</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

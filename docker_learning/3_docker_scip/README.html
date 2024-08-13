@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Docker 安装SCIP, Python及PySCIPOpt &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docker_learning/3_docker_scip/README';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../linux_c_cpp/index.html">Liunx, C and CPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Docker</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Docker 安装SCIP, Python及PySCIPOpt</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitgithub">0 配置git并连接到github</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 克隆代码仓库</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scip">2 下载SCIP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose-yml">3 解读docker-compose.yml</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">4 解读Dockerfile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5 设置代理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6 修改文件目录结构与Dockerfile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7 构建镜像</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8 生成容器并挂载文件夹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">9 运行python文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">10 退出容器并暂停容器</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="docker-scip-pythonpyscipopt">
+<h1>Docker 安装SCIP, Python及PySCIPOpt<a class="headerlink" href="#docker-scip-pythonpyscipopt" title="Permalink to this heading">#</a></h1>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>https://viktorsapozhok.github.io/docker-scip-pyscipopt/</p></li>
+</ul>
+<p>网上有个大神已经写好dockerfile，我们直接拿来用，这里使用宿主机是Ubuntu22.04虚拟机</p>
+</section>
+<section id="gitgithub">
+<h2>0 配置git并连接到github<a class="headerlink" href="#gitgithub" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>安装git</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>git
+</pre></div>
+</div>
+</li>
+<li><p>设置用户名和邮箱地址</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;YOUR NAME&quot;</span><span class="w"> </span>//user.name与<span class="s2">&quot;YOUR NAME&quot;</span>之间一定要有空格！！！下同
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;YOUR EMAIL ADDRESS&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>创建SSH key</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;yourmail@example.com&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>复制<code class="docutils literal notranslate"><span class="pre">.ssh/id_rsa.pub</span></code>文件的内容</p></li>
+<li><p>登陆github网站，在“settings”中找到“SSH and GPG keys”选项，点击“new SSH key ”按钮，粘贴ip_rsa.pub中的内容：</p></li>
+</ol>
+</section>
+<section id="id1">
+<h2>1 克隆代码仓库<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>ubuntu下克隆仓库</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>git@github.com:viktorsapozhok/docker-scip.git
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/image-12.png" /></p>
+</li>
+</ol>
+</section>
+<section id="scip">
+<h2>2 下载SCIP<a class="headerlink" href="#scip" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>ubuntu下<a class="reference external" href="https://www.scipopt.org/index.php#download">下载SCIP</a>的<code class="docutils literal notranslate"><span class="pre">deb</span></code>文件，并放到<code class="docutils literal notranslate"><span class="pre">docker-scip</span></code>文件夹里</p>
+<p><img alt="alt text" src="../../_images/image1.png" /></p>
+</li>
+</ol>
+</section>
+<section id="docker-compose-yml">
+<h2>3 解读docker-compose.yml<a class="headerlink" href="#docker-compose-yml" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>version:<span class="w"> </span><span class="s1">&#39;3.7&#39;</span>
+
+services:
+scip:
+<span class="w">    </span>image:<span class="w"> </span>scip:v0.1
+<span class="w">    </span>container_name:<span class="w"> </span>scip
+<span class="c1">#    user: user</span>
+<span class="w">    </span>build:
+<span class="w">    </span>context:<span class="w"> </span>.
+<span class="w">    </span>dockerfile:<span class="w"> </span>Dockerfile
+</pre></div>
+</div>
+<p>这个 <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> 文件用于定义和管理一个 Docker 服务，具体是一个名为 <code class="docutils literal notranslate"><span class="pre">scip</span></code> 的服务。以下是对各部分的详细解释：</p>
+<ol>
+<li><p><strong>版本</strong>：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.7&#39;</span>
+</pre></div>
+</div>
+<p>指定使用的 Docker Compose 文件的版本，这里使用的是 3.7 版本。</p>
+</li>
+<li><p><strong>服务</strong>：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">scip</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>定义服务的部分，这里只有一个服务，名为 <code class="docutils literal notranslate"><span class="pre">scip</span></code>。</p>
+</li>
+<li><p><strong>镜像</strong>：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scip:v0.1</span>
+</pre></div>
+</div>
+<p>指定要使用的 Docker 镜像，名称为 <code class="docutils literal notranslate"><span class="pre">scip</span></code>，标签为 <code class="docutils literal notranslate"><span class="pre">v0.1</span></code>。这个镜像应该是根据 Dockerfile 构建的。</p>
+</li>
+<li><p><strong>容器名称</strong>：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scip</span>
+</pre></div>
+</div>
+<p>指定容器的名称为 <code class="docutils literal notranslate"><span class="pre">scip</span></code>，这样在 Docker 中可以通过这个名称来引用和管理该容器。</p>
+</li>
+<li><p><strong>构建配置</strong>：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">build</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">  </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">context:</span> <span class="pre">.</span></code>：指定构建上下文为当前目录（<code class="docutils literal notranslate"><span class="pre">.</span></code>），这意味着 Docker 在构建镜像时会使用当前目录中的所有文件。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dockerfile:</span> <span class="pre">Dockerfile</span></code>：指定要使用的 Dockerfile 文件名。如果 Dockerfile 的名称是默认的 <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>，这一行可以省略。</p></li>
+</ul>
+</li>
+</ol>
+<p>总的来说，这个 <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> 文件定义了一个名为 <code class="docutils literal notranslate"><span class="pre">scip</span></code> 的服务，它将使用指定的 Dockerfile 构建镜像并启动一个容器。通过 Docker Compose，可以方便地管理和运行这个服务。</p>
+</section>
+<section id="dockerfile">
+<h2>4 解读Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FROM<span class="w"> </span>python:3.9-slim
+
+<span class="c1"># install compilers and scip deps</span>
+RUN<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>build-essential<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libgfortran4<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libcliquer1<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libopenblas-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libgsl23<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libtbb2<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>wget<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>wget<span class="w"> </span>-O<span class="w"> </span>libboost.deb<span class="w"> </span><span class="s2">&quot;http://archive.ubuntu.com/ubuntu/pool/main/b/boost1.65.1/libboost-program-options1.65.1_1.65.1+dfsg-0ubuntu5_amd64.deb&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>libboost.deb<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>libboost.deb
+
+<span class="c1"># add scip installer inside container</span>
+ADD<span class="w"> </span>SCIPOptSuite-7.0.2-Linux-ubuntu.deb<span class="w"> </span>/
+
+<span class="c1"># install scip and remove installer</span>
+RUN<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>SCIPOptSuite-7.0.2-Linux-ubuntu.deb<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>SCIPOptSuite-7.0.2-Linux-ubuntu.deb
+
+<span class="c1"># create user</span>
+RUN<span class="w"> </span>groupadd<span class="w"> </span>--gid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>user<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>useradd<span class="w"> </span>--uid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--gid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--create-home<span class="w"> </span>--shell<span class="w"> </span>/bin/bash<span class="w"> </span>user<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;1000:1000&quot;</span><span class="w"> </span>/home/user
+
+<span class="c1"># move script inside the container</span>
+RUN<span class="w"> </span>mkdir<span class="w"> </span>/home/user/scripts
+ADD<span class="w"> </span>knapsack.py<span class="w"> </span>/home/user/scripts
+
+USER<span class="w"> </span>user
+
+<span class="c1"># install scip python api</span>
+RUN<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyscipopt
+
+WORKDIR<span class="w"> </span>/home/user
+
+CMD<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/dev/null
+</pre></div>
+</div>
+<p>这个 Dockerfile 的主要目的是创建一个包含 Python 3.9 和 SCIP（一个用于解决组合优化问题的开源软件）环境的 Docker 镜像。以下是对每个部分的详细解读：</p>
+<ol>
+<li><p><strong>基础镜像</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9-slim</span>
+</pre></div>
+</div>
+<p>选择了一个轻量级的 Python 3.9 镜像作为基础。</p>
+</li>
+<li><p><strong>安装编译器和 SCIP 依赖</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>build-essential<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libgfortran4<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libcliquer1<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libopenblas-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libgsl23<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>libtbb2<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>wget<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>wget<span class="w"> </span>-O<span class="w"> </span>libboost.deb<span class="w"> </span><span class="s2">&quot;http://archive.ubuntu.com/ubuntu/pool/main/b/boost1.65.1/libboost-program-options1.65.1_1.65.1+dfsg-0ubuntu5_amd64.deb&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>libboost.deb<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>libboost.deb
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>更新包管理器的索引。</p></li>
+<li><p>安装一系列必要的库和工具，包括编译工具和科学计算库。</p></li>
+<li><p>下载并安装 Boost 库的特定版本。</p></li>
+</ul>
+</li>
+<li><p><strong>添加 SCIP 安装包</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">ADD</span><span class="w"> </span>SCIPOptSuite-7.0.2-Linux-ubuntu.deb<span class="w"> </span>/
+</pre></div>
+</div>
+<p>将 SCIP 的安装包添加到容器的根目录。</p>
+</li>
+<li><p><strong>安装 SCIP 并删除安装包</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span><span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>SCIPOptSuite-7.0.2-Linux-ubuntu.deb<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>SCIPOptSuite-7.0.2-Linux-ubuntu.deb
+</pre></div>
+</div>
+<p>安装 SCIP，并在安装后删除安装包以节省空间。</p>
+</li>
+<li><p><strong>创建用户</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span><span class="w"> </span>groupadd<span class="w"> </span>--gid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>user<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>useradd<span class="w"> </span>--uid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--gid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--create-home<span class="w"> </span>--shell<span class="w"> </span>/bin/bash<span class="w"> </span>user<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;1000:1000&quot;</span><span class="w"> </span>/home/user
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>创建一个新的用户组和用户，UID 和 GID 都为 1000。</p></li>
+<li><p>创建用户的主目录并设置权限。</p></li>
+</ul>
+</li>
+<li><p><strong>移动python脚本到容器内</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>/home/user/scripts
+<span class="k">ADD</span><span class="w"> </span>knapsack.py<span class="w"> </span>/home/user/scripts
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>创建一个目录用于存放脚本。</p></li>
+<li><p>将 <code class="docutils literal notranslate"><span class="pre">knapsack.py</span></code> 脚本添加到该目录。</p></li>
+</ul>
+</li>
+<li><p><strong>切换到新用户</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">USER</span><span class="w"> </span><span class="s">user</span>
+</pre></div>
+</div>
+<p>切换到刚创建的用户，以便后续操作在非特权模式下运行。</p>
+</li>
+<li><p><strong>安装 SCIP Python API</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyscipopt
+</pre></div>
+</div>
+<p>使用 pip 安装 SCIP 的 Python 接口库 <code class="docutils literal notranslate"><span class="pre">pyscipopt</span></code>。</p>
+</li>
+<li><p><strong>设置工作目录</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/home/user</span>
+</pre></div>
+</div>
+<p>设置容器的工作目录为用户的主目录。</p>
+</li>
+<li><p><strong>保持容器运行</strong>：</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">CMD</span><span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/dev/null
+</pre></div>
+</div>
+<p>使容器保持运行状态，防止容器在启动后立即退出。</p>
+</li>
+</ol>
+<p>总的来说，这个 Dockerfile 创建了一个适合运行 SCIP 相关 Python 脚本的环境，安装了必要的依赖并配置了用户权限。</p>
+</section>
+<section id="id2">
+<h2>5 设置代理<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>docker容器与宿主机的网络连接默认是桥接模式</p>
+<ol>
+<li><p>docker pull 设置代理</p>
+<ol class="simple">
+<li><p>修改conf文件</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/systemd/system/docker.service.d
+sudo<span class="w"> </span>touch<span class="w"> </span>/etc/systemd/system/docker.service.d/proxy.conf
+su
+gedit<span class="w"> </span>/etc/systemd/system/docker.service.d/proxy.conf
+</pre></div>
+</div>
+<p>proxy.conf添加以下内容：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&quot;HTTP_PROXY=http://10.242.37.158:33210/&quot;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&quot;HTTPS_PROXY=http://10.242.37.158:33210/&quot;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&quot;NO_PROXY=localhost,127.0.0.1,10.242.37.158&quot;</span>
+</pre></div>
+</div>
+ <!-- `192.168.218.129`是Ubuntu虚拟机的inet（使用命令`ifconfig`查看） --><p><code class="docutils literal notranslate"><span class="pre">10.242.37.158</span></code>是Ubuntu虚拟机与外部机无线网连接的ipv4地址，可以在外部机查询，如果外部机是win11，则可以通过cmd的<code class="docutils literal notranslate"><span class="pre">ipconfig</span></code>命令查询</p>
+<ol>
+<li><p>保存退出</p></li>
+<li><p>重新加载服务</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>daemon-reload
+</pre></div>
+</div>
+</li>
+<li><p>重新启动Docker</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker<span class="w"> </span>
+</pre></div>
+</div>
+</li>
+<li><p>测试</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su
+docker<span class="w"> </span>pull<span class="w"> </span>docker.io/library/python:3.11-slim
+</pre></div>
+</div>
+<p>如果能拉取成功则说明代理配置成功</p>
+</li>
+</ol>
+</li>
+<li><p>docker build 设置代理</p>
+<ol>
+<li><p>修改文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>gedit<span class="w"> </span>/etc/default/docker
+</pre></div>
+</div>
+<p>修改proxy和DNS：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use DOCKER_OPTS to modify the daemon startup options.</span>
+<span class="nv">DOCKER_OPTS</span><span class="o">=</span><span class="s2">&quot;--dns 114.114.114.114&quot;</span>
+
+<span class="c1"># If you need Docker to use an HTTP proxy, it can also be specified here.</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">http_proxy</span><span class="o">=</span><span class="s2">&quot;https://10.242.37.158:33210&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+`114.114.114.114`是虚拟机在桥接模式下的DNS，可以参考[1 Linux 安装及配置](../../linux_c_cpp/1_linux_config/README.md)
+
+2. 测试
+
+    在ubuntu中新建一个文件夹，然后在里面新建一个dockerfile，内容如下：
+
+    ```bash
+    FROM ubuntu:22.04
+
+    RUN apt-get update &amp;&amp; apt-get install -y \
+        build-essential \
+        &amp;&amp; rm -rf /var/lib/apt/lists/*
+    ```
+
+    运行
+
+    ```bash
+    docker build -t ubuntu22.04 .
+    ```
+
+    如果镜像可以构建成功，则说明代理设置成功
+
+</pre></div>
+</div>
+</li>
+<li><p>docker container 设置代理</p>
+<ol>
+<li><p>修改文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch<span class="w"> </span>~/.docker/config.json
+vim<span class="w"> </span>~/.docker/config.json
+</pre></div>
+</div>
+<p>设置内容：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span>
+<span class="nt">&quot;proxies&quot;</span><span class="p">:</span>
+<span class="p">{</span>
+<span class="nt">&quot;default&quot;</span><span class="p">:</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;httpProxy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://10.242.37.158:33210&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;httpsProxy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://10.242.37.158:33210&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;noProxy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost,127.0.0.1,10.242.37.158&quot;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id3">
+<h2>6 修改文件目录结构与Dockerfile<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>为了方便docker build，我重组了一下文件目录结构如下</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="p">|</span>+---docker-scip
+<span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span>Dockerfile
+<span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w">   </span>SCIPOptSuite-9.1.0-Linux-ubuntu22.deb
+<span class="p">|</span><span class="w">   </span>+---src
+<span class="p">|</span><span class="w">       </span><span class="p">|</span><span class="w">   </span>knapsack.py
+</pre></div>
+</div>
+</li>
+<li><p>修改Dockerfile</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FROM<span class="w"> </span>ubuntu:22.04<span class="w"> </span>AS<span class="w"> </span>builder
+ENV<span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
+ENV<span class="w"> </span><span class="nv">TZ</span><span class="o">=</span>Asia/Shanghai
+
+COPY<span class="w"> </span>SCIPOptSuite-9.1.0-Linux-ubuntu22.deb<span class="w"> </span>./
+
+<span class="c1"># install compilers and scip deps</span>
+RUN<span class="w"> </span>ln<span class="w"> </span>-snf<span class="w"> </span>/usr/share/zoneinfo/<span class="nv">$TZ</span><span class="w"> </span>/etc/localtime<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$TZ</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/timezone<span class="w"> </span>
+RUN<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="se">\</span>
+<span class="w">    </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>build-essential<span class="w"> </span><span class="o">&amp;&amp;</span><span class="se">\</span>
+<span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/apt/lists/*
+
+RUN<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>SCIPOptSuite-9.1.0-Linux-ubuntu22.deb<span class="w"> </span><span class="o">&amp;&amp;</span><span class="se">\</span>
+<span class="w">    </span>rm<span class="w"> </span>SCIPOptSuite-9.1.0-Linux-ubuntu22.deb
+
+FROM<span class="w"> </span>python:3.11-slim<span class="w"> </span>AS<span class="w"> </span>prod
+
+<span class="c1"># install scip python api</span>
+RUN<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyscipopt
+
+<span class="c1"># create user</span>
+RUN<span class="w"> </span>groupadd<span class="w"> </span>--gid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>user<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>useradd<span class="w"> </span>--uid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--gid<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--create-home<span class="w"> </span>--shell<span class="w"> </span>/bin/bash<span class="w"> </span>user<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="s2">&quot;1000:1000&quot;</span><span class="w"> </span>/home/user
+
+<span class="c1"># move script inside the container</span>
+RUN<span class="w"> </span>mkdir<span class="w"> </span>/home/user/src
+
+WORKDIR<span class="w"> </span>/home/user/src
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id4">
+<h2>7 构建镜像<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>在文件夹<code class="docutils literal notranslate"><span class="pre">docker-scip</span></code>打开终端</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>scip9.1.0_python3.11:1<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id5">
+<h2>8 生成容器并挂载文件夹<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>scip_python_container<span class="w"> </span>-v<span class="w"> </span>/home/zp/Documents/scip_codes/docker-scip/src:/home/user/src<span class="w"> </span>-it<span class="w"> </span>scip9.1.0_python3.11:1<span class="w"> </span>/bin/bash
+<span class="nb">exit</span>
+</pre></div>
+</div>
+</section>
+<section id="python">
+<h2>9 运行python文件<a class="headerlink" href="#python" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>start<span class="w"> </span>scip_python_container
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>scip_python_container<span class="w"> </span>/bin/bash
+python3<span class="w"> </span>knapsack.py
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>10 退出容器并暂停容器<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+docker<span class="w"> </span>stop<span class="w"> </span>scip_python_container
+</pre></div>
+</div>
+<p>镜像构建成功后，以上8，9，10步在不同操作系统均适用. （第8步的挂载文件夹路径需要修改）</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitgithub">0 配置git并连接到github</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 克隆代码仓库</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scip">2 下载SCIP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-compose-yml">3 解读docker-compose.yml</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dockerfile">4 解读Dockerfile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">5 设置代理</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6 修改文件目录结构与Dockerfile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7 构建镜像</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8 生成容器并挂载文件夹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">9 运行python文件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">10 退出容器并暂停容器</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

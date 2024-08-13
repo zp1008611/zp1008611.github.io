@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Linux 安装及配置 &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'linux_c_cpp/1_linux_config/README';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Liunx, C and CPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Linux 安装及配置</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-id-0-0-vmwareworkstation-span"><span id="0"> 0 卸载VMwareWorkstation </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vmwareworkstation">1 下载VMwareWorkstation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ubuntu">2 下载Ubuntu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3 创建虚拟机</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4 给虚拟机配置系统</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5 安装Ubuntu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6 网络配置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7 代理设置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">8 虚拟机终端代理设置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vmware-tools">8 VMware tools 安装</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">9 共享文件夹配置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">10 主机和虚拟机复制粘贴互通</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vim">11 VIM编辑器安装和配置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh">12 SSH控制台登录与文件传输</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="linux">
+<h1>Linux 安装及配置<a class="headerlink" href="#linux" title="Permalink to this heading">#</a></h1>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>https://www.bilibili.com/video/BV1A24y1f76Z/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&amp;vd_source=3d4b12fb4a4bfbc98942d43612ae2fb9</p></li>
+</ul>
+</section>
+<section id="span-id-0-0-vmwareworkstation-span">
+<h2><span id="0"> 0 卸载VMwareWorkstation </span><a class="headerlink" href="#span-id-0-0-vmwareworkstation-span" title="Permalink to this heading">#</a></h2>
+<p>参考 <a class="reference external" href="https://blog.csdn.net/weixin_55118477/article/details/121078890">彻底卸载VMware虚拟机的详细步骤</a></p>
+</section>
+<section id="vmwareworkstation">
+<h2>1 下载VMwareWorkstation<a class="headerlink" href="#vmwareworkstation" title="Permalink to this heading">#</a></h2>
+<p>有一个 <a class="reference external" href="https://github.com/201853910/VMwareWorkstation">github仓库</a> 收集了各种版本的下载地址，我下载的是<code class="docutils literal notranslate"><span class="pre">17.5.0</span></code>的版本.</p>
+<p>安装时修改安装路径，一直点击下一步即可.</p>
+</section>
+<section id="ubuntu">
+<h2>2 下载Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this heading">#</a></h2>
+<p>可以在 <a class="reference external" href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/">清华大学的镜像站</a> 里下载各个版本的<code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code>，最新版本可以在 <a class="reference external" href="https://ubuntu.com/download/desktop">官网</a> 进行下载，我下载的是<code class="docutils literal notranslate"><span class="pre">24.04</span> <span class="pre">LTS</span></code>版本</p>
+<p><img alt="alt text" src="../../_images/image-50.png" /></p>
+</section>
+<section id="id1">
+<h2>3 创建虚拟机<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>在本地电脑选择一个剩余容量大于20G的硬盘，新建一个文件夹<code class="docutils literal notranslate"><span class="pre">Ubuntu24.04</span></code>.</p></li>
+<li><p>进入VMware Workstation，点击创建新的虚拟机.</p>
+<p><img alt="alert text" src="../../_images/image3.png" /></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">自定义(高级)</span></code>.</p>
+<p><img alt="alt text" src="../../_images/image-52.png" />
+<br></p>
+</li>
+<li><p>点击<code class="docutils literal notranslate"><span class="pre">下一步</span></code>.</p>
+<p><img alt="alt text" src="../../_images/image-53.png" />
+<br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">稍后安装操作系统</span></code>.</p>
+<p><img alt="alt text" src="../../_images/image-32.png" /><br></p>
+</li>
+<li><p>选择操作系统为<code class="docutils literal notranslate"><span class="pre">Linux</span></code>，版本为<code class="docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">64位</span></code>.</p>
+<p><img alt="alt text" src="../../_images/image-41.png" /><br></p>
+</li>
+<li><p>修改虚拟机名称（可选），修改文件夹位置为在第1步创建的文件夹</p>
+<p><img alt="alt text" src="../../_images/image-54.png" /><br></p>
+</li>
+<li><p>我的电脑是i7，内存是16GB，所以<code class="docutils literal notranslate"><span class="pre">处理器数理</span></code>我选择<code class="docutils literal notranslate"><span class="pre">2</span></code>，<code class="docutils literal notranslate"><span class="pre">每个处理器的内核数理</span></code>我选择<code class="docutils literal notranslate"><span class="pre">2</span></code>，<code class="docutils literal notranslate"><span class="pre">虚拟机内存</span></code>我选择<code class="docutils literal notranslate"><span class="pre">4GB</span></code>.</p>
+<p><img alt="alt text" src="../../_images/image-72.png" /></p>
+<p><img alt="alt text" src="../../_images/image-55.png" /><br></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">网络连接</span></code>选择<code class="docutils literal notranslate"><span class="pre">NAT</span></code></p>
+<p><img alt="alt text" src="../../_images/image-78.png" /><br></p>
+</li>
+<li><p>使用<code class="docutils literal notranslate"><span class="pre">推荐</span></code>并选择<code class="docutils literal notranslate"><span class="pre">下一步</span></code>
+<img alt="alt text" src="../../_images/image-91.png" /></p>
+<p><img alt="alt text" src="../../_images/image-101.png" /><br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">创建新虚拟磁盘</span></code></p>
+<p><img alt="alt text" src="../../_images/image-111.png" /><br></p>
+</li>
+<li><p>最大磁盘大小选择<code class="docutils literal notranslate"><span class="pre">35G</span></code>，选择<code class="docutils literal notranslate"><span class="pre">将虚拟磁盘存储为单个文件</span></code></p>
+<p><img alt="alt text" src="../../_images/image-121.png" /><br></p>
+</li>
+<li><p>点击<code class="docutils literal notranslate"><span class="pre">下一步</span></code></p>
+<p><img alt="alt text" src="../../_images/image-56.png" /><br></p>
+</li>
+<li><p>点击<code class="docutils literal notranslate"><span class="pre">完成</span></code></p>
+<p><img alt="alt text" src="../../_images/image-141.png" /><br></p>
+</li>
+</ol>
+</section>
+<section id="id2">
+<h2>4 给虚拟机配置系统<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>单击<code class="docutils literal notranslate"><span class="pre">CD/DVD</span></code></p>
+<p><img alt="alt text" src="../../_images/image-151.png" /><br></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">连接</span></code>选择<code class="docutils literal notranslate"><span class="pre">使用iso映像文件</span></code>，选择前面下载的<code class="docutils literal notranslate"><span class="pre">iso</span></code>文件，点击确定</p>
+<p><img alt="alt text" src="../../_images/image-161.png" /><br></p>
+</li>
+<li><p>点击<code class="docutils literal notranslate"><span class="pre">开启此虚拟机</span></code></p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>5 安装Ubuntu<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">English</span></code>，选择<code class="docutils literal notranslate"><span class="pre">Next</span></code></p>
+<p><img alt="alt text" src="../../_images/image-57.png" /><br></p>
+</li>
+<li><p>都不选择，点击<code class="docutils literal notranslate"><span class="pre">Next</span></code></p>
+<p><img alt="alt text" src="../../_images/image-58.png" /><br></p>
+</li>
+<li><p>都选择<code class="docutils literal notranslate"><span class="pre">English(US)</span></code></p>
+<p><img alt="alt text" src="../../_images/image-59.png" /><br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">wired</span> <span class="pre">connection</span></code></p>
+<p><img alt="alt text" src="../../_images/image-60.png" /><br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">Install</span> <span class="pre">Ubuntu</span></code></p>
+<p><img alt="alt text" src="../../_images/image-61.png" /><br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">interactive</span> <span class="pre">installation</span></code></p>
+<p><img alt="alt text" src="../../_images/image-62.png" /><br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">selection</span></code></p>
+<p><img alt="alt text" src="../../_images/image-63.png" /><br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">Next</span></code></p>
+<p><img alt="alt text" src="../../_images/image-73.png" /><br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">Erase</span> <span class="pre">disk</span> <span class="pre">and</span> <span class="pre">install</span> <span class="pre">Ubuntu</span></code>，选择<code class="docutils literal notranslate"><span class="pre">Next</span></code></p>
+<p><img alt="alt text" src="../../_images/image-66.png" /><br></p>
+</li>
+<li><p>设置信息</p>
+<p><img alt="alt text" src="../../_images/image-74.png" /><br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">Shanghai</span></code></p>
+<p><img alt="alt text" src="../../_images/image-68.png" /><br></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">install</span></code></p>
+<p><img alt="alt text" src="../../_images/image-69.png" /><br></p>
+</li>
+<li><p>点击<code class="docutils literal notranslate"><span class="pre">restart</span> <span class="pre">now</span></code>，后面重启之后，停住的地方就点击<code class="docutils literal notranslate"><span class="pre">enter</span></code></p>
+<p><img alt="alt text" src="../../_images/image-70.png" /><br></p>
+</li>
+</ol>
+</section>
+<section id="id4">
+<h2>6 网络配置<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p><code class="docutils literal notranslate"><span class="pre">网络连接</span></code>先选择<code class="docutils literal notranslate"><span class="pre">NAT</span></code></p></li>
+<li><p>进入网络设置界面，DNS填写win主机下通过<code class="docutils literal notranslate"><span class="pre">ipconfig</span></code>查看</p>
+<p><img alt="alt text" src="../../_images/image-76.png" /><br></p>
+</li>
+<li><p>在ubuntu下运行命令</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>net-tools
+</pre></div>
+</div>
+</li>
+</ol>
+<ul> <li><p>如果没有网络图标：
+    删除NetworkManager缓存文件，重启网络后问题就解决了.
+</p>
+<pre>
+<code class="lang-bash">sudo service NetworkManager stop 
+sudo rm /var/lib/NetworkManager/NetworkManager.state 
+sudo service NetworkManager start</code>
+</pre>
+</li><li>
+选择桥接模式的话，win主机可能无法上网，设置的参数步骤：<br>
+<ol type="i">
+<li> <p>win主机上找到 <code>管理网络适配器</code></p></li><li> <p>找到WLAN，并查看其他属性，ubuntu网络设置界面<code>Ipv4</code>中选择<code>manual</code>，address和DNS就写这里面的信息，gateway和DNS的信息一致</p><p><img alt="alt text" src="../../_images/image-75.png" /><br></p>
+</li>
+<li><p>子网掩码在win下通过cmd命令<code>ipconfig</code>查看</p></li>
+</ol>
+</ul></section>
+<section id="id5">
+<h2>7 代理设置<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>点击<code class="docutils literal notranslate"><span class="pre">Proxy</span></code>，选择<code class="docutils literal notranslate"><span class="pre">manual</span></code></p>
+<p><img alt="alt text" src="../../_images/image-77.png" /><br></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SOCKS</span> <span class="pre">Host</span></code> 输入 <code class="docutils literal notranslate"><span class="pre">windows主机无线局域网适配器WLAN的IPv4地址</span></code> 和代理软件使用的端口. (IPv4地址可以通过win下cmd命令<code class="docutils literal notranslate"><span class="pre">ipconfig</span></code>获得)</p></li>
+</ol>
+<!-- ## 6 网络配置
+
+适合16.04版本
+
+1. 在window主机的`设置`中搜索`设备管理器`，找到`网络适配器`，找到自己电脑目前使用的网络类型，我的电脑目前使用的是wifi
+    ![alt text](image-25.png)
+
+2. 回到`VMware Workstation`，点击`编辑`，点击`虚拟网络编辑器`
+
+    ![alt text](image-26.png)
+
+3. 选择`更改设置`
+
+    ![alt text](image-27.png)
+
+4. 设置`VMnet0`的信息，选择`桥接模式`，选择第1步找到的网络类型，点击`确认`
+
+    ![alt text](image-28.png) --></section>
+<section id="id6">
+<h2>8 虚拟机终端代理设置<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
+<p>参考：</p>
+<ul class="simple">
+<li><p>https://blog.pica.icu:4443/2024/05/368/</p></li>
+<li><p>https://playlab.eu.org/archives/proxychains4</p></li>
+</ul>
+<br><ol>
+<li><p>修改<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</li>
+<li><p>在里面任意位置添加上如下两行代码：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">http_proxy</span><span class="o">=</span><span class="s1">&#39;http://localhost:33210&#39;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">https_proxy</span><span class="o">=</span><span class="s1">&#39;http://localhost:33210&#39;</span>
+</pre></div>
+</div>
+<p>其中的<code class="docutils literal notranslate"><span class="pre">33210</span></code>是代理的端口号，需要依据自己的端口号对应修改。添加好之后保存，然后在终端执行：</p>
+</li>
+<li><p>使得修改生效</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</li>
+</ol>
+<!-- 1. 安装proxychains4
+
+    ```bash
+    sudo apt-get install proxychains4
+    ```
+
+2. 修改proxychains4配置文件
+
+    ```bash
+    sudo nano /etc/proxychains4.conf
+    ```
+    在文件末尾加入 socks5 本机所在局域网中的 IP 地址和端口号
+
+3. 在终端中使用代理，命令前面加上 proxychains4 即可，例如：
+
+    ```bash
+    proxychains git clone github.com/xxx
+
+    ``` --></section>
+<section id="vmware-tools">
+<h2>8 VMware tools 安装<a class="headerlink" href="#vmware-tools" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>关闭虚拟机</p></li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">CD/DVD</span></code>，选择<code class="docutils literal notranslate"><span class="pre">硬件</span></code>选择<code class="docutils literal notranslate"><span class="pre">使用物理驱动器</span></code>，选择<code class="docutils literal notranslate"><span class="pre">自动检测</span></code>
+<img alt="alt text" src="../../_images/image-29.png" /><br></p></li>
+<li><p>开启虚拟机，点击<code class="docutils literal notranslate"><span class="pre">否</span></code>
+<img alt="alt text" src="../../_images/image-321.png" /><br></p></li>
+<li><p>安装VMware tools，选择上方选择卡，选择<code class="docutils literal notranslate"><span class="pre">虚拟机</span></code>，选择<code class="docutils literal notranslate"><span class="pre">安装VMware</span> <span class="pre">tools</span></code></p></li>
+<li><p>copy gz文件到 unbutu desktop
+<img alt="alt text" src="../../_images/image-33.png" />
+<img alt="alt text" src="../../_images/image-34.png" /><br></p></li>
+<li><p>设置超级管理员密码，右键选择<code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">terminal</span></code>，然后输入以下命令，并设置密码</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>passwd
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/image-35.png" /><br></p>
+</li>
+<li><p>运行以下命令获得超级管理员权限,可以直接输入 <code class="docutils literal notranslate"><span class="pre">exit</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">logout</span></code> 以返回到普通用户.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su
+</pre></div>
+</div>
+</li>
+<li><p>运行以下命令解压gz文件，并安装vmare-tools</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>home/zp/Desktop/
+tar<span class="w"> </span>-vxf<span class="w"> </span>VMwareTools-10/3/23-16594550.tar.gz
+<span class="nb">cd</span><span class="w"> </span>vmware-tools-distrib/
+./vmware-install.pl
+</pre></div>
+</div>
+</li>
+<li><p>输入<code class="docutils literal notranslate"><span class="pre">yes</span></code>，开始安装，然后一路回车
+<img alt="alt text" src="../../_images/image-36.png" /><br></p></li>
+<li><p>出现如下情况，表示安装成功，接着关闭虚拟机</p>
+<p><img alt="alt text" src="../../_images/image-37.png" /><br></p>
+</li>
+<li><p>重启后，检查：1、分辨率是否正常；2、虚拟机内外复制粘贴能不能使用；如果还不行的话，重新安装VMware Tools；这次使用指令来安装：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>autoremove<span class="w"> </span>open-vm-tools
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>open-vm-tools
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>open-vm-tools-desktop
+</pre></div>
+</div>
+<p>安装过程一路默认回车，如果问你是否继续执行，就输入Y，继续就好了。安装完成后重启虚拟机。</p>
+</li>
+</ol>
+</section>
+<section id="id7">
+<h2>9 共享文件夹配置<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>在win主机下找到之前建立的虚拟机文件夹，我是<code class="docutils literal notranslate"><span class="pre">Ubuntu24.04</span></code>，在文件夹内部新建一个<code class="docutils literal notranslate"><span class="pre">share</span></code>文件夹</p></li>
+<li><p>回到VMware Workstation，选择<code class="docutils literal notranslate"><span class="pre">编辑虚拟机设置</span></code>，选择<code class="docutils literal notranslate"><span class="pre">选项</span></code>，选择<code class="docutils literal notranslate"><span class="pre">共享文件夹</span></code>，选择<code class="docutils literal notranslate"><span class="pre">总是启用</span></code>，选择<code class="docutils literal notranslate"><span class="pre">添加</span></code>，然后找到第3步设置的<code class="docutils literal notranslate"><span class="pre">share</span></code>文件夹
+<img alt="alt text" src="../../_images/image-30.png" /><br></p></li>
+<li><p>选择下一步，选择完成
+<img alt="alt text" src="../../_images/image-311.png" /><br></p></li>
+<li><p>ubuntu内运行以下命令找到共享文件夹</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">## 进入根目录</span>
+<span class="nb">cd</span><span class="w"> </span>/
+<span class="c1">## 进入挂载文件夹</span>
+<span class="nb">cd</span><span class="w"> </span>mnt
+<span class="nb">cd</span><span class="w"> </span>hgfs/
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/image-38.png" /><br></p>
+</li>
+<li><p>在本地win主机新建一个txt文件，并放到share文件夹内，切换回虚拟机的share文件夹则可以看到
+<img alt="alt text" src="../../_images/image-40.png" />
+<img alt="alt text" src="../../_images/image-39.png" /><br></p></li>
+</ol>
+</section>
+<section id="id8">
+<h2>10 主机和虚拟机复制粘贴互通<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">编辑虚拟机设置</span></code>，选择<code class="docutils literal notranslate"><span class="pre">选项</span></code>，选择<code class="docutils literal notranslate"><span class="pre">客户机隔离</span></code>，选择<code class="docutils literal notranslate"><span class="pre">启用复制粘贴</span></code></p>
+<p><img alt="alt text" src="../../_images/image-71.png" /></p>
+<p><img alt="alt text" src="../../_images/image-411.png" /><br></p>
+</li>
+</ol>
+<!-- ## 11 配置WSL的DNS
+
+1. 修改`/etc/wsl.config`文件
+
+    ```bash
+    sudo gedit /etc/wsl.config
+    ```
+
+2. 在`/etc/wsl.config`中添加
+    ```bash
+    [network]
+    generateResolvConf = false
+    ``` --><!-- ## 11 换源
+
+Linux配置的默认源并不是国内的服务器，下载更新软件都比较慢. 所以需要换源
+
+参考https://blog.csdn.net/weixin_42301220/article/details/127979124
+
+1. 备份源列表文件`sources.list`：
+
+    ```bash
+    cd /
+    sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup20240731 #备份源列表
+    ```
+
+2. 修改源列表文件
+
+    ```bash
+    sudo gedit /etc/apt/sources.list ## 打开sources.list文件
+    ```
+
+3. 复制[清华源网站](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)的代码（注意版本为16.04），编辑`/etc/apt/sources.list`文件，删除原内容，在文件最前面添加镜像源
+    - 清华源
+    ```bash
+    ## 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+    deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+    ## deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+    deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+    ## deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+    deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+    ## deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+
+    ## 以下安全更新软件源包含了官方源与镜像站配置，如有需要可自行修改注释切换
+    deb http://security.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse
+    ## deb-src http://security.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse
+
+    ## 预发布软件源，不建议启用
+    ## deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+    ## deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+    ```
+
+4. 换源完成后更新即可。
+    ```bash
+    sudo apt-get update
+    ``` --></section>
+<section id="vim">
+<h2>11 VIM编辑器安装和配置<a class="headerlink" href="#vim" title="Permalink to this heading">#</a></h2>
+<ol>
+<li><p>检查网络是否开启</p>
+<p><img alt="alt text" src="../../_images/image-42.png" /><br></p>
+</li>
+<li><p>运行以下代码安装VIM</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>vim
+</pre></div>
+</div>
+</li>
+<li><p>设置用vim编辑时显示行号，首先进入vimrc文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/
+vim<span class="w"> </span>/etc/vim/vimrc
+</pre></div>
+</div>
+<p>键盘点击<code class="docutils literal notranslate"><span class="pre">a</span></code>，进入编辑模式，在文件末尾输入</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span>number
+<span class="nb">set</span><span class="w"> </span><span class="nv">ts</span><span class="o">=</span><span class="m">4</span>
+</pre></div>
+</div>
+<p>点击<code class="docutils literal notranslate"><span class="pre">esc</span></code>，输入<code class="docutils literal notranslate"><span class="pre">:w</span> <span class="pre">!sudo</span> <span class="pre">tee</span> <span class="pre">%</span></code>，输入<code class="docutils literal notranslate"><span class="pre">O</span></code>，点击<code class="docutils literal notranslate"><span class="pre">enter</span></code>，输入<code class="docutils literal notranslate"><span class="pre">:q!</span></code>，点击<code class="docutils literal notranslate"><span class="pre">enter</span></code></p>
+</li>
+<li><p>查看vimrc文件，发现编辑成功</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>/etc/vim/vimrc
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/image-43.png" /><br></p>
+</li>
+<li><p>用vim打开一个文件，行号出现了</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/mnt/hgfs/share/test.txt
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/image-44.png" /><br></p>
+</li>
+</ol>
+</section>
+<section id="ssh">
+<h2>12 SSH控制台登录与文件传输<a class="headerlink" href="#ssh" title="Permalink to this heading">#</a></h2>
+<p>下面介绍一种不使用共享文件夹，但是也可以进行文件传输的方法</p>
+<p>参考：</p>
+<ul class="simple">
+<li><p>https://www.bilibili.com/video/BV1A24y1f76Z?p=7&amp;spm_id_from=pageDriver&amp;vd_source=3d4b12fb4a4bfbc98942d43612ae2fb9</p></li>
+</ul>
+<br><ol>
+<li><p>在ubuntu安装<code class="docutils literal notranslate"><span class="pre">openssh-server</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server
+</pre></div>
+</div>
+<p>如果出现报错：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>E:<span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span>get<span class="w"> </span>lock<span class="w"> </span>/var/lib/dpkg/lock-frontend<span class="w"> </span>-<span class="w"> </span>open<span class="w"> </span><span class="o">(</span><span class="m">11</span>:<span class="w"> </span>Resource<span class="w"> </span>temporarily<span class="w"> </span>unavailable<span class="o">)</span><span class="w"> </span>
+E:<span class="w"> </span>Unable<span class="w"> </span>to<span class="w"> </span>acquire<span class="w"> </span>the<span class="w"> </span>dpkg<span class="w"> </span>frontend<span class="w"> </span>lock<span class="w"> </span><span class="o">(</span>/var/lib/dpkg/lock-frontend<span class="o">)</span>,<span class="w"> </span>is<span class="w"> </span>another<span class="w"> </span>process<span class="w"> </span>using<span class="w"> </span>it?
+</pre></div>
+</div>
+<p>运行以下命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>apt
+</pre></div>
+</div>
+<p>杀掉对应的apt进程</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>进程编号
+</pre></div>
+</div>
+<p>然后再运行安装命令</p>
+</li>
+<li><p>配置<code class="docutils literal notranslate"><span class="pre">sshd_config</span></code>文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/
+<span class="nb">cd</span><span class="w"> </span>/etc/ssh/
+vim<span class="w"> </span>sshd_config
+</pre></div>
+</div>
+<p>输入小写<code class="docutils literal notranslate"><span class="pre">a</span></code>，进入<code class="docutils literal notranslate"><span class="pre">insert</span></code>状态</p>
+<p>进行如下修改：</p>
+<p><img alt="alt text" src="../../_images/image-45.png" /></p>
+<p>点击<code class="docutils literal notranslate"><span class="pre">esc</span></code>，输入<code class="docutils literal notranslate"><span class="pre">:w</span> <span class="pre">!sudo</span> <span class="pre">tee</span> <span class="pre">%</span></code>，输入<code class="docutils literal notranslate"><span class="pre">O</span></code>，点击<code class="docutils literal notranslate"><span class="pre">enter</span></code>，输入<code class="docutils literal notranslate"><span class="pre">:q!</span></code>，点击<code class="docutils literal notranslate"><span class="pre">enter</span></code></p>
+</li>
+<li><p>启动ssh服务</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>service<span class="w"> </span>ssh<span class="w"> </span>restart
+</pre></div>
+</div>
+</li>
+<li><p>进入 <a class="reference external" href="https://mobaxterm.mobatek.net/download.html">MobaXterm官网</a>，下载portable版本</p></li>
+<li><p>点击<code class="docutils literal notranslate"><span class="pre">exe</span></code>文件</p>
+<p><img alt="alt text" src="../../_images/image-46.png" /></p>
+</li>
+<li><p>点击<code class="docutils literal notranslate"><span class="pre">session</span></code></p>
+<p><img alt="alt text" src="../../_images/image-47.png" /></p>
+</li>
+<li><p>选择<code class="docutils literal notranslate"><span class="pre">SSH</span></code></p>
+<p><img alt="alt text" src="../../_images/image-48.png" /></p>
+</li>
+<li><p>在ubuntu中输入<code class="docutils literal notranslate"><span class="pre">ifconfig</span></code>，找到<code class="docutils literal notranslate"><span class="pre">inet</span></code>对应的ip地址，并复制到mobaxterm里，其他配置如下图，然后选择<code class="docutils literal notranslate"><span class="pre">ok</span></code></p>
+<p><img alt="alt text" src="../../_images/image-49.png" /></p>
+</li>
+<li><p>输入密码后，出现链接成功界面，可以通过左侧文件栏来进行文件传输</p>
+<p><img alt="alt text" src="../../_images/image-51.png" /></p>
+</li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#span-id-0-0-vmwareworkstation-span"><span id="0"> 0 卸载VMwareWorkstation </span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vmwareworkstation">1 下载VMwareWorkstation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ubuntu">2 下载Ubuntu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3 创建虚拟机</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4 给虚拟机配置系统</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5 安装Ubuntu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6 网络配置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">7 代理设置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">8 虚拟机终端代理设置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vmware-tools">8 VMware tools 安装</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">9 共享文件夹配置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">10 主机和虚拟机复制粘贴互通</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vim">11 VIM编辑器安装和配置</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ssh">12 SSH控制台登录与文件传输</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
