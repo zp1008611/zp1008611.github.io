@@ -1,0 +1,950 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'or_exact/IP_relaxation/README';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>松弛</p>
+<hr class="docutils" />
+<p>Reference</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture10.pdf">https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture10.pdf</a></p></li>
+<li><p><a class="reference external" href="https://my.ece.utah.edu/~kalla/phy_des/lagrange-relax-tutorial-fisher.pdf">https://my.ece.utah.edu/~kalla/phy_des/lagrange-relax-tutorial-fisher.pdf</a></p></li>
+<li><p><a class="reference external" href="https://dabeenl.github.io/IE631_lecture19_note.pdf">https://dabeenl.github.io/IE631_lecture19_note.pdf</a></p></li>
+<li><p><a class="reference external" href="https://dabeenl.github.io/IE631_lecture20_note.pdf">https://dabeenl.github.io/IE631_lecture20_note.pdf</a></p></li>
+</ul>
+<p id="id1">1 松弛</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">我们考虑混合整数线性规划（MILP）：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z_{IP} = \max \{ c^{\top}x \mid x \in \mathcal{S} \},\]</div>
+<p>（MILP）</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\mathcal{P} = \{ x \in \mathbb{R}^n \mid Ax \leq b \}\]</div>
+<p>（FEAS-LP，可行线性规划）</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\mathcal{S} = \mathcal{P} \cap (\mathbb{Z}_+^p \times \mathbb{R}_+^{n - p})\]</div>
+<p>（FEAS-MIP，可行混合整数规划）</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>定义 1</strong>：（MILP）的一个松弛是一个按如下方式定义的最大化问题：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z_R = \max \{ z_R(x) \mid x \in \mathcal{S}_R \}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其具有以下两个性质：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\mathcal{S} \subseteq \mathcal{S}_R\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[c^{\top}x \leq z_R(x), \; \forall x \in \mathcal{S}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">对于最大化问题，松弛问题的最优值是原问题最优值的上界： -</div>
+</div>
+<blockquote>
+<div><p><strong>任取原问题可行解</strong>：设 <span class="math notranslate nohighlight">\(x^*\)</span> 是原问题 <span class="math notranslate nohighlight">\(P\)</span> 的最优解，即</p>
+<p><span class="math notranslate nohighlight">\(x^* \in \mathcal{S}\)</span>，且</p>
+<p><span class="math notranslate nohighlight">\(c^\top x^* = \max \{ c^\top x \mid x \in \mathcal{S} \}\)</span>. -</p>
+<p><strong>验证松弛问题可行性</strong>：由于</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{S} \subseteq \mathcal{S}_R\)</span>，因此</p>
+<p><span class="math notranslate nohighlight">\(x^* \in \mathcal{S}_R\)</span>，即 <span class="math notranslate nohighlight">\(x^*\)</span> 也是松弛问题 <span class="math notranslate nohighlight">\(R\)</span></p>
+<p>的可行解. - <strong>比较目标函数值</strong>：根据松弛问题的性质，对任意</p>
+<p><span class="math notranslate nohighlight">\(x \in \mathcal{S}\)</span>，有 <span class="math notranslate nohighlight">\(c^\top x \leq z_R(x)\)</span>.</p>
+<p>特别地，对 <span class="math notranslate nohighlight">\(x^*\)</span> 有：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[c^\top x^* \leq z_R(x^*)\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">而松弛问题的最优值 <span class="math notranslate nohighlight">\(z_R^*\)</span> 满足</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(z_R^* = \max \{ z_R(x) \mid x \in \mathcal{S}_R \} \geq z_R(x^*)\)</span>.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">因此：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[c^\top x^* \leq z_R(x^*) \leq z_R^*\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">即原问题最优解的目标函数值 <span class="math notranslate nohighlight">\(c^\top x^*\)</span> 不超过松弛问题的最优值</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(z_R^*\)</span>.</p>
+</div></blockquote>
+<p>获取和使用松弛问题</p>
+<hr class="docutils" />
+<ul>
+<li><p><strong>松弛问题的性质</strong></p>
+<ul>
+<li><p>如果混合整数线性规划（MILP）的松弛问题不可行，那么MILP本身也不可行.</p></li>
+<li><p>如果<span class="math notranslate nohighlight">\(z_R(x)=c^{\top}x\)</span>，</p>
+<p>那么对于<span class="math notranslate nohighlight">\(x^*\in\underset{x\in S_R}{\text{argmax}}z_R(x)\)</span>（即在<span class="math notranslate nohighlight">\(S_R\)</span>中使<span class="math notranslate nohighlight">\(z_R(x)\)</span>取得最大值的<span class="math notranslate nohighlight">\(x\)</span>），若<span class="math notranslate nohighlight">\(x^*\in\mathcal{S}\)</span>，则<span class="math notranslate nohighlight">\(x^*\)</span>是MILP的最优解.</p>
+</li>
+</ul>
+</li>
+<li><p>获得MILP松弛问题最简单的方法是放宽定义可行集<span class="math notranslate nohighlight">\(\mathcal{S}\)</span>的一些约束条件.</p></li>
+</ul>
+<p>2 LP松弛</p>
+<hr class="docutils" />
+<p>一、定义</p>
+<hr class="docutils" />
+<p>LP松弛（线性规划松弛）是整数规划求解的关键技术.</p>
+<p>针对整数规划（如混合整数线性规划MILP），其操作是移除变量的整数约束，将问题转化为普通线性规划（LP）.</p>
+<p>例如，原问题要求变量<span class="math notranslate nohighlight">\(x \in \mathbb{Z}\)</span>（取整），LP松弛后允许<span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span>（取实数）.</p>
+<p>二、原理</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>可行域扩展</strong>：去掉整数约束后，LP松弛的可行域包含原整数规划的可行域.</p>
+<p>如整数规划中变量只能取整数值，松弛后可取对应区间内任意实数.</p>
+</li>
+<li><p><strong>边界性质</strong>：</p>
+<ul>
+<li><p><strong>最大化问题</strong>：LP松弛的最优解是原整数规划最优解的上界（原问题最优值</p>
+<p>≤ 松弛解最优值）.</p>
+</li>
+<li><p><strong>最小化问题</strong>：LP松弛的最优解是原整数规划最优解的下界（原问题最优值</p>
+<p>≥ 松弛解最优值）.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>三、应用场景</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>分支定界算法</strong>：</p>
+<ul>
+<li><p>在分支定界算法中，LP 松弛常被用于计算子问题的边界.</p>
+<p>当求解整数规划问题时，先求解其 LP</p>
+<p>松弛问题，如果松弛问题的解恰好是整数解，那么很可能就是原整数规划的最优解；若不是整数解，则可以根据解的情况对问题进行分支，继续搜索最优解.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>启发式算法辅助</strong>：</p>
+<ul>
+<li><p>松弛解的结构可启发构造整数可行解.</p>
+<p>如车辆路径问题中，依松弛解的路径趋势构建初始路线.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>问题分析</strong>：</p>
+<ul>
+<li><p>通过松弛解评估整数规划难度.</p>
+<p>若松弛解与整数解差距小，说明问题约束紧密，整数解易逼近；反之则需更精细策略.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>四、示例</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line"><strong>整数规划问题</strong>：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{align*}\\\begin{split}\max &amp;\quad 3x + 2y \\\end{split}\\\begin{split}\text{s.t.} &amp;\quad x + y \leq 4 \\\end{split}\\\begin{split}&amp;\quad 2x + y \leq 6 \\\end{split}\\&amp;\quad x, y \geq 0, \; x, y \in \mathbb{Z}\\\end{align*}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>LP松弛问题</strong>：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{align*}\\\begin{split}\max &amp;\quad 3x + 2y \\\end{split}\\\begin{split}\text{s.t.} &amp;\quad x + y \leq 4 \\\end{split}\\\begin{split}&amp;\quad 2x + y \leq 6 \\\end{split}\\&amp;\quad x, y \geq 0\\\end{align*}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">求解LP松弛，得最优解<span class="math notranslate nohighlight">\(x=2, y=2\)</span>，目标值<span class="math notranslate nohighlight">\(10\)</span>.</div>
+</div>
+<blockquote>
+<div><p>此时解为整数，也是原整数规划的最优解.</p>
+<p>若松弛解非整数，可据此对变量分支（如限定上下界）继续求解.</p>
+</div></blockquote>
+<p>3 Lagrainge 松弛</p>
+<hr class="docutils" />
+<p>考虑如下混合整数规划问题：</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}\\\begin{split}z_I = \max \quad &amp; c^\top x \\\end{split}\\\begin{split}\text{s.t.} \quad &amp; A x \leq b \\\end{split}\\\begin{split}&amp; E x \leq f \\\end{split}\\&amp; x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p.\\\end{aligned} \tag{MIP}\end{aligned}\end{align} \]</div>
+<p>假设 $ E x :raw-latex:<a href="#id2"><span class="problematic" id="id3">`</span></a>leq <a href="#id4"><span class="problematic" id="id5">`</span></a>f $</p>
+<p>是“复杂约束”，即没有这些约束时优化问题更易求解.</p>
+<p>更准确地说，假设如下形式的混合整数规划问题容易求解：</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}\\\begin{split}\max \quad &amp; c^\top x \\\end{split}\\\begin{split}\text{s.t.} \quad &amp; A x \leq b \\\end{split}\\&amp; x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p.\\\end{aligned}\end{aligned}\end{align} \]</div>
+<p>定义集合<span class="math notranslate nohighlight">\(S\)</span>为：</p>
+<div class="math notranslate nohighlight">
+\[S = \left\{ x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p : A x \leq b, Ex\leq f \right\}.\]</div>
+<p>定义集合 $ Q $ 为：</p>
+<div class="math notranslate nohighlight">
+\[Q = \left\{ x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p : A x \leq b \right\}.\]</div>
+<p>假设 $ Q $ 非空，且 $ A, b $ 的元素为有理数. 设 $ E $ 的行数为 $ m $，取</p>
+<p>$ <a href="#id6"><span class="problematic" id="id7">:raw-latex:`\lambda `:raw-latex:`</span></a>in <cite>:raw-latex:</cite>mathbb{R}`_+^m $.</p>
+<p>那么可定义（MIP）关于 $</p>
+<p><a href="#id8"><span class="problematic" id="id9">:raw-latex:`\lambda `\ :math:`的拉格朗日松弛如下：`</span></a>$</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}**命题3.1** 对任意 $ \lambda \geq 0 $，有 $ z_{\text{LR}}(\lambda) \geq z_{\text{IP}} $.\\**证明** 设 $ x^* $ 是（MIP）的最优解，特别地，$ x^* $ 满足：\end{aligned}\end{align} \]</div>
+<p>A x^* <a href="#id10"><span class="problematic" id="id11">:raw-latex:`\leq `b, E x\ :sup:`</span></a>* <a href="#id12"><span class="problematic" id="id13">:raw-latex:`\leq `f, x`</span></a>*</p>
+<p><a href="#id14"><span class="problematic" id="id15">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{Z}`<a href="#id16"><span class="problematic" id="id17">*</span></a>+^d</p>
+<p><a href="#id18"><span class="problematic" id="id19">:raw-latex:`\times `:raw-latex:`</span></a>mathbb{R}`*+^p.</p>
+<div class="math notranslate nohighlight">
+\[则 $ x^* $ 对拉格朗日松弛问题（LR）也可行. 此外，因 $ E x^* \leq f $ 且 $ \lambda \geq 0 $，有：\]</div>
+<p><a href="#id20"><span class="problematic" id="id21">:raw-latex:`\lambda`^:raw-latex:`</span></a>top <cite>(f - E x^*) :raw-latex:</cite>geq 0`,</p>
+<p>$$</p>
+<div class="line-block">
+<div class="line">这进而意味着</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z_{\text{LR}}(\lambda) \geq c^\top x^* + \lambda^\top (f - E x^*) \geq c^\top x^* = z_I.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">因此，对任意 $ <a href="#id22"><span class="problematic" id="id23">:raw-latex:`\lambda `:raw-latex:`</span></a>geq 0` $，均有 $</div>
+</div>
+<blockquote>
+<div><p>z_{<a href="#id24"><span class="problematic" id="id25">:raw-latex:`\text{LR}`</span></a>}(<a href="#id26"><span class="problematic" id="id27">:raw-latex:`\lambda`</span></a>)</p>
+<p><a href="#id28"><span class="problematic" id="id29">:raw-latex:`\geq `z\_{:raw-latex:`</span></a>text{IP}`} $，得证.</p>
+<p><span class="math notranslate nohighlight">\(\ \square\)</span></p>
+</div></blockquote>
+<p>使用拉格朗日松弛的优势是什么？我们假设 $ E x :raw-latex:<a href="#id30"><span class="problematic" id="id31">`</span></a>leq <a href="#id32"><span class="problematic" id="id33">`</span></a>f $</p>
+<p>是复杂约束，那么求解 (LR) 比求解（MIP）更容易.</p>
+<p>此外，命题19.1表明，拉格朗日松弛（LR）为（MIP）提供了有效的上界.</p>
+<div class="line-block">
+<div class="line">接下来，定义混合整数规划（MIP）的拉格朗日对偶：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z_{\text{LD}} = \min \{ z_{\text{LR}}(\lambda) : \lambda \geq 0 \}. \tag{LD}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">因此，$ z_{<a href="#id34"><span class="problematic" id="id35">:raw-latex:`\text{LD}`</span></a>} $</div>
+</div>
+<blockquote>
+<div><p>是通过拉格朗日松弛能得到的（MIP）的最佳/最紧上界.</p>
+</div></blockquote>
+<p><strong>定理3.2</strong> $ z_{<a href="#id36"><span class="problematic" id="id37">:raw-latex:`\text{LD}`</span></a>} $ 满足：</p>
+<div class="math notranslate nohighlight">
+\[z_{LD} = \max \left\{ c^\top x : E x \leq f,\, x \in \text{conv}(Q) \right\}.\]</div>
+<p><strong>证明</strong> 由于 $ Q $ 是由 $ A x :raw-latex:<a href="#id38"><span class="problematic" id="id39">`</span></a>leq <a href="#id40"><span class="problematic" id="id41">`</span></a>b</p>
+<p><span class="math notranslate nohighlight">\(（一个有理数线性不等式组）定义的混合整数集合，根据迈耶定理可得：\)</span>$</p>
+<p><a href="#id42"><span class="problematic" id="id43">:raw-latex:`\text{conv}`(Q) = :raw-latex:`</span></a>left`{ x</p>
+<p><a href="#id44"><span class="problematic" id="id45">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^d</p>
+<p><a href="#id46"><span class="problematic" id="id47">:raw-latex:`\times `:raw-latex:`</span></a>mathbb{R}`^p : A’ x</p>
+<p><a href="#id48"><span class="problematic" id="id49">:raw-latex:`\leq `b’ :raw-latex:`</span></a>right`},</p>
+<div class="math notranslate nohighlight">
+\[其中 $ A', b' $ 元素为有理数. 首先，注意到：\]</div>
+<div class="math notranslate nohighlight">
+\[其中第二个等式由[凸包和有效不等式](..\IP_convex_hull_and_valid_ineq\README.md)的引理 1.5给出. 根据线性规划的强对偶性：\]</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}其中 $ m' $ 是 $ A' $ 的行数.\\即使 $ z_{\text{LR}}(\lambda) $ 无界，此等式仍成立.\\&gt; 引入对偶变量 $\mu \geq 0$，构造拉格朗日函数：\\&gt;\end{aligned}\end{align} \]</div>
+<p>L(x,{<a href="#id50"><span class="problematic" id="id51">:raw-latex:`\mu`</span></a>}) = c^:raw-latex:<a href="#id52"><span class="problematic" id="id53">`</span></a>top <a href="#id54"><span class="problematic" id="id55">`</span></a>x +</p>
+<p><a href="#id56"><span class="problematic" id="id57">:raw-latex:`\lambda`^:raw-latex:`</span></a>top <a href="#id58"><span class="problematic" id="id59">`</span></a>(f - E</p>
+<p>x)+:raw-latex:<a href="#id60"><span class="problematic" id="id61">`</span></a>mu`^T(b’-A’x). $$</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">&gt;- 对</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(x\)</span>求偏导：<span class="math notranslate nohighlight">\(\frac{\partial L}{\partial x}=c- E^T\lambda-A'\mu^T=0\)</span>.<span class="math notranslate nohighlight">\(\\\)</span></p>
+<blockquote>
+<div><p>因此，<span class="math notranslate nohighlight">\(\max_x L(x,\mu)=b'^T\mu+f^T\lambda\)</span>. 则</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p>对偶问题为</p>
+<p><span class="math notranslate nohighlight">\(\min_{\mu}\max_x L(x,\mu) = \min_{\mu}b'^T\mu+f^T\lambda\quad \text{s.t.}A'^\top \mu = c - E^\top \lambda, \mu\geq 0\)</span>.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">于是有：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}\\z_{\text{LD}}=\min_{\lambda\geq 0}z_{\text{LR}}(\lambda)\\\begin{split}&amp;= \min_{\lambda,\mu} \quad b'^\top \mu + f^\top \lambda \\\end{split}\\\begin{split}&amp;\ \ \ \ \text{s.t.} \quad A'^\top \mu + E^\top \lambda = c \\\end{split}\\&amp;\quad\quad\quad \mu \in \mathbb{R}_+^{m'},\, \lambda \in \mathbb{R}_+^m.\\\end{aligned}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">再次根据强线性规划对偶性：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}  \begin{aligned}\\  z_{\text{LD}}\\\begin{split}  &amp;= \max \quad c^\top x \\\end{split}\\\begin{split}  &amp;\ \ \ \ \text{s.t.} \quad A' x \leq b' \\\end{split}\\  &amp;\quad\quad\quad E x \leq f\\  \end{aligned}\\| 引入对偶变量 :math:`x`\ ，构造拉格朗日函数：\\|\\  .. math::\\\begin{split}     L(\lambda,\mu,\{x\}) =  b'^\top \mu + f^\top \lambda+x^T(c- E^T\lambda-A'\mu^T)\\\end{split}\\     =c^Tx-\mu^T(A'^Tx-b')-\lambda^T(Ex-f).\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<blockquote>
+<div><p>因此，当<span class="math notranslate nohighlight">\(A'^Tx\leq b'\)</span>以及<span class="math notranslate nohighlight">\(Ex\leq f\)</span>时，<span class="math notranslate nohighlight">\(\min_{\lambda\geq 0,\mu\geq 0} L(\lambda,\mu,\{x\})=c^Tx\)</span>，否则<span class="math notranslate nohighlight">\(\min_{\lambda\geq 0,\mu\geq 0} L(\lambda,\mu,\{x\})=-\infty\)</span>.</p>
+<p>对偶问题为</p>
+<p><span class="math notranslate nohighlight">\(\max_{x}\min_{\lambda\geq 0,\mu\geq 0} L(\lambda,\mu,\{x\}) = c^Tx \quad \text{s.t.}A'^Tx\leq b', Ex\leq f\)</span>.</p>
+</div></blockquote>
+<p>因此,</p>
+<p><span class="math notranslate nohighlight">\(z_{LD} = \max \left\{ c^\top x : E x \leq f,\, x \in \text{conv}(Q) \right\}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\ \square\)</span></p>
+<div class="line-block">
+<div class="line">根据 Minkowski-Weyl定理，<span class="math notranslate nohighlight">\(\text{conv}(Q)\)</span> 可表示为</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\text{conv}(Q) = \text{conv}\{v^1, \dots, v^n\} + \text{cone}\{r^1, \dots, r^t\},\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中 <span class="math notranslate nohighlight">\(v^1, \dots, v^n\)</span> 是 <span class="math notranslate nohighlight">\(\text{conv}(Q)\)</span></div>
+</div>
+<blockquote>
+<div><p>的极点，<span class="math notranslate nohighlight">\(r^1, \dots, r^t\)</span> 是 <span class="math notranslate nohighlight">\(\text{conv}(Q)\)</span> 的极射线.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>引理 3.3</strong> <span class="math notranslate nohighlight">\(z_{\text{LR}}(\lambda)\)</span> 的定义域为</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\text{dom}(z_{\text{LR}}) = \left\{ \lambda \in \mathbb{R}_+^m : (c - E^\top \lambda)^\top r^j \leq 0,\ \forall j \in [t] \right\}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>证明</strong> 注意到 <span class="math notranslate nohighlight">\(z_{\text{LR}}(\lambda)\)</span> 有限当且仅当对所有</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(j \in [t]\)</span>，有 <span class="math notranslate nohighlight">\((c - E^\top \lambda)^\top r^j \leq 0\)</span>.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>定理 3.4</strong> 在 <span class="math notranslate nohighlight">\(\text{dom}(z_{\text{LR}})\)</span></div>
+</div>
+<blockquote>
+<div><p>上，<span class="math notranslate nohighlight">\(z_{\text{LR}}\)</span> 是关于 <span class="math notranslate nohighlight">\(\lambda\)</span> 的凸分段线性函数.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>证明</strong> 设 <span class="math notranslate nohighlight">\(\lambda \in \text{dom}(z_{\text{LR}})\)</span>. 由于</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z_{\text{LR}}(\lambda) = \max\left\{ c^\top x + \lambda^\top (f - Ex) : x \in \text{conv}(Q) \right\},\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">且对所有 <span class="math notranslate nohighlight">\(j \in [t]\)</span>，有</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((c - E^\top \lambda)^\top r^j \leq 0\)</span>，可得</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z_{\text{LR}}(\lambda) = \max\left\{ f^\top \lambda + (c - E^\top \lambda)^\top v^j : j \in [n] \right\}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">因此，<span class="math notranslate nohighlight">\(z_{\text{LR}}(\lambda)\)</span> 是线性函数</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(c^\top v^j + (f - Ev^j)^\top \lambda\)</span>（<span class="math notranslate nohighlight">\(j \in [n]\)</span>）的最大值.</p>
+<p>故 <span class="math notranslate nohighlight">\(z_{\text{LR}}(\lambda)\)</span> 是凸分段线性函数.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>定理 3.5</strong> 设 <span class="math notranslate nohighlight">\(z_{\text{LP}}\)</span></div>
+</div>
+<blockquote>
+<div><p>为（MIP）的线性规划松弛最优值，则</p>
+<p><span class="math notranslate nohighlight">\(z_{\text{IP}}  \leq z_{\text{LD}} \leq z_{\text{LP}}\)</span>.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>证明</strong> 由命题3.1，可得<span class="math notranslate nohighlight">\(z_{IP}\leq z_{LD}\)</span>.<span class="math notranslate nohighlight">\(\\\)</span></div>
+</div>
+<blockquote>
+<div><p>设<span class="math notranslate nohighlight">\(X=\{x\in\mathbb{R}^m_+:Ax\leq b\},H=\{x\in\mathbb{R}^m_+:Ex\leq f\}\)</span></p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}\\\begin{split}z_{LD}&amp;=\min_{\lambda} z_{LR}(\lambda)\leq \min_{\lambda}\max_{x\in Q} c^Tx+ \lambda^T(f-Ex)\\\end{split}\\\begin{split}&amp;\leq \min_{\lambda}\max_{x\in X} c^Tx+\lambda^T(f-Ex)\\\end{split}\\&amp;\leq \max_{x\in X\cap H}c^Tx=z_{LP}\\\end{aligned}\end{aligned}\end{align} \]</div>
+<p>最后一个不等式是因为对于任意<span class="math notranslate nohighlight">\(x\in X\)</span>以及<span class="math notranslate nohighlight">\(\lambda\geq 0\)</span>，有<span class="math notranslate nohighlight">\(\lambda^T(Ex-f)\)</span>，如果<span class="math notranslate nohighlight">\(x\in H(Ex\leq f)\)</span>，那么<span class="math notranslate nohighlight">\(\lambda^T(f-Ex)\geq 0\)</span>.</p>
+</div></blockquote>
+<p><strong>定理 3.6</strong> 若</p>
+<p><span class="math notranslate nohighlight">\(\text{conv}(Q) = \left\{ x : Ax \leq b \, x \in \mathbb{R}_+^d \times \mathbb{R}_+^p\right\}\)</span>，则</p>
+<p><span class="math notranslate nohighlight">\(z_{\text{LD}} = z_{\text{LP}}\)</span>.</p>
+<!-- 整数规划问题(P)的标准形式为：
+
+$$
+
+\begin{array}{rlrl}
+
+Z = \min_x & c x & \\
+
+\text{s.t.} & A x & = b, & \\
+
+& D x & \leq e & \\
+
+& x & \geq 0 \text{ 且为整数}. & (P)
+
+\end{array}
+
+$$
+
+其中，$x$ 为决策变量向量，$A x = b$ 和 $D x \leq e$ 分别为等式与不等式约束. 通过对偶化等式约束 $A x = b$，构造拉格朗日松弛问题：
+
+$$
+
+\begin{array}{ll}
+
+Z_D(u) = \min_x & c x + u^T(A x - b), \\
+
+& D x \leq e, \\
+
+& x \geq 0 \text{ 且为整数}, \quad (LR_u)
+
+\end{array}
+
+$$
+
+其中 $u$ 为拉格朗日乘子向量. 松弛问题 $(LR_u)$ 的最优值 $Z_D(u)$ 是原问题最优值的下界（$Z_D(u) \leq Z$）. 设原问题最优解为 $x^*$，则$Ax^*=b$，$Dx^*\leq e$, $x\geq 0$且为整数，则有
+
+$$
+
+Z_D(u) \leq c x^* + u^T(A x^* - b) = Z
+
+$$
+
+若原约束包含不等式（如 $A x \leq b$），则要求$u \geq 0$ 以确保下界成立.   --><p>确定拉格朗日乘子<span class="math notranslate nohighlight">\(\lambda\)</span></p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">根据对偶理论，<span class="math notranslate nohighlight">\(\lambda\)</span> 的最佳选择是对偶问题的一个最优解：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[Z_{LD} = \min_{\lambda} Z_{LR}(\lambda)\]</div>
+</div></blockquote>
+<p>假设可行解集<span class="math notranslate nohighlight">\(Q\)</span>是有限的，可表示为<span class="math notranslate nohighlight">\(Q = \{x^t \mid t = 1, \ldots, T\}\)</span></p>
+<div class="line-block">
+<div class="line">由于<span class="math notranslate nohighlight">\(Q\)</span>有限，<span class="math notranslate nohighlight">\(\max_x\)</span>操作等价于在所有<span class="math notranslate nohighlight">\(x^t \in X\)</span>中取最大值.</div>
+</div>
+<blockquote>
+<div><p>因此，对偶问题可重新表述为：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}\\\begin{split}Z_{LD} &amp;=\min_{\lambda} \max_x \{c^T x + \lambda^T(Ex - f)\}\\\end{split}\\&amp;=\min_{\lambda} \&gt; w,\,\text{s.t.}\ w \geq c^Tx^t + \lambda^T(Ex^t - f),\ t = 1, \dots, T.\quad （\overline{\text{LD}}）\\\end{aligned}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中<span class="math notranslate nohighlight">\(w\)</span>是新引入的变量，约束条件确保<span class="math notranslate nohighlight">\(w\)</span>不超过每个<span class="math notranslate nohighlight">\(x^t\)</span>对应的目标函数值.</div>
+</div>
+<blockquote>
+<div><p>这将问题转化为具有<span class="math notranslate nohighlight">\(T\)</span>个约束的线性规划，其最优解<span class="math notranslate nohighlight">\(w^*\)</span>即为原对偶问题的最优值<span class="math notranslate nohighlight">\(z_{LD}\)</span>.</p>
+<p>这种转化利用了<span class="math notranslate nohighlight">\(X\)</span>的有限性，将非光滑的对偶函数优化问题转化为线性规划问题.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">问题（<span class="math notranslate nohighlight">\(\overline{\text{LD}}\)</span>）表明，<span class="math notranslate nohighlight">\(Z_{LR}(\lambda)\)</span>是有限个线性函数族的下包络.</div>
+</div>
+<blockquote>
+<div><p>下图展示了<span class="math notranslate nohighlight">\(m = 1\)</span>且<span class="math notranslate nohighlight">\(T = 4\)</span>时<span class="math notranslate nohighlight">\(Z_{LR}(\lambda)\)</span>的形式.</p>
+<p>函数<span class="math notranslate nohighlight">\(Z_{LR}(\lambda)\)</span>具备连续性和凹性等优良性质，这些性质让爬山算法易于应用，除了一个例外——可微性.</p>
+<p>尽管<span class="math notranslate nohighlight">\(Z_{LR}(\lambda)\)</span>几乎处处可微，但在最优点处通常不可微.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><img alt="alt text" src="../../_images/image5.png" /></div>
+</div>
+<!-- （$\bar{\text{D}}$）的线性规划对偶问题是一个有许多列的线性规划：
+
+$$
+
+\begin{aligned}
+
+Z_D &= \min \sum_{t=1}^T \lambda_t c x^t, \\
+
+&\sum_{t=1}^T \lambda_t A x^t = b, \\
+
+&\sum_{t=1}^T \lambda_t = 1, \\
+
+&\lambda_t \geq 0,\quad t = 1, \dots, T. \quad (\bar{\text{P}})
+
+\end{aligned}
+
+$$
+
+> 引入对偶变量 $\lambda_t \geq 0$（对应每个约束 $t$），构造拉格朗日函数：
+
+>$$
+
+L(u, w, \{\lambda_t\}) = w + \sum_{t=1}^T \lambda_t \big(-w + cx^{t} + u^T(Ax^{t} - b)\big).
+
+$$
+
+>- 对 $w$求偏导：$\frac{\partial L}{\partial w}=1- \sum_{t=1}^T \lambda_t$.
+
+>- 对 $u$求偏导：$\frac{\partial L}{\partial u}=\sum_{t=1}^T \lambda_t (Ax^{t} - b) = 0$.    --><p><strong>确定拉格朗日乘子:math:`lambda`方法总结</strong>： 以下是三类主要方法：</p>
+<ol class="arabic">
+<li><p><strong>使用次梯度法求解(D)的最优解</strong></p>
+<ul>
+<li><p><strong>迭代公式</strong>：</p>
+<div class="math notranslate nohighlight">
+\[u^{k+1} = u^k + t_k (A x^k - b)\]</div>
+<p>其中<span class="math notranslate nohighlight">\(x^k\)</span>是当前乘子<span class="math notranslate nohighlight">\(u^k\)</span>下松弛问题的最优解，<span class="math notranslate nohighlight">\(t_k\)</span>为步长.</p>
+</li>
+<li><p><strong>步长选择</strong>：</p>
+<div class="math notranslate nohighlight">
+\[t_k = \frac{\lambda_k (Z^* - Z_D(u^k))}{\|A x^k - b\|^2}\]</div>
+<p><span class="math notranslate nohighlight">\(Z^*\)</span>为原问题上界，<span class="math notranslate nohighlight">\(\lambda_k\)</span>通常取2并逐步减半以平衡收敛速度与稳定性.</p>
+</li>
+<li><p><strong>特点</strong>：易实现且广泛应用，但无法保证最优性，需通过迭代次数限制终止.</p></li>
+</ul>
+</li>
+<li><p><strong>使用单纯形法（列生成技术）求解问题(D)的最优解</strong></p>
+<ul class="simple">
+<li><p>将对偶问题转化为线性规划形式<span class="math notranslate nohighlight">\((\overline{\text{LD}})\)</span>，通过列生成技术求解.</p></li>
+<li><p>包括对偶单纯形法、原始-对偶法及BOXSTEP方法，需结合松弛问题的结构特性设计.</p></li>
+<li><p>计算复杂度较高，但可与次梯度法结合用于优化后期阶段.</p></li>
+</ul>
+</li>
+<li><p><strong>乘数调整法</strong></p>
+<ul class="simple">
+<li><p>针对特定问题设计调整方向（如单变量调整），利用结构信息加速收敛.</p></li>
+<li><p>例如，广义分配问题中每次调整一个乘子，显著提升算法效率.</p></li>
+<li><p>需根据问题特性选择调整方向集<span class="math notranslate nohighlight">\(S\)</span>，平衡搜索空间与计算成本.</p></li>
+</ul>
+</li>
+</ol>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

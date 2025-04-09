@@ -48,7 +48,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="Win11下Docker的安装" href="1_docker_install_config/index.html" />
-    <link rel="prev" title="Linux, QT and VTK" href="../linux_qt_vtk/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../linux_solver_config/2_scip_config/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="zh-CN"/>
   </head>
@@ -162,8 +162,11 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../linux_c_cpp/index.html">Liunx, C and CPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_config/index.html">Liunx Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux_solver_config/index.html">Liunx Solver</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Docker</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="1_docker_install_config/index.html">1 Docker安装及配置</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_docker_sql/index.html">2 Docker安装mysql8</a></li>
@@ -173,6 +176,20 @@
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../pytest_learning/index.html">Pytest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../or_exact/index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LLMs_agent/index.html">Agent</a></li>
 </ul>
 
     </div>
@@ -280,49 +297,10 @@ document.write(`
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="1_docker_install_config/index.html">1 Docker安装及配置</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="1_docker_install_config/index.html#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_docker_install_config/index.html#docker">1 Docker 是什么</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_docker_install_config/index.html#id1">2 Docker 部署的优势</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_docker_install_config/index.html#id2">3 重要概念：镜像、容器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_docker_install_config/index.html#windocker-desktop">4 Win下docker-desktop安装</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_docker_install_config/index.html#ubuntudocker">5 Ubuntu下docker安装</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="2_docker_sql/index.html">2 Docker安装mysql8</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="2_docker_sql/index.html#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_docker_sql/index.html#id1">1 新建挂载文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_docker_sql/index.html#mysql">2 拉取mysql</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_docker_sql/index.html#id3">3 生成容器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_docker_sql/index.html#id4">4 处理mysql配置文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_docker_sql/index.html#id5">5 重新生成容器并挂载文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_docker_sql/index.html#id6">6 修改配置文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_docker_sql/index.html#pythondocker-mysql">7 python连接docker mysql</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="3_docker_scip/index.html">3 Docker安装SCIP求解器</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#gitgithub">0 配置git并连接到github</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#id1">1 克隆代码仓库</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#scip">2 下载SCIP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#docker-compose-yml">3 解读docker-compose.yml</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#dockerfile">4 解读Dockerfile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#id2">5 设置代理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#id3">6 修改文件目录结构与Dockerfile</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#id4">7 构建镜像</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#id5">8 生成容器并挂载文件夹</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#python">9 运行python文件</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_docker_scip/index.html#id6">10 退出容器并暂停容器</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="4_docker_nginx_uwsgi_flask/index.html">4 Ubuntu22.04下Docker+Nginx+uWSGI部署Flask项目</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="4_docker_nginx_uwsgi_flask/index.html#reference">Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_docker_nginx_uwsgi_flask/index.html#wgsinginx">1 WGSI和Nginx介绍</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_docker_nginx_uwsgi_flask/index.html#ubuntu">2 Ubuntu（宿主机）构建项目</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_docker_nginx_uwsgi_flask/index.html#nginx">3 配置Nginx</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4_docker_nginx_uwsgi_flask/index.html#docker">4 Docker部署</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="1_docker_install_config/index.html">1 Docker安装及配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_docker_sql/index.html">2 Docker安装mysql8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_docker_scip/index.html">3 Docker安装SCIP求解器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_docker_nginx_uwsgi_flask/index.html">4 Ubuntu22.04下Docker+Nginx+uWSGI部署Flask项目</a></li>
 </ul>
 </div>
 </section>
@@ -339,12 +317,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../linux_qt_vtk/index.html"
+       href="../linux_solver_config/2_scip_config/README.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">上一页</p>
-        <p class="prev-next-title">Linux, QT and VTK</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
     </a>
     <a class="right-next"
@@ -382,7 +360,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, Pei Zhong.
+      © Copyright 2025, Pei Zhong.
       <br/>
     
   </p>

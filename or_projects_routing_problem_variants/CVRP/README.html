@@ -1,0 +1,751 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'or_projects_routing_problem_variants/CVRP/README';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../or_exact/index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>有容量限制的车辆路径问题（Capacitated Vehicle Routing Problem, CVRP）</p>
+<hr class="docutils" />
+<p>Reference</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/pdf/1606.01935">https://arxiv.org/pdf/1606.01935</a></p></li>
+</ul>
+<p>1 问题概述</p>
+<hr class="docutils" />
+<p>CVRP</p>
+<p>是车辆路径问题（VRP）的经典变体，聚焦于在车辆容量受限的条件下，优化配送路径.</p>
+<p>其核心是规划一组车辆从中心 depot</p>
+<p>出发，访问多个客户点，在满足每个客户需求且不超过车辆容量的前提下，最小化总行驶成本（如距离、时间等）.</p>
+<div class="line-block">
+<div class="line"><strong>问题目标</strong></div>
+</div>
+<div class="line-block">
+<div class="line">CVRP（有容量限制的车辆路径问题）的核心目标是在满足车辆容量约束的前提下，优化车辆行驶路径，以实现以下一项或多项优化指标：</div>
+</div>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p><strong>最小化总行驶距离</strong>：降低物流配送中的运输成本，这是最常见的优化目标.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p><strong>最小化总运输时间</strong>：提升配送效率，适用于对时效性要求高的场景（如生鲜配送）.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p><strong>最小化车辆使用数量</strong>：在满足需求的前提下，减少投入的车辆资源，降低运营成本.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>问题约束</strong></div>
+</div>
+<div class="line-block">
+<div class="line">1. <strong>车辆容量约束</strong></div>
+</div>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p>每辆车辆有固定的容量（如载重量、体积限制），每条路径上所有客户的需求总和不能超过车辆容量.</p>
+<p>例如，若车辆容量为10吨，服务的客户需求分别为3吨、4吨、2吨，总和9吨（≤10吨）才符合约束.</p>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p><strong>客户访问约束</strong></p>
+<ul class="simple">
+<li><p><strong>唯一性</strong>：每个客户必须且只能被一辆车访问一次，确保需求被满足且不重复服务.</p></li>
+<li><p><strong>需求满足</strong>：客户的货物需求必须被完全满足，即车辆对客户的配送量等于客户需求.</p></li>
+</ul>
+</li>
+<li><p><strong>车辆运行逻辑约束</strong></p>
+<ul>
+<li><p><strong>起点与终点</strong>：所有车辆必须从中心</p>
+<p>depot（如仓库、配送中心）出发，完成任务后返回 depot，形成闭合路径.</p>
+</li>
+<li><p><strong>路径连贯性</strong>：车辆在路径中按顺序访问客户，行驶逻辑需符合实际交通规则（如无向图中双向可达，有向图中按指定方向行驶）.</p></li>
+</ul>
+</li>
+<li><p><strong>变量取值约束</strong></p>
+<ul class="simple">
+<li><p>决策变量（如车辆是否行驶某条路径）通常为二进制（0或1），表示“是否选择”该路径或服务关系.</p></li>
+</ul>
+</li>
+</ol>
+<p>这些目标与约束的结合，使CVRP成为复杂的组合优化问题，需通过算法平衡优化效果与约束满足，广泛应用于物流、供应链等实际场景.</p>
+<div class="line-block">
+<div class="line"><strong>求解方法</strong></div>
+</div>
+<div class="line-block">
+<div class="line">1. <strong>精确算法</strong>：</div>
+</div>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p>适用于小规模问题，如分支定界法、动态规划，但计算复杂度高（随问题规模呈指数增长）.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">2. <strong>启发式与元启发式算法</strong>：</div>
+</div>
+<div class="line-block">
+<div class="line">- <strong>构造算法</strong>：如节约算法（Clarke-Wright），通过合并路径减少总距离.</div>
+</div>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p><strong>元启发式算法</strong>：遗传算法、模拟退火、蚁群优化、禁忌搜索等，通过迭代搜索近似最优解，适用于大规模问题.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">3. <strong>近似算法</strong>：如基于扫描法的路径构建，快速生成可行解.</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>应用场景</strong></div>
+</div>
+<div class="line-block">
+<div class="line">- <strong>物流与配送</strong>：快递运输、货物配送路线规划.</div>
+</div>
+<div class="line-block">
+<div class="line">- <strong>供应链管理</strong>：原材料运输、库存补货路径优化.</div>
+</div>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p><strong>服务行业</strong>：移动服务（如维修、家政）的路线安排，平衡服务需求与车辆/人员容量.</p>
+</div></blockquote>
+<p>CVRP</p>
+<p>因其复杂的约束和实际价值，成为组合优化领域的研究热点，推动了算法设计、运筹学等领域的发展.</p>
+<p>2 问题数学公式表达（双指标车辆流公式）</p>
+<hr class="docutils" />
+<p>用<span class="math notranslate nohighlight">\(\mathcal{C}=\{ 1, \dots, n \}\)</span></p>
+<p>标记客户，<span class="math notranslate nohighlight">\(\{0,n+1\}\)</span>标记仓库depot.</p>
+<p>令<span class="math notranslate nohighlight">\(\mathcal{N}=\mathcal{C}\cup\{0,n+1\}\)</span>.</p>
+<p>在双指标VF公式中，对于<span class="math notranslate nohighlight">\(i， j\in\mathcal{N}\)</span>，我们定义二元决策变量<span class="math notranslate nohighlight">\(x_{ij}\)</span>，<span class="math notranslate nohighlight">\(x_{ij}=1\)</span>当且仅当存在从顾客i直接到达j的路径.</p>
+<div class="line-block">
+<div class="line">CVRP对应的双指标车辆流公式需要用到的变量： -</div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}x_{ij}=\\\begin{cases}\\\begin{split}1 &amp; \text{路径从城市 } i \text{ 到城市 } j \\\end{split}\\0 &amp; \text{否则}\\\end{cases}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">- $ c_{ij} &gt; 0 $ 定义为从城市 $ i $ 到城市 $ j $ 的成本（距离）.</div>
+</div>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(K\)</span>: 仓库depot中的车辆数目</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q\)</span>: 每辆车的最大容量</p></li>
+<li><p><span class="math notranslate nohighlight">\(q_i\)</span>: 客户<span class="math notranslate nohighlight">\(i\)</span>的需求量</p></li>
+<li><p>$ y_i</p>
+<p><span class="math notranslate nohighlight">\(:  车辆在订单\)</span>i<span class="math notranslate nohighlight">\(（对应客户\)</span>i$）的出发地开始装货的重量.</p>
+</li>
+</ul>
+<p>CVRP为以下整数线性规划问题：</p>
+<p>$$ :raw-latex:<a href="#id1"><span class="problematic" id="id2">`</span></a>begin{align*}</p>
+<p>&amp;minsum_{i=0}^{n+1} sum_{j=0}^{n+1} c_{ij}x_{ij} &amp;quad (2.1)\</p>
+<p>&amp;sum_{substack{j=1 \ j neq i}}^{n+1} x_{ij} = 1, quad i = 1, dots, n, &amp;quad (2.2)\</p>
+<p>&amp;sum_{substack{i=0 \ i neq h}}^{n} x_{ih} - sum_{substack{j=1 \ j neq h}}^{n+1} x_{hj} = 0, quad h = 1, dots, n, &amp;quad (2.3)\</p>
+<p>&amp;sum_{j=1}^{n} x_{0j} leq K, &amp;quad (2.4)\</p>
+<p>&amp;y_{j} geq y_{i} + q_{j}x_{ij} - Q(1 - x_{ij}), quad i,j = 0, dots, n + 1, &amp;quad (2.5)\</p>
+<p>&amp;q_{i} leq y_{i} leq Q, quad i = 0, dots, n + 1, &amp;quad (2.6)\</p>
+<p>&amp;x_{ij} in {0,1}, quad i,j = 0, dots, n + 1. &amp;quad (2.7)</p>
+<p>end{align*}` $$</p>
+<p>约束 (2.2) 确保所有客户恰好被访问一次. 约束 (2.3)</p>
+<p>保证车辆在弧线上的正确流向，即若车辆到达节点 $ h $，则必须从该节点出发.</p>
+<p>约束 (2.4) 将最大路径数量限制为 $ K $（车辆数量）. 约束 (2.5) 和 (2.6)</p>
+<p>共同确保不超过车辆容量. 目标函数由 (2.1)</p>
+<p>定义，要求最小化路径的总行驶成本.</p>
+<p>约束 (2.5)</p>
+<p>其实也是是MTZ公式的变形，还可以避免解中出现子回路（即不经过配送中心的循环路径）.</p>
+<p>使用 (2.5) 和 (2.6)</p>
+<p>的优势在于：就客户数量而言，该模型的约束数量呈多项式级.</p>
+<p>然而，该模型线性松弛提供的下界相比其他模型更弱.</p>
+<p>3 问题数学公式表达（集合划分公式，SP）</p>
+<hr class="docutils" />
+<p>目前，求解车辆路径问题（VRP）变体最有效的精确方法基于集合划分（SP）公式.</p>
+<p>SP公式中的变量对应问题的可行路径. 设 $ <a href="#id3"><span class="problematic" id="id4">:raw-latex:`\mathcal{R}`</span></a> $</p>
+<p>为满足问题要求的路径集合. 例如，在有容量限制的车辆路径问题（CVRP）中，$</p>
+<p><a href="#id5"><span class="problematic" id="id6">:raw-latex:`\mathcal{R}`</span></a> $</p>
+<p>中的路径必须从配送中心出发并返回，最多访问客户一次，遵守车辆容量限制，并确保若路径到达某客户，则必须离开该客户.</p>
+<div class="line-block">
+<div class="line">设 $ <a href="#id7"><span class="problematic" id="id8">:raw-latex:`\lambda`</span></a><a href="#id9"><span class="problematic" id="id10">*</span></a>r $ 为二进制决策变量，当且仅当选择路径 $ r</div>
+</div>
+<blockquote>
+<div><p><a href="#id11"><span class="problematic" id="id12">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{R}` $ 时，$</p>
+<p><a href="#id13"><span class="problematic" id="id14">:raw-latex:`\lambda`</span></a>r = 1 <span class="math notranslate nohighlight">\(. SP公式如下：\)</span>$</p>
+<p>:raw-latex:<a href="#id15"><span class="problematic" id="id16">`</span></a>begin{alignat*}{3}</p>
+<p>min &amp; quad sum_{r in mathcal{R}} c_r lambda_r quad &amp; (3.1) \</p>
+<p>text{s.t.} &amp; quad sum_{r in mathcal{R}} a_{ri} lambda_r = 1, &amp; quad i in mathcal{C}, quad (3.2) \</p>
+<p>&amp; quad sum_{r in mathcal{R}} lambda_r leq K, &amp; quad (3.3) \</p>
+<p>&amp; quad lambda_r in {0,1}, &amp; quad r in mathcal{R}. quad (3.4)</p>
+<p>end{alignat*}`</p>
+<div class="math notranslate nohighlight">
+\[这可用于为CVRP、VRPTW和许多其他VRP变体建模，具体取决于对路径集合 $ \mathcal{R} $ 的定义. 目标函数（3.1）最小化所选路径的总成本. 路径 $ r \in \mathcal{R} $ 的成本 $ c_r $，使用弧成本 $ c_{ij} $ 计算. 即，给定依次访问节点 $ i_0, i_1, \dots, i_p $（$ p &gt; 0 $）的路径 $ r $，其总成本为：\]</div>
+<p>c_r = <a href="#id17"><span class="problematic" id="id18">:raw-latex:`\sum`</span></a>{j=0}^{p-1} c*{i_j i_{j+1}}.</p>
+<p>:raw-latex:<a href="#id19"><span class="problematic" id="id20">`</span></a>quad <a href="#id21"><span class="problematic" id="id22">`</span></a>(3.5) $$</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">约束（3.2）强制每个客户节点恰好被访问一次. 每一列 $ a_r = (a_{r1},</div>
+</div>
+<blockquote>
+<div><p><a href="#id23"><span class="problematic" id="id24">:raw-latex:`\dots`</span></a>, a_{rn})^T $ 是二进制向量，其中 $ a_{ri} = 1 $</p>
+<p>当且仅当路径 $ r $ 访问客户 $ i $.</p>
+<p>约束（3.3）限制配送中心可用车辆的最大数量. 若 $ K $</p>
+<p>对问题足够大，可删除该约束.</p>
+</div></blockquote>
+<p>通常，一般来说，生成<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>中的所有路径是不切实际的，因其数量随客户数呈指数增长.</p>
+<p>因此，集合划分公式需要使用列生成技术求解模型（3.1）-（3.4）的线性松弛.</p>
+<p>为获得最优整数解，需借助分支定价方法.</p>
+<div class="line-block">
+<div class="line">在列生成技术中，我们从路径的一个小子集</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\overline{\mathcal{R}} \subset \mathcal{R}\)</span></p>
+<p>开始，该子集用于创建以下受限主问题（RMP）：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{alignat*}{3}\\\begin{split}\min &amp; \quad \sum_{r \in \overline{\mathcal{R}}} c_r \lambda_r \quad &amp; (3.6) \\\end{split}\\\begin{split}\text{s.t.} &amp; \quad \sum_{r \in \overline{\mathcal{R}}} a_{ri} \lambda_r = 1, &amp; \quad i \in \mathcal{C}, \quad (3.7) &amp;\quad \text{(RMP)}\\\end{split}\\\begin{split}&amp; \quad \sum_{r \in \overline{\mathcal{R}}} \lambda_r \leq K, &amp; \quad (3.8) \\\end{split}\\&amp; \quad \lambda_r \geq 0, &amp; \quad r \in \overline{\mathcal{R}}. \quad (3.9)\\\end{alignat*}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">注意，RMP 是（3.1）–（3.4）的线性松弛，但仅考虑变量的一个子集. 设 $ u</div>
+</div>
+<blockquote>
+<div><p>= (u_1, <a href="#id25"><span class="problematic" id="id26">:raw-latex:`\dots`</span></a>, u_n)</p>
+<p><a href="#id27"><span class="problematic" id="id28">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^n $ 和 $</p>
+<p><a href="#id29"><span class="problematic" id="id30">:raw-latex:`\sigma `:raw-latex:`</span></a>geq 0` $</p>
+<p>分别为与约束（3.7）和（3.8）相关的对偶变量.</p>
+<p>在列生成方法的每次迭代中，我们求解(RMP)以获得对偶解</p>
+<p><span class="math notranslate nohighlight">\((\bar{u}, \bar{\sigma})\)</span>，该解用于生成尚未在</p>
+<p>(RMP)中的变量/列<span class="math notranslate nohighlight">\(\lambda_{r}(r\in\mathcal{R}\backslash \overline{\mathcal{R}})\)</span>.</p>
+<p>需要加入的列的对应下标<span class="math notranslate nohighlight">\(r\)</span>通过求解以下子问题得到：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\overline{s}=\min_{r\in\mathcal{R}} c_r - \sum_{i \in \mathcal{C}} \overline{u}_i a_{ri} - \overline{\sigma} =\sum_{i \in \mathcal{N}} \sum_{j \in \mathcal{N}} (c_{ij} - \bar{u}_i)x_{rij} - \bar{\sigma} \quad (3.10)\]</div>
+</div></blockquote>
+<p>其中，<span class="math notranslate nohighlight">\(\bar{u}_0 = \bar{u}_{n+1} = 0\)</span>，且</p>
+<p><span class="math notranslate nohighlight">\(x_r = \{x_{rij}\}_{i,j \in N}\)</span> 是一个二进制向量，当且仅当路径</p>
+<p><span class="math notranslate nohighlight">\(r \in \mathcal{R}\)</span> 访问节点 <span class="math notranslate nohighlight">\(i\)</span> 并直接前往节点 <span class="math notranslate nohighlight">\(j\)</span></p>
+<p>时，<span class="math notranslate nohighlight">\(x_{rij} = 1\)</span>.</p>
+<p>这个子问题是一个<strong>资源受限基本最短路问题（ESPPRC）</strong>.</p>
+<p>若<span class="math notranslate nohighlight">\(\overline{s}\)</span>为负数且有限，则<span class="math notranslate nohighlight">\(\lambda_{\overline{r}}\)</span></p>
+<p>被添加到(RMP)中，然后重新求解新的(RMP). 如果<span class="math notranslate nohighlight">\(\overline{s}\)</span></p>
+<p>非负，且 <span class="math notranslate nohighlight">\((\bar{u}, \bar{\sigma})\)</span> 是当前 RMP</p>
+<p>的最优对偶解，那么当前(RMP)的最优解对于主问题（MP）的线性松弛也是最优的.</p>
+<p>至此，列生成方法终止.</p>
+<p>（注意：只要求出最小成本路径加入(RMP)即可，下标<span class="math notranslate nohighlight">\(r\)</span>无需求出，这里只是为了保证理论严谨）.</p>
+<p>列生成算法的计算实现性能在很大程度上取决于 RMP 和子问题的求解方式.</p>
+<p>为确保成功，实现过程应快速求解 RMP，并使用稳定的对偶解以减少总迭代次数.</p>
+<p>有效求解 ESPPRC 也是列生成算法处理 VRP 变体的重要要求. 尽管存在 ESPPRC</p>
+<p>的整数规划公式，但当前最先进的优化求解器无法有效求解它们.</p>
+<p>目前最佳策略是使用基于动态规划的<strong>标签设置算法</strong>.</p>
+<blockquote>
+<div><p>求解(RMP)对偶问题：<span class="math notranslate nohighlight">\(\\\)</span> 引入拉格朗日乘子 $ u_i</p>
+<p>$（对应等式约束 $ <a href="#id31"><span class="problematic" id="id32">:raw-latex:`\sum`</span></a><a href="#id33"><span class="problematic" id="id34">*</span></a>{r</p>
+<p><a href="#id35"><span class="problematic" id="id36">:raw-latex:`\in `:raw-latex:`</span></a>overline{mathcal{R}}`} a*{ri}</p>
+<p><a href="#id37"><span class="problematic" id="id38">:raw-latex:`\lambda`</span></a><a href="#id39"><span class="problematic" id="id40">*</span></a>r = 1 $）和 $</p>
+<p><a href="#id41"><span class="problematic" id="id42">:raw-latex:`\sigma `:raw-latex:`</span></a>geq 0` $（对应不等式约束 $</p>
+<p>:raw-latex:<a href="#id43"><span class="problematic" id="id44">`</span></a>sum`*{r</p>
+<p><a href="#id45"><span class="problematic" id="id46">:raw-latex:`\in `:raw-latex:`</span></a>overline{mathcal{R}}`}</p>
+<p><a href="#id47"><span class="problematic" id="id48">:raw-latex:`\lambda`</span></a><a href="#id49"><span class="problematic" id="id50">*</span></a>r :raw-latex:<a href="#id51"><span class="problematic" id="id52">`</span></a>leq <a href="#id53"><span class="problematic" id="id54">`</span></a>K</p>
+<p><span class="math notranslate nohighlight">\(），拉格朗日函数为：\)</span>$ L(<a href="#id55"><span class="problematic" id="id56">:raw-latex:`\lambda`</span></a>, u,</p>
+<p><a href="#id57"><span class="problematic" id="id58">:raw-latex:`\sigma`</span></a>) = :raw-latex:<a href="#id59"><span class="problematic" id="id60">`</span></a>sum`*{r</p>
+<p><a href="#id61"><span class="problematic" id="id62">:raw-latex:`\in `:raw-latex:`</span></a>overline{mathcal{R}}`} c_r</p>
+<p><a href="#id63"><span class="problematic" id="id64">:raw-latex:`\lambda`</span></a><em>r + :raw-latex:`sum`</em>{i</p>
+<p><a href="#id65"><span class="problematic" id="id66">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{C}`} u_i :raw-latex:<a href="#id67"><span class="problematic" id="id68">`</span></a>left`(1 -</p>
+<p><a href="#id69"><span class="problematic" id="id70">:raw-latex:`\sum`</span></a><a href="#id71"><span class="problematic" id="id72">*</span></a>{r</p>
+<p><a href="#id73"><span class="problematic" id="id74">:raw-latex:`\in `:raw-latex:`</span></a>overline{mathcal{R}}`} a*{ri}</p>
+<p><a href="#id75"><span class="problematic" id="id76">:raw-latex:`\lambda`</span></a><a href="#id77"><span class="problematic" id="id78">*</span></a>r <a href="#id79"><span class="problematic" id="id80">:raw-latex:`\right`</span></a>) +</p>
+<p><a href="#id81"><span class="problematic" id="id82">:raw-latex:`\sigma `:raw-latex:`</span></a>left`(K - :raw-latex:<a href="#id83"><span class="problematic" id="id84">`</span></a>sum`*{r</p>
+<p><a href="#id85"><span class="problematic" id="id86">:raw-latex:`\in `:raw-latex:`</span></a>overline{mathcal{R}}`}</p>
+<p><a href="#id87"><span class="problematic" id="id88">:raw-latex:`\lambda`</span></a><a href="#id89"><span class="problematic" id="id90">*</span></a>r <a href="#id91"><span class="problematic" id="id92">:raw-latex:`\right`</span></a>).</p>
+<div class="math notranslate nohighlight">
+\[对$\lambda$求导：$ \frac{\partial L(\lambda, u, \sigma)}{\partial \lambda} =\sum\limits_{r\in\overline{R}}\big( c_r - \sum_{i \in \mathcal{C}} u_i a_{ri} - \sigma \big)$ . 由于 $ \lambda_r \geq 0 $，当 $ c_r - \sum_{i \in \mathcal{C}} u_i a_{ri} - \sigma \geq 0 $ 时，$ \lambda_r $ 取 $ 0 $ 可最小化 $ L $；若存在 $ r $ 使 $ c_r - \sum_{i \in \mathcal{C}} u_i a_{ri} - \sigma &lt; 0 $，则 $ L $ 无下界（趋于 $ -\infty $）. 因此：\]</div>
+<p><a href="#id93"><span class="problematic" id="id94">:raw-latex:`\min`*\ {:raw-latex:`</span></a>lambda`}L(<a href="#id95"><span class="problematic" id="id96">:raw-latex:`\lambda`</span></a>, u,</p>
+<p><a href="#id97"><span class="problematic" id="id98">:raw-latex:`\sigma`</span></a>) = \</p>
+<div class="math notranslate nohighlight">
+\[因此，对偶问题\]</div>
+<p>:raw-latex:<a href="#id99"><span class="problematic" id="id100">`</span></a>begin{alignat*}{3}</p>
+<p>max &amp; quad sum_{i in mathcal{C}} u_i + Ksigma \</p>
+<p>text{s.t.} &amp; quad sum_{i in mathcal{C}} a_{ri} u_i + sigma leq c_r, &amp; quad forall r in overline{mathcal{R}}, \</p>
+<p>&amp; quad sigma geq 0.</p>
+<p>end{alignat*}`</p>
+<div class="math notranslate nohighlight">
+\[根据[行生成和列生成在大规模线性规划中的使用](../../or_exact/LP_large_scale_models/README.md)的列生成算法，假设对偶问题的最优解为$(\overline{u},\overline{\sigma})$，那么子问题求解\]</div>
+<p><a href="#id101"><span class="problematic" id="id102">:raw-latex:`\overline{r}`</span></a> =</p>
+<p><a href="#id103"><span class="problematic" id="id104">:raw-latex:`\arg`</span></a><a href="#id105"><span class="problematic" id="id106">:raw-latex:`\min`</span></a><a href="#id107"><span class="problematic" id="id108">*</span></a>{r:raw-latex:<cite>in</cite><a href="#id109"><span class="problematic" id="id110">:raw-latex:`\mathcal{R}`</span></a>}</p>
+<p>c_r - :raw-latex:<a href="#id111"><span class="problematic" id="id112">`</span></a>sum`*{i</p>
+<p><a href="#id113"><span class="problematic" id="id114">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{C}`}</p>
+<p><a href="#id115"><span class="problematic" id="id116">:raw-latex:`\overline{u}`</span></a><em>i a</em>{ri} -</p>
+<p><a href="#id117"><span class="problematic" id="id118">:raw-latex:`\overline{\sigma}`</span></a> $$</p>
+</div></blockquote>
+<blockquote>
+<div><div class="line-block">
+<div class="line">为什么(3.10)是一个资源受限基本最短路问题（ESPPRC）？<span class="math notranslate nohighlight">\(\\\)</span></div>
+</div>
+<blockquote>
+<div><p>该问题被认定为资源受限基本最短路径问题（ESPPRC），原因如下：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">资源受限体现在：(3.10)的可行解需要对应CVRP的可行路径，受到载重约束、路径联通约束的限制.</div>
+</div>
+<div class="line-block">
+<div class="line">基本最短路径体现在：目标函数 $ :raw-latex:<a href="#id119"><span class="problematic" id="id120">`</span></a>bar`{s} =</div>
+</div>
+<blockquote>
+<div><p><a href="#id121"><span class="problematic" id="id122">:raw-latex:`\min`</span></a><a href="#id123"><span class="problematic" id="id124">*</span></a>{r <a href="#id125"><span class="problematic" id="id126">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{R}`}</p>
+<p>c_r - <a href="#id127"><span class="problematic" id="id128">:raw-latex:`\sum`*\ {i :raw-latex:`</span></a>in <a href="#id129"><span class="problematic" id="id130">`</span></a>C}</p>
+<p>:raw-latex:<a href="#id131"><span class="problematic" id="id132">`</span></a>bar`{u}<em>i a</em>{ri} -</p>
+<p><a href="#id133"><span class="problematic" id="id134">:raw-latex:`\bar`{:raw-latex:`</span></a>sigma`} $</p>
+<p>本质是在资源约束下寻找成本最低的可行路径.</p>
+</div></blockquote>
+</div></blockquote>
+<p>CVRPTW子问题ESPPRC的数学公式表达：</p>
+<ol class="arabic">
+<li><p>变量定义</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned} x_{ij} =\\\begin{cases}\\\begin{split}1, &amp; \text{如果最短路径中包含弧 } (i,j) \in \mathcal{N}  \times \mathcal{N}  \\\end{split}\\0, &amp; \text{否则}\\\end{cases}\end{aligned}\end{align} \]</div>
+<p>$ s_i $：到达点 $ i <a href="#id135"><span class="problematic" id="id136">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{N}` $</p>
+<p>的时刻</p>
+</li>
+<li><p>数学模型表达式</p>
+<ul>
+<li><p>目标函数</p>
+<div class="math notranslate nohighlight">
+\[\min \sum_{i \in \mathcal{N}} \sum_{j \in \mathcal{N}} （c_{ij}-\overline{u}_i)x_{ij} -\overline{\sigma} \quad (1.1)\]</div>
+<p>目标是最小化路径中所有弧的成本总和.</p>
+</li>
+<li><p><strong>容量约束</strong>：</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i \in C} q_i \sum_{j \in \mathcal{N}} x_{ij} \leq Q \quad (1.2)\]</div>
+<p>确保客户节点需求量总和不超过车辆容量 $ Q $.</p>
+</li>
+<li><p><strong>从起点出发</strong>：</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j \in \mathcal{N}} x_{0j} = 1 \quad (1.3)\]</div>
+<p>保证路径从起点（节点 $ 0 $）出发.</p>
+</li>
+<li><p><strong>流量守恒</strong>：</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i \in \mathcal{N}} x_{ih} = \sum_{j \in \mathcal{N}} x_{hj} \quad \forall h \in C \quad (1.4)\]</div>
+<p>对每个客户节点 $ h $，流入弧的数量等于流出弧的数量.</p>
+</li>
+<li><p><strong>到达终点</strong>：</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i \in \mathcal{N}} x_{i,n+1} = 1 \quad (1.5)\]</div>
+<p>确保路径最终到达终点.</p>
+</li>
+<li><p><strong>时间约束</strong>：</p>
+<div class="math notranslate nohighlight">
+\[s_i + t_{ij} \leq s_j + M_{ij}(1 - x_{ij}) \quad \forall i \in \mathcal{N}, \forall j \in \mathcal{N} \quad (1.6)\]</div>
+<p>利用大 $ M $ 法保证时间逻辑，若弧 $ (i,j) $ 未被选择（$ x_{ij}=0</p>
+<p><span class="math notranslate nohighlight">\(），约束自动满足；若被选择（\)</span> x_{ij}=1</p>
+<p>$），则保证时间先后关系.</p>
+</li>
+<li><p><strong>时间窗约束</strong>：</p>
+<div class="math notranslate nohighlight">
+\[a_i \leq s_i \leq b_i \quad \forall i \in \mathcal{N} \quad (1.7)\]</div>
+<p>确保到达每个节点 $ i $ 的时刻 $ s_i $ 在规定的时间窗 $ [a_i, b_i]</p>
+<p>$ 内.</p>
+</li>
+<li><p><strong>节点自身约束</strong>：</p>
+<p>由于任何节点都不能是自己的前继节点或者后继节点，因此需添加以下约束：</p>
+<div class="math notranslate nohighlight">
+\[x_{ii} = 0 \quad \forall i \in V \quad (1.9)\]</div>
+</li>
+<li><p><strong>变量取值约束</strong>：</p>
+<div class="math notranslate nohighlight">
+\[x_{ij} \in \{0,1\} \quad \forall i \in \mathcal{N}, \forall j \in \mathcal{N} \quad (1.8)\]</div>
+<p>明确 $ x_{ij} $ 为 0-1 变量.</p>
+</li>
+</ul>
+</li>
+</ol>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

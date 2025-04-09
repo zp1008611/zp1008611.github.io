@@ -1,0 +1,621 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Linux下COPT安装与配置 &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'linux_solver_config/1_copt_config/index';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../2_scip_config/index.html" />
+    <link rel="prev" title="Linux Solver" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Liunx Solver</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1 COPT安装与配置</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../or_exact/index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Linux下COPT安装与配置</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="linuxcopt">
+<h1>Linux下COPT安装与配置<a class="headerlink" href="#linuxcopt" title="Permalink to this heading">#</a></h1>
+<p>本文使用的系统为<code class="docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">22.04.5</span> <span class="pre">LTS</span> <span class="pre">(GNU/Linux</span> <span class="pre">5.15.0-127-generic</span> <span class="pre">x86_64)</span></code></p>
+<p>1 官网申请</p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>进入官网https://www.shanshu.ai/copt申请试用版</p></li>
+</ol>
+<p>2 安装</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p>将安装包移动到用户目录下，并解压</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/
+
+tar<span class="w"> </span>-zxvf<span class="w"> </span>CardinalOptimizer-7.2.4-lnx64.tar.gz
+</pre></div>
+</div>
+</li>
+<li><p>查看是否存在 <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> 隐藏文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-a
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">若不存在该文件，则在终端上执行下述命令创建空的 <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> 文件：</div>
+</div>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">bash</span>&#160; <span class="pre">touch</span> <span class="pre">~/.bashrc</span></code> 若已存在该文件，打开 <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> 文件</p>
+<p><code class="docutils literal notranslate"><span class="pre">bash</span>&#160; <span class="pre">vim</span> <span class="pre">.bashrc</span></code></p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">按下<code class="docutils literal notranslate"><span class="pre">i</span></code>进入插入模式，并添加如下内容：</div>
+</div>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">bash</span>&#160; <span class="pre">export</span> <span class="pre">COPT_HOME=~/copt72</span>&#160; <span class="pre">export</span> <span class="pre">COPT_LICENSE_DIR=~/copt72</span>&#160; <span class="pre">export</span> <span class="pre">PATH=$COPT_HOME/bin:$PATH</span>&#160; <span class="pre">export</span> <span class="pre">LD_LIBRARY_PATH=$COPT_HOME/lib:$LD_LIBRARY_PATH</span></code></p>
+<p>按下<code class="docutils literal notranslate"><span class="pre">Esc</span></code>键回到命令模式，再执行<code class="docutils literal notranslate"><span class="pre">:wq</span></code>命令保存文件并退出.</p>
+</div></blockquote>
+</li>
+<li><p>在终端输入下述命令使得上述环境变量修改生效.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bash</span>&#160;&#160;&#160;&#160; <span class="pre">source</span> <span class="pre">~/.bashrc</span></code></p>
+</li>
+</ol>
+<p>3 配置许可文件</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p>在系统的用户目录下新建文件夹<code class="docutils literal notranslate"><span class="pre">copt</span></code>，并移动已验证的授权文档</p>
+<p><code class="docutils literal notranslate"><span class="pre">license.dat</span></code> 和<code class="docutils literal notranslate"><span class="pre">license.key</span></code>至新建文件夹<code class="docutils literal notranslate"><span class="pre">copt</span></code>中.</p>
+</li>
+<li><p>执行下述命令将授权文档<code class="docutils literal notranslate"><span class="pre">license.dat</span></code>和<code class="docutils literal notranslate"><span class="pre">license.key</span></code>移动到</p>
+<p><code class="docutils literal notranslate"><span class="pre">COPT_LICENSE_DIR</span></code>指向的路径下：</p>
+<p><code class="docutils literal notranslate"><span class="pre">bash</span>&#160;&#160;&#160;&#160; <span class="pre">cd</span> <span class="pre">~/copt/</span>&#160;&#160;&#160;&#160; <span class="pre">mv</span> <span class="pre">license.*</span> <span class="pre">$COPT_LICENSE_DIR/</span></code></p>
+</li>
+<li><p>输入<code class="docutils literal notranslate"><span class="pre">copt_cmd</span></code>，如果出现命令行工具，则说明安装配置成功</p></li>
+</ol>
+<p>4 python调用copt</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p>安装python3.9</p>
+<ol class="arabic">
+<li><p>备份源文件：打开终端，执行cd /etc/apt/进入目录，再执行sudo cp</p>
+<p>sources.list sources.list.bak备份原文件。</p>
+</li>
+<li><p>编辑源文件：使用文本编辑器打开源文件，如sudo nano</p>
+<p>/etc/apt/sources.list或sudo gedit /etc/apt/sources.list或sudo vim</p>
+<p>/etc/apt/sources.list。</p>
+</li>
+<li><p>替换内容：访问清华大学开源软件镜像站 Ubuntu 页面，选择对应的</p>
+<p>Ubuntu</p>
+<p>版本，将页面中提供的镜像源内容复制，粘贴到打开的sources.list文件中，替换原有内容，然后保存文件。</p>
+</li>
+<li><p>更新源：在终端执行sudo apt-get update使新的源配置生效。</p></li>
+<li><p>安装依赖包：执行sudo apt install build-essential zlib1g-dev</p>
+<p>libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev</p>
+<p>libffi-dev libsqlite3-dev wget libbz2-dev命令</p>
+</li>
+<li><p>下载 Python 3.9</p>
+<p>的源代码：到官网https://www.python.org/downloads/release/python-390/下载Gzipped</p>
+<p>source tarball文件 解压并进入目录：解压下载的源代码包tar -zxvf</p>
+<p>Python-3.9.0.tgz，然后进入解压后的目录cd Python-3.9.0。</p>
+</li>
+<li><p>配置并编译安装：执行./configure和</p>
+<p><code class="docutils literal notranslate"><span class="pre">bash</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">make</span> <span class="pre">-j</span> <span class="pre">$(nproc)</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">altinstall</span></code> 使用make</p>
+<p>altinstall可避免覆盖系统默认的 Python 版本。</p>
+</li>
+<li><p>验证：执行python3.9或python3.9 –version检查是否安装成功</p></li>
+</ol>
+</li>
+<li><p>安装<code class="docutils literal notranslate"><span class="pre">coptpy</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>coptpy
+</pre></div>
+</div>
+<p>或 <code class="docutils literal notranslate"><span class="pre">bash</span>&#160; <span class="pre">cd</span> <span class="pre">~/copt72/lib/python</span>&#160; <span class="pre">python3</span> <span class="pre">setup.py</span> <span class="pre">install</span></code></p>
+</li>
+<li><p>新建python文件<code class="docutils literal notranslate"><span class="pre">lp_ex1.py</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/copt/
+
+mkdir<span class="w"> </span>lp_ex1
+
+<span class="nb">cd</span><span class="w"> </span>lp_ex1
+
+touch<span class="w"> </span>lp_ex1.py
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+
+<span class="c1"># This file is part of the Cardinal Optimizer, all rights reserved.</span>
+
+<span class="c1">#</span>
+
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">The problem to solve:</span>
+
+
+
+<span class="sd">Maximize:</span>
+
+<span class="sd">1.2 x + 1.8 y + 2.1 z</span>
+
+
+
+<span class="sd">Subject to:</span>
+
+<span class="sd">1.5 x + 1.2 y + 1.8 z &lt;= 2.6</span>
+
+<span class="sd">0.8 x + 0.6 y + 0.9 z &gt;= 1.2</span>
+
+
+
+<span class="sd">where:</span>
+
+<span class="sd">0.1 &lt;= x &lt;= 0.6</span>
+
+<span class="sd">0.2 &lt;= y &lt;= 1.5</span>
+
+<span class="sd">0.3 &lt;= z &lt;= 2.8</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+
+<span class="kn">import</span> <span class="nn">coptpy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="kn">from</span> <span class="nn">coptpy</span> <span class="kn">import</span> <span class="n">COPT</span>
+
+
+
+<span class="c1"># Create COPT environment</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">Envr</span><span class="p">()</span>
+
+
+
+<span class="c1"># Create COPT model</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">createModel</span><span class="p">(</span><span class="s2">&quot;lp_ex1&quot;</span><span class="p">)</span>
+
+
+
+<span class="c1"># Add variables: x, y, z</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">lb</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">lb</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">addVar</span><span class="p">(</span><span class="n">lb</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">ub</span><span class="o">=</span><span class="mf">2.8</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+
+
+
+<span class="c1"># Add constraints</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">addConstr</span><span class="p">(</span><span class="mf">1.5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mf">1.8</span><span class="o">*</span><span class="n">z</span> <span class="o">&lt;=</span> <span class="mf">2.6</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">addConstr</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.6</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mf">0.9</span><span class="o">*</span><span class="n">z</span> <span class="o">&gt;=</span> <span class="mf">1.2</span><span class="p">)</span>
+
+
+
+<span class="c1"># Set objective function</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">setObjective</span><span class="p">(</span><span class="mf">1.2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">1.8</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mf">2.1</span><span class="o">*</span><span class="n">z</span><span class="p">,</span> <span class="n">sense</span><span class="o">=</span><span class="n">COPT</span><span class="o">.</span><span class="n">MAXIMIZE</span><span class="p">)</span>
+
+
+
+<span class="c1"># Set parameter</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">setParam</span><span class="p">(</span><span class="n">COPT</span><span class="o">.</span><span class="n">Param</span><span class="o">.</span><span class="n">TimeLimit</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+
+
+
+<span class="c1"># Solve the model</span>
+
+<span class="k">del</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+
+
+<span class="c1"># Analyze solution</span>
+
+<span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">COPT</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Objective value: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">objval</span><span class="p">))</span>
+
+<span class="n">allvars</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">getVars</span><span class="p">()</span>
+
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variable solution:&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">allvars</span><span class="p">:</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; x[</span><span class="si">{0}</span><span class="s2">]: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
+
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variable basis status:&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">allvars</span><span class="p">:</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; x[</span><span class="si">{0}</span><span class="s2">]: </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">var</span><span class="o">.</span><span class="n">basis</span><span class="p">))</span>
+
+
+
+<span class="c1"># Write model, solution and modified parameters to file</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;lp_ex1.mps&quot;</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;lp_ex1.bas&quot;</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;lp_ex1.sol&quot;</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;lp_ex1.par&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>运行py文件</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>lp_ex1.py
+</pre></div>
+</div>
+</li>
+</ol>
+<p>python下pyomo调用copt</p>
+<hr class="docutils" />
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">Linux Solver</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2_scip_config/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

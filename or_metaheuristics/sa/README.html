@@ -1,0 +1,537 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'or_metaheuristics/sa/README';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../or_exact/index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>模拟退火算法</p>
+<hr class="docutils" />
+<p>模拟退火算法（Simulated</p>
+<p>Annealing，SA）是一种用于解决优化问题的启发式算法，它源于对固体退火过程的模拟，以下是对它的详细解释：</p>
+<p>基本原理</p>
+<hr class="docutils" />
+<ul>
+<li><p><strong>模拟退火的来源</strong>：该算法的灵感来自于金属退火过程.</p>
+<p>在物理中，对金属进行加热然后缓慢冷却，金属原子会从高能量的无序状态逐渐转变为低能量的有序状态，最终达到能量最低的稳定态.</p>
+<p>在这个过程中，温度控制着原子的运动和状态变化.</p>
+</li>
+<li><p><strong>算法中的类比</strong>：在模拟退火算法中，将优化问题的解空间看作是金属原子的状态空间，目标函数值对应于系统的能量.</p>
+<p>算法从一个初始解开始，通过不断地对当前解进行随机扰动来产生新的解，并根据一定的准则来决定是否接受新解.</p>
+<p>这个准则类似于物理退火过程中根据温度来决定原子是否接受新的状态.</p>
+</li>
+</ul>
+<p>算法流程</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>初始化</strong></p>
+<ul>
+<li><p><strong>设定初始温度</strong>：选择一个较高的初始温度<span class="math notranslate nohighlight">\(T_0\)</span>，这个温度要足够高，以保证算法能够在解空间中进行充分的搜索，避免过早陷入局部最优.</p></li>
+<li><p><strong>生成初始解</strong>：随机生成一个初始解<span class="math notranslate nohighlight">\(x_0\)</span>，作为算法的起始点.</p>
+<p>这个初始解可以是问题的一个可行解，但不一定是最优解.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>迭代搜索</strong></p>
+<ul>
+<li><p><strong>产生新解</strong>：在当前解<span class="math notranslate nohighlight">\(x\)</span>的邻域内随机产生一个新解<span class="math notranslate nohighlight">\(x'\)</span>.</p>
+<p>邻域的定义通常根据具体问题而定，可以是对当前解的某个变量进行微小改变，或者是进行一些特定的操作.</p>
+</li>
+<li><p><strong>计算目标函数值变化</strong>：计算新解<span class="math notranslate nohighlight">\(x'\)</span>与当前解<span class="math notranslate nohighlight">\(x\)</span>的目标函数值之差<span class="math notranslate nohighlight">\(\Delta E = E(x') - E(x)\)</span>，其中<span class="math notranslate nohighlight">\(E(x)\)</span>表示解<span class="math notranslate nohighlight">\(x\)</span>的目标函数值.</p></li>
+<li><p><strong>接受新解</strong>：根据Metropolis准则来决定是否接受新解.</p>
+<p>如果<span class="math notranslate nohighlight">\(\Delta E \leq 0\)</span>，说明新解比当前解更优，一定接受新解，即<span class="math notranslate nohighlight">\(x = x'\)</span>；如果<span class="math notranslate nohighlight">\(\Delta E &gt; 0\)</span>，则以概率<span class="math notranslate nohighlight">\(P = e^{-\frac{\Delta E}{T}}\)</span>接受新解，其中<span class="math notranslate nohighlight">\(T\)</span>为当前温度.</p>
+<p>这里的概率<span class="math notranslate nohighlight">\(P\)</span>随着<span class="math notranslate nohighlight">\(\Delta E\)</span>的增大而减小，随着温度<span class="math notranslate nohighlight">\(T\)</span>的升高而增大，意味着在高温时，算法更有可能接受一个较差的解，从而有机会跳出局部最优.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>温度更新</strong></p>
+<ul>
+<li><p>按照一定的降温策略降低温度<span class="math notranslate nohighlight">\(T\)</span>，例如<span class="math notranslate nohighlight">\(T_{k + 1}=\alpha T_k\)</span>，其中<span class="math notranslate nohighlight">\(0 &lt; \alpha &lt; 1\)</span>为降温系数，<span class="math notranslate nohighlight">\(T_k\)</span>为第<span class="math notranslate nohighlight">\(k\)</span>次迭代时的温度.</p>
+<p>降温的速度不能太快，否则算法可能过早收敛到局部最优；也不能太慢，否则会增加计算时间.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>终止条件</strong></p>
+<ul>
+<li><p>当满足一定的终止条件时，算法停止.</p>
+<p>常见的终止条件包括达到预设的最大迭代次数、温度降低到足够小的值、目标函数值的变化小于某个阈值等.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>优缺点</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>优点</strong></p>
+<ul>
+<li><p><strong>全局搜索能力强</strong>：能够以一定概率跳出局部最优解，有较大机会找到全局最优解或近似全局最优解.</p></li>
+<li><p><strong>对问题的适应性强</strong>：不需要对问题的目标函数和约束条件有很强的数学性质要求，适用于各种类型的优化问题，包括离散型和连续型问题.</p></li>
+<li><p><strong>实现相对简单</strong>：算法的基本框架相对简单，易于理解和实现，不需要复杂的数学推导和计算.</p></li>
+</ul>
+</li>
+<li><p><strong>缺点</strong></p>
+<ul>
+<li><p><strong>计算效率较低</strong>：由于需要进行大量的迭代和随机搜索，算法的收敛速度通常较慢，尤其是在处理大规模问题时，计算时间可能会很长.</p></li>
+<li><p><strong>参数选择困难</strong>：初始温度、降温策略、终止条件等参数的选择对算法的性能有很大影响，需要通过大量的实验和经验来确定合适的参数值.</p></li>
+<li><p><strong>结果具有不确定性</strong>：每次运行算法得到的结果可能会有所不同，因为算法中的随机因素较多，这给结果的稳定性和可重复性带来一定挑战.</p></li>
+</ul>
+</li>
+</ul>
+<p>模拟退火算法的收敛性是指在一定条件下，算法能够随着时间（迭代次数）的增加，以概率1收敛到全局最优解.</p>
+<p>以下是对模拟退火算法收敛性的详细分析：</p>
+<p>收敛性分析</p>
+<hr class="docutils" />
+<p>马尔可夫链基础</p>
+<hr class="docutils" />
+<p>模拟退火算法的收敛性分析通常基于马尔可夫链理论.</p>
+<p>在模拟退火过程中，解的序列构成了一个马尔可夫链.</p>
+<p>即在给定当前解的情况下，下一个解的概率分布只取决于当前解，而与之前的历史状态无关.</p>
+<p>对于一个具有有限状态空间<span class="math notranslate nohighlight">\(S\)</span>的马尔可夫链，其转移概率矩阵<span class="math notranslate nohighlight">\(P\)</span>描述了从一个状态转移到另一个状态的概率.</p>
+<p>收敛条件</p>
+<hr class="docutils" />
+<ul>
+<li><p><strong>详细平衡条件</strong>：对于模拟退火算法，在温度<span class="math notranslate nohighlight">\(T\)</span>下，若对于任意两个状态<span class="math notranslate nohighlight">\(i\)</span>和<span class="math notranslate nohighlight">\(j\)</span>，满足<span class="math notranslate nohighlight">\(\pi(i)P_{ij}=\pi(j)P_{ji}\)</span>，其中<span class="math notranslate nohighlight">\(\pi(i)\)</span>和<span class="math notranslate nohighlight">\(\pi(j)\)</span>分别是状态<span class="math notranslate nohighlight">\(i\)</span>和<span class="math notranslate nohighlight">\(j\)</span>的平稳分布概率，<span class="math notranslate nohighlight">\(P_{ij}\)</span>和<span class="math notranslate nohighlight">\(P_{ji}\)</span>是状态<span class="math notranslate nohighlight">\(i\)</span>到<span class="math notranslate nohighlight">\(j\)</span>和<span class="math notranslate nohighlight">\(j\)</span>到<span class="math notranslate nohighlight">\(i\)</span>的转移概率，则称该马尔可夫链满足详细平衡条件.</p>
+<p>在模拟退火算法中，根据Metropolis准则，转移概率满足<span class="math notranslate nohighlight">\(P_{ij}=\min\left(1,e^{-\frac{\Delta E}{T}}\right)\)</span>，可以证明在这种转移概率下，算法满足详细平衡条件，从而保证了马尔可夫链存在平稳分布.</p>
+</li>
+<li><p><strong>遍历性</strong>：要求马尔可夫链能够在有限步内从任何一个状态到达其他任何状态，且不存在不可达的子状态集合.</p>
+<p>对于模拟退火算法，由于其在解空间中通过随机扰动产生新解，只要解空间是连通的，并且在足够长的时间内，算法有机会遍历整个解空间，因此通常满足遍历性.</p>
+</li>
+</ul>
+<p>退火调度与收敛性</p>
+<hr class="docutils" />
+<p>退火调度即降温策略，对模拟退火算法的收敛性至关重要. -</p>
+<p><strong>慢退火</strong>：如果退火过程足够慢，即温度下降得足够缓慢，那么算法有足够的时间在每个温度下达到近似的平稳分布.</p>
+<p>理论上，当满足<span class="math notranslate nohighlight">\(T(k)\to0\)</span> as</p>
+<p><span class="math notranslate nohighlight">\(k\to\infty\)</span>且<span class="math notranslate nohighlight">\(\sum_{k = 1}^{\infty}T(k)=\infty\)</span>时，模拟退火算法可以以概率1收敛到全局最优解.</p>
+<p>其中<span class="math notranslate nohighlight">\(T(k)\)</span>是第<span class="math notranslate nohighlight">\(k\)</span>次迭代时的温度. -</p>
+<p><strong>快退火</strong>：若退火速度过快，算法可能会过早地陷入局部最优解，无法充分探索解空间，从而导致不能收敛到全局最优解.</p>
+<p>例如，如果温度下降太快，在还没有充分搜索当前温度下的解空间时，就进入了低温阶段，此时算法可能已经被困在某个局部最优解附近，难以跳出.</p>
+<p>收敛速度</p>
+<hr class="docutils" />
+<p>模拟退火算法的收敛速度通常是比较慢的，属于指数级收敛.</p>
+<p>这是因为算法在搜索过程中，既要探索新的解空间，又要避免过早地陷入局部最优，需要在</p>
+<p>exploitation（利用当前较好解）和 exploration（探索新解）之间进行平衡.</p>
+<p>在实际应用中，为了提高收敛速度，可以采用一些改进的策略，如自适应调整温度、动态调整邻域结构等，但这些方法通常也会增加算法的复杂性和计算成本.</p>
+<p>实际问题中的收敛性</p>
+<hr class="docutils" />
+<p>在实际应用中，由于问题的复杂性和计算资源的限制，模拟退火算法往往很难达到理论上的收敛条件.</p>
+<p>例如，对于大规模的优化问题，要在有限的时间内使算法收敛到全局最优解几乎是不可能的.</p>
+<p>因此，在实际中通常是在算法运行一定时间或达到一定的迭代次数后，将当前得到的最好解作为近似最优解输出.</p>
+<p>并且，由于模拟退火算法的随机性，不同的初始解和随机序列可能会导致算法的收敛情况有所不同，需要通过多次运行算法来评估结果的稳定性和可靠性.</p>
+<p>用模拟退火算法求解CVRPTW问题</p>
+<hr class="docutils" />
+<p>模拟退火算法设计</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>解的表示</strong></p>
+<p>参考<a class="reference external" href="../vns/README.md">变邻域搜索</a></p>
+</li>
+<li><p><strong>目标函数计算</strong></p>
+<p>参考<a class="reference external" href="../vns/README.md">变邻域搜索</a></p>
+</li>
+<li><p><strong>初始解生成</strong></p>
+<p>参考<a class="reference external" href="../vns/README.md">变邻域搜索</a></p>
+</li>
+<li><p><strong>邻域结构定义</strong></p>
+<p>参考<a class="reference external" href="../vns/README.md">变邻域搜索</a></p>
+</li>
+<li><p><strong>接受准则</strong></p>
+<p>模拟退火算法（SA）的核心思想是以一定概率接受比当前解更差的解.</p>
+<p>那这个概率如何计算呢？</p>
+<p>举例来说，当前解用<span class="math notranslate nohighlight">\(S_{curr}\)</span>表示，其某个邻域产生的新解用<span class="math notranslate nohighlight">\(S_{new}\)</span>表示.</p>
+<p><span class="math notranslate nohighlight">\(f(S_{curr})\)</span>是当前解的目标函数值，<span class="math notranslate nohighlight">\(f(S_{new})\)</span>是新解的目标函数值.</p>
+<p>若<span class="math notranslate nohighlight">\(f(S_{new}) &lt; f(S_{curr})\)</span>，则肯定接受新解；若<span class="math notranslate nohighlight">\(f(S_{new}) \geq f(S_{curr})\)</span>，接受概率计算公式为<span class="math notranslate nohighlight">\(e^{-[f(S_{new}) - f(S_{curr})]/T}\)</span>，<span class="math notranslate nohighlight">\(T\)</span>代表当前温度.</p>
+<p>综合这两种情况，接受准则概率的数学表达式为：</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}P =\\ \begin{cases}\\\begin{split} 1 &amp; f(S_{new}) &lt; f(S_{curr}) \\\end{split}\\ e^{-[f(S_{new}) - f(S_{curr})]/T} &amp; f(S_{new}) \geq f(S_{curr})\\ \end{cases}\end{aligned}\end{align} \]</div>
+<p>其中，<span class="math notranslate nohighlight">\(P\)</span>是接受新解的概率.</p>
+</li>
+<li><p><strong>退火</strong></p>
+<p>在SA搜索时，如果温度<span class="math notranslate nohighlight">\(T\)</span>不随迭代次数增加而变化，接受新解的概率也不变.</p>
+<p>但实际上，随着迭代进行，SA得到的当前解质量会提升，若仍以原概率接受更差的解，会增加搜索时间.</p>
+<p>所以，接受概率应随迭代次数增加而降低，即温度<span class="math notranslate nohighlight">\(T\)</span>随迭代次数增加而衰减.</p>
+<p>具体退火公式为：</p>
+<div class="math notranslate nohighlight">
+\[T_{gen + 1} = \alpha \times T_{gen}\]</div>
+<p>式中，<span class="math notranslate nohighlight">\(T_{gen}\)</span>是第gen代温度，<span class="math notranslate nohighlight">\(T_{gen + 1}\)</span>是第gen</p>
+<ul class="simple">
+<li><p>1代温度，<span class="math notranslate nohighlight">\(\alpha\)</span>为冷却因子，取值范围是大于0小于1 .</p></li>
+</ul>
+</li>
+</ol>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'or_exact/dual_theory/README';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>对偶理论</p>
+<hr class="docutils" />
+<p>1 预备知识</p>
+<hr class="docutils" />
+<p>$ n :raw-latex:<a href="#id1"><span class="problematic" id="id2">`</span></a>times <a href="#id3"><span class="problematic" id="id4">`</span></a>n $ 对称矩阵的集合记为 $</p>
+<p><a href="#id5"><span class="problematic" id="id6">:raw-latex:`\mathbb{S}`^n :math:`</span></a>，` n :raw-latex:<a href="#id7"><span class="problematic" id="id8">`</span></a>times <a href="#id9"><span class="problematic" id="id10">`</span></a>n $</p>
+<p>对称半正定（正定）矩阵的集合记为 $ :raw-latex:<a href="#id11"><span class="problematic" id="id12">`</span></a>mathbb{S}`^n_+</p>
+<p>(<a href="#id13"><span class="problematic" id="id14">:raw-latex:`\mathbb{S}`</span></a>:sup:<a href="#id15"><span class="problematic" id="id16">`</span></a>{n}{++}) $. 符号 $ X</p>
+<p><a href="#id17"><span class="problematic" id="id18">:raw-latex:`\succeq 0`</span></a>  (X <a href="#id19"><span class="problematic" id="id20">:raw-latex:`\succ 0`</span></a>) $ 表示矩阵 $ X</p>
+<p><a href="#id21"><span class="problematic" id="id22">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{S}`^n $ 是半正定（正定）的. 符号 $</p>
+<p>X <a href="#id23"><span class="problematic" id="id24">:raw-latex:`\geq 0`</span></a>  (X &gt; 0) $ 表示矩阵 $ X $</p>
+<p>的每个元素都是非负的（正的）. $ X $ 的迹，即 $ X $ 对角元素之和，记为 $</p>
+<p>:raw-latex:<a href="#id25"><span class="problematic" id="id26">`</span></a>mathrm{Tr}`(X) $. 两个矩阵 $ A</p>
+<p><a href="#id27"><span class="problematic" id="id28">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^{m :raw-latex:<a href="#id29"><span class="problematic" id="id30">`</span></a>times <a href="#id31"><span class="problematic" id="id32">`</span></a>n} $ 和</p>
+<p>$ B <a href="#id33"><span class="problematic" id="id34">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^{m :raw-latex:<a href="#id35"><span class="problematic" id="id36">`</span></a>times <a href="#id37"><span class="problematic" id="id38">`</span></a>n} $</p>
+<p>的内积定义为 $ <a href="#id39"><span class="problematic" id="id40">:raw-latex:`\langle `A, B :raw-latex:`</span></a>rangle <a href="#id41"><span class="problematic" id="id42">`</span></a>:=</p>
+<p><a href="#id43"><span class="problematic" id="id44">:raw-latex:`\sum`</span></a>{j=1}`m <a href="#id45"><span class="problematic" id="id46">:raw-latex:`\sum`</span></a><em>{k=1}^n A</em>{jk}B_{jk}</p>
+<p>= <a href="#id47"><span class="problematic" id="id48">:raw-latex:`\mathrm{Tr}`(A^:raw-latex:`</span></a>top <a href="#id49"><span class="problematic" id="id50">`</span></a>B) $. 矩阵 $ A</p>
+<p><a href="#id51"><span class="problematic" id="id52">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^{m :raw-latex:<a href="#id53"><span class="problematic" id="id54">`</span></a>times <a href="#id55"><span class="problematic" id="id56">`</span></a>n} $</p>
+<p>的弗罗贝尼乌斯范数定义为 $ |A|_F :=</p>
+<p><a href="#id57"><span class="problematic" id="id58">:raw-latex:`\sqrt{\sum_{i=1}^m \sum_{j=1}^n A_{ij}^2}`</span></a> $.</p>
+<p>2 弱对偶性</p>
+<hr class="docutils" />
+<p>2.1 拉格朗日对偶问题</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">在本节中，我们考虑一个可能非凸的优化问题：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[p^* := \min_{x} f_0(x) \ \text{s.t.} \ f_i(x) \leq 0, \ i = 1, \dots, m \tag{2.1}\]</div>
+<p>我们用 $ <a href="#id59"><span class="problematic" id="id60">:raw-latex:`\mathcal{D}`</span></a> $</p>
+<p>表示问题的定义域（即所有涉及函数定义域的交集），用 $</p>
+<p><a href="#id61"><span class="problematic" id="id62">:raw-latex:`\mathcal{X}`</span></a></p>
+<p><a href="#id63"><span class="problematic" id="id64">:raw-latex:`\subseteq `:raw-latex:`</span></a>mathcal{D}` $ 表示其可行集.</p>
+</div></blockquote>
+<p>我们将上述问题称为原问题，原问题中的决策变量为 $ x $.</p>
+<p>引入拉格朗日对偶性的一个目的是为极小化问题寻找下界（或为极大化问题寻找上界）.</p>
+<p>之后，我们将使用对偶性工具推导凸问题的最优性条件.</p>
+<p>2.2 对偶问题</p>
+<hr class="docutils" />
+<p><strong>拉格朗日函数</strong>：我们为该问题关联一个拉格朗日函数 $</p>
+<p><a href="#id65"><span class="problematic" id="id66">:raw-latex:`\mathcal{L}`</span></a>: :raw-latex:<a href="#id67"><span class="problematic" id="id68">`</span></a>mathbb{R}`^n</p>
+<p><a href="#id69"><span class="problematic" id="id70">:raw-latex:`\times `:raw-latex:`</span></a>mathbb{R}`^m</p>
+<p><a href="#id71"><span class="problematic" id="id72">:raw-latex:`\to `:raw-latex:`</span></a>mathbb{R}` <span class="math notranslate nohighlight">\(，其定义为：\)</span>$</p>
+<p><a href="#id73"><span class="problematic" id="id74">:raw-latex:`\mathcal{L}`(x, :raw-latex:`</span></a>lambda`) := f_0(x) +</p>
+<p><a href="#id75"><span class="problematic" id="id76">:raw-latex:`\sum`</span></a>_{i=1}^m <a href="#id77"><span class="problematic" id="id78">:raw-latex:`\lambda`</span></a>_i f_i(x)</p>
+<p><a href="#id79"><span class="problematic" id="id80">:raw-latex:`\tag{2.2}`</span></a> $$ 变量 $</p>
+<p><a href="#id81"><span class="problematic" id="id82">:raw-latex:`\lambda `:raw-latex:`</span></a>in <cite>:raw-latex:</cite>mathbb{R}`^m $</p>
+<p>称为拉格朗日乘子.</p>
+<p>我们注意到，对于每个可行的 $ x <a href="#id83"><span class="problematic" id="id84">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{X}`</p>
+<p>$，以及每个 $ <a href="#id85"><span class="problematic" id="id86">:raw-latex:`\lambda `:raw-latex:`</span></a>geq 0` <span class="math notranslate nohighlight">\(，\)</span> f_0(x)</p>
+<p>$ 有下界 $ <a href="#id87"><span class="problematic" id="id88">:raw-latex:`\mathcal{L}`(x, :raw-latex:`</span></a>lambda`)</p>
+<p><span class="math notranslate nohighlight">\(：\)</span>$ :raw-latex:<a href="#id89"><span class="problematic" id="id90">`</span></a>forall <a href="#id91"><span class="problematic" id="id92">`</span></a>x</p>
+<p><a href="#id93"><span class="problematic" id="id94">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{X}`,</p>
+<p><a href="#id95"><span class="problematic" id="id96">:raw-latex:`\forall `:raw-latex:`</span></a>lambda <cite>:raw-latex:</cite>in <cite>:raw-latex:</cite>mathbb{R}`<a href="#id97"><span class="problematic" id="id98">*</span></a>+^m</p>
+<p>: f_0(x) <a href="#id99"><span class="problematic" id="id100">:raw-latex:`\geq `:raw-latex:`</span></a>mathcal{L}`(x,</p>
+<p><a href="#id101"><span class="problematic" id="id102">:raw-latex:`\lambda`</span></a>).</p>
+<div class="math notranslate nohighlight">
+\[拉格朗日函数可用于将原问题（??）表示为无约束问题. 确切地说：\]</div>
+<p>p^* = <a href="#id103"><span class="problematic" id="id104">:raw-latex:`\min`</span></a>x</p>
+<p><a href="#id105"><span class="problematic" id="id106">:raw-latex:`\max`</span></a>{<a href="#id107"><span class="problematic" id="id108">:raw-latex:`\lambda `:raw-latex:`</span></a>geq 0`}</p>
+<p><a href="#id109"><span class="problematic" id="id110">:raw-latex:`\mathcal{L}`(x, :raw-latex:`</span></a>lambda`),</p>
+<div class="math notranslate nohighlight">
+\[这里我们利用了以下事实：对于任意向量 $ f \in \mathbb{R}^m $，有\]</div>
+<p><a href="#id111"><span class="problematic" id="id112">:raw-latex:`\max`*\ {:raw-latex:`</span></a>lambda <cite>:raw-latex:</cite>geq 0`}</p>
+<p><a href="#id113"><span class="problematic" id="id114">:raw-latex:`\lambda`^:raw-latex:`</span></a>top <a href="#id115"><span class="problematic" id="id116">`</span></a>f =</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[**拉格朗日对偶函数**. 然后我们定义拉格朗日对偶函数（简称对偶函数）为函数\]</div>
+<p>g(<a href="#id117"><span class="problematic" id="id118">:raw-latex:`\lambda`</span></a>) := <a href="#id119"><span class="problematic" id="id120">:raw-latex:`\min`</span></a><a href="#id121"><span class="problematic" id="id122">*</span></a>x</p>
+<p><a href="#id123"><span class="problematic" id="id124">:raw-latex:`\mathcal{L}`(x, :raw-latex:`</span></a>lambda`).</p>
+<div class="math notranslate nohighlight">
+\[根据上述边界（??），通过对右边的 $ x $ 求极小，我们得到\]</div>
+<p><a href="#id125"><span class="problematic" id="id126">:raw-latex:`\forall `x :raw-latex:`</span></a>in <cite>:raw-latex:</cite>mathcal{X}`,</p>
+<p><a href="#id127"><span class="problematic" id="id128">:raw-latex:`\forall `:raw-latex:`</span></a>lambda <cite>:raw-latex:</cite>geq 0` : f_0(x)</p>
+<p><a href="#id129"><span class="problematic" id="id130">:raw-latex:`\geq `:raw-latex:`</span></a>min`*{x’}</p>
+<p><a href="#id131"><span class="problematic" id="id132">:raw-latex:`\mathcal{L}`(x’, :raw-latex:`</span></a>lambda`) =</p>
+<p>g(<a href="#id133"><span class="problematic" id="id134">:raw-latex:`\lambda`</span></a>),</p>
+<div class="math notranslate nohighlight">
+\[对左边的 $ x $ 求极小后，得到下界\]</div>
+<p><a href="#id135"><span class="problematic" id="id136">:raw-latex:`\forall `:raw-latex:`</span></a>lambda <cite>:raw-latex:</cite>in <cite>:raw-latex:</cite>mathbb{R}`<a href="#id137"><span class="problematic" id="id138">*</span></a>+^m</p>
+<p>: p^* <a href="#id139"><span class="problematic" id="id140">:raw-latex:`\geq `g(:raw-latex:`</span></a>lambda`).</p>
+<div class="math notranslate nohighlight">
+\[**拉格朗日对偶问题**. 利用上述边界，我们能得到的最佳下界是 $ p^* \geq d^* $，其中\]</div>
+<p>d^* = <a href="#id141"><span class="problematic" id="id142">:raw-latex:`\max`*\ {:raw-latex:`</span></a>lambda <cite>:raw-latex:</cite>geq 0`}</p>
+<p>g(<a href="#id143"><span class="problematic" id="id144">:raw-latex:`\lambda`</span></a>). $$</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">我们将上述问题称为对偶问题，向量 $</div>
+</div>
+<blockquote>
+<div><p><a href="#id145"><span class="problematic" id="id146">:raw-latex:`\lambda `:raw-latex:`</span></a>in <cite>:raw-latex:</cite>mathbb{R}`^m $</p>
+<p>称为对偶变量.</p>
+</div></blockquote>
+<p><strong>定理 2.1（极小极大不等式）</strong>：对任意关于向量变量 $ x, y $ 的函数 $</p>
+<p><a href="#id147"><span class="problematic" id="id148">:raw-latex:`\phi `$，以及任意子集 $ :raw-latex:`</span></a>mathcal{X}`,</p>
+<p><a href="#id149"><span class="problematic" id="id150">:raw-latex:`\mathcal{Y}`</span></a> <span class="math notranslate nohighlight">\(，有\)</span>$ <a href="#id151"><span class="problematic" id="id152">:raw-latex:`\max`</span></a><a href="#id153"><span class="problematic" id="id154">*</span></a>{y</p>
+<p><a href="#id155"><span class="problematic" id="id156">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{Y}`} :raw-latex:<a href="#id157"><span class="problematic" id="id158">`</span></a>min`*{x</p>
+<p><a href="#id159"><span class="problematic" id="id160">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{X}`} :raw-latex:<a href="#id161"><span class="problematic" id="id162">`</span></a>phi`(x, y)</p>
+<p><a href="#id163"><span class="problematic" id="id164">:raw-latex:`\leq `:raw-latex:`</span></a>min`<a href="#id165"><span class="problematic" id="id166">*</span></a>{x</p>
+<p><a href="#id167"><span class="problematic" id="id168">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{X}`} :raw-latex:<a href="#id169"><span class="problematic" id="id170">`</span></a>max`*{y</p>
+<p><a href="#id171"><span class="problematic" id="id172">:raw-latex:`\in `:raw-latex:`</span></a>mathcal{Y}`} :raw-latex:<a href="#id173"><span class="problematic" id="id174">`</span></a>phi`(x, y). $$</p>
+<p><strong>定理 2.2.</strong> 对于一般的（可能非凸的）问题（??），弱对偶性成立：$</p>
+<p>p<sup>* :raw-latex:</sup>geq <cite>d</cite>* $.</p>
+<div class="line-block">
+<div class="line"><strong>含等式约束的情形</strong>.</div>
+</div>
+<blockquote>
+<div><p>如果问题中存在等式约束，我们可以将其表示为两个不等式约束.</p>
+<p>结果表明，这会得到相同的对偶问题，就好像我们直接为每个等式约束使用一个对偶变量，且该对偶变量符号不受限制.</p>
+<p>为了说明这一点，考虑问题</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}\\\begin{split}p^* := \min_x &amp; \ f_0(x) \\\end{split}\\\begin{split}\text{s.t.} &amp; \ f_i(x) \leq 0, \, i = 1, \dots, m, \\\end{split}\\&amp; \ h_i(x) = 0, \, i = 1, \dots, p.\\\end{aligned}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<p>我们将该问题写为</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}\\\begin{split}p^* := \min_{x} &amp; \ f_0(x) \\\end{split}\\\begin{split}\text{s.t.} &amp; \ f_i(x) \leq 0, \, i = 1, \dots, m, \\\end{split}\\&amp; \ h_i(x) \leq 0, \ -h_i(x) \leq 0, \, i = 1, \dots, p.\\\end{aligned}\end{aligned}\end{align} \]</div>
+<p>对约束 $ <a href="#id175"><span class="problematic" id="id176">:raw-latex:`\pm `h_i(x) :raw-latex:`</span></a>leq 0` $ 使用乘子 $</p>
+<p><a href="#id177"><span class="problematic" id="id178">:raw-latex:`\nu`</span></a>_i^:raw-latex:<cite>pm `:math:</cite>，我们将相关的拉格朗日函数写为`$</p>
+<div class="line-block">
+<div class="line">$$</div>
+</div>
+<div class="line-block">
+<div class="line">其中 $ <a href="#id179"><span class="problematic" id="id180">:raw-latex:`\nu `:= :raw-latex:`</span></a>nu`^+ - :raw-latex:<a href="#id181"><span class="problematic" id="id182">`</span></a>nu`^- $</div>
+</div>
+<blockquote>
+<div><p>没有任何符号约束.因此，原问题中的不等式约束对应于相应乘子的符号约束，而等式约束的乘子没有显式约束.</p>
+</div></blockquote>
+<p>3 强对偶性</p>
+<hr class="docutils" />
+<p>3.1 原问题与对偶问题</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">在本节中，我们考虑一个凸优化问题</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}\\\begin{split}p^* := \min_{x} &amp; \ f_0(x) \\\end{split}\\\begin{split}\text{s.t.} &amp; \ f_i(x) \leq 0, \, i = 1, \dots, m, \\\end{split}\\&amp; \ h_i(x) = 0, \, i = 1, \dots, p,\\\end{aligned}\tag{3.1}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中函数 $ f_0, f_1, <a href="#id183"><span class="problematic" id="id184">:raw-latex:`\dots`</span></a>, f_m $ 是凸的，且 $ h_1,</div>
+</div>
+<blockquote>
+<div><p><a href="#id185"><span class="problematic" id="id186">:raw-latex:`\dots`</span></a>, h_p $ 是仿射的.我们用 $ <a href="#id187"><span class="problematic" id="id188">:raw-latex:`\mathcal{D}`</span></a> $</p>
+<p>表示问题的定义域（即所有涉及函数定义域的交集），用 $</p>
+<p><a href="#id189"><span class="problematic" id="id190">:raw-latex:`\mathcal{X}`</span></a></p>
+<p><a href="#id191"><span class="problematic" id="id192">:raw-latex:`\subseteq `:raw-latex:`</span></a>mathcal{D}` $ 表示其可行集.</p>
+</div></blockquote>
+<p>我们为该问题关联一个拉格朗日函数 $ <a href="#id193"><span class="problematic" id="id194">:raw-latex:`\mathcal{L}`</span></a>:</p>
+<p><a href="#id195"><span class="problematic" id="id196">:raw-latex:`\mathbb{R}`^n :raw-latex:`</span></a>times <cite>:raw-latex:</cite>mathbb{R}`^m</p>
+<p><a href="#id197"><span class="problematic" id="id198">:raw-latex:`\times `:raw-latex:`</span></a>mathbb{R}`^p</p>
+<p><a href="#id199"><span class="problematic" id="id200">:raw-latex:`\to `:raw-latex:`</span></a>mathbb{R}` <span class="math notranslate nohighlight">\(，其定义为：\)</span>$</p>
+<p><a href="#id201"><span class="problematic" id="id202">:raw-latex:`\mathcal{L}`(x, :raw-latex:`</span></a>lambda`, <a href="#id203"><span class="problematic" id="id204">:raw-latex:`\nu`</span></a>) :=</p>
+<p>f_0(x) + <a href="#id205"><span class="problematic" id="id206">:raw-latex:`\sum`</span></a><a href="#id207"><span class="problematic" id="id208">*</span></a>{i=1}^m <a href="#id209"><span class="problematic" id="id210">:raw-latex:`\lambda`</span></a>i f_i(x) +</p>
+<p><a href="#id211"><span class="problematic" id="id212">:raw-latex:`\sum`</span></a>{i=1}^p <a href="#id213"><span class="problematic" id="id214">:raw-latex:`\nu`</span></a>i h_i(x).</p>
+<div class="math notranslate nohighlight">
+\[对偶函数是 $ g: \mathbb{R}^m \times \mathbb{R}^p \to \mathbb{R} $，定义为：\]</div>
+<p>g(<a href="#id215"><span class="problematic" id="id216">:raw-latex:`\lambda`</span></a>, <a href="#id217"><span class="problematic" id="id218">:raw-latex:`\nu`</span></a>) := <a href="#id219"><span class="problematic" id="id220">:raw-latex:`\min`</span></a>{x}</p>
+<p><a href="#id221"><span class="problematic" id="id222">:raw-latex:`\mathcal{L}`(x, :raw-latex:`</span></a>lambda`, <a href="#id223"><span class="problematic" id="id224">:raw-latex:`\nu`</span></a>).</p>
+<div class="math notranslate nohighlight">
+\[相关的对偶问题是\]</div>
+<p>d^* = <a href="#id225"><span class="problematic" id="id226">:raw-latex:`\max`*\ {:raw-latex:`</span></a>lambda <cite>:raw-latex:</cite>geq 0`,</p>
+<p><a href="#id227"><span class="problematic" id="id228">:raw-latex:`\nu`</span></a>} g(<a href="#id229"><span class="problematic" id="id230">:raw-latex:`\lambda`</span></a>, <a href="#id231"><span class="problematic" id="id232">:raw-latex:`\nu`</span></a>). $$</p>
+<p>3.2 通过斯莱特条件的强对偶性</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line"><strong>对偶间隙与强对偶性</strong>：我们已了解弱对偶性如何构建一个凸优化问题，即便原（主）问题非凸，该问题也能为原问题提供下界.对偶间隙是一个非负数</div>
+</div>
+<blockquote>
+<div><p>$ p^* - d^* $.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">若对偶间隙为零（即 $ p^* = d^* $），则称问题（??）满足强对偶性.</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>斯莱特条件</strong>：若问题严格可行，即</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\exists x_0 \in \mathcal{D} : f_i(x_0) &lt; 0,\, i = 1, \dots, m,\ h_i(x_0) = 0,\, i = 1, \dots, p,\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">则称其满足斯莱特条件.当 $ f_i $</div>
+</div>
+<blockquote>
+<div><p>为仿射函数时，无需严格可行性，可用斯莱特条件的弱形式替代.由此可得：</p>
+</div></blockquote>
+<p><a href="#id233"><span class="problematic" id="id234">**</span></a>定理</p>
+<p>3.1（通过斯莱特条件的强对偶性）**：若原问题（??）为凸问题，且满足弱斯莱特条件，则强对偶性成立，即</p>
+<p>$ p^* = d^* $.</p>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

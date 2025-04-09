@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'or_metaheuristics/vns/README';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../../or_projects_routing_problem_variants/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../ga/README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../or_exact/index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>变邻域搜索</p>
+<hr class="docutils" />
+<p>Reference</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Variable_neighborhood_search">https://en.wikipedia.org/wiki/Variable_neighborhood_search</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.uleth.ca/~benkoczi/OR/read/vns-tutorial.pdf">https://www.cs.uleth.ca/~benkoczi/OR/read/vns-tutorial.pdf</a></p></li>
+</ul>
+<p>VNS（变邻域搜索，Variable Neighborhood</p>
+<p>Search）是一种元启发式算法，旨在通过系统地改变邻域结构来探索解空间，从而避免陷入局部最优.</p>
+<p>以下是其核心内容的简明解释：</p>
+<p><strong>核心思想</strong></p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>邻域多样化</strong>：</p>
+<p>定义多个不同的邻域结构（如简单交换、插入、反转等），按一定顺序依次尝试.</p>
+</li>
+<li><p><strong>逃离局部最优</strong>：</p>
+<p>当在当前邻域无法找到更优解时，切换到更大或更复杂的邻域继续搜索，强制跳出局部最优.</p>
+</li>
+</ol>
+<figure class="align-default">
+<img alt="../../_images/image8.png" src="../../_images/image8.png" />
+</figure>
+<p>当在本邻域搜索找不出一个比当前解更优的解的时候，我们就跳到下一个邻域继续进行搜索.</p>
+<p>如图中虚黑线所示.</p>
+<p>当在本邻域搜索找到了一个比当前解更优的解的时候，我们就跳回第一个邻域重新开始搜索.</p>
+<p>如图中红线所示</p>
+<p><strong>算法步骤</strong></p>
+<hr class="docutils" />
+<p>VNS算法求解组合优化问题（最小化）的流程文字描述如下：</p>
+<p>初始化</p>
+<hr class="docutils" />
+<p>选择邻域结构集合<span class="math notranslate nohighlight">\(\mathcal{N}_k\)</span>（<span class="math notranslate nohighlight">\(k = 1, \ldots, k_{\max}\)</span>），用于抖动阶段；选择邻域结构集合<span class="math notranslate nohighlight">\(N_{\ell}\)</span>（<span class="math notranslate nohighlight">\(\ell = 1, \ldots, \ell_{\max}\)</span>），用于局部搜索.</p>
+<p>找到一个初始解<span class="math notranslate nohighlight">\(x\)</span>，并使用随机变邻域搜索（RVNS）对其进行改进.</p>
+<p>选择一个停止条件.</p>
+<p>重复以下步骤，直到满足停止条件： 1. 令<span class="math notranslate nohighlight">\(k \leftarrow 1\)</span>； 2.</p>
+<p>重复以下步骤，直到<span class="math notranslate nohighlight">\(k = k_{\max}\)</span>： -</p>
+<p><strong>抖动</strong>：从<span class="math notranslate nohighlight">\(x\)</span>的第<span class="math notranslate nohighlight">\(k\)</span>个邻域<span class="math notranslate nohighlight">\(\mathcal{N}_k(x)\)</span>中随机生成一个点<span class="math notranslate nohighlight">\(x'\)</span>；</p>
+<ul class="simple">
+<li><p><strong>通过变邻域下降法（VND）进行局部搜索</strong>： -</p></li>
+</ul>
+<p>令<span class="math notranslate nohighlight">\(\ell \leftarrow 1\)</span>； -</p>
+<p>重复以下步骤，直到<span class="math notranslate nohighlight">\(\ell = \ell_{\max}\)</span>： -</p>
+<p><strong>邻域探索</strong>：在<span class="math notranslate nohighlight">\(N_{\ell}(x')\)</span>中找到<span class="math notranslate nohighlight">\(x'\)</span>的最优邻域解<span class="math notranslate nohighlight">\(x''\)</span>；</p>
+<ul class="simple">
+<li></li>
+</ul>
+<p><strong>是否变换邻域</strong>：如果<span class="math notranslate nohighlight">\(f(x'') &lt; f(x')\)</span>，则令<span class="math notranslate nohighlight">\(x' \leftarrow x''\)</span>且<span class="math notranslate nohighlight">\(\ell \leftarrow 1\)</span>；否则令<span class="math notranslate nohighlight">\(\ell \leftarrow \ell + 1\)</span>；</p>
+<ul class="simple">
+<li></li>
+</ul>
+<p><strong>是否变换邻域</strong>：如果这个局部最优解优于当前解，则移动到该解（<span class="math notranslate nohighlight">\(x \leftarrow x''\)</span>），并从<span class="math notranslate nohighlight">\(\mathcal{N}_1\)</span>开始继续搜索（<span class="math notranslate nohighlight">\(k \leftarrow 1\)</span>）；否则，令<span class="math notranslate nohighlight">\(k \leftarrow k + 1\)</span>.</p>
+<p><strong>关键特点</strong></p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>灵活性</strong>：邻域结构可根据问题定制（如TSP中的2-opt、3-opt）.</p></li>
+<li><p><strong>鲁棒性</strong>：通过多邻域切换增强全局搜索能力.</p></li>
+<li><p><strong>高效性</strong>：在中等规模问题中表现优异.</p></li>
+</ul>
+<p><strong>优缺点</strong></p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>优点</strong>：实现简单、参数少、易于结合其他算法.</p></li>
+<li><p><strong>缺点</strong>：邻域设计依赖经验，大规模问题可能需优化策略.</p></li>
+</ul>
+<p>VNS通过动态调整搜索方向，在局部开发与全局探索间取得平衡，是解决复杂组合优化问题的有效工具.</p>
+<p>VNS算法求解CVRPTW问题</p>
+<hr class="docutils" />
+<p>VNS算法设计</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>解的表示</strong></p>
+<p>如果解仅包含顾客编号时，难以区分各顾客具体分配的配送路线.</p>
+<p>因此，将配送中心以大于5的数字形式插入解中.</p>
+<p>若配送中心最多允许K辆车服务N个顾客，则插入K个代表配送中心的数字.</p>
+<p>解的表现形式示例：</p>
+<ul>
+<li><p>解表示：1263475</p>
+<ul class="simple">
+<li><p>配送路线：配送中心6和7将12345分割成3条配送路线</p></li>
+<li><p>第1条：0 → 1 → 2 → 0</p></li>
+<li><p>第2条：0 → 3 → 4 → 0</p></li>
+<li><p>第3条：0 → 5 → 0</p></li>
+</ul>
+</li>
+<li><p>解表示：1267345</p>
+<ul class="simple">
+<li><p>配送路线：配送中心6和7将12345分割成2条配送路线</p></li>
+<li><p>第1条：0 → 1 → 2 → 0</p></li>
+<li><p>第2条：0 → 3 → 4 → 5 → 0</p></li>
+</ul>
+</li>
+<li><p>解表示：6712345</p>
+<ul>
+<li><p>配送路线：配送中心6和7将12345分割成1条配送路线，即0 → 1 → 2 → 3</p>
+<p>→ 4 → 5 → 0</p>
+</li>
+</ul>
+</li>
+<li><p>解表示：1234567</p>
+<ul>
+<li><p>配送路线：配送中心6和7将12345分割成1条配送路线，即0 → 1 → 2 → 3</p>
+<p>→ 4 → 5 → 0</p>
+</li>
+</ul>
+</li>
+<li><p>解表示：6123457</p>
+<ul>
+<li><p>配送路线：配送中心6和7将12345分割成1条配送路线，即0 → 1 → 2 → 3</p>
+<p>→ 4 → 5 → 0</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>SA求解CVRPTW问题中的解可表示为1 - (N + K -</p>
+<p>1)的随机排列，上述5种情况涵盖了将解转换为配送方案时会遇到的情形.</p>
+</li>
+<li><p><strong>目标函数</strong></p>
+<p>第1点中的表示解的方式，无法保证分割出的各条配送路线都满足装载量约束.</p>
+<p>为解决违反约束的问题，对违反约束的配送路线施加惩罚，以使分割出的配送路线满足装载量约束.</p>
+<p>配送方案的总成本通过以下公式计算：</p>
+<div class="math notranslate nohighlight">
+\[f(s) = c(s) + \alpha \times q(s) + \beta \times w(s)\]</div>
+<p>其中：</p>
+<ul>
+<li><p>违反装载量约束之和<span class="math notranslate nohighlight">\(q(s)\)</span>的计算公式为：</p>
+<div class="math notranslate nohighlight">
+\[q(s)=\sum_{k = 1}^{K}\max\left\{\left(\sum_{i\in N}d_{i}\sum_{j\in\Delta^{+}(i)}x_{ijk}-C\right),0\right\}\]</div>
+</li>
+<li><p>所有顾客违反的时间窗约束之和<span class="math notranslate nohighlight">\(w(s)\)</span>的计算公式为：</p>
+<div class="math notranslate nohighlight">
+\[w(s)=\sum_{i = 1}^{n}\max\left\{\left(l_{i}-b_{i}\right),0\right\}\]</div>
+</li>
+</ul>
+<p>式中各符号含义如下：</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(s\)</span>为配送方案；</p></li>
+<li><p><span class="math notranslate nohighlight">\(f(s)\)</span>为当前配送方案的总成本；</p></li>
+<li><p><span class="math notranslate nohighlight">\(c(s)\)</span>为车辆总行驶距离；</p></li>
+<li><p><span class="math notranslate nohighlight">\(q(s)\)</span>为各条路径违反的装载量约束之和；</p></li>
+<li><p><span class="math notranslate nohighlight">\(w(s)\)</span>为所有顾客违反的时间窗约束之和；</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span>为违反装载量约束的惩罚因子；</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span>为违反时间窗约束的惩罚因子；</p></li>
+<li><p><span class="math notranslate nohighlight">\(K\)</span>为配送车辆集合；</p></li>
+<li><p><span class="math notranslate nohighlight">\(N = V\setminus\{0, n + 1\}\)</span>为顾客集合；</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta^{+}(i)\)</span>为从节点<span class="math notranslate nohighlight">\(i\)</span>出发的弧的集合；</p></li>
+<li><p><span class="math notranslate nohighlight">\(d_{i}\)</span>为顾客<span class="math notranslate nohighlight">\(i\)</span>的需求量；</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{ijk}\)</span>为货车<span class="math notranslate nohighlight">\(k\)</span>是否从节点<span class="math notranslate nohighlight">\(i\)</span>出发前往节点<span class="math notranslate nohighlight">\(j\)</span>；</p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span>为货车最大装载量；</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span>为顾客数目；</p></li>
+<li><p><span class="math notranslate nohighlight">\(l_{i}\)</span>为货车到达顾客<span class="math notranslate nohighlight">\(i\)</span>的时间；</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_{i}\)</span>为顾客<span class="math notranslate nohighlight">\(i\)</span>的右时间窗.</p></li>
+</ul>
+</li>
+<li><p><strong>初始解生成</strong></p>
+<ul>
+<li><p>可以使用贪心算法等启发式方法生成一个初始可行解.</p>
+<p>例如，按照客户需求和距离配送中心的远近，依次将客户分配给不同的车辆，形成初始的车辆路径方案.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>邻域结构定义</strong></p>
+<p>假设顾客数目为<span class="math notranslate nohighlight">\(N\)</span>，配送中心最多允许<span class="math notranslate nohighlight">\(K\)</span>辆车进行配送，那么当前解可表示为：</p>
+<div class="math notranslate nohighlight">
+\[R = [R(1),R(2),\cdots R(i),\cdots,R(j),\cdots R(N + K - 2),R(N + K - 1)]\]</div>
+<ul>
+<li><p><strong>交换操作</strong></p>
+<ul>
+<li><p>若选择的交换位置为<span class="math notranslate nohighlight">\(i\)</span>和<span class="math notranslate nohighlight">\(j\)</span>（<span class="math notranslate nohighlight">\(i \neq j\)</span>，<span class="math notranslate nohighlight">\(1 \leq i,j \leq N + K - 1\)</span>），交换第<span class="math notranslate nohighlight">\(i\)</span>个和第<span class="math notranslate nohighlight">\(j\)</span>个位置上的元素后的解表示为：</p>
+<div class="math notranslate nohighlight">
+\[R = [R(1),R(2),\cdots R(j),\cdots,R(i),\cdots R(N + K - 2),R(N + K - 1)]\]</div>
+</li>
+<li><p>以5个顾客且最多允许使用3辆货车为例：</p>
+<ul class="simple">
+<li><p><strong>初始解情况</strong>：假设当前解为1263745，该解表示3条配送路线：</p>
+<ul>
+<li><p>第1条：<span class="math notranslate nohighlight">\(0 \to 1 \to 2 \to 0\)</span></p></li>
+<li><p>第2条：<span class="math notranslate nohighlight">\(0 \to 3 \to 0\)</span></p></li>
+<li><p>第3条：<span class="math notranslate nohighlight">\(0 \to 4 \to 5 \to 0\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>交换后情况</strong>：若交换位置为<span class="math notranslate nohighlight">\(i = 3\)</span>和<span class="math notranslate nohighlight">\(j = 4\)</span>，交换后的解为1236745，此时表示2条配送路线：</p>
+<ul>
+<li><p>第1条：<span class="math notranslate nohighlight">\(0 \to 1 \to 2 \to 3 \to 0\)</span></p></li>
+<li><p>第2条：<span class="math notranslate nohighlight">\(0 \to 4 \to 5 \to 0\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>逆转操作</strong></p>
+<p>逆转操作指的是将两个位置之间所有元素的排序进行反转.</p>
+<ul>
+<li><p>若选择的逆转位置为<span class="math notranslate nohighlight">\(i\)</span>和<span class="math notranslate nohighlight">\(j\)</span>（<span class="math notranslate nohighlight">\(i \neq j\)</span>，<span class="math notranslate nohighlight">\(1 \leq i,j \leq N\)</span>）</p>
+<p>，逆转第<span class="math notranslate nohighlight">\(i\)</span>个和第<span class="math notranslate nohighlight">\(j\)</span>个位置之间所有元素的排序后，解可表示为：</p>
+<div class="math notranslate nohighlight">
+\[R = [R(1),R(2),\cdots R(j),R(j - 1),\cdots,R(i + 1),R(i),\cdots R(N + K - 2),R(N + K - 1)]\]</div>
+</li>
+<li><p>以5个顾客且最多允许使用3辆货车为例：</p>
+<ul class="simple">
+<li><p><strong>初始解情况</strong>：假设当前解为1263745，该解表示3条配送路线：</p>
+<ul>
+<li><p>第1条：<span class="math notranslate nohighlight">\(0 \to 1 \to 2 \to 0\)</span></p></li>
+<li><p>第2条：<span class="math notranslate nohighlight">\(0 \to 3 \to 0\)</span></p></li>
+<li><p>第3条：<span class="math notranslate nohighlight">\(0 \to 4 \to 5 \to 0\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>逆转后情况</strong>：若逆转位置为<span class="math notranslate nohighlight">\(i = 3\)</span>和<span class="math notranslate nohighlight">\(j = 7\)</span>，逆转后的解为1254736，此时表示2条配送路线：</p>
+<ul>
+<li><p>第1条：<span class="math notranslate nohighlight">\(0 \to 1 \to 2 \to 5 \to 4 \to 0\)</span></p></li>
+<li><p>第2条：<span class="math notranslate nohighlight">\(0 \to 3 \to 0\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>插入操作</strong></p>
+<p>插入操作是将在第一个位置上选择的元素，插入到第二个位置上选择的元素后面.</p>
+<ul>
+<li><p>若选择的插入位置为<span class="math notranslate nohighlight">\(i\)</span>和<span class="math notranslate nohighlight">\(j\)</span>（<span class="math notranslate nohighlight">\(i \neq j\)</span>，<span class="math notranslate nohighlight">\(1 \leq i,j \leq N\)</span>），将第<span class="math notranslate nohighlight">\(i\)</span>个位置上的元素插入第<span class="math notranslate nohighlight">\(j\)</span>个位置上的元素后，解可表示为：</p>
+<div class="math notranslate nohighlight">
+\[R = [R(1),\cdots R(i - 1),R(i + 1),\cdots R(j - 1),R(j),R(i),R(j + 1),\cdots R(N + K - 1)]\]</div>
+</li>
+<li><p>以5个顾客且最多允许使用3辆货车为例：</p>
+<ul class="simple">
+<li><p><strong>初始解情况</strong>：假设当前解为1263745，该解表示3条配送路线：</p>
+<ul>
+<li><p>第1条：<span class="math notranslate nohighlight">\(0 \to 1 \to 2 \to 0\)</span></p></li>
+<li><p>第2条：<span class="math notranslate nohighlight">\(0 \to 3 \to 0\)</span></p></li>
+<li><p>第3条：<span class="math notranslate nohighlight">\(0 \to 4 \to 5 \to 0\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>插入后情况</strong>：若插入位置为<span class="math notranslate nohighlight">\(i = 3\)</span>和<span class="math notranslate nohighlight">\(j = 7\)</span>，插入后的解为1237456，此时表示2条配送路线：</p>
+<ul>
+<li><p>第1条：<span class="math notranslate nohighlight">\(0 \to 1 \to 2 \to 3 \to 0\)</span></p></li>
+<li><p>第2条：<span class="math notranslate nohighlight">\(0 \to 4 \to 5 \to 0\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>扰动操作</strong></p>
+<ul>
+<li><p>在第3点已经介绍交换操作、逆转操作和插入操作这3个邻域操作，利用这3种操作能得到3个不同的邻域集合.</p></li>
+<li><p>在使用邻域操作获取一条路线的邻域集合前，还有一个重要步骤，即扰动操作.</p>
+<p>其目的是进一步扩大搜索范围，找到更多的解.</p>
+</li>
+<li><p>扰动操作是对当前解进行“适当的调整”，具体方式如下：在使用某个邻域操作前，先对当前解进行操作以得到一个“扰动解”，再用该邻域操作获取这个“扰动解”的邻域集合，从而进行后续一系列操作.</p></li>
+<li><p>示例</p>
+<p>假设当前解为1263745，</p>
+<ul>
+<li><p><strong>交换操作的扰动</strong>：若准备使用交换操作，随机生成1 -</p>
+<p>7中的两个不同数字（如2和5），交换这两个位置上的城市，得到“扰动解”1763245.</p>
+</li>
+<li><p><strong>逆转操作的扰动</strong>：若准备使用逆转操作，同样随机生成1 -</p>
+<p>6中的两个不同数字（如2和5），逆转这两个位置之间所有城市的排序，得到“扰动解”1736245.</p>
+</li>
+<li><p><strong>插入操作的扰动</strong>：若准备使用插入操作，随机生成1 -</p>
+<p>6中的两个不同数字（如2和5），将第2个位置上的城市插入第5个位置上的城市后面，得到“扰动解”1637245</p>
+<p>.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>局部搜索策略</strong></p>
+<p>当对当前解<span class="math notranslate nohighlight">\(S_{curr}\)</span>使用某个邻域操作得到其邻域集合后，如何处理该邻域集合，才能让<span class="math notranslate nohighlight">\(S_{curr}\)</span>向“更好”的方向变化呢？</p>
+<ul class="simple">
+<li><p>首先计算邻域集合中所有解的总距离.</p></li>
+<li><p>接着找到总距离最短的解<span class="math notranslate nohighlight">\(S_{min}\)</span>，并用它替换当前解<span class="math notranslate nohighlight">\(S_{curr}\)</span>，即令<span class="math notranslate nohighlight">\(S_{curr} = S_{min}\)</span>.</p></li>
+<li><p>然后求出新<span class="math notranslate nohighlight">\(S_{curr}\)</span>的邻域集合以及其中所有解的总距离，再次找到总距离最短的解替换当前解.</p></li>
+<li><p>按照上述方式迭代，直至迭代<span class="math notranslate nohighlight">\(\ell_{\max}\)</span>次后，停止对<span class="math notranslate nohighlight">\(S_{curr}\)</span>在当前邻域的搜索.</p></li>
+</ul>
+</li>
+<li><p><strong>邻域变换策略</strong></p>
+<p>局部搜索策略介绍了针对当前解<span class="math notranslate nohighlight">\(S_{curr}\)</span>在一个邻域中的搜索方法.</p>
+<p>由于有交换、逆转、插入3个邻域操作，对应产生3个不同结构的邻域，分别编号为<span class="math notranslate nohighlight">\(k = 1\)</span>（交换操作邻域）、<span class="math notranslate nohighlight">\(k = 2\)</span>（逆转操作邻域）、<span class="math notranslate nohighlight">\(k = 3\)</span>（插入操作邻域）</p>
+<p>. 在一个邻域搜索结束后，要在另一个邻域继续搜索，具体步骤如下：</p>
+<p>STEP1: 设<span class="math notranslate nohighlight">\(k = 1\)</span>.</p>
+<p>STEP2:</p>
+<p>根据<span class="math notranslate nohighlight">\(k\)</span>的值跳转：若<span class="math notranslate nohighlight">\(k = 1\)</span>，转至STEP3；若<span class="math notranslate nohighlight">\(k = 2\)</span>，转至STEP4；若<span class="math notranslate nohighlight">\(k = 3\)</span>，转至STEP5；否则，转至STEP7.</p>
+<p>STEP3:</p>
+<p><strong>针对交换操作邻域</strong>：对<span class="math notranslate nohighlight">\(S_{curr}\)</span>的交换操作邻域进行局部搜索得到最优解<span class="math notranslate nohighlight">\(S_{swap}\)</span>，计算<span class="math notranslate nohighlight">\(S_{swap}\)</span>的总距离<span class="math notranslate nohighlight">\(L_{swap}\)</span>，令<span class="math notranslate nohighlight">\(L_{curr} = L_{swap}\)</span>.</p>
+<p>若<span class="math notranslate nohighlight">\(L_{curr}&lt;L_{best}\)</span>（<span class="math notranslate nohighlight">\(L_{best}\)</span>为最优路线总距离），则更新<span class="math notranslate nohighlight">\(S_{best} = S_{curr} = S_{swap}\)</span>，<span class="math notranslate nohighlight">\(L_{best} = L_{curr}\)</span>，<span class="math notranslate nohighlight">\(k = 0\)</span>，转至STEP6</p>
+<p>.</p>
+<p>STEP4:</p>
+<p><strong>针对逆转操作邻域</strong>：对<span class="math notranslate nohighlight">\(S_{curr}\)</span>的逆转操作邻域进行局部搜索得到最优解<span class="math notranslate nohighlight">\(S_{reversion}\)</span>，计算其总距离<span class="math notranslate nohighlight">\(L_{reversion}\)</span>，令<span class="math notranslate nohighlight">\(L_{curr} = L_{reversion}\)</span>.</p>
+<p>若<span class="math notranslate nohighlight">\(L_{curr}&lt;L_{best}\)</span>，则更新<span class="math notranslate nohighlight">\(S_{best} = S_{curr} = S_{reversion}\)</span>，<span class="math notranslate nohighlight">\(L_{best} = L_{curr}\)</span>，<span class="math notranslate nohighlight">\(k=0\)</span>，转至STEP6.</p>
+<p>STEP5:</p>
+<p><strong>针对插入操作邻域</strong>：对<span class="math notranslate nohighlight">\(S_{curr}\)</span>的插入操作邻域进行局部搜索得到最优解<span class="math notranslate nohighlight">\(S_{insertion}\)</span>，计算其总距离<span class="math notranslate nohighlight">\(L_{insertion}\)</span>，令<span class="math notranslate nohighlight">\(L_{curr} = L_{insertion}\)</span>.</p>
+<p>若<span class="math notranslate nohighlight">\(L_{curr}&lt;L_{best}\)</span>，则更新<span class="math notranslate nohighlight">\(S_{best} = S_{curr} = S_{insertion}\)</span>，<span class="math notranslate nohighlight">\(L_{best} = L_{curr}\)</span>，<span class="math notranslate nohighlight">\(k=0\)</span>，转至STEP6.</p>
+<p>STEP6: <span class="math notranslate nohighlight">\(k=k+1\)</span>，转至STEP2.</p>
+<p>STEP7:</p>
+<p>终止循环，输出当前解<span class="math notranslate nohighlight">\(S_{curr}\)</span>、最优解<span class="math notranslate nohighlight">\(S_{best}\)</span>、当前解的总距离<span class="math notranslate nohighlight">\(L_{curr}\)</span>和最优解的总距离<span class="math notranslate nohighlight">\(L_{best}\)</span></p>
+<p>.</p>
+</li>
+</ol>
+<blockquote>
+<div><p><strong>采用路径编码方式的原因</strong>:</p>
+<p>在模拟退火算法求解CVRPTW问题中，采用路径编码方式（如<code class="docutils literal notranslate"><span class="pre">[1,2,6,3,7,4,5]</span></code>）主要基于以下原因：</p>
+<ol class="arabic simple">
+<li><p><strong>直观性与易理解性</strong> -</p></li>
+</ol>
+<p><strong>直接对应实际路径</strong>：编码中的每个子序列（如<code class="docutils literal notranslate"><span class="pre">[1,2,6]</span></code>）</p>
+<p>明确表示一辆车的完整路径（从配送中心出发，访问客户，返回配送中心）. -</p>
+<p><strong>可读性强</strong>：无需复杂解码即可直接观察车辆的行驶顺序和客户分配情况.</p>
+</div></blockquote>
+<blockquote>
+<div><ol class="arabic simple" start="2">
+<li><p><strong>邻域操作的便利性</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>支持灵活的交换/插入操作</strong>：</p>
+<ul>
+<li><p><strong>交换操作</strong>：直接交换不同路径中的客户节点（如交换<code class="docutils literal notranslate"><span class="pre">1</span></code>和<code class="docutils literal notranslate"><span class="pre">3</span></code>），无需额外处理车辆划分.</p></li>
+<li><p><strong>插入操作</strong>：将客户节点从一个路径插入到另一个路径的任意位置，操作简单.</p></li>
+</ul>
+</li>
+<li><p><strong>约束检查简化</strong>：邻域操作生成的新路径可直接检查容量和时间窗约束，无需重新划分车辆.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p><strong>天然支持多车辆场景</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>显式区分车辆</strong>：每个子序列对应一辆车，车辆数量和路径独立.</p></li>
+<li><p><strong>动态调整车辆数</strong>：通过邻域操作可隐式调整车辆数量（例如合并或拆分路径）.</p></li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><ol class="arabic simple" start="4">
+<li><p><strong>与问题特征匹配</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>时间窗和容量约束的处理</strong>：</p>
+<ul>
+<li><p>路径编码便于按顺序计算每个客户的到达时间和车辆负载.</p></li>
+<li><p>直接检查每个子路径的约束（如总负载不超过车辆容量，时间窗不违反）.</p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple" start="5">
+<li><p><strong>对比其他编码方式的优势</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>避免复杂解码</strong>：</p>
+<ul>
+<li><p>与“节点序列编码”（如<code class="docutils literal notranslate"><span class="pre">[1,3,2,4]</span></code>，需算法自动划分路径）相比，路径编码无需动态划分车辆，减少计算开销.</p></li>
+</ul>
+</li>
+<li><p><strong>减少无效解</strong>：</p>
+<ul>
+<li><p>与“染色体编码”（如二进制表示客户是否被访问）相比，路径编码直接生成有效路径，降低不可行解的概率.</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><ol class="arabic simple" start="6">
+<li><p><strong>算法实现的高效性</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>目标函数计算简单</strong>：直接遍历每个子路径的节点，累加距离即可.</p></li>
+<li><p><strong>代码实现直观</strong>：生成初始解、邻域操作、约束检查等模块可独立设计，代码结构清晰.</p></li>
+</ul>
+<p>路径编码是CVRPTW问题中最直观且高效的编码方式之一，其显式的车辆路径划分和灵活的操作特性，能够有效支持模拟邻域搜索和约束处理，最终在解质量和计算效率之间取得平衡.</p>
+</div></blockquote>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../ga/README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../or_projects_routing_problem_variants/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

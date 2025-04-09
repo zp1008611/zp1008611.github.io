@@ -1,0 +1,1123 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>凸包和有效不等式 &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'or_exact/IP_convex_hull_and_valid_ineq/index';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../IP_branch_and_bound/index.html" />
+    <link rel="prev" title="整数规划" href="../IP_intro/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Exact Algorithm</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../optimality_conditions/index.html">Optimality_Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dual_theory/index.html">Dual Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../LP_intro/index.html">LP Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../LP_simplex/index.html">LP Simplex Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../LP_cg/index.html">Column Generation for LP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../IP_intro/index.html">Integer Programming</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Convex Hull and Valid Inequalities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../IP_relaxation/index.html">Relaxation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../IP_cutting_planes/index.html">Cutting Planes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../IP_dw_decomposition/index.html">Dantzig-Wolfe Decomposition for IP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>凸包和有效不等式</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1>凸包和有效不等式<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>Reference</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://dabeenl.github.io/IE631_lecture3_note.pdf">https://dabeenl.github.io/IE631_lecture3_note.pdf</a></p></li>
+</ul>
+<p>1 凸包</p>
+<hr class="docutils" />
+<p>对于集合 $ X <a href="#id2"><span class="problematic" id="id3">:raw-latex:`\subseteq `:raw-latex:`</span></a>mathbb{R}`^d</p>
+<p>$，若对任意 $ u, v :raw-latex:<a href="#id4"><span class="problematic" id="id5">`</span></a>in <a href="#id6"><span class="problematic" id="id7">`</span></a>X $ 以及任意 $</p>
+<p><a href="#id8"><span class="problematic" id="id9">:raw-latex:`\lambda `:raw-latex:`</span></a>in [0, 1] <a href="#id10"><span class="problematic" id="id11">`</span></a>$，均有 $</p>
+<p><a href="#id12"><span class="problematic" id="id13">:raw-latex:`\lambda `u + (1 - :raw-latex:`</span></a>lambda`)v :raw-latex:<a href="#id14"><span class="problematic" id="id15">`</span></a>in <a href="#id16"><span class="problematic" id="id17">`</span></a>X</p>
+<p>$，则称 $ X $ 是 <strong>凸的</strong>.</p>
+<p>换句话说，连接集合内任意两点的线段完全包含于该集合.</p>
+<p>下图展示了一个凸集和一个非凸集.</p>
+<figure class="align-default">
+<img alt="../../_images/image4.png" src="../../_images/image4.png" />
+</figure>
+<p><strong>定义1.1</strong> 给定 $ v^1, <a href="#id18"><span class="problematic" id="id19">:raw-latex:`\dots`</span></a>, v^k</p>
+<p><a href="#id20"><span class="problematic" id="id21">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^d $，若 $</p>
+<p><a href="#id22"><span class="problematic" id="id23">:raw-latex:`\sum`</span></a>_{i=1}^k <a href="#id24"><span class="problematic" id="id25">:raw-latex:`\lambda`</span></a>_i = 1 $ 且对 $ i = 1,</p>
+<p><a href="#id26"><span class="problematic" id="id27">:raw-latex:`\dots`</span></a>, k $ 有 $ <a href="#id28"><span class="problematic" id="id29">:raw-latex:`\lambda`</span></a>_i <a href="#id30"><span class="problematic" id="id31">:raw-latex:`\geq 0`</span></a></p>
+<p>$，则线性组合 $ <a href="#id32"><span class="problematic" id="id33">:raw-latex:`\lambda`</span></a>_1 v^1 + :raw-latex:<a href="#id34"><span class="problematic" id="id35">`</span></a>cdots <a href="#id36"><span class="problematic" id="id37">`</span></a>+</p>
+<p><a href="#id38"><span class="problematic" id="id39">:raw-latex:`\lambda`</span></a>_k v^k $ 称为 $ v^1, <a href="#id40"><span class="problematic" id="id41">:raw-latex:`\dots`</span></a>, v^k $ 的</p>
+<p><strong>凸组合</strong>.</p>
+<p><strong>定义1.2</strong> 两个不同点 $ u, v $ 的凸组合是连接它们的线段 $ {</p>
+<p><a href="#id42"><span class="problematic" id="id43">:raw-latex:`\lambda `u + (1 - :raw-latex:`</span></a>lambda`)v : 0</p>
+<p><a href="#id44"><span class="problematic" id="id45">:raw-latex:`\leq `:raw-latex:`</span></a>lambda <cite>:raw-latex:</cite>leq 1` } $.</p>
+<div class="line-block">
+<div class="line"><strong>定义1.3</strong> 集合 $ S <a href="#id46"><span class="problematic" id="id47">:raw-latex:`\subseteq `:raw-latex:`</span></a>mathbb{R}`^d</div>
+</div>
+<blockquote>
+<div><p>$ 的 <strong>凸包</strong>，记为 $ :raw-latex:<a href="#id48"><span class="problematic" id="id49">`</span></a>text{conv}`(S) $，是 $ S $</p>
+<p>中所有点的凸组合构成的集合. 根据定义：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\text{conv}(S) = \left\{ \sum_{i=1}^n \lambda_i v^i : n \in \mathbb{N},\, v^1, \dots, v^n \in S,\, \sum_{i=1}^n \lambda_i = 1,\, \lambda_1, \dots, \lambda_n \geq 0 \right\}.\]</div>
+</div></blockquote>
+<p><strong>定理1.4</strong> 凸包<span class="math notranslate nohighlight">\(\text{conv}(S)\)</span>是包含<span class="math notranslate nohighlight">\(S\)</span>的最小凸集.</p>
+<p>无论 $ S $ 本身是否为凸集，$ :raw-latex:<a href="#id50"><span class="problematic" id="id51">`</span></a>text{conv}`(S) $ 始终是凸的.</p>
+<p>下图展示了对（非凸）集合取凸包的若干示例.</p>
+<figure class="align-default">
+<img alt="../../_images/image-17.png" src="../../_images/image-17.png" />
+</figure>
+<div class="line-block">
+<div class="line">对于整数规划问题</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{aligned}\\\begin{split}\max \quad &amp; c^{\top}x + h^{\top}y \\\end{split}\\\begin{split}\text{s.t.} \quad &amp; Ax + Gy \leq b, \\\end{split}\\&amp; x \in \mathbb{Z}^d,\ y \in \mathbb{R}^p,\\\end{aligned} \quad (1.1)\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">我们记可行域集合为<span class="math notranslate nohighlight">\(S\)</span>，其凸包由下式给出：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\mathrm{conv}(S) = \mathrm{conv}\left( \left\{ (x, y) \in \mathbb{Z}^d \times \mathbb{R}^p : Ax + Gy \leq b \right\} \right).\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>引理 1.5</strong> 问题 (1.1) 满足：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\max\left\{ c^{\top}x + h^{\top}y : (x, y) \in S \right\} = \max\left\{ c^{\top}x + h^{\top}y : (x, y) \in \mathrm{conv}(S) \right\}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">此外，$ c^{<a href="#id52"><span class="problematic" id="id53">:raw-latex:`\top`</span></a>}x + h^{<a href="#id54"><span class="problematic" id="id55">:raw-latex:`\top`</span></a>}y $ 的上确界在 $</div>
+</div>
+<blockquote>
+<div><p>S $ 上取得，当且仅当它在 $ :raw-latex:<a href="#id56"><span class="problematic" id="id57">`</span></a>mathrm{conv}`(S) $ 上取得.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>证明</strong> 因为 $ S <a href="#id58"><span class="problematic" id="id59">:raw-latex:`\subseteq `:raw-latex:`</span></a>mathrm{conv}`(S)</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(，显然有：\)</span>$ <a href="#id60"><span class="problematic" id="id61">:raw-latex:`\max`</span></a>:raw-latex:<a href="#id62"><span class="problematic" id="id63">`</span></a>left`{</p>
+<p>c^{<a href="#id64"><span class="problematic" id="id65">:raw-latex:`\top`</span></a>}x + h^{<a href="#id66"><span class="problematic" id="id67">:raw-latex:`\top`</span></a>}y : (x, y)</p>
+<p><a href="#id68"><span class="problematic" id="id69">:raw-latex:`\in `S :raw-latex:`</span></a>right`}</p>
+<p><a href="#id70"><span class="problematic" id="id71">:raw-latex:`\leq `:raw-latex:`</span></a>max`:raw-latex:<a href="#id72"><span class="problematic" id="id73">`</span></a>left`{</p>
+<p>c^{<a href="#id74"><span class="problematic" id="id75">:raw-latex:`\top`</span></a>}x + h^{<a href="#id76"><span class="problematic" id="id77">:raw-latex:`\top`</span></a>}y : (x, y)</p>
+<p><a href="#id78"><span class="problematic" id="id79">:raw-latex:`\in `:raw-latex:`</span></a>mathrm{conv}`(S) <a href="#id80"><span class="problematic" id="id81">:raw-latex:`\right`</span></a>}.</p>
+<div class="math notranslate nohighlight">
+\[接下来证明：\]</div>
+<p><a href="#id82"><span class="problematic" id="id83">:raw-latex:`\max`</span></a><a href="#id84"><span class="problematic" id="id85">:raw-latex:`\left`{ c^{:raw-latex:`</span></a>top`}x +</p>
+<p>h^{<a href="#id86"><span class="problematic" id="id87">:raw-latex:`\top`</span></a>}y : (x, y) :raw-latex:<a href="#id88"><span class="problematic" id="id89">`</span></a>in <a href="#id90"><span class="problematic" id="id91">`</span></a>S</p>
+<p><a href="#id92"><span class="problematic" id="id93">:raw-latex:`\right`</span></a>}</p>
+<p><a href="#id94"><span class="problematic" id="id95">:raw-latex:`\geq `:raw-latex:`</span></a>max`:raw-latex:<a href="#id96"><span class="problematic" id="id97">`</span></a>left`{</p>
+<p>c^{<a href="#id98"><span class="problematic" id="id99">:raw-latex:`\top`</span></a>}x + h^{<a href="#id100"><span class="problematic" id="id101">:raw-latex:`\top`</span></a>}y : (x, y)</p>
+<p><a href="#id102"><span class="problematic" id="id103">:raw-latex:`\in `:raw-latex:`</span></a>mathrm{conv}`(S) <a href="#id104"><span class="problematic" id="id105">:raw-latex:`\right`</span></a>}</p>
+<div class="math notranslate nohighlight">
+\[成立. 令 $ z^{*} = \max\left\{ c^{\top}x + h^{\top}y : (x, y) \in S \right\} $，不妨设 $ z^{*} $ 有限. 考虑集合：\]</div>
+<p>H = :raw-latex:<a href="#id106"><span class="problematic" id="id107">`</span></a>left`{ (x, y)</p>
+<p><a href="#id108"><span class="problematic" id="id109">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^d</p>
+<p><a href="#id110"><span class="problematic" id="id111">:raw-latex:`\times `:raw-latex:`</span></a>mathbb{R}`^p : c^{<a href="#id112"><span class="problematic" id="id113">:raw-latex:`\top`</span></a>}x</p>
+<ul class="simple">
+<li><p>h^{<a href="#id114"><span class="problematic" id="id115">:raw-latex:`\top`</span></a>}y <a href="#id116"><span class="problematic" id="id117">:raw-latex:`\leq `z^{*} :raw-latex:`</span></a>right`}.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[根据定义，$ S \subseteq H $. 此外，由于 $ H $ 是凸集，故 $ \mathrm{conv}(S) \subseteq H $. 这意味着：\]</div>
+<p><a href="#id118"><span class="problematic" id="id119">:raw-latex:`\max`</span></a><a href="#id120"><span class="problematic" id="id121">:raw-latex:`\left`{ c^{:raw-latex:`</span></a>top`}x +</p>
+<p>h^{<a href="#id122"><span class="problematic" id="id123">:raw-latex:`\top`</span></a>}y : (x, y)</p>
+<p><a href="#id124"><span class="problematic" id="id125">:raw-latex:`\in `:raw-latex:`</span></a>mathrm{conv}`(S) <a href="#id126"><span class="problematic" id="id127">:raw-latex:`\right`</span></a>}</p>
+<p><a href="#id128"><span class="problematic" id="id129">:raw-latex:`\leq `z^{*} = :raw-latex:`</span></a>max`:raw-latex:<a href="#id130"><span class="problematic" id="id131">`</span></a>left`{</p>
+<p>c^{<a href="#id132"><span class="problematic" id="id133">:raw-latex:`\top`</span></a>}x + h^{<a href="#id134"><span class="problematic" id="id135">:raw-latex:`\top`</span></a>}y : (x, y)</p>
+<p><a href="#id136"><span class="problematic" id="id137">:raw-latex:`\in `S :raw-latex:`</span></a>right`}, $$</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">从而证明了所需的不等式.</div>
+</div>
+<div class="line-block">
+<div class="line">假设 <span class="math notranslate nohighlight">\(c^\top x + h^\top y\)</span> 的上确界在</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((\bar{x}, \bar{y}) \in S\)</span> 处取得. 那么</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\max \{c^\top x + h^\top y : (x, y) \in S\} = c^\top \bar{x} + h^\top \bar{y}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">注意到 <span class="math notranslate nohighlight">\((\bar{x}, \bar{y}) \in \text{conv}(S)\)</span>，由第一部分可知</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\max \{c^\top x + h^\top y : (x, y) \in \text{conv}(S)\} = c^\top \bar{x} + h^\top \bar{y}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">现在假设 <span class="math notranslate nohighlight">\(c^\top x + h^\top y\)</span> 的上确界在点</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((\bar{x}, \bar{y}) \in \text{conv}(S)\)</span> 处取得.</p>
+<p>根据凸包的定义，该点可表示为 <span class="math notranslate nohighlight">\(S\)</span> 中 <span class="math notranslate nohighlight">\(n\)</span> 个点</p>
+<p><span class="math notranslate nohighlight">\((x^1, y^1), \ldots, (x^n, y^n)\)</span> 的凸组合. 由于这些点也属于</p>
+<p><span class="math notranslate nohighlight">\(\text{conv}(S)\)</span>，对所有 <span class="math notranslate nohighlight">\(i\)</span> 有</p>
+<p><span class="math notranslate nohighlight">\(c^\top x^i + h^\top y^i \leq c^\top \bar{x} + h^\top \bar{y}\)</span>,</p>
+<p>且</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[c^\top \bar{x} + h^\top \bar{y} = \sum_{i=1}^n \lambda_i (c^\top x^i + h^\top y^i)\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中 <span class="math notranslate nohighlight">\(\lambda_1, \ldots, \lambda_n \geq 0\)</span> 且</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\sum_{i \in [n]} \lambda_i = 1\)</span>. 于是，</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[c^\top \bar{x} + h^\top \bar{y} = \sum_{i=1}^n \lambda_i (c^\top x^i + h^\top y^i) \leq \sum_{i=1}^n \lambda_i (c^\top \bar{x} + h^\top \bar{y}) = c^\top \bar{x} + h^\top \bar{y},\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">因此不等式取等，即对所有</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(i \in [n]\)</span>，<span class="math notranslate nohighlight">\(c^\top x^i + h^\top y^i = c^\top \bar{x} + h^\top \bar{y}.\quad \square\)</span></p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">根据引理 1.5，求解整数规划 <span class="math notranslate nohighlight">\((1.1)\)</span> 等价于在凸包</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\text{conv}(S)\)</span> 上优化. 由迈耶定理，存在有理线性不等式组</p>
+<p><span class="math notranslate nohighlight">\(A'x + G'y \leq b'\)</span>，使得</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\text{conv}(S) = \{ (x, y) \in \mathbb{R}^d \times \mathbb{R}^p : A'x + G'y \leq b' \}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">因此，整数规划 <span class="math notranslate nohighlight">\(\max \{c^\top x + h^\top y : (x, y) \in S\}\)</span></div>
+</div>
+<blockquote>
+<div><p>等价于线性规划</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\max \{c^\top x + h^\top y : A'x + G'y \leq b'\}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">（其中 <span class="math notranslate nohighlight">\(A', G', b'\)</span> 为有理数矩阵）.</div>
+</div>
+<blockquote>
+<div><p>由此可见，整数规划可归结为线性规划. 但这与此前“整数规划是 NP</p>
+<p>难，而线性规划不是”的讨论矛盾吗？答案是否定的.</p>
+<p>原因是迈耶定理仅表明存在这样的线性系统，而实际计算<span class="math notranslate nohighlight">\(\text{conv}(S)\)</span></p>
+<p>难度极大.</p>
+</div></blockquote>
+<p>2 有效不等式</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line"><strong>定义2.1（混合整数线性规划（MILP））</strong> 给定矩阵 $ A</div>
+</div>
+<blockquote>
+<div><p><a href="#id138"><span class="problematic" id="id139">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^{m :raw-latex:<a href="#id140"><span class="problematic" id="id141">`</span></a>times <a href="#id142"><span class="problematic" id="id143">`</span></a>n}</p>
+<p>$，向量 $ b <a href="#id144"><span class="problematic" id="id145">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^m <span class="math notranslate nohighlight">\(、\)</span> c</p>
+<p><a href="#id146"><span class="problematic" id="id147">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^n $，以及子集 $ I</p>
+<p><a href="#id148"><span class="problematic" id="id149">:raw-latex:`\subseteq `{1, :raw-latex:`</span></a>dots`, n} $，混合整数线性规划</p>
+<p>$ <a href="#id150"><span class="problematic" id="id151">:raw-latex:`\text{MILP}`</span></a> = (A, b, c, I) $ 定义为：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z^* = \min\{ c^T x \mid A x \leq b,\, x \in \mathbb{R}^n_+,\, x_j \in \mathbb{Z}_+,\, \forall j \in I \}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">集合 $ X_{<a href="#id152"><span class="problematic" id="id153">:raw-latex:`\text{MILP}`</span></a>} = { x</div>
+</div>
+<blockquote>
+<div><p><a href="#id154"><span class="problematic" id="id155">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^n :raw-latex:<a href="#id156"><span class="problematic" id="id157">`</span></a>mid <a href="#id158"><span class="problematic" id="id159">`</span></a>A x</p>
+<p>:raw-latex:<a href="#id160"><span class="problematic" id="id161">`</span></a>leq <a href="#id162"><span class="problematic" id="id163">`</span></a>b,, x</p>
+<p><a href="#id164"><span class="problematic" id="id165">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{R}`^n_+,, x_j</p>
+<p><a href="#id166"><span class="problematic" id="id167">:raw-latex:`\in `:raw-latex:`</span></a>mathbb{Z}`,, :raw-latex:<a href="#id168"><span class="problematic" id="id169">`</span></a>forall <a href="#id170"><span class="problematic" id="id171">`</span></a>j</p>
+<p>:raw-latex:<a href="#id172"><span class="problematic" id="id173">`</span></a>in <a href="#id174"><span class="problematic" id="id175">`</span></a>I } $ 中的向量称为 MILP 的 <strong>可行解</strong>。若 MILP</p>
+<p>的可行解 $ x^* <a href="#id176"><span class="problematic" id="id177">:raw-latex:`\in `X\_{:raw-latex:`</span></a>text{MILP}`} $</p>
+<p>满足目标函数值 $ c^T x^* = z^* $，则称 $ x^* $ 为 <strong>最优解</strong>。</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>定义2.2（MILP 的 LP 松弛）</strong> MILP 的 LP 松弛定义为：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\tilde{z} = \min\{ c^T x \mid A x \leq b,\, x \in \mathbb{R}^n \}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">考虑由下式给出的混合整数线性集合：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[S = \{ (x, y) \in \mathbb{Z} \times \mathbb{R}_+ : x - y \leq \beta \} \quad (2.1)\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中<span class="math notranslate nohighlight">\(\beta \in \mathbb{R}\)</span>. 注意到</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[P = \{ (x, y) \in \mathbb{R} \times \mathbb{R}_+ : x - y \leq \beta \}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">对应于<span class="math notranslate nohighlight">\(S\)</span>的线性松弛，其由<span class="math notranslate nohighlight">\(y \geq 0\)</span>和<span class="math notranslate nohighlight">\(x - y \leq \beta\)</span>这两个不等式定义.</div>
+</div>
+<blockquote>
+<div><p>下图展示了混合整数线性集合<span class="math notranslate nohighlight">\(S\)</span>(红线部分)及其松弛<span class="math notranslate nohighlight">\(P\)</span>.</p>
+</div></blockquote>
+<figure class="align-default">
+<img alt="../../_images/image-23.png" src="../../_images/image-23.png" />
+</figure>
+<p>下面我们刻画<span class="math notranslate nohighlight">\(S\)</span>的凸包.</p>
+<div class="line-block">
+<div class="line">对于集合<span class="math notranslate nohighlight">\(C \subseteq \mathbb{R}^d\)</span>，我们称<span class="math notranslate nohighlight">\(a^\top x \leq b\)</span>（其中<span class="math notranslate nohighlight">\(a \in \mathbb{R}^d\)</span>且<span class="math notranslate nohighlight">\(b \in \mathbb{R}\)</span>）对<span class="math notranslate nohighlight">\(C\)</span>有效且是<span class="math notranslate nohighlight">\(C\)</span>的有效不等式，如果</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[C \subseteq \{ x \in \mathbb{R}^d : a^\top x \leq b \}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">换句话说，不等式<span class="math notranslate nohighlight">\(a^\top x \leq b\)</span>对<span class="math notranslate nohighlight">\(C\)</span>有效，当且仅当<span class="math notranslate nohighlight">\(C\)</span>中的每一个点<span class="math notranslate nohighlight">\(x\)</span>都满足该不等式.</div>
+</div>
+<blockquote>
+<div><p>这里，集合</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\{ x \in \mathbb{R}^d : a^\top x \leq b \}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">被称为半空间，而集合</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\{ x \in \mathbb{R}^d : a^\top x = b \}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">被称为超平面. 下图中左边为半空间，右边为超平面.</div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/image-310.png" src="../../_images/image-310.png" />
+</figure>
+<div class="line-block">
+<div class="line"><strong>引理 2.1</strong></div>
+</div>
+<blockquote>
+<div><p>令<span class="math notranslate nohighlight">\(f = \beta - \lfloor \beta \rfloor\)</span>为<span class="math notranslate nohighlight">\(\beta\)</span>的小数部分.</p>
+<p>那么，对于任意<span class="math notranslate nohighlight">\((x, y) \in S\)</span>，不等式</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[x - \frac{1}{1 - f}y \leq \lfloor \beta \rfloor \quad (2.2)\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">成立.</div>
+</div>
+<blockquote>
+<div><p>换句话说，该不等式对<span class="math notranslate nohighlight">\(S\)</span>有效且是<span class="math notranslate nohighlight">\(S\)</span>的有效不等式.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>证明</strong>. 设 <span class="math notranslate nohighlight">\((x, y) \in S\)</span>，则</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(x \leq \lfloor \beta \rfloor\)</span> 或</p>
+<p><span class="math notranslate nohighlight">\(x \geq \lfloor \beta \rfloor + 1\)</span>. 若</p>
+<p><span class="math notranslate nohighlight">\(x \leq \lfloor \beta \rfloor\)</span>，由于</p>
+<p><span class="math notranslate nohighlight">\(y \geq 0\)</span>，则(2.2)成立. 若</p>
+<p><span class="math notranslate nohighlight">\(x \geq \lfloor \beta \rfloor + 1\)</span>，则对某个整数</p>
+<p><span class="math notranslate nohighlight">\(k \geq 1\)</span>，有 <span class="math notranslate nohighlight">\(x = \lfloor \beta \rfloor + k\)</span>. 由</p>
+<p><span class="math notranslate nohighlight">\(x - y \leq \beta\)</span> 可得 <span class="math notranslate nohighlight">\(y \geq k - f\)</span>，此时：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[x - \frac{1}{1 - f}y \leq \lfloor \beta \rfloor + k - \frac{k - f}{1 - f} = \lfloor \beta \rfloor - \frac{(k - 1)f}{1 - f} \leq \lfloor \beta \rfloor. \quad\square\]</div>
+</div></blockquote>
+<p>引理 2.1 中的不等式 (2.1) 在</p>
+<p><span class="math notranslate nohighlight">\((x, y) = (\lfloor \beta \rfloor, 0)\)</span>、<span class="math notranslate nohighlight">\((\lfloor \beta \rfloor + 1, 1 - f)\)</span></p>
+<p>时取等号. 换句话说，由</p>
+<p><span class="math notranslate nohighlight">\(x - \frac{1}{1 - f}y = \lfloor \beta \rfloor\)</span> 定义的直线经过点</p>
+<p><span class="math notranslate nohighlight">\((\lfloor \beta \rfloor, 0)\)</span> 和</p>
+<p><span class="math notranslate nohighlight">\((\lfloor \beta \rfloor + 1, 1 - f)\)</span>，如下图所示：</p>
+<figure class="align-default">
+<img alt="../../_images/image-410.png" src="../../_images/image-410.png" />
+</figure>
+<p>我们之后会看到，由内姆豪泽和沃尔西 [NW90] 提出的</p>
+<p><strong>混合整数舍入（MIR）割平面</strong>，正是基于对混合整数线性集合 (2.1)</p>
+<p>的有效不等式 (2.2) 得到的.</p>
+<p>事实上，不等式 (2.2) 连同 <span class="math notranslate nohighlight">\(y \geq 0\)</span> 和 <span class="math notranslate nohighlight">\(x - y \leq \beta\)</span></p>
+<p>描述了混合整数线性集合 (2.1) 的凸包.</p>
+<div class="line-block">
+<div class="line"><strong>命题2.2</strong> 设</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(S = \{ (x, y) \in \mathbb{Z} \times \mathbb{R}_+ : x - y \leq \beta \}\)</span>，则</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\operatorname{conv}(S) = \left\{ (x, y) \in \mathbb{R} \times \mathbb{R}_+ : x - y \leq \beta,\, x - \frac{1}{1 - f}y \leq \lfloor \beta \rfloor \right\}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><strong>证明</strong> 记 <span class="math notranslate nohighlight">\(Q\)</span> 为右边的集合. 由引理 2.1 可知，不等式 (2.2) 对</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(S\)</span> 有效，则也对<span class="math notranslate nohighlight">\(\text{conv}(S)\)</span>有效, 进而</p>
+<p><span class="math notranslate nohighlight">\(\operatorname{conv}(S) \subseteq Q\)</span>.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">为证明 <span class="math notranslate nohighlight">\(Q \subseteq \operatorname{conv}(S)\)</span>，我们将论证</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(Q\)</span> 中任意点 <span class="math notranslate nohighlight">\((\bar{x}, \bar{y})\)</span> 可表示为 <span class="math notranslate nohighlight">\(S\)</span></p>
+<p>中某两点的凸组合. 若 <span class="math notranslate nohighlight">\(\bar{x} \in \mathbb{Z}\)</span>，则</p>
+<p><span class="math notranslate nohighlight">\((\bar{x}, \bar{y}) \in S \subseteq \operatorname{conv}(S)\)</span>.</p>
+<p>因此，可假设 <span class="math notranslate nohighlight">\(\bar{x} \notin \mathbb{Z}\)</span>.</p>
+<p>注意以下三种情况必居其一：(1)</p>
+<p><span class="math notranslate nohighlight">\(\bar{x} &lt; \lfloor \beta \rfloor\)</span>，(2)</p>
+<p><span class="math notranslate nohighlight">\(\lfloor \beta \rfloor &lt; \bar{x} &lt; \lfloor \beta \rfloor + 1\)</span>，(3)</p>
+<p><span class="math notranslate nohighlight">\(\bar{x} \geq \lfloor \beta \rfloor + 1\)</span>.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">首先，考虑 <span class="math notranslate nohighlight">\(\bar{x} &lt; \lfloor \beta \rfloor\)</span> 的情形，如下图所示.</div>
+</div>
+<blockquote>
+<div><p>此时 <span class="math notranslate nohighlight">\(\lfloor \bar{x} \rfloor\)</span> 和 <span class="math notranslate nohighlight">\(\lceil \bar{x} \rceil\)</span></p>
+<p>均小于或等于 <span class="math notranslate nohighlight">\(\lfloor \beta \rfloor\)</span>，故</p>
+<p><span class="math notranslate nohighlight">\((\lfloor \bar{x} \rfloor, \bar{y})\)</span> 和</p>
+<p><span class="math notranslate nohighlight">\((\lceil \bar{x} \rceil, \bar{y})\)</span> 属于 <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>此处，<span class="math notranslate nohighlight">\((\bar{x}, \bar{y})\)</span> 是</p>
+<p><span class="math notranslate nohighlight">\((\lfloor \bar{x} \rfloor, \bar{y})\)</span> 与</p>
+<p><span class="math notranslate nohighlight">\((\lceil \bar{x} \rceil, \bar{y})\)</span> 的凸组合.</p>
+</div></blockquote>
+<figure class="align-default">
+<img alt="../../_images/image-510.png" src="../../_images/image-510.png" />
+</figure>
+<p>其次，考虑</p>
+<p><span class="math notranslate nohighlight">\(\lfloor \beta \rfloor &lt; \bar{x} &lt; \lfloor \beta \rfloor + 1\)</span></p>
+<p>的情形，如下图所示，画一条经过 <span class="math notranslate nohighlight">\((\bar{x}, \bar{y})\)</span> 且与直线</p>
+<p><span class="math notranslate nohighlight">\(x - \frac{1}{1 - f}y = \lfloor \beta \rfloor\)</span> 平行的线段.</p>
+<p>该线段与 <span class="math notranslate nohighlight">\(x = \lfloor \beta \rfloor\)</span> 和</p>
+<p><span class="math notranslate nohighlight">\(x = \lfloor \beta \rfloor + 1\)</span> 相交，交点属于 <span class="math notranslate nohighlight">\(S\)</span>，且</p>
+<p><span class="math notranslate nohighlight">\(\bar{x}\)</span> 是它们的凸组合.</p>
+<figure class="align-default">
+<img alt="../../_images/image-64.png" src="../../_images/image-64.png" />
+</figure>
+<p>最后，考虑 <span class="math notranslate nohighlight">\(\lfloor \beta \rfloor + 1 &lt; \bar{x}\)</span></p>
+<p>的情形，如下图所示, 画一条经过 <span class="math notranslate nohighlight">\((\bar{x}, \bar{y})\)</span> 且与直线</p>
+<p><span class="math notranslate nohighlight">\(x - y = \beta\)</span> 平行的线段. 该线段与</p>
+<p><span class="math notranslate nohighlight">\(x = \lfloor \bar{x} \rfloor\)</span> 和 <span class="math notranslate nohighlight">\(x = \lceil \bar{x} \rceil\)</span></p>
+<p>相交，交点属于 <span class="math notranslate nohighlight">\(S\)</span>，且 <span class="math notranslate nohighlight">\(\bar{x}\)</span> 是它们的凸组合.</p>
+<figure class="align-default">
+<img alt="../../_images/image-79.png" src="../../_images/image-79.png" />
+</figure>
+<p>可以从 [Michele Conforti, G´erard Cornu´ejols, and Giacomo Zambelli.</p>
+<p>Integer Programming. Springer, 2014., 命题 1.5] 中找到命题 2.2</p>
+<p>的代数证明.</p>
+<p><strong>可见:math:`text{conv}(S)subseteq P`</strong>.</p>
+<p>3 整数规划的求解方法</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">求解整数规划最成功的算法框架是分支定界法和割平面法.</div>
+</div>
+<blockquote>
+<div><p>让我们讨论这些方法背后的概要与思想. 再次考虑混合整数线性规划</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z^* = \max \{ c^\top x + h^\top y : (x, y) \in S \} \quad (\text{MILP}_0)\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[S = \{ (x, y) \in \mathbb{Z}^d \times \mathbb{R}^p : Ax + Gy \leq b \}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">第一个常见步骤是求解<span class="math notranslate nohighlight">\((\text{MILP}_0)\)</span>的线性规划松弛</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[z_0 = \max \{ c^\top x + h^\top y : (x, y) \in P_0 \} \quad (\text{LP}_0)\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[P_0 = \{ (x, y) \in \mathbb{R}^d \times \mathbb{R}^p : Ax + Gy \leq b \}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">设 <span class="math notranslate nohighlight">\(z_0\)</span> 为线性规划松弛的最优值，且假设 <span class="math notranslate nohighlight">\(z_0\)</span> 是有限的.</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(z_0\)</span> 有限意味着最优值<span class="math notranslate nohighlight">\(z^*\)</span>也是有限的. 设</p>
+<p><span class="math notranslate nohighlight">\((x^0, y^0)\)</span> 是线性规划松弛的一个最优解. 如果</p>
+<p><span class="math notranslate nohighlight">\(x^0 \in \mathbb{Z}^d\)</span>，那么 <span class="math notranslate nohighlight">\((x^0, y^0) \in S\)</span>.</p>
+<p>这意味着</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{align*}\\\begin{split}\max \{ c^\top x + h^\top y : (x, y) \in S \} &amp;\leq \max \{ c^\top x + h^\top y : (x, y) \in P_0 \} \\\end{split}\\\begin{split}&amp;= c^\top x^0 + h^\top y^0 \\\end{split}\\&amp;\leq \max \{ c^\top x + h^\top y : (x, y) \in S \}.\\\end{align*}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">这里，左边和最右边相等，这意味着 <span class="math notranslate nohighlight">\((x^0, y^0)\)</span></div>
+</div>
+<blockquote>
+<div><p>是整数规划的最优解！</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">一般来说，线性规划松弛不一定返回整数解，并且 <span class="math notranslate nohighlight">\(x^0\)</span></div>
+</div>
+<blockquote>
+<div><p>可能有一些分数分量. 这里，分支定界法和割平面法提供了两种处理</p>
+<p><span class="math notranslate nohighlight">\(x^0\)</span> 有分数分量情况的策略.</p>
+</div></blockquote>
+<p>3.1 分支定界法</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">假设对某个 <span class="math notranslate nohighlight">\(1 \leq j \leq d\)</span>，分量 <span class="math notranslate nohighlight">\(x^0_j\)</span> 是分数, 则</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[x_j \geq \lceil x^0_j \rceil \quad \text{或} \quad x_j \leq \lfloor x^0_j \rfloor.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">我们定义</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[S_1 = S \cap \{ (x, y) : x_j \geq \lceil x^0_j \rceil \} \quad \text{且} \quad S_2 = S \cap \{ (x, y) : x_j \leq \lfloor x^0_j \rfloor \},\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">事实上，<span class="math notranslate nohighlight">\(S = S_1 \cup S_2\)</span>. 此外，我们创建两个子问题</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{align*}\\\begin{split}\max\ &amp; \{ c^\top x + h^\top y : (x, y) \in S_1 \}, \quad (\text{MILP}_1) \\\end{split}\\\max\ &amp; \{ c^\top x + h^\top y : (x, y) \in S_2 \}. \quad (\text{MILP}_2)\\\end{align*}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">这里，<span class="math notranslate nohighlight">\((\text{MILP}_1)\)</span> 和 <span class="math notranslate nohighlight">\((\text{MILP}_2)\)</span></div>
+</div>
+<blockquote>
+<div><p>的最大值将是原始整数规划 <span class="math notranslate nohighlight">\((\text{MILP}_0)\)</span> 的最优值.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">注意从 <span class="math notranslate nohighlight">\((\text{MILP}_0)\)</span> 开始，我们生成了两个子问题</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((\text{MILP}_1)\)</span> 和 <span class="math notranslate nohighlight">\((\text{MILP}_2)\)</span>.</p>
+<p>我们可以将此表示为一棵树结构，下图所示</p>
+</div></blockquote>
+<figure class="align-default">
+<img alt="../../_images/image-81.png" src="../../_images/image-81.png" />
+</figure>
+<div class="line-block">
+<div class="line">对于 <span class="math notranslate nohighlight">\((\text{MILP}_1)\)</span> 和</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((\text{MILP}_2)\)</span>，我们求解它们的线性规划松弛</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{align*}\\\begin{split}\max\ &amp; \{ c^\top x + h^\top y : (x, y) \in P_1 \}, \quad (\text{LP}_1) \\\end{split}\\\max\ &amp; \{ c^\top x + h^\top y : (x, y) \in P_2 \}, \quad (\text{LP}_2)\\\end{align*}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[P_1 = P_0 \cap \{ (x, y) : x_j \geq \lceil x^0_j \rceil \} \quad \text{且} \quad P_2 = P_0 \cap \{ (x, y) : x_j \leq \lfloor x^0_j \rfloor \}.\]</div>
+</div></blockquote>
+<ul>
+<li><p>若<span class="math notranslate nohighlight">\((\text{LP}_1)\)</span>不可行，则意味着<span class="math notranslate nohighlight">\((\text{MILP}_1)\)</span>不可行.</p>
+<p>那么我们可将其从搜索树中移除（通过不可行性剪枝）.</p>
+</li>
+<li><p>若<span class="math notranslate nohighlight">\((\text{LP}_1)\)</span>返回整数解，则意味着<span class="math notranslate nohighlight">\((\text{MILP}_1)\)</span>已求解.</p>
+<p>然后我们保留该整数解，但将<span class="math notranslate nohighlight">\((\text{MILP}_1)\)</span>从搜索树中移除（通过整数性剪枝）.</p>
+</li>
+<li><p>若<span class="math notranslate nohighlight">\((\text{LP}_1)\)</span>返回分数解，且<span class="math notranslate nohighlight">\((\text{LP}_1)\)</span>的值小于或等于当前最佳整数解的值（可能通过求解<span class="math notranslate nohighlight">\((\text{MILP}_2)\)</span>得到），则我们从搜索树中移除<span class="math notranslate nohighlight">\((\text{MILP}_1)\)</span>（通过值剪枝）.</p></li>
+<li><p>若<span class="math notranslate nohighlight">\((\text{LP}_1)\)</span>返回分数解，且<span class="math notranslate nohighlight">\((\text{LP}_1)\)</span>的值大于当前最佳整数解的值，那么我们对分数分量应用分支过程.</p></li>
+</ul>
+<p>我们对<span class="math notranslate nohighlight">\((\text{MILP}_2)\)</span>应用相同规则，并对树中剩余的其他子问题重复该过程.</p>
+<p>此过程生成的树称为<strong>分支定界树</strong>.</p>
+<p>3.2 割平面法</p>
+<hr class="docutils" />
+<p>回忆二维混合整数线性集合的例子. 不等式 (2.2)</p>
+<p>对混合整数集有效，且(2.2)将<span class="math notranslate nohighlight">\((\beta,0)\)</span>与混合整数集分离.</p>
+<p>因此，如果我们取满足 (2.2) 的解集，<span class="math notranslate nohighlight">\((\beta,0)\)</span>就被移出解集.</p>
+<p>这里，我们称这样的不等式为<strong>割平面</strong>，它将点与混合整数集分离.</p>
+<p>从这个意义上说，(2.2) 是一个割平面.</p>
+<div class="line-block">
+<div class="line">同样，我们取线性规划松弛 <span class="math notranslate nohighlight">\((\text{LP}_0)\)</span> 的最优解</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\((x^0, y^0)\)</span>，并找到一个割平面，将 <span class="math notranslate nohighlight">\((x^0, y^0)\)</span> 与</p>
+<p><span class="math notranslate nohighlight">\(S\)</span> 分离. 这里，形如</p>
+<p><span class="math notranslate nohighlight">\(\alpha^\top x + \gamma^\top y \leq \beta\)</span></p>
+<p>的不等式是一个割平面，满足：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\alpha^\top x + \gamma^\top y \leq \beta \quad \forall (x, y) \in S \quad \text{且} \quad \alpha^\top x^0 + \gamma^\top y^0 &gt; \beta.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">然后我们得到一个新的松弛：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\max \{ c^\top x + h^\top y : (x, y) \in P_1 \}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">其中</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[P_1 = P_0 \cap \{ (x, y) : \alpha^\top x + \gamma^\top y \leq \beta \}.\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">重复这个过程，我们得到以下割平面算法：</div>
+</div>
+<div class="line-block">
+<div class="line">- 设 <span class="math notranslate nohighlight">\(t = 0\)</span>.</div>
+</div>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(P_0 = \{ (x, y) \in \mathbb{R}^d \times \mathbb{R}^p : Ax + Gy \leq b \}\)</span></p>
+<p>为线性规划松弛 <span class="math notranslate nohighlight">\((\text{LP}_0)\)</span> 的解集.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">- 重复以下步骤，直到找到整数解：</div>
+</div>
+<div class="line-block">
+<div class="line">1. 求解并获得 <span class="math notranslate nohighlight">\(\max \{ c^\top x + h^\top y : (x, y) \in P_t \}\)</span></div>
+</div>
+<blockquote>
+<div><p>的最优解 <span class="math notranslate nohighlight">\((x^t, y^t)\)</span>.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">2. 若 <span class="math notranslate nohighlight">\((x^t, y^t)\)</span> 是整数解，则停止，<span class="math notranslate nohighlight">\((x^t, y^t)\)</span></div>
+</div>
+<blockquote>
+<div><p>即为最优整数解.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">3. 若 <span class="math notranslate nohighlight">\((x^t, y^t)\)</span> 不是整数解，则找到一个割平面</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\alpha^\top x + \gamma^\top y \leq \beta\)</span> 将 <span class="math notranslate nohighlight">\((x^t, y^t)\)</span></p>
+<p>分离，然后设置</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[P_{t+1} = P_t \cap \{ (x, y) : \alpha^\top x + \gamma^\top y \leq \beta \}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">并令 <span class="math notranslate nohighlight">\(t \leftarrow t + 1\)</span>.</div>
+</div>
+<p>3.3 分支切割法</p>
+<hr class="docutils" />
+<p>分支切割法本质上是将分支定界法与割平面算法相结合.</p>
+<p>在运行分支定界过程时，我们可以找到并应用割平面，分离通过求解子问题得到的分数解.</p>
+<p>CPLEX和Gurobi等先进的整数规划软件都实现了分支切割法.</p>
+<p>它们应用一些专门设计的分支规则和割平面生成策略.</p>
+<div class="line-block">
+<div class="line">人们可能希望使用一些问题特定的割平面，例如针对旅行商问题（TSP）的子环游消除不等式，以及针对匹配问题的奇集不等式.</div>
+</div>
+<blockquote>
+<div><p>在这种情况下，我们可以使用CPLEX和Gurobi中的（割平面）回调功能来应用用户定义的割平面.</p>
+<p>基本上，回调功能会在分支定界树中的某个节点调用并应用用户定义的割平面.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p>CPLEX：<a class="reference external" href="https://www.ibm.com/docs/en/icos/22.1.1?topic=legacy-cut-callback">https://www.ibm.com/docs/en/icos/22.1.1?topic=legacy-cut-callback</a></p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p>Gurobi：<a class="reference external" href="https://www.gurobi.com/documentation/10.0/refman/cpp_cb_addcut.html">https://www.gurobi.com/documentation/10.0/refman/cpp_cb_addcut.html</a></p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">通常，添加问题特定的割平面会显著缩短求解时间.</div>
+</div>
+<div class="line-block">
+<div class="line">如何找到问题特定的割平面？一种常见方法是使用软件PORTA.</div>
+</div>
+<ul>
+<li><p>PORTA，官网为https://porta.zib.de.</p>
+<p>输入有限向量集时，可计算凸包；输入线性不等式组时，可计算”极点（extreme</p>
+<p>points）“和”极射线（extreme rays）“.</p>
+</li>
+</ul>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../IP_intro/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">整数规划</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../IP_branch_and_bound/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

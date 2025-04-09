@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'or_projects_FJSP/GA_FJSP/README';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../or_exact/index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>遗传算法求解柔性作业车间调度问题</p>
+<hr class="docutils" />
+<p>Reference</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>《柔性作业车间调度智能算法及其应用》高亮 张国辉 王晓娟 著</p></li>
+</ul>
+<p>FJSP的染色体编码</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line"><strong>染色体编码的意义</strong></div>
+</div>
+<div class="line-block">
+<div class="line">染色体编码是遗传算法关键，需确保合法性、可行性等，直接影响遗传操作效率、求解速度与精度.</div>
+</div>
+<blockquote>
+<div><p>差的编码需修补，降低执行效率.</p>
+</div></blockquote>
+</li>
+<li><div class="line-block">
+<div class="line"><strong>FJSP编码对象</strong></div>
+</div>
+<div class="line-block">
+<div class="line">针对FJSP的两个子问题：机器选择（确定工序加工机器）和工序排序（确定机器上工序加工顺序及时序）进行编码.</div>
+</div>
+</li>
+<li><p><strong>现有编码方法</strong></p>
+<ul>
+<li><p><strong>集成编码</strong>：基因位<span class="math notranslate nohighlight">\((h,j,i)\)</span>表示工序任务，总长为工序总数<span class="math notranslate nohighlight">\(T_a\)</span>.</p>
+<p>易表达，但遗传操作易产非法解，改进困难.</p>
+</li>
+<li><p><strong>分段编码</strong>：染色体分两部分（如<span class="math notranslate nohighlight">\(A/B\)</span>）对应机器选择和工序排序，长度均为<span class="math notranslate nohighlight">\(T_a\)</span>.</p>
+<p>部分方法易产非法解需修补，改进后效果提升但求解效率受影响.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>MSOS整数编码</strong></p>
+<ul>
+<li><p><strong>结构</strong>：分机器选择（MS）和工序排序（OS），适用于T-FJSP和P-FJSP.</p>
+<p><img alt="alt text" src="../../_images/image9.png" /></p>
+</li>
+<li><p><strong>机器选择部分</strong>：长度<span class="math notranslate nohighlight">\(T_a\)</span>，基因用整数表示工序所选机器在可选集中的顺序编号，保证可行解，无需因问题类型转换编码.</p></li>
+<li><p><strong>工序排序部分</strong>：基于工序编码，长度<span class="math notranslate nohighlight">\(T_a\)</span>，基因用工件号表示加工顺序.</p></li>
+<li><p>示例说明：</p>
+<ul>
+<li><div class="line-block">
+<div class="line">P-FJSP 实例 | 工件 | 工序 | <span class="math notranslate nohighlight">\(M_1\)</span> | <span class="math notranslate nohighlight">\(M_2\)</span> |</div>
+</div>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(M_3\)</span> | <span class="math notranslate nohighlight">\(M_4\)</span> | <span class="math notranslate nohighlight">\(M_5\)</span> |</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">|——|——-|———|———|———|———|———|</div>
+</div>
+<div class="line-block">
+<div class="line">| <span class="math notranslate nohighlight">\(J_1\)</span> | <span class="math notranslate nohighlight">\(O_{11}\)</span> | 2 | 6 | 5 | 3 | 4 |</div>
+</div>
+<div class="line-block">
+<div class="line">| <span class="math notranslate nohighlight">\(J_1\)</span> | <span class="math notranslate nohighlight">\(O_{12}\)</span> | — | 8 | — | 4 | — |</div>
+</div>
+<div class="line-block">
+<div class="line">| <span class="math notranslate nohighlight">\(J_2\)</span> | <span class="math notranslate nohighlight">\(O_{21}\)</span> | 3 | — | 6 | — | 5 |</div>
+</div>
+<div class="line-block">
+<div class="line">| <span class="math notranslate nohighlight">\(J_2\)</span> | <span class="math notranslate nohighlight">\(O_{22}\)</span> | 4 | 6 | 5 | — | — |</div>
+</div>
+<div class="line-block">
+<div class="line">| <span class="math notranslate nohighlight">\(J_2\)</span> | <span class="math notranslate nohighlight">\(O_{23}\)</span> | — | 7 | 11 | 5 | 8 |</div>
+</div>
+</li>
+<li><p>机器选择部分：</p>
+<ul>
+<li><p>工件 $ J_1 $的工序 $ O_{11} $ 有 5</p>
+<p>台机器可选，对应的“4”表示在可选机器集中选择第 4</p>
+<p>台机器，即在机器 $ M_4 $ 上加工.</p>
+</li>
+<li><p>工件 $ J_1 $的工序 $ O_{12} $ 有 2 台机器可选（机器 $ M_2 $</p>
+<p>和 $ M_4 $），图中对应的“1”表示选择可选机器集中的第 1</p>
+<p>台机器，即在机器 $ M_2 $ 上加工.</p>
+</li>
+</ul>
+</li>
+<li><p>工序排序部分：</p>
+<ul>
+<li><p>第一个“2”表示工件 $ J_2 $ 的工序 $ O_{21} $；</p></li>
+<li><p>第二个“2”表示工件 $ J_2 $ 的工序 $ O_{22} $；</p>
+<p>依此类推，转换成各工件工序的加工顺序为 $ O_{21}</p>
+<p><a href="#id1"><span class="problematic" id="id2">:raw-latex:`\to `O\_{22} :raw-latex:`</span></a>to <a href="#id3"><span class="problematic" id="id4">`</span></a>O_{11}</p>
+<p><a href="#id5"><span class="problematic" id="id6">:raw-latex:`\to `O\_{12} :raw-latex:`</span></a>to <a href="#id7"><span class="problematic" id="id8">`</span></a>O_{23} $.</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="align-default">
+<img alt="../../_images/image-112.png" src="../../_images/image-112.png" />
+</figure>
+</li>
+</ul>
+</li>
+</ol>
+<p>FJSP的染色体解码</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>调度类型</strong></p>
+<ul>
+<li><p><strong>活动调度</strong>：不推迟其他操作或破坏优先顺序，无闲置操作可提前加工.</p></li>
+<li><p><strong>半活动调度</strong>：不改变机器加工顺序，无操作可提前加工.</p></li>
+<li><p><strong>非延迟调度</strong>：存在工件等待加工时，对应机器不闲置.</p></li>
+<li><p>关系：活动调度包含于半活动调度，非延迟调度包含于活动调度.</p>
+<p>对正规性能指标（如最大完工时间），优化算法搜索活动调度集可保证最优解存在且提升效率；非正规指标（如提前/拖期惩罚），最优解可能在半活动调度集.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>染色体解码步骤（以MSOS编码为例）</strong></p>
+<ul>
+<li><div class="line-block">
+<div class="line"><strong>步骤1：机器选择部分解码</strong></div>
+</div>
+<div class="line-block">
+<div class="line">转换机器选择部分为机器顺序矩阵 $ J_M $ 和时间顺序矩阵 $ T $. $</div>
+</div>
+<blockquote>
+<div><p>J_M(j,h) $ 表示工件 $ J_j $ 工序 $ O_{jh} $ 的机器号，$ T(j,h)</p>
+<p>$ 表示对应加工时间.</p>
+</div></blockquote>
+<ul>
+<li><p>示例：P-FJSP染色体机器选择部分[4 1 2 2 4]，转换为 $ J_M =</p>
+<p><span class="math notranslate nohighlight">\(，\)</span> T =</p>
+<p>$，即 $ J_1 $ 的 $ O_{12} $ 在 $ M_2 $ 加工，时间为8.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>步骤2：工序排序部分解码（工序插入法）</strong></p>
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line"><strong>读取基因转换工序</strong></div>
+</div>
+<div class="line-block">
+<div class="line">读取工序排序部分的一个基因，转换成相应工序 $ O_{jk} $.</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><strong>获取加工机器和时间</strong></div>
+</div>
+<div class="line-block">
+<div class="line">通过机器顺序矩阵 $ <a href="#id9"><span class="problematic" id="id10">:raw-latex:`\boldsymbol{J_M}`</span></a> $</div>
+</div>
+<blockquote>
+<div><p>和时间顺序矩阵 $ <a href="#id11"><span class="problematic" id="id12">:raw-latex:`\boldsymbol{T}`</span></a> $，得到工序 $</p>
+<p>O_{jk} $ 的加工机器 $ M_i = J_M(j,h) $ 和加工时间 $ p_{jk}</p>
+<p>= T(j,h) $.</p>
+</div></blockquote>
+</li>
+<li><div class="line-block">
+<div class="line"><strong>确定加工开始时间</strong></div>
+</div>
+</li>
+</ol>
+<ul>
+<li><p>若工序 $ O_{jk} $ 是机器 $ M_i $ 上第一道加工工序，或为工件 $</p>
+<p>J_j $ 的第 1 道工序：</p>
+<ul>
+<li><p>若是工件 $ J_j $ 第 1 道工序，直接从机器 $ M_i $</p>
+<p>的零时刻加工.</p>
+</li>
+<li><p>若是机器 $ M_i $ 首工序，直接从上道工序 $ O_{j(k-1)} $</p>
+<p>结束时间开始加工.</p>
+</li>
+</ul>
+</li>
+<li><p>否则，找到机器 $ M_i $ 上所有间隔空闲时间段</p>
+<p><span class="math notranslate nohighlight">\([TS_i, TE_i]\)</span>，按式 $ t_a =</p>
+<p>:raw-latex:<a href="#id13"><span class="problematic" id="id14">`</span></a>max`(c_{j(k-1)}, TS_i) $ 计算工序 $ O_{jk} $</p>
+<p>最早开始加工时间 $ t_a $，确保满足工件加工工序的顺序约束.</p>
+<p><span class="math notranslate nohighlight">\(TS_i\)</span> 表示间隔时间段的开始时间，<span class="math notranslate nohighlight">\(TE_i\)</span></p>
+<p>表示间隔空闲时间段的结束时间</p>
+</li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p><strong>判断插入条件</strong></p></li>
+</ol>
+<ul>
+<li><p>按是否有 $ t_a + p_{jk} :raw-latex:<a href="#id15"><span class="problematic" id="id16">`</span></a>leq <a href="#id17"><span class="problematic" id="id18">`</span></a>TE_i $</p>
+<p>判断间隔空闲时间段是否满足插入条件：</p>
+<ul>
+<li><p>若满足，插入当前空闲时间段（如图(a) 所示）.</p></li>
+<li><p>若不满足，按式 $ t_b = :raw-latex:<a href="#id19"><span class="problematic" id="id20">`</span></a>max`(c_{j(k-1)}, LM_i)</p>
+<p>$ 在机器 $ M_i $ 上进行加工（$ LM_i $ 表示当前机器 $ M_i $</p>
+<p>最后一道工序的结束时间，如图(b) 所示）.</p>
+</li>
+</ul>
+<figure class="align-default">
+<img alt="../../_images/image-25.png" src="../../_images/image-25.png" />
+</figure>
+</li>
+</ul>
+<ol class="arabic simple" start="5">
+<li><p><strong>循环判断</strong></p></li>
+</ol>
+<ul>
+<li><p>判断工序排序部分的染色体是否读取完毕; 若满足，结束;</p>
+<p>否则，转回步骤（1）继续.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>FJSP的初始化</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line"><strong>初始化的重要性与现有问题</strong></div>
+</div>
+<div class="line-block">
+<div class="line">种群初始化是进化算法的关键环节，直接影响遗传算法的求解速度与质量.</div>
+</div>
+<blockquote>
+<div><p>FJSP需处理机器选择和工序排序，现有随机初始化方法生成的初始解质量低，机器负荷不均衡；其他方法（如AL）存在资源消耗大、算法复杂等问题.</p>
+</div></blockquote>
+</li>
+<li><p><strong>GLR机器选择方法</strong></p>
+<ul>
+<li><p><strong>全局选择（GS）</strong></p>
+<ul>
+<li><div class="line-block">
+<div class="line"><strong>目标</strong>：平衡机器负荷，确保最短加工机器优先被选.</div>
+</div>
+</li>
+<li><p><strong>步骤</strong>：设置机器负荷数组并初始化为零→随机选工件及首道工序→计算可选机器加工时间与数组值总和→选时间最短机器，更新数组→重复直至所有工件工序选择完毕.</p>
+<figure class="align-default">
+<img alt="../../_images/image-312.png" src="../../_images/image-312.png" />
+</figure>
+</li>
+</ul>
+</li>
+<li><p><strong>局部选择（LS）</strong></p>
+<ul>
+<li><div class="line-block">
+<div class="line"><strong>目标</strong>：保证单个工件工序优先选择加工时间最短或机器负荷最小的机器.</div>
+</div>
+</li>
+<li><p><strong>步骤</strong>：初始化机器负荷数组→选首个工件及首道工序→计算时间和（不更新数组）→选机器并更新数组→完成工件所有工序后重置数组为零→循环处理剩余工件.</p>
+<figure class="align-default">
+<img alt="../../_images/image-412.png" src="../../_images/image-412.png" />
+</figure>
+</li>
+</ul>
+</li>
+<li><p><strong>随机选择（RS）</strong></p>
+<ul class="simple">
+<li><p><strong>目标</strong>：保证初始种群多样性，使种群分散于解空间.</p></li>
+<li><p><strong>步骤</strong>：选工件及首道工序→在可选机器集中随机生成顺序号，设置为基因位值→循环处理工件所有工序→重复直至所有工件完成.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>交叉操作</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line"><strong>交叉操作的目的与原则</strong></div>
+</div>
+<div class="line-block">
+<div class="line">交叉操作旨在通过父代个体生成新个体，高效搜索解空间，降低有效模式破坏概率.</div>
+</div>
+<blockquote>
+<div><p>设计时需满足可行性、特征有效继承性等，避免冗余信息，单点点交叉等特征是关键保证.</p>
+</div></blockquote>
+</li>
+<li><p><strong>机器选择部分（均匀交叉）</strong></p>
+<ul class="simple">
+<li><p><strong>步骤</strong>：</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>在区间<span class="math notranslate nohighlight">\([1, T_a]\)</span>内随机生成整数<span class="math notranslate nohighlight">\(r\)</span>；</p></li>
+<li><p>再随机生成<span class="math notranslate nohighlight">\(r\)</span>个互不相等的整数；</p></li>
+<li><p>按整数位置，将父代染色体<span class="math notranslate nohighlight">\(P_1\)</span>和<span class="math notranslate nohighlight">\(P_2\)</span>对应基因复制到子代<span class="math notranslate nohighlight">\(C_1\)</span>和<span class="math notranslate nohighlight">\(C_2\)</span>，保持位置与顺序；</p></li>
+<li><p>将<span class="math notranslate nohighlight">\(P_1\)</span>和<span class="math notranslate nohighlight">\(P_2\)</span>剩余基因依次复制到<span class="math notranslate nohighlight">\(C_2\)</span>和<span class="math notranslate nohighlight">\(C_1\)</span>.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>示例</strong>： <img alt="image1" src="../../_images/image-511.png" /></p></li>
+</ul>
+</li>
+<li><p><strong>工序排序部分（改进POX交叉）</strong></p>
+<ul class="simple">
+<li><p><strong>步骤</strong>：</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>随机划分工件集<span class="math notranslate nohighlight">\(\{J_1, J_2, \cdots, J_n\}\)</span>为Jobset1和Jobset2；</p></li>
+<li><p>复制父代<span class="math notranslate nohighlight">\(P_1\)</span>、<span class="math notranslate nohighlight">\(P_2\)</span>中属于Jobset1:raw-latex:<cite>Jobset`2的工件到子代:math:`C_1</cite> <span class="math notranslate nohighlight">\(C_2\)</span>，保持位置与顺序；</p></li>
+<li><p>将<span class="math notranslate nohighlight">\(P_1\)</span>、<span class="math notranslate nohighlight">\(P_2\)</span>中不属于Jobset1:raw-latex:<cite>Jobset`2的工件复制到:math:`C_2</cite> <span class="math notranslate nohighlight">\(C_1\)</span>，保持顺序.</p></li>
+</ol>
+<ul>
+<li><p><strong>示例</strong>：5个工件中划分包含<span class="math notranslate nohighlight">\(J_1\)</span>、<span class="math notranslate nohighlight">\(J_3\)</span>的工件集，通过复制对应部分生成新个体，继承父代优良特征.</p>
+<p><img alt="image2" src="../../_images/image-65.png" /></p>
+</li>
+</ul>
+</li>
+</ol>
+<p>变异操作</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><div class="line-block">
+<div class="line"><strong>变异操作的目的</strong></div>
+</div>
+<div class="line-block">
+<div class="line">变异操作通过随机改变染色体基因生成新个体，增加种群多样性，同时影响遗传算法（GA）的局部搜索能力，对解空间进行小范围扰动探索</div>
+</div>
+</li>
+<li><div class="line-block">
+<div class="line"><strong>机器选择部分的变异</strong></div>
+</div>
+<div class="line-block">
+<div class="line">为保留个体信息与机器顺序，采用以下方式：</div>
+</div>
+<ul>
+<li><p><strong>步骤 1</strong>：在变异染色体中随机选择 $ r $ 个位置.</p></li>
+<li><p><a href="#id21"><span class="problematic" id="id22">**</span></a>步骤</p>
+<p>2**：依次选择每一个位置，将该位置的机器设置为当前工序可选机器集中加工时间最短的机器.</p>
+</li>
+</ul>
+</li>
+<li><div class="line-block">
+<div class="line"><strong>工序排序部分的变异（邻域搜索变异）</strong></div>
+</div>
+<div class="line-block">
+<div class="line">机器选择部分（MS）不变时，通过邻域搜索优化工序排序：</div>
+</div>
+<ul>
+<li><p><strong>步骤 1</strong>：在变异染色体中随机选择 $ r $</p>
+<p>个不同基因，并生成其排序的所有邻域.</p>
+</li>
+<li><p><strong>步骤 2</strong>：评价所有邻域的适应值，选出最佳个体作为子代. <img alt="image3" src="../../_images/image-710.png" /></p></li>
+</ul>
+</li>
+</ol>
+<p>选择操作</p>
+<hr class="docutils" />
+<ul>
+<li><p><strong>作用</strong>：让高性能个体以更高概率生存，避免有效基因丢失，保持种群规模，加快全局收敛性与计算效率。</p></li>
+<li><p><strong>常用方法</strong>：轮盘赌选择、种子选择、锦标赛选择等。</p></li>
+<li><p><strong>锦标赛选择流程</strong>：</p>
+<p>从种群中选择 $ k $</p>
+<p>个个体进行适应度比较，将适应度高的个体插入交叉池，重复此过程直至填满交叉池。该方法收敛性和计算复杂性表现更优。</p>
+</li>
+</ul>
+<p>3.2.7 改进遗传算法的求解步骤</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p><strong>参数设置</strong>：</p>
+<p>设置种群规模 $ P_s $、迭代次数 $ P_{num} $、变异概率 $ G_{ps}</p>
+<p>$，以及全局选择（GS）、局部选择（LS）、随机选择（RS）的种群比例 $</p>
+<p>P_{GS}、P_{LS}、P_{RS} $。</p>
+</li>
+<li><p><strong>种群初始化</strong>：</p>
+<p>按 GS、LS、RS 比例，利用 GLR 初始化方法生成初始种群，确保初始解质量。</p>
+</li>
+<li><p><strong>适应度评价</strong>：</p>
+<p>计算种群中每个染色体个体的适应度值（目标值），判断是否满足终止条件（如达到目标值、迭代次数或计算时间），满足则输出最优解，否则继续。</p>
+</li>
+<li><p><strong>选择操作</strong>：</p>
+<p>执行锦标赛选择操作，选取下一代个体。</p>
+</li>
+<li><p><strong>交叉操作</strong>：</p>
+<p>对选中个体按交叉策略进行交叉（如机器选择部分均匀交叉，工序排序部分改进</p>
+<p>POX 交叉）。</p>
+</li>
+<li><p><strong>变异操作</strong>：</p>
+<p>对满足变异概率的个体，按变异策略处理（机器选择部分选最短加工时间机器，工序排序部分基于邻域搜索变异）。</p>
+</li>
+<li><p><strong>循环迭代</strong>：</p>
+<p>返回步骤 3，重复评价、选择、交叉、变异过程，直至满足终止条件。</p>
+</li>
+</ol>
+<figure class="align-default">
+<img alt="../../_images/image-82.png" src="../../_images/image-82.png" />
+</figure>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

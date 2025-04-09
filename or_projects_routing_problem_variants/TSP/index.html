@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'or_projects_routing_problem_variants/TSP/index';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../or_exact/index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> 目录 </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>旅行商问题（Travelling salesman problem , TSP）</p>
+<hr class="docutils" />
+<p>Reference</p>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">https://en.wikipedia.org/wiki/Travelling_salesman_problem</a></p></li>
+<li><p><a class="reference external" href="https://how-to.aimms.com/Articles/332/332-Miller-Tucker-Zemlin-formulation.html">https://how-to.aimms.com/Articles/332/332-Miller-Tucker-Zemlin-formulation.html</a></p></li>
+<li><p><a class="reference external" href="http://www.dei.unipd.it/~fisch/ricop/OR2/compact_TSP_MTZ.pdf">http://www.dei.unipd.it/~fisch/ricop/OR2/compact_TSP_MTZ.pdf</a></p></li>
+</ul>
+<p>1 问题概述</p>
+<hr class="docutils" />
+<p><strong>旅行商问题（Travelling Salesman Problem, TSP）</strong></p>
+<p>是一个经典的组合优化问题，其核心目标是寻找一条最短路径，使得旅行商能够访问所有给定的城市一次且仅一次，最终回到起点.</p>
+<p>这一问题在数学、计算机科学、物流管理等领域具有重要意义，也被广泛研究.</p>
+<div class="line-block">
+<div class="line"><strong>旅行商问题（TSP）的问题目标与约束</strong></div>
+</div>
+<div class="line-block">
+<div class="line">TSP是一个经典的组合优化问题，其核心定义可分为以下两部分：</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>问题目标</strong></div>
+</div>
+<div class="line-block">
+<div class="line">-</div>
+</div>
+<blockquote>
+<div><p><strong>核心目标</strong>：在给定的城市集合中，寻找一条闭合路径（回路），使得总行程距离最短.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">- <strong>关键要求</strong>：</div>
+</div>
+<div class="line-block">
+<div class="line">1. 路径必须是闭合的，即起点和终点为同一城市.</div>
+</div>
+<div class="line-block">
+<div class="line">2. 总行程距离（或时间、成本等）需最小化.</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>问题约束</strong></div>
+</div>
+<div class="line-block">
+<div class="line">- <strong>基本约束</strong>：</div>
+</div>
+<div class="line-block">
+<div class="line">1. <strong>每个城市必须被访问且仅访问一次</strong>（哈密尔顿回路约束）.</div>
+</div>
+<div class="line-block">
+<div class="line">2. 路径中不允许重复访问城市或跳过任何城市.</div>
+</div>
+<div class="line-block">
+<div class="line">- <strong>扩展约束（根据实际场景）</strong>：</div>
+</div>
+<div class="line-block">
+<div class="line">- <strong>对称性约束</strong>：在对称TSP中，城市间往返距离相同（如无向图）.</div>
+</div>
+<div class="line-block">
+<div class="line">- <strong>非对称性约束</strong>：在非对称TSP中，往返距离可能不同（如有向图）.</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>数学模型</strong> -</div>
+</div>
+<blockquote>
+<div><p><strong>图论表示</strong>：将城市视为图中的顶点，城市间的距离视为边的权重.</p>
+<p>TSP可转化为在图中寻找最短的哈密尔顿回路（即经过所有顶点一次的回路）. -</p>
+<p><strong>数学公式</strong>：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">设城市集合为 $ V = {v_1, v_2, <a href="#id1"><span class="problematic" id="id2">:raw-latex:`\dots`</span></a>, v_n} $，距离矩阵为 $</div>
+</div>
+<blockquote>
+<div><p>D = [d_{ij}] $，其中 $ d_{ij} $ 表示城市 $ i $ 到 $ j $ 的距离.</p>
+<p>目标是找到排列 $ :raw-latex:<a href="#id3"><span class="problematic" id="id4">`</span></a>pi <a href="#id5"><span class="problematic" id="id6">`</span></a>$，使得总距离 $</p>
+<p><a href="#id7"><span class="problematic" id="id8">:raw-latex:`\sum`</span></a><em>{i=1}^{n} d</em>{:raw-latex:<a href="#id9"><span class="problematic" id="id10">`</span></a>pi`(i),</p>
+<p><a href="#id11"><span class="problematic" id="id12">:raw-latex:`\pi`(i+1)} $ 最小（其中 $ :raw-latex:`</span></a>pi`(n+1) =</p>
+<p>:raw-latex:<a href="#id13"><span class="problematic" id="id14">`</span></a>pi`(1) $）.</p>
+</div></blockquote>
+<p><strong>计算复杂度</strong> -</p>
+<p><strong>NP难问题</strong>：TSP属于NP难问题，意味着对于大规模实例（如100个以上城市），传统算法（如穷举法）无法在合理时间内找到最优解.</p>
+<p>其时间复杂度为 $ O(n!) $，随城市数量增长呈指数级爆炸.</p>
+<p><strong>解决方法</strong> 1. <strong>精确算法</strong>（适用于小规模问题）： -</p>
+<p><strong>动态规划</strong>：利用状态压缩存储中间结果，时间复杂度 $ O(n^2</p>
+<p>:raw-latex:<a href="#id15"><span class="problematic" id="id16">`</span></a>cdot 2`^n) $. -</p>
+<p><strong>分支定界法</strong>：通过剪枝缩小搜索空间，但最坏情况下仍为指数级.</p>
+<ol class="arabic" start="2">
+<li><p><strong>启发式算法</strong>（近似最优解）：</p>
+<ul class="simple">
+<li><p><strong>贪心算法</strong>：每次选择最近未访问的城市，但结果可能较差.</p></li>
+<li><p><strong>遗传算法</strong>：模拟自然选择，通过交叉、变异等操作优化路径.</p></li>
+<li><p><strong>模拟退火</strong>：在解空间中随机搜索，允许一定概率接受较差解以跳出局部最优.</p></li>
+<li><p><strong>蚁群优化</strong>：模拟蚂蚁觅食行为，通过信息素引导路径选择.</p></li>
+</ul>
+</li>
+<li><p><strong>近似算法</strong>：</p>
+<ul>
+<li><p><strong>Christofides算法</strong>：通过构造最小生成树和匹配，保证解的近似比为1.5，时间复杂度</p>
+<p>$ O(n^3) $.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>实际应用</strong> - <strong>物流与运输</strong>：优化配送路线，降低成本. -</p>
+<p><strong>制造业</strong>：电路板钻孔路径规划. - <strong>生物学</strong>：DNA测序中的序列拼接. -</p>
+<p><strong>计算机网络</strong>：数据传输中的路由优化.</p>
+<p><strong>研究进展</strong> -</p>
+<p><strong>大规模问题</strong>：通过分布式计算和优化算法（如LKH算法），已能求解数万城市的实例.</p>
+<ul class="simple">
+<li><p><strong>机器学习</strong>：利用深度强化学习（如神经组合优化）自动生成路径策略. -</p></li>
+</ul>
+<p><strong>量子计算</strong>：探索量子退火机对TSP的加速潜力.</p>
+<p>2 问题数学公式表达</p>
+<hr class="docutils" />
+<p>旅行商问题（TSP）可被表述为一个整数线性规划问题.</p>
+<p>目前已知多种表述形式，其中两种值得关注的是米勒-塔克-泽姆林（MTZ）公式和丹齐格-富尔克森-约翰逊（DFJ）公式.</p>
+<p>DFJ公式的约束性更强，不过MTZ公式在特定场景中仍有用处.</p>
+<div class="line-block">
+<div class="line">这两种公式的共同之处在于：用数字 $ 1, <a href="#id17"><span class="problematic" id="id18">:raw-latex:`\dots`</span></a>, n $</div>
+</div>
+<blockquote>
+<div><p>标记城市，且将 $ c_{ij} &gt; 0 $ 定义为从城市 $ i $ 到城市 $ j $</p>
+<p>的成本（距离）. 公式中的主要变量为：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}x_{ij}=\\\begin{cases}\\\begin{split}1 &amp; \text{路径从城市 } i \text{ 到城市 } j \\\end{split}\\0 &amp; \text{否则}\\\end{cases}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">由于这些是 $ 0/1 $ 变量，公式成为整数规划问题；其余约束均为纯线性.</div>
+</div>
+<blockquote>
+<div><p>特别地，规划的目标是最小化旅行路线总长度：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\sum_{i=1}^{n}\sum_{\substack{j \neq i, \\ j=1}}^{n}c_{ij}x_{ij}\end{split}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">若没有额外约束，$ {x_{ij}}<a href="#id19"><span class="problematic" id="id20">*</span></a>{i,j} $</div>
+</div>
+<blockquote>
+<div><p>会遍历边集的所有子集，这与旅行路线的边集差异极大，甚至会得出所有 $</p>
+<p>x*{ij} = 0 $ 的无意义最小值.</p>
+<p>因此，两种公式均包含约束：每个顶点恰好有一条入边和一条出边，这可表示为</p>
+<p>$ 2n $ 个线性方程：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\begin{split}\sum_{\substack{i=1, \\ i \neq j}}^{n}x_{ij}=1 \ （j=1, \ldots, n）；\quad \sum_{\substack{j=1, \\ j \neq i}}^{n}x_{ij}=1 \ （i=1, \ldots, n）\end{split}\]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">这些约束确保所选边集局部符合旅行路线特征，但仍可能出现违反“一条路线访问所有顶点”这一全局要求的解——因为所选边可能构成多条路线，每条仅访问部分顶点.</div>
+</div>
+<blockquote>
+<div><p>可以说，正是这一全局要求让TSP成为难题.</p>
+<p>MTZ与DFJ公式的差异，体现在如何将这一最终要求（<strong>子线路消除约束</strong>）转化为线性约束.</p>
+</div></blockquote>
+<p>米勒-塔克-泽姆林公式（MTZ公式）</p>
+<hr class="docutils" />
+<p>公式背后的思想</p>
+<hr class="docutils" />
+<p>MTZ公式引入了一个额外变量 $ u_i $，除</p>
+<p>depot（调度中心）外，每个节点都有对应的 $ u_i $ 值. 若车辆从节点 $ i $</p>
+<p>驶向节点 $ j $，则 $ u_j $ 的值必须大于 $ u_i $.</p>
+<figure class="align-default">
+<img alt="../../_images/image6.png" src="../../_images/image6.png" />
+</figure>
+<p>因此，每次访问新节点时，$ u_i $ 的值都会增加.</p>
+<figure class="align-default">
+<img alt="../../_images/image-110.png" src="../../_images/image-110.png" />
+</figure>
+<p>车辆访问节点 5 后，下一个节点的 $ u_i $ 值也应更大. 例如，车辆无法从节点</p>
+<p>5 回到节点 2，因为节点 2 的 $ u_i $ 值更小.</p>
+<p>这确保了车辆不会绕圈行驶——若绕圈，就无法让每个 $ u_i $ 值都大于前一个.</p>
+<p>由于调度中心（depot）没有 $ u_i $</p>
+<p>值，如果车辆在调度中心开始和结束，可以绕一圈行驶.</p>
+<figure class="align-default">
+<img alt="../../_images/image-24.png" src="../../_images/image-24.png" />
+</figure>
+<p>此时，车辆可从节点 5 驶回调度中心，且 $ u_j $ 始终大于 $ u_i $.</p>
+<p>因此，唯一被允许的绕圈是经过调度中心的情况，其他绕圈都会形成子回路，而</p>
+<p>MTZ 公式会消除这些子回路.</p>
+<p>子线路消除约束</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">由于线性规划更适用非严格不等式（<span class="math notranslate nohighlight">\(\geq\)</span>），需施加约束：若 $</div>
+</div>
+<blockquote>
+<div><p>x_{ij} = 1 $，则 $ u_j :raw-latex:<a href="#id21"><span class="problematic" id="id22">`</span></a>geq <a href="#id23"><span class="problematic" id="id24">`</span></a>u_i + 1 $. 仅要求 $ u_j</p>
+<p>:raw-latex:<a href="#id25"><span class="problematic" id="id26">`</span></a>geq <a href="#id27"><span class="problematic" id="id28">`</span></a>u_i + x_{ij} $ 不可行，因 $ x_{ij} = 0</p>
+<p><span class="math notranslate nohighlight">\(时，\)</span> u_j :raw-latex:<a href="#id29"><span class="problematic" id="id30">`</span></a>geq <a href="#id31"><span class="problematic" id="id32">`</span></a>u_i $可能是不对的. 为此，MTZ</p>
+<p>公式使用 $ n(n - 1) $ 个线性约束： 对所有不同的 $ i, j</p>
+<p><a href="#id33"><span class="problematic" id="id34">:raw-latex:`\in `{2, :raw-latex:`</span></a>dots`, n} <span class="math notranslate nohighlight">\(，有：\)</span>$ u_i -</p>
+<p>u_j + 1 :raw-latex:<a href="#id35"><span class="problematic" id="id36">`</span></a>leq <a href="#id37"><span class="problematic" id="id38">`</span></a>(n - 1)(1 - x_{ij}) $$</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">常数项 $ n - 1 $ 提供松弛量，使 $ x_{ij} = 0 $ 时，$ u_j $ 与 $ u_i $</div>
+</div>
+<blockquote>
+<div><p>无关联关系.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line">最终，TSP 的 MTZ 公式为以下整数线性规划问题：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{alignat*}{3}\\\begin{split}\min &amp; \quad \sum_{i=1}^{n} \sum_{\substack{j \neq i, \\ j=1}}^{n} c_{ij}x_{ij} \\\end{split}\\\begin{split}\text{约束条件：} &amp; \quad x_{ij} \in \{0,1\} &amp; &amp; \quad i,j = 1, \dots, n; \\\end{split}\\\begin{split}&amp; \quad \sum_{\substack{i=1, \\ i \neq j}}^{n} x_{ij} = 1 &amp; &amp; \quad j = 1, \dots, n; \\\end{split}\\\begin{split}&amp; \quad \sum_{\substack{j=1, \\ j \neq i}}^{n} x_{ij} = 1 &amp; &amp; \quad i = 1, \dots, n; \\\end{split}\\\begin{split}&amp; \quad u_i - u_j + 1 \leq (n - 1)(1 - x_{ij}) &amp; &amp; \quad 2 \leq i \neq j \leq n; \\\end{split}\\&amp; \quad 2 \leq u_i \leq n &amp; &amp; \quad 2 \leq i \leq n.\\\end{alignat*}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">第一组等式要求每个城市恰好从另一城市到达，第二组等式要求每个城市恰好出发至另一城市.</div>
+</div>
+<blockquote>
+<div><p>最后约束确保仅存在一条覆盖所有城市的路线，而非多条不相交但共同覆盖城市的路线.</p>
+</div></blockquote>
+<p>丹齐格－富尔克森－约翰逊公式（DFJ公式）</p>
+<hr class="docutils" />
+<div class="line-block">
+<div class="line">用数字 $ 1, <a href="#id39"><span class="problematic" id="id40">:raw-latex:`\dots`</span></a>, n $ 标记城市，并定义：</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}x_{ij}=\\\begin{cases}\\\begin{split}1 &amp; \text{路径从城市 } i \text{ 到城市 } j \\\end{split}\\0 &amp; \text{否则}\\\end{cases}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">设 $ c_{ij} &gt; 0 $ 为从城市 $ i $ 到城市 $ j $ 的距离.</div>
+</div>
+<blockquote>
+<div><p>于是，旅行商问题（TSP）可表述为如下整数线性规划问题：</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{alignat*}{3}\\\begin{split}\min &amp; \quad \sum_{i=1}^{n} \sum_{\substack{j \neq i, \\ j=1}}^{n} c_{ij}x_{ij} \\\end{split}\\\begin{split}\text{约束条件：} &amp; \quad \sum_{\substack{i=1, \\ i \neq j}}^{n} x_{ij} = 1 &amp; &amp; \quad j = 1, \dots, n; \\\end{split}\\\begin{split}&amp; \quad \sum_{\substack{j=1, \\ j \neq i}}^{n} x_{ij} = 1 &amp; &amp; \quad i = 1, \dots, n; \\\end{split}\\\begin{split}&amp; \quad \sum_{i \in Q} \sum_{\substack{j \neq i, \\ j \in Q}} x_{ij} \leq |Q| - 1 &amp; &amp; \quad \forall Q \subsetneq \{1, \dots, n\},\ |Q| \geq 2.\end{split}\\\end{alignat*}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">DFJ公式的最后一个约束——称为<strong>子回路消除约束</strong>——确保没有合适的子集 $</div>
+</div>
+<blockquote>
+<div><p>Q $ 能形成子回路，因此最终解是单一回路，而非多个小回路的并集.</p>
+<p>直观来说，对于城市的每个真子集 $ Q $，该约束要求 $ Q $</p>
+<p>中的边数少于城市数：若 $ Q $ 中的边数与城市数相等，就表示 $ Q $</p>
+<p>中的城市形成了一个子回路.</p>
+<p>由于这会导致约束数量呈指数级增长，实际中需用<strong>行生成法</strong>求解.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>使用MTZ公式的TSP问题有<span class="math notranslate nohighlight">\(O(n^2)\)</span>个约束，<span class="math notranslate nohighlight">\(O(n^2)\)</span>个0-1变量以及<span class="math notranslate nohighlight">\(O(n)\)</span>个连续变量.</p></li>
+<li><p>使用DFJ公式的TSP问题有<span class="math notranslate nohighlight">\(O(2^n)\)</span>个约束，<span class="math notranslate nohighlight">\(O(n^2)\)</span>个0-1变量.</p></li>
+</ul>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 目录
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

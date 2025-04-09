@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="zh-CN" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>最优性条件 &#8212; ZP&#39;s Documentations</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'or_exact/optimality_conditions/index';</script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="对偶理论" href="../dual_theory/index.html" />
+    <link rel="prev" title="Exact Algorithm" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="zh-CN"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">ZP's Documentations</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">搜索</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    WELCOME!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docker_learning/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Exact Algorithm</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Optimality_Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dual_theory/index.html">Dual Theory</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="全屏模式"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="搜索" aria-label="搜索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>最优性条件</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1>最优性条件<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>1 凸集与凸函数</p>
+<hr class="docutils" />
+<p>1.1 凸集</p>
+<hr class="docutils" />
+<p><strong>定义1.1（凸集）</strong>：<span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>的子集<span class="math notranslate nohighlight">\(C\)</span>被称为凸集，当且仅当对于所有的<span class="math notranslate nohighlight">\(x, y \in C\)</span>和所有的<span class="math notranslate nohighlight">\(\lambda \in [0, 1]\)</span>，都有</p>
+<div class="math notranslate nohighlight">
+\[\lambda x+(1-\lambda) y \in C\]</div>
+<p><strong>定义1.2（凸组合）</strong>：给定<span class="math notranslate nohighlight">\(x_{1}, \ldots, x_{m} \in \mathbb{R}^{n}\)</span>，形如<span class="math notranslate nohighlight">\(x = \sum_{i = 1}^{m} \lambda_{i} x_{i}\)</span>的元素，其中<span class="math notranslate nohighlight">\(\sum_{i = 1}^{m} \lambda_{i} = 1\)</span>且<span class="math notranslate nohighlight">\(\lambda_{i} \geq 0\)</span>，被称为<span class="math notranslate nohighlight">\(x_{1}, \ldots, x_{m}\)</span>的凸组合。</p>
+<p><strong>命题1.3</strong>：<span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>的子集<span class="math notranslate nohighlight">\(C\)</span>是凸集，当且仅当它包含其元素的所有凸组合。</p>
+<p>### 1.2 凸函数</p>
+<p>在本小节中，我们将考虑扩展实值函数，其取值范围为<span class="math notranslate nohighlight">\(\overline{\mathbb{R}} := (-\infty, \infty]\)</span>，并遵循以下约定：对于所有的<span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>，<span class="math notranslate nohighlight">\(a + \infty = \infty\)</span>；<span class="math notranslate nohighlight">\(\infty + \infty = \infty\)</span>；对于所有的<span class="math notranslate nohighlight">\(t &gt; 0\)</span>，<span class="math notranslate nohighlight">\(t \cdot \infty = \infty\)</span>。</p>
+<p><strong>定义1.4（凸函数）</strong>：设<span class="math notranslate nohighlight">\(C\)</span>是<span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>的凸子集。函数<span class="math notranslate nohighlight">\(f: C \mapsto \overline{\mathbb{R}}\)</span>在<span class="math notranslate nohighlight">\(C\)</span>上被称为凸函数，当且仅当对于所有的<span class="math notranslate nohighlight">\(x, y \in C\)</span>和所有的<span class="math notranslate nohighlight">\(\lambda \in [0, 1]\)</span>，都有</p>
+<div class="math notranslate nohighlight">
+\[f(\lambda x+(1-\lambda) y) \leq \lambda f(x)+(1-\lambda) f(y)\]</div>
+<p><strong>定义1.5（上境图和有效定义域）</strong>：函数<span class="math notranslate nohighlight">\(f: X \to [-\infty, \infty]\)</span>（其中<span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n}\)</span>）的上境图为</p>
+<div class="math notranslate nohighlight">
+\[epi f=\left\{(x, w) | x \in X, w \in \mathbb{R}, f(x) \leq w\right\}\]</div>
+<p><span class="math notranslate nohighlight">\(f\)</span>的有效定义域为</p>
+<div class="math notranslate nohighlight">
+\[dom f=\{x | f(x)&lt;\infty\}\]</div>
+<p><strong>定义1.6（严格凸函数）</strong>：（文档未给出具体定义内容）</p>
+<p><strong>定义1.7（强凸函数）</strong>：（文档未给出具体定义内容）</p>
+<p><strong>定义1.8（正常函数）</strong>：函数<span class="math notranslate nohighlight">\(f\)</span>是正常的，如果至少存在一个<span class="math notranslate nohighlight">\(x \in X\)</span>，使得<span class="math notranslate nohighlight">\(f(x) &lt; \infty\)</span>。从考虑上境图<span class="math notranslate nohighlight">\(epi f\)</span>的角度来看，这意味着<span class="math notranslate nohighlight">\(epi f\)</span>非空且不包含任何垂直线。如果<span class="math notranslate nohighlight">\(f\)</span>不是正常函数，则称其为非正常函数。</p>
+<p><strong>定理1.9（詹森不等式）</strong>：函数<span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是凸函数，当且仅当对于任意的<span class="math notranslate nohighlight">\(\lambda_{i} \geq 0\)</span>（满足<span class="math notranslate nohighlight">\(\sum \lambda_{i} = 1\)</span>）和任意的元素<span class="math notranslate nohighlight">\(x_{i} \in \mathbb{R}^{n}\)</span>，都有</p>
+<div class="math notranslate nohighlight">
+\[f\left(\sum \lambda_{i} x_{i}\right) \leq \sum \lambda_{i} f\left(x_{i}\right)\]</div>
+<p><strong>命题1.10</strong>：函数<span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是凸函数，当且仅当<span class="math notranslate nohighlight">\(epi f \subset \mathbb{R}^{n + 1}\)</span>是凸集。</p>
+<p><strong>定义1.11（闭函数）</strong>：如果函数<span class="math notranslate nohighlight">\(f: X \to \overline{\mathbb{R}}\)</span>的上境图是闭集，我们称<span class="math notranslate nohighlight">\(f\)</span>是闭函数。</p>
+<p>现在，我们给出一些可微或二阶可微函数的凸性特征。</p>
+<p><strong>命题1.12</strong>：设<span class="math notranslate nohighlight">\(C\)</span>是一个非空的凸开集。设<span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \to \mathbb{R}\)</span>在包含<span class="math notranslate nohighlight">\(C\)</span>的开集上可微，那么<span class="math notranslate nohighlight">\(f\)</span>是凸函数，当且仅当对于所有的<span class="math notranslate nohighlight">\(x, z \in C\)</span>，都有</p>
+<div class="math notranslate nohighlight">
+\[f(z) \geq f(x)+\langle \nabla f(x), z - x\rangle\]</div>
+<p><strong>命题1.13</strong>：设<span class="math notranslate nohighlight">\(C\)</span>是<span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>中的非空凸集，且<span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \to \mathbb{R}\)</span>在包含<span class="math notranslate nohighlight">\(C\)</span>的开集上二阶可微。如果对于所有的<span class="math notranslate nohighlight">\(x \in C\)</span>，<span class="math notranslate nohighlight">\(\nabla^{2} f(x)\)</span>都是半正定的，那么<span class="math notranslate nohighlight">\(f\)</span>在<span class="math notranslate nohighlight">\(C\)</span>上是凸函数。</p>
+<p>### 1.3 投影到凸集</p>
+<p>给定一个集合<span class="math notranslate nohighlight">\(C \subseteq \mathbb{R}^{n}\)</span>，点<span class="math notranslate nohighlight">\(x\)</span>到<span class="math notranslate nohighlight">\(C\)</span>的距离定义为</p>
+<div class="math notranslate nohighlight">
+\[d(x ; C):=\inf \{\| x - y\| : y \in C\}\]</div>
+<p>对于闭凸集，有一个重要的投影性质如下。</p>
+<p><strong>命题1.14（投影性质）</strong>：设<span class="math notranslate nohighlight">\(C\)</span>是<span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>的非空闭凸子集。对于每个<span class="math notranslate nohighlight">\(x \in \mathbb{R}^{n}\)</span>，存在唯一的<span class="math notranslate nohighlight">\(w \in C\)</span>，使得</p>
+<div class="math notranslate nohighlight">
+\[\| x - w\| =d(x ; C)\]</div>
+<p><span class="math notranslate nohighlight">\(w\)</span>被称为<span class="math notranslate nohighlight">\(x\)</span>到<span class="math notranslate nohighlight">\(C\)</span>的投影，记为<span class="math notranslate nohighlight">\(P_{C}(x)\)</span>。</p>
+<p><strong>命题1.15</strong>：设<span class="math notranslate nohighlight">\(C\)</span>是一个非空闭凸集，那么<span class="math notranslate nohighlight">\(w = P_{C}(x)\)</span>当且仅当对于所有的<span class="math notranslate nohighlight">\(u \in C\)</span>，都有</p>
+<div class="math notranslate nohighlight">
+\[\langle x - w, u - w\rangle \leq 0\]</div>
+<p>## 2 凸集的法锥和切锥</p>
+<p><strong>定义2.1（锥）</strong>：集合<span class="math notranslate nohighlight">\(C\)</span>是一个锥，如果对于任意的<span class="math notranslate nohighlight">\(x \in C\)</span>和<span class="math notranslate nohighlight">\(0 &lt; \lambda \in \mathbb{R}\)</span>，都有<span class="math notranslate nohighlight">\(\lambda x \in C\)</span>。锥<span class="math notranslate nohighlight">\(C\)</span>的极锥（记为<span class="math notranslate nohighlight">\(C^{\circ}\)</span>）定义为</p>
+<div class="math notranslate nohighlight">
+\[C^{\circ}=\{\sigma:\langle\sigma, x\rangle \leq 0 \text{ 对于所有的 } x \in C\}\]</div>
+<p>假设<span class="math notranslate nohighlight">\(\Omega \subseteq \mathbb{R}^{n}\)</span>是一个凸集。那么对于<span class="math notranslate nohighlight">\(x \in \Omega\)</span>，我们可以定义<span class="math notranslate nohighlight">\(\Omega\)</span>在<span class="math notranslate nohighlight">\(x\)</span>处的法锥为</p>
+<div class="math notranslate nohighlight">
+\[N_{\Omega}(x)=\{z \in \mathbb{R}^{n}:\langle z, y - x\rangle \leq 0 \text{ 对于所有的 } y \in \Omega\}\]</div>
+<p>对于凸集，我们可以定义<span class="math notranslate nohighlight">\(\Omega\)</span>在<span class="math notranslate nohighlight">\(x\)</span>处的切锥<span class="math notranslate nohighlight">\(T_{\Omega}(x)\)</span>为<span class="math notranslate nohighlight">\(N_{\Omega}(x)^{\circ}\)</span>。</p>
+<p><strong>定理2.2</strong>：对于问题<span class="math notranslate nohighlight">\(\min_{\Omega} f(x)\)</span>，如果<span class="math notranslate nohighlight">\(f\)</span>是光滑且凸的，<span class="math notranslate nohighlight">\(\Omega\)</span>是闭凸集，那么<span class="math notranslate nohighlight">\(-\nabla f(x^{*}) \in N_{\Omega}(x^{*})\)</span>意味着<span class="math notranslate nohighlight">\(x^{*}\)</span>是全局最优解。</p>
+<p>3 次微分计算</p>
+<hr class="docutils" />
+<p>3.1 凸函数的次梯度</p>
+<hr class="docutils" />
+<p>在本小节中，我们引入凸函数次梯度这一关键概念。它作为非光滑函数的广义导数，在优化理论中有许多应用。</p>
+<p><strong>定义3.1（次梯度）</strong>：设<span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是一个凸函数，且<span class="math notranslate nohighlight">\(\bar{x} \in dom f\)</span>。元素<span class="math notranslate nohighlight">\(g \in \mathbb{R}^{n}\)</span>被称为<span class="math notranslate nohighlight">\(f\)</span>在<span class="math notranslate nohighlight">\(\bar{x}\)</span>处的次梯度，如果……（文档此处定义不完整）</p>
+<p>凸函数<span class="math notranslate nohighlight">\(f\)</span>的所有次梯度的集合称为次微分。</p>
+<p><strong>定理3.2（:math:`f`的次梯度是:math:`epi f`的支撑超平面）</strong>：设<span class="math notranslate nohighlight">\(f\)</span>是一个凸函数，且<span class="math notranslate nohighlight">\(x \in dom f\)</span>。<span class="math notranslate nohighlight">\(g \in \partial f(x)\)</span>当且仅当<span class="math notranslate nohighlight">\(\begin{pmatrix} g \\ -1 \end{pmatrix}\)</span>定义了<span class="math notranslate nohighlight">\(epi f\)</span>在点<span class="math notranslate nohighlight">\(\begin{pmatrix} x \\ f(x) \end{pmatrix}\)</span>处的支撑超平面。</p>
+<p><strong>命题3.3</strong>：设<span class="math notranslate nohighlight">\(f\)</span>是一个凸函数，且<span class="math notranslate nohighlight">\(x \in int(dom f)\)</span>，那么<span class="math notranslate nohighlight">\(\partial f(x)\)</span>是非空且紧致的。</p>
+<p><strong>命题3.4</strong>：设<span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是凸函数，且在<span class="math notranslate nohighlight">\(x \in int(dom f)\)</span>处可微。那么<span class="math notranslate nohighlight">\(\partial f(x)=\{\nabla f(x)\}\)</span>。</p>
+<p><strong>例3.5（:math:`f(x) = |x|`的次梯度）</strong>：<span class="math notranslate nohighlight">\(f(x) = |x|\)</span>在<span class="math notranslate nohighlight">\(\mathbb{R}\)</span>上是凸函数。当<span class="math notranslate nohighlight">\(x &gt; 0\)</span>时，<span class="math notranslate nohighlight">\(f(x) = x\)</span>在<span class="math notranslate nohighlight">\(x\)</span>处可微，且<span class="math notranslate nohighlight">\(\nabla f(x) = 1\)</span>，所以<span class="math notranslate nohighlight">\(\partial f(x)=\{1\}\)</span>。当<span class="math notranslate nohighlight">\(x &lt; 0\)</span>时，<span class="math notranslate nohighlight">\(f(x) = -x\)</span>在<span class="math notranslate nohighlight">\(x\)</span>处可微，且<span class="math notranslate nohighlight">\(\nabla f(x) = -1\)</span>，所以<span class="math notranslate nohighlight">\(\partial f(x)=\{-1\}\)</span>。当<span class="math notranslate nohighlight">\(x = 0\)</span>时，我们需要找到<span class="math notranslate nohighlight">\(g \in \mathbb{R}\)</span>，使得对于所有的<span class="math notranslate nohighlight">\(y \in \mathbb{R}\)</span>，都有<span class="math notranslate nohighlight">\(f(y) - f(0) \geq \langle g, y\rangle\)</span>。即对于所有的<span class="math notranslate nohighlight">\(y \in \mathbb{R}\)</span>，<span class="math notranslate nohighlight">\(|y| \geq gy \Rightarrow \frac{|y|}{y} \geq g \Rightarrow -1 \leq g \leq 1\)</span>，所以<span class="math notranslate nohighlight">\(\partial f(0)=[-1, 1]\)</span>。</p>
+<p><strong>定理3.6（丹斯金定理）</strong>：设<span class="math notranslate nohighlight">\(f\)</span>是凸函数，<span class="math notranslate nohighlight">\(Z\)</span>是一个紧致集，使得……（文档此处定理内容不完整）其中<span class="math notranslate nohighlight">\(\phi: int(dom f) \times Z \to \mathbb{R} \cup \{-\infty, +\infty\}\)</span>对于每个<span class="math notranslate nohighlight">\(z \in Z\)</span>都是一个扩展实值、闭、正常的凸函数。如果……（文档此处定理条件不完整）</p>
+<p>3.2 方向导数</p>
+<hr class="docutils" />
+<p><strong>定义3.7（方向导数）</strong>：设<span class="math notranslate nohighlight">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是一个函数，且<span class="math notranslate nohighlight">\(x \in dom f\)</span>。<span class="math notranslate nohighlight">\(f\)</span>在<span class="math notranslate nohighlight">\(x\)</span>处沿方向<span class="math notranslate nohighlight">\(d\)</span>的方向导数定义为……（文档此处定义不完整）</p>
+<p><strong>定理3.8</strong>：对于凸函数<span class="math notranslate nohighlight">\(f\)</span>和<span class="math notranslate nohighlight">\(x^{*} \in dom f\)</span>，<span class="math notranslate nohighlight">\(x^{*}\)</span>是极小值点当且仅当对于所有的<span class="math notranslate nohighlight">\(d\)</span>，都有<span class="math notranslate nohighlight">\(f'(x^{*} ; d) \geq 0\)</span>。</p>
+<p><strong>命题3.9</strong>：设<span class="math notranslate nohighlight">\(f\)</span>是凸函数且在<span class="math notranslate nohighlight">\(x\)</span>处可微，那么<span class="math notranslate nohighlight">\(f'(x ; d)=\langle \nabla f(x), d\rangle\)</span>。</p>
+<p><strong>定理3.10（方向导数与次梯度的关系）</strong>：对于凸函数<span class="math notranslate nohighlight">\(f\)</span>和<span class="math notranslate nohighlight">\(x \in int(dom f)\)</span>，对于任意的<span class="math notranslate nohighlight">\(d\)</span>，都有</p>
+<div class="math notranslate nohighlight">
+\[f'(x ; d)=\sup _{g \in \partial f(x)}\langle g, d\rangle\]</div>
+<p>### 3.3 次微分的计算</p>
+<p><strong>定理3.11</strong>：对于一个凸集<span class="math notranslate nohighlight">\(\Omega\)</span>，我们可以定义<span class="math notranslate nohighlight">\(\Omega\)</span>的无穷指示函数为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}I_{\Omega}(x):=\begin{cases}0, &amp; x \in \Omega \\+\infty, &amp; x \notin \Omega\end{cases}\end{split}\]</div>
+<p>对于<span class="math notranslate nohighlight">\(x\)</span>在闭凸集<span class="math notranslate nohighlight">\(\Omega\)</span>中，<span class="math notranslate nohighlight">\(N_{\Omega}(x)=\partial I_{\Omega}(x)\)</span>。</p>
+<p>## 4 最优性条件 我们关注求解如下问题：</p>
+<div class="math notranslate nohighlight">
+\[\min _{x \in \Omega} f(x)\]</div>
+<p>其中<span class="math notranslate nohighlight">\(f\)</span>是凸函数，<span class="math notranslate nohighlight">\(C\)</span>是凸集。 <strong>最优性条件</strong>： 1.</p>
+<p><strong>无约束情况</strong>：如果<span class="math notranslate nohighlight">\(\Omega=\mathbb{R}^{n}\)</span>且<span class="math notranslate nohighlight">\(dom f=\mathbb{R}^{n}\)</span>，那么<span class="math notranslate nohighlight">\(x^{*}\)</span>是最优解当且仅当<span class="math notranslate nohighlight">\(0 \in \partial f(x^{*})\)</span>。</p>
+<ol class="arabic simple" start="2">
+<li></li>
+</ol>
+<p><strong>有约束且可微情况</strong>：现在假设<span class="math notranslate nohighlight">\(\Omega \subset \mathbb{R}^{n}\)</span>且<span class="math notranslate nohighlight">\(f\)</span>在<span class="math notranslate nohighlight">\(\Omega\)</span>中可微。可行点<span class="math notranslate nohighlight">\(x^{*}\)</span>是最优解当且仅当对于所有的<span class="math notranslate nohighlight">\(y \in \Omega\)</span>，都有<span class="math notranslate nohighlight">\(\langle \nabla f(x^{*}), y - x^{*}\rangle \geq 0\)</span>，这等价于<span class="math notranslate nohighlight">\(-\nabla f(x^{*}) \in N_{\Omega}(x^{*})\)</span>。</p>
+<ol class="arabic simple" start="3">
+<li></li>
+</ol>
+<p><strong>一般有约束情况</strong>：如果函数不可微，可行点<span class="math notranslate nohighlight">\(x^{*}\)</span>是最优解当且仅当<span class="math notranslate nohighlight">\(0 \in \partial f(x^{*})+N_{\Omega}(x^{*})\)</span>。</p>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">上一页</p>
+        <p class="prev-next-title">Exact Algorithm</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../dual_theory/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">对偶理论</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+作者： Pei Zhong
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Pei Zhong.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

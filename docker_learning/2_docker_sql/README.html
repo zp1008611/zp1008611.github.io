@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Win11下利用docker安装mysql8 &#8212; ZP&#39;s Documentations</title>
+    <title>&lt;no title&gt; &#8212; ZP&#39;s Documentations</title>
   
   
   
@@ -162,11 +162,28 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Software Development</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../linux_c_cpp/index.html">Liunx, C and CPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx_config/index.html">Start Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../git/index.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_config/index.html">Liunx Config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../linux_qt_vtk/index.html">Liunx, QT and VTK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../linux_solver_config/index.html">Liunx Solver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Docker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../pytest_learning/index.html">Pytest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../flask_bootstrap/index.html">Flask and Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ts_sys/index.html">Time Series Prediction System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uav_simulation/index.html">UAV Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../javascript_learning/index.html">JavaScript</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">OR</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../or_exact/index.html">Exact Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../or_metaheuristics/index.html">Metaheuristics Algorithm</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">LLMs</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_prompt_engineering/index.html">Prompt engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_rag/index.html">RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LLMs_agent/index.html">Agent</a></li>
 </ul>
 
     </div>
@@ -257,7 +274,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Win11下利用docker安装mysql8</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -266,19 +283,9 @@ document.write(`
                 <h2> 目录 </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 新建挂载文件</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">挂载</a></li>
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mysql">2 拉取mysql</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3 生成容器</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4 处理mysql配置文件</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5 重新生成容器并挂载文件</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6 修改配置文件</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pythondocker-mysql">7 python连接docker mysql</a></li>
-</ul>
+
             </nav>
         </div>
     </div>
@@ -289,97 +296,104 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="win11dockermysql8">
-<h1>Win11下利用docker安装mysql8<a class="headerlink" href="#win11dockermysql8" title="Permalink to this heading">#</a></h1>
-<section id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">#</a></h2>
+  <p>Win11下利用docker安装mysql8</p>
+<hr class="docutils" />
+<p>Reference</p>
+<hr class="docutils" />
 <ul class="simple">
-<li><p>https://www.cnblogs.com/sheseido/p/12708864.html</p></li>
-<li><p>https://blog.csdn.net/weixin_42197001/article/details/138184306</p></li>
-<li><p>https://blog.csdn.net/qq_29907885/article/details/107692317</p></li>
-<li><p>https://liuyanzhao.com/1526792119954575361.html</p></li>
-<li><p>https://blog.csdn.net/u014282578/article/details/127920419</p></li>
+<li><p><a class="reference external" href="https://www.cnblogs.com/sheseido/p/12708864.html">https://www.cnblogs.com/sheseido/p/12708864.html</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/weixin_42197001/article/details/138184306">https://blog.csdn.net/weixin_42197001/article/details/138184306</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/qq_29907885/article/details/107692317">https://blog.csdn.net/qq_29907885/article/details/107692317</a></p></li>
+<li><p><a class="reference external" href="https://liuyanzhao.com/1526792119954575361.html">https://liuyanzhao.com/1526792119954575361.html</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/u014282578/article/details/127920419">https://blog.csdn.net/u014282578/article/details/127920419</a></p></li>
 </ul>
 <p>在这篇文章中我们选择windows11作为宿主机</p>
-</section>
-<section id="id1">
-<h2>1 新建挂载文件<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<ol>
+<p>1 新建挂载文件</p>
+<hr class="docutils" />
+<ol class="arabic">
 <li><p>在C盘用户目录下新建以下文件夹</p>
-<p><img alt="alt text" src="../../_images/image-10.png" /></p>
+<figure class="align-default">
+<img alt="../../_images/image-10.png" src="../../_images/image-10.png" />
+</figure>
 </li>
 </ol>
-<section id="id2">
-<h3>挂载<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
-<p>在 Docker 中，挂载（mount）是指将宿主机上的目录或文件与 Docker 容器内的目录或文件进行连接。这种方式可以让容器访问宿主机上的数据，从而实现数据的持久化和共享。</p>
+<blockquote>
+<div><p>在 Docker 中，挂载（mount）是指将宿主机上的目录或文件与 Docker</p>
+<p>容器内的目录或文件进行连接。这种方式可以让容器访问宿主机上的数据，从而实现数据的持久化和共享。</p>
 <p>具体来说，Docker 支持两种挂载方式：</p>
-<ol>
-<li><p>绑定挂载（bind mount）：将宿主机上的特定目录或文件直接挂载到容器内。这意味着容器内的文件会直接反映宿主机上的文件，反之亦然。使用绑定挂载时，你需要指定宿主机的路径和容器内的路径。</p>
+<ol class="arabic">
+<li><p>绑定挂载（bind</p>
+<p>mount）：将宿主机上的特定目录或文件直接挂载到容器内。这意味着容器内的文件会直接反映宿主机上的文件，反之亦然。使用绑定挂载时，你需要指定宿主机的路径和容器内的路径。</p>
 <p>例如：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>/宿主机路径:/容器路径<span class="w"> </span>my_image
 </pre></div>
 </div>
 </li>
-<li><p>数据卷（volume）：Docker 管理的存储空间，可以在多个容器之间共享。数据卷存储在宿主机的特定位置，但不直接暴露给用户。使用数据卷可以更好地管理数据，便于备份和迁移。</p>
+<li><p>数据卷（volume）：Docker</p>
+<p>管理的存储空间，可以在多个容器之间共享。数据卷存储在宿主机的特定位置，但不直接暴露给用户。使用数据卷可以更好地管理数据，便于备份和迁移。</p>
 <p>例如：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>my_volume:/容器路径<span class="w"> </span>my_image
 </pre></div>
 </div>
 </li>
 </ol>
-<p>通过挂载，Docker 容器可以访问宿主机的数据，确保数据在容器重启或删除后仍然存在。</p>
-</section>
-</section>
-<section id="mysql">
-<h2>2 拉取mysql<a class="headerlink" href="#mysql" title="Permalink to this heading">#</a></h2>
-<ol>
-<li><p>进入<a class="reference external" href="https://hub.docker.com/_/mysql">docker hub</a>查看mysql可用版本</p>
-<p><img alt="alt text" src="../../_images/image-11.png" /></p>
+<p>通过挂载，Docker</p>
+<p>容器可以访问宿主机的数据，确保数据在容器重启或删除后仍然存在。</p>
+</div></blockquote>
+<p>2 拉取mysql</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p>进入<a href="#id1"><span class="problematic" id="id2">`</span></a>docker</p>
+<p>hub &lt;<a class="reference external" href="https://hub.docker.com/_/mysql">https://hub.docker.com/_/mysql</a>&gt;`__查看mysql可用版本</p>
+<figure class="align-default">
+<img alt="../../_images/image-11.png" src="../../_images/image-11.png" />
+</figure>
 </li>
 <li><p>打开cmd，输入以下命令拉取mysql8.4.2</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>mysql:8.4.2
 </pre></div>
 </div>
-<p><img alt="alt text" src="../../_images/image-21.png" /></p>
+<figure class="align-default">
+<img alt="../../_images/image-21.png" src="../../_images/image-21.png" />
+</figure>
 </li>
 </ol>
-</section>
-<section id="id3">
-<h2>3 生成容器<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<ol>
+<p>3 生成容器</p>
+<hr class="docutils" />
+<ol class="arabic">
 <li><p>运行镜像生成容器，打开cmd运行以下命令</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">3306</span>:3306<span class="w"> </span>--name<span class="w"> </span>mysql<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="m">123456</span><span class="w"> </span>-d<span class="w"> </span>mysql:8.4.2
 </pre></div>
 </div>
 </li>
 </ol>
-</section>
-<section id="id4">
-<h2>4 处理mysql配置文件<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
-<ol>
-<li><p>确定mysql配置文件路径</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#进入docker容器，mysql为刚安装的容器名称</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mysql<span class="w"> </span>bash
-
-<span class="c1"># 查找Docker内，MySQL配置文件my.cnf的位置</span>
-mysql<span class="w"> </span>--help<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>my.cnf
-</pre></div>
-</div>
-<p><img alt="alt text" src="../../_images/image-15.png" /></p>
+<p>4 处理mysql配置文件</p>
+<hr class="docutils" />
+<ol class="arabic">
+<li><p>确定mysql配置文件路径 ```bash</p>
+<p>#进入docker容器，mysql为刚安装的容器名称 docker exec -it mysql bash</p>
+<p># 查找Docker内，MySQL配置文件my.cnf的位置 mysql –help | grep my.cnf</p>
+<p>```</p>
+<figure class="align-default">
+<img alt="../../_images/image-15.png" src="../../_images/image-15.png" />
+</figure>
 <p>使用<code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code>命令逐一寻找，最终发现文件为<code class="docutils literal notranslate"><span class="pre">/etc/my.cnf</span></code></p>
-<p><img alt="alt text" src="../../_images/image-14.png" /></p>
+<figure class="align-default">
+<img alt="../../_images/image-14.png" src="../../_images/image-14.png" />
+</figure>
 </li>
 <li><p>将容器的配置复制到宿主机</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>cp<span class="w"> </span>mysql:/etc/my.cnf<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\1</span><span class="m">6587</span><span class="se">\d</span>ockerspace<span class="se">\m</span>ysql8<span class="se">\c</span>onf<span class="se">\m</span>y.cnf
 </pre></div>
 </div>
-<p><img alt="alt text" src="../../_images/image-16.png" /></p>
+<figure class="align-default">
+<img alt="../../_images/image-16.png" src="../../_images/image-16.png" />
+</figure>
 </li>
 </ol>
-</section>
-<section id="id5">
-<h2>5 重新生成容器并挂载文件<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
-<ol>
+<p>5 重新生成容器并挂载文件</p>
+<hr class="docutils" />
+<ol class="arabic">
 <li><p>删除旧容器</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>mysql
 </pre></div>
@@ -389,75 +403,113 @@ mysql<span class="w"> </span>--help<span class="w"> </span><span class="p">|</sp
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">3306</span>:3306<span class="w"> </span>--name<span class="w"> </span>mysql<span class="w"> </span>-v<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\1</span><span class="m">6587</span><span class="se">\d</span>ockerspace<span class="se">\m</span>ysql8<span class="se">\c</span>onf<span class="se">\m</span>y.cnf:/etc/my.cnf<span class="w"> </span>-v<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\1</span><span class="m">6587</span><span class="se">\d</span>ockerspace<span class="se">\m</span>ysql8<span class="se">\l</span>ogs:/logs<span class="w"> </span>-v<span class="w"> </span>C:<span class="se">\U</span>sers<span class="se">\1</span><span class="m">6587</span><span class="se">\d</span>ockerspace<span class="se">\m</span>ysql8<span class="se">\d</span>ata:/var/lib/mysql<span class="w"> </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="m">123456</span><span class="w"> </span>-d<span class="w"> </span>mysql:8.4.2<span class="w"> </span>--lower-case-table-names<span class="o">=</span><span class="m">1</span>
 </pre></div>
 </div>
- <br><ul class="simple">
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">3306:3306</span></code>：将容器的 3306 端口映射到主机的 3306 端口.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">...\conf\my.conf:/etc/mysql/my.cnf</span></code>：将主机当前目录下的 conf/my.cnf 挂载到容器的 /etc/my.cnf.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">.../logs:/logs</span></code>：将主机当前目录下的 logs 目录挂载到容器的 /logs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">.../data:/var/lib/mysql</span></code> ：将主机当前目录下的data目录挂载到容器的 /var/lib/mysql.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">...\conf\my.conf:/etc/mysql/my.cnf</span></code>：将主机当前目录下的</p>
+<p>conf/my.cnf 挂载到容器的 /etc/my.cnf.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">.../logs:/logs</span></code>：将主机当前目录下的 logs 目录挂载到容器的</p>
+<p>/logs.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">.../data:/var/lib/mysql</span></code></p>
+<p>：将主机当前目录下的data目录挂载到容器的 /var/lib/mysql.</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">MYSQL_ROOT_PASSWORD=123456</span></code>：初始化 root 用户的密码.</p></li>
 </ul>
 </li>
 </ol>
-</section>
-<section id="id6">
-<h2>6 修改配置文件<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h2>
-<ol>
+<p>6 修改配置文件</p>
+<hr class="docutils" />
+<ol class="arabic">
 <li><p>在宿主机win下修改<code class="docutils literal notranslate"><span class="pre">my.cnf</span></code>文件</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>mysql<span class="o">]</span>
+
 <span class="c1">#设置mysql客户端默认字符集</span>
+
 default-character-set<span class="o">=</span>UTF8MB4
+
 <span class="o">[</span>mysqld<span class="o">]</span>
+
 <span class="c1">#设置3306端口</span>
+
 <span class="nv">port</span><span class="o">=</span><span class="m">3306</span>
+
 <span class="c1">#允许最大连接数</span>
+
 <span class="nv">max_connections</span><span class="o">=</span><span class="m">200</span>
+
 <span class="c1">#允许连接失败的次数</span>
+
 <span class="nv">max_connect_errors</span><span class="o">=</span><span class="m">10</span>
+
 <span class="c1">#默认使用“mysql_native_password”插件认证</span>
+
 <span class="nv">default_authentication_plugin</span><span class="o">=</span>mysql_native_password
+
 <span class="c1">#服务端使用的字符集默认为8比特编码的latin1字符集</span>
+
 character-set-server<span class="o">=</span>UTF8MB4
+
 <span class="c1">#开启查询缓存</span>
+
 <span class="nv">explicit_defaults_for_timestamp</span><span class="o">=</span><span class="nb">true</span>
+
 <span class="c1">#创建新表时将使用的默认存储引擎</span>
+
 default-storage-engine<span class="o">=</span>INNODB
+
 <span class="c1">#等待超时时间秒</span>
+
 <span class="nv">wait_timeout</span><span class="o">=</span><span class="m">60</span>
+
 <span class="c1">#交互式连接超时时间秒</span>
+
 interactive-timeout<span class="o">=</span><span class="m">600</span>
+
 <span class="c1"># 对数据库表大小写不敏感设置，默认设置为小写，比较也全部设置为小写在比较</span>
+
 lower-case-table-names<span class="o">=</span><span class="m">1</span>
 </pre></div>
 </div>
-<p><img alt="alt text" src="../../_images/image-18.png" /></p>
+<figure class="align-default">
+<img alt="../../_images/image-18.png" src="../../_images/image-18.png" />
+</figure>
 </li>
 <li><p>重启容器</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>restart<span class="w"> </span>mysql
 </pre></div>
 </div>
- <br></li>
+</li>
 <li><p>进入终端MySQL，查看<code class="docutils literal notranslate"><span class="pre">my.conf</span></code>是否生效</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mysql<span class="w"> </span>/bin/bash
+
 mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p123456
 </pre></div>
 </div>
-<p>输入</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>SHOW<span class="w"> </span>VARIABLES<span class="w"> </span>LIKE<span class="w"> </span><span class="s1">&#39;%time_zone%&#39;</span><span class="p">;</span>
-</pre></div>
-</div>
+<p>输入 <code class="docutils literal notranslate"><span class="pre">bash</span>&#160; <span class="pre">SHOW</span> <span class="pre">VARIABLES</span> <span class="pre">LIKE</span> <span class="pre">'%time_zone%';</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">time-zone</span></code>显示<code class="docutils literal notranslate"><span class="pre">+08:00</span></code>，则表示配置生效</p>
-<p><img alt="alt text" src="../../_images/image-19.png" /></p>
- <br><p>如果出现<code class="docutils literal notranslate"><span class="pre">my.cnf</span></code>配置不起效的情况，可能是文件的权限问题，可以使用命令<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">mysql</span></code>查看<code class="docutils literal notranslate"><span class="pre">.cnf</span></code>文件是否被忽略</p>
+<figure class="align-default">
+<img alt="../../_images/image-19.png" src="../../_images/image-19.png" />
+</figure>
+<p>如果出现<code class="docutils literal notranslate"><span class="pre">my.cnf</span></code>配置不起效的情况，可能是文件的权限问题，可以使用命令<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">mysql</span></code>查看<code class="docutils literal notranslate"><span class="pre">.cnf</span></code>文件是否被忽略</p>
 <p>解决方法：</p>
-<ol>
+<ol class="arabic">
 <li><p>修改文件权限</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mysql<span class="w"> </span>/bin/bash
 
+
+
 <span class="c1"># 查看权限</span>
+
 ls<span class="w"> </span>-l<span class="w"> </span>/etc/my.cnf
 
+
+
 <span class="c1"># 如果输出结果的第一个字段表示权限。</span>
+
 <span class="c1"># 如果权限是 -rwxrwxrwx，则表示该文件的权限是 777，修改权限为 644</span>
+
+
 
 chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/etc/my.cnf
 </pre></div>
@@ -488,11 +540,8 @@ chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/
 </ol>
 </li>
 </ol>
-</section>
-<section id="pythondocker-mysql">
-<h2>7 python连接docker mysql<a class="headerlink" href="#pythondocker-mysql" title="Permalink to this heading">#</a></h2>
-</section>
-</section>
+<p>7 python连接docker mysql</p>
+<hr class="docutils" />
 
 
                 </article>
@@ -520,19 +569,9 @@ chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/
     <i class="fa-solid fa-list"></i> 目录
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 新建挂载文件</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">挂载</a></li>
+    <ul class="simple visible nav section-nav flex-column">
 </ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mysql">2 拉取mysql</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3 生成容器</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4 处理mysql配置文件</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5 重新生成容器并挂载文件</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6 修改配置文件</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pythondocker-mysql">7 python连接docker mysql</a></li>
-</ul>
+
   </nav></div>
 
 </div></div>
@@ -556,7 +595,7 @@ chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/
 
   <p class="copyright">
     
-      © Copyright 2024, Pei Zhong.
+      © Copyright 2025, Pei Zhong.
       <br/>
     
   </p>

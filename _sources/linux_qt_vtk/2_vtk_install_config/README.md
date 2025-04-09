@@ -9,7 +9,8 @@
 
 ```bash
 sudo apt-get update
-sudo apt install build-essential cmake cmake-curses-gui mesa-common-dev mesa-utils freeglut3-dev git-core ninja-build libxcursor-dev libvulkan-dev doxygen graphviz
+sudo apt install build-essential cmake cmake-curses-gui mesa-common-dev mesa-utils freeglut3-dev git-core ninja-build libxcursor-dev libvulkan-dev doxygen graphviz libxcb-xkb-dev
+sudo apt install git
 ```
 
 ## 2 利用cmake配置vtk
@@ -31,9 +32,8 @@ sudo apt install build-essential cmake cmake-curses-gui mesa-common-dev mesa-uti
     ```bash
     cd /opt/VTK-9.3.1
     sudo mkdir VTK-build
-    cd VTK-build
-    su
-    ccmake ..
+    cd VTK-build 
+    sudo ccmake ..
     ```
     
 4. 点击`c`进行configure，命令运行结束后，点击`e`进入配置页面，配置完成后点击`c`进行configure，有报错的话，就点击`e`返回配置，然后继续点击`c`进行configure，我的所有配置如下：
@@ -72,7 +72,7 @@ sudo apt install build-essential cmake cmake-curses-gui mesa-common-dev mesa-uti
     sudo vim /etc/profile
     ```
 
-2. 在配置文件最后一行添加以下代码，以个人的qt安装路径为准：
+2. 在配置文件最后一行添加以下代码，以个人的VTK安装路径为准：
 
     ```bash
     export VTK_DIR="/opt/VTK-9.3.1/VTK-build/"
