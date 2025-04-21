@@ -11,25 +11,28 @@
 的内容里，我们已经介绍了割平面算法的思想，下面给出完整的算法框架形式.
 
 ## 1 算法概述  
-考虑混合整数线性规划  
+考虑混合整数线性规划
+
 $$
 z^* = \max \{ f(x) : x \in \mathcal{D} \} 
-$$  
+$$ 
+
 其中  
+
 $$
-f(x) = c^Tx, c\in\mathbb{R}^n\\
+f(x) = c^Tx, c\in\mathbb{R}^n \\
 \mathcal{D} = \{ x \in \mathbb{R}^n_+\mid A x \leq b,\, ,\, x_j \in \mathbb{Z}_+,\, \forall j \in I \}.
 $$
 
-割平面算法通过构造逐渐收紧的凸多面体 $ \mathcal{S}_t $（包含真实可行集 $ \mathcal{D} $）来求解问题$\text{(P)}$，选择合适的割平面可以使$ \mathcal{S}_t $逐渐向$\text{conv}(\mathcal{D})$靠近.
+割平面算法通过构造逐渐收紧的凸多面体 $\mathcal{S}_t$（包含真实可行集 $\mathcal{D}$）来求解问题$\text{(P)}$，选择合适的割平面可以使$\mathcal{S}_t$逐渐向$\text{conv}(\mathcal{D})$靠近.
 
 **算法1 割平面法**  
-1 **初始化**：$ t \leftarrow 0 $，$ \mathcal{S}_0 \supseteq \mathcal{D} $  
+1 **初始化**：$t \leftarrow 0$，$\mathcal{S}_0 \supseteq \mathcal{D}$  
 2 **循环**：$\\$
-3 $\quad$ 令 $ \boldsymbol{x}_t \leftarrow \arg\min_{\boldsymbol{x} \in \mathcal{S}_t} f(\boldsymbol{x}) $  
-4 $\quad$ 若 $ \boldsymbol{x}_t \in \mathcal{D} $，则终止；否则找到分离 $ \boldsymbol{x}_t $ 与 $ \mathcal{D} $ 的割平面 $ \langle \boldsymbol{a}, \boldsymbol{x} \rangle \leq \beta $  
-5 $\quad$ $ \mathcal{S}_{t+1} \leftarrow \mathcal{S}_t \cap \{ \boldsymbol{x} \mid \langle \boldsymbol{a}, \boldsymbol{x} \rangle \leq \beta \} $  
-6 $\quad$ $ t \leftarrow t + 1 $  
+3 $\quad$ 令 $\boldsymbol{x}_t \leftarrow \arg\min_{\boldsymbol{x} \in \mathcal{S}_t} f(\boldsymbol{x})$  
+4 $\quad$ 若 $\boldsymbol{x}_t \in \mathcal{D}$，则终止；否则找到分离 $\boldsymbol{x}_t $ 与 $ \mathcal{D}$ 的割平面 $\langle \boldsymbol{a}, \boldsymbol{x} \rangle \leq \beta$  
+5 $\quad$ $\mathcal{S}_{t+1} \leftarrow \mathcal{S}_t \cap \{ \boldsymbol{x} \mid \langle \boldsymbol{a}, \boldsymbol{x} \rangle \leq \beta \}$  
+6 $\quad$ $t \leftarrow t + 1$  
 7 **结束循环**  
 
 
