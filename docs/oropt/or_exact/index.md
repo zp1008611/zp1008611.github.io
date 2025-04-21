@@ -1,9 +1,5 @@
-Exact Algorithm
-=============================
+# Exact Algorithm
 
-.. toctree::  
-   :maxdepth: 2  
-   :caption: Contents  
 
    Optimality_Conditions<optimality_conditions/index>
    Dual Theory<dual_theory/index>

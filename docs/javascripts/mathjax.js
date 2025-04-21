@@ -3,7 +3,8 @@ window.MathJax = {
     inlineMath: [["\\(", "\\)"]],
     displayMath: [["\\[", "\\]"]],
     processEscapes: true,
-    processEnvironments: true
+    processEnvironments: true,
+    tags: 'ams' // 开启 AMS 编号模式
   },
   options: {
     ignoreHtmlClass: ".*|",

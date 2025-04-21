@@ -5,9 +5,28 @@ site_description: the notes record by ZhongPei
 nav:
     - Home: index.md
     - 运筹与优化:
-        - 精确式算法:
-            - 最优性条件: oropt/or_exact/optimality_conditions/README.md
-
+        - 精确式算法: 
+            - oropt/or_exact/index.md
+            - Optimality_Conditions: oropt/or_exact/optimality_conditions/README.md
+            - Dual Theory: oropt/or_exact/dual_theory/README.md
+            - LP Introduction: oropt/or_exact/LP_intro/README.md
+            - LP Simplex Method: oropt/or_exact/LP_simplex/README.md
+            - LP Interior Point Method: oropt/or_exact/LP_interior/README.md
+            - Column Generation for LP: oropt/or_exact/LP_cg/README.md
+            - Dantzig-Wolfe Decomposition for LP: oropt/or_exact/LP_dw_decompostition/README.md
+            - Integer Programming: oropt/or_exact/IP_intro/README.md
+            - Convex Hull and Valid Inequalities: oropt/or_exact/IP_convex_hull_and_valid_ineq/README.md
+            - Branch and Bound: oropt/or_exact/IP_branch_and_bound/README.md
+            - Relaxation: oropt/or_exact/IP_relaxation/README.md
+            - Cutting Planes: oropt/or_exact/IP_cutting_planes/README.md
+            - Branch and Cut: oropt/or_exact/IP_branch_and_cut/README.md
+            - Row and column generation for large-scale models: oropt/or_exact/LP_large_scale_models/README.md
+            - Dantzig-Wolfe Decomposition for IP: oropt/or_exact/IP_dw_decomposition/README.md
+            - Branch and Price: oropt/or_exact/IP_branch_and_price/README.md
+            - Benders Decomposition for IP: oropt/or_exact/IP_beaders_decomposition/README.md
+    - 面试八股:
+        - 抱佛脚版: 
+            - 面试问题总结: resume_QandA/summary/README.md
 
 edit_uri: edit/main/docs
 docs_dir: docs/
@@ -32,8 +51,8 @@ theme:
     - navigation.tabs
     - navigation.prune
     - navigation.footer
-    - navigation.tabs.sticky  #启用粘性选项卡后，导航选项卡将锁定在标题下方，并在向下滚动时始终保持可见
-    - navigation.sections #启用部分后，顶级部分在边栏中呈现为1220px以上视口的组，但在移动设备上保持原样
+    # - navigation.tabs.sticky  #启用粘性选项卡后，导航选项卡将锁定在标题下方，并在向下滚动时始终保持可见
+    # - navigation.sections #启用部分后，顶级部分在边栏中呈现为1220px以上视口的组，但在移动设备上保持原样
     # - navigation.expand # 打开Tab时左侧目录全部展开
     - content.code.copy
     - navigation.indexes #启用节索引页后，可以将文档直接附加到节

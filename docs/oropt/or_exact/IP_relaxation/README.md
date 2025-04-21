@@ -7,24 +7,37 @@
 - https://dabeenl.github.io/IE631_lecture19_note.pdf
 - https://dabeenl.github.io/IE631_lecture20_note.pdf
   
- 
+
 
 ## 1 松弛
 
-我们考虑混合整数线性规划（MILP）：  
+我们考虑混合整数线性规划（MILP）： 
+
 $$ 
-z_{IP} = \max \{ c^{\top}x \mid x \in \mathcal{S} \}, 
-$$（MILP）  
+\begin{equation}
+z_{IP} = \max \{ c^{\top}x \mid x \in \mathcal{S} \}, \tag{MILP}
+\label{eq:MILP}
+\end{equation}
+$$  
+
 其中  
+
 $$ 
-\mathcal{P} = \{ x \in \mathbb{R}^n \mid Ax \leq b \} 
-$$（FEAS-LP，可行线性规划）  
+\begin{equation}
+\mathcal{P} = \{ x \in \mathbb{R}^n \mid Ax \leq b \} \tag{FEAS-LP，可行线性规划}
+\label{eq:FEAS-LP}
+\end{equation}
+$$  
+
 $$ 
-\mathcal{S} = \mathcal{P} \cap (\mathbb{Z}_+^p \times \mathbb{R}_+^{n - p}) 
-$$（FEAS-MIP，可行混合整数规划）  
+\mathcal{S} = \mathcal{P} \cap (\mathbb{Z}_+^p \times \mathbb{R}_+^{n - p}) \tag{FEAS-MIP，可行混合整数规划}
+$$  
 
 **定义 1**：（MILP）的一个松弛是一个按如下方式定义的最大化问题：  
-$$ z_R = \max \{ z_R(x) \mid x \in \mathcal{S}_R \} $$  
+
+$$ 
+z_R = \max \{ z_R(x) \mid x \in \mathcal{S}_R \} 
+$$  
 其具有以下两个性质：  
 $$ \mathcal{S} \subseteq \mathcal{S}_R $$  
 $$ c^{\top}x \leq z_R(x), \; \forall x \in \mathcal{S}. $$
