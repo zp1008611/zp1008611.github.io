@@ -3,38 +3,83 @@
 ## 1 凸集与凸函数
 ### 1.1 凸集
 **定义1.1（凸集）**：$\mathbb{R}^{n}$的子集$C$被称为凸集，当且仅当对于所有的$x, y \in C$和所有的$\lambda \in [0, 1]$，都有
-$$\lambda x+(1-\lambda) y \in C$$
+
+$$
+\lambda x+(1-\lambda) y \in C
+$$
+
 **定义1.2（凸组合）**：给定$x_{1}, \ldots, x_{m} \in \mathbb{R}^{n}$，形如$x = \sum_{i = 1}^{m} \lambda_{i} x_{i}$的元素，其中$\sum_{i = 1}^{m} \lambda_{i} = 1$且$\lambda_{i} \geq 0$，被称为$x_{1}, \ldots, x_{m}$的凸组合。
+
 **命题1.3**：$\mathbb{R}^{n}$的子集$C$是凸集，当且仅当它包含其元素的所有凸组合。
+
 ### 1.2 凸函数
+
 在本小节中，我们将考虑扩展实值函数，其取值范围为$\overline{\mathbb{R}} := (-\infty, \infty]$，并遵循以下约定：对于所有的$a \in \mathbb{R}$，$a + \infty = \infty$；$\infty + \infty = \infty$；对于所有的$t > 0$，$t \cdot \infty = \infty$。
+
 **定义1.4（凸函数）**：设$C$是$\mathbb{R}^{n}$的凸子集。函数$f: C \mapsto \overline{\mathbb{R}}$在$C$上被称为凸函数，当且仅当对于所有的$x, y \in C$和所有的$\lambda \in [0, 1]$，都有
-$$f(\lambda x+(1-\lambda) y) \leq \lambda f(x)+(1-\lambda) f(y)$$
+
+$$
+f(\lambda x+(1-\lambda) y) \leq \lambda f(x)+(1-\lambda) f(y)
+$$
+
 **定义1.5（上境图和有效定义域）**：函数$f: X \to [-\infty, \infty]$（其中$X \subset \mathbb{R}^{n}$）的上境图为
-$$epi f=\left\{(x, w) | x \in X, w \in \mathbb{R}, f(x) \leq w\right\}$$
+
+$$
+epi f=\left\{(x, w) | x \in X, w \in \mathbb{R}, f(x) \leq w\right\}
+$$
+
 $f$的有效定义域为
 $$dom f=\{x | f(x)<\infty\}$$
+
 **定义1.6（严格凸函数）**：（文档未给出具体定义内容）
+
 **定义1.7（强凸函数）**：（文档未给出具体定义内容）
+
 **定义1.8（正常函数）**：函数$f$是正常的，如果至少存在一个$x \in X$，使得$f(x) < \infty$。从考虑上境图$epi f$的角度来看，这意味着$epi f$非空且不包含任何垂直线。如果$f$不是正常函数，则称其为非正常函数。
+
 **定理1.9（詹森不等式）**：函数$f: \mathbb{R}^{n} \to \overline{\mathbb{R}}$是凸函数，当且仅当对于任意的$\lambda_{i} \geq 0$（满足$\sum \lambda_{i} = 1$）和任意的元素$x_{i} \in \mathbb{R}^{n}$，都有
-$$f\left(\sum \lambda_{i} x_{i}\right) \leq \sum \lambda_{i} f\left(x_{i}\right)$$
+
+$$
+f\left(\sum \lambda_{i} x_{i}\right) \leq \sum \lambda_{i} f\left(x_{i}\right)
+$$
+
 **命题1.10**：函数$f: \mathbb{R}^{n} \to \overline{\mathbb{R}}$是凸函数，当且仅当$epi f \subset \mathbb{R}^{n + 1}$是凸集。
+
 **定义1.11（闭函数）**：如果函数$f: X \to \overline{\mathbb{R}}$的上境图是闭集，我们称$f$是闭函数。
 
 现在，我们给出一些可微或二阶可微函数的凸性特征。
+
 **命题1.12**：设$C$是一个非空的凸开集。设$f: \mathbb{R}^{n} \to \mathbb{R}$在包含$C$的开集上可微，那么$f$是凸函数，当且仅当对于所有的$x, z \in C$，都有
-$$f(z) \geq f(x)+\langle \nabla f(x), z - x\rangle$$
+
+$$
+f(z) \geq f(x)+\langle \nabla f(x), z - x\rangle
+$$
+
 **命题1.13**：设$C$是$\mathbb{R}^{n}$中的非空凸集，且$f: \mathbb{R}^{n} \to \mathbb{R}$在包含$C$的开集上二阶可微。如果对于所有的$x \in C$，$\nabla^{2} f(x)$都是半正定的，那么$f$在$C$上是凸函数。
+
 ### 1.3 投影到凸集
 给定一个集合$C \subseteq \mathbb{R}^{n}$，点$x$到$C$的距离定义为
-$$d(x ; C):=\inf \{\| x - y\| : y \in C\}$$
+
+$$
+d(x ; C):=\inf \{\| x - y\| : y \in C\}
+$$
+
 对于闭凸集，有一个重要的投影性质如下。
+
 **命题1.14（投影性质）**：设$C$是$\mathbb{R}^{n}$的非空闭凸子集。对于每个$x \in \mathbb{R}^{n}$，存在唯一的$w \in C$，使得
-$$\| x - w\| =d(x ; C)$$
+
+$$
+\| x - w\| =d(x ; C)
+$$
+
 $w$被称为$x$到$C$的投影，记为$P_{C}(x)$。
+
 **命题1.15**：设$C$是一个非空闭凸集，那么$w = P_{C}(x)$当且仅当对于所有的$u \in C$，都有
-$$\langle x - w, u - w\rangle \leq 0$$
+
+$$
+\langle x - w, u - w\rangle \leq 0
+$$
+
 ## 2 凸集的法锥和切锥
 **定义2.1（锥）**：集合$C$是一个锥，如果对于任意的$x \in C$和$0 < \lambda \in \mathbb{R}$，都有$\lambda x \in C$。锥$C$的极锥（记为$C^{\circ}$）定义为
 $$C^{\circ}=\{\sigma:\langle\sigma, x\rangle \leq 0 \text{ 对于所有的 } x \in C\}$$

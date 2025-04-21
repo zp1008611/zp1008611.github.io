@@ -3,50 +3,69 @@ site_url: https://zp1008611.github.io/
 site_description: the notes record by ZhongPei
 
 nav:
-  - 运筹与优化:
-    - 精确式算法:
-        - 最优性条件: oropt/or_exact/optimality_conditions/README.md
+    - Home: index.md
+    - 运筹与优化:
+        - 精确式算法:
+            - 最优性条件: oropt/or_exact/optimality_conditions/README.md
 
 
 edit_uri: edit/main/docs
 docs_dir: docs/
+
+#[UI]
 theme:
-  language: "zh"
   name: material
-  custom_dir: docs/overrides/
-  font: false
-  logo: images/Favicon.png
-  #     text: Noto Serif SC
-  #   custom_dir: /docs/stylesheets/
+  language: zh # 一些提示性的文字会变成中文
+  font:
+    text: Roboto
+    code: Roboto Mono
   features:
-    - content.tabs.link
-    - content.code.copy
+    - header.autohide  #自动隐藏
+    #- announce.dismiss #呈现可标记为由用户读取的临时公告，可以包含一个用于取消当前公告的按钮
+    - navigation.instant #自动隐藏
+    - navigation.tracking #地址栏中的 URL 将自动更新为在目录中突出显示的活动锚点
+    - content.code.annotate
+    - toc.integrate
+    - toc.follow
+    - navigation.path
+    - navigation.top # 返回顶部的按钮 在上滑时出现
     - navigation.tabs
-    - search.suggest
-    - search.highlight
-    - search.share
-    # - navigation.sections
-    # - navigation.expand
-    - navigation.top
-    - navigation.indexes
-    # - content.action.edit
-    # - content.action.view
-
-  palette:
+    - navigation.prune
+    - navigation.footer
+    - navigation.tabs.sticky  #启用粘性选项卡后，导航选项卡将锁定在标题下方，并在向下滚动时始终保持可见
+    - navigation.sections #启用部分后，顶级部分在边栏中呈现为1220px以上视口的组，但在移动设备上保持原样
+    # - navigation.expand # 打开Tab时左侧目录全部展开
+    - content.code.copy
+    - navigation.indexes #启用节索引页后，可以将文档直接附加到节
+    - search.share #搜索分享按钮
+    - search.suggest # 搜索输入一些字母时推荐补全整个单词
+    - search.highlight # 搜索出的文章关键词加入高亮
+  palette: 
+    # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
-
-      scheme: default
+      scheme: default # 日间模式
       toggle:
-        icon: material/weather-night
+        icon: material/brightness-7  # 图标
         name: Switch to dark mode
+      primary: deep ## 上方的, [red, pink, purple, deep, purple, indigo, blue, light blue, cyan, teal, green, light green, lime, yellow, amber, orange, deep orange, brown, grey, blue, grey, black, white]
+      accent: deep # # 链接等可交互元件的高亮色 [red, pink, purple, deep, purple, indigo, blue, light, blue, cyan, teal, green, light, green, lime, yellow, amber, orange, deep orange]
 
+    # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+      scheme: slate # 夜间模式
+      primary: deep #, [red, pink, purple, deep, purple, indigo, blue, light blue, cyan, teal, green, light green, lime, yellow, amber, orange, deep orange, brown, grey, blue, grey, black, white]
+      accent: deep # [red, pink, purple, deep, purple, indigo, blue, light, blue, cyan, teal, green, light, green, lime, yellow, amber, orange, deep orange]
       toggle:
-        icon: material/weather-sunny
+        icon: material/brightness-4
         name: Switch to light mode
-  icon:
-    annotation: material/arrow-right-circle
+    
+  icon: 
+    repo: fontawesome/brands/github #右上角图标
+repo_name: zp1008611.github.io # 右上角的名
+repo_url: https://github.com/zp1008611/zp1008611.github.io.git # 右上角点击跳转的链接
+
+
+
 
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css
@@ -62,6 +81,7 @@ extra_javascript:
   - javascripts/tablesort.js
   - javascripts/extra.js
   - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 #   - javascripts/loadMermaid.js
 #   - https://polyfill.io/v3/polyfill.min.js?features=es6
 #   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
@@ -93,77 +113,62 @@ plugins:
         - index.md
       enabled: true
 
-#   - blogging:
-#       dirs: # The directories to be included
-#         - Arts
-#   - rss:
-#       match_path: Study/.*
-#       date_from_meta:
-#         as_creation: date
-#       categories:
-#         - categories
-#         - tags
-
 markdown_extensions:
   - admonition
-  - meta
-  - attr_list
-  - md_in_html
-  - def_list
-  - footnotes
-  - pymdownx.critic
-  - pymdownx.caret
+  - abbr
+  - pymdownx.caret    
+  - pymdownx.details
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.details
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.mark
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.highlight:
+      alternate_style: true 
+  - md_in_html
+  - pymdownx.arithmatex:  # latex支持
+      generic: true
+  - toc:
+      permalink: true # 固定标题位置为当前位置
+      title: On this page
+  - pymdownx.highlight: # 代码块高亮
       anchor_linenums: true
+      # linenums: true # 显示行号
+      # auto_title: true # 显示编程语言名称
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences # 代码块高亮插件
+  - meta # 支持Markdown文件上方自定义标题标签等
+  - tables
+     
 
 
-  - pymdownx.arithmatex:
-      generic: true
-      block_tag: "pre"
-  - toc:
-      permalink: ⚓︎
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/SmilingWayne
-    - icon: fontawesome/brands/instagram
-      link: https://www.instagram.com/smilingwayne/
-    - icon: fontawesome/solid/paper-plane
-      link: mailto:xiaoxiaowayne@163.com
-  analytics:
-    provider: google
-    rpoperty: G-NVXC1ZHJ8C
-    feedback:
-      title: Was this page helpful?
-      ratings:
-        - icon: material/emoticon-happy-outline
-          name: This page was helpful
-          data: 1
-          note: >-
-            Thanks for your feedback!
-        - icon: material/emoticon-sad-outline
-          name: This page could be improved
-          data: 0
-          note: >-
-            Thanks for your feedback! Help us improve this page by
-            using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+# extra:
+#   social:
+    # - icon: fontawesome/brands/github
+#       link: https://github.com/SmilingWayne
+#     - icon: fontawesome/brands/instagram
+#       link: https://www.instagram.com/smilingwayne/
+#     - icon: fontawesome/solid/paper-plane
+#       link: mailto:xiaoxiaowayne@163.com
+#   analytics:
+#     provider: google
+#     rpoperty: G-NVXC1ZHJ8C
+#     feedback:
+#       title: Was this page helpful?
+#       ratings:
+#         - icon: material/emoticon-happy-outline
+#           name: This page was helpful
+#           data: 1
+#           note: >-
+#             Thanks for your feedback!
+#         - icon: material/emoticon-sad-outline
+#           name: This page could be improved
+#           data: 0
+#           note: >-
+#             Thanks for your feedback! Help us improve this page by
+#             using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
 
 copyright: Copyright &copy; 2025 ZhongPei 
