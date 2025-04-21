@@ -1,0 +1,761 @@
+site_name: ZP's docs
+site_url:https://zp1008611.github.io/
+site_description: the notes record by ZhongPei
+
+nav:
+  - ˗ˋˏᰔᩚˎˊ˗: index.md
+  - 哲学:
+      - Philosophy/index.md
+      - 精读系列:
+          - 规训与惩罚: Philosophy/Principles_and_punish.md
+          - 景观社会: Philosophy/Society_of_spectacles.md
+          - 西西弗神话: Philosophy/Sisyphus.md
+      - 📚 哲学家词典:
+          - 阿尔都塞: Philosophy/Philosophers/Altusser.md
+          - 福柯: Philosophy/Philosophers/Foucault.md
+          - 福柯集: Philosophy/Philosophers/Foucault_collections.md
+          - 马尔库塞: Philosophy/Philosophers/Marcuse.md
+          - 罗兰巴特: Philosophy/Philosophers/RolandBarthes.md
+          - 德里达: Philosophy/Philosophers/Derrida.md
+
+      - 大唯物主义:
+          - 不怎么精美的毛选摘: Philosophy/Mao.md
+          - 基础知识: Philosophy/basic.md
+          - 马克思主义宗教观研究: Philosophy/Marxism_religion.md
+          - 苏联解体与颜色革命: Philosophy/Color_revolution.md
+          - 先知三部曲: Philosophy/Farseer.md
+          - 论游击战: Philosophy/Guerrilla_warfare.md
+          - 李大钊文集: Philosophy/Li_da_zhao.md
+          - 中国无神论史纲: Philosophy/Atheism_history.md
+
+      - 宗教哲学:
+          - 基督教: Philosophy/Christian.md
+          - 金色传说: Philosophy/Golden_legend.md
+          - 世界宗教: Philosophy/World_religion.md
+          - 犹太人与犹太教(牛津通识读本): Philosophy/Jews.md
+          - 相似之书: Philosophy/Book_of_resemblance.md
+          - 我理解的伊斯兰教: Philosophy/Religion_culture.md
+
+      - 政治哲学:
+          - 君主论: Philosophy/ThePrince.md
+          - 论政府: Philosophy/Government.md
+          - 政治学: Philosophy/Politics.md
+          - 政治神学: Philosophy/Theology_politics.md
+          - 美国生活中的反智主义: Philosophy/Anti_intellectual_usa.md
+          - 文明的冲突与世界秩序的重建: Philosophy/Collision_civilization.md
+          - 后殖民主义与世界格局(牛津通识读本): Philosophy/Postcolonialism.md
+          - 政治的历史与边界: Philosophy/Boundary_politics.md
+          - 以赛亚伯林的遗产: Philosophy/Legacy_berlin.md
+          - 自由及其背叛: Philosophy/Liberty_and_betray.md
+          - 圣战与文明: Philosophy/Gihad_civilization.md
+          - 良知对抗暴力: Philosophy/Verse_violence.md
+          - 有闲阶级论: Philosophy/Leisure_class.md
+          - 世界大国外交(US): Philosophy/Diplomacy_us.md
+
+      - 女性主义哲学:
+          - 女性与社会权力系统: Philosophy/Women_social_power_sys.md
+          - 女性与文学艺术: Philosophy/Women_literature_arts.md
+          - 👩🏻‍⚖️性学三论: Philosophy/Sexuality_freud.md
+          - 👩‍🎓性存在: Philosophy/Sexuality_existence.md
+          - 👩🏻‍💻神圣的欢爱: Philosophy/Sacred_joy.md
+          - 🙅‍♀️为女权辩护: Philosophy/Indefense_of_feminism.md
+          - 政治学与女性主义: Philosophy/Politics_feminism.md
+          - 女权主义简史(牛津通识读本): Philosophy/Feminism_brief_history.md
+
+      - 美学:
+          - 美的历程: Philosophy/Voyage_of_beauty.md
+          - 浪漫主义的根源: Philosophy/Root_of_romanticism.md
+          - 谈美: Philosophy/About_beauty.md
+          - 哲学美学: Philosophy/Phi_and_aesthic.md
+
+      - 人类学/社会学:
+          - 倦怠社会: Philosophy/Society_of_fatigue.md
+          - 乡土中国: Philosophy/Rural_china.md
+          - 古代社会: Philosophy/Ancient_society.md
+          - 宗教生活的初级形式: Philosophy/Primal_format_of_religion_life.md
+          - 西太平洋上的航海者: Philosophy/Voyagers_western_pacific_ocean.md
+          - 论人类不平等的起源与基础: Philosophy/Discours_linegalite.md
+
+      - 其他:
+          - 科学管理原理: Philosophy/Principles_of_sci_mgm.md
+          - 日本思想小史: Philosophy/Japan_philosophers.md
+          - 哲思与海——一部诗意的哲学随笔: Philosophy/Phi_and_sea.md
+          - 实用主义: Philosophy/Pragmatism.md
+          - 亚里士多德的世界(牛津通识读本): Philosophy/World_of_aristotle.md
+          - 如何阅读一本书: Philosophy/How_to_read.md
+          - 我们时代的社会思考与阅读主张: Philosophy/Thoughts_in_our_time.md
+
+  - 文学:
+      - Literature/index.md
+      - 诗歌:
+          - Poems/index.md
+          - 外国诗:
+              - 🇫🇷愤怒与神秘: Poems/Anger_and_mystery.md
+              - 🇫🇷恶之花: Poems/Fleurs_du_mal.md
+              - 🇫🇷烧酒与爱情: Poems/Shochu_and_love.md
+              - 🇫🇷罗兰之歌: Poems/Song_of_Lauren.md
+              - 🇫🇷致艾尔薇拉: Poems/Lamartine.md
+              - 论《恶之花》: Poems/About_Fleurs_du_mal.md
+              - 🇮🇹神曲: Poems/Divine_comedy.md
+              - 🇬🇧失乐园: Poems/Paradise_lost.md
+              - 🇬🇧坎特伯雷故事集: Poems/Canterbery.md
+              - 🇷🇺是你在歌唱？是我在遐想: Poems/Yesenin.md
+              - 🇷🇺穿裤子的云：马雅可夫斯基诗选: Poems/Mayakovsky.md
+              - 🇵🇹卢济塔尼亚人之歌: Poems/Luzitania.md
+              - 🇮🇹耶路撒冷的解放: Poems/Jerusalem_liberation.md
+              - 🇳🇮生命与希望之歌: Poems/Poems_de_life_hope.md
+              - 🇬🇷伊利亚特: Poems/Illiad.md
+              - 🇬🇷奥德赛: Poems/Odyssey.md
+              - 🇱🇧纪伯伦诗选: Poems/Gibran.md
+              - 🇩🇪德国，一个冬天的童话: Poems/German_winter_fairytale.md
+              - 🇩🇪致后代: Poems/To_descendant.md
+              - 🇩🇪死亡赋格: Poems/Death_fuge.md
+              - 世界抒情诗选: Poems/If_I_can_make_heart_unbroken.md
+              - 🇺🇸我用古典的方式爱过你: Poems/Emily.md
+              - 疑问集: Poems/Collections_of_doubt.md
+          - 中国诗:
+              - 辛弃疾词: Poems/Xinqiji_ci.md
+              - 木心诗选: Poems/Muxin.md
+              - 花间集新注: Poems/Hua_jian_ci.md
+              - 月光停在左手上: Poems/Moonlight_left_hand.md
+              - 中国古典-诗: Poems/ClassicChinese_shi.md
+              - 中国古典-词: Poems/ClassicChinese_ci.md
+              - 中国古典-曲: Poems/ClassicChinese_qu.md
+      - 戏剧:
+          - Plays/index.md
+          - 戏剧:
+              - 💖浮士德: Plays/Faust.md
+              - 🇫🇷广岛之恋: Plays/Hiroshima.md
+              - 🇫🇷卡利古拉: Plays/Caligula.md
+              - 🇬🇧爱的徒劳: Plays/Loves_labors_lost.md
+              - 🇬🇧奥赛罗: Plays/Othello.md
+              - 🇬🇧麦克白: Plays/Macbeth.md
+              - 💝哈姆雷特: Plays/Hamlet.md
+              - 🇬🇧亨利四世: Plays/HenryIV.md
+              - 🇬🇧理查二世: Plays/Richard_II.md
+              - 🇬🇧暴风雨: Plays/Storms.md
+              - 🇬🇧仲夏夜之梦: Plays/Mid_summer_nights_dream.md
+              - 🇷🇺海鸥: Plays/Seagull.md
+              - 🇬🇷美狄亚: Plays/Media.md
+              - 🇨🇳牡丹亭: Plays/Mu_dan_ting.md
+              - 🇨🇳桃花扇: Plays/Tao_hua_shan.md
+              - 🇨🇳铸剑·哈姆雷特: Plays/Swords_hamlet.md
+              - 🇬🇧罗密欧与朱丽叶: Plays/Romeo_juliet.md
+          - 影视:
+              - 🇯🇵切腹: Plays/Seppuku.md
+              - 🇺🇸云图: Plays/Cloud_atlas.md
+              - 🇺🇸慕尼黑: Plays/Munich.md
+              - 🇺🇸地心引力: Plays/Gravity.md
+              - 🇫🇷精疲力尽: Plays/Exhausted.md
+              - 🇫🇷五至七时的克莱奥: Plays/Cleo.md
+              - 🇨🇳中国姑娘: Plays/La_chinioise.md
+              - 🇨🇳大象席地而坐: Plays/Elephant_sitting_still.md
+              - 🇨🇳精武英雄: Plays/Jingwu_yingxiong.md
+              - 🇨🇳宇宙探索编辑部: Plays/A_journey_to_the_west.md
+              - 🇩🇪无主之作: Plays/Werk_ohne_autor.md
+              - 🇨🇦空中浩劫: Plays/Air_crash_investigation.md
+              - 🇬🇧九号秘事: Plays/Inside_no_9.md
+      - 随笔:
+          - Literature/Essay/index.md
+          - 小于一: Literature/Essay/Less_than_one.md
+          - 二手时间: Literature/Essay/Second_hand_time.md
+          - 问题之书: Literature/Essay/Book_of_questions.md
+          - 冲绳札记: Literature/Essay/Chongshen.md
+          - 记忆记忆: Literature/Essay/Remember_memory.md
+          - 火的记忆: Literature/Essay/Memory_fire.md
+          - 怀旧的未来: Literature/Essay/Nostalgia.md
+          - 人间食粮: Literature/Essay/Life_food.md
+          - 山河袈裟: Literature/Essay/Shan_he_jia_sha.md
+          - 牛棚杂忆: Literature/Essay/Cowshed_memo.md
+          - 自然与人生: Literature/Essay/Nature_and_life.md
+          - 单读12: Literature/Essay/Dan_du_12.md
+          - 单读14: Literature/Essay/Dan_du_14.md
+          - 单读16: Literature/Essay/Dan_du_16.md
+          - 单读17: Literature/Essay/Dan_du_17.md
+          - 澡堂与片场: Literature/Essay/Bath_house.md
+          - 往事与随想: Literature/Essay/Memory_thoughts.md
+          - 送你一颗子弹: Literature/Essay/Give_you_a_bullet.md
+          - 中国文学常识: Literature/Essay/Literature_knowledge.md
+          - 一个人的村庄: Literature/Essay/Countryside_of_one.md
+          - 博尔赫斯谈话录: Literature/Essay/Borges.md
+          - 别走，万一好笑呢: Literature/Essay/Stay.md
+          - 那天夜里，我看见了巴黎: Literature/Essay/That_night_paris.md
+          - 阅读是一座随身携带的避难所: Literature/Essay/Reading_shelter.md
+          - 禅与摩托车维修艺术: Literature/Essay/Zen_motor_maintanence.md
+      - 文论:
+          - Literature/Literacy/index.md
+          - 魏晋玄学: Literature/Literacy/Xuan_xue.md
+          - 西方正典: Literature/Literacy/Western_classic.md
+          - 增广贤文: Literature/Literacy/Zeng_guang_xian_wen.md
+          - 🇫🇷加缪手记: Literature/Literacy/Camus_script.md
+          - 🇫🇷魏尔伦: Literature/Literacy/Verlain.md
+          - 🇫🇷巴黎评论: Literature/Literacy/Paris_review.md
+          - 🇫🇷法语文学: Literature/Literacy/French_literature.md
+          - 🇬🇧作家笔记: Literature/Literacy/Writers_notes.md
+          - 天朝遥远: Literature/Literacy/Dynasty.md
+          - 文学回忆录: Literature/Literacy/Literature_memo.md
+          - 女人的食指: Literature/Literacy/Womens_index_finger.md
+          - 文字的力量: Literature/Literacy/Power_of_words.md
+          - 日本文学史: Literature/Literacy/Japan_literature_2.md
+          - 日本文学札记: Literature/Literacy/Japan_literature.md
+          - 沉默的大多数: Literature/Literacy/Silent_most.md
+          - 给青年诗人的信: Literature/Literacy/To_young_poets.md
+          - 英国文学中的海洋: Literature/Literacy/British_literature_sea.md
+          - 普鲁斯特的凝视: Literature/Literacy/Prust_gaze.md
+          - 西方人文主义精神:
+              - 课后阅读材料总结与摘录: Literature/Literacy/Western_humanist/afterClassReading.md
+              - 人文主义和俄国形式主义: Literature/Literacy/Western_humanist/RussianFormalism.md
+              - 新批评学派的主张与对新批评学派的批评: Literature/Literacy/Western_humanist/NewCriticism.md
+              - 结构主义: Literature/Literacy/Western_humanist/Structralism.md
+              - 问题回答: Literature/Literacy/Western_humanist/Questions.md
+              - 巴赫金文学批评: Literature/Literacy/Western_humanist/BakhtinianLiteraryCriticism.md
+              - 新历史主义: Literature/Literacy/Western_humanist/NewHistorism.md
+              - 文化批评: Literature/Literacy/Western_humanist/CulturalCriticism.md
+              - 精神分析: Literature/Literacy/Western_humanist/Psycho.md
+              - 解构主义: Literature/Literacy/Western_humanist/Deconstruction.md
+              - 后现代主义: Literature/Literacy/Western_humanist/Postmodernism.md
+              - 后殖民主义: Literature/Literacy/Western_humanist/Postcolonialism.md
+              - 身体和性别: Literature/Literacy/Western_humanist/GenderAndBody.md
+          - 批判性思维的形成: Literature/Literacy/Formation_critical_thinking.md
+          - 天真的和感伤的小说家: Literature/Literacy/Naive_novlist.md
+          - 浪漫主义(牛津通识读本): Literature/Literacy/Romanticism.md
+          - 拉丁美洲文学(牛津通识读本): Literature/Literacy/Latin_america_literature.md
+      - 小说:
+          - Literature/Novel/index.md
+          - 🇨🇳蛙: Literature/Novel/Frog.md
+          - 🇨🇳朝闻道: Literature/Novel/Zhao_wen_dao.md
+          - 🇨🇳生死疲劳: Literature/Novel/Forever_fatigue.md
+          - 🇨🇳平凡的世界: Literature/Novel/Common_world.md
+          - 🇨🇳许三观卖血记: Literature/Novel/Xu_san_guan.md
+          - 🇨🇳房思琪的初恋乐园: Literature/Novel/Fang_si_qi.md
+          - 🇨🇳红玫瑰与白玫瑰: Literature/Novel/Red_roses_white_roses.md
+          - 🇯🇵雪国: Literature/Novel/Snow.md
+          - 🇯🇵古都: Literature/Novel/Kyoto.md
+          - 🇯🇵潮骚: Literature/Novel/Chaosao.md
+          - 🇯🇵春雪: Literature/Novel/Spring_snow.md
+          - 🇯🇵奔马: Literature/Novel/Benma.md
+          - 🇯🇵晓寺: Literature/Novel/Xiaosi.md
+          - 🇯🇵天人五衰: Literature/Novel/Tianrenwushuai.md
+          - 🇯🇵仲夏之死: Literature/Novel/Death_of_summer.md
+          - 🇯🇵金阁寺: Literature/Novel/Jinge.md
+          - 🇯🇵罗生门: Literature/Novel/Rashomon.md
+          - 🇯🇵舞！舞！舞！: Literature/Novel/Dance.md
+          - 🇯🇵源氏物语(ToDo): Literature/Novel/Tale_of_Genji.md
+          - 🇯🇵银河铁道之夜: Literature/Novel/Galactic_railroad.md
+          - 🇫🇷鼠疫: Literature/Novel/Plague.md
+          - 🇫🇷巨人传: Literature/Novel/Giants.md
+          - 🇫🇷波斯人信札: Literature/Novel/Letters_from_persian.md
+          - 🇫🇷流年的飞沫: Literature/Novel/Lecume_des_jours.md
+          - 🇫🇷撒马尔罕: Literature/Novel/Samarkhan.md
+          - 🇫🇷包法利夫人: Literature/Novel/Madam_Bovary.md
+          - 🇫🇷三个火枪手: Literature/Novel/Three_riflers.md
+          - 🇫🇷危险的关系: Literature/Novel/Les_liaisons_dangereuses.md
+          - 🇬🇧双城记: Literature/Novel/Stories_of_two_cities.md
+          - 🇬🇧面纱: Literature/Novel/Veil.md
+          - 🇬🇧印度之行: Literature/Novel/Journey_to_India.md
+          - 🇬🇧《1984》: Literature/Novel/1984.md
+          - 🇬🇧查泰莱夫人的情人: Literature/Novel/Lady_Chatterley.md
+          - 🇬🇧沉默的病人: Literature/Novel/Silent_patient.md
+          - 🇬🇧格列佛游记: Literature/Novel/Gulliver.md
+          - 🇬🇧瘟疫年纪事: Literature/Novel/Pandemic_era.md
+          - 🇬🇧东方快车谋杀案: Literature/Novel/Oriental_express.md
+          - 🇬🇧尼罗河上的惨案: Literature/Novel/Tragedy_niro.md
+          - 🇬🇧查令十字街84号: Literature/Novel/Charline_84.md
+          - 🇨🇴百年孤独: Literature/Novel/100_years_solitude.md
+          - 🇺🇸野棕榈: Literature/Novel/Wild_palm.md
+          - 🇺🇸同情者: Literature/Novel/Sympathatic.md
+          - 🇺🇸华氏451: Literature/Novel/Fahrenheit_451.md
+          - 🇺🇸五号屠场: Literature/Novel/Slaughterhouse_five.md
+          - 🇺🇸雪落香杉树: Literature/Novel/Snow_falls.md
+          - 🇺🇸达芬奇密码: Literature/Novel/Davinci_code.md
+          - 🇺🇸麦田里的守望者: Literature/Novel/Catcher_in_the_rye.md
+          - 🇺🇸了不起的盖茨比: Literature/Novel/Gatsby.md
+          - 侦探小说: Literature/Novel/Detective.md
+          - 希腊神话合集: Literature/Novel/Greek/Myth_1.md
+          - 潘神的迷宫: Literature/Novel/Labyrinth_pan.md
+          - 🇦🇺树叶裙: Literature/Novel/Leaves_dress.md
+          - 🇵🇹失明症漫记: Literature/Novel/Ensaio_sobre_a_cegueira.md
+          - 🇷🇺卡拉马佐夫兄弟: Literature/Novel/Kara_Mazov_brothers.md
+      - 语料库:
+          - Literature/Corpus/index.md
+          - 修辞、文字与形象化: Literature/Corpus/Metaphor.md
+          - 诡辩、哲思与抽象化: Literature/Corpus/Phi.md
+
+  - 历史:
+      - History/index.md
+      - 笔记本:
+          - 🇬🇷希腊笔记: History/Greece.md
+          - 十年历史: History/Culture_revo.md
+          - 🇯🇵日本笔记: History/Japan_notes.md
+          - 🇲🇱非洲笔记: History/Africa.md
+          - 🇰🇿中亚笔记: History/Mid_asia.md
+          - 🇷🇺苏联笔记: History/Soviet_union.md
+          - 欧罗巴笔记: History/Europe.md
+          - 🇪🇸卡斯蒂利亚的伊莎贝拉: History/Isabella.md
+          - 🕌中东笔记: History/Mid_east.md
+          - 🇫🇷法兰西笔记｜1572~1789: History/France_1572_1789.md
+          - 🇫🇷法兰西笔记｜1789~1794: History/France_1789_1794.md
+          - 🇫🇷法兰西笔记｜1794~1871: History/France_1794_1871.md
+          - 🇫🇷法兰西笔记｜1871~Now: History/France_1871_now.md
+          - 🇸🇦阿拉伯笔记: History/Arabians.md
+          - 🇮🇳印度笔记: History/India.md
+          - 十字军简史: History/Cruciata.md
+          - 🇳🇱荷兰东印度公司笔记: History/Netherland_colony.md
+          - 🇮🇩印度尼西亚笔记: History/Indonesia.md
+      - 书:
+          - 🇫🇷记忆之场: History/Field_of_memory.md
+          - 🇫🇷15至18世纪的物质文明、经济和资本主义: History/Mediterranean_15_18C.md
+          - 大征服: History/Great_conquest.md
+          - 🇪🇸阿尔罕布拉: History//Alhambra.md
+          - 战国歧途: History/Zhanguo_qitu.md
+          - 荒诞医学史: History/Ridiculous_medics.md
+          - 罗马帝国简史: History/Roman_empire_brief_history.md
+          - 古罗马帝国军事史: History/Rome_military_history.md
+          - 世界史就是经济史: History/Econo_history.md
+          - 西印度毁灭述略: History/Destroy_western_india.md
+          - 🇺🇸崛起的前夜: History/US.md
+          - 人类的群星闪耀时: History/Human_stars.md
+          - 阿拉伯伊斯兰文化史: History/Arabian_islamic_history.md
+          - 🇫🇷法国资产阶级史(上): History/Bourgeoisie.md
+          - 🇧🇪利奥波德国王的鬼魂: History/King_leopolds_ghost.md
+          - 🇫🇷法国知识分子的世纪: History/Century_of_intellects_in_France.md
+          - 🇺🇾拉丁美洲被切开的血管: History/Latin_american_blood.md
+          - 🇷🇺一个大国的崛起与崩溃: History/Rise_and_fall.md
+          - 🇯🇵现代日本(牛津通识读本): History/Modern_japan.md
+          - 🇫🇷东风——法国知识分子与60年代的遗产: History/Eastern_wind.md
+  - 艺术:
+      - Arts/index.md
+      - 艺术与设计史:
+          - 🇫🇷欧洲艺术: Arts/Art_and_design/Notes1.md
+          - 印象派: Arts/Art_and_design/Impressionism.md
+          - 🇲🇽中美洲艺术: Arts/Art_and_design/Meso_America.md
+      - 归档:
+          - 🇫🇷拉斐尔前派的梦: Arts/Pre_Raphael.md
+          - 🇫🇷黑夜的蝴蝶: Arts/Butterfly_at_night.md
+          - 🇫🇷左岸,从人民阵线到冷战作家: Arts/Left_bank.md
+          - 🇫🇷艺术引导人生——德拉克洛瓦私人日记: Arts/Delacroix.md
+          - 色彩列传：蓝色: Arts/Blue.md
+          - 非主流艺术史: Arts/Art_history_unfashioned.md
+          - 达达和超现实主义: Arts/Dada_surrealism.md
+          - 贝多芬的骰子: Arts/Beethoven.md
+          - 爱的艺术: Arts/Arts_of_love.md
+          - 艺术的故事: Arts/Stories_of_art.md
+          - 文艺复兴时期的艺术: Arts/Art_renaissance.md
+          - 现代主义: Arts/Modernism.md
+      - 🇪🇺20世纪西方艺术家: Arts/20_century_artists.md
+  - 考研:
+      - yan/index.md
+      - 我的规划: yan/yanPlans.md
+      - 我的用书: yan/yanBooks.md
+      - 我的细节: yan/yanHabits.md
+      - 闲聊: yan/yanTalks.md
+  - 运筹与优化:
+      - OROpt/index.md
+      - 给进组研一er的Brief: OROpt/OR/Intro.md
+      - 运筹学基础:
+          - OROpt/OR/index.md
+          - 运筹学刷题本: OROpt/OR/ORExercise/Works.md
+          - 线性规划、单纯形法（plus pro max版）: OROpt/OR/Chapter1.md
+          - 灵敏度分析（太敏感了）: OROpt/OR/Chapter1_plugin.md
+          - 对偶理论及对偶单纯形法（一种哲学）: OROpt/OR/Chapter2.md
+          - 线性规划对偶的解题向写法: OROpt/OR/Chapter3_ext1.md
+          - 运输问题: OROpt/OR/Chapter3.md
+          - 多目标规划: OROpt/OR/Chapter3_ext2.md
+          - 数据包络分析与扩展: OROpt/OR/Chapter3_plugin.md
+          - 整数规划、求解算法和指派问题: OROpt/OR/Chapter4.md
+          - 非线性规划、凸规划理论: OROpt/OR/Chapter5.md
+          - 最优化基础（锥锥们觉得很赞）: OROpt/OR/Chapter5_1.md
+          - 动态规划: OROpt/OR/Chapter6.md
+          - 图论算法:最短路问题: OROpt/OR/Chapter7.md
+          - 图论算法:最小费用流与推广: OROpt/OR/Chapter7_1.md
+          - 图论算法:最大流与最小割: OROpt/OR/Chapter7_2.md
+          - 图论算法:极大团与独立集: OROpt/OR/Chapter7_3.md
+          - 图论算法:二分图与匹配问题: OROpt/OR/Chapter7_4.md
+          - 排队论: OROpt/OR/Chapter9.md
+          - 仓储论（EOQ模型和它的一万个分身）: OROpt/OR/Chapter10.md
+          - 博弈论: OROpt/OR/Chapter11.md
+          - 多智能体寻路(MAPF): OROpt/OR/MAPF.md
+      - 高级运筹学技巧1：列生成方法: OROpt/OR/Chapter12.md
+      - 高级运筹学技巧2：拉格朗日松弛: OROpt/OR/LR.md
+      - 高级运筹学技巧3：分支定价: OROpt/OR/BranchAndPrice.md
+      - 经典运筹学建模：发电机组调度(UCP): OROpt/OR/UnitCommitmentProblem.md
+      - 经典运筹学建模：批量生产问题(LSP): OROpt/OR/LotSizingProblem.md
+      - 经典运筹学建模：定向问题(TOP): OROpt/OR/TOP.md
+      - 路径优化问题｜TSP: OROpt/OR/TSP.md
+      - 路径优化问题｜VRP: OROpt/OR/VRP.md
+      - 路径优化问题｜PDP: OROpt/OR/PDP.md
+      - 经典调度问题｜JSP: OROpt/OR/JSP.md
+      - 图划分问题｜GP: OROpt/OR/GraphPartition.md
+      - 当组合优化遇到深度学习: OROpt/OR/VRPmeetsNeurIPS.md
+      - 常见的0-1变量处理技巧: OROpt/OR/GeneralTechnique.md
+  - 机器学习:
+      - ML/index.md
+      - 统计学习方法：实战:
+          - 感知机: ML/StatLearnMethod/Perceptron.md
+          - 机器学习中的常用指标: ML/StatLearnMethod/AUC.md
+          - K近邻算法: ML/StatLearnMethod/KNN.md
+          - 朴素贝叶斯｜Gaussian贝叶斯分类: ML/StatLearnMethod/NaiveBayesian.md
+          - 线性回归｜多元线性回归: ML/StatLearnMethod/Regression.md
+          - 广义线性模型｜方差分析: ML/StatLearnMethod/GLM_ANOVA.md
+          - PageRank算法: ML/StatLearnMethod/PageRank.md
+          - SVD｜PCA: ML/StatLearnMethod/SVD.md
+      - 实用机器学习：笔记: ML/PracticalML/Notes.md
+      - 推荐系统:
+          - Lecture｜01: ML/RecmdSys/Lecture1.md
+      - 动手学深度学习｜笔记:
+          - 卷积神经网络: ML/DL/CNN.md
+  - 学习笔记:
+      - Study/index.md
+      - 组会与相关学术内容:
+          - 202309至202401: Study/TeamMeeting/0920.md
+          - 系统建模与优化｜20230922: Study/TeamMeeting/0922Fri.md
+          - 20240122报告: Study/TeamMeeting/Articles.md
+          - 0308TeamMeeting: Study/TeamMeeting/0308Prep.md
+          - 0315TeamMeeting: Study/TeamMeeting/0315Prep.md
+          - 0322TeamMeeting: Study/TeamMeeting/0322Prep.md
+          - 2024年综合运输系统运营管理学术研讨会: Study/TeamMeeting/0329Prep.md
+      - 小红书｜资源分享外链: Study/xhs_list.md
+      - 小红书｜文本编辑:
+          - Study/TextEdit/index.md
+          - LaTeX:
+              - 入门知识: Study/TextEdit/LaTeX/pieces.md
+              - LaTeX｜1-零零碎碎: Study/TextEdit/LaTeX/LatexNotes.md
+              - LaTeX｜2-集合相关: Study/TextEdit/LaTeX/SetTheory.md
+              - LaTeX｜3-矩阵多行对齐: Study/TextEdit/LaTeX/Matrix.md
+              - LaTeX｜4-Overleaf论文写作: Study/TextEdit/LaTeX/Overleaf.md
+              - LaTeX｜5-公式识别工具推荐: Study/TextEdit/LaTeX/WordLaTeX.md
+          - Markdown:
+              - 🌟 快速入门: Study/TextEdit/Markdown/MarkdownQuickStart.md
+              - 色样表合集: Study/TextEdit/Markdown/MarkdownSyntax2.md
+              - 常用的语法(with plugins): Study/TextEdit/Markdown/MarkdownSyntax1.md
+              - 我的字体研究: Study/TextEdit/Markdown/Markdown.md
+              - Mermaid嵌入: Study/TextEdit/Markdown/Mkdocs_Tutorials1.md
+      - 小红书｜Python藏宝箱:
+          - 经（踩）验（坑）分（历）享（史）: Study/PythonPackages/Tricks.md
+          - 在Jupyter中美化Pandas表格: Study/PythonPackages/PandasPrettier.md
+          - conda，你看到我们管理环境时的泪了吗: Study/PythonPackages/SOS_Conda.md
+          - 数据结构参考链接: Study/PythonPackages/Data_struct_recomend.md
+          - PyEcharts合集: Study/PythonPackages/Pyecharts1.md
+          - 小玩具：幻方｜拉丁方: Study/PythonPackages/MagicSquare.md
+          - Python包管理工具pipreqs: Study/PythonPackages/PIPREQS.md
+          - Python二分排序函数Bisect: Study/PythonPackages/PythonBisect.md
+          - 数据结构:堆｜heapq: Study/PythonPackages/Heapq.md
+          - 随机数生成｜random: Study/PythonPackages/Random.md
+          - 数据结构：set与frozenset: Study/PythonPackages/PythonPieces9.md
+          - 微信读书可视化: Study/PythonPackages/PythonPieces6.md
+          - Python一些命令行操作: Study/PythonPackages/PythonPieces7.md
+          - Matplotlib相关: Study/PythonPackages/Matplotlib.md
+          - deque与namedtuple: Study/PythonPackages/Python_deque.md
+          - Itertools-小抄: Study/PythonPackages/PythonPieces1.md
+          - Python解包运算符: Study/PythonPackages/PythonPieces3.md
+          - R语言数据集(Partial): Study/PythonPackages/Rdata.md
+          - Pandas CheatSheet: Study/PythonPackages/PythonPieces8.md
+      - 小红书｜供应链管理:
+          - 利特尔定律: Study/Supplychain/LittlesLaw.md
+          - 研究生课程：供应链管理与物流: Study/Supplychain/202401SupplyChain.md
+          - 三种工厂选址模型(Chapter_5.4): Study/Supplychain/Supplychain1.md
+          - 时间序列预测：静态方法(Chapter_7.5.1): Study/Supplychain/SupplyChain13.md
+          - 时间序列预测模型与框架：ARMA/Winter(Chapter_7.5/7.6): Study/Supplychain/SupplyChain3.md
+          - 经济订货批量模型(EOQ)(Chapter_11.3): Study/Supplychain/SupplyChain4.md
+          - EOQ模型的订货量确定与周期盘点(Chapter_11.3.2): Study/Supplychain/SupplyChain9.md
+          - 供应链综合计划策略I(Chapter_8.4): Study/Supplychain/SupplyChain7.md
+          - 供应链综合计划策略II：案例分析(Chapter_8.5): Study/Supplychain/SupplyChain11.md
+          - 规模经济管理：数量折扣I(Chapter_11.4): Study/Supplychain/SupplyChain5.md
+          - 规模经济管理：数量折扣II(Chapter_11.4): Study/Supplychain/SupplyChain8.md
+          - 运营管理：排队论: Study/Supplychain/SupplyChain6.md
+          - 安全库存：基于给定策略(Chapter_12.2): Study/Supplychain/SupplyChain10.md
+          - 安全库存：聚集/供给不确定/零件的情况(Chapter_12.3): Study/Supplychain/SupplyChain12.md
+          - 报童模型I：最优可获得性水平的确定(Chapter_13.2): Study/Supplychain/SupplyChain14.md
+          - 报童模型II：沃尔玛案例分析(Chapter_13.2): Study/Supplychain/SupplyChain15.md
+          - Excel进行供应链绩效模拟(Chapter_13.Appendix): Study/Supplychain/SupplyChain16.md
+          - 提高供应链盈利能力的杠杆(Chapter_13.3): Study/Supplychain/SupplyChain17.md
+          - 供应链中的运输(Chapter_14_1): Study/Supplychain/SupplyChain18.md
+          - 供应链采购合同分析: Study/Supplychain/SupplyChain19.md
+      - 微积分:
+          - Chapter1: Study/Calculus/Math2.md
+          - 和差化积: Study/Calculus/Prosthaphaeresis.md
+          - 变上限积分函数: Study/Calculus/VariUpper.md
+      - 线性代数:
+          - 总结: Study/LinearAlgebra/Conclusion.md
+          - chapter1: Study/LinearAlgebra/Chapter1.md
+          - chapter2: Study/LinearAlgebra/Chapter2.md
+          - chapter3: Study/LinearAlgebra/Chapter3.md
+          - chapter4: Study/LinearAlgebra/Chapter4.md
+          - chapter5: Study/LinearAlgebra/Chapter5.md
+          - MIT | Course_1: Study/LinearAlgebra/MIT_course_1.md
+          - MIT | Course_2: Study/LinearAlgebra/MIT_course_2.md
+          - MIT | Course_3: Study/LinearAlgebra/MIT_course_3.md
+          - MIT | Course_4: Study/LinearAlgebra/MIT_course_4.md
+          - MIT | Course_5: Study/LinearAlgebra/MIT_course_5.md
+          - MIT | Course_6: Study/LinearAlgebra/MIT_course_6.md
+          - MIT | Course_7: Study/LinearAlgebra/MIT_course_7.md
+          - MIT | Course_8: Study/LinearAlgebra/MIT_course_8.md
+          - MIT | Course_9: Study/LinearAlgebra/MIT_course_9.md
+          - MIT | Course_10: Study/LinearAlgebra/MIT_course_10.md
+          - MIT | Course_11: Study/LinearAlgebra/MIT_course_11.md
+          - MIT | Course_12: Study/LinearAlgebra/MIT_course_12.md
+          - MIT | Course_13: Study/LinearAlgebra/MIT_course_13.md
+          - MIT | Course_14: Study/LinearAlgebra/MIT_course_14.md
+      - 概率论:
+          - 统计学基础: Study/Statistics/Statistics_method.md
+          - 基础知识与贝叶斯理论: Study/Statistics/Basics.md
+          - 随机变量: Study/Statistics/Random_Variables.md
+          - 随机变量的数字特征: Study/Statistics/Number_characters.md
+          - 大数定律和中心极限定理: Study/Statistics/Big_number.md
+      - 供应链管理理论与案例:
+          - 第一章｜导论: Study/SCMTheory/Chapter1.md
+          - 第二章｜采购-I: Study/SCMTheory/Chapter2.md
+          - 第三章｜采购-II: Study/SCMTheory/Chapter3.md
+          - 第四章｜订货（全三章）: Study/SCMTheory/Chapter4.md
+          - 第五章｜啤酒游戏: Study/SCMTheory/Chapter5.md
+          - 第六章｜供应链的协调与激励: Study/SCMTheory/Chapter6.md
+          - 第七章｜供应链整合: Study/SCMTheory/Chapter7.md
+          - 第八章｜供应链物流管理: Study/SCMTheory/Chapter8.md
+      - 果系产品使用:
+          - CS193p: Study/Swift/CS193p1.md
+          - AppleVisionPro试用: Study/Swift/AppleVisionPro.md
+          - macOS快捷键: Study/Swift/Keyshortcuts.md
+          - shortcuts快捷指令使用指南: Study/Swift/Shortcuts.md
+          - Apple的奇奇怪怪: Study/Swift/AppleScript.md
+          - Swift基础: Study/Swift/SwiftBasics.md
+          - 软件推荐之Raycast: Study/Swift/Ray.md
+          - macOS下Mail使用学校邮箱: Study/Swift/About_mail.md
+          - macOS下寻找电子书的一些方法: Study/Swift/FindBooks.md
+      - 语言学习:
+          - 法语笔记: Study/English/French.md
+          - 英语笔记: Study/English/English.md
+          - 英语记忆: Study/English/Words.md
+          - 英文作文: Study/English/EnglishEssay.md
+          - 英语文摘: Study/English/Quotes.md
+          - 英语文学批评: Study/English/LiteraryCriticism.md
+      - 制造与服务系统分析: Study/AMASS.md
+      - 一些高中笔记: Study/HighSchool.md
+      - 研究生课程：智慧物流: Study/IntelligentLogistics/IntelligentLogistics1.md
+      - 研究生课程：物流优化算法: Study/IntelligentLogistics/LogisticsAlgorithm.md
+      - 暑期学校-智能决策与算法: Study/fleet.md
+      - Git 使用指南: Study/Git_use.md
+      - 工程经济学: Study/Engineering_eco.md
+      - 工程管理类论文写作: Study/MEMEssay/Class1.md
+      - 发展经济学:
+          - 重点提纲: Study/DevelopEco/chapter1.md
+      - 国际贸易: Study/IntTrad/InternationalTrade.md
+      - 管理学:
+          - 管理学导论: Study/Management/Management.md
+          - 重点: Study/Management/Remain.md
+      - VScode技巧: Study/Vscode/keys.md
+      - 人工智能工具们:
+          - 安装: Study/ChatGPT/Register.md
+          - 其他AI工具: Study/ChatGPT/Reference.md
+          - GPT Prompt技巧: Study/ChatGPT/Prompt1.md
+          - Stable Diffusion 部署管窥: Study/ChatGPT/StableDiffusion.md
+          - Ollama 本地部署: Study/ChatGPT/Ollama.md
+          - 古登堡计划:
+              - 专有名词释疑: Study/ChatGPT/Knowledge/Terms.md
+      - 计算社会学｜复杂系统｜仿真:
+          - Study/SimulationCSS/index.md
+          - 各种笔记: Study/SimulationCSS/Notes.md
+      - 其他平台电子笔记:
+          - 网页设计与制作: Study/Mubu/WebsiteDesign.md
+          - 网页设计简单参数标注（应试用）: Study/Mubu/network.md
+          - Js简单参数标注（应试用）: Study/Mubu/Javs.md
+          - 信息检索: Study/Mubu/InfoRetreval.md
+  - 我的碎碎念:
+      - Talks/index.md
+      - 关于我的101问｜疑问集: Talks/101_asks.md
+      - 2021年底的无病呻吟: Talks/2021_talks.md
+      - 请回答，2022｜2022年终总结: Talks/My2022.md
+      - 从经天路到小粉桥｜2023年终总结: Talks/2023_con.md
+      - 岁月何曾败美人｜2024年终总结: Talks/2024_con.md
+      - 2023年末-失眠漫记: Talks/Insomia.md
+      - “圣母无染原罪”: Talks/Religion.md
+      - 讲故事、听童话与利维坦的傲慢: Talks/About_fairytale.md
+      - 一份抢救活了的读书记录: Talks/UG_reading_conclusion.md
+      - 神秘学手记: Talks/Occult.md
+      - “洛可可缪斯”: Talks/About_Rococo.md
+      - 关于AI时代的文字: Talks/About_literature_AI.md
+      - 关于语言: Talks/About_language.md
+      - 关于知识分享: Talks/Knowledge_share.md
+      - 关于一位长者: Talks/About_a_great_man.md
+      - 关于记忆和记忆崇拜: Talks/About_memory.md
+      - 关于神与我们所相信的: Talks/About_gods.md
+      - 来自上世纪60年代的回响：关于理想与我们所怀念的: Talks/About_60s.md
+      - 马嵬驿与安史乱: Talks/An_shi_chaos.md
+      - 一些歌词: Talks/Music_lines.md
+      - 荐文: Talks/Articles_recomend.md
+      - 荐书: Talks/Books_recomend.md
+      - 古典音乐: Talks/Classical_music.md
+      - 女性主义: Talks/Feminism_talks.md
+  - 关于网站:
+      - Website/index.md
+      - 第零篇｜内容快速索引: Website/tags.md
+      - 第一篇｜框架和托管: Website/Step1.md
+      - 第二篇｜主题和美化: Website/Step2.md
+      - 第三篇｜字体和文本: Website/Step3.md
+
+site_author: SmilingWayne
+repo_name: SmilingWayne/me
+repo_url: https://github.com/SmilingWayne/me
+edit_uri: edit/main/docs
+
+docs_dir: docs/
+theme:
+  language: "zh"
+  name: material
+  custom_dir: docs/overrides/
+  font: false
+  logo: images/Favicon.png
+  #     text: Noto Serif SC
+  #   custom_dir: /docs/stylesheets/
+  features:
+    - content.tabs.link
+    - content.code.copy
+    - navigation.tabs
+    - search.suggest
+    - search.highlight
+    - search.share
+    # - navigation.sections
+    # - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    # - content.action.edit
+    # - content.action.view
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  icon:
+    annotation: material/arrow-right-circle
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css
+  #   - https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css
+  #   - https://cdn.tonycrane.cc/lxgw/lxgwscreen.css
+  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css
+  - stylesheets/extra.css
+  #   - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
+  - javascripts/extra.js
+  - javascripts/mathjax.js
+#   - javascripts/loadMermaid.js
+#   - https://polyfill.io/v3/polyfill.min.js?features=es6
+#   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+plugins:
+  - statistics
+  #   - mermaid2:
+  #       version: 10.2.0
+  #       arguments:
+  #         securityLevel: "loose"
+  - tags:
+      tags_file: Website/tags.md
+  - search:
+      separator: '[\s\u200b\-]'
+      lang: zh
+  - git-authors:
+      show_contribution: true
+      exclude:
+        - index.md
+      enabled: true
+  - git-revision-date-localized:
+      type: datetime
+      custom_format: "%d %B %Y"
+      timezone: Asia/Shanghai
+      locale: en
+      fallback_to_build_date: false
+      enable_creation_date: true
+      exclude:
+        - index.md
+      enabled: true
+
+#   - blogging:
+#       dirs: # The directories to be included
+#         - Arts
+#   - rss:
+#       match_path: Study/.*
+#       date_from_meta:
+#         as_creation: date
+#       categories:
+#         - categories
+#         - tags
+
+markdown_extensions:
+  - admonition
+  - meta
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.mark
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator:
+        !!python/name:material.extensions.emoji.to_svg # Update 2023.12.18 for locations
+
+
+  - pymdownx.arithmatex:
+      generic: true
+      block_tag: "pre"
+  - toc:
+      permalink: ⚓︎
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/SmilingWayne
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/smilingwayne/
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:xiaoxiaowayne@163.com
+  analytics:
+    provider: google
+    rpoperty: G-NVXC1ZHJ8C
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >-
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+
+copyright: Copyright &copy; 2025 ZhongPei 
