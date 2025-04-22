@@ -94,14 +94,20 @@ $$
 ## 3 强对偶性  
 ### 3.1 原问题与对偶问题  
 在本节中，我们考虑一个凸优化问题  
+
 $$
+\begin{equation}
 \begin{aligned}
-p^* := \min_{x} & \ f_0(x) \\
+p^* &:= \min_{x} f_0(x) \\
 \text{s.t.} & \ f_i(x) \leq 0, \, i = 1, \dots, m, \\
-& \ h_i(x) = 0, \, i = 1, \dots, p,
-\end{aligned}\tag{3.1}
-$$  
-其中函数 $ f_0, f_1, \dots, f_m $ 是凸的，且 $ h_1, \dots, h_p $ 是仿射的.我们用 $ \mathcal{D} $ 表示问题的定义域（即所有涉及函数定义域的交集），用 $ \mathcal{X} \subseteq \mathcal{D} $ 表示其可行集.  
+& \ h_i(x) = 0, \, i = 1, \dots, p
+\end{aligned}
+\tag{3.1}
+\label{eq:convexopt}
+\end{equation}
+$$ 
+
+其中函数 $f_0, f_1, \dots, f_m$ 是凸的，且 $h_1, \dots, h_p$ 是仿射的.我们用 $\mathcal{D} $ 表示问题的定义域（即所有涉及函数定义域的交集），用 $\mathcal{X} \subseteq \mathcal{D}$ 表示其可行集.  
 
 我们为该问题关联一个拉格朗日函数 $ \mathcal{L}: \mathbb{R}^n \times \mathbb{R}^m \times \mathbb{R}^p \to \mathbb{R} $，其定义为：  
 $$
@@ -129,3 +135,45 @@ $$
 
 **定理 3.1（通过斯莱特条件的强对偶性）**：若原问题（??）为凸问题，且满足弱斯莱特条件，则强对偶性成立，即 $ p^* = d^* $.  
 
+## 3.3 互补松弛性
+假设强对偶性成立，$x^*$ 是原问题最优解，$(\lambda^*, \nu^*)$ 是对偶问题最优解. 那么
+
+$$
+\begin{align*}
+f(x^*) &= d(\lambda^*, \nu^*) \\
+&:= \inf_{x \in D} \left(f(x) + \sum_{i = 1}^{M_I} \lambda_i^* g_i(x) + \sum_{i = 1}^{M_E} \nu_i^* h_i(x)\right) \\
+&\leq f(x^*) + \sum_{i = 1}^{M_I} \lambda_i^* g_i(x^*) + \sum_{i = 1}^{M_E} \nu_i^* h_i(x^*) \\
+&\leq f(x^*)
+\end{align*}
+$$
+
+最后一行是因为
+
+$$
+\sum_{i = 1}^{M_I} \lambda_i^* g_i(x^*) + \sum_{i = 1}^{M_E} \nu_i^* h_i(x^*) \leq 0
+$$
+
+由此可得
+
+$$
+\sum_{i = 1}^{M_I} \lambda_i^* g_i(x^*) + \sum_{i = 1}^{M_E} \nu_i^* h_i(x^*) = 0
+$$
+
+由于对 $i = 1, \ldots, M_E$ 有 $h_i(x^*) = 0$ ，$\lambda_i \geq 0$ 且 $g_i(x^*) \leq 0$ ，我们进而得到
+对 $i = 1, \ldots, M_I$ ，都有 $\lambda_i^* g_i(x^*) = 0$ . 
+这被称为互补松弛性. 它对任何最优解 $(x^*, \lambda^*, \nu^*)$ 都成立. 
+
+## 3.4 卡罗需 - 库恩 - 塔克（KKT）条件
+**定理7.6** 对于问题(7.1) ，原问题的最优点 $x^*$ 和对偶问题的 $(\lambda^*, \nu^*)$ 满足KKT条件：
+
+$$
+\begin{align}
+g_i(x^*) &\leq 0, &i = 1, \ldots, M_I \\
+\lambda_i &\leq 0, &i = 1, \ldots, M_I \\
+\lambda_i^* g_i(x^*) &= 0, &i = 1, \ldots, M_I \\
+h_i(x^*) &= 0, &i = 1, \ldots, M_E \\
+\nabla f(x^*) + \sum_{i = 1}^{M_I} \lambda_i^* \nabla g_i(x^*) + \sum_{i = 1}^{M_E} \nu_i^* \nabla h_i(x^*) &= 0
+\end{align}
+$$
+
+**定理7.7** 对于问题(7.1) ，如果 $(\hat{x}, \hat{\lambda}, \hat{\nu})$ 满足KKT条件，那么 $\hat{x}$ 是原问题最优解，$(\hat{\lambda}, \hat{\nu})$ 是对偶问题最优解，且对偶间隙为零.  

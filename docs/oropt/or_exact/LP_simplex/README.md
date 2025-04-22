@@ -102,7 +102,8 @@ $$
 
 设$(B^{-1}a_4)_2 \neq 0$，对原方程组的增广矩阵进行高斯消元：
 
-1. **初始增广矩阵**：  
+1. **初始增广矩阵**：
+
 $$
 \left[\begin{array}{ccccc|c}
 1 & (B^{-1}a_4)_1 & 0 & 0 & (B^{-1}a_5)_1 & (B^{-1}b)_1 \\
@@ -175,10 +176,11 @@ $$
 
 - **检验数向量**：  
 
-  $$
-  \boldsymbol{\sigma}_N = \mathbf{c}_N - \mathbf{N}^T (\mathbf{B}^{-1})^T \mathbf{c}_B
-  $$
-  若所有 $\boldsymbol{\sigma}_N \leq \mathbf{0}$（最大化问题），则当前解为最优解. 
+$$
+\boldsymbol{\sigma}_N = \mathbf{c}_N - \mathbf{N}^T (\mathbf{B}^{-1})^T \mathbf{c}_B
+$$
+
+若所有 $\boldsymbol{\sigma}_N \leq \mathbf{0}$（最大化问题），则当前解为最优解. 
 
 
 **入基与离基变量选择**
@@ -186,10 +188,11 @@ $$
 - **入基变量**：选择检验数最大的非基变量 $x_j$（对应 $\boldsymbol{\sigma}_j > 0$. 
 - **离基变量**：通过最小比值法确定：  
 
-  $$
-  \theta = \min \left\{ \frac{(\mathbf{B}^{-1} \mathbf{b})_i}{(\mathbf{B}^{-1} \mathbf{a}_j)_i} \mid (\mathbf{B}^{-1} \mathbf{a}_j)_i > 0 \right\}
-  $$
-  其中 $\mathbf{a}_j$ 是入基变量对应的列向量. 
+$$
+\theta = \min \left\{ \frac{(\mathbf{B}^{-1} \mathbf{b})_i}{(\mathbf{B}^{-1} \mathbf{a}_j)_i} \mid (\mathbf{B}^{-1} \mathbf{a}_j)_i > 0 \right\}
+$$
+
+其中 $\mathbf{a}_j$ 是入基变量对应的列向量. 
 
 
 ### **4. 对偶性**
