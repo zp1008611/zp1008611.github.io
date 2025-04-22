@@ -9,14 +9,10 @@
 - https://zh.wikipedia.org/wiki/%E5%8D%95%E7%BA%AF%E5%BD%A2%E6%B3%95
 
 
-
-
-
-
-
 ## **1. 理论基础**
 
 在线性规划中，可行解、基本解、基本可行解和最优解是几个重要的概念，它们的含义和相互关系如下：
+
 - **可行解**：满足线性规划所有约束条件（包括约束方程和变量非负约束）的解. 例如在线性规划标准型$\begin{cases}\max\ z = c^T x \\ \text{s.t.}\ Ax = b,\ x \geq 0\end{cases}$ 中，若$x$ 满足$Ax = b$ 且$x \geq 0$，则$x$ 就是可行解，所有可行解构成的集合被称为可行域，它是一个凸集. 
 - **基本解**：对于线性规划问题，假设约束矩阵$A$ 的秩为$m$，从$A$ 中选取$m$ 阶非奇异子矩阵$B$（即基矩阵），将变量分为基变量$x_B$ 和非基变量$x_N$ . 令非基变量$x_N = 0$，通过求解$Bx_B = b$ 得到$x_B = B^{-1}b$，由此组合成的解$x = \begin{pmatrix}x_B \\ 0\end{pmatrix}$ 就是基本解. 基本解只考虑了约束方程，不要求变量满足非负约束，所以基本解不一定是可行解.  
 - **基本可行解**：既满足基本解的定义，又满足变量非负约束（即$x\geq0$）的解. **从几何意义上讲，基本可行解对应着可行域的顶点，其数量是有限的. 如果线性规划问题有可行解，那么必然存在基本可行解**.  
@@ -28,7 +24,9 @@
  
 
 ## **2. 单纯形法思想**
+
 将线性规划问题
+
 $$
 \begin{align*}
 \max \quad & \mathbf{c}^T \bar{\mathbf{x}} \\
@@ -36,7 +34,9 @@ $$
 & \bar{\mathbf{x}} \geq \mathbf{0}
 \end{align*}
 $$
+
 表示为：
+
 $$
 \begin{align*}
 \max \quad & \mathbf{c}^T \mathbf{x} \\
@@ -44,24 +44,30 @@ $$
 & \mathbf{x} \geq \mathbf{0}
 \end{align*}
 $$
+
 其中：
+
 - $\mathbf{A} \in \mathbb{R}^{m \times n}$ 是约束矩阵（$m$ 个约束，$n$ 个变量），
 - $\mathbf{b} \in \mathbb{R}^m$ 是右端项向量，
 - $\mathbf{c} \in \mathbb{R}^n$ 是目标函数系数向量. 
 下面我们来解释 pivoting 步骤的算法. 
 
 设$A = (a_1, a_2, \cdots, a_n)$，其中$a_j$是$A$的第$j$列. 因为$\text{rank}(A)=m$，所以存在一个$m\times m$的非奇异子矩阵$B=(a_{B_1}, a_{B_2}, \cdots, a_{B_m})$. 设$J = \{1, 2, \cdots, n\}$且$K = \{B_1, B_2, \cdots, B_m\}$，令$N = J\setminus K$. 现在对$A$的列进行重新排列，使得$A = (B, N)$. 我们可以将$Ax = b$写成$Bx_B + Nx_N = b$，其中$x = (x_B, x_N)$. 那么$Ax = b$的一个解为$x_B = B^{-1}b$且$x_N = 0$. 
+
 $$
 Ax = \begin{bmatrix} B & N \end{bmatrix}\begin{bmatrix} x_B \\ 0 \end{bmatrix} = b, \text{ 即 } x_B = B^{-1}b. 
 $$
+
 如果$x$是一个真正的角点（它是可行的），则需满足$x_B\geq0$ . 目标函数为
+
 $$
 z=cx = \begin{bmatrix} c_B & c_N \end{bmatrix}\begin{bmatrix} x_B \\ 0 \end{bmatrix} = c_B B^{-1}b. 
 $$
  
 问题是，在离开这个角点之后下一步该往哪里走?
 
- 通过对$A$进行消元操作可以简化这个决策，该操作会将方阵部分$B$化为单位矩阵. 用矩阵符号表示，就是将$Ax = b$两边同时乘以$A_B^{-1}$
+通过对$A$进行消元操作可以简化这个决策，该操作会将方阵部分$B$化为单位矩阵. 用矩阵符号表示，就是将$Ax = b$两边同时乘以$A_B^{-1}$
+
 $$
 \begin{bmatrix} I & B^{-1}N \end{bmatrix}\begin{bmatrix} x_B \\ 0 \end{bmatrix} = B^{-1}b. 
 $$
@@ -69,12 +75,16 @@ $$
 这里设$m=3,n=5$, 那么$A=\begin{bmatrix} a_1 & a_2 &a_3&a_4&a_5\end{bmatrix}$, $a_i$是列向量. 
 
 设$x_B=\begin{bmatrix} x_1\\x_2\\x_3 \end{bmatrix}$, $x_N=\begin{bmatrix} x_4\\x_5 \end{bmatrix}$，则
-$$\begin{bmatrix} I & B^{-1}N \end{bmatrix}=
+
+$$
+\begin{bmatrix} I & B^{-1}N \end{bmatrix}=
 \begin{bmatrix} 
   1 & 0&0 & （B^{-1}a_{4})_1& (B^{-1}a_{5})_1\\
   0 & 1&0 & （B^{-1}a_{4})_2& (B^{-1}a_{5})_2\\
   0 & 0&1 & （B^{-1}a_{4})_3& (B^{-1}a_{5})_3
-  \end{bmatrix}$$
+  \end{bmatrix}
+$$
+
 假设离基变量为$x_{2}$, 入基变量为$x_{4}$, 则有
  
 $$
@@ -90,9 +100,6 @@ $$
 $$
 
 
-
-
-
 设$(B^{-1}a_4)_2 \neq 0$，对原方程组的增广矩阵进行高斯消元：
 
 1. **初始增广矩阵**：  
@@ -105,7 +112,8 @@ $$
 $$
 
 2. **第二列消元**：  
-将第二行除以$(B^{-1}a_4)_2$，使第二列主元为$1$，得到：  
+将第二行除以$(B^{-1}a_4)_2$，使第二列主元为$1$，得到： 
+
 $$
 \left[\begin{array}{ccccc|c}
 1 & (B^{-1}a_4)_1 & 0 & 0 & (B^{-1}a_5)_1 & (B^{-1}b)_1 \\
@@ -116,6 +124,7 @@ $$
 
 3. **消除其他行第二列元素**：  
 用第一行减去第二行乘以$(B^{-1}a_4)_1$，第三行减去第二行乘以$(B^{-1}a_4)_3$，最终增广矩阵为：  
+
 $$
 \boxed{
 \left[\begin{array}{ccccc|c}
@@ -127,13 +136,16 @@ $$
 $$
 
 由于$x_1,x_4,x_3$是新的基变量，那么$x_1,x_4,x_3\geq 0$, 由于$x_2,x_5$是非基变量, 那么$x_2,x_5=0$, 所以
+
 $$
 x_1=(B^{-1}b)_1 - \frac{(B^{-1}a_4)_1(B^{-1}b)_2}{(B^{-1}a_4)_2}\\
 x_4=\frac{(B^{-1}b)_2}{(B^{-1}a_4)_2}\\
 x_3=(B^{-1}b)_3 - \frac{(B^{-1}a_4)_3(B^{-1}b)_2}{(B^{-1}a_4)_2}\\
 x_2,x_5=0
 $$
+
 新的目标函数值为
+
 $$
 z'=c'x = \begin{bmatrix} c_B' & c_N' \end{bmatrix}\begin{bmatrix} x_B' \\ 0 \end{bmatrix} = c_{B1}x_1+c_{B3}x_3+c_{N1}x_4\\
 =c_B^T(B^{-1}b-\frac{(B^{-1}b)_2}{(B^{-1}a_4)_2}B^{-1}a_4)+c_N^Tx_N\\
@@ -159,10 +171,10 @@ $$
 5. 若迭代过程中发现问题的目标函数值无界，则终止迭代. 
 
 
-
 **检验数与最优性条件**
 
 - **检验数向量**：  
+
   $$
   \boldsymbol{\sigma}_N = \mathbf{c}_N - \mathbf{N}^T (\mathbf{B}^{-1})^T \mathbf{c}_B
   $$
@@ -173,6 +185,7 @@ $$
 
 - **入基变量**：选择检验数最大的非基变量 $x_j$（对应 $\boldsymbol{\sigma}_j > 0$. 
 - **离基变量**：通过最小比值法确定：  
+
   $$
   \theta = \min \left\{ \frac{(\mathbf{B}^{-1} \mathbf{b})_i}{(\mathbf{B}^{-1} \mathbf{a}_j)_i} \mid (\mathbf{B}^{-1} \mathbf{a}_j)_i > 0 \right\}
   $$
