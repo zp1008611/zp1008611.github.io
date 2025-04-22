@@ -28,7 +28,7 @@ $$
 
 **算法1 割平面法**  
 1 **初始化**：$t \leftarrow 0$，$\mathcal{S}_0 \supseteq \mathcal{D}$  
-2 **循环**：$\\$
+2 **循环**: <br>
 3 $\quad$ 令 $\boldsymbol{x}_t \leftarrow \arg\min_{\boldsymbol{x} \in \mathcal{S}_t} f(\boldsymbol{x})$  
 4 $\quad$ 若 $\boldsymbol{x}_t \in \mathcal{D}$，则终止；否则找到分离 $\boldsymbol{x}_t $ 与 $ \mathcal{D}$ 的割平面 $\langle \boldsymbol{a}, \boldsymbol{x} \rangle \leq \beta$  
 5 $\quad$ $\mathcal{S}_{t+1} \leftarrow \mathcal{S}_t \cap \{ \boldsymbol{x} \mid \langle \boldsymbol{a}, \boldsymbol{x} \rangle \leq \beta \}$  
