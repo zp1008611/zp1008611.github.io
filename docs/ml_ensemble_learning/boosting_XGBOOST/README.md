@@ -56,6 +56,7 @@
 XGBOOST在目标函数中添加了L1正则项$\gamma T$和L2正则项$\frac{1}{2}\lambda \sum\limits_{j=1}^T w_j^2$，其中$\gamma, \lambda$是正则系数，$T$是对应树模型的叶子节点个数，$w_j$是第$j$个叶子节点的权重值.
 
 定义$I_j = \{i | q(\mathbf{x}_i) = j\}$ 为叶子节点$j$ 的实例集合. XGBOOST在第$t$轮迭代中的目标函数为：
+
 $$
 \begin{align*}
 \tilde{\mathcal{L}}_t&=\sum_{i = 1}^{n}\left[g^{(i)}f_t(\mathbf{x}^{(i)})+\frac{1}{2}h^{(i)}f_t^2(\mathbf{x}^{(i)})\right]+\gamma T+\frac{1}{2}\lambda\sum_{j = 1}^{T}w_j^2\\
@@ -64,10 +65,13 @@ $$
 $$
 
 对于固定的树结构$q(\mathbf{x})$，对上式求导可得叶子节点$j$ 的最优权重$w_j^*$：
+
 $$
 w_j^* = -\frac{\sum_{i\in I_j}g^{(i)}}{\sum_{i\in I_j}h^{(i)} + \lambda}
 $$
+
 同时可得最优值：
+
 $$
 \tilde{\mathcal{L}}_t(q) = -\frac{1}{2}\sum_{j = 1}^{T}\frac{(\sum_{i\in I_j}g^{(i)})^2}{\sum_{i\in I_j}h^{(i)} + \lambda}+\gamma T
 $$

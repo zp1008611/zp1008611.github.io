@@ -7,7 +7,7 @@ nav:
     - 运筹与优化:
         - 精确式算法: 
             - oropt/or_exact/index.md
-            - Optimality_Conditions: oropt/or_exact/optimality_conditions/README.md
+            - Optimality Conditions: oropt/or_exact/optimality_conditions/README.md
             - Dual Theory: oropt/or_exact/dual_theory/README.md
             - LP Introduction: oropt/or_exact/LP_intro/README.md
             - LP Simplex Method: oropt/or_exact/LP_simplex/README.md
@@ -35,6 +35,7 @@ docs_dir: docs/
 theme:
   name: material
   language: zh # 一些提示性的文字会变成中文
+  custom_dir: docs/overrides/
   font:
     text: Roboto
     code: Roboto Mono
@@ -101,6 +102,8 @@ extra_javascript:
   - javascripts/extra.js
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  # 网站统计
+  - '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'
 #   - javascripts/loadMermaid.js
 #   - https://polyfill.io/v3/polyfill.min.js?features=es6
 #   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
@@ -111,8 +114,6 @@ plugins:
   #       version: 10.2.0
   #       arguments:
   #         securityLevel: "loose"
-  - tags:
-      tags_file: Website/tags.md
   - search:
       separator: '[\s\u200b\-]'
       lang: zh
@@ -162,7 +163,9 @@ markdown_extensions:
   - meta # 支持Markdown文件上方自定义标题标签等
   - tables
      
-
+# google_analytics:
+#   - G-DZ1S490E8S
+#   - auto
 
 # extra:
 #   social:

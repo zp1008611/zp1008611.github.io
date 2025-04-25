@@ -2,23 +2,8 @@
 {% include "partials/tags.html" %}
 {% endif %}
 
-{% if page.edit_url %}
-<a href="{{ page.edit_url | replace('edit', 'commits' ) }}" title="页面修改记录" class="md-content__button md-icon">
-  {% include ".icons/materials/history.svg" %}
-</a>
-<a href="{{ page.edit_url | replace('edit', 'blob' ) ~ '?plain=1' }}" title="页面源码" class="md-content__button md-icon">
-  {% include ".icons/materials/sourcecode.svg" %}
-</a>
-{% endif %}
-
+<span id="busuanzi_container_page_pv" style="font-style: italic; font-size: 12px; color: gray;">本文总访问量<span id="busuanzi_value_page_pv" style="font-style: italic; font-size: 12px; color: gray;"></span> 次</span>
 {% if not "\x3ch1" in page.content %}
 <h1>{{ page.title | d(config.site_name, true)}}</h1>
 {% endif %}
 {{ page.content }}
-
-{% if page.meta and (
-page.meta.git_revision_date_localized or
-page.meta.revision_date
-) %}
-{% include "partials/source-file.html" %}
-{% endif %}
