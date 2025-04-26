@@ -38,7 +38,7 @@ $$
 \forall x \in \mathcal{X}, \forall \lambda \in \mathbb{R}_+^m : f_0(x) \geq \mathcal{L}(x, \lambda).
 $$  
 
-拉格朗日函数可用于将原问题（??）表示为无约束问题. 确切地说：  
+拉格朗日函数可用于将原问题 $\eqref{eq:nonconvex origin problem}$ 表示为无约束问题. 确切地说：  
 
 $$
 p^* = \min_x \max_{\lambda \geq 0} \mathcal{L}(x, \lambda),
@@ -141,13 +141,13 @@ $$
 
 其中函数 $f_0, f_1, \dots, f_m$ 是凸的，且 $h_1, \dots, h_p$ 是仿射的.我们用 $\mathcal{D} $ 表示问题的定义域（即所有涉及函数定义域的交集），用 $\mathcal{X} \subseteq \mathcal{D}$ 表示其可行集.  
 
-我们为该问题关联一个拉格朗日函数 $ \mathcal{L}: \mathbb{R}^n \times \mathbb{R}^m \times \mathbb{R}^p \to \mathbb{R} $，其定义为：
+我们为该问题关联一个拉格朗日函数 $\mathcal{L}: \mathbb{R}^n \times \mathbb{R}^m \times \mathbb{R}^p \to \mathbb{R}$，其定义为：
 
 $$
 \mathcal{L}(x, \lambda, \nu) := f_0(x) + \sum_{i=1}^m \lambda_i f_i(x) + \sum_{i=1}^p \nu_i h_i(x).
 $$  
 
-对偶函数是 $ g: \mathbb{R}^m \times \mathbb{R}^p \to \mathbb{R} $，定义为：
+对偶函数是 $g: \mathbb{R}^m \times \mathbb{R}^p \to \mathbb{R}$，定义为：
 
 $$
 g(\lambda, \nu) := \min_{x} \mathcal{L}(x, \lambda, \nu).
@@ -162,8 +162,8 @@ $$
 
 ### 3.2 通过斯莱特条件的强对偶性 
 
-**对偶间隙与强对偶性**：我们已了解弱对偶性如何构建一个凸优化问题，即便原（主）问题非凸，该问题也能为原问题提供下界.对偶间隙是一个非负数 $ p^* - d^* $.  
-若对偶间隙为零（即 $ p^* = d^* $），则称问题（??）满足强对偶性.  
+**对偶间隙与强对偶性**：我们已了解弱对偶性如何构建一个凸优化问题，即便原（主）问题非凸，该问题也能为原问题提供下界.对偶间隙是一个非负数 $p^* - d^*$.  
+若对偶间隙为零（即 $p^* = d^*$），则称问题（??）满足强对偶性.  
 
 **斯莱特条件**：若问题严格可行，即  
 
@@ -171,7 +171,7 @@ $$
 \exists x_0 \in \mathcal{D} : f_i(x_0) < 0,\, i = 1, \dots, m,\ h_i(x_0) = 0,\, i = 1, \dots, p,
 $$  
 
-则称其满足斯莱特条件.当 $ f_i $ 为仿射函数时，无需严格可行性，可用斯莱特条件的弱形式替代.由此可得：  
+则称其满足斯莱特条件.当 $f_i$ 为仿射函数时，无需严格可行性，可用斯莱特条件的弱形式替代.由此可得：  
 
 **定理 3.1（通过斯莱特条件的强对偶性）**：若原问题 $\eqref{eq:convexopt}$ 为凸问题，且满足弱斯莱特条件，则强对偶性成立，即 $ p^* = d^* $.  
 
