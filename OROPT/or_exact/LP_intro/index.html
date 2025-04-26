@@ -1299,20 +1299,22 @@
 <ol>
 <li>
 <p><strong>决策变量</strong><br />
-   表示需要优化的未知量，通常用 $ x_1, x_2, \dots, x_n $ 表示. 例如，生产计划中的产品数量. </p>
+   表示需要优化的未知量，通常用 <span class="arithmatex">\(x_1, x_2, \dots, x_n\)</span> 表示. 例如，生产计划中的产品数量. </p>
 </li>
 <li>
 <p><strong>目标函数</strong><br />
-   待优化的线性函数，形式为：<br />
-   $$
-   \max/\min \quad c_1x_1 + c_2x_2 + \dots + c_nx_n
-    $$
-   例如，最大化利润或最小化成本. </p>
+   待优化的线性函数，形式为： </p>
 </li>
-<li>
-<p><strong>约束条件</strong><br />
-   由线性不等式或等式构成，限制决策变量的可行范围，例如：<br />
-   $$
+</ol>
+<p>$$
+   \max/\min \quad c_1x_1 + c_2x_2 + \dots + c_nx_n
+    $$</p>
+<p>例如，最大化利润或最小化成本. </p>
+<ol>
+<li><strong>约束条件</strong><br />
+   由线性不等式或等式构成，限制决策变量的可行范围，例如：  </li>
+</ol>
+<p>$$
    \begin{cases}
    a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n \leq (\text{或} \geq, =) \, b_1 \
    \vdots \
@@ -1320,18 +1322,16 @@
    x_1, x_2, \dots, x_n \geq 0 \quad \text{（非负约束）}
    \end{cases}
    $$</p>
-</li>
-</ol>
 <h3 id="_4"><strong>标准形式</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>线性规划的标准形式为：<br />
-$$
-\begin{align<em>}
-\max \quad &amp; \mathbf{c}^T \mathbf{x} \
-\text{s.t.} \quad &amp; \mathbf{A} \mathbf{x} \leq \mathbf{b} \
+<p>线性规划的标准形式为：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+\max \quad &amp; \mathbf{c}^T \mathbf{x} \\
+\text{s.t.} \quad &amp; \mathbf{A} \mathbf{x} \leq \mathbf{b} \\
 &amp; \mathbf{x} \geq \mathbf{0}
-\end{align</em>}
-$$<br />
-其中，<span class="arithmatex">\(\mathbf{c}\)</span> 是目标函数系数向量，<span class="arithmatex">\(\mathbf{A}\)</span> 是约束矩阵，<span class="arithmatex">\(\mathbf{b}\)</span> 是约束右端项向量. </p>
+\end{align*}
+\]</div>
+<p>其中，<span class="arithmatex">\(\mathbf{c}\)</span> 是目标函数系数向量，<span class="arithmatex">\(\mathbf{A}\)</span> 是约束矩阵，<span class="arithmatex">\(\mathbf{b}\)</span> 是约束右端项向量. </p>
 <h3 id="_5"><strong>求解方法</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
@@ -1350,22 +1350,26 @@ $$<br />
 <h2 id="lp-duality">LP Duality<a class="headerlink" href="#lp-duality" title="Permanent link">&para;</a></h2>
 <p>下面从不同角度为你详细介绍线性规划对偶问题的推导过程. </p>
 <h3 id="_6">从拉格朗日对偶性推导<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p>对于标准形式的线性规划原问题：
-$$
-\begin{align<em>}
-\max\quad &amp; z = c^T x \
-\text{s.t.}\quad &amp; Ax \leq b \
+<p>对于标准形式的线性规划原问题：</p>
+<div class="arithmatex">\[
+\begin{align*}
+\max\quad &amp; z = c^T x \\
+\text{s.t.}\quad &amp; Ax \leq b \\
 &amp; x \geq 0
-\end{align</em>}
-$$
-1. <strong>引入拉格朗日函数</strong>
+\end{align*}
+\]</div>
+<ol>
+<li>
+<p><strong>引入拉格朗日函数</strong>
    引入非负的拉格朗日乘子向量 <span class="arithmatex">\(y=(y_1,y_2,\cdots,y_m)^T\geq0\)</span> 和 <span class="arithmatex">\(s=(s_1,s_2,\cdots,s_n)^T\geq0\)</span>，构造拉格朗日函数：
    <span class="arithmatex">\(<span class="arithmatex">\(L(x,y,s)=c^T x + y^T(b - Ax)-s^T x\)</span>\)</span>
    这里 <span class="arithmatex">\(y\)</span> 对应不等式约束 <span class="arithmatex">\(Ax\leq b\)</span>，<span class="arithmatex">\(s\)</span> 对应非负约束 <span class="arithmatex">\(x\geq0\)</span>. </p>
-<ol>
-<li><strong>推导对偶问题</strong>
+</li>
+<li>
+<p><strong>推导对偶问题</strong>
    对偶问题为
-   <span class="arithmatex">\(<span class="arithmatex">\(\min_{y\geq0,s\geq0}\max_{x}L(x,y,s)\)</span>\)</span></li>
+   <span class="arithmatex">\(<span class="arithmatex">\(\min_{y\geq0,s\geq0}\max_{x}L(x,y,s)\)</span>\)</span></p>
+</li>
 </ol>
 <p>对 <span class="arithmatex">\(L(x,y,s)\)</span> 关于 <span class="arithmatex">\(x\)</span> 求极大，令 <span class="arithmatex">\(\frac{\partial L}{\partial x}=c - A^T y - s = 0\)</span>，即 <span class="arithmatex">\(s = c - A^T y\)</span>. </p>
 <p>将 <span class="arithmatex">\(s = c - A^T y\)</span> 代入 <span class="arithmatex">\(L(x,y,s)\)</span> 中，此时 <span class="arithmatex">\(L(x,y,s)\)</span> 关于 <span class="arithmatex">\(x\)</span> 求极大后的值为 <span class="arithmatex">\(y^T b\)</span>. 
@@ -1416,7 +1420,7 @@ $$
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 17:44:48">April 26, 2025 17:44:48</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 20:10:25">April 26, 2025 20:10:25</span>
   </span>
 
     
