@@ -32,23 +32,23 @@ $$
 - **While** $\mathcal{L} \neq \emptyset$ **do**  
 -   - 从 $\mathcal{L}$ 中选择待探索的子集合 $\mathcal{S}$ 
 -   - 求 $(\mathcal{S},f)$ 的线性松弛问题的解 $\hat{x}'$
--   - **If** $\hat{x}'$是不可行解 **or** $\hat{x}'$是分数可行解，且 $f（\hat{x}'）\leq f(\hat{x})$ **then** 
--   -   - $\mathcal{S}$赋予可以剪枝属性 
--   - **else if**  $ \hat{x}' $是分数可行解，且$f
+-   - **If** $\hat{x}'$ 是不可行解 **or** $\hat{x}'$是分数可行解，且 $f（\hat{x}'）\leq f(\hat{x})$ **then** 
+-   -   - $\mathcal{S}$ 赋予可以剪枝属性 
+-   - **else if**  $\hat{x}'$ 是分数可行解，且$f
 （\hat{x}'）> f(\hat{x})$ **then** 
--   -   - $\mathcal{S}$赋予不可剪枝属性 
+-   -   - $\mathcal{S}$ 赋予不可剪枝属性 
 -   - **If** 需要添加切平面 **then**  
 -   -   - 找到分离 $\hat{x}'$ 与 $\mathcal{S}$ 的割平面 $\langle \boldsymbol{a}, \hat{x}' \rangle \leq \beta$  
 -   -   - $\mathcal{S}_{t+1} \leftarrow \mathcal{S}_t \cap \{ x \mid \langle \boldsymbol{a}, \hat{x}' \rangle \leq \beta \}$ 
 -   -   - 返回第4行  
--   - **else if** $\hat{x}'$是整数可行解 **then** 
+-   - **else if** $\hat{x}'$ 是整数可行解 **then** 
 -   -   - $\hat{x} = \hat{x}'$  
--   -   - $\mathcal{S}$赋予可以剪枝属性 
+-   -   - $\mathcal{S}$ 赋予可以剪枝属性 
 -   - **end if** 
--   - **if** $\mathcal{S}$不可剪枝 **then** 
--   -   - 将 $ \mathcal{S} $ 划分为 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $  
--   -   - 将 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $ 加入 $ \mathcal{L} $ 
+-   - **if** $\mathcal{S}$ 不可剪枝 **then** 
+-   -   - 将 $\mathcal{S}$ 划分为 $\mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r$  
+-   -   - 将 $\mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r$ 加入 $\mathcal{L}$ 
 -   - **end if**  
--   - 从 $ \mathcal{L} $ 中移除 $ \mathcal{S} $  
+-   - 从 $\mathcal{L}$ 中移除 $\mathcal{S}$  
 - **end while**  
 - **return** $ \hat{x} $  

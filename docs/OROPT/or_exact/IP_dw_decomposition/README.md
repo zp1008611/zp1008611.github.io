@@ -11,7 +11,8 @@
 
 
 ## 2 Dantzig-Wolfe分解
-考虑如下混合整数规划：  
+考虑如下混合整数规划： 
+
 $$
 \begin{align*}
 z_{IP} = \max & \quad c^\top x \\
@@ -19,15 +20,19 @@ z_{IP} = \max & \quad c^\top x \\
 & \quad Ex \leq f \tag{MIP} \\
 & \quad x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p.
 \end{align*}
-$$  
+$$ 
+
 我们将学习用于求解该混合整数规划的Dantzig-Wolfe分解框架.   
 
 ### 2.1 基于拉格朗日对偶的Dantzig-Wolfe分解  
-定义集合 $ Q $ 如下：  
+定义集合 $ Q $ 如下：
+
 $$
 Q = \left\{ x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p : Ax \leq b \right\}.
 $$  
-假设 $ Q $ 非空，且 $ A, b $ 的元素为有理数. 设 $ m $ 为矩阵 $ E $ 的行数，取 $ \lambda \in \mathbb{R}_+^m $. 回顾，关于 $ \lambda $，对（MIP）定义的拉格朗日松弛如下：  
+
+假设 $ Q $ 非空，且 $ A, b $ 的元素为有理数. 设 $ m $ 为矩阵 $ E $ 的行数，取 $ \lambda \in \mathbb{R}_+^m $. 回顾，关于 $ \lambda $，对（MIP）定义的拉格朗日松弛如下： 
+
 $$
 \begin{align*}
 z_{\text{LR}}(\lambda) = \max & \quad c^\top x + \lambda^\top (f - Ex) \\
@@ -35,29 +40,39 @@ z_{\text{LR}}(\lambda) = \max & \quad c^\top x + \lambda^\top (f - Ex) \\
 & \quad x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p.
 \end{align*}
 $$  
-此外，回顾混合整数规划（MIP）的拉格朗日对偶定义为：  
+
+此外，回顾混合整数规划（MIP）的拉格朗日对偶定义为： 
+
 $$
 z_{\text{LD}} = \min \left\{ z_{\text{LR}}(\lambda) : \lambda \geq 0 \right\}. \tag{LD}
 $$  
+
 我们已知，（MIP）与（LD）通过如下（LD）的特征描述相关联：  
+
 $$
 z_{\text{LD}} = \max \left\{ c^\top x : Ex \leq f,\ x \in \text{conv}(Q) \right\}.
 $$
 
 此外，根据Minkowski-Weyl定理，$\text{conv}(Q)$ 可表示为  
+
 $$
 \text{conv}(Q) = \text{conv}\{v^1, \ldots, v^n\} + \text{cone}\{r^1, \ldots, r^\ell\}
 $$  
-其中 $v^1, \ldots, v^n$ 是 $\text{conv}(Q)$ 的**极点**，$r^1, \ldots, r^\ell$ 是 $\text{conv}(Q)$ 的**极射线**. 那么，$\text{conv}(Q)$ 中的任意点 $x$ 可写为：  
+
+其中 $v^1, \ldots, v^n$ 是 $\text{conv}(Q)$ 的**极点**，$r^1, \ldots, r^\ell$ 是 $\text{conv}(Q)$ 的**极射线**. 那么，$\text{conv}(Q)$ 中的任意点 $x$ 可写为： 
+
 $$
 x = \sum_{k \in [n]} \alpha_k v^k + \sum_{h \in [\ell]} \beta_h r^h
 $$  
+
 其中存在 $\alpha \in \mathbb{R}_+^k$ 和 $\beta \in \mathbb{R}_+^\ell$，满足：  
+
 $$
 \sum_{k \in [n]} \alpha_k = 1.
 $$  
 
 基于此，可得：  
+
 $$
 \begin{align*}
 z_{\text{LD}} = \max & \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \\
@@ -66,11 +81,15 @@ z_{\text{LD}} = \max & \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\el
 & \alpha \in \mathbb{R}_+^k,\ \beta \in \mathbb{R}_+^\ell.
 \end{align*}
 $$  
+
 回顾，混合整数规划（MIP）的拉格朗日对偶（LD）是（MIP）的一种松弛. 因此，我们将（DW1）称为（MIP）的**Dantzig-Wolfe松弛**. 此外，我们有：  
+
 $$
 z_{IP} = \max\left\{c^\top x : Ex \leq f,\ x \in \text{conv}(Q),\ x_j \in \mathbb{Z}_+\ \forall j \in [d] \right\}.
 $$  
+
 因此，推导出：  
+
 $$
 \begin{align*}
 z_{IP} = \max & \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \\
@@ -80,6 +99,7 @@ z_{IP} = \max & \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^
 & \sum_{k \in [n]} \alpha_k v_j^k + \sum_{h \in [\ell]} \beta_h r_j^h \in \mathbb{Z}_+,\ j \in [d].
 \end{align*}
 $$  
+
 此处，公式（DW2）被称为（MIP）的**Dantzig-Wolfe重构**. 
 
 
@@ -87,7 +107,9 @@ $$
 
 
 ### 2.2 ($\text{DW1}$)的对偶是($\text{LD}$)
-回顾，($\text{LD}$)的Dantzig-Wolfe分解由下式给出：  
+
+回顾，($\text{LD}$)的Dantzig-Wolfe分解由下式给出：
+
 $$
 \begin{align*}
 \max & \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \\
@@ -95,8 +117,10 @@ $$
 & \sum_{k \in [n]} \alpha_k = 1 \\
 & \alpha \in \mathbb{R}_+^k,\ \beta \in \mathbb{R}_+^\ell,
 \end{align*}
-$$  
-对($\text{DW1}$)取对偶，对不等式约束使用对偶变量 $\lambda$，对等式约束使用对偶变量 $\mu$，推导可得：  
+$$ 
+
+对($\text{DW1}$)取对偶，对不等式约束使用对偶变量 $\lambda$，对等式约束使用对偶变量 $\mu$，推导可得： 
+
 $$
 \begin{align*}
 \min & \lambda^\top f + \mu \\
@@ -105,7 +129,9 @@ $$
 & \lambda \geq 0.
 \end{align*}
 $$  
+
 注意，上述式子等价于：  
+
 $$
 \begin{align*}
 \min & \lambda^\top f + \mu \\
@@ -113,18 +139,24 @@ $$
 & \lambda \in \text{dom}(z_{\text{LR}}),
 \end{align*}
 $$  
+
 因  
+
 $$
 \text{dom}(z_{\text{LR}}) = \left\{\lambda : (c - E^\top \lambda)^\top r^h \leq 0\ \forall h \in [\ell],\ \lambda \geq 0 \right\}.
 $$  
-消去变量 $\mu$，得到：  
+
+消去变量 $\mu$，得到：
+
 $$
 \begin{align*}
 \min & \lambda^\top f + \max_{k \in [n]} \left\{(c - E^\top \lambda)^\top v^k \right\} \\
 \text{s.t.} & \lambda \in \text{dom}(z_{\text{LR}}).
 \end{align*}
 $$  
+
 该式等价于：  
+
 $$
 \begin{align*}
 & \min_{\lambda \in \text{dom}(z_{\text{LR}})} \max_{k \in [n]} \left\{\lambda^\top f + (c - E^\top \lambda)^\top v^k \right\} \\
@@ -136,7 +168,9 @@ $$
 
 
 ### 2.3 二元整数线性规划的Dantzig-Wolfe分解  
-考虑如下二元整数规划：  
+
+考虑如下二元整数规划： 
+
 $$
 \begin{align*}
 z_{IP} = \max & \quad c^\top x \\
@@ -145,16 +179,22 @@ z_{IP} = \max & \quad c^\top x \\
 & \quad x \in \{0, 1\}^d.
 \end{align*}
 $$  
-我们将 $ Q $ 定义为：  
+
+我们将 $Q$ 定义为：
+
 $$
 Q = \left\{ x \in \{0, 1\}^d : Ax \leq b \right\}.
 $$  
-由于 $ Q $ 有界且有限，因此 $ Q = \{v^1, \ldots, v^n\} $.   
-那么，$ Q $ 中的任意点 $ x $ 可表示为：  
+
+由于 $Q$ 有界且有限，因此 $Q = \{v^1, \ldots, v^n\}$.   
+那么，$Q$ 中的任意点 $x$ 可表示为：  
+
 $$
 x = \sum_{k \in [n]} \alpha_k v^k,\quad \sum_{k \in [n]} \alpha_k = 1,\quad \alpha_k \in \{0, 1\}^n.
 $$  
-由此可得：  
+
+由此可得： 
+
 $$
 \begin{align*}
 z_{IP} = \max & \quad \sum_{k \in [n]} (c^\top v^k) \alpha_k \\
@@ -177,6 +217,7 @@ $$
 
 ### 2.4 具有块对角结构的问题  
 我们考虑如下优化模型：  
+
 $$
 \begin{align*}
 &\max \quad c^{1^\top}x^1 + c^{2^\top}x^2 + \cdots + c^{p^\top}x^p \\
@@ -188,7 +229,9 @@ $$
 &\quad x^j \in \{0, 1\}^{n_j},\quad j \in [p].
 \end{align*}
 $$  
+
 对于 $ j \in [p] $，定义 $ Q_j $ 如下：  
+
 $$ Q_j = \left\{ x^j \in \{0, 1\}^{n_j} : A^jx^j \leq b^j \right\}. $$  
 这里，$ Q_j $ 有界且有限，因此 $ Q_j $ 中的任意点 $ x^j $ 可写为：  
 $$ x^j = \sum_{v \in Q_j} \alpha_v^j v,\quad \sum_{v \in Q_j} \alpha_v^j = 1,\quad \alpha^j_v \in \{0, 1\}^{|Q_j|}. $$  
