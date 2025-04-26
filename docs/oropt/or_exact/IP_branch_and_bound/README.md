@@ -33,16 +33,16 @@ $$
 -   - 求 $(\mathcal{S},f)$的线性松弛问题的解 $\hat{x}'$ 
 -   - **if** $\hat{x}'$ 是不可行解 **or** $\hat{x}'$是分数可行解，且$f（\hat{x}'）\leq f(\hat{x})$ **then** 
 -   -   - $\mathcal{S}$ 赋予可以剪枝属性 
--   - **else if**  $\hat{x}' $是分数可行解，且 $f
+-   - **else if**  $\hat{x}'$是分数可行解，且 $f
 （\hat{x}'）> f(\hat{x})$ **then** 
--   -   - $\mathcal{S}$赋予不可剪枝属性 
--   - **else if** $\hat{x}'$是整数可行解 **then** 
+-   -   - $\mathcal{S}$ 赋予不可剪枝属性 
+-   - **else if** $\hat{x}'$ 是整数可行解 **then** 
 -   -   -   $\hat{x} = \hat{x}'$  
--   -   -   $\mathcal{S}$赋予可以剪枝属性
+-   -   -   $\mathcal{S}$ 赋予可以剪枝属性
 -   - **end if**
--   - **if** $\mathcal{S}$不可剪枝 **then** $\\$
--   -   - 将 $\mathcal{S} $ 划分为 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r$  
--   -   - 将 $\mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $ 加入 $ \mathcal{L}$ 
+-   - **if** $\mathcal{S}$ 不可剪枝 **then** $\\$
+-   -   - 将 $\mathcal{S}$ 划分为 $\mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r$  
+-   -   - 将 $\mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r$ 加入 $\mathcal{L}$ 
 -   - **end if** 
 -   - 从 $\mathcal{L}$ 中移除 $\mathcal{S}$  
 - **end while**  
