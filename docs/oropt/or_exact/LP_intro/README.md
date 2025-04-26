@@ -16,23 +16,23 @@
 2. **目标函数**  
    待优化的线性函数，形式为： 
 
-   $$
-   \max/\min \quad c_1x_1 + c_2x_2 + \dots + c_nx_n
-    $$
+$$
+\max/\min \quad c_1x_1 + c_2x_2 + \dots + c_nx_n
+$$
 
    例如，最大化利润或最小化成本. 
 
 3. **约束条件**  
    由线性不等式或等式构成，限制决策变量的可行范围，例如：  
 
-   $$
-   \begin{cases}
-   a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n \leq (\text{或} \geq, =) \, b_1 \\
-   \vdots \\
-   a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n \leq (\text{或} \geq, =) \, b_m \\
-   x_1, x_2, \dots, x_n \geq 0 \quad \text{（非负约束）}
-   \end{cases}
-   $$
+$$
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n \leq (\text{或} \geq, =) \, b_1 \\
+\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n \leq (\text{或} \geq, =) \, b_m \\
+x_1, x_2, \dots, x_n \geq 0 \quad \text{（非负约束）}
+\end{cases}
+$$
 
 
 ### **标准形式**
@@ -78,26 +78,34 @@ $$
 
 1. **引入拉格朗日函数**
    引入非负的拉格朗日乘子向量 $y=(y_1,y_2,\cdots,y_m)^T\geq0$ 和 $s=(s_1,s_2,\cdots,s_n)^T\geq0$，构造拉格朗日函数：
-   $$L(x,y,s)=c^T x + y^T(b - Ax)-s^T x$$
+
+$$
+L(x,y,s)=c^T x + y^T(b - Ax)-s^T x
+$$
+
    这里 $y$ 对应不等式约束 $Ax\leq b$，$s$ 对应非负约束 $x\geq0$. 
 
 2. **推导对偶问题**
    对偶问题为
-   $$\min_{y\geq0,s\geq0}\max_{x}L(x,y,s)$$
+
+$$
+\min_{y\geq0,s\geq0}\max_{x}L(x,y,s)
+$$
 
    对 $L(x,y,s)$ 关于 $x$ 求极大，令 $\frac{\partial L}{\partial x}=c - A^T y - s = 0$，即 $s = c - A^T y$. 
-
    将 $s = c - A^T y$ 代入 $L(x,y,s)$ 中，此时 $L(x,y,s)$ 关于 $x$ 求极大后的值为 $y^T b$. 
    同时，由于 $s\geq0$，所以 $c - A^T y\geq0$，这样就得到对偶问题：
-   $$
-   \begin{align*}
-   \min\quad & w = b^T y \\
-   \text{s.t.}\quad & A^T y \geq c \\
-   & y \geq 0
-   \end{align*}
-   $$
+
+$$
+\begin{align*}
+\min\quad & w = b^T y \\
+\text{s.t.}\quad & A^T y \geq c \\
+& y \geq 0
+\end{align*}
+$$
 
 **定理（线性规划对偶定理）** 如果 $P$ 和 $D$ 是一对线性规划的原 - 对偶问题，那么会出现以下四种情况之一：
+
 1. 两者都不可行. 
 2. $P$ 无界且 $D$ 不可行. 
 3. $D$ 无界且 $P$ 不可行. 
