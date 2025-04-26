@@ -887,29 +887,29 @@ y = f(g(x)) = \begin{cases}
 <h2 id="3">3 感知机<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>接下来的问题是：对于非布尔（比如实数）输入呢？我们总是需要手动编码阈值吗？所有输入都同等重要吗？如果我们想给某些输入赋予更大的权重（重要性）呢？对于非线性可分的函数又该怎么办呢？</p>
 <p>美国心理学家弗兰克·罗森布拉特在1958年提出了经典的感知机模型. 这是一个比麦卡洛克 - 皮茨神经元更通用的计算模型. 主要区别在于：为输入引入了数值权重，并提供了学习这些权重的机制. 输入不再局限于布尔值. 明斯基和佩珀特在1969年对其进行了改进和深入分析，这里我们所说的感知机模型指的就是他们改进后的模型. </p>
-<p>感知机模型被广泛接受的一种表示形式为：
-$$
+<p>感知机模型被广泛接受的一种表示形式为：</p>
+<div class="arithmatex">\[
 y = \begin{cases}
-1, &amp; \text{如果 } \sum_{i = 0}^{n}w_i * x_i \geq 0 \
+1, &amp; \text{如果 } \sum_{i = 0}^{n}w_i * x_i \geq 0 \\
 0, &amp; \text{如果 } \sum_{i = 0}^{n}w_i * x_i &lt; 0
 \end{cases}
-$$
-其中，<span class="arithmatex">\(x_0 = 1\)</span>且<span class="arithmatex">\(w_0 = -\theta\)</span>，<span class="arithmatex">\(w_0\)</span> 称为偏置项（bias），如果没有偏置项，感知机的决策边界将始终通过原点，这会极大限制模型的表示能力. 有了偏置，决策边界就可以是任意的超平面，能够适应更多复杂的分类情况. 
+\]</div>
+<p>其中，<span class="arithmatex">\(x_0 = 1\)</span>且<span class="arithmatex">\(w_0 = -\theta\)</span>，<span class="arithmatex">\(w_0\)</span> 称为偏置项（bias），如果没有偏置项，感知机的决策边界将始终通过原点，这会极大限制模型的表示能力. 有了偏置，决策边界就可以是任意的超平面，能够适应更多复杂的分类情况. 
 <img alt="alt text" src="image-9.png" />
-也可写为：
-$$
+也可写为：</p>
+<div class="arithmatex">\[
 y = \begin{cases}
-1, &amp; \text{如果 } \sum_{i = 1}^{n}w_i * x_i \geq \theta \
+1, &amp; \text{如果 } \sum_{i = 1}^{n}w_i * x_i \geq \theta \\
 0, &amp; \text{如果 } \sum_{i = 1}^{n}w_i * x_i &lt; \theta
 \end{cases}
-$$
-进一步改写为：
-$$
+\]</div>
+<p>进一步改写为：</p>
+<div class="arithmatex">\[
 y = \begin{cases}
-1, &amp; \text{如果 } \sum_{i = 1}^{n}w_i * x_i - \theta \geq 0 \
+1, &amp; \text{如果 } \sum_{i = 1}^{n}w_i * x_i - \theta \geq 0 \\
 0, &amp; \text{如果 } \sum_{i = 1}^{n}w_i * x_i - \theta &lt; 0
 \end{cases}
-$$</p>
+\]</div>
 <p>单个感知机只能用于实现线性可分的函数，与感知机的区别是：感知机的权重（包括阈值）可以学习，并且输入可以是实数值.  </p>
 <h2 id="4">4 误差和误差曲面<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>让我们固定阈值（<span class="arithmatex">\(-w_0 = 1\)</span> ），尝试不同的<span class="arithmatex">\(w_1\)</span> 、<span class="arithmatex">\(w_2\)</span>值. 比如，<span class="arithmatex">\(w_1 = -1\)</span> ，<span class="arithmatex">\(w_2 = -1\)</span> . 这条线有什么问题呢？ 让我们尝试更多的<span class="arithmatex">\(w_1\)</span> 、<span class="arithmatex">\(w_2\)</span>值，并记录我们产生的错误分类数量. </p>
@@ -958,19 +958,25 @@ $$</p>
 <li>（当所有输入都被正确分类时，算法收敛）</li>
 </ul>
 <p>为什么这个算法有效呢？为了理解其原理，我们需要涉及一些线性代数和几何知识. </p>
-<p>考虑两个向量<span class="arithmatex">\(w\)</span>和<span class="arithmatex">\(x\)</span> ：
-<span class="arithmatex">\(<span class="arithmatex">\(w = [w_0, w_1, w_2, \ldots, w_n]\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(x = [1, x_1, x_2, \ldots, x_n]\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(w \cdot x = w^T x = \sum_{i = 0}^{n}w_i * x_i\)</span>\)</span>
-因此，我们可以将感知机规则重写为：
-$$
+<p>考虑两个向量 <span class="arithmatex">\(w\)</span> 和 <span class="arithmatex">\(x\)</span>：</p>
+<div class="arithmatex">\[
+w = [w_0, w_1, w_2, \ldots, w_n]
+\]</div>
+<div class="arithmatex">\[
+x = [1, x_1, x_2, \ldots, x_n]
+\]</div>
+<div class="arithmatex">\[
+w \cdot x = w^T x = \sum_{i = 0}^{n}w_i * x_i
+\]</div>
+<p>因此，我们可以将感知机规则重写为：</p>
+<div class="arithmatex">\[
 y = \begin{cases}
-1, &amp; \text{如果 } w^T x \geq 0 \
+1, &amp; \text{如果 } w^T x \geq 0 \\
 0, &amp; \text{如果 } w^T x &lt; 0
 \end{cases}
-$$</p>
-<p>我们感兴趣的是找到将输入空间分成两半的直线 <span class="arithmatex">\(w^T x = 0\)</span> . 这条直线上的每个点<span class="arithmatex">\((x)\)</span>都满足方程 <span class="arithmatex">\(w^T x = 0\)</span> . 你能说出<span class="arithmatex">\(w\)</span>与这条直线上的任何点<span class="arithmatex">\((x)\)</span>之间的夹角<span class="arithmatex">\((\alpha)\)</span>是多少吗？这个夹角是<span class="arithmatex">\(90^{\circ}\)</span>（因为<span class="arithmatex">\(\cos \alpha=\frac{w^T x}{\|w\|\|x\|}=0\)</span> ）. 由于向量<span class="arithmatex">\(w\)</span>垂直于直线上的每个点，所以它实际上垂直于这条直线本身. </p>
-<p>考虑位于这条直线正半空间的一些点（向量）（即 <span class="arithmatex">\(w^T x \geq 0\)</span> ）. 任何这样的向量与<span class="arithmatex">\(w\)</span>之间的夹角会是多少呢？显然，小于 <span class="arithmatex">\(90^{\circ}\)</span>. 那么位于这条直线负半空间的点（向量）（即<span class="arithmatex">\(w^T x &lt; 0\)</span> ）呢？任何这样的向量与<span class="arithmatex">\(w\)</span>之间的夹角会是多少呢？显然，大于90°. 当然，这也可以从公式<span class="arithmatex">\(\cos \alpha=\frac{w^T x}{\|w\|\|x\|}\)</span>推导出来. </p>
+\]</div>
+<p>我们感兴趣的是找到将输入空间分成两半的直线 <span class="arithmatex">\(w^T x = 0\)</span> . 这条直线上的每个点<span class="arithmatex">\((x)\)</span>都满足方程 <span class="arithmatex">\(w^T x = 0\)</span> . 你能说出<span class="arithmatex">\(w\)</span>与这条直线上的任何点<span class="arithmatex">\((x)\)</span> 之间的夹角<span class="arithmatex">\((\alpha)\)</span>是多少吗？这个夹角是 <span class="arithmatex">\(90^{\circ}\)</span>（因为<span class="arithmatex">\(\cos \alpha=\frac{w^T x}{\|w\|\|x\|}=0\)</span> ）. 由于向量<span class="arithmatex">\(w\)</span>垂直于直线上的每个点，所以它实际上垂直于这条直线本身. </p>
+<p>考虑位于这条直线正半空间的一些点（向量）（即 <span class="arithmatex">\(w^T x \geq 0\)</span> ）. 任何这样的向量与 <span class="arithmatex">\(w\)</span> 之间的夹角会是多少呢？显然，小于 <span class="arithmatex">\(90^{\circ}\)</span>. 那么位于这条直线负半空间的点（向量）（即<span class="arithmatex">\(w^T x &lt; 0\)</span> ）呢？任何这样的向量与<span class="arithmatex">\(w\)</span>之间的夹角会是多少呢？显然，大于90°. 当然，这也可以从公式 <span class="arithmatex">\(\cos \alpha=\frac{w^T x}{\|w\|\|x\|}\)</span>推导出来. </p>
 <p><img alt="alt text" src="image-11.png" /></p>
 <p>牢记这个概念，让我们重新审视这个算法. </p>
 <p>对于<span class="arithmatex">\(x \in P\)</span> ，如果<span class="arithmatex">\(w \cdot x &lt; 0\)</span> ，这意味着这个<span class="arithmatex">\(x\)</span>与当前<span class="arithmatex">\(w\)</span>之间的夹角<span class="arithmatex">\((\alpha)\)</span>大于90°（但我们希望<span class="arithmatex">\(\alpha\)</span>小于90° ）. 当<span class="arithmatex">\(w_{new} = w + x\)</span>时，新的夹角<span class="arithmatex">\((\alpha_{new})\)</span>会怎样呢？</p>
@@ -992,42 +998,84 @@ $$</p>
 <p>若<span class="arithmatex">\(x \in N\)</span>，则<span class="arithmatex">\(-x \in P\)</span>（因为<span class="arithmatex">\(w^T x &lt; 0 \Rightarrow w^T(-x) \geq 0\)</span>）. 因此，我们可以考虑一个单一集合<span class="arithmatex">\(P' = P \cup N^-\)</span>，并确保对于<span class="arithmatex">\(P'\)</span>中的每个元素<span class="arithmatex">\(p\)</span>，都有<span class="arithmatex">\(w^T p \geq 0\)</span>. 
 进一步地，我们将所有<span class="arithmatex">\(p\)</span>进行归一化处理，使得<span class="arithmatex">\(\|p\| = 1\)</span>（注意，这不会影响结果，因为若<span class="arithmatex">\(w^T \frac{p}{\|p\|} \geq 0\)</span>，则<span class="arithmatex">\(w^T p \geq 0\)</span> ）. 
 设<span class="arithmatex">\(w^*\)</span>为归一化后的解向量（由于数据是线性可分的，所以我们知道这样的向量存在）. </p>
-<p>算法1可以改写为：
-<strong>算法2：感知机学习算法</strong>
-- <span class="arithmatex">\(P\)</span>：标记为1的输入；
-- <span class="arithmatex">\(N\)</span>：标记为0的输入；
-- <span class="arithmatex">\(N^-\)</span>：包含N中所有点的相反数；
-- <span class="arithmatex">\(P' = P \cup N^-\)</span>；
-- 随机初始化<span class="arithmatex">\(w\)</span>；
-- 当未收敛时：
-    - 从<span class="arithmatex">\(P'\)</span>中随机选择一个<span class="arithmatex">\(p\)</span>；
-    - 将<span class="arithmatex">\(p\)</span>归一化，即<span class="arithmatex">\(p = \frac{p}{\|p\|}\)</span>（此时，<span class="arithmatex">\(\|p\| = 1\)</span>）；
-    - 若<span class="arithmatex">\(w \cdot p &lt; 0\)</span>，则<span class="arithmatex">\(w = w + p\)</span>. 
-- （当所有输入都被正确分类时，算法收敛. 注意，我们不需要另一个if条件，因为根据构造，我们希望<span class="arithmatex">\(P'\)</span>中的所有点都位于<span class="arithmatex">\(w \cdot p \geq 0\)</span>的正半空间）. </p>
-<p><strong>命题1证明</strong>
-1. 假设在时间步 <span class="arithmatex">\(t\)</span>，我们检查点 <span class="arithmatex">\(p_i\)</span> 时发现 <span class="arithmatex">\(w^T \cdot p_i \leq 0\)</span>. 
-2. 我们进行修正 <span class="arithmatex">\(w_{t + 1} = w_t + p_i\)</span>. 
-3. 设<span class="arithmatex">\(\beta\)</span>为<span class="arithmatex">\(w^*\)</span>与<span class="arithmatex">\(w_{t + 1}\)</span>之间的夹角，则有：
-    - <span class="arithmatex">\(\cos \beta = \frac{w^* \cdot w_{t + 1}}{\|w_{t + 1}\|}\)</span>
-    - 分子部分：<span class="arithmatex">\(w^* \cdot w_{t + 1} = w^* \cdot (w_t + p_i) = w^* \cdot w_t + w^* \cdot p_i \geq w^* \cdot w_t + \delta\)</span>（其中<span class="arithmatex">\(\delta = \min\{w^* \cdot p_i | \forall i\}\)</span>）. 通过归纳法可得：<span class="arithmatex">\(w^* \cdot w_t + \delta \geq w^* \cdot (w_{t - 1} + p_j) + \delta \geq w^* \cdot w_{t - 1} + w^* \cdot p_j + \delta \geq w^* \cdot w_{t - 1} + 2\delta \geq w^* \cdot w_0 + k\delta\)</span> （<span class="arithmatex">\(k\leq t+1\)</span>）. 
-    - 分母部分：<span class="arithmatex">\(\|w_{t + 1}\|^2 = (w_t + p_i) \cdot (w_t + p_i) = \|w_t\|^2 + 2w_t \cdot p_i + \|p_i\|^2\)</span> . 由于<span class="arithmatex">\(w_t \cdot p_i \leq 0\)</span>，所以<span class="arithmatex">\(\|w_{t + 1}\|^2 \leq \|w_t\|^2 + \|p_i\|^2\)</span> . 又因为<span class="arithmatex">\(\|p_i\|^2 = 1\)</span>，所以<span class="arithmatex">\(\|w_{t + 1}\|^2 \leq \|w_t\|^2 + 1 \leq (\|w_{t - 1}\|^2 + 1) + 1 \leq \|w_{t - 1}\|^2 + 2 \leq \|w_0\|^2 + k\)</span> . 
-4. 所以有：
-    - <span class="arithmatex">\(\cos \beta \geq \frac{w^* \cdot w_0 + k\delta}{\sqrt{\|w_0\|^2 + k}}\)</span> . 
-    - 因此，<span class="arithmatex">\(\cos \beta\)</span>与<span class="arithmatex">\(\sqrt{k}\)</span>成正比增长. 随着修正次数<span class="arithmatex">\(k\)</span>的增加，<span class="arithmatex">\(\cos \beta\)</span>可能会变得任意大. 但由于<span class="arithmatex">\(\cos \beta \leq 1\)</span>，所以<span class="arithmatex">\(k\)</span>必然有一个最大值. 
-    - 因此，对<span class="arithmatex">\(w\)</span>的修正次数<span class="arithmatex">\(k\)</span>只能是有限的，算法将会收敛！</p>
-<p>回到我们之前的问题……
-- 对于非布尔（比如实数）输入呢？感知机允许实数值输入. 
-- 我们总是需要手动设定阈值吗？不需要，我们可以学习阈值. 
-- 所有输入都同等重要吗？如果我们想给某些输入赋予更大的权重（重要性）呢？感知机允许为输入分配权重. 
-- 对于非线性可分的函数又该怎么办呢？单个感知机无法处理，但我们将看到如何解决这个问题……</p>
+<p>算法1可以改写为：</p>
+<p><strong>算法2：感知机学习算法</strong></p>
+<ul>
+<li><span class="arithmatex">\(P\)</span>：标记为1的输入；</li>
+<li><span class="arithmatex">\(N\)</span>：标记为0的输入；</li>
+<li><span class="arithmatex">\(N^-\)</span>：包含N中所有点的相反数；</li>
+<li><span class="arithmatex">\(P' = P \cup N^-\)</span>；</li>
+<li>随机初始化<span class="arithmatex">\(w\)</span>；</li>
+<li>当未收敛时：<ul>
+<li>从<span class="arithmatex">\(P'\)</span>中随机选择一个<span class="arithmatex">\(p\)</span>；</li>
+<li>将<span class="arithmatex">\(p\)</span>归一化，即<span class="arithmatex">\(p = \frac{p}{\|p\|}\)</span>（此时，<span class="arithmatex">\(\|p\| = 1\)</span>）；</li>
+<li>若<span class="arithmatex">\(w \cdot p &lt; 0\)</span>，则<span class="arithmatex">\(w = w + p\)</span>. </li>
+</ul>
+</li>
+<li>（当所有输入都被正确分类时，算法收敛. 注意，我们不需要另一个if条件，因为根据构造，我们希望<span class="arithmatex">\(P'\)</span>中的所有点都位于<span class="arithmatex">\(w \cdot p \geq 0\)</span>的正半空间）. </li>
+</ul>
+<p><strong>命题1证明</strong></p>
+<ol>
+<li>假设在时间步 <span class="arithmatex">\(t\)</span>，我们检查点 <span class="arithmatex">\(p_i\)</span> 时发现 <span class="arithmatex">\(w^T \cdot p_i \leq 0\)</span>. </li>
+<li>我们进行修正 <span class="arithmatex">\(w_{t + 1} = w_t + p_i\)</span>. </li>
+<li>设<span class="arithmatex">\(\beta\)</span>为<span class="arithmatex">\(w^*\)</span>与<span class="arithmatex">\(w_{t + 1}\)</span>之间的夹角，则有：<ul>
+<li><span class="arithmatex">\(\cos \beta = \frac{w^* \cdot w_{t + 1}}{\|w_{t + 1}\|}\)</span></li>
+<li>分子部分：<span class="arithmatex">\(w^* \cdot w_{t + 1} = w^* \cdot (w_t + p_i) = w^* \cdot w_t + w^* \cdot p_i \geq w^* \cdot w_t + \delta\)</span>（其中<span class="arithmatex">\(\delta = \min\{w^* \cdot p_i | \forall i\}\)</span>）. 通过归纳法可得：<span class="arithmatex">\(w^* \cdot w_t + \delta \geq w^* \cdot (w_{t - 1} + p_j) + \delta \geq w^* \cdot w_{t - 1} + w^* \cdot p_j + \delta \geq w^* \cdot w_{t - 1} + 2\delta \geq w^* \cdot w_0 + k\delta\)</span> （<span class="arithmatex">\(k\leq t+1\)</span>）. </li>
+<li>分母部分：<span class="arithmatex">\(\|w_{t + 1}\|^2 = (w_t + p_i) \cdot (w_t + p_i) = \|w_t\|^2 + 2w_t \cdot p_i + \|p_i\|^2\)</span> . 由于<span class="arithmatex">\(w_t \cdot p_i \leq 0\)</span>，所以<span class="arithmatex">\(\|w_{t + 1}\|^2 \leq \|w_t\|^2 + \|p_i\|^2\)</span> . 又因为<span class="arithmatex">\(\|p_i\|^2 = 1\)</span>，所以<span class="arithmatex">\(\|w_{t + 1}\|^2 \leq \|w_t\|^2 + 1 \leq (\|w_{t - 1}\|^2 + 1) + 1 \leq \|w_{t - 1}\|^2 + 2 \leq \|w_0\|^2 + k\)</span> . </li>
+</ul>
+</li>
+<li>所以有：<ul>
+<li><span class="arithmatex">\(\cos \beta \geq \frac{w^* \cdot w_0 + k\delta}{\sqrt{\|w_0\|^2 + k}}\)</span> . </li>
+<li>因此，<span class="arithmatex">\(\cos \beta\)</span>与<span class="arithmatex">\(\sqrt{k}\)</span>成正比增长. 随着修正次数<span class="arithmatex">\(k\)</span>的增加，<span class="arithmatex">\(\cos \beta\)</span>可能会变得任意大. 但由于<span class="arithmatex">\(\cos \beta \leq 1\)</span>，所以<span class="arithmatex">\(k\)</span>必然有一个最大值. </li>
+<li>因此，对<span class="arithmatex">\(w\)</span>的修正次数<span class="arithmatex">\(k\)</span>只能是有限的，算法将会收敛！</li>
+</ul>
+</li>
+</ol>
+<p>回到我们之前的问题……</p>
+<ul>
+<li>对于非布尔（比如实数）输入呢？感知机允许实数值输入. </li>
+<li>我们总是需要手动设定阈值吗？不需要，我们可以学习阈值. </li>
+<li>所有输入都同等重要吗？如果我们想给某些输入赋予更大的权重（重要性）呢？感知机允许为输入分配权重. </li>
+<li>对于非线性可分的函数又该怎么办呢？单个感知机无法处理，但我们将看到如何解决这个问题……</li>
+</ul>
 <h2 id="7">7 线性可分的布尔函数<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<p>那么对于非线性可分的函数，我们该如何处理呢？我们先来看一个这样简单的布尔函数. 
-| <span class="arithmatex">\(x_1\)</span> | <span class="arithmatex">\(x_2\)</span> | 异或（XOR） | <span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i\)</span>相关条件 |
-| ---- | ---- | ---- | ---- |
-| 0 | 0 | 0 | <span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i&lt;0\)</span> |
-| 1 | 0 | 1 | <span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i\geq0\)</span> |
-| 0 | 1 | 1 | <span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i\geq0\)</span> |
-| 1 | 1 | 0 | <span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i&lt;0\)</span> |</p>
+<p>那么对于非线性可分的函数，我们该如何处理呢？我们先来看一个这样简单的布尔函数. </p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(x_1\)</span></th>
+<th><span class="arithmatex">\(x_2\)</span></th>
+<th>异或（XOR）</th>
+<th><span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i\)</span>相关条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i&lt;0\)</span></td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td><span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i\geq0\)</span></td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td><span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i\geq0\)</span></td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td><span class="arithmatex">\(w_0+\sum_{i = 1}^{2}w_ix_i&lt;0\)</span></td>
+</tr>
+</tbody>
+</table>
 <p><span class="arithmatex">\(w_0 + w_1 \cdot 0 + w_2 \cdot 0 &lt; 0 \Rightarrow w_0 &lt; 0\)</span>
 <span class="arithmatex">\(w_0 + w_1 \cdot 0 + w_2 \cdot 1 \geq 0 \Rightarrow w_2 \geq -w_0\)</span>
 <span class="arithmatex">\(w_0 + w_1 \cdot 1 + w_2 \cdot 0 \geq 0 \Rightarrow w_1 \geq -w_0\)</span>
@@ -1247,7 +1295,7 @@ $$</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 11:34:38">April 26, 2025 11:34:38</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 20:55:15">April 26, 2025 20:55:15</span>
   </span>
 
     

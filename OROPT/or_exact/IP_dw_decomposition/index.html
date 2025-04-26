@@ -1301,192 +1301,192 @@
 <li>https://dabeenl.github.io/IE631_lecture22_note.pdf</li>
 </ul>
 <h2 id="2-dantzig-wolfe">2 Dantzig-Wolfe分解<a class="headerlink" href="#2-dantzig-wolfe" title="Permanent link">&para;</a></h2>
-<p>考虑如下混合整数规划：<br />
-$$
-\begin{align<em>}
-z_{IP} = \max &amp; \quad c^\top x \
-\text{s.t.} &amp; \quad Ax \leq b \
-&amp; \quad Ex \leq f \tag{MIP} \
-&amp; \quad x \in \mathbb{Z}<em>+^d \times \mathbb{R}</em>+^p.
-\end{align</em>}
-$$<br />
-我们将学习用于求解该混合整数规划的Dantzig-Wolfe分解框架.   </p>
+<p>考虑如下混合整数规划： </p>
+<div class="arithmatex">\[
+\begin{align*}
+z_{IP} = \max &amp; \quad c^\top x \\
+\text{s.t.} &amp; \quad Ax \leq b \\
+&amp; \quad Ex \leq f \tag{MIP} \\
+&amp; \quad x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p.
+\end{align*}
+\]</div>
+<p>我们将学习用于求解该混合整数规划的Dantzig-Wolfe分解框架.   </p>
 <h3 id="21-dantzig-wolfe">2.1 基于拉格朗日对偶的Dantzig-Wolfe分解<a class="headerlink" href="#21-dantzig-wolfe" title="Permanent link">&para;</a></h3>
-<p>定义集合 $ Q $ 如下：<br />
-$$
-Q = \left{ x \in \mathbb{Z}<em>+^d \times \mathbb{R}</em>+^p : Ax \leq b \right}.
-$$<br />
-假设 $ Q $ 非空，且 $ A, b $ 的元素为有理数. 设 $ m $ 为矩阵 $ E $ 的行数，取 $ \lambda \in \mathbb{R}<em _text_LD="\text{LD">+^m $. 回顾，关于 $ \lambda $，对（MIP）定义的拉格朗日松弛如下：<br />
-$$
-\begin{align<em>}
-z_{\text{LR}}(\lambda) = \max &amp; \quad c^\top x + \lambda^\top (f - Ex) \
-\text{s.t.} &amp; \quad Ax \leq b \tag{LR} \
-&amp; \quad x \in \mathbb{Z}<em>+^d \times \mathbb{R}</em>+^p.
-\end{align</em>}
-$$<br />
-此外，回顾混合整数规划（MIP）的拉格朗日对偶定义为：<br />
-$$
-z</em>
-$$}} = \min \left{ z_{\text{LR}}(\lambda) : \lambda \geq 0 \right}. \tag{LD<br />
-我们已知，（MIP）与（LD）通过如下（LD）的特征描述相关联：<br />
-$$
-z_{\text{LD}} = \max \left{ c^\top x : Ex \leq f, x \in \text{conv}(Q) \right}.
-$$</p>
-<p>此外，根据Minkowski-Weyl定理，<span class="arithmatex">\(\text{conv}(Q)\)</span> 可表示为<br />
-$$
-\text{conv}(Q) = \text{conv}{v^1, \ldots, v^n} + \text{cone}{r^1, \ldots, r^\ell}
-$$<br />
-其中 <span class="arithmatex">\(v^1, \ldots, v^n\)</span> 是 <span class="arithmatex">\(\text{conv}(Q)\)</span> 的<strong>极点</strong>，<span class="arithmatex">\(r^1, \ldots, r^\ell\)</span> 是 <span class="arithmatex">\(\text{conv}(Q)\)</span> 的<strong>极射线</strong>. 那么，<span class="arithmatex">\(\text{conv}(Q)\)</span> 中的任意点 <span class="arithmatex">\(x\)</span> 可写为：<br />
-$$
+<p>定义集合 $ Q $ 如下：</p>
+<div class="arithmatex">\[
+Q = \left\{ x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p : Ax \leq b \right\}.
+\]</div>
+<p>假设 $ Q $ 非空，且 $ A, b $ 的元素为有理数. 设 $ m $ 为矩阵 $ E $ 的行数，取 $ \lambda \in \mathbb{R}_+^m $. 回顾，关于 $ \lambda $，对（MIP）定义的拉格朗日松弛如下： </p>
+<div class="arithmatex">\[
+\begin{align*}
+z_{\text{LR}}(\lambda) = \max &amp; \quad c^\top x + \lambda^\top (f - Ex) \\
+\text{s.t.} &amp; \quad Ax \leq b \tag{LR} \\
+&amp; \quad x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p.
+\end{align*}
+\]</div>
+<p>此外，回顾混合整数规划（MIP）的拉格朗日对偶定义为： </p>
+<div class="arithmatex">\[
+z_{\text{LD}} = \min \left\{ z_{\text{LR}}(\lambda) : \lambda \geq 0 \right\}. \tag{LD}
+\]</div>
+<p>我们已知，（MIP）与（LD）通过如下（LD）的特征描述相关联：  </p>
+<div class="arithmatex">\[
+z_{\text{LD}} = \max \left\{ c^\top x : Ex \leq f,\ x \in \text{conv}(Q) \right\}.
+\]</div>
+<p>此外，根据Minkowski-Weyl定理，<span class="arithmatex">\(\text{conv}(Q)\)</span> 可表示为  </p>
+<div class="arithmatex">\[
+\text{conv}(Q) = \text{conv}\{v^1, \ldots, v^n\} + \text{cone}\{r^1, \ldots, r^\ell\}
+\]</div>
+<p>其中 <span class="arithmatex">\(v^1, \ldots, v^n\)</span> 是 <span class="arithmatex">\(\text{conv}(Q)\)</span> 的<strong>极点</strong>，<span class="arithmatex">\(r^1, \ldots, r^\ell\)</span> 是 <span class="arithmatex">\(\text{conv}(Q)\)</span> 的<strong>极射线</strong>. 那么，<span class="arithmatex">\(\text{conv}(Q)\)</span> 中的任意点 <span class="arithmatex">\(x\)</span> 可写为： </p>
+<div class="arithmatex">\[
 x = \sum_{k \in [n]} \alpha_k v^k + \sum_{h \in [\ell]} \beta_h r^h
-$$<br />
-其中存在 <span class="arithmatex">\(\alpha \in \mathbb{R}_+^k\)</span> 和 <span class="arithmatex">\(\beta \in \mathbb{R}_+^\ell\)</span>，满足：<br />
-$$
+\]</div>
+<p>其中存在 <span class="arithmatex">\(\alpha \in \mathbb{R}_+^k\)</span> 和 <span class="arithmatex">\(\beta \in \mathbb{R}_+^\ell\)</span>，满足：  </p>
+<div class="arithmatex">\[
 \sum_{k \in [n]} \alpha_k = 1.
-$$  </p>
-<p>基于此，可得：<br />
-$$
-\begin{align<em>}
-z_{\text{LD}} = \max &amp; \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \
-\text{s.t.} &amp; \sum_{k \in [n]} (E v^k) \alpha_k + \sum_{h \in [\ell]} (E r^h) \beta_k \leq f \tag{DW1} \
-&amp; \sum_{k \in [n]} \alpha_k = 1 \
-&amp; \alpha \in \mathbb{R}<em>+^k, \beta \in \mathbb{R}</em>+^\ell.
-\end{align</em>}
-$$<br />
-回顾，混合整数规划（MIP）的拉格朗日对偶（LD）是（MIP）的一种松弛. 因此，我们将（DW1）称为（MIP）的<strong>Dantzig-Wolfe松弛</strong>. 此外，我们有：<br />
-$$
-z_{IP} = \max\left{c^\top x : Ex \leq f, x \in \text{conv}(Q), x_j \in \mathbb{Z}_+ \forall j \in [d] \right}.
-$$<br />
-因此，推导出：<br />
-$$
-\begin{align<em>}
-z_{IP} = \max &amp; \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \
-\text{s.t.} &amp; \sum_{k \in [n]} (E v^k) \alpha_k + \sum_{h \in [\ell]} (E r^h) \beta_k \leq f \
-&amp; \sum_{k \in [n]} \alpha_k = 1 \tag{DW2} \
-&amp; \alpha \in \mathbb{R}<em>+^k, \beta \in \mathbb{R}</em>+^\ell \
-&amp; \sum_{k \in [n]} \alpha_k v_j^k + \sum_{h \in [\ell]} \beta_h r_j^h \in \mathbb{Z}_+, j \in [d].
-\end{align</em>}
-$$<br />
-此处，公式（DW2）被称为（MIP）的<strong>Dantzig-Wolfe重构</strong>. </p>
+\]</div>
+<p>基于此，可得：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+z_{\text{LD}} = \max &amp; \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \\
+\text{s.t.} &amp; \sum_{k \in [n]} (E v^k) \alpha_k + \sum_{h \in [\ell]} (E r^h) \beta_k \leq f \tag{DW1} \\
+&amp; \sum_{k \in [n]} \alpha_k = 1 \\
+&amp; \alpha \in \mathbb{R}_+^k,\ \beta \in \mathbb{R}_+^\ell.
+\end{align*}
+\]</div>
+<p>回顾，混合整数规划（MIP）的拉格朗日对偶（LD）是（MIP）的一种松弛. 因此，我们将（DW1）称为（MIP）的<strong>Dantzig-Wolfe松弛</strong>. 此外，我们有：  </p>
+<div class="arithmatex">\[
+z_{IP} = \max\left\{c^\top x : Ex \leq f,\ x \in \text{conv}(Q),\ x_j \in \mathbb{Z}_+\ \forall j \in [d] \right\}.
+\]</div>
+<p>因此，推导出：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+z_{IP} = \max &amp; \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \\
+\text{s.t.} &amp; \sum_{k \in [n]} (E v^k) \alpha_k + \sum_{h \in [\ell]} (E r^h) \beta_k \leq f \\
+&amp; \sum_{k \in [n]} \alpha_k = 1 \tag{DW2} \\
+&amp; \alpha \in \mathbb{R}_+^k,\ \beta \in \mathbb{R}_+^\ell \\
+&amp; \sum_{k \in [n]} \alpha_k v_j^k + \sum_{h \in [\ell]} \beta_h r_j^h \in \mathbb{Z}_+,\ j \in [d].
+\end{align*}
+\]</div>
+<p>此处，公式（DW2）被称为（MIP）的<strong>Dantzig-Wolfe重构</strong>. </p>
 <h3 id="22-textdw1textld">2.2 (<span class="arithmatex">\(\text{DW1}\)</span>)的对偶是(<span class="arithmatex">\(\text{LD}\)</span>)<a class="headerlink" href="#22-textdw1textld" title="Permanent link">&para;</a></h3>
-<p>回顾，(<span class="arithmatex">\(\text{LD}\)</span>)的Dantzig-Wolfe分解由下式给出：<br />
-$$
-\begin{align<em>}
-\max &amp; \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \
-\text{s.t.} &amp; \sum_{k \in [n]} (E v^k) \alpha_k + \sum_{h \in [\ell]} (E r^h) \beta_k \leq f \tag{DW1}\
-&amp; \sum_{k \in [n]} \alpha_k = 1 \
-&amp; \alpha \in \mathbb{R}<em>+^k, \beta \in \mathbb{R}</em>+^\ell,
-\end{align</em>}
-$$<br />
-对(<span class="arithmatex">\(\text{DW1}\)</span>)取对偶，对不等式约束使用对偶变量 <span class="arithmatex">\(\lambda\)</span>，对等式约束使用对偶变量 <span class="arithmatex">\(\mu\)</span>，推导可得：<br />
-$$
-\begin{align<em>}
-\min &amp; \lambda^\top f + \mu \
-\text{s.t.} &amp; \mu + (E v<sup>k)</sup>\top \lambda \geq c^\top v^k,\quad k \in [n] \
-&amp; (E r<sup>h)</sup>\top \lambda \geq c^\top r^h,\quad h \in [\ell] \
+<p>回顾，(<span class="arithmatex">\(\text{LD}\)</span>)的Dantzig-Wolfe分解由下式给出：</p>
+<div class="arithmatex">\[
+\begin{align*}
+\max &amp; \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \\
+\text{s.t.} &amp; \sum_{k \in [n]} (E v^k) \alpha_k + \sum_{h \in [\ell]} (E r^h) \beta_k \leq f \tag{DW1}\\
+&amp; \sum_{k \in [n]} \alpha_k = 1 \\
+&amp; \alpha \in \mathbb{R}_+^k,\ \beta \in \mathbb{R}_+^\ell,
+\end{align*}
+\]</div>
+<p>对(<span class="arithmatex">\(\text{DW1}\)</span>)取对偶，对不等式约束使用对偶变量 <span class="arithmatex">\(\lambda\)</span>，对等式约束使用对偶变量 <span class="arithmatex">\(\mu\)</span>，推导可得： </p>
+<div class="arithmatex">\[
+\begin{align*}
+\min &amp; \lambda^\top f + \mu \\
+\text{s.t.} &amp; \mu + (E v^k)^\top \lambda \geq c^\top v^k,\quad k \in [n] \\
+&amp; (E r^h)^\top \lambda \geq c^\top r^h,\quad h \in [\ell] \\
 &amp; \lambda \geq 0.
-\end{align</em>}
-$$<br />
-注意，上述式子等价于：<br />
-$$
-\begin{align<em>}
-\min &amp; \lambda^\top f + \mu \
-\text{s.t.} &amp; \mu \geq \max_{k \in [n]} \left{(c - E^\top \lambda)^\top v^k \right} \
+\end{align*}
+\]</div>
+<p>注意，上述式子等价于：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+\min &amp; \lambda^\top f + \mu \\
+\text{s.t.} &amp; \mu \geq \max_{k \in [n]} \left\{(c - E^\top \lambda)^\top v^k \right\} \\
 &amp; \lambda \in \text{dom}(z_{\text{LR}}),
-\end{align</em>}
-$$<br />
-因<br />
-$$
-\text{dom}(z_{\text{LR}}) = \left{\lambda : (c - E^\top \lambda)^\top r^h \leq 0 \forall h \in [\ell], \lambda \geq 0 \right}.
-$$<br />
-消去变量 <span class="arithmatex">\(\mu\)</span>，得到：<br />
-$$
-\begin{align<em>}
-\min &amp; \lambda^\top f + \max_{k \in [n]} \left{(c - E^\top \lambda)^\top v^k \right} \
+\end{align*}
+\]</div>
+<p>因  </p>
+<div class="arithmatex">\[
+\text{dom}(z_{\text{LR}}) = \left\{\lambda : (c - E^\top \lambda)^\top r^h \leq 0\ \forall h \in [\ell],\ \lambda \geq 0 \right\}.
+\]</div>
+<p>消去变量 <span class="arithmatex">\(\mu\)</span>，得到：</p>
+<div class="arithmatex">\[
+\begin{align*}
+\min &amp; \lambda^\top f + \max_{k \in [n]} \left\{(c - E^\top \lambda)^\top v^k \right\} \\
 \text{s.t.} &amp; \lambda \in \text{dom}(z_{\text{LR}}).
-\end{align</em>}
-$$<br />
-该式等价于：<br />
-$$
-\begin{align<em>}
-&amp; \min_{\lambda \in \text{dom}(z_{\text{LR}})} \max_{k \in [n]} \left{\lambda^\top f + (c - E^\top \lambda)^\top v^k \right} \
-= &amp; \min_{\lambda \in \text{dom}(z_{\text{LR}})} \max_{k \in [n]} \underbrace{\left{c^\top v^k + \lambda^\top (f - E v^k)\right}}<em _text_LR="\text{LR">{z</em> \
-= &amp; \min\left{z_{\text{LR}}(\lambda) : \lambda \in \text{dom}(z_{\text{LR}}) \right} \
+\end{align*}
+\]</div>
+<p>该式等价于：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+&amp; \min_{\lambda \in \text{dom}(z_{\text{LR}})} \max_{k \in [n]} \left\{\lambda^\top f + (c - E^\top \lambda)^\top v^k \right\} \\
+= &amp; \min_{\lambda \in \text{dom}(z_{\text{LR}})} \max_{k \in [n]} \underbrace{\left\{c^\top v^k + \lambda^\top (f - E v^k)\right\}}_{z_{\text{LR}}(\lambda)} \\
+= &amp; \min\left\{z_{\text{LR}}(\lambda) : \lambda \in \text{dom}(z_{\text{LR}}) \right\} \\
 = &amp; z_{\text{LD}}.
-\end{align}}(\lambda)</em>}
-$$</p>
+\end{align*}
+\]</div>
 <h3 id="23-dantzig-wolfe">2.3 二元整数线性规划的Dantzig-Wolfe分解<a class="headerlink" href="#23-dantzig-wolfe" title="Permanent link">&para;</a></h3>
-<p>考虑如下二元整数规划：<br />
+<p>考虑如下二元整数规划： </p>
+<div class="arithmatex">\[
+\begin{align*}
+z_{IP} = \max &amp; \quad c^\top x \\
+\text{s.t.} &amp; \quad Ax \leq b \\
+&amp; \quad Ex \leq f \tag{BP} \\
+&amp; \quad x \in \{0, 1\}^d.
+\end{align*}
+\]</div>
+<p>我们将 <span class="arithmatex">\(Q\)</span> 定义为：</p>
+<div class="arithmatex">\[
+Q = \left\{ x \in \{0, 1\}^d : Ax \leq b \right\}.
+\]</div>
+<p>由于 <span class="arithmatex">\(Q\)</span> 有界且有限，因此 <span class="arithmatex">\(Q = \{v^1, \ldots, v^n\}\)</span>. <br />
+那么，<span class="arithmatex">\(Q\)</span> 中的任意点 <span class="arithmatex">\(x\)</span> 可表示为：  </p>
+<div class="arithmatex">\[
+x = \sum_{k \in [n]} \alpha_k v^k,\quad \sum_{k \in [n]} \alpha_k = 1,\quad \alpha_k \in \{0, 1\}^n.
+\]</div>
+<p>由此可得： </p>
+<div class="arithmatex">\[
+\begin{align*}
+z_{IP} = \max &amp; \quad \sum_{k \in [n]} (c^\top v^k) \alpha_k \\
+\text{s.t.} &amp; \quad \sum_{k \in [n]} (E v^k) \alpha_k \leq f \\
+&amp; \quad \sum_{k \in [n]} \alpha_k = 1 \\
+&amp; \quad \alpha \in \{0, 1\}^n.
+\end{align*}
+$$  
+该公式为（BP）的**Dantzig-Wolfe重构**. （BP）的**Dantzig-Wolfe松弛**为：  
 $$
-\begin{align<em>}
-z_{IP} = \max &amp; \quad c^\top x \
-\text{s.t.} &amp; \quad Ax \leq b \
-&amp; \quad Ex \leq f \tag{BP} \
-&amp; \quad x \in {0, 1}^d.
-\end{align</em>}
-$$<br />
-我们将 $ Q $ 定义为：<br />
-$$
-Q = \left{ x \in {0, 1}^d : Ax \leq b \right}.
-$$<br />
-由于 $ Q $ 有界且有限，因此 $ Q = {v^1, \ldots, v^n} <span class="arithmatex">\(.   
-那么，\)</span> Q $ 中的任意点 $ x $ 可表示为：<br />
-$$
-x = \sum_{k \in [n]} \alpha_k v^k,\quad \sum_{k \in [n]} \alpha_k = 1,\quad \alpha_k \in {0, 1}^n.
-$$<br />
-由此可得：<br />
-$$
-\begin{align<em>}
-z_{IP} = \max &amp; \quad \sum_{k \in [n]} (c^\top v^k) \alpha_k \
-\text{s.t.} &amp; \quad \sum_{k \in [n]} (E v^k) \alpha_k \leq f \
-&amp; \quad \sum_{k \in [n]} \alpha_k = 1 \
-&amp; \quad \alpha \in {0, 1}^n.
-\end{align</em>}
-$$<br />
-该公式为（BP）的<strong>Dantzig-Wolfe重构</strong>. （BP）的<strong>Dantzig-Wolfe松弛</strong>为：<br />
-$$
-\begin{align<em>}
-\max &amp; \quad \sum_{k \in [n]} (c^\top v^k) \alpha_k \
-\text{s.t.} &amp; \quad \sum_{k \in [n]} (E v^k) \alpha_k \leq f \
-&amp; \quad \sum_{k \in [n]} \alpha_k = 1 \
+\begin{align*}
+\max &amp; \quad \sum_{k \in [n]} (c^\top v^k) \alpha_k \\
+\text{s.t.} &amp; \quad \sum_{k \in [n]} (E v^k) \alpha_k \leq f \\
+&amp; \quad \sum_{k \in [n]} \alpha_k = 1 \\
 &amp; \quad \alpha \geq 0.
-\end{align</em>}
-$$</p>
+\end{align*}
+\]</div>
 <h3 id="24">2.4 具有块对角结构的问题<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
-<p>我们考虑如下优化模型：<br />
+<p>我们考虑如下优化模型：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+&amp;\max \quad c^{1^\top}x^1 + c^{2^\top}x^2 + \cdots + c^{p^\top}x^p \\
+\text{s.t.} &amp;\quad A^1x^1&amp; \leq b^1 \\
+&amp;\quad\quad\quad A^2x^2 &amp;\leq b^2 \\
+&amp;\quad\quad\quad\quad\quad \ddots \\
+&amp;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad A^px^p &amp;\leq b^p \\
+&amp;\quad E^1x^1 + E^2x^2 + \cdots + E^px^p &amp;\leq f \\
+&amp;\quad x^j \in \{0, 1\}^{n_j},\quad j \in [p].
+\end{align*}
+\]</div>
+<p>对于 $ j \in [p] $，定义 $ Q_j $ 如下：  </p>
+<div class="arithmatex">\[ Q_j = \left\{ x^j \in \{0, 1\}^{n_j} : A^jx^j \leq b^j \right\}. $$  
+这里，$ Q_j $ 有界且有限，因此 $ Q_j $ 中的任意点 $ x^j $ 可写为：  
+$$ x^j = \sum_{v \in Q_j} \alpha_v^j v,\quad \sum_{v \in Q_j} \alpha_v^j = 1,\quad \alpha^j_v \in \{0, 1\}^{|Q_j|}. $$  
+因此，该问题的Dantzig-Wolfe重构表示为：  
 $$
-\begin{align<em>}
-&amp;\max \quad c<sup>{1</sup>\top}x^1 + c<sup>{2</sup>\top}x^2 + \cdots + c<sup>{p</sup>\top}x^p \
-\text{s.t.} &amp;\quad A<sup>1x</sup>1&amp; \leq b^1 \
-&amp;\quad\quad\quad A<sup>2x</sup>2 &amp;\leq b^2 \
-&amp;\quad\quad\quad\quad\quad \ddots \
-&amp;\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad A<sup>px</sup>p &amp;\leq b^p \
-&amp;\quad E<sup>1x</sup>1 + E<sup>2x</sup>2 + \cdots + E<sup>px</sup>p &amp;\leq f \
-&amp;\quad x^j \in {0, 1}^{n_j},\quad j \in [p].
-\end{align</em>}
-$$<br />
-对于 $ j \in [p] $，定义 $ Q_j $ 如下：<br />
-$$ Q_j = \left{ x^j \in {0, 1}^{n_j} : A<sup>jx</sup>j \leq b^j \right}. $$<br />
-这里，$ Q_j $ 有界且有限，因此 $ Q_j $ 中的任意点 $ x^j $ 可写为：<br />
-$$ x^j = \sum_{v \in Q_j} \alpha_v^j v,\quad \sum_{v \in Q_j} \alpha_v^j = 1,\quad \alpha^j_v \in {0, 1}^{|Q_j|}. $$<br />
-因此，该问题的Dantzig-Wolfe重构表示为：<br />
+\begin{align*}
+\max &amp;\quad \sum_{v \in Q_1} (c^{1^\top}v)\alpha_v^1 + \sum_{v \in Q_2} (c^{2^\top}v)\alpha_v^2 + \cdots + \sum_{v \in Q_p} (c^{p^\top}v)\alpha_v^p \\
+\text{s.t.} &amp;\quad \sum_{v \in Q_1} (E^1v)\alpha_v^1 + \sum_{v \in Q_2} (E^2v)\alpha_v^2 + \cdots + \sum_{v \in Q_p} (E^pv)\alpha_v^p \leq f \\
+&amp;\quad \sum_{v \in Q_j} \alpha_v^j = 1,\quad j \in [p] \\
+&amp;\quad \alpha^j_v \in \{0, 1\}^{|Q_j|},\quad j \in [p].
+\end{align*}
+$$  
+那么，该问题的Dantzig-Wolfe松弛为：  
 $$
-\begin{align<em>}
-\max &amp;\quad \sum_{v \in Q_1} (c<sup>{1</sup>\top}v)\alpha_v^1 + \sum_{v \in Q_2} (c<sup>{2</sup>\top}v)\alpha_v^2 + \cdots + \sum_{v \in Q_p} (c<sup>{p</sup>\top}v)\alpha_v^p \
-\text{s.t.} &amp;\quad \sum_{v \in Q_1} (E<sup>1v)\alpha_v</sup>1 + \sum_{v \in Q_2} (E<sup>2v)\alpha_v</sup>2 + \cdots + \sum_{v \in Q_p} (E<sup>pv)\alpha_v</sup>p \leq f \
-&amp;\quad \sum_{v \in Q_j} \alpha_v^j = 1,\quad j \in [p] \
-&amp;\quad \alpha^j_v \in {0, 1}^{|Q_j|},\quad j \in [p].
-\end{align</em>}
-$$<br />
-那么，该问题的Dantzig-Wolfe松弛为：<br />
-$$
-\begin{align<em>}
-\max &amp;\quad \sum_{v \in Q_1} (c<sup>{1</sup>\top}v)\alpha_v^1 + \sum_{v \in Q_2} (c<sup>{2</sup>\top}v)\alpha_v^2 + \cdots + \sum_{v \in Q_p} (c<sup>{p</sup>\top}v)\alpha_v^p \
-\text{s.t.} &amp;\quad \sum_{v \in Q_1} (E<sup>1v)\alpha_v</sup>1 + \sum_{v \in Q_2} (E<sup>2v)\alpha_v</sup>2 + \cdots + \sum_{v \in Q_p} (E<sup>pv)\alpha_v</sup>p \leq f \
-&amp;\quad \sum_{v \in Q_j} \alpha_v^j = 1,\quad j \in [p] \
+\begin{align*}
+\max &amp;\quad \sum_{v \in Q_1} (c^{1^\top}v)\alpha_v^1 + \sum_{v \in Q_2} (c^{2^\top}v)\alpha_v^2 + \cdots + \sum_{v \in Q_p} (c^{p^\top}v)\alpha_v^p \\
+\text{s.t.} &amp;\quad \sum_{v \in Q_1} (E^1v)\alpha_v^1 + \sum_{v \in Q_2} (E^2v)\alpha_v^2 + \cdots + \sum_{v \in Q_p} (E^pv)\alpha_v^p \leq f \\
+&amp;\quad \sum_{v \in Q_j} \alpha_v^j = 1,\quad j \in [p] \\
 &amp;\quad \alpha^j \geq 0,\quad j \in [p].
-\end{align</em>}
-$$  </p>
+\end{align*}
+\]</div>
 <h2 id="3-dantzig-wolfe">3 使用列生成方法求解Dantzig-Wolfe重构<a class="headerlink" href="#3-dantzig-wolfe" title="Permanent link">&para;</a></h2>
 <p>Dantzig-Wolfe松弛（DW1）包含对应<span class="arithmatex">\(\text{conv}(Q)\)</span>极点的变量<span class="arithmatex">\(\alpha_1, \ldots, \alpha_n\)</span>，以及对应<span class="arithmatex">\(\text{conv}(Q)\)</span>极射线的变量<span class="arithmatex">\(\beta_1, \ldots, \beta_\ell\)</span>. 因此，<span class="arithmatex">\(n\)</span>和<span class="arithmatex">\(\ell\)</span>可能极大. 此时，可应用列生成技术. 回顾（DW1）的对偶问题为：<br />
 $$
@@ -1538,7 +1538,7 @@ $$  </p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 17:44:48">April 26, 2025 17:44:48</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 20:55:15">April 26, 2025 20:55:15</span>
   </span>
 
     
