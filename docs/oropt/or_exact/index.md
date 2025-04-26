@@ -1,6 +1,6 @@
 # Exact Algorithm
 
-- Optimality_Conditions
+- Optimality Conditions
 - Dual Theory
 - LP Introduction
 - LP Simplex Method

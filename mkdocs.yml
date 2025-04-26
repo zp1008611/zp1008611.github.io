@@ -4,7 +4,7 @@ site_description: the notes record by ZhongPei
 
 nav:
     - Home: index.md
-
+    
     - 运筹与优化:
         - 精确式算法: 
             - OROPT/or_exact/index.md
@@ -25,6 +25,14 @@ nav:
             - Dantzig-Wolfe Decomposition for IP: OROPT/or_exact/IP_dw_decomposition/README.md
             - Branch and Price: OROPT/or_exact/IP_branch_and_price/README.md
             - Benders Decomposition for IP: OROPT/or_exact/IP_beaders_decomposition/README.md
+  
+    - DL: 
+        - DL/index.md
+        - Multilayer Perceptrons: DL/MLPs/README.md
+
+    - LEETCODE:
+        - 动态规划:
+            - LEETCODE/dp/index.md
     
     - 面试八股:
         - 抱佛脚版: 
