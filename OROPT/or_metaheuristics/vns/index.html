@@ -1,0 +1,936 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/OROPT/or_metaheuristics/vns/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>变邻域搜索 - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              变邻域搜索
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RESUME_QandA/summary/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  面试八股
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    运筹与优化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../RESUME_QandA/summary/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    面试八股
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">变邻域搜索<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 1103 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 4 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>https://en.wikipedia.org/wiki/Variable_neighborhood_search</p>
+</li>
+<li>
+<p>https://www.cs.uleth.ca/~benkoczi/OR/read/vns-tutorial.pdf</p>
+</li>
+</ul>
+<p>VNS（变邻域搜索，Variable Neighborhood Search）是一种元启发式算法，旨在通过系统地改变邻域结构来探索解空间，从而避免陷入局部最优. 以下是其核心内容的简明解释：</p>
+<h2 id="_2"><strong>核心思想</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>邻域多样化</strong>：<br />
+   定义多个不同的邻域结构（如简单交换、插入、反转等），按一定顺序依次尝试. </li>
+<li><strong>逃离局部最优</strong>：<br />
+   当在当前邻域无法找到更优解时，切换到更大或更复杂的邻域继续搜索，强制跳出局部最优. </li>
+</ol>
+<p><img alt="alt text" src="image.png" /></p>
+<p>当在本邻域搜索找不出一个比当前解更优的解的时候，我们就跳到下一个邻域继续进行搜索. 如图中虚黑线所示. </p>
+<p>当在本邻域搜索找到了一个比当前解更优的解的时候，我们就跳回第一个邻域重新开始搜索. 如图中红线所示</p>
+<h2 id="_3"><strong>算法步骤</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>VNS算法求解组合优化问题（最小化）的流程文字描述如下：  </p>
+<h3 id="_4">初始化<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>选择邻域结构集合<span class="arithmatex">\(\mathcal{N}_k\)</span>（<span class="arithmatex">\(k = 1, \ldots, k_{\max}\)</span>），用于抖动阶段；选择邻域结构集合<span class="arithmatex">\(N_{\ell}\)</span>（<span class="arithmatex">\(\ell = 1, \ldots, \ell_{\max}\)</span>），用于局部搜索. 找到一个初始解<span class="arithmatex">\(x\)</span>，并使用随机变邻域搜索（RVNS）对其进行改进. 选择一个停止条件. </p>
+<p>重复以下步骤，直到满足停止条件：
+1. 令<span class="arithmatex">\(k \leftarrow 1\)</span>；
+2. 重复以下步骤，直到<span class="arithmatex">\(k = k_{\max}\)</span>：
+    - <strong>抖动</strong>：从<span class="arithmatex">\(x\)</span>的第<span class="arithmatex">\(k\)</span>个邻域<span class="arithmatex">\(\mathcal{N}_k(x)\)</span>中随机生成一个点<span class="arithmatex">\(x'\)</span>；
+    - <strong>通过变邻域下降法（VND）进行局部搜索</strong>：
+        - 令<span class="arithmatex">\(\ell \leftarrow 1\)</span>；
+        - 重复以下步骤，直到<span class="arithmatex">\(\ell = \ell_{\max}\)</span>：
+            - <strong>邻域探索</strong>：在<span class="arithmatex">\(N_{\ell}(x')\)</span>中找到<span class="arithmatex">\(x'\)</span>的最优邻域解<span class="arithmatex">\(x''\)</span>；
+            - <strong>是否变换邻域</strong>：如果<span class="arithmatex">\(f(x'') &lt; f(x')\)</span>，则令<span class="arithmatex">\(x' \leftarrow x''\)</span>且<span class="arithmatex">\(\ell \leftarrow 1\)</span>；否则令<span class="arithmatex">\(\ell \leftarrow \ell + 1\)</span>；
+    - <strong>是否变换邻域</strong>：如果这个局部最优解优于当前解，则移动到该解（<span class="arithmatex">\(x \leftarrow x''\)</span>），并从<span class="arithmatex">\(\mathcal{N}_1\)</span>开始继续搜索（<span class="arithmatex">\(k \leftarrow 1\)</span>）；否则，令<span class="arithmatex">\(k \leftarrow k + 1\)</span>. </p>
+<h2 id="_5"><strong>关键特点</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>灵活性</strong>：邻域结构可根据问题定制（如TSP中的2-opt、3-opt）.   </li>
+<li><strong>鲁棒性</strong>：通过多邻域切换增强全局搜索能力.   </li>
+<li><strong>高效性</strong>：在中等规模问题中表现优异. </li>
+</ul>
+<h2 id="_6"><strong>优缺点</strong><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>优点</strong>：实现简单、参数少、易于结合其他算法.   </li>
+<li><strong>缺点</strong>：邻域设计依赖经验，大规模问题可能需优化策略. </li>
+</ul>
+<p>VNS通过动态调整搜索方向，在局部开发与全局探索间取得平衡，是解决复杂组合优化问题的有效工具. </p>
+<h2 id="vnscvrptw">VNS算法求解CVRPTW问题<a class="headerlink" href="#vnscvrptw" title="Permanent link">&para;</a></h2>
+<h3 id="vns">VNS算法设计<a class="headerlink" href="#vns" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>解的表示</strong></p>
+<p>如果解仅包含顾客编号时，难以区分各顾客具体分配的配送路线. 因此，将配送中心以大于5的数字形式插入解中. 若配送中心最多允许K辆车服务N个顾客，则插入K个代表配送中心的数字. </p>
+<p>解的表现形式示例：</p>
+<ul>
+<li>
+<p>解表示：1263475</p>
+<ul>
+<li>配送路线：配送中心6和7将12345分割成3条配送路线</li>
+<li>第1条：0 → 1 → 2 → 0</li>
+<li>第2条：0 → 3 → 4 → 0</li>
+<li>第3条：0 → 5 → 0</li>
+</ul>
+</li>
+<li>
+<p>解表示：1267345</p>
+<ul>
+<li>配送路线：配送中心6和7将12345分割成2条配送路线</li>
+<li>第1条：0 → 1 → 2 → 0</li>
+<li>第2条：0 → 3 → 4 → 5 → 0</li>
+</ul>
+</li>
+<li>
+<p>解表示：6712345</p>
+<ul>
+<li>配送路线：配送中心6和7将12345分割成1条配送路线，即0 → 1 → 2 → 3 → 4 → 5 → 0</li>
+</ul>
+</li>
+<li>
+<p>解表示：1234567</p>
+<ul>
+<li>配送路线：配送中心6和7将12345分割成1条配送路线，即0 → 1 → 2 → 3 → 4 → 5 → 0</li>
+</ul>
+</li>
+<li>
+<p>解表示：6123457</p>
+<ul>
+<li>配送路线：配送中心6和7将12345分割成1条配送路线，即0 → 1 → 2 → 3 → 4 → 5 → 0</li>
+</ul>
+</li>
+</ul>
+<p>SA求解CVRPTW问题中的解可表示为1 - (N + K - 1)的随机排列，上述5种情况涵盖了将解转换为配送方案时会遇到的情形.  </p>
+</li>
+<li>
+<p><strong>目标函数</strong></p>
+</li>
+</ol>
+<p>第1点中的表示解的方式，无法保证分割出的各条配送路线都满足装载量约束. 为解决违反约束的问题，对违反约束的配送路线施加惩罚，以使分割出的配送路线满足装载量约束. 配送方案的总成本通过以下公式计算：
+   <span class="arithmatex">\(<span class="arithmatex">\(f(s) = c(s) + \alpha \times q(s) + \beta \times w(s)\)</span>\)</span>
+   其中：
+   - 违反装载量约束之和<span class="arithmatex">\(q(s)\)</span>的计算公式为：
+   <span class="arithmatex">\(<span class="arithmatex">\(q(s)=\sum_{k = 1}^{K}\max\left\{\left(\sum_{i\in N}d_{i}\sum_{j\in\Delta^{+}(i)}x_{ijk}-C\right),0\right\}\)</span>\)</span>
+   - 所有顾客违反的时间窗约束之和<span class="arithmatex">\(w(s)\)</span>的计算公式为：
+   <span class="arithmatex">\(<span class="arithmatex">\(w(s)=\sum_{i = 1}^{n}\max\left\{\left(l_{i}-b_{i}\right),0\right\}\)</span>\)</span></p>
+<p>式中各符号含义如下：
+   - <span class="arithmatex">\(s\)</span>为配送方案；
+   - <span class="arithmatex">\(f(s)\)</span>为当前配送方案的总成本；
+   - <span class="arithmatex">\(c(s)\)</span>为车辆总行驶距离；
+   - <span class="arithmatex">\(q(s)\)</span>为各条路径违反的装载量约束之和；
+   - <span class="arithmatex">\(w(s)\)</span>为所有顾客违反的时间窗约束之和；
+   - <span class="arithmatex">\(\alpha\)</span>为违反装载量约束的惩罚因子；
+   - <span class="arithmatex">\(\beta\)</span>为违反时间窗约束的惩罚因子；
+   - <span class="arithmatex">\(K\)</span>为配送车辆集合；
+   - <span class="arithmatex">\(N = V\setminus\{0, n + 1\}\)</span>为顾客集合；
+   - <span class="arithmatex">\(\Delta^{+}(i)\)</span>为从节点<span class="arithmatex">\(i\)</span>出发的弧的集合；
+   - <span class="arithmatex">\(d_{i}\)</span>为顾客<span class="arithmatex">\(i\)</span>的需求量；
+   - <span class="arithmatex">\(x_{ijk}\)</span>为货车<span class="arithmatex">\(k\)</span>是否从节点<span class="arithmatex">\(i\)</span>出发前往节点<span class="arithmatex">\(j\)</span>；
+   - <span class="arithmatex">\(C\)</span>为货车最大装载量；
+   - <span class="arithmatex">\(n\)</span>为顾客数目；
+   - <span class="arithmatex">\(l_{i}\)</span>为货车到达顾客<span class="arithmatex">\(i\)</span>的时间；
+   - <span class="arithmatex">\(b_{i}\)</span>为顾客<span class="arithmatex">\(i\)</span>的右时间窗.   </p>
+<ol>
+<li>
+<p><strong>初始解生成</strong></p>
+<ul>
+<li>可以使用贪心算法等启发式方法生成一个初始可行解. 例如，按照客户需求和距离配送中心的远近，依次将客户分配给不同的车辆，形成初始的车辆路径方案. </li>
+</ul>
+</li>
+<li>
+<p><strong>邻域结构定义</strong></p>
+</li>
+</ol>
+<p>假设顾客数目为<span class="arithmatex">\(N\)</span>，配送中心最多允许<span class="arithmatex">\(K\)</span>辆车进行配送，那么当前解可表示为：
+   <span class="arithmatex">\(<span class="arithmatex">\(R = [R(1),R(2),\cdots R(i),\cdots,R(j),\cdots R(N + K - 2),R(N + K - 1)]\)</span>\)</span>
+   - <strong>交换操作</strong></p>
+<div class="highlight"><pre><span></span><code>  - 若选择的交换位置为$i$和$j$（$i \neq j$，$1 \leq i,j \leq N + K - 1$），交换第$i$个和第$j$个位置上的元素后的解表示为：
+
+     $$R = [R(1),R(2),\cdots R(j),\cdots,R(i),\cdots R(N + K - 2),R(N + K - 1)]$$
+
+
+  - 以5个顾客且最多允许使用3辆货车为例：
+     - **初始解情况**：假设当前解为1263745，该解表示3条配送路线：
+        - 第1条：$0 \to 1 \to 2 \to 0$
+        - 第2条：$0 \to 3 \to 0$
+        - 第3条：$0 \to 4 \to 5 \to 0$
+     - **交换后情况**：若交换位置为$i = 3$和$j = 4$，交换后的解为1236745，此时表示2条配送路线：
+        - 第1条：$0 \to 1 \to 2 \to 3 \to 0$
+        - 第2条：$0 \to 4 \to 5 \to 0$
+</code></pre></div>
+<ul>
+<li>
+<p><strong>逆转操作</strong></p>
+<p>逆转操作指的是将两个位置之间所有元素的排序进行反转. </p>
+<ul>
+<li>
+<p>若选择的逆转位置为<span class="arithmatex">\(i\)</span>和<span class="arithmatex">\(j\)</span>（<span class="arithmatex">\(i \neq j\)</span>，<span class="arithmatex">\(1 \leq i,j \leq N\)</span>） ，逆转第<span class="arithmatex">\(i\)</span>个和第<span class="arithmatex">\(j\)</span>个位置之间所有元素的排序后，解可表示为：
+     <span class="arithmatex">\(<span class="arithmatex">\(R = [R(1),R(2),\cdots R(j),R(j - 1),\cdots,R(i + 1),R(i),\cdots R(N + K - 2),R(N + K - 1)]\)</span>\)</span></p>
+</li>
+<li>
+<p>以5个顾客且最多允许使用3辆货车为例：</p>
+<ul>
+<li><strong>初始解情况</strong>：假设当前解为1263745，该解表示3条配送路线：<ul>
+<li>第1条：<span class="arithmatex">\(0 \to 1 \to 2 \to 0\)</span></li>
+<li>第2条：<span class="arithmatex">\(0 \to 3 \to 0\)</span></li>
+<li>第3条：<span class="arithmatex">\(0 \to 4 \to 5 \to 0\)</span></li>
+</ul>
+</li>
+<li><strong>逆转后情况</strong>：若逆转位置为<span class="arithmatex">\(i = 3\)</span>和<span class="arithmatex">\(j = 7\)</span>，逆转后的解为1254736，此时表示2条配送路线：<ul>
+<li>第1条：<span class="arithmatex">\(0 \to 1 \to 2 \to 5 \to 4 \to 0\)</span></li>
+<li>第2条：<span class="arithmatex">\(0 \to 3 \to 0\)</span> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>插入操作</strong></p>
+<p>插入操作是将在第一个位置上选择的元素，插入到第二个位置上选择的元素后面. </p>
+<ul>
+<li>
+<p>若选择的插入位置为<span class="arithmatex">\(i\)</span>和<span class="arithmatex">\(j\)</span>（<span class="arithmatex">\(i \neq j\)</span>，<span class="arithmatex">\(1 \leq i,j \leq N\)</span>），将第<span class="arithmatex">\(i\)</span>个位置上的元素插入第<span class="arithmatex">\(j\)</span>个位置上的元素后，解可表示为：
+     <span class="arithmatex">\(<span class="arithmatex">\(R = [R(1),\cdots R(i - 1),R(i + 1),\cdots R(j - 1),R(j),R(i),R(j + 1),\cdots R(N + K - 1)]\)</span>\)</span></p>
+</li>
+<li>
+<p>以5个顾客且最多允许使用3辆货车为例：</p>
+<ul>
+<li><strong>初始解情况</strong>：假设当前解为1263745，该解表示3条配送路线：<ul>
+<li>第1条：<span class="arithmatex">\(0 \to 1 \to 2 \to 0\)</span></li>
+<li>第2条：<span class="arithmatex">\(0 \to 3 \to 0\)</span></li>
+<li>第3条：<span class="arithmatex">\(0 \to 4 \to 5 \to 0\)</span></li>
+</ul>
+</li>
+<li><strong>插入后情况</strong>：若插入位置为<span class="arithmatex">\(i = 3\)</span>和<span class="arithmatex">\(j = 7\)</span>，插入后的解为1237456，此时表示2条配送路线：<ul>
+<li>第1条：<span class="arithmatex">\(0 \to 1 \to 2 \to 3 \to 0\)</span></li>
+<li>第2条：<span class="arithmatex">\(0 \to 4 \to 5 \to 0\)</span> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>扰动操作</strong></p>
+</li>
+<li>
+<p>在第3点已经介绍交换操作、逆转操作和插入操作这3个邻域操作，利用这3种操作能得到3个不同的邻域集合. </p>
+</li>
+<li>
+<p>在使用邻域操作获取一条路线的邻域集合前，还有一个重要步骤，即扰动操作. 其目的是进一步扩大搜索范围，找到更多的解. </p>
+</li>
+<li>
+<p>扰动操作是对当前解进行“适当的调整”，具体方式如下：在使用某个邻域操作前，先对当前解进行操作以得到一个“扰动解”，再用该邻域操作获取这个“扰动解”的邻域集合，从而进行后续一系列操作. </p>
+</li>
+<li>
+<p>示例</p>
+<p>假设当前解为1263745，
+  - <strong>交换操作的扰动</strong>：若准备使用交换操作，随机生成1 - 7中的两个不同数字（如2和5），交换这两个位置上的城市，得到“扰动解”1763245. 
+  - <strong>逆转操作的扰动</strong>：若准备使用逆转操作，同样随机生成1 - 6中的两个不同数字（如2和5），逆转这两个位置之间所有城市的排序，得到“扰动解”1736245. 
+  - <strong>插入操作的扰动</strong>：若准备使用插入操作，随机生成1 - 6中的两个不同数字（如2和5），将第2个位置上的城市插入第5个位置上的城市后面，得到“扰动解”1637245 .  </p>
+</li>
+<li>
+<p><strong>局部搜索策略</strong></p>
+</li>
+</ul>
+<p>当对当前解<span class="arithmatex">\(S_{curr}\)</span>使用某个邻域操作得到其邻域集合后，如何处理该邻域集合，才能让<span class="arithmatex">\(S_{curr}\)</span>向“更好”的方向变化呢？
+   - 首先计算邻域集合中所有解的总距离. 
+   - 接着找到总距离最短的解<span class="arithmatex">\(S_{min}\)</span>，并用它替换当前解<span class="arithmatex">\(S_{curr}\)</span>，即令<span class="arithmatex">\(S_{curr} = S_{min}\)</span>. 
+   - 然后求出新<span class="arithmatex">\(S_{curr}\)</span>的邻域集合以及其中所有解的总距离，再次找到总距离最短的解替换当前解. 
+   - 按照上述方式迭代，直至迭代<span class="arithmatex">\(\ell_{\max}\)</span>次后，停止对<span class="arithmatex">\(S_{curr}\)</span>在当前邻域的搜索. </p>
+<ol>
+<li><strong>邻域变换策略</strong></li>
+</ol>
+<p>局部搜索策略介绍了针对当前解<span class="arithmatex">\(S_{curr}\)</span>在一个邻域中的搜索方法. 由于有交换、逆转、插入3个邻域操作，对应产生3个不同结构的邻域，分别编号为<span class="arithmatex">\(k = 1\)</span>（交换操作邻域）、<span class="arithmatex">\(k = 2\)</span>（逆转操作邻域）、<span class="arithmatex">\(k = 3\)</span>（插入操作邻域） . 在一个邻域搜索结束后，要在另一个邻域继续搜索，具体步骤如下：</p>
+<p>STEP1: 设<span class="arithmatex">\(k = 1\)</span>. </p>
+<p>STEP2: 根据<span class="arithmatex">\(k\)</span>的值跳转：若<span class="arithmatex">\(k = 1\)</span>，转至STEP3；若<span class="arithmatex">\(k = 2\)</span>，转至STEP4；若<span class="arithmatex">\(k = 3\)</span>，转至STEP5；否则，转至STEP7. </p>
+<p>STEP3: <strong>针对交换操作邻域</strong>：对<span class="arithmatex">\(S_{curr}\)</span>的交换操作邻域进行局部搜索得到最优解<span class="arithmatex">\(S_{swap}\)</span>，计算<span class="arithmatex">\(S_{swap}\)</span>的总距离<span class="arithmatex">\(L_{swap}\)</span>，令<span class="arithmatex">\(L_{curr} = L_{swap}\)</span>. 若<span class="arithmatex">\(L_{curr}&lt;L_{best}\)</span>（<span class="arithmatex">\(L_{best}\)</span>为最优路线总距离），则更新<span class="arithmatex">\(S_{best} = S_{curr} = S_{swap}\)</span>，<span class="arithmatex">\(L_{best} = L_{curr}\)</span>，<span class="arithmatex">\(k = 0\)</span>，转至STEP6 .  </p>
+<p>STEP4: <strong>针对逆转操作邻域</strong>：对<span class="arithmatex">\(S_{curr}\)</span>的逆转操作邻域进行局部搜索得到最优解<span class="arithmatex">\(S_{reversion}\)</span>，计算其总距离<span class="arithmatex">\(L_{reversion}\)</span>，令<span class="arithmatex">\(L_{curr} = L_{reversion}\)</span>. 若<span class="arithmatex">\(L_{curr}&lt;L_{best}\)</span>，则更新<span class="arithmatex">\(S_{best} = S_{curr} = S_{reversion}\)</span>，<span class="arithmatex">\(L_{best} = L_{curr}\)</span>，<span class="arithmatex">\(k=0\)</span>，转至STEP6.</p>
+<p>STEP5: <strong>针对插入操作邻域</strong>：对<span class="arithmatex">\(S_{curr}\)</span>的插入操作邻域进行局部搜索得到最优解<span class="arithmatex">\(S_{insertion}\)</span>，计算其总距离<span class="arithmatex">\(L_{insertion}\)</span>，令<span class="arithmatex">\(L_{curr} = L_{insertion}\)</span>. 若<span class="arithmatex">\(L_{curr}&lt;L_{best}\)</span>，则更新<span class="arithmatex">\(S_{best} = S_{curr} = S_{insertion}\)</span>，<span class="arithmatex">\(L_{best} = L_{curr}\)</span>，<span class="arithmatex">\(k=0\)</span>，转至STEP6.</p>
+<p>STEP6:  <span class="arithmatex">\(k=k+1\)</span>，转至STEP2. </p>
+<p>STEP7:  终止循环，输出当前解<span class="arithmatex">\(S_{curr}\)</span>、最优解<span class="arithmatex">\(S_{best}\)</span>、当前解的总距离<span class="arithmatex">\(L_{curr}\)</span>和最优解的总距离<span class="arithmatex">\(L_{best}\)</span> .  </p>
+<blockquote>
+<p><strong>采用路径编码方式的原因</strong>:</p>
+<p>在模拟退火算法求解CVRPTW问题中，采用路径编码方式（如<code>[1,2,6,3,7,4,5]</code>）主要基于以下原因：
+1. <strong>直观性与易理解性</strong>
+  - <strong>直接对应实际路径</strong>：编码中的每个子序列（如<code>[1,2,6]</code>） 明确表示一辆车的完整路径（从配送中心出发，访问客户，返回配送中心）. 
+  - <strong>可读性强</strong>：无需复杂解码即可直接观察车辆的行驶顺序和客户分配情况. </p>
+<ol>
+<li><strong>邻域操作的便利性</strong></li>
+<li><strong>支持灵活的交换/插入操作</strong>：<ul>
+<li><strong>交换操作</strong>：直接交换不同路径中的客户节点（如交换<code>1</code>和<code>3</code>），无需额外处理车辆划分. </li>
+<li><strong>插入操作</strong>：将客户节点从一个路径插入到另一个路径的任意位置，操作简单. </li>
+</ul>
+</li>
+<li>
+<p><strong>约束检查简化</strong>：邻域操作生成的新路径可直接检查容量和时间窗约束，无需重新划分车辆. </p>
+</li>
+<li>
+<p><strong>天然支持多车辆场景</strong></p>
+</li>
+<li><strong>显式区分车辆</strong>：每个子序列对应一辆车，车辆数量和路径独立. </li>
+<li>
+<p><strong>动态调整车辆数</strong>：通过邻域操作可隐式调整车辆数量（例如合并或拆分路径）. </p>
+</li>
+<li>
+<p><strong>与问题特征匹配</strong></p>
+</li>
+<li>
+<p><strong>时间窗和容量约束的处理</strong>：</p>
+<ul>
+<li>路径编码便于按顺序计算每个客户的到达时间和车辆负载. </li>
+<li>直接检查每个子路径的约束（如总负载不超过车辆容量，时间窗不违反）. </li>
+</ul>
+</li>
+<li>
+<p><strong>对比其他编码方式的优势</strong></p>
+</li>
+<li><strong>避免复杂解码</strong>：<ul>
+<li>与“节点序列编码”（如<code>[1,3,2,4]</code>，需算法自动划分路径）相比，路径编码无需动态划分车辆，减少计算开销. </li>
+</ul>
+</li>
+<li>
+<p><strong>减少无效解</strong>：</p>
+<ul>
+<li>与“染色体编码”（如二进制表示客户是否被访问）相比，路径编码直接生成有效路径，降低不可行解的概率. </li>
+</ul>
+</li>
+<li>
+<p><strong>算法实现的高效性</strong></p>
+</li>
+<li><strong>目标函数计算简单</strong>：直接遍历每个子路径的节点，累加距离即可. </li>
+<li><strong>代码实现直观</strong>：生成初始解、邻域操作、约束检查等模块可独立设计，代码结构清晰. </li>
+</ol>
+<p>路径编码是CVRPTW问题中最直观且高效的编码方式之一，其显式的车辆路径划分和灵活的操作特性，能够有效支持模拟邻域搜索和约束处理，最终在解质量和计算效率之间取得平衡. </p>
+</blockquote>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 17:44:48">April 26, 2025 17:44:48</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 21, 2025 13:02:15">April 21, 2025 13:02:15</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>

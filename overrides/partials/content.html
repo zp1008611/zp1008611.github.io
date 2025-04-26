@@ -1,0 +1,9 @@
+{% if "material/tags" in config.plugins and tags %}
+{% include "partials/tags.html" %}
+{% endif %}
+
+<span id="busuanzi_container_page_pv" style="font-style: italic; font-size: 12px; color: gray;">本文总访问量<span id="busuanzi_value_page_pv" style="font-style: italic; font-size: 12px; color: gray;"></span> 次</span>
+{% if not "\x3ch1" in page.content %}
+<h1>{{ page.title | d(config.site_name, true)}}</h1>
+{% endif %}
+{{ page.content }}

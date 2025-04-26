@@ -1,0 +1,1193 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/OROPT/or_metaheuristics/alns/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>自适应大邻域搜索算法 - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              自适应大邻域搜索算法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RESUME_QandA/summary/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  面试八股
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    运筹与优化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../RESUME_QandA/summary/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    面试八股
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">自适应大邻域搜索算法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 1873 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 2 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 6 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://d-nb.info/1072464683/34</li>
+</ul>
+<p>在<a href="../vns/">变邻域搜索</a>介绍了如何用变邻域搜索算法. 变邻域搜索算法指的是在若干个不同的邻域中进行搜索，最终得到问题的解. 变邻域搜索中的每个邻域规则都是提前设计好的，即在给定一个解的条件下，使用某个邻域规则得到的邻域结构是确定的.   </p>
+<p>以求解TSP为例，虽然VNS在搜索过程中使用若干个不同的邻域以扩大搜索范围，但是当TSP中城市数目增多时，VNS搜索范围有限这一缺点就会暴露出来. </p>
+<p>假设TSP中的城市数目为4，初始路线为1234，现在分别使用交换操作、逆转操作和插入操作求出初始解1234对应的邻域  </p>
+<p>首先来回顾这3个操作：<br />
+1. 交换操作为交换当前解两个位置上的城市. <br />
+2. 逆转操作为逆转当前解两个位置之间的城市序列. <br />
+3. 插入操作为将当前解一个位置上的城市插入另一个位置上的城市后面.   </p>
+<p>现在对初始解1234使用交换操作，得到下表的邻域：  </p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>交换点1</th>
+<th>交换点2</th>
+<th>邻域解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2134</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>3214</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>4231</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>1324</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>4</td>
+<td>1432</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3</td>
+<td>4</td>
+<td>1243</td>
+</tr>
+</tbody>
+</table>
+<p>对初始解1234使用逆转操作，得到表下表的邻域：  </p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>逆转点1</th>
+<th>逆转点2</th>
+<th>邻域解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2134</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>3214</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>4321</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>1324</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>4</td>
+<td>1432</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3</td>
+<td>4</td>
+<td>1243</td>
+</tr>
+</tbody>
+</table>
+<p>对初始解1234使用插入操作，得到下表的邻域：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>插入点1</th>
+<th>插入点2</th>
+<th>邻域解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2134</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+<td>2314</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>2341</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>1</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>3</td>
+<td>1324</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2</td>
+<td>4</td>
+<td>1342</td>
+</tr>
+<tr>
+<td>7</td>
+<td>3</td>
+<td>1</td>
+<td>1324</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3</td>
+<td>2</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>9</td>
+<td>3</td>
+<td>4</td>
+<td>1243</td>
+</tr>
+</tbody>
+</table>
+<p>上述三个操作得到的邻域解中含有重复解，现将初始解与重复解删除，共有10种不同的邻域解，如下表所示： </p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>邻域解</th>
+<th>对应3种操作中邻域解的序号</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td>交换操作</td>
+<td>逆转操作</td>
+<td>插入操作</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1243</td>
+<td>6</td>
+<td>6</td>
+<td>9</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1432</td>
+<td>5</td>
+<td>5</td>
+<td>无</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1342</td>
+<td>无</td>
+<td>无</td>
+<td>6</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1324</td>
+<td>4</td>
+<td>4</td>
+<td>5,7</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2134</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2314</td>
+<td>无</td>
+<td>无</td>
+<td>2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2341</td>
+<td>无</td>
+<td>无</td>
+<td>3</td>
+</tr>
+<tr>
+<td>8</td>
+<td>3214</td>
+<td>2</td>
+<td>2</td>
+<td>无</td>
+</tr>
+<tr>
+<td>9</td>
+<td>4231</td>
+<td>3</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>10</td>
+<td>4321</td>
+<td>无</td>
+<td>3</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<p>因为城市数目为4，所以一共有 $ A_4^4 = 24 $ 种排序方式，如下表所示. </p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>可能解</th>
+<th>序号</th>
+<th>可能解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1234</td>
+<td>13</td>
+<td>3124</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1243</td>
+<td>14</td>
+<td>3142</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1324</td>
+<td>15</td>
+<td>3214</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1342</td>
+<td>16</td>
+<td>3241</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1423</td>
+<td>17</td>
+<td>3412</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1432</td>
+<td>18</td>
+<td>3421</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2134</td>
+<td>19</td>
+<td>4123</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2143</td>
+<td>20</td>
+<td>4132</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2314</td>
+<td>21</td>
+<td>4213</td>
+</tr>
+<tr>
+<td>10</td>
+<td>2341</td>
+<td>22</td>
+<td>4231</td>
+</tr>
+<tr>
+<td>11</td>
+<td>2413</td>
+<td>23</td>
+<td>4312</td>
+</tr>
+<tr>
+<td>12</td>
+<td>2431</td>
+<td>24</td>
+<td>4321</td>
+</tr>
+</tbody>
+</table>
+<p>使用3种操作一共得到10种不同邻域解. 因此，除去初始解1234外，还有13种可能解并没有通过上述3种操作获得. 由此可见，VNS在使用这3种邻域操作时搜索范围的局限性. </p>
+<p>为了能够进一步扩大搜索范围，本文介绍自适应大邻域搜索算法（Adaptive Large Neighborhood Search，ALNS）. ALNS的思想是先“破坏”解，然后将破坏后的解进行“修复”，最终获得更高质量的解. </p>
+<h2 id="_2"><strong>基本思想</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>ALNS通过逐步破坏当前解的部分结构，并利用多种修复策略生成新解，同时通过反馈机制动态调整破坏和修复策略的使用概率，以平衡全局搜索（探索新区域）和局部搜索（优化当前区域）的能力. </p>
+<ol>
+<li><strong>邻域定义</strong>：针对组合优化问题实例 $ I $，其可行解集合为 $ S(I) $. 引入成本函数 $ c: S(I) \to \mathbb{R}^+ $ 衡量解质量. 对最小化问题，目标为找到 $ s^<em> $ 使 $ c(s^</em>) \leq c(s), \forall s \in S(I) $. 邻域 $ N(s) \subseteq S(I) $ 指解 $ s $ 的邻居解集合，通过改变 $ s $ 的部分内容生成，邻居解与 $ s $ 在搜索空间中距离较近（如汉明距离）.   </li>
+<li>
+<p><strong>邻域搜索算法</strong>：算法基于邻域操作，从初始解开始搜索其邻域，不断用在邻域找到的最佳解重复该过程（如算法1所示）. 邻域大小是关键因素：邻域大小是关键因素，更大的邻域搜索虽耗时，但能扩大搜索范围、避免算法陷入局部最优. 实际应用中，需单独确定邻域大小，以在合理时间内获取最佳结果. </p>
+</li>
+<li>
+<p><strong>算法1：邻域搜索</strong>  </p>
+<ul>
+<li><strong>输入</strong>：问题实例 <em>I</em>  </li>
+<li>创建初始解 $ s_{\text{min}} \in S(I) $  </li>
+<li><strong>循环执行（当未满足停止准则时）</strong>：  <ul>
+<li>$ s' = \underset{s \in N(s_{\text{min}})}{\text{arg min}} { c(s) } $（在 $ s \in N(s_{\text{min}}) $ 中，寻找使 $ c(s) $ 最小的解 $ s' $）  </li>
+<li><strong>若</strong> $ c(s') &lt; c(s_{\text{min}}) $ <strong>则</strong>：$ s_{\text{min}} = s' $  </li>
+</ul>
+</li>
+<li><strong>返回</strong> $ s_{\text{min}} $</li>
+</ul>
+</li>
+<li>
+<p><strong>大规模邻域搜索（Large Neighborhood Search, LNS）</strong>: LNS由Shaw提出，属于超大规模邻域搜索（VLNS）启发式算法，核心是采用“大邻域”方法，其最大挑战是高效搜索邻域以控制算法总运行时间.   </p>
+</li>
+<li><strong>算法2：大规模邻域搜索</strong>：<ul>
+<li>输入问题实例，创建初始解 $ s_{\text{min}} $；</li>
+<li>循环执行“破坏-修复”操作（$ s' = r(d(s)) $），<ul>
+<li>若新解 $ s' $ 被接受则替换当前解 $ s $；<ul>
+<li>若 $ s $ 优于 $ s_{\text{min}} $，则更新 $ s_{\text{min}} $，直至满足停止条件，最终返回最优解 $ s_{\text{min}} $.   </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>核心函数</strong>：依赖"破坏函数"$ d <span class="arithmatex">\(和"修复函数"\)</span> r $生成新解，算法不局限于搜索当前最优解 $ s_{\text{min}} $ 的邻域，而是对初始解 $ s $ 的邻域进行搜索. .   </li>
+<li><strong>示例说明</strong>：以车辆路径问题为例，通过破坏函数移除部分客户服务路径，再用修复函数重新插入未服务客户来改进解.</li>
+</ol>
+<p><img alt="alt text" src="image.png" /></p>
+<ol>
+<li><strong>自适应大规模邻域搜索（Adaptive Large Neighborhood Search, ALNS</strong>： ALNS是大规模邻域搜索（LNS）的扩展，由Ropke和Pisinger提出. 针对不同问题实例或同一问题的不同解，需用不同破坏与修复启发式处理，而ALNS允许用户选择多种启发式，算法通过分配权重反映其历史成功度，以动态优化启发式选择.   </li>
+<li><strong>核心机制</strong>：基于历史表现周期性调整启发式权重. 设定更新周期为 $ p_u $ 次迭代，每次迭代根据权重计算概率 $ p(r_i)、p(d_i) $，选择破坏启发式集合 $ D $ 中的 $ d_i $ 和修复启发式集合 $ R $ 中的 $ r_i $.   </li>
+<li>
+<p><strong>算法3：自适应大规模邻域搜索</strong>  </p>
+<ul>
+<li><strong>输入</strong>：问题实例 $ I $  </li>
+<li>创建初始解 $ s_{\text{min}} = s \in S(I) $  </li>
+<li><strong>while</strong> 未满足停止准则 <strong>do</strong>：  <ul>
+<li><strong>for</strong> $ i = 1, \dots, p_u $ <strong>do</strong>：  <ul>
+<li>按概率 $ p(r_i)、p(d_i)  $ 从集合 $ R $ 中选择修复启发式 $ r $，从集合 $ D $ 中选择破坏启发式 $ d $  </li>
+<li>$ s' = r(d(s)) $（通过破坏-修复操作生成新解）  </li>
+<li><strong>if</strong>  <span class="arithmatex">\(s'\)</span>被接受，则：  </li>
+<li>$ s = s' $  </li>
+<li><strong>if</strong> $ c(s) &lt; c(s_{\text{min}}) $，则：  <ul>
+<li>$ s_{\text{min}} = s $（更新最优解）  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>调整启发式方法的权重 $ w(r_i)、w(d_i) $ 和选择概率 $ p(r_i)、p(d_i) $  </li>
+</ul>
+</li>
+<li><strong>return</strong> $ s_{\text{min}} $（返回最优解）</li>
+</ul>
+</li>
+<li>
+<p><strong>与LNS的关系</strong>：除破坏/修复启发式选择、每 $ p_u $ 次迭代的权重更新外，ALNS基本结构与LNS一致. </p>
+</li>
+<li><strong>图片说明</strong>：初始解需经历破坏与修复过程，破坏启发式与修复启发式均从启发式集合中选取，其选择概率基于各自的历史成效. 经过若干次迭代后，算法会根据启发式的成功表现调整选择概率. </li>
+</ol>
+<p><img alt="alt text" src="image-1.png" /></p>
+<h3 id="_3"><strong>接受准则</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>接受准则用于决定保留原解 $ s $ 还是接受新解 $ s' $，所有准则的共同点是接受改进解，差异在于对非改进解的接受策略.   </p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>随机游走（Random Walk, RW）</td>
+<td>接受每一个新生成的解 $ s' $.</td>
+</tr>
+<tr>
+<td>贪婪接受（Greedy Acceptance, GRE）</td>
+<td>仅当新解 $ s' $ 的成本相比当前解 $ s $ 降低时，才接受 $ s' $，这与算法1类似.</td>
+</tr>
+<tr>
+<td>模拟退火（Simulated Annealing, SA）</td>
+<td>接受所有改进解 $ s' $. 若 $ c(s') &gt; c(s) $，则以概率 $ \exp(\frac{c(s)-c(s')}{T}) $ 接受 $ s' $，其中 $ T $ 为“温度”，且温度在每次迭代中按因子 $ \phi $ 递减.</td>
+</tr>
+<tr>
+<td>阈值接受（Threshold Accepting, TA）</td>
+<td>若 $ c(s') - c(s) &lt; T <span class="arithmatex">\(（\)</span> T $ 为阈值），则接受解 $ s' $，阈值 $ T $ 在每次迭代中按因子 $ \phi $ 递减.</td>
+</tr>
+<tr>
+<td>老单身汉接受（Old Bachelor Acceptance, OBA）</td>
+<td>若 $ c(s') - c(s) &lt; T <span class="arithmatex">\(（\)</span> T $ 为阈值），则接受解 $ s' $. 接受解后，阈值 $ T $ 按因子 $ \phi $ 递减；拒绝解后，阈值 $ T $ 按因子 $ \psi $ 递增.</td>
+</tr>
+<tr>
+<td>大洪水算法（Great Deluge Algorithm, GDA）</td>
+<td>若 $ c(s') &lt; L <span class="arithmatex">\(（\)</span> L $ 为水平值），则接受解 $ s' $. 仅当解被接受时，水平值 $ L $ 才会按因子 $ \phi $ 递减.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>方法对比与特点</strong><br />
+- <strong>贪婪接受</strong>：Shaw曾使用，因不接受差解限制搜索，尤其对初期无前景邻域友好的解. <br />
+- <strong>模拟退火与阈值接受</strong>：通过单调递减参数（温度/阈值）控制接受差解的概率，避免算法过早陷入局部最优，但可能抑制解的提升变化. <br />
+- <strong>老单身汉接受</strong>：因不参考历史决策，可能导致算法在局部最优停滞. <br />
+- <strong>大洪水算法</strong>：通过动态调整水平值，适应算法成功或失败情况，平衡搜索策略. </p>
+<h3 id="_4"><strong>破坏算子</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>破坏函数的目标是为修复函数创造优化空间. </p>
+<p><strong>破坏启发式</strong></p>
+<p>在对一个解应用破坏启发式之前，我们必须确定破坏程度 $ d $. 顾名思义，大规模邻域搜索（LNS）具有相对较高的破坏程度. 这在搜索空间受严格限制时尤其有用，因为这样可以扩展修复函数的搜索空间. 确定破坏程度有以下不同策略：<br />
+- 设置固定破坏程度. <br />
+- 从最小破坏程度 $ d_{\text{min}} $ 到最大破坏程度 $ d_{\text{max}} $ 逐渐增加破坏程度. <br />
+- 从最大破坏程度 $ d_{\text{max}} $ 到最小破坏程度 $ d_{\text{min}} $ 逐渐降低破坏程度. <br />
+- 每次迭代从 <span class="arithmatex">\([d_{\text{min/max}}]\)</span> 中随机选择一个破坏程度. <br />
+- 基于历史信息（即不同破坏程度值此前的效果），从 <span class="arithmatex">\([d_{\text{min/max}}]\)</span> 中确定破坏程度.   </p>
+<p>尽管破坏程度是每个破坏启发式最重要的输入参数，但需注意，这些启发式适用于各种可能的破坏程度. 以下启发式方法较为通用. 对于具体优化问题，还可应用更多针对问题的启发式方法. </p>
+<ul>
+<li><strong>随机移除（Random Removal）</strong>：均匀随机删除请求，虽可能移除解中适配部分，但能增加解的多样性. 单独使用效率有限，在多启发式结合的ALNS中更具价值.   </li>
+<li><strong>最差移除（Worst Removal）</strong>：移除解中导致成本最高的部分，期望修复函数消除高成本. 通过计算解包含某部分与不含该部分的成本差，确定移除对象.   </li>
+<li><strong>相关移除（Related Removal）</strong>：由Shaw提出，利用解各部分的关联性，假设相关部分易交换，通过移除相似部分，为修复函数提供更高效重新插入的机会. 挑战在于设计快速可验证的关联性度量.   </li>
+<li><strong>基于历史的移除（History-based Removal）</strong>：高度依赖具体问题，利用解所有部分的历史信息，判断某部分是否有优化潜力，进而决定是否移除，后续章节将结合具体问题（如RPDPTW）深入分析. </li>
+</ul>
+<h3 id="_5"><strong>修复算子</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>与破坏启发式类似，包含简单及复杂（耗时）的策略，由Ropke和Pisinger提出. 复杂方法如分支定界，虽计算耗时（如Shaw的方法），但单次迭代结果优. <br />
+- <strong>基本贪婪插入（Basic Greedy Insertion）</strong>：<br />
+  - 计算解中每个待插入部分的最小插入成本，通过“解的总成本−插入部分后的成本”确定插入部分的成本差. <br />
+  - 选择成本差最小的部分插入（<span class="arithmatex">\(\arg\min_{p \in P, l \in IP} c(s_{p,l})\)</span>，<span class="arithmatex">\(P\)</span>为剩余部分，<span class="arithmatex">\(IP\)</span>为插入位置，<span class="arithmatex">\(s_{p,l}\)</span>为插入后的解）. <br />
+  - 重复该过程直至所有部分插入. 此策略因延迟处理高成本部分，可能导致流程后期成本上升. <br />
+- <strong>后悔启发式（Regret Heuristics）</strong>：<br />
+  - 不仅考虑最小插入成本，还纳入次低成本、第三低成本等. 通过计算“最便宜插入与第<span class="arithmatex">\(n-1\)</span>便宜插入的成本差”，选择成本差最大的部分插入（<span class="arithmatex">\(\arg\max_{p \in P} \sum_{i=2}^{n} (c(s_i(p)) - c(s_1(p)))\)</span>，<span class="arithmatex">\(s_i(p)\)</span>为第<span class="arithmatex">\(i\)</span>便宜插入解）. <br />
+  - 提升成本预测准确性，减少后期插入成本剧增问题. <span class="arithmatex">\(n\)</span>越大，计算时间越长，但能更早发现部分无有利插入位置的情况. </p>
+<h3 id="_6"><strong>权重调整</strong><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>本文围绕自适应大规模邻域搜索（ALNS）的<strong>权重调整机制</strong>展开，核心内容如下：  </p>
+<ol>
+<li>
+<p>权重调整的目的<br />
+通过调整启发式权重，提高成功启发式在特定问题实例中的使用概率，因启发式的成功表现会随问题实例、初始解等变化（如随机移除启发式两次执行结果可能差异大），动态调整权重可确保算法高效性.   </p>
+</li>
+<li>
+<p>权重调整方法: 有以下两种策略   </p>
+</li>
+<li>每次迭代调整：权重实时更新，但需计算下次迭代概率，耗时较长.   </li>
+<li>
+<p>每 $ p_u $ 次迭代调整：执行 $ p_u $ 次迭代后调整权重，保存当前权重与启发式成功记录，平衡计算成本与更新需求.   </p>
+</li>
+<li>
+<p>关键参数定义  </p>
+</li>
+<li>$ w(h) $：启发式 $ h $ 的权重.   </li>
+<li>$ u(h) <span class="arithmatex">\(：一个更新周期（\)</span> p_u $ 次迭代）内启发式 $ h $ 的使用次数.   </li>
+<li>$ \delta_1/\delta_2/\delta_3 $：根据新解效果的权重增量：  </li>
+<li>$ \delta_1 $：新解为当前最优解时的增量；  </li>
+<li>$ \delta_2 $：新解改进当前解但非最优时的增量；  </li>
+<li>
+<p>$ \delta_3 $：新解未改进但被接受时的增量.   </p>
+</li>
+<li>
+<p>权重计算公式<br />
+通过公式 $ w(h) = \begin{cases} (1-\rho)w(h) + \rho \frac{s(h)}{u(h)}, &amp; \text{if } u(h) &gt; 0 \ (1-\rho)w(h), &amp; \text{if } u(h) = 0 \end{cases} $ 调整权重，其中 $ \rho $ 为关键参数：  </p>
+</li>
+<li>$ \rho = 0 $：权重不变，选择概率固定；  </li>
+<li>$ \rho = 1 $：仅考虑近期成功；  </li>
+<li>$ 0 &lt; \rho &lt; 1 $：兼顾近期成功与历史表现. <br />
+此外，引入反应因子控制权重衰减，通过 $ w(h) \approx w_{\text{init}}(1-\rho)^{\lfloor k/p_u \rfloor} $ 近似描述低频、低效启发式的权重指数级下降，用户可通过设置 $ \rho $ 控制无效启发式的权重占比.   </li>
+</ol>
+<h3 id="_7"><strong>算法扩展</strong><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>介绍自适应大规模邻域搜索（ALNS）的扩展与调整方法，主要内容如下：  </p>
+<ol>
+<li>时间密集型启发式的惩罚  </li>
+<li><strong>问题</strong>：ALNS中耗时的启发式常更成功，导致其权重维持，而快速启发式权重降低，且多次快速迭代的小改进可能比单次耗时迭代的大改进更有价值.   </li>
+<li>
+<p><strong>解决</strong>：对耗时启发式施加惩罚，如通过公式 $ s(h)' = s(h) \cdot \frac{t_{\text{min}}<sup _text_exec="\text{exec">{\text{exec}}}{t_h</sup> $ 为最小执行时间）；或采用恒定因子（如给最耗时启发式权重乘 $ 0.5 $），避免其过度影响算法.   }}} $ 归一化其成功度（$ t_{\text{min}}^{\text{exec}</p>
+</li>
+<li>
+<p>启发式中的噪声与随机化  </p>
+</li>
+<li><strong>作用</strong>：通过在启发式中加入随机化（如噪声项）保留多样化. 例如，在基本贪婪插入法中添加随机值，使算法不总选最优解，而是次优或第三优选项，既改进结果，又探索搜索新区域.   </li>
+<li>
+<p><strong>关键</strong>：合理选择噪声间隔，过小无影响，过大干扰流程，需平衡设置.   </p>
+</li>
+<li>
+<p>特殊启发式  </p>
+</li>
+<li>为每个破坏启发式分配专属的修复启发式子集，限制其组合范围.   </li>
+<li>使用同时执行破坏与修复的启发式（如仅交换解部分的2-Opt、3-Opt等交换启发式），适用于已知在特定问题中表现好但无法拆分破坏-修复阶段的启发式. </li>
+</ol>
+<h2 id="_8"><strong>与其他算法的区别</strong><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>遗传算法（GA）</strong>：依赖交叉和变异操作，群体进化；ALNS更注重单解的邻域搜索.   </li>
+<li><strong>模拟退火（SA）</strong>：通过温度参数控制接受概率；ALNS通过策略自适应实现类似效果.   </li>
+<li><strong>传统邻域搜索</strong>：邻域范围固定，易陷入局部最优；ALNS通过动态调整邻域大小（破坏程度）增强探索能力. </li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 17:44:48">April 26, 2025 17:44:48</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 21, 2025 13:02:15">April 21, 2025 13:02:15</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>
