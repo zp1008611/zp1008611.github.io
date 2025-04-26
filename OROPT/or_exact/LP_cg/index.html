@@ -1309,8 +1309,8 @@
 \end{align*}
 \]</div>
 <p>列生成的核心思想是求解一个<strong>受限线性规划</strong>，其中并非所有列都包含在单纯形表中，即并非所有变量都被允许成为基变量.   </p>
-<p>在受限线性规划达到最优解后，我们已知所有<strong>对偶变量</strong>（<span class="arithmatex">\(\lambda=c_B^TB^{-1}\)</span>）的值，进而可以提出问题：是否存在当前不在单纯形表中的列 $ j $，使得其在当前基解中的<strong>检验数</strong> <span class="arithmatex">\(\sigma_j\)</span> 为正数？  </p>
-<p>该问题的答案取决于列$ a_j $ 和对应成本系数 $ c_j $（即列的“结构”），因为 $ \sigma_j = c_j - \sum_{i=1}^{m} a_{ij}\lambda_i $.   </p>
+<p>在受限线性规划达到最优解后，我们已知所有<strong>对偶变量</strong>（<span class="arithmatex">\(\lambda=c_B^TB^{-1}\)</span>）的值，进而可以提出问题：是否存在当前不在单纯形表中的列 <span class="arithmatex">\(j\)</span>，使得其在当前基解中的<strong>检验数</strong> <span class="arithmatex">\(\sigma_j\)</span> 为正数？  </p>
+<p>该问题的答案取决于列 <span class="arithmatex">\(a_j\)</span> 和对应成本系数 <span class="arithmatex">\(c_j\)</span>（即列的“结构”），因为 <span class="arithmatex">\(\sigma_j = c_j - \sum_{i=1}^{m} a_{ij}\lambda_i\)</span>.   </p>
 <ul>
 <li>若答案为"否"，则可确定当前受限线性规划的最优解也是整个线性规划的最优解.   </li>
 <li>若答案为"是"，则将检验数为负的列插入受限线性规划中，继续进行旋转变换（主元变换）. </li>
@@ -1397,7 +1397,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 20:19:26">April 26, 2025 20:19:26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 20:20:24">April 26, 2025 20:20:24</span>
   </span>
 
     
