@@ -195,7 +195,7 @@ $$
 其中 $\mathbf{a}_j$ 是入基变量对应的列向量. 
 
 
-### **4. 对偶性**
+## **4. 对偶性**
 
 检验数向量 $\mathbf{\sigma} = \begin{pmatrix}\mathbf{\sigma}_B \\ \mathbf{\sigma}_N\end{pmatrix}=\begin{pmatrix}0 \\ \mathbf{c}_N - \mathbf{N}^T (\mathbf{B}^{-1})^T \mathbf{c}_B\end{pmatrix}$ ，其中基变量的检验数 $\sigma_B = 0$ . 
 

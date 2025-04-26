@@ -76,14 +76,12 @@ $$
 
 ## 列生成算法具体步骤
 
-1 令 $k \leftarrow 0 $，$ \bar{\sigma}_{max} \leftarrow \infty$.
+- 令 $k \leftarrow 0 $，$ \bar{\sigma}_{max} \leftarrow \infty$.
 
-2 生成初始列并将其添加到受限集合 $ I_0 $ 中.
+- 生成初始列并将其添加到受限集合 $ I_0 $ 中.
 
-3 **while** $\bar{\sigma}_{max} > 0$ **do**  
-
-4 
-$\ \ \ \ \ $ 求解受限主问题  
+- **while** $\bar{\sigma}_{max} > 0$ **do**  
+    - 求解受限主问题  
 
 $$
 \begin{align*}
@@ -93,37 +91,21 @@ $$
 \end{align*}
 $$ 
 
-$\ \ \ \ \ \ \ $
 以获取对偶解 $ \lambda^k $.
 
-5   
-$\ \ \ \ $
-求解列生成子问题，得到 
+    - 求解列生成子问题，得到 
 
 $$
-    \boldsymbol{a}^* \in \arg\max_{\boldsymbol{a} \in C} c(\boldsymbol{a}) - \boldsymbol{a}^T\lambda^k,  
+\boldsymbol{a}^* \in \arg\max_{\boldsymbol{a} \in C} c(\boldsymbol{a}) - \boldsymbol{a}^T\lambda^k,  
 $$
 
-$\ \ \ \ \ \ $ 
-$C$是全部列所构成的集合. 并设定 $ \bar{\sigma}_{max} = c(\boldsymbol{a}) - \boldsymbol{a}^T{\lambda^{k}}$.  
+$C$ 是全部列所构成的集合. 并设定 $\bar{\sigma}_{max} = c(\boldsymbol{a}) - \boldsymbol{a}^T{\lambda^{k}}$.  
 
-6   
-$\ \ \ \ \ $
-**if** $ \bar{\sigma}_{max} > 0 $ **then**
-
-7   
-$\ \ \ \ \ \ \ \ \ \ \ \ $
-$I_{k+1} \leftarrow I_k \cup \{a^*\}$
-
-8   
-$\ \ \ \ \ $ 
-**end if**  
-
-9   
-$\ \ \ \ \ $
-$k \leftarrow k + 1$  
-
-10 **end while**
+    - **if** $ \bar{\sigma}_{max} > 0 $ **then**
+        - $I_{k+1} \leftarrow I_k \cup \{a^*\}$
+    - **end if**  
+    - $k \leftarrow k + 1$  
+- **end while**
 
 
 
