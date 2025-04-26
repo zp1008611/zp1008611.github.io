@@ -51,4 +51,4 @@ $$
 -   - **end if**  
 -   - 从 $\mathcal{L}$ 中移除 $\mathcal{S}$  
 - **end while**  
-- **return** $ \hat{x} $  
+- **return** $\hat{x}$  
