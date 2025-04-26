@@ -6,27 +6,32 @@ nav:
     - Home: index.md
     - 运筹与优化:
         - 精确式算法: 
-            - oropt/or_exact/index.md
-            - Optimality Conditions: oropt/or_exact/optimality_conditions/README.md
-            - Dual Theory: oropt/or_exact/dual_theory/README.md
-            - LP Introduction: oropt/or_exact/LP_intro/README.md
-            - LP Simplex Method: oropt/or_exact/LP_simplex/README.md
-            - LP Interior Point Method: oropt/or_exact/LP_interior/README.md
-            - Column Generation for LP: oropt/or_exact/LP_cg/README.md
-            - Dantzig-Wolfe Decomposition for LP: oropt/or_exact/LP_dw_decompostition/README.md
-            - Integer Programming: oropt/or_exact/IP_intro/README.md
-            - Convex Hull and Valid Inequalities: oropt/or_exact/IP_convex_hull_and_valid_ineq/README.md
-            - Branch and Bound: oropt/or_exact/IP_branch_and_bound/README.md
-            - Relaxation: oropt/or_exact/IP_relaxation/README.md
-            - Cutting Planes: oropt/or_exact/IP_cutting_planes/README.md
-            - Branch and Cut: oropt/or_exact/IP_branch_and_cut/README.md
-            - Row and column generation for large-scale models: oropt/or_exact/LP_large_scale_models/README.md
-            - Dantzig-Wolfe Decomposition for IP: oropt/or_exact/IP_dw_decomposition/README.md
-            - Branch and Price: oropt/or_exact/IP_branch_and_price/README.md
-            - Benders Decomposition for IP: oropt/or_exact/IP_beaders_decomposition/README.md
+            - OROPT/or_exact/index.md
+            - Optimality Conditions: OROPT/or_exact/optimality_conditions/README.md
+            - Dual Theory: OROPT/or_exact/dual_theory/README.md
+            - LP Introduction: OROPT/or_exact/LP_intro/README.md
+            - LP Simplex Method: OROPT/or_exact/LP_simplex/README.md
+            - LP Interior Point Method: OROPT/or_exact/LP_interior/README.md
+            - Column Generation for LP: OROPT/or_exact/LP_cg/README.md
+            - Dantzig-Wolfe Decomposition for LP: OROPT/or_exact/LP_dw_decompostition/README.md
+            - Integer Programming: OROPT/or_exact/IP_intro/README.md
+            - Convex Hull and Valid Inequalities: OROPT/or_exact/IP_convex_hull_and_valid_ineq/README.md
+            - Branch and Bound: OROPT/or_exact/IP_branch_and_bound/README.md
+            - Relaxation: OROPT/or_exact/IP_relaxation/README.md
+            - Cutting Planes: OROPT/or_exact/IP_cutting_planes/README.md
+            - Branch and Cut: OROPT/or_exact/IP_branch_and_cut/README.md
+            - Row and column generation for large-scale models: OROPT/or_exact/LP_large_scale_models/README.md
+            - Dantzig-Wolfe Decomposition for IP: OROPT/or_exact/IP_dw_decomposition/README.md
+            - Branch and Price: OROPT/or_exact/IP_branch_and_price/README.md
+            - Benders Decomposition for IP: OROPT/or_exact/IP_beaders_decomposition/README.md
+    - LEETCODE:
+        - 动态规划:
+            - LEETCODE/dp/index.md
+    - DL:
+        - 
     - 面试八股:
         - 抱佛脚版: 
-            - 面试问题总结: resume_QandA/summary/README.md
+            - 面试问题总结: RESUME_QandA/summary/README.md
 
 edit_uri: edit/main/docs
 docs_dir: docs/
