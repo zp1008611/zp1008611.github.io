@@ -673,7 +673,7 @@
 
 <h1 id="_1">分支切割<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 411 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 1 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 364 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 1 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -686,40 +686,154 @@
 <p>在<a href="..\IP_convex_hull_and_valid_ineq\README.md">凸包和有效不等式</a>
 的内容里，我们简单介绍了一下分支切割算法，下面给出完整的算法框架形式.</p>
 <h2 id="_2">分支切割<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>考虑混合整数线性规划<br />
-$$
-z^* = \max { f(x) : x \in \mathcal{D} } 
-$$<br />
-其中<br />
-$$
-f(x) = c^Tx, c\in\mathbb{R}^n\
-\mathcal{D} = { x \in \mathbb{R}^n_+\mid A x \leq b,\, ,\, x_j \in \mathbb{Z}_+,\, \forall j \in I }.
-$$ </p>
-<p><strong>算法1 分支切割法</strong><br />
-1  令 $ \mathcal{L} = \mathcal{D} $，初始化 $ \hat{x} $<br />
-2 <strong>while</strong> $ \mathcal{L} \neq \emptyset $ <strong>do</strong><br />
-3 <span class="arithmatex">\(\quad\)</span> 从 $ \mathcal{L} $ 中选择待探索的子集合 $ \mathcal{S}$ <span class="arithmatex">\(\\\)</span>
-4 <span class="arithmatex">\(\quad\)</span> 求<span class="arithmatex">\((\mathcal{S},f)\)</span>的线性松弛问题的解<span class="arithmatex">\(\hat{x}'\)</span> <span class="arithmatex">\(\\\)</span>
-5 <span class="arithmatex">\(\quad\)</span> <strong>if</strong> $ \hat{x}' $是不可行解 <strong>or</strong> $ \hat{x}' <span class="arithmatex">\(是分数可行解，且\)</span>f（\hat{x}'）\leq f(\hat{x})$ <strong>then</strong> <span class="arithmatex">\(\\\)</span>
-6 <span class="arithmatex">\(\quad\quad\)</span> <span class="arithmatex">\(\mathcal{S}\)</span>赋予可以剪枝属性 <span class="arithmatex">\(\\\)</span>
-7   <span class="arithmatex">\(\quad\)</span> <strong>else if</strong>  $ \hat{x}' <span class="arithmatex">\(是分数可行解，且\)</span>f
-（\hat{x}'）&gt; f(\hat{x})$ <strong>then</strong> <span class="arithmatex">\(\\\)</span>
-8 <span class="arithmatex">\(\quad\quad\)</span> <span class="arithmatex">\(\mathcal{S}\)</span>赋予不可剪枝属性 <span class="arithmatex">\(\\\)</span>
-9 <span class="arithmatex">\(\quad\quad\)</span> <strong>if</strong> 需要添加切平面 <strong>then</strong> <span class="arithmatex">\(\\\)</span> 
-10 <span class="arithmatex">\(\quad\quad\quad\)</span> 找到分离 $ \hat{x}' $ 与 $ \mathcal{S} $ 的割平面 $ \langle \boldsymbol{a}, \hat{x}' \rangle \leq \beta $<br />
-11 <span class="arithmatex">\(\quad\quad\quad\)</span> $ \mathcal{S}_{t+1} \leftarrow \mathcal{S}_t \cap { x \mid \langle \boldsymbol{a}, \hat{x}' \rangle \leq \beta } $ <span class="arithmatex">\(\\\)</span>
-11 <span class="arithmatex">\(\quad\quad\quad\)</span> 返回第4行  <span class="arithmatex">\(\\\)</span>
-9 <span class="arithmatex">\(\quad\)</span> <strong>else if</strong> $ \hat{x}' $是整数可行解 <strong>then</strong> <span class="arithmatex">\(\\\)</span>
-10 $\quad   $ $ \hat{x} = \hat{x}' $  <span class="arithmatex">\(\\\)</span>
-11 $\quad   $  <span class="arithmatex">\(\mathcal{S}\)</span>赋予可以剪枝属性 <span class="arithmatex">\(\\\)</span>
-12 $   $ <strong>end if</strong> <span class="arithmatex">\(\\\)</span>
-13 $   $ <strong>if</strong> <span class="arithmatex">\(\mathcal{S}\)</span>不可剪枝 <strong>then</strong> <span class="arithmatex">\(\\\)</span>
-14 $\quad   $ 将 $ \mathcal{S} $ 划分为 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $<br />
-15 $\quad   $ 将 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $ 加入 $ \mathcal{L} $ <span class="arithmatex">\(\\\)</span>
-16 $   $ <strong>end if</strong>  <span class="arithmatex">\(\\\)</span>
-17 $   $ 从 $ \mathcal{L} $ 中移除 $ \mathcal{S} $<br />
-18 <strong>end while</strong><br />
-19 <strong>return</strong> $ \hat{x} $  </p>
+<p>考虑混合整数线性规划 </p>
+<div class="arithmatex">\[
+z^* = \max \{ f(x) : x \in \mathcal{D} \} 
+\]</div>
+<p>其中 </p>
+<div class="arithmatex">\[
+f(x) = c^Tx, c\in\mathbb{R}^n\\
+\mathcal{D} = \{ x \in \mathbb{R}^n_+\mid A x \leq b,\, ,\, x_j \in \mathbb{Z}_+,\, \forall j \in I \}.
+\]</div>
+<p><strong>算法1 分支切割法</strong>  </p>
+<ul>
+<li>令 <span class="arithmatex">\(\mathcal{L} = \mathcal{D}\)</span>，初始化 $\hat{x} $  </li>
+<li><strong>While</strong> <span class="arithmatex">\(\mathcal{L} \neq \emptyset\)</span> <strong>do</strong>  </li>
+<li>
+<ul>
+<li>从 <span class="arithmatex">\(\mathcal{L}\)</span> 中选择待探索的子集合 <span class="arithmatex">\(\mathcal{S}\)</span> </li>
+</ul>
+</li>
+<li>
+<ul>
+<li>求 <span class="arithmatex">\((\mathcal{S},f)\)</span> 的线性松弛问题的解 <span class="arithmatex">\(\hat{x}'\)</span></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>If</strong> <span class="arithmatex">\(\hat{x}'\)</span>是不可行解 <strong>or</strong> <span class="arithmatex">\(\hat{x}'\)</span>是分数可行解，且 <span class="arithmatex">\(f（\hat{x}'）\leq f(\hat{x})\)</span> <strong>then</strong> </li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li><span class="arithmatex">\(\mathcal{S}\)</span>赋予可以剪枝属性 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>else if</strong>  $ \hat{x}' <span class="arithmatex">\(是分数可行解，且\)</span>f
+（\hat{x}'）&gt; f(\hat{x})$ <strong>then</strong> </li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li><span class="arithmatex">\(\mathcal{S}\)</span>赋予不可剪枝属性 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>If</strong> 需要添加切平面 <strong>then</strong>  </li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>找到分离 <span class="arithmatex">\(\hat{x}'\)</span> 与 <span class="arithmatex">\(\mathcal{S}\)</span> 的割平面 <span class="arithmatex">\(\langle \boldsymbol{a}, \hat{x}' \rangle \leq \beta\)</span>  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li><span class="arithmatex">\(\mathcal{S}_{t+1} \leftarrow \mathcal{S}_t \cap \{ x \mid \langle \boldsymbol{a}, \hat{x}' \rangle \leq \beta \}\)</span> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>返回第4行  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>else if</strong> <span class="arithmatex">\(\hat{x}'\)</span>是整数可行解 <strong>then</strong> </li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li><span class="arithmatex">\(\hat{x} = \hat{x}'\)</span>  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li><span class="arithmatex">\(\mathcal{S}\)</span>赋予可以剪枝属性 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>end if</strong> </li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>if</strong> <span class="arithmatex">\(\mathcal{S}\)</span>不可剪枝 <strong>then</strong> </li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>将 $ \mathcal{S} $ 划分为 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<ul>
+<li>将 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $ 加入 $ \mathcal{L} $ </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ul>
+<li><strong>end if</strong>  </li>
+</ul>
+</li>
+<li>
+<ul>
+<li>从 $ \mathcal{L} $ 中移除 $ \mathcal{S} $  </li>
+</ul>
+</li>
+<li><strong>end while</strong>  </li>
+<li><strong>return</strong> $ \hat{x} $  </li>
+</ul>
 
 
 
@@ -742,7 +856,7 @@ $$ </p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 21, 2025 13:02:15">April 21, 2025 13:02:15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 20:46:23">April 26, 2025 20:46:23</span>
   </span>
 
     
