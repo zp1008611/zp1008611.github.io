@@ -7,15 +7,19 @@
 - https://arxiv.org/pdf/2111.06257
 
 
-在[凸包和有效不等式](..\IP_convex_hull_and_valid_ineq\README.md)
+在[凸包和有效不等式](../IP_convex_hull_and_valid_ineq/README.md)
 的内容里，我们已经介绍了分支定界算法的思想，下面给出完整的算法框架形式.
 
-## 1 算法概述  
+## 1 算法概述 
+
 考虑混合整数线性规划  
+
 $$
 z^* = \max \{ f(x) : x \in \mathcal{D} \} 
-$$  
-其中  
+$$ 
+
+其中 
+
 $$
 f(x) = c^Tx, c\in\mathbb{R}^n\\
 \mathcal{D} = \{ x \in \mathbb{R}^n_+\mid A x \leq b,\, ,\, x_j \in \mathbb{Z}_+,\, \forall j \in I \}.
@@ -24,26 +28,26 @@ $$
 
 
 **算法1 分支定界法**  
-1  令 $ \mathcal{L} = \mathcal{D} $，初始化 $ \hat{x} $  
-2 **while** $ \mathcal{L} \neq \emptyset $ **do**  
-3 $\quad$ 从 $ \mathcal{L} $ 中选择待探索的子集合 $ \mathcal{S}$ $\\$
-4 $\quad$ 求$(\mathcal{S},f)$的线性松弛问题的解$\hat{x}'$ $\\$
-5 $\quad$ **if** $ \hat{x}' $是不可行解 **or** $ \hat{x}' $是分数可行解，且$f（\hat{x}'）\leq f(\hat{x})$ **then** $\\$
-6 $\quad\quad$ $\mathcal{S}$赋予可以剪枝属性 $\\$
-7   $\quad$ **else if**  $ \hat{x}' $是分数可行解，且$f
-（\hat{x}'）> f(\hat{x})$ **then** $\\$
-8 $\quad\quad$ $\mathcal{S}$赋予不可剪枝属性 $\\$
-9 $\quad$ **else if** $ \hat{x}' $是整数可行解 **then** $\\$
-10 $\quad\ \ \ $ $ \hat{x} = \hat{x}' $  $\\$
-11 $\quad\ \ \ $  $\mathcal{S}$赋予可以剪枝属性 $\\$
-12 $\ \ \ $ **end if** $\\$
-13 $\ \ \ $ **if** $\mathcal{S}$不可剪枝 **then** $\\$
-14 $\quad\ \ \ $ 将 $ \mathcal{S} $ 划分为 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $  
-15 $\quad\ \ \ $ 将 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $ 加入 $ \mathcal{L} $ $\\$
-16 $\ \ \ $ **end if**  $\\$
-17 $\ \ \ $ 从 $ \mathcal{L} $ 中移除 $ \mathcal{S} $  
-18 **end while**  
-19 **return** $ \hat{x} $  
+- 令 $\mathcal{L} = \mathcal{D}$，初始化 $\hat{x}$  
+- **while** $\mathcal{L} \neq \emptyset$ **do**  
+-   -   从 $\mathcal{L}$ 中选择待探索的子集合 $\mathcal{S}$ 
+-   - 求 $(\mathcal{S},f)$的线性松弛问题的解 $\hat{x}'$ 
+-   - **if** $\hat{x}'$ 是不可行解 **or** $\hat{x}'$是分数可行解，且$f（\hat{x}'）\leq f(\hat{x})$ **then** 
+-   -   - $\mathcal{S}$ 赋予可以剪枝属性 
+-   - **else if**  $\hat{x}' $是分数可行解，且 $f
+（\hat{x}'）> f(\hat{x})$ **then** 
+-   -   - $\mathcal{S}$赋予不可剪枝属性 
+-   - **else if** $\hat{x}'$是整数可行解 **then** 
+-   -   -   $\hat{x} = \hat{x}'$  
+-   -   -   $\mathcal{S}$赋予可以剪枝属性
+-   - **end if**
+-   - **if** $\mathcal{S}$不可剪枝 **then** $\\$
+-   -   - 将 $\mathcal{S} $ 划分为 $ \mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r$  
+-   -   - 将 $\mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r $ 加入 $ \mathcal{L}$ 
+-   - **end if** 
+-   - 从 $\mathcal{L}$ 中移除 $\mathcal{S}$  
+- **end while**  
+- **return** $\hat{x}$  
 
 上述伪代码中，节点选择策略影响第 3 行节点的探索顺序；变量选择策略（分支规则）影响算法第 14 行子问题的划分方式；第 4-11 行的剪枝属性赋予策略决定 $ \mathcal{S} $ 是被剪枝还是继续被划分. 
 
