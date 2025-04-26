@@ -65,6 +65,7 @@ $$
 由于使用列生成算法求解线性规划问题时需要求解定价子问题，所以在分支定界中使用列生成算法求解松弛问题（线性松弛或者Dantzig-Wolfe松弛）的算法叫做**分支定价算法**. 
 
 **算法1 分支定价法**  
+
 -  令 $\mathcal{L} = \mathcal{D}$，初始化 $\hat{x}$  
 - **while** $\mathcal{L} \neq \emptyset$ **do**  
 -   - 从 $\mathcal{L}$ 中选择待探索的子集合 $\mathcal{S}$ 
