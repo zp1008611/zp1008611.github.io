@@ -27,8 +27,9 @@ nav:
     - LEETCODE:
         - 动态规划:
             - LEETCODE/dp/index.md
-    - DL:
-        - 
+    - DL: 
+        - DL/index.md
+        - Multilayer Perceptrons: DL/MLPs/README.md
     - 面试八股:
         - 抱佛脚版: 
             - 面试问题总结: RESUME_QandA/summary/README.md
