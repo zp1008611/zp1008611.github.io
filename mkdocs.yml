@@ -41,7 +41,7 @@ docs_dir: docs/
 theme:
   name: material
   language: zh # 一些提示性的文字会变成中文
-  custom_dir: docs/overrides/
+  # custom_dir: docs/overrides/
   font:
     text: Roboto
     code: Roboto Mono
