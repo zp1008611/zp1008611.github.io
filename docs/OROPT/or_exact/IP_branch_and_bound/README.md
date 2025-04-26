@@ -25,9 +25,8 @@ f(x) = c^Tx, c\in\mathbb{R}^n\\
 \mathcal{D} = \{ x \in \mathbb{R}^n_+\mid A x \leq b,\, ,\, x_j \in \mathbb{Z}_+,\, \forall j \in I \}.
 $$
  
+### 算法1 分支定界法
 
-
-**算法1 分支定界法**  
 - 令 $\mathcal{L} = \mathcal{D}$，初始化 $\hat{x}$  
 - **while** $\mathcal{L} \neq \emptyset$ **do**  
 -   -   从 $\mathcal{L}$ 中选择待探索的子集合 $\mathcal{S}$ 
