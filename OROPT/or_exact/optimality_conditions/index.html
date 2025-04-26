@@ -290,6 +290,60 @@
   
     
     
+      <li class="md-tabs__item">
+        <a href="../../../DL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LEETCODE/dp/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LEETCODE
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
       
   
   
@@ -653,6 +707,15 @@
   <a href="#31" class="md-nav__link">
     <span class="md-ellipsis">
       3.1 凸函数的次梯度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      次梯度相关内容翻译
     </span>
   </a>
   
@@ -1092,6 +1155,116 @@
     
       
         
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../DL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    DL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../LEETCODE/dp/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LEETCODE
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
       
     
     
@@ -1159,93 +1332,114 @@
 
 <h1 id="_1">最优性条件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 938 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 3 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 864 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 3 分钟</p>
 </div>
 <h2 id="1">1 凸集与凸函数<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <h3 id="11">1.1 凸集<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
-<p><strong>定义1.1（凸集）</strong>：<span class="arithmatex">\(\mathbb{R}^{n}\)</span>的子集<span class="arithmatex">\(C\)</span>被称为凸集，当且仅当对于所有的<span class="arithmatex">\(x, y \in C\)</span>和所有的<span class="arithmatex">\(\lambda \in [0, 1]\)</span>，都有</p>
+<p><strong>定义1.1（凸集）</strong>：<span class="arithmatex">\(\mathbb{R}^{n}\)</span>的子集 <span class="arithmatex">\(C\)</span> 被称为凸集，当且仅当对于所有的 <span class="arithmatex">\(x, y \in C\)</span> 和所有的 <span class="arithmatex">\(\lambda \in [0, 1]\)</span>，都有</p>
 <div class="arithmatex">\[
 \lambda x+(1-\lambda) y \in C
 \]</div>
-<p><strong>定义1.2（凸组合）</strong>：给定<span class="arithmatex">\(x_{1}, \ldots, x_{m} \in \mathbb{R}^{n}\)</span>，形如<span class="arithmatex">\(x = \sum_{i = 1}^{m} \lambda_{i} x_{i}\)</span>的元素，其中<span class="arithmatex">\(\sum_{i = 1}^{m} \lambda_{i} = 1\)</span>且<span class="arithmatex">\(\lambda_{i} \geq 0\)</span>，被称为<span class="arithmatex">\(x_{1}, \ldots, x_{m}\)</span>的凸组合。</p>
-<p><strong>命题1.3</strong>：<span class="arithmatex">\(\mathbb{R}^{n}\)</span>的子集<span class="arithmatex">\(C\)</span>是凸集，当且仅当它包含其元素的所有凸组合。</p>
+<p><strong>定义1.2（凸组合）</strong>：给定 <span class="arithmatex">\(x_{1}, \ldots, x_{m} \in \mathbb{R}^{n}\)</span>，形如 <span class="arithmatex">\(x = \sum_{i = 1}^{m} \lambda_{i} x_{i}\)</span>的元素，其中 <span class="arithmatex">\(\sum_{i = 1}^{m} \lambda_{i} = 1\)</span> 且 <span class="arithmatex">\(\lambda_{i} \geq 0\)</span>，被称为 <span class="arithmatex">\(x_{1}, \ldots, x_{m}\)</span> 的凸组合. </p>
+<p><strong>命题1.3</strong>：<span class="arithmatex">\(\mathbb{R}^{n}\)</span>的子集<span class="arithmatex">\(C\)</span>是凸集，当且仅当它包含其元素的所有凸组合. </p>
 <h3 id="12">1.2 凸函数<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
-<p>在本小节中，我们将考虑扩展实值函数，其取值范围为<span class="arithmatex">\(\overline{\mathbb{R}} := (-\infty, \infty]\)</span>，并遵循以下约定：对于所有的<span class="arithmatex">\(a \in \mathbb{R}\)</span>，<span class="arithmatex">\(a + \infty = \infty\)</span>；<span class="arithmatex">\(\infty + \infty = \infty\)</span>；对于所有的<span class="arithmatex">\(t &gt; 0\)</span>，<span class="arithmatex">\(t \cdot \infty = \infty\)</span>。</p>
-<p><strong>定义1.4（凸函数）</strong>：设<span class="arithmatex">\(C\)</span>是<span class="arithmatex">\(\mathbb{R}^{n}\)</span>的凸子集。函数<span class="arithmatex">\(f: C \mapsto \overline{\mathbb{R}}\)</span>在<span class="arithmatex">\(C\)</span>上被称为凸函数，当且仅当对于所有的<span class="arithmatex">\(x, y \in C\)</span>和所有的<span class="arithmatex">\(\lambda \in [0, 1]\)</span>，都有</p>
+<p>在本小节中，我们将考虑扩展实值函数，其取值范围为 <span class="arithmatex">\(\overline{\mathbb{R}} := (-\infty, \infty]\)</span>，并遵循以下约定：对于所有的 <span class="arithmatex">\(a \in \mathbb{R}\)</span>，<span class="arithmatex">\(a + \infty = \infty\)</span>；<span class="arithmatex">\(\infty + \infty = \infty\)</span>；对于所有的 <span class="arithmatex">\(t &gt; 0\)</span>，<span class="arithmatex">\(t \cdot \infty = \infty\)</span>. </p>
+<p><strong>定义1.4（凸函数）</strong>：设 <span class="arithmatex">\(C\)</span> 是 <span class="arithmatex">\(\mathbb{R}^{n}\)</span> 的凸子集. 函数 <span class="arithmatex">\(f: C \mapsto \overline{\mathbb{R}}\)</span> 在 <span class="arithmatex">\(C\)</span> 上被称为凸函数，当且仅当对于所有的 <span class="arithmatex">\(x, y \in C\)</span> 和所有的 <span class="arithmatex">\(\lambda \in [0, 1]\)</span>，都有</p>
 <div class="arithmatex">\[
 f(\lambda x+(1-\lambda) y) \leq \lambda f(x)+(1-\lambda) f(y)
 \]</div>
-<p><strong>定义1.5（上境图和有效定义域）</strong>：函数<span class="arithmatex">\(f: X \to [-\infty, \infty]\)</span>（其中<span class="arithmatex">\(X \subset \mathbb{R}^{n}\)</span>）的上境图为</p>
+<p><strong>定义1.5（上境图和有效定义域）</strong>：函数 <span class="arithmatex">\(f: X \to [-\infty, \infty]\)</span>（其中<span class="arithmatex">\(X \subset \mathbb{R}^{n}\)</span>）的上境图为</p>
 <div class="arithmatex">\[
 epi f=\left\{(x, w) | x \in X, w \in \mathbb{R}, f(x) \leq w\right\}
 \]</div>
-<p><span class="arithmatex">\(f\)</span>的有效定义域为
-<span class="arithmatex">\(<span class="arithmatex">\(dom f=\{x | f(x)&lt;\infty\}\)</span>\)</span></p>
+<p><span class="arithmatex">\(f\)</span>的有效定义域为</p>
+<div class="arithmatex">\[
+dom f=\{x | f(x)&lt;\infty\}
+\]</div>
 <p><strong>定义1.6（严格凸函数）</strong>：（文档未给出具体定义内容）</p>
 <p><strong>定义1.7（强凸函数）</strong>：（文档未给出具体定义内容）</p>
-<p><strong>定义1.8（正常函数）</strong>：函数<span class="arithmatex">\(f\)</span>是正常的，如果至少存在一个<span class="arithmatex">\(x \in X\)</span>，使得<span class="arithmatex">\(f(x) &lt; \infty\)</span>。从考虑上境图<span class="arithmatex">\(epi f\)</span>的角度来看，这意味着<span class="arithmatex">\(epi f\)</span>非空且不包含任何垂直线。如果<span class="arithmatex">\(f\)</span>不是正常函数，则称其为非正常函数。</p>
-<p><strong>定理1.9（詹森不等式）</strong>：函数<span class="arithmatex">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是凸函数，当且仅当对于任意的<span class="arithmatex">\(\lambda_{i} \geq 0\)</span>（满足<span class="arithmatex">\(\sum \lambda_{i} = 1\)</span>）和任意的元素<span class="arithmatex">\(x_{i} \in \mathbb{R}^{n}\)</span>，都有</p>
+<p><strong>定义1.8（正常函数）</strong>：函数<span class="arithmatex">\(f\)</span>是正常的，如果至少存在一个 <span class="arithmatex">\(x \in X\)</span>，使得 <span class="arithmatex">\(f(x) &lt; \infty\)</span>. 从考虑上境图 <span class="arithmatex">\(\text{epi} f\)</span> 的角度来看，这意味着 <span class="arithmatex">\(\text{epi} f\)</span> 非空且不包含任何垂直线. 如果<span class="arithmatex">\(f\)</span>不是正常函数，则称其为非正常函数. </p>
+<p><strong>定理1.9（詹森不等式）</strong>：函数 <span class="arithmatex">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span> 是凸函数，当且仅当对于任意的 <span class="arithmatex">\(\lambda_{i} \geq 0\)</span>（满足<span class="arithmatex">\(\sum \lambda_{i} = 1\)</span>）和任意的元素 <span class="arithmatex">\(x_{i} \in \mathbb{R}^{n}\)</span>，都有</p>
 <div class="arithmatex">\[
 f\left(\sum \lambda_{i} x_{i}\right) \leq \sum \lambda_{i} f\left(x_{i}\right)
 \]</div>
-<p><strong>命题1.10</strong>：函数<span class="arithmatex">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是凸函数，当且仅当<span class="arithmatex">\(epi f \subset \mathbb{R}^{n + 1}\)</span>是凸集。</p>
-<p><strong>定义1.11（闭函数）</strong>：如果函数<span class="arithmatex">\(f: X \to \overline{\mathbb{R}}\)</span>的上境图是闭集，我们称<span class="arithmatex">\(f\)</span>是闭函数。</p>
-<p>现在，我们给出一些可微或二阶可微函数的凸性特征。</p>
-<p><strong>命题1.12</strong>：设<span class="arithmatex">\(C\)</span>是一个非空的凸开集。设<span class="arithmatex">\(f: \mathbb{R}^{n} \to \mathbb{R}\)</span>在包含<span class="arithmatex">\(C\)</span>的开集上可微，那么<span class="arithmatex">\(f\)</span>是凸函数，当且仅当对于所有的<span class="arithmatex">\(x, z \in C\)</span>，都有</p>
+<p><strong>命题1.10</strong>：函数 <span class="arithmatex">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span> 是凸函数，当且仅当 <span class="arithmatex">\(\text{epi} f \subset \mathbb{R}^{n + 1}\)</span> 是凸集. </p>
+<p><strong>定义1.11（闭函数）</strong>：如果函数<span class="arithmatex">\(f: X \to \overline{\mathbb{R}}\)</span>的上境图是闭集，我们称<span class="arithmatex">\(f\)</span>是闭函数. </p>
+<p>现在，我们给出一些可微或二阶可微函数的凸性特征. </p>
+<p><strong>命题1.12</strong>：设<span class="arithmatex">\(C\)</span>是一个非空的凸开集. 设 <span class="arithmatex">\(f: \mathbb{R}^{n} \to \mathbb{R}\)</span> 在包含 <span class="arithmatex">\(C\)</span> 的开集上可微，那么 <span class="arithmatex">\(f\)</span> 是凸函数，当且仅当对于所有的 <span class="arithmatex">\(x, z \in C\)</span>，都有</p>
 <div class="arithmatex">\[
 f(z) \geq f(x)+\langle \nabla f(x), z - x\rangle
 \]</div>
-<p><strong>命题1.13</strong>：设<span class="arithmatex">\(C\)</span>是<span class="arithmatex">\(\mathbb{R}^{n}\)</span>中的非空凸集，且<span class="arithmatex">\(f: \mathbb{R}^{n} \to \mathbb{R}\)</span>在包含<span class="arithmatex">\(C\)</span>的开集上二阶可微。如果对于所有的<span class="arithmatex">\(x \in C\)</span>，<span class="arithmatex">\(\nabla^{2} f(x)\)</span>都是半正定的，那么<span class="arithmatex">\(f\)</span>在<span class="arithmatex">\(C\)</span>上是凸函数。</p>
+<p><strong>命题1.13</strong>：设<span class="arithmatex">\(C\)</span>是<span class="arithmatex">\(\mathbb{R}^{n}\)</span>中的非空凸集，且<span class="arithmatex">\(f: \mathbb{R}^{n} \to \mathbb{R}\)</span>在包含<span class="arithmatex">\(C\)</span>的开集上二阶可微. 如果对于所有的<span class="arithmatex">\(x \in C\)</span>，<span class="arithmatex">\(\nabla^{2} f(x)\)</span>都是半正定的，那么<span class="arithmatex">\(f\)</span>在<span class="arithmatex">\(C\)</span>上是凸函数. </p>
 <h3 id="13">1.3 投影到凸集<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
 <p>给定一个集合<span class="arithmatex">\(C \subseteq \mathbb{R}^{n}\)</span>，点<span class="arithmatex">\(x\)</span>到<span class="arithmatex">\(C\)</span>的距离定义为</p>
 <div class="arithmatex">\[
 d(x ; C):=\inf \{\| x - y\| : y \in C\}
 \]</div>
-<p>对于闭凸集，有一个重要的投影性质如下。</p>
-<p><strong>命题1.14（投影性质）</strong>：设<span class="arithmatex">\(C\)</span>是<span class="arithmatex">\(\mathbb{R}^{n}\)</span>的非空闭凸子集。对于每个<span class="arithmatex">\(x \in \mathbb{R}^{n}\)</span>，存在唯一的<span class="arithmatex">\(w \in C\)</span>，使得</p>
+<p>对于闭凸集，有一个重要的投影性质如下. </p>
+<p><strong>命题1.14（投影性质）</strong>：设<span class="arithmatex">\(C\)</span>是<span class="arithmatex">\(\mathbb{R}^{n}\)</span>的非空闭凸子集. 对于每个<span class="arithmatex">\(x \in \mathbb{R}^{n}\)</span>，存在唯一的<span class="arithmatex">\(w \in C\)</span>，使得</p>
 <div class="arithmatex">\[
 \| x - w\| =d(x ; C)
 \]</div>
-<p><span class="arithmatex">\(w\)</span>被称为<span class="arithmatex">\(x\)</span>到<span class="arithmatex">\(C\)</span>的投影，记为<span class="arithmatex">\(P_{C}(x)\)</span>。</p>
+<p><span class="arithmatex">\(w\)</span>被称为<span class="arithmatex">\(x\)</span>到<span class="arithmatex">\(C\)</span>的投影，记为<span class="arithmatex">\(P_{C}(x)\)</span>. </p>
 <p><strong>命题1.15</strong>：设<span class="arithmatex">\(C\)</span>是一个非空闭凸集，那么<span class="arithmatex">\(w = P_{C}(x)\)</span>当且仅当对于所有的<span class="arithmatex">\(u \in C\)</span>，都有</p>
 <div class="arithmatex">\[
 \langle x - w, u - w\rangle \leq 0
 \]</div>
 <h2 id="2">2 凸集的法锥和切锥<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<p><strong>定义2.1（锥）</strong>：集合<span class="arithmatex">\(C\)</span>是一个锥，如果对于任意的<span class="arithmatex">\(x \in C\)</span>和<span class="arithmatex">\(0 &lt; \lambda \in \mathbb{R}\)</span>，都有<span class="arithmatex">\(\lambda x \in C\)</span>。锥<span class="arithmatex">\(C\)</span>的极锥（记为<span class="arithmatex">\(C^{\circ}\)</span>）定义为
-<span class="arithmatex">\(<span class="arithmatex">\(C^{\circ}=\{\sigma:\langle\sigma, x\rangle \leq 0 \text{ 对于所有的 } x \in C\}\)</span>\)</span>
-假设<span class="arithmatex">\(\Omega \subseteq \mathbb{R}^{n}\)</span>是一个凸集。那么对于<span class="arithmatex">\(x \in \Omega\)</span>，我们可以定义<span class="arithmatex">\(\Omega\)</span>在<span class="arithmatex">\(x\)</span>处的法锥为
+<p><strong>定义2.1（锥）</strong>：集合<span class="arithmatex">\(C\)</span>是一个锥，如果对于任意的<span class="arithmatex">\(x \in C\)</span>和<span class="arithmatex">\(0 &lt; \lambda \in \mathbb{R}\)</span>，都有<span class="arithmatex">\(\lambda x \in C\)</span>. 锥<span class="arithmatex">\(C\)</span>的极锥（记为<span class="arithmatex">\(C^{\circ}\)</span>）定义为</p>
+<div class="arithmatex">\[
+C^{\circ}=\{\sigma:\langle\sigma, x\rangle \leq 0 \text{ 对于所有的 } x \in C\}
+\]</div>
+<p>假设<span class="arithmatex">\(\Omega \subseteq \mathbb{R}^{n}\)</span>是一个凸集. 那么对于<span class="arithmatex">\(x \in \Omega\)</span>，我们可以定义<span class="arithmatex">\(\Omega\)</span>在<span class="arithmatex">\(x\)</span>处的法锥为
 <span class="arithmatex">\(<span class="arithmatex">\(N_{\Omega}(x)=\{z \in \mathbb{R}^{n}:\langle z, y - x\rangle \leq 0 \text{ 对于所有的 } y \in \Omega\}\)</span>\)</span>
-对于凸集，我们可以定义<span class="arithmatex">\(\Omega\)</span>在<span class="arithmatex">\(x\)</span>处的切锥<span class="arithmatex">\(T_{\Omega}(x)\)</span>为<span class="arithmatex">\(N_{\Omega}(x)^{\circ}\)</span>。</p>
-<p><strong>定理2.2</strong>：对于问题<span class="arithmatex">\(\min_{\Omega} f(x)\)</span>，如果<span class="arithmatex">\(f\)</span>是光滑且凸的，<span class="arithmatex">\(\Omega\)</span>是闭凸集，那么<span class="arithmatex">\(-\nabla f(x^{*}) \in N_{\Omega}(x^{*})\)</span>意味着<span class="arithmatex">\(x^{*}\)</span>是全局最优解。</p>
+对于凸集，我们可以定义<span class="arithmatex">\(\Omega\)</span>在<span class="arithmatex">\(x\)</span>处的切锥<span class="arithmatex">\(T_{\Omega}(x)\)</span>为<span class="arithmatex">\(N_{\Omega}(x)^{\circ}\)</span>. </p>
+<p><img alt="alt text" src="image.png" /></p>
+<p><strong>定理2.2</strong>：对于问题<span class="arithmatex">\(\min_{\Omega} f(x)\)</span>，如果<span class="arithmatex">\(f\)</span>是光滑且凸的，<span class="arithmatex">\(\Omega\)</span>是闭凸集，那么<span class="arithmatex">\(-\nabla f(x^{*}) \in N_{\Omega}(x^{*})\)</span>意味着<span class="arithmatex">\(x^{*}\)</span>是全局最优解. </p>
 <h2 id="3">3 次微分计算<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <h3 id="31">3.1 凸函数的次梯度<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
-<p>在本小节中，我们引入凸函数次梯度这一关键概念。它作为非光滑函数的广义导数，在优化理论中有许多应用。</p>
-<p><strong>定义3.1（次梯度）</strong>：设<span class="arithmatex">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是一个凸函数，且<span class="arithmatex">\(\bar{x} \in dom f\)</span>。元素<span class="arithmatex">\(g \in \mathbb{R}^{n}\)</span>被称为<span class="arithmatex">\(f\)</span>在<span class="arithmatex">\(\bar{x}\)</span>处的次梯度，如果……（文档此处定义不完整）
-凸函数<span class="arithmatex">\(f\)</span>的所有次梯度的集合称为次微分。</p>
-<p><strong>定理3.2（<span class="arithmatex">\(f\)</span>的次梯度是<span class="arithmatex">\(epi f\)</span>的支撑超平面）</strong>：设<span class="arithmatex">\(f\)</span>是一个凸函数，且<span class="arithmatex">\(x \in dom f\)</span>。<span class="arithmatex">\(g \in \partial f(x)\)</span>当且仅当<span class="arithmatex">\(\begin{pmatrix} g \\ -1 \end{pmatrix}\)</span>定义了<span class="arithmatex">\(epi f\)</span>在点<span class="arithmatex">\(\begin{pmatrix} x \\ f(x) \end{pmatrix}\)</span>处的支撑超平面。</p>
-<p><strong>命题3.3</strong>：设<span class="arithmatex">\(f\)</span>是一个凸函数，且<span class="arithmatex">\(x \in int(dom f)\)</span>，那么<span class="arithmatex">\(\partial f(x)\)</span>是非空且紧致的。</p>
-<p><strong>命题3.4</strong>：设<span class="arithmatex">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是凸函数，且在<span class="arithmatex">\(x \in int(dom f)\)</span>处可微。那么<span class="arithmatex">\(\partial f(x)=\{\nabla f(x)\}\)</span>。</p>
-<p><strong>例3.5（<span class="arithmatex">\(f(x) = |x|\)</span>的次梯度）</strong>：<span class="arithmatex">\(f(x) = |x|\)</span>在<span class="arithmatex">\(\mathbb{R}\)</span>上是凸函数。当<span class="arithmatex">\(x &gt; 0\)</span>时，<span class="arithmatex">\(f(x) = x\)</span>在<span class="arithmatex">\(x\)</span>处可微，且<span class="arithmatex">\(\nabla f(x) = 1\)</span>，所以<span class="arithmatex">\(\partial f(x)=\{1\}\)</span>。当<span class="arithmatex">\(x &lt; 0\)</span>时，<span class="arithmatex">\(f(x) = -x\)</span>在<span class="arithmatex">\(x\)</span>处可微，且<span class="arithmatex">\(\nabla f(x) = -1\)</span>，所以<span class="arithmatex">\(\partial f(x)=\{-1\}\)</span>。当<span class="arithmatex">\(x = 0\)</span>时，我们需要找到<span class="arithmatex">\(g \in \mathbb{R}\)</span>，使得对于所有的<span class="arithmatex">\(y \in \mathbb{R}\)</span>，都有<span class="arithmatex">\(f(y) - f(0) \geq \langle g, y\rangle\)</span>。即对于所有的<span class="arithmatex">\(y \in \mathbb{R}\)</span>，<span class="arithmatex">\(|y| \geq gy \Rightarrow \frac{|y|}{y} \geq g \Rightarrow -1 \leq g \leq 1\)</span>，所以<span class="arithmatex">\(\partial f(0)=[-1, 1]\)</span>。</p>
-<p><strong>定理3.6（丹斯金定理）</strong>：设<span class="arithmatex">\(f\)</span>是凸函数，<span class="arithmatex">\(Z\)</span>是一个紧致集，使得……（文档此处定理内容不完整）其中<span class="arithmatex">\(\phi: int(dom f) \times Z \to \mathbb{R} \cup \{-\infty, +\infty\}\)</span>对于每个<span class="arithmatex">\(z \in Z\)</span>都是一个扩展实值、闭、正常的凸函数。如果……（文档此处定理条件不完整）</p>
+<p>在本小节中，我们引入凸函数次梯度这一关键概念. 它作为非光滑函数的广义导数，在优化理论中有许多应用. </p>
+<p><strong>定义3.1（次梯度）</strong>：</p>
+<h3 id="_2">次梯度相关内容翻译<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>在本小节中，我们引入凸函数次梯度这一关键概念. 它作为非光滑函数的广义导数，在优化理论中有诸多应用. </p>
+<p><strong>定义3.1（次梯度）</strong>：设 <span class="arithmatex">\(f:\mathbb{R}^n \to \overline{\mathbb{R}}\)</span>为凸函数，<span class="arithmatex">\(\bar{x} \in \text{dom}f\)</span>. 若对于 <span class="arithmatex">\(\forall x \in \mathbb{R}^n\)</span>，都有 <span class="arithmatex">\(f(x) - f(\bar{x}) \geq \langle g, x - \bar{x} \rangle\)</span>，则元素 <span class="arithmatex">\(g \in \mathbb{R}^n\)</span> 称为 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(\bar{x}\)</span>处的次梯度. 凸函数<span class="arithmatex">\(f\)</span>的所有次梯度构成的集合称为次微分：</p>
+<div class="arithmatex">\[
+\partial f(x) = \{g \in \mathbb{R}^n : g是f在x处的次梯度\}
+\]</div>
+<p><strong>定理3.2（<span class="arithmatex">\(f\)</span>的次梯度是<span class="arithmatex">\(epi f\)</span>的支撑超平面）</strong>：
+设 <span class="arithmatex">\(f\)</span> 是一个凸函数，且 <span class="arithmatex">\(x \in \text{dom} f\)</span>. <span class="arithmatex">\(g \in \partial f(x)\)</span> 当且仅当 <span class="arithmatex">\(\begin{pmatrix} g \\ -1 \end{pmatrix}\)</span> 定义了 <span class="arithmatex">\(\text{epi} f\)</span> 在点 <span class="arithmatex">\(\begin{pmatrix} x \\ f(x) \end{pmatrix}\)</span> 处的支撑超平面. </p>
+<p><strong>命题3.3</strong>：设 <span class="arithmatex">\(f\)</span> 是一个凸函数，且 <span class="arithmatex">\(x \in \text{int}(\text{dom} f)\)</span>，那么 <span class="arithmatex">\(\partial f(x)\)</span> 是非空且紧致的. </p>
+<p><strong>命题3.4</strong>：设 <span class="arithmatex">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span> 是凸函数，且在 <span class="arithmatex">\(x \in \text{int}(\text{dom} f)\)</span> 处可微. 那么 <span class="arithmatex">\(\partial f(x)=\{\nabla f(x)\}\)</span>. </p>
+<p><strong>例3.5（<span class="arithmatex">\(f(x) = |x|\)</span>的次梯度）</strong>：<span class="arithmatex">\(f(x) = |x|\)</span> 在 <span class="arithmatex">\(\mathbb{R}\)</span>上是凸函数. 当 <span class="arithmatex">\(x &gt; 0\)</span> 时，<span class="arithmatex">\(f(x) = x\)</span>在 <span class="arithmatex">\(x\)</span> 处可微，且 <span class="arithmatex">\(\nabla f(x) = 1\)</span>，所以 <span class="arithmatex">\(\partial f(x)=\{1\}\)</span>. 当 <span class="arithmatex">\(x &lt; 0\)</span> 时，<span class="arithmatex">\(f(x) = -x\)</span> 在 <span class="arithmatex">\(x\)</span> 处可微，且 <span class="arithmatex">\(\nabla f(x) = -1\)</span>，所以 <span class="arithmatex">\(\partial f(x)=\{-1\}\)</span>. 当 <span class="arithmatex">\(x = 0\)</span> 时，我们需要找到 <span class="arithmatex">\(g \in \mathbb{R}\)</span>，使得对于所有的 <span class="arithmatex">\(y \in \mathbb{R}\)</span>，都有 <span class="arithmatex">\(f(y) - f(0) \geq \langle g, y\rangle\)</span>. 即对于所有的 <span class="arithmatex">\(y \in \mathbb{R}\)</span>，<span class="arithmatex">\(|y| \geq gy \Rightarrow \frac{|y|}{y} \geq g \Rightarrow -1 \leq g \leq 1\)</span>，所以 <span class="arithmatex">\(\partial f(0)=[-1, 1]\)</span>. </p>
 <h3 id="32">3.2 方向导数<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
-<p><strong>定义3.7（方向导数）</strong>：设<span class="arithmatex">\(f: \mathbb{R}^{n} \to \overline{\mathbb{R}}\)</span>是一个函数，且<span class="arithmatex">\(x \in dom f\)</span>。<span class="arithmatex">\(f\)</span>在<span class="arithmatex">\(x\)</span>处沿方向<span class="arithmatex">\(d\)</span>的方向导数定义为……（文档此处定义不完整）
-<strong>定理3.8</strong>：对于凸函数<span class="arithmatex">\(f\)</span>和<span class="arithmatex">\(x^{*} \in dom f\)</span>，<span class="arithmatex">\(x^{*}\)</span>是极小值点当且仅当对于所有的<span class="arithmatex">\(d\)</span>，都有<span class="arithmatex">\(f'(x^{*} ; d) \geq 0\)</span>。
-<strong>命题3.9</strong>：设<span class="arithmatex">\(f\)</span>是凸函数且在<span class="arithmatex">\(x\)</span>处可微，那么<span class="arithmatex">\(f'(x ; d)=\langle \nabla f(x), d\rangle\)</span>。
-<strong>定理3.10（方向导数与次梯度的关系）</strong>：对于凸函数<span class="arithmatex">\(f\)</span>和<span class="arithmatex">\(x \in int(dom f)\)</span>，对于任意的<span class="arithmatex">\(d\)</span>，都有
-<span class="arithmatex">\(<span class="arithmatex">\(f'(x ; d)=\sup _{g \in \partial f(x)}\langle g, d\rangle\)</span>\)</span></p>
+<p><strong>定义3.6（方向导数）</strong>：设 <span class="arithmatex">\(f:\mathbb{R}^n \to \overline{\mathbb{R}}\)</span> 为一个函数，<span class="arithmatex">\(x \in \text{dom}f\)</span> . 函数 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(x\)</span> 点沿方向 <span class="arithmatex">\(d\)</span> 的方向导数定义为</p>
+<div class="arithmatex">\[
+f^\prime(x;d)=\lim_{t \to 0^+} \frac{f(x + td) - f(x)}{t}
+\]</div>
+<p><strong>定理3.7</strong>：对于凸函数 <span class="arithmatex">\(f\)</span> 和 <span class="arithmatex">\(x^{*} \in \text{dom} f\)</span>，<span class="arithmatex">\(x^{*}\)</span> 是极小值点当且仅当对于所有的 <span class="arithmatex">\(d\)</span>，都有 <span class="arithmatex">\(f'(x^{*} ; d) \geq 0\)</span>. 
+<strong>命题3.8</strong>：设 <span class="arithmatex">\(f\)</span> 是凸函数且在<span class="arithmatex">\(x\)</span>处可微，那么 <span class="arithmatex">\(f'(x ; d)=\langle \nabla f(x), d\rangle\)</span>. 
+<strong>定理3.9（方向导数与次梯度的关系）</strong>：对于凸函数 <span class="arithmatex">\(f\)</span> 和 <span class="arithmatex">\(x \in int(dom f)\)</span>，对于任意的 <span class="arithmatex">\(d\)</span>，都有</p>
+<div class="arithmatex">\[
+f'(x ; d)=\sup _{g \in \partial f(x)}\langle g, d\rangle.
+\]</div>
 <h3 id="33">3.3 次微分的计算<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
-<p><strong>定理3.11</strong>：对于一个凸集<span class="arithmatex">\(\Omega\)</span>，我们可以定义<span class="arithmatex">\(\Omega\)</span>的无穷指示函数为
-<span class="arithmatex">\(<span class="arithmatex">\(I_{\Omega}(x):=\begin{cases}0, &amp; x \in \Omega \\+\infty, &amp; x \notin \Omega\end{cases}\)</span>\)</span>
-对于<span class="arithmatex">\(x\)</span>在闭凸集<span class="arithmatex">\(\Omega\)</span>中，<span class="arithmatex">\(N_{\Omega}(x)=\partial I_{\Omega}(x)\)</span>。</p>
+<p><strong>定理3.10</strong>：对于一个凸集<span class="arithmatex">\(\Omega\)</span>，我们可以定义<span class="arithmatex">\(\Omega\)</span>的无穷指示函数为</p>
+<div class="arithmatex">\[
+I_{\Omega}(x):=\begin{cases}0, &amp; x \in \Omega \\+\infty, &amp; x \notin \Omega\end{cases}
+\]</div>
+<p>对于 <span class="arithmatex">\(x\)</span> 在闭凸集 <span class="arithmatex">\(\Omega\)</span> 中，<span class="arithmatex">\(N_{\Omega}(x)=\partial I_{\Omega}(x)\)</span>. </p>
 <h2 id="4">4 最优性条件<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<p>我们关注求解如下问题：
-<span class="arithmatex">\(<span class="arithmatex">\(\min _{x \in \Omega} f(x)\)</span>\)</span>
-其中<span class="arithmatex">\(f\)</span>是凸函数，<span class="arithmatex">\(C\)</span>是凸集。
-<strong>最优性条件</strong>：
-1. <strong>无约束情况</strong>：如果<span class="arithmatex">\(\Omega=\mathbb{R}^{n}\)</span>且<span class="arithmatex">\(dom f=\mathbb{R}^{n}\)</span>，那么<span class="arithmatex">\(x^{*}\)</span>是最优解当且仅当<span class="arithmatex">\(0 \in \partial f(x^{*})\)</span>。
-2. <strong>有约束且可微情况</strong>：现在假设<span class="arithmatex">\(\Omega \subset \mathbb{R}^{n}\)</span>且<span class="arithmatex">\(f\)</span>在<span class="arithmatex">\(\Omega\)</span>中可微。可行点<span class="arithmatex">\(x^{*}\)</span>是最优解当且仅当对于所有的<span class="arithmatex">\(y \in \Omega\)</span>，都有<span class="arithmatex">\(\langle \nabla f(x^{*}), y - x^{*}\rangle \geq 0\)</span>，这等价于<span class="arithmatex">\(-\nabla f(x^{*}) \in N_{\Omega}(x^{*})\)</span>。
-3. <strong>一般有约束情况</strong>：如果函数不可微，可行点<span class="arithmatex">\(x^{*}\)</span>是最优解当且仅当<span class="arithmatex">\(0 \in \partial f(x^{*})+N_{\Omega}(x^{*})\)</span>。 </p>
+<p>我们关注求解如下问题：</p>
+<div class="arithmatex">\[
+\min _{x \in \Omega} f(x)
+\]</div>
+<p>其中<span class="arithmatex">\(f\)</span>是凸函数，<span class="arithmatex">\(C\)</span>是凸集. 
+<strong>最优性条件</strong>：</p>
+<ol>
+<li><strong>无约束情况</strong>：如果 <span class="arithmatex">\(\Omega=\mathbb{R}^{n}\)</span>且<span class="arithmatex">\(dom f=\mathbb{R}^{n}\)</span>，那么 <span class="arithmatex">\(x^{*}\)</span> 是最优解当且仅当 <span class="arithmatex">\(0 \in \partial f(x^{*})\)</span>.</li>
+<li><strong>有约束且可微情况</strong>：现在假设 <span class="arithmatex">\(\Omega \subset \mathbb{R}^{n}\)</span> 且 <span class="arithmatex">\(f\)</span> 在 <span class="arithmatex">\(\Omega\)</span> 中可微. 可行点 <span class="arithmatex">\(x^{*}\)</span> 是最优解当且仅当对于所有的 <span class="arithmatex">\(y \in \Omega\)</span>，都有 <span class="arithmatex">\(\langle \nabla f(x^{*}), y - x^{*}\rangle \geq 0\)</span>，这等价于 <span class="arithmatex">\(-\nabla f(x^{*}) \in N_{\Omega}(x^{*})\)</span>. </li>
+<li><strong>一般有约束情况</strong>：如果函数不可微，可行点 <span class="arithmatex">\(x^{*}\)</span> 是最优解当且仅当 <span class="arithmatex">\(0 \in \partial f(x^{*})+N_{\Omega}(x^{*})\)</span>.  </li>
+</ol>
 
 
 
@@ -1268,7 +1462,7 @@ d(x ; C):=\inf \{\| x - y\| : y \in C\}
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 17:44:48">April 26, 2025 17:44:48</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 19:47:20">April 26, 2025 19:47:20</span>
   </span>
 
     
