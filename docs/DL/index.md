@@ -7,3 +7,5 @@
 ## Content
 
 - Multilayer Perceptrons (MLPs)
+- Multilayer Network of Sigmoid Neurons
+- Feedforward Neural Networks and Backpropagation
