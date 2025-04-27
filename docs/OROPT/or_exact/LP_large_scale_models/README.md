@@ -67,7 +67,8 @@ p_M = \min & \quad c^\top x \\
 \end{align*}
 $$ 
 
-    得到主问题的最优解 $x_M$.   
+得到主问题的最优解 $x_M$.
+
 -    - 求解子问题：  
 
 $$ 
@@ -136,13 +137,15 @@ d^D = \max & \ b^\top \lambda \\
 & \ \lambda \geq 0.
 \end{align*}
 $$ 
-    
-    得到对偶主问题的最优解 $\lambda^D$.   
+
+得到对偶主问题的最优解 $\lambda^D$.  
+ 
 -    - 求解子问题： 
 
 $$ 
 S = \max_{j \in [d]} \{\tilde{a}_j^\top \lambda^D - c_j\} 
-$$  
+$$ 
+
 -    - 更新 $D \leftarrow D \cup \{j^*\}$，其中 $j^* \in \operatorname{argmax}_{j \in [d]} \{\tilde{a}_j^\top \lambda^D - c_j\}$.   
 - 循环结束后，利用 $j \in D$ 对应的列 $\tilde{a}_j$ 求解原线性规划，并返回最优解.   
 
