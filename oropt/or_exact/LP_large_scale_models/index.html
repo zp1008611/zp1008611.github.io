@@ -673,7 +673,7 @@
 
 <h1 id="_1">行生成和列生成在大规模线性规划中的使用<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 551 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 2 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 550 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 2 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -681,112 +681,150 @@
 </ul>
 <h2 id="1">1 大规模线性规划模型<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <p>考虑一个线性规划问题及其对偶问题，形式如下：<br />
-原问题：<br />
-$$
-\begin{align<em>}
-p^</em> = \min &amp;\quad c^\top x \
-\text{s.t.} &amp;\quad Ax \geq b \
+原问题：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+p^* = \min &amp;\quad c^\top x \\
+\text{s.t.} &amp;\quad Ax \geq b \\
 &amp; \quad x \geq 0
-\end{align<em>}
-$$<br />
-对偶问题：<br />
-$$
-\begin{align</em>}
-d^<em> = \max &amp;\quad b^\top \lambda \
-\text{s.t.} &amp;\quad A^\top \lambda \leq c \
+\end{align*}
+\]</div>
+<p>对偶问题：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+d^* = \max &amp;\quad b^\top \lambda \\
+\text{s.t.} &amp;\quad A^\top \lambda \leq c \\
 &amp; \quad \lambda \geq 0
-\end{align</em>}
-$$<br />
-其中 $ A $ 是 $ m \times d $ 矩阵。根据应用场景，我们可能需要处理<strong>极大规模</strong>的线性规划问题，具体包括：<br />
-- 原问题存在大量约束（即对偶变量数量 $ m $ 大）；<br />
-- 原问题存在大量变量（即对偶约束数量 $ d $ 大）。<br />
-我们考虑 $ m $ 或 $ d $ 很大（但不同时很大）的情形。本节中，假设 $ p^<em> $ 有限，根据强对偶性，此时 $ d^</em> $ 也有限。  </p>
-<h2 id="3-m">3 大 $ m $：原问题行生成<a class="headerlink" href="#3-m" title="Permanent link">&para;</a></h2>
-<p>当 $ m $ 很大时，约束条件数量庞大。此时，无需用全部 $ m $ 个约束求解，而是从一个约束子集开始，后续添加必要约束并迭代求解更新后的问题。具体考虑以下<strong>主问题</strong>：<br />
-$$
-\begin{align<em>}
-p_M = \min &amp;\quad c^\top x \
-\text{s.t.} &amp;\quad a_i^\top x \geq b_i, i \in M \
+\end{align*}
+\]</div>
+<p>其中 <span class="arithmatex">\(A\)</span> 是 $m \timesd $ 矩阵. 根据应用场景，我们可能需要处理<strong>极大规模</strong>的线性规划问题，具体包括：<br />
+- 原问题存在大量约束（即对偶变量数量 <span class="arithmatex">\(m\)</span> 大）；<br />
+- 原问题存在大量变量（即对偶约束数量 <span class="arithmatex">\(d\)</span> 大）. <br />
+我们考虑 <span class="arithmatex">\(m\)</span> 或 <span class="arithmatex">\(d\)</span> 很大（但不同时很大）的情形. 本节中，假设 <span class="arithmatex">\(p^*\)</span> 有限，根据强对偶性，此时 <span class="arithmatex">\(d^*\)</span> 也有限.   </p>
+<h2 id="3-m">3 大 <span class="arithmatex">\(m\)</span>：原问题行生成<a class="headerlink" href="#3-m" title="Permanent link">&para;</a></h2>
+<p>当 <span class="arithmatex">\(m\)</span> 很大时，约束条件数量庞大. 此时，无需用全部 <span class="arithmatex">\(m\)</span> 个约束求解，而是从一个约束子集开始，后续添加必要约束并迭代求解更新后的问题. 具体考虑以下<strong>主问题</strong>：</p>
+<div class="arithmatex">\[
+\begin{align*}
+p_M = \min &amp;\quad c^\top x \\
+\text{s.t.} &amp;\quad a_i^\top x \geq b_i,\ i \in M \\
 &amp; \quad x \geq 0
-\end{align</em>}
-$$<br />
-其中 $ M $ 是 $ [m] $ 的子集。基本流程如下：<br />
-1. 求解主问题，得到最优解 $ x_M $；<br />
-2. 检查是否存在 $ i \in [m] \setminus M $，使得 $ x_M $ 违反约束 $ a_i^\top x \geq b_i $；<br />
-3. 若存在 $ i \in [m] \setminus M $ 满足 $ a_i^\top x_M &lt; b_i $，则将该约束加入主问题；<br />
-4. 重复上述过程。  </p>
-<p>这一过程称为 <strong>（原问题）行生成</strong>，也被称作<strong>约束生成</strong>或<strong>割平面法</strong>。以下是更详细的伪代码。</p>
-<p><strong>算法1 行生成框架</strong>
-1. 初始化 $ M \subseteq [m] $，确保主问题存在有限最优解。<br />
-2. 设 $ S = -\infty $。<br />
-3. 当 $ S &lt; 0 $ 时，循环执行：<br />
-    - 求解主问题：<br />
-    $$
-    \begin{align<em>}
-    p_M = \min &amp; \quad c^\top x \
-    \text{s.t.} &amp; \quad a_i^\top x \geq b_i, \quad i \in M \
-    &amp; \quad x \geq 0
-    \end{align</em>}
-    $$<br />
-    得到主问题的最优解 $ x_M $。<br />
-    - 求解子问题：<br />
-    $$ S = \min_{i \in [m]} { a_i^\top x_M - b_i } $$<br />
-    - 更新 $ M \leftarrow M \cup {i^<em>} $，其中 $ i^</em> \in \operatorname{argmin}_{i \in [m]} {a_i^\top x_M - b_i} $。<br />
-4. 循环结束后，返回 $ x_M $ 作为原始线性规划的最优解。  </p>
-<h2 id="4-d">4 大 $ d $：对偶问题的行生成 = 原问题的列生成<a class="headerlink" href="#4-d" title="Permanent link">&para;</a></h2>
-<p>当 $ d $ 很大时，线性规划含大量变量，此时其对偶问题含大量约束。我们可将行生成框架应用于对偶线性规划。回顾对偶线性规划为：<br />
-$$
-\begin{align<em>}
-d^</em> = \max &amp; \quad b^\top \lambda \
-\text{s.t.} &amp; \quad \tilde{a}<em D="D" _in="\in" j="j">j^\top \lambda \leq c_j, \quad j \in [d] \
+\end{align*}
+\]</div>
+<p>其中 <span class="arithmatex">\(M\)</span> 是 <span class="arithmatex">\([m]\)</span> 的子集. 基本流程如下：<br />
+1. 求解主问题，得到最优解 <span class="arithmatex">\(x_M\)</span>；<br />
+2. 检查是否存在 <span class="arithmatex">\(i \in [m] \setminus M\)</span>，使得 <span class="arithmatex">\(x_M\)</span> 违反约束 <span class="arithmatex">\(a_i^\top x \geq b_i\)</span>；<br />
+3. 若存在 <span class="arithmatex">\(i \in [m] \setminus M\)</span> 满足 <span class="arithmatex">\(a_i^\top x_M &lt; b_i\)</span>，则将该约束加入主问题；<br />
+4. 重复上述过程.   </p>
+<p>这一过程称为 <strong>（原问题）行生成</strong>，也被称作<strong>约束生成</strong>或<strong>割平面法</strong>. 以下是更详细的伪代码. </p>
+<p><strong>算法1 行生成框架</strong></p>
+<ul>
+<li>初始化 <span class="arithmatex">\(M \subseteq [m]\)</span>，确保主问题存在有限最优解.   </li>
+<li>设 <span class="arithmatex">\(S = -\infty\)</span>.   </li>
+<li>当 <span class="arithmatex">\(S &lt; 0\)</span> 时，循环执行：  </li>
+<li>
+<ul>
+<li>求解主问题：  </li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">\[
+\begin{align*}
+p_M = \min &amp; \quad c^\top x \\
+\text{s.t.} &amp; \quad a_i^\top x \geq b_i, \quad i \in M \\
+&amp; \quad x \geq 0
+\end{align*}
+\]</div>
+<div class="highlight"><pre><span></span><code>得到主问题的最优解 $x_M$.
+</code></pre></div>
+<ul>
+<li>
+<ul>
+<li>求解子问题：  </li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">\[ 
+S = \min_{i \in [m]} \{ a_i^\top x_M - b_i \} 
+\]</div>
+<ul>
+<li>
+<ul>
+<li>更新 <span class="arithmatex">\(M \leftarrow M \cup \{i^*\}\)</span>，其中 <span class="arithmatex">\(i^* \in \operatorname{argmin}_{i \in [m]} \{a_i^\top x_M - b_i\}\)</span>.   </li>
+</ul>
+</li>
+<li>循环结束后，返回 $ x_M $ 作为原始线性规划的最优解.   </li>
+</ul>
+<h2 id="4-d">4 大 <span class="arithmatex">\(d\)</span>：对偶问题的行生成 = 原问题的列生成<a class="headerlink" href="#4-d" title="Permanent link">&para;</a></h2>
+<p>当 <span class="arithmatex">\(d\)</span> 很大时，线性规划含大量变量，此时其对偶问题含大量约束. 我们可将行生成框架应用于对偶线性规划. 回顾对偶线性规划为：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+d^* = \max &amp; \quad b^\top \lambda \\
+\text{s.t.} &amp; \quad \tilde{a}_j^\top \lambda \leq c_j, \quad j \in [d] \\
 &amp; \quad \lambda \geq 0
-\end{align<em>}
-$$<br />
-其中 $ \tilde{a}_1, \ldots, \tilde{a}_d $ 是约束矩阵 $ A $ 的列。为将行生成框架应用于对偶问题，从子集 $ D \subseteq [d] $ 开始，考虑对应的主对偶问题：<br />
-$$
-\begin{align</em>}
-d^D = \max &amp; \quad b^\top \lambda \
-\text{s.t.} &amp; \quad \tilde{a}_j^\top \lambda \leq c_j, \quad j \in D \
+\end{align*}
+\]</div>
+<p>其中 <span class="arithmatex">\(\tilde{a}_1, \ldots, \tilde{a}_d\)</span> 是约束矩阵 <span class="arithmatex">\(A\)</span> 的列. 为将行生成框架应用于对偶问题，从子集 <span class="arithmatex">\(D \subseteq [d]\)</span> 开始，考虑对应的主对偶问题： </p>
+<div class="arithmatex">\[
+\begin{align*}
+d^D = \max &amp; \quad b^\top \lambda \\
+\text{s.t.} &amp; \quad \tilde{a}_j^\top \lambda \leq c_j, \quad j \in D \\
 &amp; \quad \lambda \geq 0
-\end{align<em>}
-$$<br />
-取主对偶问题的对偶，得到：<br />
-$$
-\begin{align</em>}
-p^D = \min &amp; \quad \sum</em> c_j x_j \
-\text{s.t.} &amp; \quad \sum_{j \in D} \tilde{a}_j x_j \geq b_i \
+\end{align*}
+\]</div>
+<p>取主对偶问题的对偶，得到：  </p>
+<div class="arithmatex">\[
+\begin{align*}
+p^D = \min &amp; \quad \sum_{j \in D} c_j x_j \\
+\text{s.t.} &amp; \quad \sum_{j \in D} \tilde{a}_j x_j \geq b_i \\
 &amp; \quad x_j \geq 0, \quad j \in D
 \end{align*}
-$$</p>
-<p>注意，原线性规划可写为<br />
-$$
-\begin{align<em>}
-p^</em> = \min &amp; \sum_{j \in D} c_j x_j + \sum_{j \in [d] \setminus D} c_j x_j \
-\text{s.t.} &amp; \sum_{j \in D} \tilde{a}<em D="D" _d_="[d]" _in="\in" _setminus="\setminus" j="j">j x_j + \sum</em>_j x_j \geq b_i \
-&amp; x_j \geq 0, j \in D \
-&amp; x_j \geq 0, j \in [d] \setminus D.
-\end{align} \tilde{a<em>}
+\]</div>
+<p>注意，原线性规划可写为  </p>
+<div class="arithmatex">\[
+\begin{align*}
+p^* = \min &amp; \sum_{j \in D} c_j x_j + \sum_{j \in [d] \setminus D} c_j x_j \\
+\text{s.t.} &amp; \sum_{j \in D} \tilde{a}_j x_j + \sum_{j \in [d] \setminus D} \tilde{a}_j x_j \geq b_i \\
+&amp; x_j \geq 0,\ j \in D \\
+&amp; x_j \geq 0,\ j \in [d] \setminus D.
+\end{align*}
+\]</div>
+<p>此处，主对偶问题的对偶等价于在原线性规划中令 <span class="arithmatex">\(j \notin D\)</span> 的 <span class="arithmatex">\(x_j = 0\)</span> 后得到的问题. 因此，向对偶主问题添加一行，等价于向原问题添加一个变量\列. 于是，这种对偶中的行生成过程被称为 <strong>列生成</strong>.   </p>
+<p><strong>算法 2 列生成框架</strong> </p>
+<ul>
+<li>初始化 <span class="arithmatex">\(D \subseteq [d]\)</span>，使对偶主问题存在有限最优解.   </li>
+<li>设 <span class="arithmatex">\(S = +\infty\)</span>.   </li>
+<li>当 <span class="arithmatex">\(S &gt; 0\)</span> 时，循环执行：  </li>
+<li>
+<ul>
+<li>求解对偶主问题： </li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">\[
+\begin{align*}
+d^D = \max &amp; \ b^\top \lambda \\
+\text{s.t.} &amp; \ \tilde{a}_j^\top \lambda \leq c_j,\ j \in D \\
+&amp; \ \lambda \geq 0.
+\end{align*}
+\]</div>
+<div class="highlight"><pre><span></span><code>得到对偶主问题的最优解 $\lambda^D$.
+</code></pre></div>
+<ul>
+<li>
+<ul>
+<li>求解子问题： </li>
+</ul>
+</li>
+</ul>
+<p>$$ 
+S = \max_{j \in [d]} {\tilde{a}_j^\top \lambda^D - c_j} 
 $$<br />
-此处，主对偶问题的对偶等价于在原线性规划中令 $ j \notin D $ 的 $ x_j = 0 $ 后得到的问题。因此，向对偶主问题添加一行，等价于向原问题添加一个变量\列。于是，这种对偶中的行生成过程被称为 </em><em>列生成</em>*。  </p>
-<p><strong>算法 2 列生成框架</strong><br />
-1. 初始化 $ D \subseteq [d] $，使对偶主问题存在有限最优解。<br />
-2. 设 $ S = +\infty $。<br />
-3. 当 $ S &gt; 0 $ 时，循环执行：<br />
-    - 求解对偶主问题：<br />
-    $$
-    \begin{align<em>}
-    d^D = \max &amp;  b^\top \lambda \
-    \text{s.t.} &amp;  \tilde{a}_j^\top \lambda \leq c_j, j \in D \
-    &amp;  \lambda \geq 0.
-    \end{align</em>}
-    $$<br />
-    得到对偶主问题的最优解 $ \lambda^D $。<br />
-    - 求解子问题：<br />
-    $$ S = \max_{j \in [d]} {\tilde{a}<em _d_="[d]" _in="\in" j="j">j^\top \lambda^D - c_j} $$<br />
-    - 更新 $ D \leftarrow D \cup {j^<em>} $，其中 $ j^</em> \in \operatorname{argmax}</em>_j^\top \lambda^D - c_j} $。} {\tilde{a<br />
-4. 循环结束后，利用 $ j \in D $ 对应的列 $ \tilde{a}_j $ 求解原线性规划，并返回最优解。  </p>
-<p>列生成框架将求解对偶线性规划。因此，在算法终止时，我们会得到一个子集 $ D \subseteq [d] $，使得 $ d^D = d^<em> $。根据强对偶性，有：<br />
-$$ p^D = d^D = d^</em> = p^*. $$  </p>
+-    - 更新 <span class="arithmatex">\(D \leftarrow D \cup \{j^*\}\)</span>，其中 <span class="arithmatex">\(j^* \in \operatorname{argmax}_{j \in [d]} \{\tilde{a}_j^\top \lambda^D - c_j\}\)</span>. <br />
+- 循环结束后，利用 <span class="arithmatex">\(j \in D\)</span> 对应的列 <span class="arithmatex">\(\tilde{a}_j\)</span> 求解原线性规划，并返回最优解.   </p>
+<p>列生成框架将求解对偶线性规划. 因此，在算法终止时，我们会得到一个子集 <span class="arithmatex">\(D \subseteq [d]\)</span>，使得 <span class="arithmatex">\(d^D = d^*\)</span>. 根据强对偶性，有：</p>
+<div class="arithmatex">\[ 
+p^D = d^D = d^* = p^*. 
+\]</div>
 
 
 
@@ -809,7 +847,7 @@ $$ p^D = d^D = d^</em> = p^*. $$  </p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 21, 2025 13:02:15">April 21, 2025 13:02:15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:42:01">April 27, 2025 10:42:01</span>
   </span>
 
     
