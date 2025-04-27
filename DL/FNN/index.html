@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://zp1008611.github.io/DL/FNN/">
       
       
+        <link rel="prev" href="../sigmoid_nn/">
+      
+      
+        <link rel="next" href="../../LEETCODE/dp/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +24,7 @@
     
     
       
-        <title>前馈神经网络 - ZP's docs</title>
+        <title>Feedforward Neural Networks and Backpropagation - ZP's docs</title>
       
     
     
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              前馈神经网络
+              Feedforward Neural Networks and Backpropagation
             
           </span>
         </div>
@@ -279,10 +283,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../" class="md-tabs__link">
           
   
@@ -490,6 +496,8 @@
       
   
   
+    
+  
   
   
     
@@ -501,26 +509,32 @@
       
         
       
-    
-    
-    
+        
       
+        
       
+    
     
     
       
         
         
       
+      
     
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
-  
-  
-  
-    <a href="../" class="md-nav__link">
-      
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -529,12 +543,349 @@
   </span>
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            DL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MLPs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multilayer Perceptrons
+    
+  </span>
   
 
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sigmoid_nn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sigmoid Neurons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Feedforward Neural Networks and Backpropagation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Feedforward Neural Networks and Backpropagation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 前馈神经网络（又名神经元多层网络）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 前馈神经网络（又名神经元多层网络）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      前馈神经网络计算过程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      前馈神经网络的模型构成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 学习前馈神经网络的参数（直觉）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 学习前馈神经网络的参数（直觉）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      回顾梯度下降算法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      前馈神经网络中的梯度下降
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      前馈神经网络中梯度计算的挑战
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 输出函数和损失函数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 输出函数和损失函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      损失函数的选择
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      输出函数的选择
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      分类问题中的损失函数和输出函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      分类问题的目标函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      不同场景下的输出激活函数和损失函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 反向传播（直觉）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 反向传播（直觉）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      反向传播的直观理解
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      反向传播中的关键量
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 反向传播：计算关于输出单元的梯度
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 反向传播：计算关于输出单元的梯度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      关于输出单元的梯度计算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a_l" class="md-nav__link">
+    <span class="md-ellipsis">
+      关于激活前向量\(a_{L}\)的梯度计算
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -693,7 +1044,7 @@
 <li>
 <p>输入层可称为第0层，输出层可称为第<span class="arithmatex">\(L\)</span>层. </p>
 </li>
-<li><span class="arithmatex">\(W_{i} \in \mathbb{R}^{n ×n}\)</span> 和 <span class="arithmatex">\(b_{i} \in \mathbb{R}^{n}\)</span> 是第 <span class="arithmatex">\(i - 1\)</span> 层和第 <span class="arithmatex">\(i\)</span> 层之间的权重和偏置（<span class="arithmatex">\(0 &lt; i &lt; L\)</span>）. <span class="arithmatex">\(W_{L} \in \mathbb{R}^{n ×k}\)</span>和<span class="arithmatex">\(b_{L} \in \mathbb{R}^{k}\)</span> 是最后一个隐藏层和输出层之间的权重和偏置（在此例中<span class="arithmatex">\(L = 3\)</span>）. </li>
+<li><span class="arithmatex">\(W_{i} \in \mathbb{R}^{n ×n}\)</span> 和 <span class="arithmatex">\(b_{i} \in \mathbb{R}^{n}\)</span> 是第 <span class="arithmatex">\(i - 1\)</span> 层和第 <span class="arithmatex">\(i\)</span> 层之间的权重和偏置（<span class="arithmatex">\(0 &lt; i &lt; L\)</span>）. <span class="arithmatex">\(W_{L} \in \mathbb{R}^{n ×k}\)</span>和 <span class="arithmatex">\(b_{L} \in \mathbb{R}^{k}\)</span> 是最后一个隐藏层和输出层之间的权重和偏置（在此例中<span class="arithmatex">\(L = 3\)</span>）. </li>
 </ul>
 <p><img alt="alt text" src="image.png" /></p>
 <h3 id="_2">前馈神经网络计算过程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
@@ -720,11 +1071,14 @@ f(x)=h_{L}(x)=O\left(a_{L}(x)\right)
 \]</div>
 <p>参数：</p>
 <div class="arithmatex">\[
-\theta = W_{1}, \cdots, W_{L}, b_{1}, b_{2}, \cdots, b_{L}(L = 3)\]</div>
+\theta = W_{1}, \cdots, W_{L}, b_{1}, b_{2}, \cdots, b_{L}(L = 3)
+\]</div>
 <p>算法：带有反向传播的梯度下降法（我们很快会讲到）</p>
 <p>目标/损失/误差函数：例如，
-<span class="arithmatex">\(<span class="arithmatex">\(min \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{k}\left(\hat{y}_{i j}-y_{i j}\right)^{2}\)</span>\)</span></p>
-<p>一般来说，是<span class="arithmatex">\(min \mathscr{L}(\theta)\)</span>，其中<span class="arithmatex">\(\mathscr{L}(\theta)\)</span>是参数的某个函数. </p>
+$$
+min \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{k}\left(\hat{y}<em i="i" j="j">{i j}-y</em>
+$$}\right)^{2</p>
+<p>一般来说，是 <span class="arithmatex">\(min \mathscr{L}(\theta)\)</span>，其中 <span class="arithmatex">\(\mathscr{L}(\theta)\)</span> 是参数的某个函数. </p>
 <h2 id="2">2 学习前馈神经网络的参数（直觉）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>到目前为止，我们已经介绍了前馈神经网络. </p>
 <p>现在我们想找到一种学习该模型参数的算法. </p>
@@ -857,8 +1211,10 @@ y_{c}=
 <p>在深入研究数学细节之前，让我们先直观地解释一下反向传播. </p>
 <p>我们在输出端得到一定的损失，然后试图找出谁应该为这个损失负责. </p>
 <p>所以，我们对输出层说：“嘿！你没有产生期望的输出，最好承担起责任. ”</p>
-<p>输出层回应：“嗯，我为我的部分负责，但请理解，我的表现取决于下面的隐藏层和权重. ”毕竟……
-<span class="arithmatex">\(<span class="arithmatex">\(f(x)=\hat{y}=O\left(W_{L} h_{L - 1}+b_{L}\right)\)</span>\)</span></p>
+<p>输出层回应：“嗯，我为我的部分负责，但请理解，我的表现取决于下面的隐藏层和权重. ”毕竟……</p>
+<div class="arithmatex">\[
+f(x)=\hat{y}=O\left(W_{L} h_{L - 1}+b_{L}\right)
+\]</div>
 <p>于是，我们与 <span class="arithmatex">\(W_{L}\)</span> 、 <span class="arithmatex">\(b_{L}\)</span> 和 <span class="arithmatex">\(h_{L}\)</span> 交流，问它们：“你们怎么回事？”</p>
 <p><span class="arithmatex">\(W_{L}\)</span> 和 <span class="arithmatex">\(b_{L}\)</span> 承担全部责任，但 <span class="arithmatex">\(h_{L}\)</span> 说：“请理解，我只取决于激活前层. ”</p>
 <p>激活前层又说，它只取决于下面的隐藏层和权重. </p>
@@ -900,11 +1256,15 @@ $$
 $$</p>
 <p>其中 <span class="arithmatex">\(e(\ell)\)</span> 是一个<span class="arithmatex">\(k\)</span>维向量，其第 <span class="arithmatex">\(\ell\)</span> 个元素为1，其他所有元素为0. </p>
 <h3 id="a_l">关于激活前向量<span class="arithmatex">\(a_{L}\)</span>的梯度计算<a class="headerlink" href="#a_l" title="Permanent link">&para;</a></h3>
-<p>我们真正感兴趣的是：
-<span class="arithmatex">\(<span class="arithmatex">\(\frac{\partial \mathscr{L}(\theta)}{\partial a_{L i}}=\frac{\partial(-\log\hat{y}_{\ell})}{\partial a_{L i}}=\frac{\partial(-\log\hat{y}_{\ell})}{\partial \hat{y}_{\ell}} \frac{\partial \hat{y}_{\ell}}{\partial a_{L i}}\)</span>\)</span>
- <span class="arithmatex">\(\hat{y}_{\ell}\)</span> 依赖于 <span class="arithmatex">\(a_{L i}\)</span> 吗？确实依赖. 
-<span class="arithmatex">\(<span class="arithmatex">\(\hat{y}_{\ell}=\frac{\exp (a_{L \ell})}{\sum_{i}\exp (a_{L i})}\)</span>\)</span>
-确定这一点后，</p>
+<p>我们真正感兴趣的是：</p>
+<div class="arithmatex">\[
+\frac{\partial \mathscr{L}(\theta)}{\partial a_{L i}}=\frac{\partial(-\log\hat{y}_{\ell})}{\partial a_{L i}}=\frac{\partial(-\log\hat{y}_{\ell})}{\partial \hat{y}_{\ell}} \frac{\partial \hat{y}_{\ell}}{\partial a_{L i}}
+\]</div>
+<p><span class="arithmatex">\(\hat{y}_{\ell}\)</span> 依赖于 <span class="arithmatex">\(a_{L i}\)</span> 吗？确实依赖. </p>
+<div class="arithmatex">\[
+\hat{y}_{\ell}=\frac{\exp (a_{L \ell})}{\sum_{i}\exp (a_{L i})}
+\]</div>
+<p>确定这一点后，</p>
 
 
 
@@ -927,7 +1287,7 @@ $$</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 17:26:51">April 26, 2025 17:26:51</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:54:00">April 27, 2025 10:54:00</span>
   </span>
 
     
@@ -982,6 +1342,44 @@ $$</p>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../sigmoid_nn/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Sigmoid Neurons">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Sigmoid Neurons
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../LEETCODE/dp/" class="md-footer__link md-footer__link--next" aria-label="下一页: 动态规划">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                动态规划
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

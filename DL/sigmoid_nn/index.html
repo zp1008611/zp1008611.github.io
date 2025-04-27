@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://zp1008611.github.io/DL/sigmoid_nn/">
       
       
+        <link rel="prev" href="../MLPs/">
+      
+      
+        <link rel="next" href="../FNN/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +24,7 @@
     
     
       
-        <title>多层Sigmoid神经元网络 - ZP's docs</title>
+        <title>Sigmoid Neurons - ZP's docs</title>
       
     
     
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              多层Sigmoid神经元网络
+              Sigmoid Neurons
             
           </span>
         </div>
@@ -279,10 +283,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../" class="md-tabs__link">
           
   
@@ -490,6 +496,8 @@
       
   
   
+    
+  
   
   
     
@@ -501,26 +509,32 @@
       
         
       
-    
-    
-    
+        
       
+        
       
+    
     
     
       
         
         
       
+      
     
-    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
-  
-  
-  
-    <a href="../" class="md-nav__link">
-      
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -529,12 +543,343 @@
   </span>
   
 
-      
-        <span class="md-nav__icon md-icon"></span>
-      
-    </a>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            DL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MLPs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multilayer Perceptrons
+    
+  </span>
   
 
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Sigmoid Neurons
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sigmoid Neurons
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#refernece" class="md-nav__link">
+    <span class="md-ellipsis">
+      Refernece
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-sigmoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Sigmoid神经元
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Sigmoid神经元">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      回顾
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      阈值逻辑的局限性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sigmoid_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      引入Sigmoid神经元
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sigmoid_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      感知机与Sigmoid神经元对比
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 典型的监督式机器学习设置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 典型的监督式机器学习设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      回顾数据分类问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      典型机器学习设置的组成部分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      电影示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 学习参数：梯度下降
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 学习参数：梯度下降">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      梯度下降的原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      确定移动方向
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      推导梯度
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sigmoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 多层Sigmoid神经元网络的表示能力
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 多层Sigmoid神经元网络的表示能力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      用 “塔” 函数逼近任意函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      关于 “塔” 函数的观察
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      逻辑函数与 “塔” 函数的关系
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      用神经网络表示 “塔” 函数操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      神经网络在分类问题中的应用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Feedforward Neural Networks and Backpropagation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -825,7 +1170,7 @@ b_{t+1}&amp;=b_{t}-\eta \nabla b_{t}
 \nabla b&amp;=\sum_{i=1}^{2}\left(f\left(x_{i}\right)-y_{i}\right) \cdot f\left(x_{i}\right) \cdot\left(1-f\left(x_{i}\right)\right)
 \end{align*}
 \]</div>
-<h2 id="5-sigmoid">5 多层Sigmoid神经元网络的表示能力<a class="headerlink" href="#5-sigmoid" title="Permanent link">&para;</a></h2>
+<h2 id="4-sigmoid">4 多层Sigmoid神经元网络的表示能力<a class="headerlink" href="#4-sigmoid" title="Permanent link">&para;</a></h2>
 <p>具有单个隐藏层的神经元多层网络可用于以任意所需精度逼近任何连续函数. </p>
 <p>换句话说，对于任何函数 <span class="arithmatex">\(f(x): \mathbb{R}^{n} \to \mathbb{R}^{m}\)</span>，我们总能找到一个神经网络（具有1个隐藏层且包含足够数量的神经元），其输出 <span class="arithmatex">\(g(x)\)</span> 满足 <span class="arithmatex">\(|g(x) - f(x)| &lt; \epsilon\)</span>！！</p>
 <p>请查看<a href="http://neuralnetworksanddeeplearning.com/chap4.html">此链接</a>以获取此证明的精彩示例说明. </p>
@@ -856,8 +1201,10 @@ b_{t+1}&amp;=b_{t}-\eta \nabla b_{t}
 <p>进一步假设，我们的判断基于两个因素：盐度<span class="arithmatex">\((x_{1})\)</span>和压力<span class="arithmatex">\((x_{2})\)</span>. </p>
 <p>我们得到了一些数据，并且似乎<span class="arithmatex">\(y\)</span>（有油/无油）是<span class="arithmatex">\(x_{1}\)</span>和<span class="arithmatex">\(x_{2}\)</span>的复杂函数. </p>
 <p>我们希望用一个神经网络来逼近这个函数. </p>
-<p>这是二维Sigmoid函数的样子：
-[y=\frac{1}{1+e^{-\left(w_{1} x_{1}+w_{2} x_{2}+b\right)}}]</p>
+<p>这是二维Sigmoid函数的样子：</p>
+<div class="arithmatex">\[
+y=\frac{1}{1+e^{-\left(w_{1} x_{1}+w_{2} x_{2}+b\right)}}
+\]</div>
 <p><img alt="alt text" src="image-7.png" /></p>
 <p>我们需要弄清楚在这种情况下如何得到 “塔” 函数. </p>
 <p>首先，让我们将<span class="arithmatex">\(w_{2}\)</span>设置为0，看看是否能得到二维阶跃函数. 如果我们改变<span class="arithmatex">\(b\)</span>会发生什么呢？</p>
@@ -900,7 +1247,7 @@ b_{t+1}&amp;=b_{t}-\eta \nabla b_{t}
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 17:26:51">April 26, 2025 17:26:51</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:54:00">April 27, 2025 10:54:00</span>
   </span>
 
     
@@ -955,6 +1302,44 @@ b_{t+1}&amp;=b_{t}-\eta \nabla b_{t}
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../MLPs/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Multilayer Perceptrons">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Multilayer Perceptrons
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../FNN/" class="md-footer__link md-footer__link--next" aria-label="下一页: Feedforward Neural Networks and Backpropagation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Feedforward Neural Networks and Backpropagation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
