@@ -908,7 +908,7 @@
           <li class="md-nav__item">
   <a href="#textgradient_descent" class="md-nav__link">
     <span class="md-ellipsis">
-      算法：\(\text{gradient\_descent()}\)
+      算法：\(\text{gradient_descent()}\)
     </span>
   </a>
   
@@ -917,7 +917,7 @@
           <li class="md-nav__item">
   <a href="#textforward_propagationtheta" class="md-nav__link">
     <span class="md-ellipsis">
-      算法: \(\text{forward\_propagation}(\theta)\)
+      算法: \(\text{forward_propagation}(\theta)\)
     </span>
   </a>
   
@@ -926,7 +926,7 @@
           <li class="md-nav__item">
   <a href="#textback_propagationh_1-h_2-h_l-1-a_1-a_2-a_l-y-haty" class="md-nav__link">
     <span class="md-ellipsis">
-      算法：\(\text{back\_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})\)
+      算法：\(\text{back_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})\)
     </span>
   </a>
   
@@ -1201,27 +1201,34 @@ min \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{k}\left(\hat{y}_{i j}-y_{i j}\right)^
 <p>到目前为止，我们已经介绍了前馈神经网络. </p>
 <p>现在我们想找到一种学习该模型参数的算法. </p>
 <h3 id="_4">回顾梯度下降算法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p><strong>算法1：梯度下降</strong>
-- <span class="arithmatex">\(t \leftarrow 0\)</span>;
-- <span class="arithmatex">\(\text{maxIterations} \leftarrow 1000\)</span>;
-- <span class="arithmatex">\(\text{while } t &lt; \text{maxIterations } \text{do}\)</span>
-    - <span class="arithmatex">\(w_{t+1}\leftarrow w_{t}-\eta \nabla w_{t}\)</span>; 
-    - <span class="arithmatex">\(b_{t+1}\leftarrow b_{t}-\eta \nabla b_{t}\)</span> 
-    - <span class="arithmatex">\(t \leftarrow t + 1\)</span>;
-- <span class="arithmatex">\(\text{end}\)</span></p>
+<p><strong>算法1：梯度下降</strong></p>
+<ul>
+<li><span class="arithmatex">\(t \leftarrow 0\)</span>;</li>
+<li><span class="arithmatex">\(\text{maxIterations} \leftarrow 1000\)</span>;</li>
+<li><span class="arithmatex">\(\text{while } t &lt; \text{maxIterations } \text{do}\)</span><ul>
+<li><span class="arithmatex">\(w_{t+1}\leftarrow w_{t}-\eta \nabla w_{t}\)</span>; </li>
+<li><span class="arithmatex">\(b_{t+1}\leftarrow b_{t}-\eta \nabla b_{t}\)</span> </li>
+<li><span class="arithmatex">\(t \leftarrow t + 1\)</span>;</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\text{end}\)</span></li>
+</ul>
 <h3 id="_5">前馈神经网络中的梯度下降<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>我们可以更简洁地将其写为：
-<strong>算法1：梯度下降</strong>
-- <span class="arithmatex">\(t \leftarrow 0\)</span>;
-- <span class="arithmatex">\(\text{maxIterations} \leftarrow 1000\)</span>;
-- <span class="arithmatex">\(\text{Initialize } \theta_0 = [w_0, b_0]\)</span>;
-- <span class="arithmatex">\(\text{while } t &lt; \text{maxIterations } \text{do}\)</span>
-    - <span class="arithmatex">\(\theta_{t+1}\leftarrow \theta_{t}-\eta \nabla \theta_{t}\)</span>; 
-    - <span class="arithmatex">\(t \leftarrow t + 1\)</span>;
-- <span class="arithmatex">\(\text{end}\)</span></p>
+<p>我们可以更简洁地将其写为：</p>
+<p><strong>算法1：梯度下降</strong></p>
+<ul>
+<li><span class="arithmatex">\(t \leftarrow 0\)</span>;</li>
+<li><span class="arithmatex">\(\text{maxIterations} \leftarrow 1000\)</span>;</li>
+<li><span class="arithmatex">\(\text{Initialize } \theta_0 = [w_0, b_0]\)</span>;</li>
+<li><span class="arithmatex">\(\text{while } t &lt; \text{maxIterations } \text{do}\)</span><ul>
+<li><span class="arithmatex">\(\theta_{t+1}\leftarrow \theta_{t}-\eta \nabla \theta_{t}\)</span>; </li>
+<li><span class="arithmatex">\(t \leftarrow t + 1\)</span>;</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\text{end}\)</span></li>
+</ul>
 <p>其中 <span class="arithmatex">\(\nabla \theta_{t}=[\frac{\partial \mathscr{L}(\theta)}{\partial w_{t}}, \frac{\partial \mathscr{L}(\theta)}{\partial b_{t}}]^{T}\)</span> . </p>
-<p>在这个前馈神经网络中，我们的 <span class="arithmatex">\(\theta\)</span> 不是 <span class="arithmatex">\([w, b]\)</span> ，而是 <span class="arithmatex">\([W_{1}, W_{2}, \cdots, W_{L}, b_{1}, b_{2}, \cdots, b_{L}]\)</span> . </p>
-<p>我们仍然可以使用相同的算法来学习模型的参数. </p>
+<p>在这个前馈神经网络中，我们的 <span class="arithmatex">\(\theta\)</span> 不是 <span class="arithmatex">\([w, b]\)</span> ，而是 <span class="arithmatex">\([W_{1}, W_{2}, \cdots, W_{L}, b_{1}, b_{2}, \cdots, b_{L}]\)</span>. 我们仍然可以使用相同的算法来学习模型的参数. </p>
 <h3 id="_6">前馈神经网络中梯度计算的挑战<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>不过，现在我们的 <span class="arithmatex">\(\nabla \theta\)</span> 看起来要复杂得多：
 <span class="arithmatex">\(\nabla \theta\)</span> 由  <span class="arithmatex">\(\nabla W_{1}, \nabla W_{2}, \cdots \nabla W_{L - 1} \in \mathbb{R}^{n × n}, \nabla W_{L} \in \mathbb{R}^{n × k}, \nabla b_{1}, \nabla b_{2}, \cdots, \nabla b_{L - 1} \in \mathbb{R}^{n}\)</span> 和 <span class="arithmatex">\(\nabla b_{L} \in \mathbb{R}^{k}\)</span> 组成. </p>
@@ -1233,11 +1240,9 @@ min \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{k}\left(\hat{y}_{i j}-y_{i j}\right)^
 1. 如何选择损失函数 <span class="arithmatex">\(\mathscr{L}(\theta)\)</span> ？
 2. 如何计算由 <span class="arithmatex">\(\nabla W_{1}, \nabla W_{2}, \cdots, \nabla W_{L - 1} \in \mathbb{R}^{n × n}, \nabla W_{L} \in \mathbb{R}^{n × k}, \nabla b_{1}, \nabla b_{2}, \cdots, \nabla b_{L - 1} \in \mathbb{R}^{n}\)</span> 和 <span class="arithmatex">\(\nabla b_{L} \in \mathbb{R}^{k}\)</span> 组成的 <span class="arithmatex">\(\nabla \theta\)</span> ？</p>
 <h3 id="_7">损失函数的选择<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p>损失函数的选择取决于手头的问题. </p>
-<p>我们通过两个例子来说明这一点. </p>
-<p>再次考虑电影评分预测的例子，但这次我们关注预测评分. </p>
-<p><img alt="alt text" src="image-1.png" />
-这里 <span class="arithmatex">\(y_{i} \in \mathbb{R}^{3}\)</span> . </p>
+<p>损失函数的选择取决于手头的问题. 我们通过两个例子来说明这一点. 再次考虑电影评分预测的例子，但这次我们关注预测评分. </p>
+<p><img alt="alt text" src="image-1.png" /></p>
+<p>这里 <span class="arithmatex">\(y_{i} \in \mathbb{R}^{3}\)</span> . </p>
 <p>损失函数应该衡量 <span class="arithmatex">\(\hat{y}_{i}\)</span> 与 <span class="arithmatex">\(y_{i}\)</span> 的偏差程度. </p>
 <p>如果 <span class="arithmatex">\(y_{i} \in \mathbb{R}^{n}\)</span> ，那么均方误差损失：</p>
 <div class="arithmatex">\[
@@ -1455,10 +1460,10 @@ a_{i+1}=W_{i+1} h_{i j}+b_{i+1}
 \end{align*}
 \]</div>
 <h2 id="7">7 反向传播：计算关于参数的梯度<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<p>回顾一下：
-$$
+<p>回顾一下：</p>
+<div class="arithmatex">\[
 a_{k}=b_{k}+W_{k} h_{k-1}
-$$</p>
+\]</div>
 <div class="arithmatex">\[
 \frac{\partial a_{k i}}{\partial W_{k i j}}=h_{k-1, j}
 \]</div>
@@ -1477,14 +1482,20 @@ $$</p>
 <div class="arithmatex">\[
 \nabla_{W_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}h_{k - 1,1}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}h_{k - 1,2}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}h_{k - 1,3}\\\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}h_{k - 1,1}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}h_{k - 1,2}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}h_{k - 1,3}\\\frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}}h_{k - 1,1}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}}h_{k - 1,2}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}}h_{k - 1,3}\end{bmatrix}=\nabla_{a_{k}}\mathscr{L}(\theta)\cdot h_{k - 1}^{T}
 \]</div>
-<p>最后，来看偏置项. 
-<span class="arithmatex">\(<span class="arithmatex">\(a_{ki}=b_{ki}+\sum_{j}W_{kij}h_{k - 1,j}\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\begin{align*}\frac{\partial \mathscr{L}(\theta)}{\partial b_{ki}}&amp;=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\frac{\partial a_{ki}}{\partial b_{ki}}\\&amp;=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\end{align*}\)</span>\)</span></p>
-<p>现在我们可以写出关于向量<span class="arithmatex">\(b_{k}\)</span>的梯度. 
-<span class="arithmatex">\(<span class="arithmatex">\(\nabla_{b_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{a_{k1}}\\\frac{\partial \mathscr{L}(\theta)}{a_{k2}}\\\vdots\\\frac{\partial \mathscr{L}(\theta)}{a_{kn}}\end{bmatrix}=\nabla_{a_{k}}\mathscr{L}(\theta)\)</span>\)</span></p>
+<p>最后，来看偏置项. </p>
+<div class="arithmatex">\[
+a_{ki}=b_{ki}+\sum_{j}W_{kij}h_{k - 1,j}
+\]</div>
+<div class="arithmatex">\[
+\begin{align*}\frac{\partial \mathscr{L}(\theta)}{\partial b_{ki}}&amp;=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\frac{\partial a_{ki}}{\partial b_{ki}}\\&amp;=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\end{align*}
+\]</div>
+<p>现在我们可以写出关于向量<span class="arithmatex">\(b_{k}\)</span>的梯度. </p>
+<div class="arithmatex">\[
+\nabla_{b_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{a_{k1}}\\\frac{\partial \mathscr{L}(\theta)}{a_{k2}}\\\vdots\\\frac{\partial \mathscr{L}(\theta)}{a_{kn}}\end{bmatrix}=\nabla_{a_{k}}\mathscr{L}(\theta)
+\]</div>
 <h2 id="8">8 伪代码<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
 <p>最后，我们掌握了所有关键部分：<span class="arithmatex">\(\nabla_{a_{L}}\mathscr{L}(\theta)\)</span>（关于输出层的梯度）、<span class="arithmatex">\(\nabla_{h_{k}}\mathscr{L}(\theta)\)</span>、<span class="arithmatex">\(\nabla_{a_{k}}\mathscr{L}(\theta)\)</span>（关于隐藏层的梯度，<span class="arithmatex">\(1\leq k&lt;L\)</span>）、<span class="arithmatex">\(\nabla_{W_{k}}\mathscr{L}(\theta)\)</span>、<span class="arithmatex">\(\nabla_{b_{k}}\mathscr{L}(\theta)\)</span>（关于权重和偏置的梯度，<span class="arithmatex">\(1\leq k\leq L\)</span> ）. 现在我们可以写出完整的学习算法. </p>
-<h3 id="textgradient_descent">算法：<span class="arithmatex">\(\text{gradient\_descent()}\)</span><a class="headerlink" href="#textgradient_descent" title="Permanent link">&para;</a></h3>
+<h3 id="textgradient_descent">算法：<span class="arithmatex">\(\text{gradient_descent()}\)</span><a class="headerlink" href="#textgradient_descent" title="Permanent link">&para;</a></h3>
 <ul>
 <li><span class="arithmatex">\(t \leftarrow 0\)</span>;</li>
 <li><span class="arithmatex">\(\text{maxIterations} \leftarrow 1000\)</span>;</li>
@@ -1498,7 +1509,7 @@ $$</p>
 </li>
 <li><span class="arithmatex">\(\text{end}\)</span></li>
 </ul>
-<h3 id="textforward_propagationtheta">算法: <span class="arithmatex">\(\text{forward\_propagation}(\theta)\)</span><a class="headerlink" href="#textforward_propagationtheta" title="Permanent link">&para;</a></h3>
+<h3 id="textforward_propagationtheta">算法: <span class="arithmatex">\(\text{forward_propagation}(\theta)\)</span><a class="headerlink" href="#textforward_propagationtheta" title="Permanent link">&para;</a></h3>
 <ul>
 <li><span class="arithmatex">\(\text{for} k = 1 \text{to} L - 1 \text{do}\)</span><ul>
 <li><span class="arithmatex">\(a_k = b_k + W_kh_{k-1}\)</span>; </li>
@@ -1510,7 +1521,7 @@ $$</p>
 <li><span class="arithmatex">\(\hat{y} = O(a_L)\)</span>;</li>
 </ul>
 <p>就是进行一次前向传播，并计算所有的<span class="arithmatex">\(h_{i}\)</span>、<span class="arithmatex">\(a_{i}\)</span> 和<span class="arithmatex">\(\hat{y}\)</span>. </p>
-<h3 id="textback_propagationh_1-h_2-h_l-1-a_1-a_2-a_l-y-haty">算法：<span class="arithmatex">\(\text{back\_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})\)</span><a class="headerlink" href="#textback_propagationh_1-h_2-h_l-1-a_1-a_2-a_l-y-haty" title="Permanent link">&para;</a></h3>
+<h3 id="textback_propagationh_1-h_2-h_l-1-a_1-a_2-a_l-y-haty">算法：<span class="arithmatex">\(\text{back_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})\)</span><a class="headerlink" href="#textback_propagationh_1-h_2-h_l-1-a_1-a_2-a_l-y-haty" title="Permanent link">&para;</a></h3>
 <ul>
 <li><span class="arithmatex">\(\nabla_{a_L} \mathscr{L}(\theta) = -(e(y) - \hat{y})\)</span>; // 计算输出梯度</li>
 <li><span class="arithmatex">\(\text{for } k = L \text{ to } 1 \text{ do}\)</span><ul>
@@ -1562,7 +1573,7 @@ $$</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 12:19:33">April 27, 2025 12:19:33</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 12:25:10">April 27, 2025 12:25:10</span>
   </span>
 
     
