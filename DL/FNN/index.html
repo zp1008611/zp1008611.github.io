@@ -513,6 +513,8 @@
       
         
       
+        
+      
     
     
     
@@ -875,10 +877,126 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6：反向传播：计算关于隐藏单元的梯度
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 反向传播：计算关于参数的梯度
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 伪代码
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 伪代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#textgradient_descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      算法：\(\text{gradient\_descent()}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textforward_propagationtheta" class="md-nav__link">
+    <span class="md-ellipsis">
+      算法: \(\text{forward\_propagation}(\theta)\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textback_propagationh_1-h_2-h_l-1-a_1-a_2-a_l-y-haty" class="md-nav__link">
+    <span class="md-ellipsis">
+      算法：\(\text{back\_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9 激活函数的导数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9 激活函数的导数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      逻辑函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      双曲正切函数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GD_Variants/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GD Variants
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1024,7 +1142,7 @@
 
 <h1 id="_1">前馈神经网络<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 2935 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 4 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 10 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 4989 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 4 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 17 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1225,11 +1343,10 @@ f(x)=\hat{y}=O\left(W_{L} h_{L - 1}+b_{L}\right)
 <p>我们以这种方式继续，意识到责任在于所有的权重和偏置（即模型的所有参数）. </p>
 <p>但与其直接与它们交流，通过隐藏层和输出层与它们交流更容易（这正是链式法则允许我们做的）. </p>
 <div class="arithmatex">\[
-\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}_{\text{Talk to the
-weight directly}}=
-\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{L 11}}}_{\text{Talk to 
-\\ the output layer}} \underbrace{\frac{\partial a_{L 11}}{\partial h_{21}} \frac{\partial h_{21}}{\partial a_{21}}}_{\text{Talk to the
-previous hidden layer}} \underbrace{\frac{\partial a_{21}}{\partial h_{11}} \frac{\partial h_{11}}{\partial a_{11}}}_{\text{Talk to the previous hidden layer}} \underbrace{\frac{\partial a_{11}}{\partial W_{111}}}_{\text{and now talk to the weights}}
+\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}_{\substack{Talk\ to\ the\\
+weight\ directly}}=
+\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{L 11}}}_{\substack{Talk\ to\ 
+\ the\\ output\\ layer}} \underbrace{\frac{\partial a_{L 11}}{\partial h_{21}} \frac{\partial h_{21}}{\partial a_{21}}}_{\substack{Talk\ to\ the\\ previous\\ hidden\ layer}} \underbrace{\frac{\partial a_{21}}{\partial h_{11}} \frac{\partial h_{11}}{\partial a_{11}}}_{\substack{Talk\ to\ the\\ previous\\ hidden\ layer}} \underbrace{\frac{\partial a_{11}}{\partial W_{111}}}_{\substack{and\ now\ talk\\ to\ the\ weights}}
 \]</div>
 <h3 id="_13">反向传播中的关键量<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
 <p>我们关注的量（后续内容的路线图）：
@@ -1268,7 +1385,161 @@ previous hidden layer}} \underbrace{\frac{\partial a_{21}}{\partial h_{11}} \fra
 <div class="arithmatex">\[
 \hat{y}_{\ell}=\frac{\exp (a_{L \ell})}{\sum_{i}\exp (a_{L i})}
 \]</div>
-<p>确定这一点后，</p>
+<p>确定这一点后，我们将推导出完整的表达式. </p>
+<div class="arithmatex">\[
+\begin{align*}
+\frac{\partial(-\log\hat{y}_{\ell})}{\partial a_{L i}}  &amp;= \frac{-1}{\hat{y}_\ell} \frac{\partial}{\partial a_{L i}} \hat{y}_\ell \\
+&amp;= \frac{-1}{\hat{y}_\ell} \frac{\partial}{\partial a_{L i}} \text{softmax}(\mathbf{a}_L)_\ell \\
+&amp;= \frac{-1}{\hat{y}_\ell} \frac{\partial}{\partial a_{L i}} \frac{\exp(\mathbf{a}_L)_\ell}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}} \\
+&amp;= \frac{-1}{\hat{y}_\ell} \left(
+\frac{\frac{\partial}{\partial a_{L i}} \exp(\mathbf{a}_L)_\ell}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}} - \frac{\exp(\mathbf{a}_L)_\ell \left( \frac{\partial}{\partial a_{L i}} \sum_{i'} \exp(\mathbf{a}_L)_{i'} \right)}{\left( \sum_{i'} (\exp(\mathbf{a}_L)_{i'}) \right)^2}
+\right) \\
+&amp;= \frac{-1}{\hat{y}_\ell} \left(
+\frac{\mathbb{1}_{(\ell = i)} \exp(\mathbf{a}_L)_\ell}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}} - \frac{\exp(\mathbf{a}_L)_\ell}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}}
+\frac{\exp(\mathbf{a}_L)_i}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}}
+\right) \\
+&amp;= \frac{-1}{\hat{y}_\ell} \left(
+\mathbb{1}_{(\ell = i)} \text{softmax}(\mathbf{a}_L)_\ell - \text{softmax}(\mathbf{a}_L)_\ell \text{softmax}(\mathbf{a}_L)_i
+\right) \\
+&amp;= \frac{-1}{\hat{y}_\ell} \left(
+\mathbb{1}_{(\ell = i)} \hat{y}_\ell - \hat{y}_\ell \hat{y}_i
+\right) \\
+&amp;= - \left( \mathbb{1}_{(\ell = i)} - \hat{y}_i \right)
+\end{align*}
+\]</div>
+<p>到目前为止，我们已经推导出了关于 <span class="arithmatex">\(a_{L}\)</span> 的第i个元素的偏导数. </p>
+<div class="arithmatex">\[
+\frac{\partial \mathscr{L}(\theta)}{\partial a_{Li}}=-\left(\mathbb{1}_{\ell=i}-\hat{y}_{i}\right)
+\]</div>
+<p>现在我们可以写出关于向量 <span class="arithmatex">\(a_{L}\)</span> 的梯度.</p>
+<div class="arithmatex">\[
+\begin{aligned} \nabla_{a_{L}} \mathscr{L}(\theta)=\left[\begin{array}{c} \frac{\partial \mathscr{L}(\theta)}{\partial a_{L 1}} \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial a_{L k}} \end{array}\right]=\left[\begin{array}{c} -\left(\mathbb{1}_{\ell=1}-\hat{y}_{1}\right) \\ -\left(\mathbb{1}_{\ell=2}-\hat{y}_{2}\right) \\ \vdots \\ -\left(\mathbb{1}_{\ell=k}-\hat{y}_{k}\right) \end{array}\right] \\ =-(e(\ell)-\hat{y}) \end{aligned}
+\]</div>
+<h2 id="6">6：反向传播：计算关于隐藏单元的梯度<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p><strong>沿多条路径的链式法则</strong>：如果函数 <span class="arithmatex">\(p(z)\)</span> 可以写成中间结果 <span class="arithmatex">\(q_{i}(z)\)</span> 的函数，那么我们有：</p>
+<div class="arithmatex">\[
+\frac{\partial p(z)}{\partial z}=\sum_{m} \frac{\partial p(z)}{\partial q_{m}(z)} \frac{\partial q_{m}(z)}{\partial z}
+\]</div>
+<p>在我们的例子中：
+-  <span class="arithmatex">\(p(z)\)</span> 是损失函数 <span class="arithmatex">\(\mathscr{L}(\theta)\)</span> 
+-  <span class="arithmatex">\(z = h_{ij}\)</span> 
+-  <span class="arithmatex">\(q_{m}(z)=a_{Lm}\)</span> </p>
+<div class="arithmatex">\[
+\begin{aligned} \frac{\partial \mathscr{L}(\theta)}{\partial h_{i j}} &amp; =\sum_{m=1}^{k} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} \frac{\partial a_{i+1, m}}{\partial h_{i j}} \\ &amp; =\sum_{m=1}^{k} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} W_{i+1, m, j} \end{aligned}
+\]</div>
+<p>现在考虑这两个向量：</p>
+<div class="arithmatex">\[
+\nabla_{a_{i+1}} \mathscr{L}(\theta)=\left[\begin{array}{c}\frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1,1}} \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, k}}\end{array}\right] ; W_{i+1, \cdot, j}=\left[\begin{array}{c}W_{i+1,1, j} \\ \vdots \\ W_{i+1, k, j}\end{array}\right]
+\]</div>
+<p><span class="arithmatex">\(W_{i + 1,\cdot,j}\)</span> 是 <span class="arithmatex">\(W_{i + 1}\)</span> 的第j列；可以看到：</p>
+<div class="arithmatex">\[
+\left(W_{i+1, \cdot, j}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta)=\sum_{m=1}^{k} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} W_{i+1, m, j}
+\]</div>
+<div class="arithmatex">\[
+a_{i+1}=W_{i+1} h_{i j}+b_{i+1}
+\]</div>
+<p>我们有：</p>
+<div class="arithmatex">\[
+\frac{\partial \mathscr{L}(\theta)}{\partial h_{i j}}=\left(W_{i+1, ., j}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta)
+\]</div>
+<p>现在我们可以写出关于 <span class="arithmatex">\(h_{i}\)</span> 的梯度：</p>
+<div class="arithmatex">\[
+\begin{aligned} \nabla_{h_{i}} \mathscr{L}(\theta) &amp; =\left[\begin{array}{c} \frac{\partial \mathscr{L}(\theta)}{\partial h_{i 1}} \\ \frac{\partial \mathscr{L}(\theta)}{\partial h_{i 2}} \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial h_{i n}} \end{array}\right]=\left[\begin{array}{c} \left(W_{i+1, \cdot, 1}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta) \\ \left(W_{i+1, \cdot, 2}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta) \\ \vdots \\ \left(W_{i+1, \cdot, n}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta) \end{array}\right] \\ &amp; =\left(W_{i+1}\right)^{T}\left(\nabla_{a_{i+1}} \mathscr{L}(\theta)\right) \end{aligned}
+\]</div>
+<p>我们几乎完成了，只是我们不知道如何计算 <span class="arithmatex">\(i&lt;L - 1\)</span> 时的 <span class="arithmatex">\(\nabla_{a_{i+1}} \mathscr{L}(\theta)\)</span> . 我们将看看如何计算它. </p>
+<div class="arithmatex">\[
+\begin{align*}
+\nabla_{a_{i}} \mathscr{L}(\theta)&amp;=\left[\begin{array}{c}\frac{\partial \mathscr{L}(\theta)}{\partial a_{i 1}} \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial a_{i n}}\end{array}\right]\\
+\frac{\partial \mathscr{L}(\theta)}{\partial a_{i j}} &amp; =\frac{\partial \mathscr{L}(\theta)}{\partial h_{i j}} \frac{\partial h_{i j}}{\partial a_{i j}} \\ &amp; =\frac{\partial \mathscr{L}(\theta)}{\partial h_{i j}} g'\left(a_{i j}\right) \quad\left[\because h_{i j}=g\left(a_{i j}\right)\right]\\
+\nabla_{a_{i}} \mathscr{L}(\theta) &amp; =\left[\begin{array}{c} \frac{\partial \mathscr{L}(\theta)}{\partial h_{i 1}} g'\left(a_{i 1}\right) \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial h_{i n}} g'\left(a_{i n}\right) \end{array}\right] \\ &amp; =\nabla_{h_{i}} \mathscr{L}(\theta) \odot\left[..., g'\left(a_{i k}\right), ...\right]
+\end{align*}
+\]</div>
+<h2 id="7">7 反向传播：计算关于参数的梯度<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<p>回顾一下：
+$$
+a_{k}=b_{k}+W_{k} h_{k-1}
+$$</p>
+<div class="arithmatex">\[
+\frac{\partial a_{k i}}{\partial W_{k i j}}=h_{k-1, j}
+\]</div>
+<div class="arithmatex">\[
+\begin{aligned} \frac{\partial \mathscr{L}(\theta)}{\partial W_{k i j}} &amp; =\frac{\partial \mathscr{L}(\theta)}{\partial a_{k i}} \frac{\partial a_{k i}}{\partial W_{k i j}} \\ &amp; =\frac{\partial \mathscr{L}(\theta)}{\partial a_{k i}} h_{k-1, j} \end{aligned}
+\]</div>
+<div class="arithmatex">\[
+\nabla_{W_{k}} \mathscr{L}(\theta)=\left[\begin{array}{ccccc}\frac{\partial \mathscr{L}(\theta)}{\partial W_{k 11}} &amp; \frac{\partial \mathscr{L}(\theta)}{\partial W_{k12}} &amp; \cdots &amp; \cdots &amp; \frac{\partial \mathscr{L}(\theta)}{\partial W_{k 1 n}} \\ \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots  \\ 
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\ 
+\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \frac{\partial \mathscr{L}(\theta )}{\partial W_{k n n}}\end{array}\right]
+\]</div>
+<p>让我们以一个 <span class="arithmatex">\(W_{k} \in \mathbb{R}^{3×3}\)</span> 的简单例子，来看看每一项是什么样的. </p>
+<div class="arithmatex">\[
+\nabla_{W_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{\partial W_{k11}}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial W_{k12}}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial W_{k13}}\\&amp;\ &amp;\\\frac{\partial \mathscr{L}(\theta)}{\partial W_{k21}}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial W_{k22}}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial W_{k23}}\\&amp;\ &amp;\\\frac{\partial \mathscr{L}(\theta)}{\partial W_{k31}}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial W_{k32}}&amp; \frac{\partial \mathscr{L}(\theta)}{\partial W_{k33}}\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+\nabla_{W_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}h_{k - 1,1}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}h_{k - 1,2}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}h_{k - 1,3}\\\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}h_{k - 1,1}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}h_{k - 1,2}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}h_{k - 1,3}\\\frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}}h_{k - 1,1}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}}h_{k - 1,2}&amp;\frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}}h_{k - 1,3}\end{bmatrix}=\nabla_{a_{k}}\mathscr{L}(\theta)\cdot h_{k - 1}^{T}
+\]</div>
+<p>最后，来看偏置项. 
+<span class="arithmatex">\(<span class="arithmatex">\(a_{ki}=b_{ki}+\sum_{j}W_{kij}h_{k - 1,j}\)</span>\)</span>
+<span class="arithmatex">\(<span class="arithmatex">\(\begin{align*}\frac{\partial \mathscr{L}(\theta)}{\partial b_{ki}}&amp;=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\frac{\partial a_{ki}}{\partial b_{ki}}\\&amp;=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\end{align*}\)</span>\)</span></p>
+<p>现在我们可以写出关于向量<span class="arithmatex">\(b_{k}\)</span>的梯度. 
+<span class="arithmatex">\(<span class="arithmatex">\(\nabla_{b_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{a_{k1}}\\\frac{\partial \mathscr{L}(\theta)}{a_{k2}}\\\vdots\\\frac{\partial \mathscr{L}(\theta)}{a_{kn}}\end{bmatrix}=\nabla_{a_{k}}\mathscr{L}(\theta)\)</span>\)</span></p>
+<h2 id="8">8 伪代码<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<p>最后，我们掌握了所有关键部分：<span class="arithmatex">\(\nabla_{a_{L}}\mathscr{L}(\theta)\)</span>（关于输出层的梯度）、<span class="arithmatex">\(\nabla_{h_{k}}\mathscr{L}(\theta)\)</span>、<span class="arithmatex">\(\nabla_{a_{k}}\mathscr{L}(\theta)\)</span>（关于隐藏层的梯度，<span class="arithmatex">\(1\leq k&lt;L\)</span>）、<span class="arithmatex">\(\nabla_{W_{k}}\mathscr{L}(\theta)\)</span>、<span class="arithmatex">\(\nabla_{b_{k}}\mathscr{L}(\theta)\)</span>（关于权重和偏置的梯度，<span class="arithmatex">\(1\leq k\leq L\)</span> ）. 现在我们可以写出完整的学习算法. </p>
+<h3 id="textgradient_descent">算法：<span class="arithmatex">\(\text{gradient\_descent()}\)</span><a class="headerlink" href="#textgradient_descent" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(t \leftarrow 0\)</span>;</li>
+<li><span class="arithmatex">\(\text{maxIterations} \leftarrow 1000\)</span>;</li>
+<li>初始化 <span class="arithmatex">\(\theta_0 = [W_{1}^0, ..., W_{L}^0, b_1^0, ..., b_L^0 ]\)</span>;</li>
+<li><span class="arithmatex">\(\text{while } t &lt; \text{maxIterations do}\)</span><ul>
+<li><span class="arithmatex">\(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, \hat{y} = \text{forward\_propagation}(\theta_t)\)</span>; </li>
+<li><span class="arithmatex">\(\nabla \theta_t\)</span> = <span class="arithmatex">\(\text{back\_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})\)</span>;</li>
+<li><span class="arithmatex">\(\theta_{t+1} \leftarrow \theta_t - \eta \nabla \theta_t\)</span>; </li>
+<li><span class="arithmatex">\(t\leftarrow t+1;\)</span></li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\text{end}\)</span></li>
+</ul>
+<h3 id="textforward_propagationtheta">算法: <span class="arithmatex">\(\text{forward\_propagation}(\theta)\)</span><a class="headerlink" href="#textforward_propagationtheta" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(\text{for} k = 1 \text{to} L - 1 \text{do}\)</span><ul>
+<li><span class="arithmatex">\(a_k = b_k + W_kh_{k-1}\)</span>; </li>
+<li><span class="arithmatex">\(h_k = g(a_k)\)</span>;</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\text{end}\)</span></li>
+<li><span class="arithmatex">\(a_L = b_L + W_Lh_{L-1}\)</span>;</li>
+<li><span class="arithmatex">\(\hat{y} = O(a_L)\)</span>;</li>
+</ul>
+<p>就是进行一次前向传播，并计算所有的<span class="arithmatex">\(h_{i}\)</span>、<span class="arithmatex">\(a_{i}\)</span> 和<span class="arithmatex">\(\hat{y}\)</span>. </p>
+<h3 id="textback_propagationh_1-h_2-h_l-1-a_1-a_2-a_l-y-haty">算法：<span class="arithmatex">\(\text{back\_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})\)</span><a class="headerlink" href="#textback_propagationh_1-h_2-h_l-1-a_1-a_2-a_l-y-haty" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(\nabla_{a_L} \mathscr{L}(\theta) = -(e(y) - \hat{y})\)</span>; // 计算输出梯度</li>
+<li><span class="arithmatex">\(\text{for } k = L \text{ to } 1 \text{ do}\)</span><ul>
+<li><span class="arithmatex">\(\nabla_{W_k} \mathscr{L}(\theta) = \nabla_{a_k}\mathscr{L}(\theta)h_{k-1}^T\)</span>; // 计算关于参数的梯度; </li>
+<li><span class="arithmatex">\(\nabla_{b_k} \mathscr{L}(\theta) = \nabla_{a_k}\mathscr{L}(\theta)\)</span>; 
+// 计算关于下一层的梯度;</li>
+<li><span class="arithmatex">\(\nabla_{h_{k-1}}\mathscr{L}(\theta) = W_k^T(\nabla_{a_k}\mathscr{L}(\theta))\)</span> ;
+// 计算关于下一层（激活前）的梯度;</li>
+<li><span class="arithmatex">\(\nabla_{a_{k-1}}\mathscr{L}(\theta) = \nabla h_{k-1}\mathscr{L}(\theta) \odot [..., g'(a_{k-1,j}),...]\)</span>;</li>
+</ul>
+</li>
+<li><span class="arithmatex">\(\text{end}\)</span></li>
+<li><span class="arithmatex">\(\text{return } [\nabla_{W_{1}}, ..., \nabla_{W_{L}}, \nabla_{b_1}, ..., \nabla_{b_L} ]\)</span></li>
+</ul>
+<h2 id="9">9 激活函数的导数<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<p>现在，我们唯一需要弄清楚的就是如何计算<span class="arithmatex">\(g'\)</span>. </p>
+<h3 id="_15">逻辑函数<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\begin{align*}g(z)&amp;=\sigma(z)\\&amp;=\frac{1}{1 + e^{-z}}\end{align*}\]</div>
+<div class="arithmatex">\[
+\begin{align*}g'(z)&amp;=(-1)\frac{1}{(1 + e^{-z})^{2}}\frac{d}{dz}(1 + e^{-z})\\&amp;=(-1)\frac{1}{(1 + e^{-z})^{2}}(-e^{-z})\\&amp;=\frac{1}{1 + e^{-z}}\left(\frac{1 + e^{-z}-1}{1 + e^{-z}}\right)\\&amp;=g(z)(1 - g(z))\end{align*}
+\]</div>
+<h3 id="_16">双曲正切函数<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\begin{align*}g(z)&amp;=\tanh(z)\\&amp;=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}\end{align*}
+\]</div>
+<div class="arithmatex">\[
+\begin{align*}g'(z)&amp;=\frac{(e^{z}+e^{-z})\frac{d}{dz}(e^{z}-e^{-z})-(e^{z}-e^{-z})\frac{d}{dz}(e^{z}+e^{-z})}{(e^{z}+e^{-z})^{2}}\\&amp;=\frac{(e^{z}+e^{-z})^{2}-(e^{z}-e^{-z})^{2}}{(e^{z}+e^{-z})^{2}}\\&amp;=1-\frac{(e^{z}-e^{-z})^{2}}{(e^{z}+e^{-z})^{2}}\\&amp;=1-(g(z))^{2}\end{align*}
+\]</div>
 
 
 
@@ -1291,7 +1562,7 @@ previous hidden layer}} \underbrace{\frac{\partial a_{21}}{\partial h_{11}} \fra
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:58:43">April 27, 2025 10:58:43</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 12:19:33">April 27, 2025 12:19:33</span>
   </span>
 
     
