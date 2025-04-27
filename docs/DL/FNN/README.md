@@ -79,7 +79,9 @@ $$
 
 现在我们想找到一种学习该模型参数的算法. 
 ### 回顾梯度下降算法
+
 **算法1：梯度下降**
+
 - $t \leftarrow 0$;
 - $\text{maxIterations} \leftarrow 1000$;
 - $\text{while } t < \text{maxIterations } \text{do}$
@@ -90,7 +92,9 @@ $$
 
 ### 前馈神经网络中的梯度下降
 我们可以更简洁地将其写为：
+
 **算法1：梯度下降**
+
 - $t \leftarrow 0$;
 - $\text{maxIterations} \leftarrow 1000$;
 - $\text{Initialize } \theta_0 = [w_0, b_0]$;
@@ -101,9 +105,7 @@ $$
 
 其中 $\nabla \theta_{t}=[\frac{\partial \mathscr{L}(\theta)}{\partial w_{t}}, \frac{\partial \mathscr{L}(\theta)}{\partial b_{t}}]^{T}$ . 
 
-在这个前馈神经网络中，我们的 $\theta$ 不是 $[w, b]$ ，而是 $[W_{1}, W_{2}, \cdots, W_{L}, b_{1}, b_{2}, \cdots, b_{L}]$ . 
-
-我们仍然可以使用相同的算法来学习模型的参数. 
+在这个前馈神经网络中，我们的 $\theta$ 不是 $[w, b]$ ，而是 $[W_{1}, W_{2}, \cdots, W_{L}, b_{1}, b_{2}, \cdots, b_{L}]$. 我们仍然可以使用相同的算法来学习模型的参数. 
 
 ### 前馈神经网络中梯度计算的挑战
 
@@ -121,13 +123,11 @@ $\nabla \theta$ 由  $\nabla W_{1}, \nabla W_{2}, \cdots \nabla W_{L - 1} \in \m
 2. 如何计算由 $\nabla W_{1}, \nabla W_{2}, \cdots, \nabla W_{L - 1} \in \mathbb{R}^{n × n}, \nabla W_{L} \in \mathbb{R}^{n × k}, \nabla b_{1}, \nabla b_{2}, \cdots, \nabla b_{L - 1} \in \mathbb{R}^{n}$ 和 $\nabla b_{L} \in \mathbb{R}^{k}$ 组成的 $\nabla \theta$ ？
 
 ### 损失函数的选择
-损失函数的选择取决于手头的问题. 
 
-我们通过两个例子来说明这一点. 
-
-再次考虑电影评分预测的例子，但这次我们关注预测评分. 
+损失函数的选择取决于手头的问题. 我们通过两个例子来说明这一点. 再次考虑电影评分预测的例子，但这次我们关注预测评分. 
 
 ![alt text](image-1.png)
+
 这里 $y_{i} \in \mathbb{R}^{3}$ . 
 
 损失函数应该衡量 $\hat{y}_{i}$ 与 $y_{i}$ 的偏差程度. 
@@ -431,6 +431,7 @@ $$
 ## 7 反向传播：计算关于参数的梯度
 
 回顾一下：
+
 $$
 a_{k}=b_{k}+W_{k} h_{k-1}
 $$
@@ -461,11 +462,20 @@ $$
 
 
 最后，来看偏置项. 
-$$a_{ki}=b_{ki}+\sum_{j}W_{kij}h_{k - 1,j}$$
-$$\begin{align*}\frac{\partial \mathscr{L}(\theta)}{\partial b_{ki}}&=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\frac{\partial a_{ki}}{\partial b_{ki}}\\&=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\end{align*}$$
+
+$$
+a_{ki}=b_{ki}+\sum_{j}W_{kij}h_{k - 1,j}
+$$
+
+$$
+\begin{align*}\frac{\partial \mathscr{L}(\theta)}{\partial b_{ki}}&=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\frac{\partial a_{ki}}{\partial b_{ki}}\\&=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\end{align*}
+$$
 
 现在我们可以写出关于向量$b_{k}$的梯度. 
-$$\nabla_{b_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{a_{k1}}\\\frac{\partial \mathscr{L}(\theta)}{a_{k2}}\\\vdots\\\frac{\partial \mathscr{L}(\theta)}{a_{kn}}\end{bmatrix}=\nabla_{a_{k}}\mathscr{L}(\theta)$$
+
+$$
+\nabla_{b_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{a_{k1}}\\\frac{\partial \mathscr{L}(\theta)}{a_{k2}}\\\vdots\\\frac{\partial \mathscr{L}(\theta)}{a_{kn}}\end{bmatrix}=\nabla_{a_{k}}\mathscr{L}(\theta)
+$$
 
 
 
@@ -475,7 +485,7 @@ $$\nabla_{b_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\t
 最后，我们掌握了所有关键部分：$\nabla_{a_{L}}\mathscr{L}(\theta)$（关于输出层的梯度）、$\nabla_{h_{k}}\mathscr{L}(\theta)$、$\nabla_{a_{k}}\mathscr{L}(\theta)$（关于隐藏层的梯度，$1\leq k<L$）、$\nabla_{W_{k}}\mathscr{L}(\theta)$、$\nabla_{b_{k}}\mathscr{L}(\theta)$（关于权重和偏置的梯度，$1\leq k\leq L$ ）. 现在我们可以写出完整的学习算法. 
 
 
-### 算法：$\text{gradient\_descent()}$
+### 算法：$\text{gradient_descent()}$
 
 - $t \leftarrow 0$;
 - $\text{maxIterations} \leftarrow 1000$;
@@ -488,7 +498,7 @@ $$\nabla_{b_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\t
 - $\text{end}$
 
 
-### 算法: $\text{forward\_propagation}(\theta)$
+### 算法: $\text{forward_propagation}(\theta)$
 
 - $\text{for} k = 1 \text{to} L - 1 \text{do}$
     - $a_k = b_k + W_kh_{k-1}$; 
@@ -500,7 +510,7 @@ $$\nabla_{b_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\t
 就是进行一次前向传播，并计算所有的$h_{i}$、$a_{i}$ 和$\hat{y}$. 
 
 
-### 算法：$\text{back\_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})$
+### 算法：$\text{back_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})$
 
 
 - $\nabla_{a_L} \mathscr{L}(\theta) = -(e(y) - \hat{y})$; // 计算输出梯度
