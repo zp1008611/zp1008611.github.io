@@ -66,6 +66,7 @@ $$
 算法：带有反向传播的梯度下降法（我们很快会讲到）
 
 目标/损失/误差函数：例如，
+
 $$
 min \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{k}\left(\hat{y}_{i j}-y_{i j}\right)^{2}
 $$
@@ -132,7 +133,11 @@ $\nabla \theta$ 由  $\nabla W_{1}, \nabla W_{2}, \cdots \nabla W_{L - 1} \in \m
 损失函数应该衡量 $\hat{y}_{i}$ 与 $y_{i}$ 的偏差程度. 
 
 如果 $y_{i} \in \mathbb{R}^{n}$ ，那么均方误差损失：
-$$\mathscr{L}(\theta)=\frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{3}\left(\hat{y}_{i j}-y_{i j}\right)^{2}$$
+
+$$
+\mathscr{L}(\theta)=\frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{3}\left(\hat{y}_{i j}-y_{i j}\right)^{2}
+$$
+
 可以衡量这种偏差. 
 ### 输出函数的选择
 一个相关的问题是：如果 $y_{i} \in \mathbb{R}$ ，输出函数“ $O$ ”应该是什么？
@@ -142,7 +147,11 @@ $$\mathscr{L}(\theta)=\frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{3}\left(\hat{y}_{i 
 不可以，因为逻辑函数将 $\hat{y}_{i}$ 限制在0到1之间，而我们希望 $\hat{y}_{i} \in \mathbb{R}$ . 
 
 所以，在这种情况下，将“ $O$ ”设为线性函数更合理：
-$$f(x)=h_{L}=O\left(a_{L}\right)=W_{O} a_{L}+b_{O}$$
+
+$$
+f(x)=h_{L}=O\left(a_{L}\right)=W_{O} a_{L}+b_{O}
+$$
+
 此时 $\hat{y}_{i}=f(x_{i})$ 不再局限于0到1之间. 
 
 ### 分类问题中的损失函数和输出函数
@@ -295,11 +304,13 @@ $$
 $$
 
 更紧凑地表示为：
+
 $$
 \frac{\partial}{\partial \hat{y}_{i}}(\mathscr{L}(\theta))=-\frac{\mathbb{1}_{(i=\ell)}}{\hat{y}_{\ell}}
 $$
 
 现在我们可以讨论关于向量 $\hat{y}$ 的梯度：
+
 $$
 \nabla_{\hat{y}} \mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}_{1}}\\\vdots\\\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}_{k}}\end{bmatrix}=-\frac{1}{\hat{y}_{\ell}}\begin{bmatrix}\mathbb{1}_{\ell=1}\\\mathbb{1}_{\ell=2}\\\vdots\\\mathbb{1}_{\ell=k}\end{bmatrix}=-\frac{1}{\hat{y}_{\ell}} e_{\ell}
 $$
@@ -307,6 +318,7 @@ $$
 其中 $e(\ell)$ 是一个$k$维向量，其第 $\ell$ 个元素为1，其他所有元素为0. 
 
 ### 关于激活前向量$a_{L}$的梯度计算
+
 我们真正感兴趣的是：
 
 $$
