@@ -32,6 +32,8 @@ nav:
         - Sigmoid Neurons: DL/sigmoid_nn/README.md
         - Feedforward Neural Networks and Backpropagation: DL/FNN/README.md
         - GD Variants: DL/GD_Variants/README.md
+        - PCA: DL/PCA/README.md
+        - Autoencoders: 
 
     - LEETCODE:
         - 动态规划:

@@ -10,3 +10,4 @@
 - Multilayer Perceptrons (MLPs)
 - Multilayer Network of Sigmoid Neurons
 - Feedforward Neural Networks and Backpropagation
+- GD and Variants
