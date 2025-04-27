@@ -1074,10 +1074,10 @@ f(x)=h_{L}(x)=O\left(a_{L}(x)\right)
 \theta = W_{1}, \cdots, W_{L}, b_{1}, b_{2}, \cdots, b_{L}(L = 3)
 \]</div>
 <p>算法：带有反向传播的梯度下降法（我们很快会讲到）</p>
-<p>目标/损失/误差函数：例如，
-$$
-min \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{k}\left(\hat{y}<em i="i" j="j">{i j}-y</em>
-$$}\right)^{2</p>
+<p>目标/损失/误差函数：例如，</p>
+<div class="arithmatex">\[
+min \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{k}\left(\hat{y}_{i j}-y_{i j}\right)^{2}
+\]</div>
 <p>一般来说，是 <span class="arithmatex">\(min \mathscr{L}(\theta)\)</span>，其中 <span class="arithmatex">\(\mathscr{L}(\theta)\)</span> 是参数的某个函数. </p>
 <h2 id="2">2 学习前馈神经网络的参数（直觉）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>到目前为止，我们已经介绍了前馈神经网络. </p>
@@ -1121,16 +1121,20 @@ $$}\right)^{2</p>
 <p><img alt="alt text" src="image-1.png" />
 这里 <span class="arithmatex">\(y_{i} \in \mathbb{R}^{3}\)</span> . </p>
 <p>损失函数应该衡量 <span class="arithmatex">\(\hat{y}_{i}\)</span> 与 <span class="arithmatex">\(y_{i}\)</span> 的偏差程度. </p>
-<p>如果 <span class="arithmatex">\(y_{i} \in \mathbb{R}^{n}\)</span> ，那么均方误差损失：
-<span class="arithmatex">\(<span class="arithmatex">\(\mathscr{L}(\theta)=\frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{3}\left(\hat{y}_{i j}-y_{i j}\right)^{2}\)</span>\)</span>
-可以衡量这种偏差. </p>
+<p>如果 <span class="arithmatex">\(y_{i} \in \mathbb{R}^{n}\)</span> ，那么均方误差损失：</p>
+<div class="arithmatex">\[
+\mathscr{L}(\theta)=\frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{3}\left(\hat{y}_{i j}-y_{i j}\right)^{2}
+\]</div>
+<p>可以衡量这种偏差. </p>
 <h3 id="_8">输出函数的选择<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>一个相关的问题是：如果 <span class="arithmatex">\(y_{i} \in \mathbb{R}\)</span> ，输出函数“ <span class="arithmatex">\(O\)</span> ”应该是什么？</p>
 <p>更具体地说，它可以是逻辑函数吗？</p>
 <p>不可以，因为逻辑函数将 <span class="arithmatex">\(\hat{y}_{i}\)</span> 限制在0到1之间，而我们希望 <span class="arithmatex">\(\hat{y}_{i} \in \mathbb{R}\)</span> . </p>
-<p>所以，在这种情况下，将“ <span class="arithmatex">\(O\)</span> ”设为线性函数更合理：
-<span class="arithmatex">\(<span class="arithmatex">\(f(x)=h_{L}=O\left(a_{L}\right)=W_{O} a_{L}+b_{O}\)</span>\)</span>
-此时 <span class="arithmatex">\(\hat{y}_{i}=f(x_{i})\)</span> 不再局限于0到1之间. </p>
+<p>所以，在这种情况下，将“ <span class="arithmatex">\(O\)</span> ”设为线性函数更合理：</p>
+<div class="arithmatex">\[
+f(x)=h_{L}=O\left(a_{L}\right)=W_{O} a_{L}+b_{O}
+\]</div>
+<p>此时 <span class="arithmatex">\(\hat{y}_{i}=f(x_{i})\)</span> 不再局限于0到1之间. </p>
 <h3 id="_9">分类问题中的损失函数和输出函数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>现在考虑分类问题，对于这个问题，不同的损失函数可能更合适. </p>
 <p>假设我们要将一张图像分类为<span class="arithmatex">\(k\)</span>个类别之一. </p>
@@ -1246,14 +1250,14 @@ previous hidden layer}} \underbrace{\frac{\partial a_{21}}{\partial h_{11}} \fra
 0, &amp; \text{否则}
 \end{cases}
 \]</div>
-<p>更紧凑地表示为：
-$$
-\frac{\partial}{\partial \hat{y}<em _i="\ell)">{i}}(\mathscr{L}(\theta))=-\frac{\mathbb{1}</em>
-$$}}{\hat{y}_{\ell}</p>
-<p>现在我们可以讨论关于向量 <span class="arithmatex">\(\hat{y}\)</span> 的梯度：
-$$
-\nabla_{\hat{y}} \mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}<em k="k">{1}}\\vdots\\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}</em>}}\end{bmatrix}=-\frac{1}{\hat{y<em _ell="1">{\ell}}\begin{bmatrix}\mathbb{1}</em>}\\mathbb{1<em _ell="k">{\ell=2}\\vdots\\mathbb{1}</em>}\end{bmatrix}=-\frac{1}{\hat{y<em _ell="\ell">{\ell}} e</em>
-$$</p>
+<p>更紧凑地表示为：</p>
+<div class="arithmatex">\[
+\frac{\partial}{\partial \hat{y}_{i}}(\mathscr{L}(\theta))=-\frac{\mathbb{1}_{(i=\ell)}}{\hat{y}_{\ell}}
+\]</div>
+<p>现在我们可以讨论关于向量 <span class="arithmatex">\(\hat{y}\)</span> 的梯度：</p>
+<div class="arithmatex">\[
+\nabla_{\hat{y}} \mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}_{1}}\\\vdots\\\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}_{k}}\end{bmatrix}=-\frac{1}{\hat{y}_{\ell}}\begin{bmatrix}\mathbb{1}_{\ell=1}\\\mathbb{1}_{\ell=2}\\\vdots\\\mathbb{1}_{\ell=k}\end{bmatrix}=-\frac{1}{\hat{y}_{\ell}} e_{\ell}
+\]</div>
 <p>其中 <span class="arithmatex">\(e(\ell)\)</span> 是一个<span class="arithmatex">\(k\)</span>维向量，其第 <span class="arithmatex">\(\ell\)</span> 个元素为1，其他所有元素为0. </p>
 <h3 id="a_l">关于激活前向量<span class="arithmatex">\(a_{L}\)</span>的梯度计算<a class="headerlink" href="#a_l" title="Permanent link">&para;</a></h3>
 <p>我们真正感兴趣的是：</p>
@@ -1287,7 +1291,7 @@ $$</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:54:00">April 27, 2025 10:54:00</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:58:43">April 27, 2025 10:58:43</span>
   </span>
 
     

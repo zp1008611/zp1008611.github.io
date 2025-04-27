@@ -1044,10 +1044,10 @@
 <p>在大多数实际应用中，我们期望有一个更平滑的决策函数，能够逐渐从<span class="arithmatex">\(0\)</span>变化到<span class="arithmatex">\(1\)</span>. </p>
 <h3 id="sigmoid_1">引入Sigmoid神经元<a class="headerlink" href="#sigmoid_1" title="Permanent link">&para;</a></h3>
 <p>引入Sigmoid神经元，其输出函数比阶跃函数平滑得多. </p>
-<p>这里有一种Sigmoid函数，称为逻辑函数：
-$$
-y=\frac{1}{1+e<sup n="n">{-\left(w_{0}+\sum_{i=1}</sup>
-$$} w_{i} x_{i}\right)}</p>
+<p>这里有一种Sigmoid函数，称为逻辑函数：</p>
+<div class="arithmatex">\[
+y=\frac{1}{1+e^{-\left(w_{0}+\sum_{i=1}^{n} w_{i} x_{i}\right)}}
+\]</div>
 <p>在阈值 <span class="arithmatex">\(-w_{0}\)</span> 附近，不再有急剧的转变. 而且输出 <span class="arithmatex">\(y\)</span> 不再是二进制的，而是介于0和1之间的实数值，可以被解释为概率. 我们得到的不是喜欢或不喜欢的决策，而是喜欢这部电影的概率. </p>
 <h3 id="sigmoid_2">感知机与Sigmoid神经元对比<a class="headerlink" href="#sigmoid_2" title="Permanent link">&para;</a></h3>
 <p><img alt="alt text" src="image-1.png" /></p>
@@ -1093,9 +1093,9 @@ $$} w_{i} x_{i}\right)}</p>
 <li><strong>学习算法</strong>：梯度下降（我们很快会讲到）. </li>
 <li><strong>目标/损失/误差函数</strong>：一种可能的选择是：</li>
 </ul>
-<p>$$
- \mathscr{L}(w)=\sum_{i=1}<sup 2="2">{n}\left(\hat{y}<em i="i">{i}-y</em>\right)</sup>
- $$</p>
+<div class="arithmatex">\[
+\mathscr{L}(w)=\sum_{i=1}^{n}\left(\hat{y}_{i}-y_{i}\right)^{2}
+\]</div>
 <p>学习算法应寻找使上述函数（<span class="arithmatex">\(y\)</span> 和 <span class="arithmatex">\(\hat{y}\)</span> 之间的均方误差）最小的 <span class="arithmatex">\(w\)</span>. </p>
 <h2 id="3">3 学习参数：梯度下降<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <h3 id="_6">梯度下降的原理<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
@@ -1247,7 +1247,7 @@ y=\frac{1}{1+e^{-\left(w_{1} x_{1}+w_{2} x_{2}+b\right)}}
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:54:00">April 27, 2025 10:54:00</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 27, 2025 10:58:43">April 27, 2025 10:58:43</span>
   </span>
 
     
