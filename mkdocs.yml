@@ -30,7 +30,8 @@ nav:
         - DL/index.md
         - Multilayer Perceptrons: DL/MLPs/README.md
         - Sigmoid Neurons: DL/sigmoid_nn/README.md
-        -  Feedforward Neural Networks and Backpropagation: DL/FNN/README.md
+        - Feedforward Neural Networks and Backpropagation: DL/FNN/README.md
+        - GD Variants: DL/GD_Variants/README.md
 
     - LEETCODE:
         - 动态规划:

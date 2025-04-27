@@ -272,11 +272,10 @@ $W_{L}$ 和 $b_{L}$ 承担全部责任，但 $h_{L}$ 说：“请理解，我只
 但与其直接与它们交流，通过隐藏层和输出层与它们交流更容易（这正是链式法则允许我们做的）. 
 
 $$
-\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}_{\text{Talk to the
-weight directly}}=
-\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{L 11}}}_{\text{Talk to 
-\\ the output layer}} \underbrace{\frac{\partial a_{L 11}}{\partial h_{21}} \frac{\partial h_{21}}{\partial a_{21}}}_{\text{Talk to the
-previous hidden layer}} \underbrace{\frac{\partial a_{21}}{\partial h_{11}} \frac{\partial h_{11}}{\partial a_{11}}}_{\text{Talk to the previous hidden layer}} \underbrace{\frac{\partial a_{11}}{\partial W_{111}}}_{\text{and now talk to the weights}}
+\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}_{\substack{Talk\ to\ the\\
+weight\ directly}}=
+\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{L 11}}}_{\substack{Talk\ to\ 
+\ the\\ output\\ layer}} \underbrace{\frac{\partial a_{L 11}}{\partial h_{21}} \frac{\partial h_{21}}{\partial a_{21}}}_{\substack{Talk\ to\ the\\ previous\\ hidden\ layer}} \underbrace{\frac{\partial a_{21}}{\partial h_{11}} \frac{\partial h_{11}}{\partial a_{11}}}_{\substack{Talk\ to\ the\\ previous\\ hidden\ layer}} \underbrace{\frac{\partial a_{11}}{\partial W_{111}}}_{\substack{and\ now\ talk\\ to\ the\ weights}}
 $$
 
 ### 反向传播中的关键量
@@ -331,4 +330,213 @@ $$
 \hat{y}_{\ell}=\frac{\exp (a_{L \ell})}{\sum_{i}\exp (a_{L i})}
 $$
 
-确定这一点后，
+确定这一点后，我们将推导出完整的表达式. 
+
+$$
+\begin{align*}
+\frac{\partial(-\log\hat{y}_{\ell})}{\partial a_{L i}}  &= \frac{-1}{\hat{y}_\ell} \frac{\partial}{\partial a_{L i}} \hat{y}_\ell \\
+&= \frac{-1}{\hat{y}_\ell} \frac{\partial}{\partial a_{L i}} \text{softmax}(\mathbf{a}_L)_\ell \\
+&= \frac{-1}{\hat{y}_\ell} \frac{\partial}{\partial a_{L i}} \frac{\exp(\mathbf{a}_L)_\ell}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}} \\
+&= \frac{-1}{\hat{y}_\ell} \left(
+\frac{\frac{\partial}{\partial a_{L i}} \exp(\mathbf{a}_L)_\ell}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}} - \frac{\exp(\mathbf{a}_L)_\ell \left( \frac{\partial}{\partial a_{L i}} \sum_{i'} \exp(\mathbf{a}_L)_{i'} \right)}{\left( \sum_{i'} (\exp(\mathbf{a}_L)_{i'}) \right)^2}
+\right) \\
+&= \frac{-1}{\hat{y}_\ell} \left(
+\frac{\mathbb{1}_{(\ell = i)} \exp(\mathbf{a}_L)_\ell}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}} - \frac{\exp(\mathbf{a}_L)_\ell}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}}
+\frac{\exp(\mathbf{a}_L)_i}{\sum_{i'} \exp(\mathbf{a}_L)_{i'}}
+\right) \\
+&= \frac{-1}{\hat{y}_\ell} \left(
+\mathbb{1}_{(\ell = i)} \text{softmax}(\mathbf{a}_L)_\ell - \text{softmax}(\mathbf{a}_L)_\ell \text{softmax}(\mathbf{a}_L)_i
+\right) \\
+&= \frac{-1}{\hat{y}_\ell} \left(
+\mathbb{1}_{(\ell = i)} \hat{y}_\ell - \hat{y}_\ell \hat{y}_i
+\right) \\
+&= - \left( \mathbb{1}_{(\ell = i)} - \hat{y}_i \right)
+\end{align*}
+$$
+
+
+
+
+到目前为止，我们已经推导出了关于 $a_{L}$ 的第i个元素的偏导数. 
+
+$$
+\frac{\partial \mathscr{L}(\theta)}{\partial a_{Li}}=-\left(\mathbb{1}_{\ell=i}-\hat{y}_{i}\right)
+$$
+
+现在我们可以写出关于向量 $a_{L}$ 的梯度.
+
+$$
+\begin{aligned} \nabla_{a_{L}} \mathscr{L}(\theta)=\left[\begin{array}{c} \frac{\partial \mathscr{L}(\theta)}{\partial a_{L 1}} \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial a_{L k}} \end{array}\right]=\left[\begin{array}{c} -\left(\mathbb{1}_{\ell=1}-\hat{y}_{1}\right) \\ -\left(\mathbb{1}_{\ell=2}-\hat{y}_{2}\right) \\ \vdots \\ -\left(\mathbb{1}_{\ell=k}-\hat{y}_{k}\right) \end{array}\right] \\ =-(e(\ell)-\hat{y}) \end{aligned}
+$$
+
+## 6：反向传播：计算关于隐藏单元的梯度
+
+
+**沿多条路径的链式法则**：如果函数 $p(z)$ 可以写成中间结果 $q_{i}(z)$ 的函数，那么我们有：
+
+$$
+\frac{\partial p(z)}{\partial z}=\sum_{m} \frac{\partial p(z)}{\partial q_{m}(z)} \frac{\partial q_{m}(z)}{\partial z}
+$$
+
+在我们的例子中：
+-  $p(z)$ 是损失函数 $\mathscr{L}(\theta)$ 
+-  $z = h_{ij}$ 
+-  $q_{m}(z)=a_{Lm}$ 
+
+$$
+\begin{aligned} \frac{\partial \mathscr{L}(\theta)}{\partial h_{i j}} & =\sum_{m=1}^{k} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} \frac{\partial a_{i+1, m}}{\partial h_{i j}} \\ & =\sum_{m=1}^{k} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} W_{i+1, m, j} \end{aligned}
+$$
+
+现在考虑这两个向量：
+
+$$
+\nabla_{a_{i+1}} \mathscr{L}(\theta)=\left[\begin{array}{c}\frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1,1}} \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, k}}\end{array}\right] ; W_{i+1, \cdot, j}=\left[\begin{array}{c}W_{i+1,1, j} \\ \vdots \\ W_{i+1, k, j}\end{array}\right]
+$$
+
+$W_{i + 1,\cdot,j}$ 是 $W_{i + 1}$ 的第j列；可以看到：
+
+$$
+\left(W_{i+1, \cdot, j}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta)=\sum_{m=1}^{k} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} W_{i+1, m, j}
+$$
+
+$$
+a_{i+1}=W_{i+1} h_{i j}+b_{i+1}
+$$
+
+我们有：
+
+$$
+\frac{\partial \mathscr{L}(\theta)}{\partial h_{i j}}=\left(W_{i+1, ., j}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta)
+$$
+
+现在我们可以写出关于 $h_{i}$ 的梯度：
+
+$$
+\begin{aligned} \nabla_{h_{i}} \mathscr{L}(\theta) & =\left[\begin{array}{c} \frac{\partial \mathscr{L}(\theta)}{\partial h_{i 1}} \\ \frac{\partial \mathscr{L}(\theta)}{\partial h_{i 2}} \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial h_{i n}} \end{array}\right]=\left[\begin{array}{c} \left(W_{i+1, \cdot, 1}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta) \\ \left(W_{i+1, \cdot, 2}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta) \\ \vdots \\ \left(W_{i+1, \cdot, n}\right)^{T} \nabla_{a_{i+1}} \mathscr{L}(\theta) \end{array}\right] \\ & =\left(W_{i+1}\right)^{T}\left(\nabla_{a_{i+1}} \mathscr{L}(\theta)\right) \end{aligned}
+$$
+
+我们几乎完成了，只是我们不知道如何计算 $i<L - 1$ 时的 $\nabla_{a_{i+1}} \mathscr{L}(\theta)$ . 我们将看看如何计算它. 
+
+$$
+\begin{align*}
+\nabla_{a_{i}} \mathscr{L}(\theta)&=\left[\begin{array}{c}\frac{\partial \mathscr{L}(\theta)}{\partial a_{i 1}} \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial a_{i n}}\end{array}\right]\\
+\frac{\partial \mathscr{L}(\theta)}{\partial a_{i j}} & =\frac{\partial \mathscr{L}(\theta)}{\partial h_{i j}} \frac{\partial h_{i j}}{\partial a_{i j}} \\ & =\frac{\partial \mathscr{L}(\theta)}{\partial h_{i j}} g'\left(a_{i j}\right) \quad\left[\because h_{i j}=g\left(a_{i j}\right)\right]\\
+\nabla_{a_{i}} \mathscr{L}(\theta) & =\left[\begin{array}{c} \frac{\partial \mathscr{L}(\theta)}{\partial h_{i 1}} g'\left(a_{i 1}\right) \\ \vdots \\ \frac{\partial \mathscr{L}(\theta)}{\partial h_{i n}} g'\left(a_{i n}\right) \end{array}\right] \\ & =\nabla_{h_{i}} \mathscr{L}(\theta) \odot\left[..., g'\left(a_{i k}\right), ...\right]
+\end{align*}
+$$
+
+
+
+
+## 7 反向传播：计算关于参数的梯度
+
+回顾一下：
+$$
+a_{k}=b_{k}+W_{k} h_{k-1}
+$$
+
+$$
+\frac{\partial a_{k i}}{\partial W_{k i j}}=h_{k-1, j}
+$$
+
+$$
+\begin{aligned} \frac{\partial \mathscr{L}(\theta)}{\partial W_{k i j}} & =\frac{\partial \mathscr{L}(\theta)}{\partial a_{k i}} \frac{\partial a_{k i}}{\partial W_{k i j}} \\ & =\frac{\partial \mathscr{L}(\theta)}{\partial a_{k i}} h_{k-1, j} \end{aligned}
+$$
+
+$$
+\nabla_{W_{k}} \mathscr{L}(\theta)=\left[\begin{array}{ccccc}\frac{\partial \mathscr{L}(\theta)}{\partial W_{k 11}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k12}} & \cdots & \cdots & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k 1 n}} \\ \cdots & \cdots & \cdots & \cdots & \cdots  \\ 
+\vdots & \vdots & \vdots & \vdots & \vdots \\ 
+\cdots & \cdots & \cdots & \cdots & \frac{\partial \mathscr{L}(\theta )}{\partial W_{k n n}}\end{array}\right]
+$$
+
+让我们以一个 $W_{k} \in \mathbb{R}^{3×3}$ 的简单例子，来看看每一项是什么样的. 
+
+$$
+\nabla_{W_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{\partial W_{k11}}&\frac{\partial \mathscr{L}(\theta)}{\partial W_{k12}}&\frac{\partial \mathscr{L}(\theta)}{\partial W_{k13}}\\&\ &\\\frac{\partial \mathscr{L}(\theta)}{\partial W_{k21}}&\frac{\partial \mathscr{L}(\theta)}{\partial W_{k22}}&\frac{\partial \mathscr{L}(\theta)}{\partial W_{k23}}\\&\ &\\\frac{\partial \mathscr{L}(\theta)}{\partial W_{k31}}&\frac{\partial \mathscr{L}(\theta)}{\partial W_{k32}}& \frac{\partial \mathscr{L}(\theta)}{\partial W_{k33}}\end{bmatrix}
+$$
+
+$$
+\nabla_{W_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}h_{k - 1,1}&\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}h_{k - 1,2}&\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}h_{k - 1,3}\\\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}h_{k - 1,1}&\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}h_{k - 1,2}&\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}h_{k - 1,3}\\\frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}}h_{k - 1,1}&\frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}}h_{k - 1,2}&\frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}}h_{k - 1,3}\end{bmatrix}=\nabla_{a_{k}}\mathscr{L}(\theta)\cdot h_{k - 1}^{T}
+$$
+
+
+最后，来看偏置项. 
+$$a_{ki}=b_{ki}+\sum_{j}W_{kij}h_{k - 1,j}$$
+$$\begin{align*}\frac{\partial \mathscr{L}(\theta)}{\partial b_{ki}}&=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\frac{\partial a_{ki}}{\partial b_{ki}}\\&=\frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}}\end{align*}$$
+
+现在我们可以写出关于向量$b_{k}$的梯度. 
+$$\nabla_{b_{k}}\mathscr{L}(\theta)=\begin{bmatrix}\frac{\partial \mathscr{L}(\theta)}{a_{k1}}\\\frac{\partial \mathscr{L}(\theta)}{a_{k2}}\\\vdots\\\frac{\partial \mathscr{L}(\theta)}{a_{kn}}\end{bmatrix}=\nabla_{a_{k}}\mathscr{L}(\theta)$$
+
+
+
+## 8 伪代码
+
+
+最后，我们掌握了所有关键部分：$\nabla_{a_{L}}\mathscr{L}(\theta)$（关于输出层的梯度）、$\nabla_{h_{k}}\mathscr{L}(\theta)$、$\nabla_{a_{k}}\mathscr{L}(\theta)$（关于隐藏层的梯度，$1\leq k<L$）、$\nabla_{W_{k}}\mathscr{L}(\theta)$、$\nabla_{b_{k}}\mathscr{L}(\theta)$（关于权重和偏置的梯度，$1\leq k\leq L$ ）. 现在我们可以写出完整的学习算法. 
+
+
+### 算法：$\text{gradient\_descent()}$
+
+- $t \leftarrow 0$;
+- $\text{maxIterations} \leftarrow 1000$;
+- 初始化 $\theta_0 = [W_{1}^0, ..., W_{L}^0, b_1^0, ..., b_L^0 ]$;
+- $\text{while } t < \text{maxIterations do}$
+    - $h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, \hat{y} = \text{forward\_propagation}(\theta_t)$; 
+    - $\nabla \theta_t$ = $\text{back\_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})$;
+    - $\theta_{t+1} \leftarrow \theta_t - \eta \nabla \theta_t$; 
+    - $t\leftarrow t+1;$
+- $\text{end}$
+
+
+### 算法: $\text{forward\_propagation}(\theta)$
+
+- $\text{for} k = 1 \text{to} L - 1 \text{do}$
+    - $a_k = b_k + W_kh_{k-1}$; 
+    - $h_k = g(a_k)$;
+- $\text{end}$
+- $a_L = b_L + W_Lh_{L-1}$;
+- $\hat{y} = O(a_L)$;
+
+就是进行一次前向传播，并计算所有的$h_{i}$、$a_{i}$ 和$\hat{y}$. 
+
+
+### 算法：$\text{back\_propagation}(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y})$
+
+
+- $\nabla_{a_L} \mathscr{L}(\theta) = -(e(y) - \hat{y})$; // 计算输出梯度
+- $\text{for } k = L \text{ to } 1 \text{ do}$
+    - $\nabla_{W_k} \mathscr{L}(\theta) = \nabla_{a_k}\mathscr{L}(\theta)h_{k-1}^T$; // 计算关于参数的梯度; 
+    - $\nabla_{b_k} \mathscr{L}(\theta) = \nabla_{a_k}\mathscr{L}(\theta)$; 
+    // 计算关于下一层的梯度;
+    - $\nabla_{h_{k-1}}\mathscr{L}(\theta) = W_k^T(\nabla_{a_k}\mathscr{L}(\theta))$ ;
+    // 计算关于下一层（激活前）的梯度;
+    - $\nabla_{a_{k-1}}\mathscr{L}(\theta) = \nabla h_{k-1}\mathscr{L}(\theta) \odot [..., g'(a_{k-1,j}),...]$;
+- $\text{end}$
+- $\text{return } [\nabla_{W_{1}}, ..., \nabla_{W_{L}}, \nabla_{b_1}, ..., \nabla_{b_L} ]$
+
+
+
+## 9 激活函数的导数
+
+现在，我们唯一需要弄清楚的就是如何计算$g'$. 
+
+### 逻辑函数
+
+$$
+\begin{align*}g(z)&=\sigma(z)\\&=\frac{1}{1 + e^{-z}}\end{align*}$$
+
+$$
+\begin{align*}g'(z)&=(-1)\frac{1}{(1 + e^{-z})^{2}}\frac{d}{dz}(1 + e^{-z})\\&=(-1)\frac{1}{(1 + e^{-z})^{2}}(-e^{-z})\\&=\frac{1}{1 + e^{-z}}\left(\frac{1 + e^{-z}-1}{1 + e^{-z}}\right)\\&=g(z)(1 - g(z))\end{align*}
+$$
+
+### 双曲正切函数
+
+$$
+\begin{align*}g(z)&=\tanh(z)\\&=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}\end{align*}
+$$
+
+$$
+\begin{align*}g'(z)&=\frac{(e^{z}+e^{-z})\frac{d}{dz}(e^{z}-e^{-z})-(e^{z}-e^{-z})\frac{d}{dz}(e^{z}+e^{-z})}{(e^{z}+e^{-z})^{2}}\\&=\frac{(e^{z}+e^{-z})^{2}-(e^{z}-e^{-z})^{2}}{(e^{z}+e^{-z})^{2}}\\&=1-\frac{(e^{z}-e^{-z})^{2}}{(e^{z}+e^{-z})^{2}}\\&=1-(g(z))^{2}\end{align*}
+$$
+
+
