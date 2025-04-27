@@ -16,7 +16,7 @@
 - 隐藏层和输出层中的每个神经元都可以分为两部分：激活前和激活后（$a_{i}$ 和 $h_{i}$ 是向量）. 
 
 - 输入层可称为第0层，输出层可称为第$L$层. 
-- $W_{i} \in \mathbb{R}^{n ×n}$ 和 $b_{i} \in \mathbb{R}^{n}$ 是第 $i - 1$ 层和第 $i$ 层之间的权重和偏置（$0 < i < L$）. $W_{L} \in \mathbb{R}^{n ×k}$和$b_{L} \in \mathbb{R}^{k}$ 是最后一个隐藏层和输出层之间的权重和偏置（在此例中$L = 3$）. 
+- $W_{i} \in \mathbb{R}^{n ×n}$ 和 $b_{i} \in \mathbb{R}^{n}$ 是第 $i - 1$ 层和第 $i$ 层之间的权重和偏置（$0 < i < L$）. $W_{L} \in \mathbb{R}^{n ×k}$和 $b_{L} \in \mathbb{R}^{k}$ 是最后一个隐藏层和输出层之间的权重和偏置（在此例中$L = 3$）. 
 
 ![alt text](image.png)
 
@@ -60,14 +60,17 @@ $$
 参数：
 
 $$
-\theta = W_{1}, \cdots, W_{L}, b_{1}, b_{2}, \cdots, b_{L}(L = 3)$$
+\theta = W_{1}, \cdots, W_{L}, b_{1}, b_{2}, \cdots, b_{L}(L = 3)
+$$
 
 算法：带有反向传播的梯度下降法（我们很快会讲到）
 
 目标/损失/误差函数：例如，
-$$min \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{k}\left(\hat{y}_{i j}-y_{i j}\right)^{2}$$
+$$
+min \frac{1}{N} \sum_{i=1}^{N} \sum_{j=1}^{k}\left(\hat{y}_{i j}-y_{i j}\right)^{2}
+$$
 
-一般来说，是$min \mathscr{L}(\theta)$，其中$\mathscr{L}(\theta)$是参数的某个函数. 
+一般来说，是 $min \mathscr{L}(\theta)$，其中 $\mathscr{L}(\theta)$ 是参数的某个函数. 
 
 ## 2 学习前馈神经网络的参数（直觉）
 
@@ -160,7 +163,7 @@ a_{L}=W_{L} h_{L - 1}+b_{L}\\
 \hat{y}_{j}=O\left(a_{L}\right)_{j}=\frac{e^{a_{L, j}}}{\sum_{i = 1}^{k}e^{a_{L, i}}}
 $$
 
- $O(a_{L})_{j}$ 是 $\hat{y}$ 的第 $j$ 个元素， $a_{L, j}$ 是向量 $a_{L}$ 的第 $j$ 个元素. 这个函数被称为softmax函数. 
+$O(a_{L})_{j}$ 是 $\hat{y}$ 的第 $j$ 个元素， $a_{L, j}$ 是向量 $a_{L}$ 的第 $j$ 个元素. 这个函数被称为softmax函数. 
 
 现在我们确保了$y$和 $\hat{y}$ 都是概率分布，能想到一个函数来衡量它们之间的差异吗？
 
@@ -204,9 +207,9 @@ $$
 
 是的，它确实是 $\theta$ 的函数. 
 
- $\hat{y}_{\ell}$ 编码了什么呢？它是$x$属于第 $\ell$ 类的概率（让它尽可能接近1）. 
+$\hat{y}_{\ell}$ 编码了什么呢？它是$x$属于第 $\ell$ 类的概率（让它尽可能接近1）. 
 
- $\log\hat{y}_{\ell}$ 被称为数据的对数似然. 
+$\log\hat{y}_{\ell}$ 被称为数据的对数似然. 
 
 ### 不同场景下的输出激活函数和损失函数
 |输出类型|实数值|概率值|
@@ -244,11 +247,14 @@ $$
 所以，我们对输出层说：“嘿！你没有产生期望的输出，最好承担起责任. ”
 
 输出层回应：“嗯，我为我的部分负责，但请理解，我的表现取决于下面的隐藏层和权重. ”毕竟……
-$$f(x)=\hat{y}=O\left(W_{L} h_{L - 1}+b_{L}\right)$$
+
+$$
+f(x)=\hat{y}=O\left(W_{L} h_{L - 1}+b_{L}\right)
+$$
 
 于是，我们与 $W_{L}$ 、 $b_{L}$ 和 $h_{L}$ 交流，问它们：“你们怎么回事？”
 
- $W_{L}$ 和 $b_{L}$ 承担全部责任，但 $h_{L}$ 说：“请理解，我只取决于激活前层. ”
+$W_{L}$ 和 $b_{L}$ 承担全部责任，但 $h_{L}$ 说：“请理解，我只取决于激活前层. ”
 
 激活前层又说，它只取决于下面的隐藏层和权重. 
 
@@ -302,7 +308,15 @@ $$
 
 ### 关于激活前向量$a_{L}$的梯度计算
 我们真正感兴趣的是：
-$$\frac{\partial \mathscr{L}(\theta)}{\partial a_{L i}}=\frac{\partial(-\log\hat{y}_{\ell})}{\partial a_{L i}}=\frac{\partial(-\log\hat{y}_{\ell})}{\partial \hat{y}_{\ell}} \frac{\partial \hat{y}_{\ell}}{\partial a_{L i}}$$
- $\hat{y}_{\ell}$ 依赖于 $a_{L i}$ 吗？确实依赖. 
-$$\hat{y}_{\ell}=\frac{\exp (a_{L \ell})}{\sum_{i}\exp (a_{L i})}$$
+
+$$
+\frac{\partial \mathscr{L}(\theta)}{\partial a_{L i}}=\frac{\partial(-\log\hat{y}_{\ell})}{\partial a_{L i}}=\frac{\partial(-\log\hat{y}_{\ell})}{\partial \hat{y}_{\ell}} \frac{\partial \hat{y}_{\ell}}{\partial a_{L i}}
+$$
+
+$\hat{y}_{\ell}$ 依赖于 $a_{L i}$ 吗？确实依赖. 
+
+$$
+\hat{y}_{\ell}=\frac{\exp (a_{L \ell})}{\sum_{i}\exp (a_{L i})}
+$$
+
 确定这一点后，

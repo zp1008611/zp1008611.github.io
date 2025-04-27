@@ -76,7 +76,7 @@ $$
 
 ## 列生成算法具体步骤
 
-- 令 $k \leftarrow 0 $，$ \bar{\sigma}_{max} \leftarrow \infty$.
+- 令 $k \leftarrow 0$，$\bar{\sigma}_{max} \leftarrow \infty$.
 
 - 生成初始列并将其添加到受限集合 $ I_0 $ 中.
 
