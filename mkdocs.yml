@@ -33,7 +33,7 @@ nav:
         - Feedforward Neural Networks and Backpropagation: DL/FNN/README.md
         - GD Variants: DL/GD_Variants/README.md
         - PCA: DL/PCA/README.md
-        - Autoencoders: 
+        - Autoencoders: DL/Autoencoders/README.md
 
     - LEETCODE:
         - 动态规划:
