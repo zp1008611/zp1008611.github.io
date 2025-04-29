@@ -1,0 +1,1597 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/RL/MDPs/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../BBO/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>MDPs - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#markov-decision-process-mdp" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MDPs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../OROPT/or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../DL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../GNN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GNN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../LEETCODE/dp/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LEETCODE
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RESUME_QandA/summary/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  面试八股
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../OROPT/or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    运筹与优化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../DL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    DL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../GNN/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    GNN
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    RL
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            RL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    MDPs
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    MDPs
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 符号表示
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 什么是强化学习（RL）？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-687" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 687网格世界：一个简单的环境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 用数学方法描述环境和智能体
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 创建马尔可夫决策过程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 规划与强化学习
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 其他术语和一些例子
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 其他术语和一些例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 示例领域：山地车
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 马尔可夫性质
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 平稳性与非平稳性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-cart-pole-balancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 平衡杆（Cart - Pole Balancing）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5 有限时域马尔可夫决策过程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.6 部分可观测性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BBO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    BBO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bellman_eq" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bellman Equation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PI_and_VI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Policy Iteration and Value Iteration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Monte Carlo Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TD_Sarsa_Qlearning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Temporal Differenence (TD) Learning:Sarsa, Q-learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../LEETCODE/dp/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LEETCODE
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../RESUME_QandA/summary/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    面试八股
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="markov-decision-process-mdp">马尔科夫决策过程（Markov Decision Process, MDP）<a class="headerlink" href="#markov-decision-process-mdp" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 9348 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 6 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 31 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://people.cs.umass.edu/~bsilva/courses/CMPSCI_687/Fall2022/Lecture_Notes_v1.0_687_F22.pdf</li>
+</ul>
+<h2 id="1">1 符号表示<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>集合用大写花体字母表示（例如，<span class="arithmatex">\(\mathcal{X}\)</span>），集合中的元素用小写字母表示（例如，<span class="arithmatex">\(x \in \mathcal{X}\)</span>），随机变量用大写字母表示（例如，<span class="arithmatex">\(X\)</span>），函数用小写字母表示（例如，<span class="arithmatex">\(f\)</span>）. 但这并非总能做到，因此要留意例外情况. </p>
+<p><span class="arithmatex">\(f: \mathcal{X} \to \mathcal{Y}\)</span> 表示 <span class="arithmatex">\(f\)</span> 是一个定义域为<span class="arithmatex">\(\mathcal{X}\)</span>、值域为 <span class="arithmatex">\(\mathcal{Y}\)</span> 的函数. 也就是说，它将集合 <span class="arithmatex">\(\mathcal{X}\)</span> 中的元素作为输入，并产生集合<span class="arithmatex">\(\mathcal{Y}\)</span>中的元素作为输出. 我们用 <span class="arithmatex">\(|\mathcal{X}|\)</span> 表示集合 <span class="arithmatex">\(\mathcal{X}\)</span> 的基数，即<span class="arithmatex">\(\mathcal{X}\)</span>中元素的数量，而<span class="arithmatex">\(|x|\)</span>表示<span class="arithmatex">\(x\)</span>的绝对值（因此<span class="arithmatex">\(|\cdot|\)</span>的含义取决于上下文）. </p>
+<p>我们通常用大写字母表示矩阵（例如，<span class="arithmatex">\(A\)</span>），用小写字母表示向量（例如，<span class="arithmatex">\(b\)</span>）. 我们用<span class="arithmatex">\(A^{\top}\)</span>表示<span class="arithmatex">\(A\)</span>的转置. 向量默认为列向量. 除非另有说明，<span class="arithmatex">\(\|b\|\)</span>表示向量<span class="arithmatex">\(b\)</span>的<span class="arithmatex">\(l^{2}\)</span>范数（欧几里得范数）. </p>
+<p>我们用 <span class="arithmatex">\(\mathbb{N}_{&gt;0}\)</span> 表示不包含零的自然数集，用  <span class="arithmatex">\(\mathbb{N}_{\geq0}\)</span> 表示包含零的自然数集. </p>
+<p>我们用<span class="arithmatex">\(:=\)</span>表示“被定义为”. 在课堂上，由于手写时三角形符号<span class="arithmatex">\(\triangleq\)</span>更易看清，我们可能会用它来代替<span class="arithmatex">\(:=\)</span>. </p>
+<p>如果对于任意集合 <span class="arithmatex">\(\mathcal{X}\)</span>、<span class="arithmatex">\(\mathcal{Y}\)</span> 和 <span class="arithmatex">\(\mathcal{Z}\)</span>，有<span class="arithmatex">\(f: \mathcal{X} \times \mathcal{Y} \to \mathcal{Z}\)</span>，那么我们用<span class="arithmatex">\(f(\cdot, y)\)</span>表示一个函数<span class="arithmatex">\(g: \mathcal{X} \to \mathcal{Z}\)</span>，使得对于所有<span class="arithmatex">\(x \in \mathcal{X}\)</span>，都有<span class="arithmatex">\(g(x) = f(x, y)\)</span>. </p>
+<p>我们用花括号表示集合，例如<span class="arithmatex">\(\{1, 2, 3\}\)</span>，用圆括号表示序列和元组，例如<span class="arithmatex">\((x_1, x_2, \ldots)\)</span>. </p>
+<h2 id="2-rl">2 什么是强化学习（RL）？<a class="headerlink" href="#2-rl" title="Permanent link">&para;</a></h2>
+<p>强化学习是机器学习的一个领域，受行为主义心理学启发，关注智能体如何通过与环境的交互进行学习.</p>
+<p><img alt="alt text" src="image-2.png" /></p>
+<table>
+<thead>
+<tr>
+<th>智能体</th>
+<th>状态</th>
+<th>奖励</th>
+<th>动作</th>
+<th>环境</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>示例包括儿童、狗、机器人、程序等</td>
+<td>智能体所处状况</td>
+<td>衡量动作好坏</td>
+<td>智能体选择行为</td>
+<td>示例有现实世界、实验室、软件环境等</td>
+</tr>
+</tbody>
+</table>
+<p>评价性反馈：奖励传达的是智能体的动作有多 “好”，而不是最佳动作应该是什么. 如果给智能体提供的是指导性反馈（告知它应该采取什么动作），那这就是一个监督学习问题，而非强化学习问题. </p>
+<p>序列性：必须对整个动作序列进行优化，以使智能体获得的 “总” 奖励最大化. 这可能需要放弃即时奖励，以在稍后获得更大的奖励. 此外，智能体的决策方式（选择动作的方式）会改变其观察到的状态分布. 这意味着强化学习问题不像监督学习那样提供固定的数据集，而是以整个环境的代码或描述的形式呈现. </p>
+<p>神经科学和心理学研究动物如何学习，它们是对某些学习和智能实例的研究. 强化学习则研究如何创建能够学习的智能体，是对学习和智能（包括动物、计算机、理论模型等）的一般性研究. </p>
+<p>有许多其他领域与强化学习相似且相关. 不同的研究领域通常交流较少，导致使用不同的术语和方法. 其他与强化学习相关的重要领域包括运筹学和控制论（经典控制、自适应控制等）. 尽管这些领域与强化学习相似，但它们研究的问题与强化学习的问题往往存在细微但影响重大的差异. 例如，智能体是否先验地知道环境的动态（在强化学习中是不知道的），以及智能体是否会估计环境的动态（许多，但并非所有强化学习智能体不会直接估计环境动态）. 此外，还有许多影响较小的差异，如符号表示的不同（在控制论中，环境被称为 “对象”，智能体被称为 “控制器”，奖励被称为 “负成本”，状态被称为 “反馈” 等）. </p>
+<p>一个常见的误解是，强化学习是监督学习的替代方法，即人们可能会将监督学习问题转化为强化学习问题，以便应用复杂的强化学习方法. 例如，有人可能将状态视为分类器的输入，将动作视为标签，如果标签正确，奖励设为 -1，否则设为1 . 虽然从技术上讲这是可行的，也是强化学习的有效应用，但并不应该这样做. 在某种意义上，强化学习应该是最后的手段，即当监督学习算法无法解决你感兴趣的问题时才使用的工具. 如果你有数据的标签，不要丢弃它们，也不要将指导性反馈（告诉智能体应该给出什么标签）转换为评价性反馈（告诉智能体其判断是否正确）. 强化学习方法可能远不如标准的监督学习算法有效. 然而，如果你遇到的是序列问题，或者只有评价性反馈可用（或两者皆是），那么你无法应用监督学习方法，此时应该使用强化学习. </p>
+<h2 id="3-687">3 687网格世界：一个简单的环境<a class="headerlink" href="#3-687" title="Permanent link">&para;</a></h2>
+<p><img alt="alt text" src="image-3.png" /></p>
+<p>状态：机器人的位置. 机器人没有固定的朝向. </p>
+<p>动作：尝试向上、尝试向下、尝试向左、尝试向右. 我们将其缩写为：AU（Attempt Up）、AD（Attempt Down）、AL（Attempt Left）、AR（Attempt Right）. </p>
+<p>环境动态：机器人以0.8的概率向指定方向移动. 以0.05的概率，它会迷失方向，从预期方向向右偏离90度移动（即AU会使机器人向右移动，AL会使机器人向上移动等）. 以0.05的概率，它会向左偏离90度移动（即AU会使机器人向左移动，AL会使机器人向下移动等）. 以0.1的概率，机器人会暂时故障，完全不移动. 如果根据这些动态规则的移动会导致智能体离开网格（例如从状态2向上移动）或撞到障碍物（例如从状态12向右移动），那么智能体就不会移动. 机器人从状态1开始，当到达状态23时，这个过程结束. 机器人没有朝向，其位置仅由状态编号表示. </p>
+<p>奖励：智能体进入有水的状态会得到 -10的奖励，进入目标状态会得到 +10的奖励. 进入其他任何状态奖励为零. 如果智能体处于有水的状态（状态21），且由于任何原因（撞到墙、暂时故障）仍停留在状态21，这将被视为再次 “进入” 水状态，会额外得到 -10的奖励. 我们使用奖励折扣参数（其作用将在后面描述）<span class="arithmatex">\(\gamma = 0.9\)</span>. </p>
+<p>状态数量：稍后我们将描述一个特殊状态<span class="arithmatex">\(s_{\infty}\)</span>，它包含在687网格世界中. 因此，687网格世界实际上有24个状态，而不是23个. 即 <span class="arithmatex">\(|S| = 24\)</span>. 我们后面会讨论这个问题. </p>
+<h2 id="4">4 用数学方法描述环境和智能体<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>为了对学习进行推理，我们将使用数学方法描述环境（很快也会描述智能体）. 在众多可用于描述环境的数学模型（部分可观测马尔可夫决策过程（POMDPs）、分散式部分可观测马尔可夫决策过程（DEC - POMDPs）、半马尔可夫决策过程（SMDPs）等）中，我们最初将重点关注马尔可夫决策过程（MDPs）. 尽管它们看起来很简单，但我们会发现，它们能够涵盖广泛的实际且有趣的问题，包括一些乍一看似乎超出其范围的问题（例如，智能体使用传感器对状态进行观测，但传感器对状态的描述可能不完整且有噪声的问题）. 此外，一个常见的误解是强化学习仅与马尔可夫决策过程有关. 事实并非如此：马尔可夫决策过程只是形式化强化学习问题环境的一种方式. 
+- 马尔可夫决策过程是对环境以及我们希望智能体学习内容的数学规范. 
+    - 设<span class="arithmatex">\(t \in \mathbb{N}_{\geq0}\)</span>为时间步（智能体 - 环境循环的迭代次数）. 
+    - 设<span class="arithmatex">\(S_t\)</span>为时间<span class="arithmatex">\(t\)</span>时环境的状态. 
+    - 设<span class="arithmatex">\(A_t\)</span>为智能体在时间<span class="arithmatex">\(t\)</span>采取的动作. 
+    - 设<span class="arithmatex">\(R_t \in \mathbb{R}\)</span>为智能体在时间<span class="arithmatex">\(t\)</span>获得的奖励. 也就是说，当环境状态为<span class="arithmatex">\(S_t\)</span>，智能体采取动作<span class="arithmatex">\(A_t\)</span>，环境转移到状态<span class="arithmatex">\(S_{t + 1}\)</span>时，智能体获得奖励<span class="arithmatex">\(R_t\)</span>. 这与其他一些资料不同，在那些资料中，这个奖励被称为<span class="arithmatex">\(R_{t + 1}\)</span>. </p>
+<p>文献中对马尔可夫决策过程有多种定义，它们有一些共同的术语. 在每种情况下，马尔可夫决策过程都是一个元组. 以下是四个例子：
+$$
+1. (\mathcal{S}, \mathcal{A}, p, R)
+$$</p>
+<div class="arithmatex">\[
+2. (\mathcal{S}, \mathcal{A}, p, R, \gamma)
+\]</div>
+<div class="arithmatex">\[
+3. (\mathcal{S}, \mathcal{A}, p, R, d_0, \gamma)
+\]</div>
+<div class="arithmatex">\[
+4. (\mathcal{S}, \mathcal{A}, p, d_R, d_0, \gamma)
+\]</div>
+<p>我们稍后将讨论这些定义之间的差异，但首先让我们定义每个术语. 注意，这些定义中的独特术语有：<span class="arithmatex">\(\mathcal{S}\)</span>、<span class="arithmatex">\(\mathcal{A}\)</span>、<span class="arithmatex">\(p\)</span>、<span class="arithmatex">\(d_R\)</span>、<span class="arithmatex">\(R\)</span>、<span class="arithmatex">\(d_0\)</span>和<span class="arithmatex">\(\gamma\)</span>. 我们在下面分别定义这些术语：
+- <span class="arithmatex">\(\mathcal{S}\)</span>是环境所有可能状态的集合. 时间<span class="arithmatex">\(t\)</span>的状态<span class="arithmatex">\(S_t\)</span>始终在<span class="arithmatex">\(\mathcal{S}\)</span>中取值. 目前我们假设<span class="arithmatex">\(|\mathcal{S}| &lt; \infty\)</span>，即状态集是有限的. 我们称<span class="arithmatex">\(\mathcal{S}\)</span>为 “状态集”. 
+- <span class="arithmatex">\(\mathcal{A}\)</span>是智能体可以采取的所有可能动作的集合. 时间<span class="arithmatex">\(t\)</span>的动作<span class="arithmatex">\(A_t\)</span>始终在<span class="arithmatex">\(\mathcal{A}\)</span>中取值. 目前我们假设<span class="arithmatex">\(|\mathcal{A}| &lt; \infty\)</span>. 
+- <span class="arithmatex">\(p\)</span>称为转移函数，它描述了环境状态如何变化.</p>
+<div class="arithmatex">\[
+p: \mathcal{S} \times \mathcal{A} \times \mathcal{S} \to [0, 1]. 
+\]</div>
+<p>对于所有<span class="arithmatex">\(s \in \mathcal{S}\)</span>，<span class="arithmatex">\(a \in \mathcal{A}\)</span>，<span class="arithmatex">\(s' \in \mathcal{S}\)</span>和<span class="arithmatex">\(t \in \mathbb{N}_{\geq0}\)</span>，有</p>
+<div class="arithmatex">\[
+p(s, a, s') := \text{Pr}(S_{t + 1} = s' | S_t = s, A_t = a). 
+\]</div>
+<p>此后，在写量词（如<span class="arithmatex">\(\exists\)</span>和<span class="arithmatex">\(\forall\)</span>）时，我们会省略集合，因为从上下文应该可以清楚地知道这些集合. 如果对于所有的<span class="arithmatex">\(s\)</span>、<span class="arithmatex">\(a\)</span>和<span class="arithmatex">\(s'\)</span>，都有<span class="arithmatex">\(p(s, a, s') \in \{0, 1\}\)</span>，我们就说转移函数是确定性的. 
+- <span class="arithmatex">\(d_R\)</span>描述了奖励是如何生成的. 直观地说，它是在给定<span class="arithmatex">\(S_t\)</span>、<span class="arithmatex">\(A_t\)</span>和<span class="arithmatex">\(S_{t + 1}\)</span>的情况下，<span class="arithmatex">\(R_t\)</span>的条件分布. 即<span class="arithmatex">\(R_t \sim d_R(S_t, A_t, S_{t + 1})\)</span>. 目前我们假设奖励是有界的，即对于所有<span class="arithmatex">\(t \in \mathbb{N}_{\geq0}\)</span>和某个常数<span class="arithmatex">\(R_{max} \in \mathbb{R}\)</span>，都有<span class="arithmatex">\(|R_t| \leq R_{max}\)</span>. 
+- <span class="arithmatex">\(R\)</span>是一个称为奖励函数的函数，它由<span class="arithmatex">\(d_R\)</span>隐式定义. 其他资料通常将马尔可夫决策过程定义为包含<span class="arithmatex">\(R\)</span>而不是<span class="arithmatex">\(d_R\)</span>. 形式上，</p>
+<div class="arithmatex">\[
+R: \mathcal{S} \times \mathcal{A} \to \mathbb{R}, 
+\]</div>
+<p>并且</p>
+<div class="arithmatex">\[
+R(s, a) := \mathbb{E}[R_t | S_t = s, A_t = a], 
+\]</div>
+<p>对于所有的<span class="arithmatex">\(s\)</span>、<span class="arithmatex">\(a\)</span>和<span class="arithmatex">\(t\)</span>都成立. 虽然奖励函数<span class="arithmatex">\(R\)</span>并没有精确地定义奖励<span class="arithmatex">\(R_t\)</span>是如何生成的（因此，用<span class="arithmatex">\(R\)</span>代替<span class="arithmatex">\(d_R\)</span>来定义马尔可夫决策过程在某种程度上是不完整的），但通常它对于推断智能体应该如何行动已经足够了. 注意，尽管<span class="arithmatex">\(R\)</span>是一个函数，但它用大写字母表示. 这是由于长期以来的符号使用习惯，并且我们稍后在写<span class="arithmatex">\((s, a, r, s', a')\)</span>时，会用<span class="arithmatex">\(r\)</span>表示特定的奖励. 
+- <span class="arithmatex">\(d_0\)</span>是初始状态分布：</p>
+<div class="arithmatex">\[
+d_0: \mathcal{S} \to [0, 1], 
+\]</div>
+<p>并且对于所有的<span class="arithmatex">\(s\)</span>，有</p>
+<div class="arithmatex">\[
+d_0(s) = \text{Pr}(S_0 = s). 
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\gamma \in [0, 1]\)</span>是一个称为奖励折扣参数的参数，我们稍后会讨论它. </li>
+</ul>
+<p>现在回想一下我们之前列出的四种常见的马尔可夫决策过程定义方式. 这些不同的定义在对环境的定义精确程度上有所不同. 定义<span class="arithmatex">\((\mathcal{S}, \mathcal{A}, p, R, \gamma)\)</span>包含了我们推断智能体最优行为所需的所有术语. 定义<span class="arithmatex">\((\mathcal{S}, \mathcal{A}, p, R)\)</span>实际上也包含了<span class="arithmatex">\(\gamma\)</span>，只是它将其隐含了起来. 也就是说，这个定义假设<span class="arithmatex">\(\gamma\)</span>仍然存在，但没有将其作为马尔可夫决策过程定义中的一个术语明确写出. 在另一个极端，定义<span class="arithmatex">\((\mathcal{S}, \mathcal{A}, p, d_R, d_0, \gamma)\)</span>则完整地指定了环境的行为方式. </p>
+<p>当考虑包含<span class="arithmatex">\(d_R\)</span>而不是<span class="arithmatex">\(R\)</span>时，这种区别最为明显. 正如我们稍后将看到的，<span class="arithmatex">\(R\)</span>所描述的预期奖励对于推断什么行为是最优的已经足够了. 然而，为了完整地描述环境中奖励是如何生成的，我们必须指定<span class="arithmatex">\(d_R\)</span>. </p>
+<p>正如我们用数学方法定义了环境一样，现在我们也用数学方法定义智能体. 策略是一种决策规则，即智能体选择动作的方式. 形式上，策略<span class="arithmatex">\(\pi\)</span>是一个函数：</p>
+<div class="arithmatex">\[
+\pi: \mathcal{S} \times \mathcal{A} \to [0, 1], 
+\]</div>
+<p>并且对于所有的<span class="arithmatex">\(s \in \mathcal{S}\)</span>，<span class="arithmatex">\(a \in \mathcal{A}\)</span>和<span class="arithmatex">\(t \in \mathbb{N}_{\geq0}\)</span>，有</p>
+<div class="arithmatex">\[
+\pi(s, a) := \text{Pr}(A_t = a | S_t = s). 
+\]</div>
+<p>因此，策略是在给定状态下动作的条件分布. 也就是说，<span class="arithmatex">\(\pi\)</span>不是一个单一的分布，而是一组关于动作集的分布，每个状态对应一个分布. 可能的策略有无穷多个，但确定性策略（对于所有的<span class="arithmatex">\(s\)</span>和<span class="arithmatex">\(a\)</span>，<span class="arithmatex">\(\pi(s, a) \in \{0, 1\}\)</span>的策略）的数量是有限的. 我们用<span class="arithmatex">\(\Pi\)</span>表示所有策略的集合. 下图展示了687网格世界的一个策略示例，每个单元格表示在每个状态（由行指定）下执行动作（由列指定）的概率. 在这种格式下，Π是所有具有非负项且行和为1的 <span class="arithmatex">\(|S|×|A|\)</span> 矩阵的集合</p>
+<p><img alt="alt text" src="image-4.png" /></p>
+<p>到目前为止，总结如下，智能体与环境之间的交互过程如下（其中 <span class="arithmatex">\(R_{t} \sim d_{R}(S_{t}, A_{t}, S_{t + 1})\)</span> 表示 <span class="arithmatex">\(R_{t}\)</span> 是根据 <span class="arithmatex">\(d_{R}\)</span> 进行采样的）：</p>
+<div class="arithmatex">\[
+S_{0} \sim d_{0} \\
+A_{0} \sim \pi(S_{0}, \cdot) \\
+S_{1} \sim p(S_{0}, A_{0}, \cdot) \\
+R_{0} \sim d_{R}(S_{0}, A_{0}, S_{1})\\
+A_{1} \sim \pi(S_{1}, \cdot) \\
+S_{2} \sim p(S_{1}, A_{1}, \cdot) \\
+... \\
+\]</div>
+<p>用伪代码表示为：
+<strong>算法1：智能体 - 环境交互的一般流程</strong>
+- <span class="arithmatex">\(S_0 \sim d_0\)</span> ;
+- <span class="arithmatex">\(\text{for }  t = 0  \text{ to }  \infty  \text{ do}\)</span>
+    - <span class="arithmatex">\(A_t \sim \pi(S_t, \cdot)\)</span> ;
+    - <span class="arithmatex">\(S_{t + 1} \sim p(S_t, A_t, \cdot)\)</span> ;
+    - <span class="arithmatex">\(R_t \sim d_R(S_t, A_t, S_t + 1)\)</span> ;</p>
+<p>马尔可夫决策过程的运行过程也可以用下图中的贝叶斯网络来表示. </p>
+<p><img alt="alt text" src="image-5.png" /></p>
+<p>注意，我们将 <span class="arithmatex">\(R_{0}\)</span> 定义为第一个奖励，而Sutton和Barto（1998）将 <span class="arithmatex">\(R_{1}\)</span> 定义为第一个奖励. 我们这样做是因为 <span class="arithmatex">\(S_{0}\)</span> 、 <span class="arithmatex">\(A_{0}\)</span> 和 <span class="arithmatex">\(t = 0\)</span> 分别是第一个状态、动作和时间，所以将 <span class="arithmatex">\(R_{1}\)</span> 作为第一个奖励会不一致. 此外，这样能使后续的索引更匹配. 然而，在将课程笔记与书中内容进行比较时，一定要注意这个符号差异. </p>
+<p>智能体的目标：找到一个策略 <span class="arithmatex">\(\pi^{*}\)</span> ，称为最优策略. 直观地说，最优策略能使智能体获得的预期总奖励最大化. </p>
+<p>目标函数： <span class="arithmatex">\(J: \Pi \to \mathbb{R}\)</span> ，对于所有 <span class="arithmatex">\(\pi \in \Pi\)</span> ，有</p>
+<div class="arithmatex">\[
+\begin{equation}
+J(\pi) := \mathbb{E}\left[\sum_{t = 0}^{\infty} R_{t} | \pi\right].
+\label{eq:objective_d1}
+\end{equation}
+\]</div>
+<p>注意：稍后我们会修改这个定义——如果你只是浏览寻找 <span class="arithmatex">\(J\)</span> 的正确定义，它在公式(18)中. </p>
+<p>注意：期望和概率可以基于事件进行条件设定. 策略 <span class="arithmatex">\(\pi\)</span> 不是一个事件. 在目标函数 <span class="arithmatex">\(J\)</span> 的定义中，像 <span class="arithmatex">\(|\pi\)</span> 这样基于 <span class="arithmatex">\(\pi\)</span> 进行条件设定，表示所有动作（其分布或取值在其他地方未明确指定）都是根据 <span class="arithmatex">\(\pi\)</span> 进行采样的. 也就是说，对于所有 <span class="arithmatex">\(t \in \mathbb{N}_{\geq0}\)</span> ， <span class="arithmatex">\(A_{t} \sim \pi(S_{t}, \cdot)\)</span> . </p>
+<p>最优策略：最优策略 <span class="arithmatex">\(\pi^{*}\)</span> 是满足以下条件的任何策略：</p>
+<div class="arithmatex">\[
+\begin{equation}
+\pi^{*} \in \underset{\pi \in \Pi}{\text{arg max}} J(\pi).
+\label{eq:optpolicy}
+\end{equation}
+\]</div>
+<p>注意：在后面我们会用不同且更严格的方式定义最优策略. </p>
+<p>奖励折扣：如果你可以选择今天得到一块饼干，或者在课程最后一天得到两块饼干，你会选哪个？当人们实际面临这些选择时，很多人会选择今天的一块饼干. 这表明，对我们来说，在遥远未来获得的奖励比近期获得的奖励价值更低. 奖励折扣参数 <span class="arithmatex">\(\gamma\)</span> 使我们能够在目标函数中，根据奖励在未来的远近对其进行折扣. </p>
+<p>回想一下 <span class="arithmatex">\(\gamma \in [0, 1]\)</span> . 我们重新定义目标函数 <span class="arithmatex">\(J\)</span> 为：</p>
+<div class="arithmatex">\[
+\begin{equation}
+J(\pi) := \mathbb{E}\left[\sum_{t = 0}^{\infty} \gamma^{t} R_{t} | \pi\right],
+\label{eq:objective_d2}
+\end{equation}
+\]</div>
+<p>对于所有 <span class="arithmatex">\(\pi \in \Pi\)</span> . 所以， <span class="arithmatex">\(\gamma &lt; 1\)</span> 意味着较晚出现的奖励对智能体的价值更低——未来 <span class="arithmatex">\(t\)</span> 个时间步的奖励 <span class="arithmatex">\(r\)</span> 的效用为 <span class="arithmatex">\(\gamma^{t}r\)</span> . 引入 <span class="arithmatex">\(\gamma\)</span> 还能确保 <span class="arithmatex">\(J(\pi)\)</span> 是有界的，并且稍后我们会看到，较小的 <span class="arithmatex">\(\gamma\)</span> 值会使马尔可夫决策过程更容易求解（求解马尔可夫决策过程指的是找到或近似找到一个最优策略）. </p>
+<p>总之，智能体的目标是使用包含奖励折扣的 <span class="arithmatex">\(J\)</span> 的定义 <span class="arithmatex">\(\eqref{eq:objective_d2}\)</span>，找到（或近似找到）如 <span class="arithmatex">\(\eqref{eq:optpolicy}\)</span> 所定义的最优策略 <span class="arithmatex">\(\pi^{*}\)</span>  . </p>
+<p><strong>性质1（最优策略的存在性）</strong>：如果 <span class="arithmatex">\(|\mathcal{S}| &lt; \infty\)</span> ， <span class="arithmatex">\(|\mathcal{A}| &lt; \infty\)</span> ， <span class="arithmatex">\(R_{max} &lt; \infty\)</span> 且 <span class="arithmatex">\(\gamma &lt; 1\)</span> ，那么最优策略存在. </p>
+<p>我们稍后会证明性质1. </p>
+<p>当我们介绍687网格世界时，我们说当智能体到达状态23（我们称之为目标状态）时，智能体 - 环境交互就会终止. 这种终止状态的概念可以用我们上面定义的马尔可夫决策过程来编码. 具体来说，我们将终止状态定义为任何可以转移到一个特殊状态 <span class="arithmatex">\(s_{\infty}\)</span> （称为终止吸收状态）的状态. 一旦进入 <span class="arithmatex">\(s_{\infty}\)</span> ，智能体就永远无法离开（ <span class="arithmatex">\(s_{\infty}\)</span> 是吸收态）——智能体会永远从 <span class="arithmatex">\(s_{\infty}\)</span> 转移回 <span class="arithmatex">\(s_{\infty}\)</span>  . 从 <span class="arithmatex">\(s_{\infty}\)</span> 转移到 <span class="arithmatex">\(s_{\infty}\)</span> 总是会得到零奖励. 实际上，当智能体进入终止状态时，这个过程就结束了. 没有更多的决策需要做出（因为所有动作都有相同的结果），也没有更多的奖励可以收集. 因此，当智能体进入 <span class="arithmatex">\(s_{\infty}\)</span> 时，一个情节（episode）就终止了. 注意，终止状态是可选的——马尔可夫决策过程不一定有任何终止状态. 此外，可能存在一些状态只是有时会转移到 <span class="arithmatex">\(s_{\infty}\)</span> ，我们不把这些状态称为终止状态. 还要注意， <span class="arithmatex">\(s_{\infty}\)</span> 是 <span class="arithmatex">\(\mathcal{S}\)</span> 的一个元素. 根据我们对马尔可夫决策过程的定义，这意味着智能体在 <span class="arithmatex">\(s_{\infty}\)</span> 中也会选择动作. 最后，虽然定义了终止状态，但没有定义目标状态——687网格世界中的目标概念只是为了我们的直观理解. </p>
+<p>当智能体到达 <span class="arithmatex">\(s_{\infty}\)</span> 时，当前的试验（称为一个情节）结束，一个新的情节开始. 这意味着时间 <span class="arithmatex">\(t\)</span> 重置为零，从初始状态分布 <span class="arithmatex">\(d_{0}\)</span> 中采样初始状态 <span class="arithmatex">\(S_{0}\)</span> ，然后下一个情节开始（智能体选择 <span class="arithmatex">\(A_{0}\)</span> ，获得奖励 <span class="arithmatex">\(R_{0}\)</span> 并转移到状态 <span class="arithmatex">\(S_{1}\)</span>  ）. 智能体会收到这个事件的通知，因为这种重置可能会改变它的行为（例如，它可能会清除某种短期记忆）. </p>
+<p>对于687网格世界，我们假设 <span class="arithmatex">\(s_{\infty} \in \mathcal{S}\)</span> ，并且状态23总是以零奖励转移到 <span class="arithmatex">\(s_{\infty}\)</span>  . 因此，687网格世界有24个状态. </p>
+<h2 id="5">5 创建马尔可夫决策过程<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>你可能会想：谁来定义 <span class="arithmatex">\(R_{t}\)</span> 呢？答案取决于你如何使用强化学习. 如果你使用强化学习来解决一个特定的现实世界问题，那么由你来定义 <span class="arithmatex">\(R_{t}\)</span> ，以使智能体产生你想要的行为. 众所周知，人类在定义能使最优行为符合预期的奖励方面表现不佳. 通常，你可能会发现，你定义奖励以产生期望的行为，训练智能体后却认为智能体失败了，然后才意识到智能体通过一种意想不到的方式最大化了预期折扣回报，但其行为并非你想要的. </p>
+<p>考虑这样一个例子，你想给一个强化学习智能体（用狗来代表）奖励，让它沿着人行道走到一扇门前（到达门处情节结束），同时避开花坛：你要如何给各个状态分配奖励，才能让狗走到门前呢？在这个例子中，人们常常以一种会导致不良行为的方式分配奖励. 一个错误做法是，给在人行道上行走赋予正奖励——在这种情况下，智能体就会学会在人行道上来回走动以获取越来越多的奖励，而不是走到门前结束情节. 在这个例子中，正确的做法是在花坛上设置负奖励，在门前设置正奖励，这样才能产生最优行为. </p>
+<p>这为设计奖励提供了一个通用的经验法则：为你希望智能体实现的目标给予奖励，而不是为你认为智能体应该如何实现目标给予奖励. 那些帮助智能体快速识别最优行为的奖励与所谓的“奖励塑造”有关，我们稍后会讨论这个概念. 如果设计得当，奖励塑造不会改变最优策略. 然而，当我们随意设置奖励塑造（比如在上述例子中给人行道状态设置一个正的常数奖励）时，它们往往会以一种不良的方式改变最优行为. </p>
+<p>回到前面的问题：谁来定义 <span class="arithmatex">\(R_{t}\)</span> 呢？到目前为止，我们讨论了在将强化学习应用于问题时，你可以如何选择 <span class="arithmatex">\(R_{t}\)</span>  . 有时，人们研究强化学习是为了深入了解动物行为. 在这种情况下，奖励是由进化产生的. 本学期晚些时候，我们可能会邀请Andy Barto来做关于这个主题的客座讲座. 目前，简单概述如下：在动物/心理学/神经科学的背景下，奖励指的是给予智能体的能带来愉悦感的东西，比如食物. 这在动物大脑中会转化为一个奖励信号. 例如，这个奖励信号可能对应于特定神经元的放电或特定神经递质的释放. 按照这个术语，我们的 <span class="arithmatex">\(R_{t}\)</span> 对应于动物大脑中的奖励信号，而不是奖励本身（比如一块饼干）. 有某个函数定义了当智能体获得奖励时，大脑中奖励信号是如何产生的，这个函数是由进化选择（如果你愿意，也可以说是学习）而来的. 如果你熟悉神经递质多巴胺，从这个讨论来看，多巴胺似乎对应于 <span class="arithmatex">\(R_{t}\)</span> ——但稍后我们会论证，多巴胺并不对应于 <span class="arithmatex">\(R_{t}\)</span> ，而是对应于预测奖励总和的统计误差. </p>
+<h2 id="6">6 规划与强化学习<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>再次考虑强化学习的定义. 注意其中“通过与环境的交互进行学习”这一部分. 如果转移函数 <span class="arithmatex">\(p\)</span> 和奖励函数 <span class="arithmatex">\(R\)</span> （或 <span class="arithmatex">\(d_{R}\)</span> ）是已知的，那么智能体就不需要与环境进行交互. 例如，一个解决687网格世界问题的智能体可以在头脑中进行规划，制定出最优策略，然后从一开始就执行这个最优策略. 这不是强化学习，而是规划. 更具体地说，在规划问题中， <span class="arithmatex">\(p\)</span> 和 <span class="arithmatex">\(R\)</span> 是已知的，而在强化学习问题中，至少转移函数 <span class="arithmatex">\(p\)</span> （通常奖励函数 <span class="arithmatex">\(R\)</span> 也是）对智能体来说是未知的. 相反，智能体必须通过与环境交互来学习——采取不同的动作并观察结果. 大多数强化学习算法不会估计转移函数 <span class="arithmatex">\(p\)</span>  . 因为环境通常过于复杂，难以很好地建模，而且对 <span class="arithmatex">\(p\)</span> 的估计中出现的小误差会在多个时间步中累积，使得基于 <span class="arithmatex">\(p\)</span> 的估计所制定的计划不可靠. 我们稍后会进一步讨论这个问题. </p>
+<h2 id="7">7 其他术语和一些例子<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>历史（History）</strong>： <span class="arithmatex">\(H_{t}\)</span> 记录了在一个情节中直到时间 <span class="arithmatex">\(t\)</span> 发生的所有事情：
+<span class="arithmatex">\(<span class="arithmatex">\(H_{t} := (S_{0}, A_{0}, R_{0}, S_{1}, A_{1}, R_{1}, S_{2}, \ldots, S_{t}, A_{t}, R_{t}). (20)\)</span>\)</span></li>
+<li><strong>轨迹（Trajectory）</strong>：是一个完整情节的历史，即 <span class="arithmatex">\(H_{\infty}\)</span> . </li>
+<li>轨迹的回报（Return）或折扣回报（Discounted Return）是奖励的折扣总和： <span class="arithmatex">\(G := \sum_{t = 0}^{\infty} \gamma^{t} R_{t}\)</span>  . 所以，目标函数 <span class="arithmatex">\(J\)</span> 是期望回报或期望折扣回报，可以写成 <span class="arithmatex">\(J(\pi) := \mathbb{E}[G | \pi]\)</span>  . </li>
+<li><strong>从时间 <span class="arithmatex">\(t\)</span> 开始的回报</strong>或<strong>从时间 <span class="arithmatex">\(t\)</span> 开始的折扣回报</strong>， <span class="arithmatex">\(G_{t}\)</span> ，是从时间 <span class="arithmatex">\(t\)</span> 开始的奖励的折扣总和：
+<span class="arithmatex">\(<span class="arithmatex">\(G_{t} := \sum_{k = 0}^{\infty} \gamma^{k} R_{t + k}\)</span>\)</span></li>
+</ul>
+<h3 id="71">7.1 示例领域：山地车<a class="headerlink" href="#71" title="Permanent link">&para;</a></h3>
+<p>强化学习中所研究的环境常被称作领域（Domain）. 其中，山地车领域是极为常见的一个. 在该领域里，智能体操控着一辆近似汽车的载具. 汽车被困于山谷之中，而智能体的目标是驶向汽车前方的山顶. 不过，汽车的动力不足以直接开上前方的山坡，所以它必须先学会倒车爬上后方的山坡，再加速向前冲，才能爬上前方的山坡. 下图展示了山地车环境的示意图. </p>
+<p><img alt="alt text" src="image-6.png" /></p>
+<ul>
+<li><strong>状态</strong>：<span class="arithmatex">\(s = (x, v)\)</span>，其中<span class="arithmatex">\(x \in \mathbb{R}\)</span>代表汽车的位置，<span class="arithmatex">\(v \in \mathbb{R}\)</span>表示汽车的速度. </li>
+<li><strong>动作</strong>：<span class="arithmatex">\(a \in \{\text{倒车}, \text{空挡}, \text{前进}\}\)</span>，这些动作分别对应数值<span class="arithmatex">\(a \in \{-1, 0, 1\}\)</span>. </li>
+<li><strong>动态</strong>：该领域的动态是确定性的，即在状态<span class="arithmatex">\(s\)</span>下执行动作<span class="arithmatex">\(a\)</span>，总会产生相同的状态<span class="arithmatex">\(s'\)</span>，因此<span class="arithmatex">\(p(s, a, s') \in \{0, 1\}\)</span> . 其动态变化由以下公式确定：</li>
+</ul>
+<div class="arithmatex">\[
+v_{t + 1} = v_{t} + 0.001a_{t} - 0.0025\cos(3x_{t}) \]</div>
+<div class="arithmatex">\[
+x_{t + 1} = x_{t} + v_{t + 1} 
+\]</div>
+<p>计算得到下一个状态<span class="arithmatex">\(s' = [x_{t + 1}, v_{t + 1}]\)</span>后，<span class="arithmatex">\(x_{t + 1}\)</span>的值会被限制在闭区间<span class="arithmatex">\([-1.2, 0.5]\)</span>内，<span class="arithmatex">\(v_{t + 1}\)</span>的值会被限制在闭区间<span class="arithmatex">\([-0.7, 0.7]\)</span>内. 若<span class="arithmatex">\(x_{t + 1}\)</span>到达左边界（即汽车位于<span class="arithmatex">\(x_{t + 1} = -1.2\)</span>处），或者到达右边界（即汽车位于<span class="arithmatex">\(x_{t + 1} = 0.5\)</span>处），汽车的速度将重置为零，即<span class="arithmatex">\(v_{t + 1} = 0\)</span> ，以此模拟汽车与 -1.2和0.5位置处墙壁的非弹性碰撞. 
+- <strong>终止状态</strong>：当<span class="arithmatex">\(x_{t} = 0.5\)</span>时，该状态即为终止状态（它总是会转移到<span class="arithmatex">\(s_{\infty}\)</span> ）. 
+- <strong>奖励</strong>：除了转移到<span class="arithmatex">\(s_{\infty}\)</span>（从<span class="arithmatex">\(s_{\infty}\)</span>或其他终止状态转移时）奖励<span class="arithmatex">\(R_{t} = 0\)</span>外，其余情况下<span class="arithmatex">\(R_{t}\)</span>恒为 -1. 
+- <strong>折扣</strong>：<span class="arithmatex">\(\gamma = 1.0\)</span> . 
+- <strong>初始状态</strong>：<span class="arithmatex">\(S_{0} = (X_{0}, 0)\)</span>，其中<span class="arithmatex">\(x_{0}\)</span>是从区间<span class="arithmatex">\([-0.6, -0.4]\)</span>中均匀随机抽取的初始位置. </p>
+<h3 id="72">7.2 马尔可夫性质<a class="headerlink" href="#72" title="Permanent link">&para;</a></h3>
+<p>对于转移函数而言，一种看似更具一般性的非马尔可夫表述如下：</p>
+<div class="arithmatex">\[
+p(h, s, a, s') := \text{Pr}(S_{t + 1} = s' | H_{t - 1} = h, S_{t} = s, A_{t} = a) 
+\]</div>
+<p>马尔可夫假设指的是，在给定<span class="arithmatex">\(S_{t}\)</span>的条件下，<span class="arithmatex">\(S_{t + 1}\)</span>与<span class="arithmatex">\(H_{t - 1}\)</span>相互独立，即在给定当前状态及所有过去状态时，未来状态的条件概率分布仅依赖于当前状态，与该过程的历史路径条件独立. 也就是说，对于所有的<span class="arithmatex">\(h\)</span>、<span class="arithmatex">\(s\)</span>、<span class="arithmatex">\(a\)</span>、<span class="arithmatex">\(s'\)</span>、<span class="arithmatex">\(t\)</span> ：
+$$ 
+\text{Pr}(S_{t + 1} = s' | H_{t - 1} = h, S_{t} = s, A_{t} = a) = \text{Pr}(S_{t + 1} = s' | S_{t} = s, A_{t} = a) 
+$$</p>
+<p>由于我们采用了这个马尔可夫假设，前面定义的 <span class="arithmatex">\(p\)</span> 就完整刻画了环境的转移动态，也就不再需要公式(23)中的替代定义了. 马尔可夫假设有时也被称为马尔可夫性质（比如，人们通常会说某个领域具有马尔可夫性质，而非满足马尔可夫假设）. 通俗来讲，它可以表述为：给定当前状态，未来状态与过去状态无关. </p>
+<p>我们还假定奖励也具有马尔可夫性，即在给定<span class="arithmatex">\(S_{t}\)</span>的条件下，<span class="arithmatex">\(R_{t}\)</span>与<span class="arithmatex">\(H_{t - 1}\)</span>相互独立（因为<span class="arithmatex">\(A_{t}\)</span>仅取决于<span class="arithmatex">\(S_{t}\)</span>，所以这等价于假定在给定<span class="arithmatex">\(S_{t}\)</span>和<span class="arithmatex">\(A_{t}\)</span>的条件下，<span class="arithmatex">\(R_{t}\)</span>与<span class="arithmatex">\(H_{t - 1}\)</span>相互独立）. </p>
+<p>前面的马尔可夫假设针对的是环境（并且是环境的马尔可夫决策过程（MDP）表述中的固有假设），我们对智能体也做出了一个额外的马尔可夫假设：智能体的策略具有马尔可夫性. 即，在给定<span class="arithmatex">\(S_{t}\)</span>的条件下，<span class="arithmatex">\(A_{t}\)</span>与<span class="arithmatex">\(H_{t - 1}\)</span>相互独立. </p>
+<p>需要注意的是，我们总能定义出一种具有马尔可夫性的状态表示. 假设<span class="arithmatex">\(S_{t}\)</span>是一种非马尔可夫状态表示，那么<span class="arithmatex">\((S_{t}, H_{t - 1})\)</span>就是一种马尔可夫状态表示. 也就是说，我们可以将历史信息融入状态中，以此来满足马尔可夫性质. 不过，这种做法通常并不可取，因为状态集的规模会随着最大情节长度呈指数级增长（最大情节长度这个概念会在后面详细讨论）. 这种向状态中添加信息的技巧被称为状态扩充. </p>
+<p>在状态、状态表示和马尔可夫性质相关的术语方面，人们常常会产生混淆. 马尔可夫决策过程（以及其他类似的形式，如部分可观测马尔可夫决策过程（POMDPs）、分散式部分可观测马尔可夫决策过程（DEC - POMDPs）、半马尔可夫决策过程（SMDPs）等）中的状态定义，都应当满足马尔可夫性质. 后续，我们会探讨非马尔可夫状态表示，以便对智能体只能对环境状态进行部分观测或观测存在噪声的情况进行建模. </p>
+<h3 id="73">7.3 平稳性与非平稳性<a class="headerlink" href="#73" title="Permanent link">&para;</a></h3>
+<p>我们假定环境的动态是平稳的. 这意味着环境的动态在不同情节之间不会发生变化，并且在同一情节内，转移函数也保持不变. 具体来说，对于所有情节，<span class="arithmatex">\(\text{Pr}(S_{0} = s)\)</span>的值都是相同的，而且对于所有的<span class="arithmatex">\(s\)</span>、<span class="arithmatex">\(a\)</span>、<span class="arithmatex">\(t\)</span>和<span class="arithmatex">\(i\)</span> ：
+<span class="arithmatex">\(<span class="arithmatex">\(\text{Pr}(S_{t + 1} = s' | S_{t} = s, A_{t} = a) = \text{Pr}(S_{i + 1} = s' | S_{i} = s, A_{i} = a)\)</span>\)</span>
+需要重点指出的是，这里的<span class="arithmatex">\(t\)</span>和<span class="arithmatex">\(i\)</span>可以来自不同的情节. </p>
+<p>在实际问题中，这个假设往往并不成立. 例如，在运用强化学习来控制汽车时，我们可能没有考虑到汽车部件（如轮胎）的磨损会使汽车的动态在不同驾驶过程中发生改变. 在利用强化学习优化广告投放选择时，一周中的不同日期、一天中的不同时段，甚至不同季节，都会对人们对广告的接受程度产生显著影响. 根据问题被建模为强化学习问题的具体方式，这些因素可能会表现为非平稳性. </p>
+<p>尽管这个假设在实际应用中几乎总是被采用，但又几乎总是不符合实际情况，我们通常会为采用这个假设进行辩解，认为有必要做出类似的假设. 正是因为有了这个假设，我们才能够依据过去的数据来指导未来的决策. 如果没有任何假设表明未来与过去存在相似性，我们就无法借助数据来优化未来的决策. 当然，也存在比平稳性更弱的假设（例如，有少量研究关注如何处理系统动态中的少量有限跳跃或缓慢连续变化的情况）. </p>
+<p>我们还假设奖励是平稳的（即从状态<span class="arithmatex">\(s\)</span>执行动作<span class="arithmatex">\(a\)</span>并转移到状态<span class="arithmatex">\(s'\)</span>所获得的奖励分布，与时间步和情节编号无关）. 不过，通常情况下我们认为策略<span class="arithmatex">\(\pi\)</span>是非平稳的. 这是因为学习意味着在情节内以及不同情节间对策略进行调整（理想情况下是优化）. 平稳策略有时也被称作固定策略. </p>
+<p>人们常常认为，可以通过在状态中添加额外信息来“解决”非平稳性问题. 虽然这种方法确实能解决转移函数<span class="arithmatex">\(p\)</span>的非平稳问题，但实际上只是将问题转移到了初始状态分布<span class="arithmatex">\(d_{0}\)</span>上. 例如，还是以山地车领域为例，假设汽车由于磨损，动力会随时间逐渐衰减（比如轮胎花纹磨损）. 我们可以将轮胎当前的磨损情况纳入状态中. 这样做虽然能使转移函数变得平稳，但初始状态分布必然会变得非平稳，因为轮胎的初始磨损程度在不同情节中肯定会不断增加. </p>
+<h3 id="74-cart-pole-balancing">7.4 平衡杆（Cart - Pole Balancing）<a class="headerlink" href="#74-cart-pole-balancing" title="Permanent link">&para;</a></h3>
+<p>这个领域还有杆平衡（Pole Balancing）、推车杆（Cart - Pole）和倒立摆（Inverted Pendulum）等别称. 该领域模拟的是一根杆在推车上保持平衡的场景，如下图所示. 智能体需要学会前后移动推车，以防止杆倒下. </p>
+<p><img alt="alt text" src="image-7.png" /></p>
+<ul>
+<li><strong>状态</strong>：<span class="arithmatex">\(s = (x, v, \theta, \dot{\theta})\)</span>，其中<span class="arithmatex">\(x\)</span>表示推车的水平位置，<span class="arithmatex">\(\theta\)</span>是杆的角度，<span class="arithmatex">\(\dot{\theta}\)</span>是杆的角速度. </li>
+<li><strong>动作</strong>：<span class="arithmatex">\(A = \{\text{向左}, \text{向右}\}\)</span> ，<span class="arithmatex">\(R_{t}\)</span>始终为<span class="arithmatex">\(1\)</span> . </li>
+<li><span class="arithmatex">\(\gamma = 1\)</span>. </li>
+<li><span class="arithmatex">\(S_{0} = (0, 0, 0, 0)\)</span>始终保持不变. </li>
+<li><strong>动态</strong>：由系统的物理原理决定. 具体推导过程可查阅Florian（2007）的研究. 该领域最早是由Barto等人（1983）提出的. 不过，在他们最初的研究中，重力方向设定错误，是将杆向上拉而不是向下拉. 安迪表示，他们在代码中使用的是正确的重力方向. </li>
+<li><strong>情节终止条件</strong>：当持续时间达到20秒，或者杆倒下（杆的角度绝对值大于或等于<span class="arithmatex">\(\frac{\pi}{15}\)</span>弧度）时，情节终止. 时间以<span class="arithmatex">\(\Delta t = 0.02\)</span>秒为步长进行模拟. </li>
+</ul>
+<h3 id="75">7.5 有限时域马尔可夫决策过程<a class="headerlink" href="#75" title="Permanent link">&para;</a></h3>
+<p>马尔可夫决策过程的时域<span class="arithmatex">\(L\)</span>是满足以下条件的最小整数：</p>
+<div class="arithmatex">\[
+\forall t \geq L, \text{Pr}(S_{t} = s_{\infty}) = 1 
+\]</div>
+<p>如果对于所有策略，<span class="arithmatex">\(L &lt; \infty\)</span> ，我们就称这个马尔可夫决策过程是有限时域的. 若<span class="arithmatex">\(L = \infty\)</span>，那么该领域可能是无限时域或不确定时域的. 不确定时域的马尔可夫决策过程指的是<span class="arithmatex">\(L = \infty\)</span>，但智能体最终一定会进入<span class="arithmatex">\(s_{\infty}\)</span>的情况. 比如，智能体从每个状态以0.5的概率转移到<span class="arithmatex">\(s_{\infty}\)</span>的马尔可夫决策过程就属于不确定时域. 而无限时域的马尔可夫决策过程则是指智能体有可能永远不会进入<span class="arithmatex">\(s_{\infty}\)</span>的情况. </p>
+<p>对于平衡杆领域，我们如何在转移函数<span class="arithmatex">\(p\)</span>中实现必须在20秒后转移到<span class="arithmatex">\(s_{\infty}\)</span>这一要求呢？我们通过扩充状态来包含当前时间实现这一点. 即，状态变为<span class="arithmatex">\((s, t)\)</span>，其中<span class="arithmatex">\(s\)</span>是之前定义的平衡杆状态，<span class="arithmatex">\(t\)</span>是当前时间步. 转移函数<span class="arithmatex">\(p\)</span>会在每个时间步使<span class="arithmatex">\(t\)</span>增加，当<span class="arithmatex">\(t\)</span>增加到<span class="arithmatex">\(\frac{20}{\Delta t} = 1000\)</span>时，就会转移到<span class="arithmatex">\(S_{\infty}\)</span> . 所以，平衡杆的实际状态是<span class="arithmatex">\(s = (x, v, \theta, \dot{\theta}, t)\)</span>. 通常，对<span class="arithmatex">\(t\)</span>的依赖是隐含的，我们会写成<span class="arithmatex">\(s = (x, v, \theta, \dot{\theta})\)</span>，并表示该领域是有限时域的. </p>
+<h3 id="76">7.6 部分可观测性<a class="headerlink" href="#76" title="Permanent link">&para;</a></h3>
+<p>在许多实际问题中，智能体并不知道环境的真实状态，它只能对状态进行观测. 而且这些观测可能存在噪声，也可能是不完整的. 我们将在课程后续内容中讨论这个问题.  </p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 29, 2025 20:52:16">April 29, 2025 20:52:16</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 29, 2025 20:52:16">April 29, 2025 20:52:16</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 强化学习">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                强化学习
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../BBO/" class="md-footer__link md-footer__link--next" aria-label="下一页: BBO">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                BBO
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../javascripts/tablesort.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>
