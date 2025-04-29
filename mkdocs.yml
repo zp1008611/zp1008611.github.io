@@ -34,6 +34,20 @@ nav:
         - GD Variants: DL/GD_Variants/README.md
         - PCA: DL/PCA/README.md
         - Autoencoders: DL/Autoencoders/README.md
+        - Regularization: DL/Regularization/README.md
+        - Neural Network Training Tips: DL/nn_training_tips/README.md
+
+    - GNN:
+        - GNN/index.md
+
+    - RL:
+        - RL/index.md
+        - MDPs: RL/MDPs/README.md
+        - BBO: RL/BBO/README.md
+        - Bellman Equation: RL/Bellman_eq
+        - Policy Iteration and Value Iteration: RL/PI_and_VI/README.md
+        - Monte Carlo Methods: RL/MCM/README.md
+        - Temporal Differenence (TD) Learning:Sarsa, Q-learning: RL/TD_Sarsa_Qlearning/README.md
 
     - LEETCODE:
         - 动态规划:
