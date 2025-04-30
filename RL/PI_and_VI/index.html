@@ -1098,7 +1098,7 @@
 
 <h1 id="_1">策略迭代和值迭代<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6291 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 21 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6133 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 20 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1179,7 +1179,7 @@ $$</p>
     - <strong>策略评估</strong>：
         - 任意初始化 <span class="arithmatex">\(v_{0}\)</span> ；
         - 对于 <span class="arithmatex">\(k = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：
-            - 对于所有 <span class="arithmatex">\(s \in S\)</span> ：<span class="arithmatex">\(v_{k + 1}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_i(s), s') \left( R(s, \pi_i(s)) + \gamma v_{k}(s') \right)\)</span> 
+            - 对于所有 <span class="arithmatex">\(s \in S\)</span> ：<span class="arithmatex">\(v_{k + 1}(s) = \sum_{a \in \mathcal{A}} \pi_i(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{k}(s') \right)\)</span> 
             - 如果 <span class="arithmatex">\(v_{k + 1} = v_{k}\)</span> ，则：
                 - <span class="arithmatex">\(v^{\pi_{i}} = v_{k}\)</span> ；
                 - 跳出循环；
@@ -1228,64 +1228,52 @@ v^{\pi_{i + 1}}(s) &amp;\stackrel{\text{(a)}}{=} \sum_{a \in \mathcal{A}} \pi_{i
 <h2 id="3">3 值迭代<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>策略迭代算法效率不高. 尽管使用动态规划的策略评估保证收敛到 <span class="arithmatex">\(v^{\pi}\)</span>，但除非策略评估的迭代次数趋于无穷，否则无法保证达到 <span class="arithmatex">\(v^{\pi}\)</span>. 因此，策略迭代中外层循环（对 <span class="arithmatex">\(i\)</span> 的循环）的每一次迭代可能需要无限计算量. 一个自然的问题是：能否提前停止策略评估——当 <span class="arithmatex">\(v_{k+1} \neq v_{k}\)</span> 时，但在固定次数迭代后停止（例如，对 <span class="arithmatex">\(k\)</span> 的循环从 <span class="arithmatex">\(0\)</span> 到 <span class="arithmatex">\(K\)</span>，<span class="arithmatex">\(K\)</span> 为常数）.   </p>
 <p>如果提前停止策略评估，<span class="arithmatex">\(v^{\pi_{i}}\)</span> 的估计会有误差，因此基于该估计的贪心策略可能不会比当前策略更好. 但令人惊讶的是，该过程仍会收敛到最优策略. 一种特别流行的变体是值迭代，它设置 <span class="arithmatex">\(K=1\)</span>——在策略改进步骤之间仅执行一次策略评估的迭代. 重要的是，每次策略评估迭代都从上一步的值函数估计开始（而非随机初始值函数）. 值迭代的伪代码如算法2所示.   </p>
-<p><strong>算法2：值迭代（低效实现，作为推导常用伪代码的铺垫）</strong><br />
-- 任意初始化 <span class="arithmatex">\(\pi_{0}\)</span> 和 <span class="arithmatex">\(v_{0}\)</span>；<br />
-- 对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：<br />
-    - <strong>策略评估</strong>：<br />
-      对所有 <span class="arithmatex">\(s \in S\)</span>：<br />
-      $$
-      v_{i+1}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{i}(s), s') \left( R(s, \pi_{i}(s)) + \gamma v_{i}(s') \right)
-      $$<br />
-    - <strong>检查终止条件</strong>：<br />
-      如果 <span class="arithmatex">\(v_{i+1} = v_{i}\)</span>，则终止；<br />
-    - <strong>策略改进</strong>：<br />
-      计算 <span class="arithmatex">\(\pi_{i+1}\)</span>，使得对所有 <span class="arithmatex">\(s\)</span>，<br />
-      $$
-      \pi_{i+1}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i+1}(s') \right)
-      $$  </p>
-<p>按照算法2的伪代码，我们会得到如下策略和值函数序列：  </p>
-<div class="arithmatex">\[
-v_{0} \text{：任意值} 
-\]</div>
-<div class="arithmatex">\[
-\pi_{0} \text{：任意策略} 
-\]</div>
-<div class="arithmatex">\[
-v_{1}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{0}(s), s') \left( R(s, \pi_{0}(s)) + \gamma v_{0}(s') \right) 
-\]</div>
-<div class="arithmatex">\[
-\pi_{1}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{1}(s') \right)
-\]</div>
-<div class="arithmatex">\[
-v_{2}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{1}(s), s') \left( R(s, \pi_{1}(s)) + \gamma v_{1}(s') \right)
-$$  
-$$
-\pi_{2}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{2}(s') \right)
-\]</div>
-<div class="arithmatex">\[
-v_{3}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{2}(s), s') \left( R(s, \pi_{2}(s)) + \gamma v_{2}(s') \right) 
-\]</div>
-<div class="arithmatex">\[
-\pi_{3}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{3}(s') \right) 
-\]</div>
-<div class="arithmatex">\[
-\cdots 
-\]</div>
+<p><strong>算法2：值迭代（低效实现，作为推导常用伪代码的铺垫）</strong>  </p>
+<ul>
+<li>任意初始化 <span class="arithmatex">\(\pi_{0}\)</span> 和 <span class="arithmatex">\(v_{0}\)</span>；  </li>
+<li>对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：  <ul>
+<li><strong>策略评估</strong>：<br />
+  对所有 <span class="arithmatex">\(s \in S\)</span>：<br />
+  $$
+  v_{i+1}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{i}(s), s') \left( R(s, \pi_{i}(s)) + \gamma v_{i}(s') \right)
+  $$  </li>
+<li><strong>检查终止条件</strong>：<br />
+  如果 <span class="arithmatex">\(v_{i+1} = v_{i}\)</span>，则终止；  </li>
+<li><strong>策略改进</strong>：<br />
+  计算 <span class="arithmatex">\(\pi_{i+1}\)</span>，使得对所有 <span class="arithmatex">\(s\)</span>，<br />
+  $$
+  \pi_{i+1}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i+1}(s') \right)
+  $$  </li>
+</ul>
+</li>
+</ul>
 <p>注意策略和值函数估计的更新具有相似性. 一般地，我们可直接从 <span class="arithmatex">\(v_{i}\)</span> 计算 <span class="arithmatex">\(v_{i+1}\)</span>，无需显式计算 <span class="arithmatex">\(\pi_{i}\)</span>，得到更高效的值迭代更新式：  </p>
 <div class="arithmatex">\[
 v_{i+1}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i}(s') \right). 
 \]</div>
 <p>注意，策略评估算法是贝尔曼方程的迭代形式，而上式中的值迭代更新是贝尔曼最优性方程的迭代形式. 使用此高效更新的值迭代伪代码如算法3所示.   </p>
-<p><strong>算法3：值迭代</strong><br />
-- 任意初始化 <span class="arithmatex">\(v_{0}\)</span>；<br />
-- 对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：<br />
-    - <strong>值迭代更新</strong>：<br />
-      对所有 <span class="arithmatex">\(s \in S\)</span>：<br />
-      $$
-      v_{i+1}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i}(s') \right)
-      $$<br />
-    - <strong>检查终止条件</strong>：<br />
-      如果 <span class="arithmatex">\(v_{i+1} = v_{i}\)</span>，则终止；  </p>
+<p><strong>算法3：值迭代</strong>  </p>
+<ul>
+<li>任意初始化 <span class="arithmatex">\(v_{0}\)</span>；  </li>
+<li>
+<p>对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：  </p>
+<ul>
+<li><strong>值迭代更新</strong>：<br />
+  对所有 <span class="arithmatex">\(s \in S\)</span>：<br />
+  $$
+  v_{i+1}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i}(s') \right)
+  $$  </li>
+<li><strong>检查终止条件</strong>：<br />
+  如果 <span class="arithmatex">\(v_{i+1} = v_{i}\)</span>，则终止；  </li>
+</ul>
+</li>
+<li>
+<p>返回策略<span class="arithmatex">\(\pi\)</span>，对所有 <span class="arithmatex">\(s\)</span>，<br />
+  $$
+  \pi(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i+1}(s') \right)
+  $$ </p>
+</li>
+</ul>
 <h2 id="4">4 贝尔曼算子与值迭代的收敛性<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>在本小节中，我们证明值迭代收敛到唯一的值函数，并由此推导出之前提到的所有结论：对于奖励有界且 <span class="arithmatex">\(\gamma &lt; 1\)</span> 的有限MDP，存在确定性最优策略，且贝尔曼最优性方程仅对最优策略 <span class="arithmatex">\(\pi^{*}\)</span> 的值函数 <span class="arithmatex">\(v^{\pi^{*}}\)</span> 成立.   </p>
 <p>在给出本小节的主要定理前，先建立额外的符号. 对于有限MDP，值函数估计可视为 <span class="arithmatex">\(\mathbb{R}^{|S|}\)</span> 中的向量，每个元素对应一个状态的值. 回忆：算子是将一个空间中的元素映射到同一空间中元素的函数. 令 <span class="arithmatex">\(T: \mathbb{R}^{|S|} \to \mathbb{R}^{|S|}\)</span> 为贝尔曼算子，它将值函数估计作为输入，输出新的值函数估计，满足：  </p>
@@ -1388,7 +1376,7 @@ v^{\infty}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 30, 2025 12:32:13">April 30, 2025 12:32:13</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 30, 2025 18:09:07">April 30, 2025 18:09:07</span>
   </span>
 
     
