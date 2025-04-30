@@ -1185,7 +1185,7 @@
 
 <h1 id="markov-decision-process-mdp">马尔科夫决策过程（Markov Decision Process, MDP）<a class="headerlink" href="#markov-decision-process-mdp" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 9348 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 6 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 31 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 9347 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 6 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 31 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1241,10 +1241,10 @@
     - 设<span class="arithmatex">\(S_t\)</span>为时间<span class="arithmatex">\(t\)</span>时环境的状态. 
     - 设<span class="arithmatex">\(A_t\)</span>为智能体在时间<span class="arithmatex">\(t\)</span>采取的动作. 
     - 设<span class="arithmatex">\(R_t \in \mathbb{R}\)</span>为智能体在时间<span class="arithmatex">\(t\)</span>获得的奖励. 也就是说，当环境状态为<span class="arithmatex">\(S_t\)</span>，智能体采取动作<span class="arithmatex">\(A_t\)</span>，环境转移到状态<span class="arithmatex">\(S_{t + 1}\)</span>时，智能体获得奖励<span class="arithmatex">\(R_t\)</span>. 这与其他一些资料不同，在那些资料中，这个奖励被称为<span class="arithmatex">\(R_{t + 1}\)</span>. </p>
-<p>文献中对马尔可夫决策过程有多种定义，它们有一些共同的术语. 在每种情况下，马尔可夫决策过程都是一个元组. 以下是四个例子：
-$$
+<p>文献中对马尔可夫决策过程有多种定义，它们有一些共同的术语. 在每种情况下，马尔可夫决策过程都是一个元组. 以下是四个例子：</p>
+<div class="arithmatex">\[
 1. (\mathcal{S}, \mathcal{A}, p, R)
-$$</p>
+\]</div>
 <div class="arithmatex">\[
 2. (\mathcal{S}, \mathcal{A}, p, R, \gamma)
 \]</div>
@@ -1361,13 +1361,19 @@ J(\pi) := \mathbb{E}\left[\sum_{t = 0}^{\infty} \gamma^{t} R_{t} | \pi\right],
 <p>再次考虑强化学习的定义. 注意其中“通过与环境的交互进行学习”这一部分. 如果转移函数 <span class="arithmatex">\(p\)</span> 和奖励函数 <span class="arithmatex">\(R\)</span> （或 <span class="arithmatex">\(d_{R}\)</span> ）是已知的，那么智能体就不需要与环境进行交互. 例如，一个解决687网格世界问题的智能体可以在头脑中进行规划，制定出最优策略，然后从一开始就执行这个最优策略. 这不是强化学习，而是规划. 更具体地说，在规划问题中， <span class="arithmatex">\(p\)</span> 和 <span class="arithmatex">\(R\)</span> 是已知的，而在强化学习问题中，至少转移函数 <span class="arithmatex">\(p\)</span> （通常奖励函数 <span class="arithmatex">\(R\)</span> 也是）对智能体来说是未知的. 相反，智能体必须通过与环境交互来学习——采取不同的动作并观察结果. 大多数强化学习算法不会估计转移函数 <span class="arithmatex">\(p\)</span>  . 因为环境通常过于复杂，难以很好地建模，而且对 <span class="arithmatex">\(p\)</span> 的估计中出现的小误差会在多个时间步中累积，使得基于 <span class="arithmatex">\(p\)</span> 的估计所制定的计划不可靠. 我们稍后会进一步讨论这个问题. </p>
 <h2 id="7">7 其他术语和一些例子<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>历史（History）</strong>： <span class="arithmatex">\(H_{t}\)</span> 记录了在一个情节中直到时间 <span class="arithmatex">\(t\)</span> 发生的所有事情：
-<span class="arithmatex">\(<span class="arithmatex">\(H_{t} := (S_{0}, A_{0}, R_{0}, S_{1}, A_{1}, R_{1}, S_{2}, \ldots, S_{t}, A_{t}, R_{t}). (20)\)</span>\)</span></li>
+<li><strong>历史（History）</strong>： <span class="arithmatex">\(H_{t}\)</span> 记录了在一个情节中直到时间 <span class="arithmatex">\(t\)</span> 发生的所有事情：</li>
+</ul>
+<div class="arithmatex">\[
+H_{t} := (S_{0}, A_{0}, R_{0}, S_{1}, A_{1}, R_{1}, S_{2}, \ldots, S_{t}, A_{t}, R_{t}). 
+\]</div>
+<ul>
 <li><strong>轨迹（Trajectory）</strong>：是一个完整情节的历史，即 <span class="arithmatex">\(H_{\infty}\)</span> . </li>
 <li>轨迹的回报（Return）或折扣回报（Discounted Return）是奖励的折扣总和： <span class="arithmatex">\(G := \sum_{t = 0}^{\infty} \gamma^{t} R_{t}\)</span>  . 所以，目标函数 <span class="arithmatex">\(J\)</span> 是期望回报或期望折扣回报，可以写成 <span class="arithmatex">\(J(\pi) := \mathbb{E}[G | \pi]\)</span>  . </li>
-<li><strong>从时间 <span class="arithmatex">\(t\)</span> 开始的回报</strong>或<strong>从时间 <span class="arithmatex">\(t\)</span> 开始的折扣回报</strong>， <span class="arithmatex">\(G_{t}\)</span> ，是从时间 <span class="arithmatex">\(t\)</span> 开始的奖励的折扣总和：
-<span class="arithmatex">\(<span class="arithmatex">\(G_{t} := \sum_{k = 0}^{\infty} \gamma^{k} R_{t + k}\)</span>\)</span></li>
+<li><strong>从时间 <span class="arithmatex">\(t\)</span> 开始的回报</strong>或<strong>从时间 <span class="arithmatex">\(t\)</span> 开始的折扣回报</strong>， <span class="arithmatex">\(G_{t}\)</span> ，是从时间 <span class="arithmatex">\(t\)</span> 开始的奖励的折扣总和：</li>
 </ul>
+<div class="arithmatex">\[
+G_{t} := \sum_{k = 0}^{\infty} \gamma^{k} R_{t + k}
+\]</div>
 <h3 id="71">7.1 示例领域：山地车<a class="headerlink" href="#71" title="Permanent link">&para;</a></h3>
 <p>强化学习中所研究的环境常被称作领域（Domain）. 其中，山地车领域是极为常见的一个. 在该领域里，智能体操控着一辆近似汽车的载具. 汽车被困于山谷之中，而智能体的目标是驶向汽车前方的山顶. 不过，汽车的动力不足以直接开上前方的山坡，所以它必须先学会倒车爬上后方的山坡，再加速向前冲，才能爬上前方的山坡. 下图展示了山地车环境的示意图. </p>
 <p><img alt="alt text" src="image-6.png" /></p>
@@ -1450,7 +1456,7 @@ $$</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 29, 2025 20:52:16">April 29, 2025 20:52:16</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 30, 2025 12:32:13">April 30, 2025 12:32:13</span>
   </span>
 
     

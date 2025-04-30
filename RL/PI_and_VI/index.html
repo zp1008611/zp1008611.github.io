@@ -859,44 +859,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       1 策略评估
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1 策略评估">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#42" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2 策略改进
+      2 策略改进
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#43" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
-      4.3 值迭代
+      3 值迭代
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#44" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
-      4.4 贝尔曼算子与值迭代的收敛性
+      4 贝尔曼算子与值迭代的收敛性
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1095,106 +1098,139 @@
 
 <h1 id="_1">策略迭代和值迭代<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6625 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 22 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6291 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 21 分钟</p>
 </div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://people.cs.umass.edu/~bsilva/courses/CMPSCI_687/Fall2022/Lecture_Notes_v1.0_687_F22.pdf</li>
+</ul>
 <p>到目前为止，我们已经定义了想要解决的问题，讨论了忽略问题的马尔可夫决策过程（MDP）结构的黑盒优化（BBO）算法，并定义了更复杂的算法将用于利用环境的MDP结构的值函数. 在本节中，我们将展示当转移函数和奖励函数已知时，如何使用值函数有效地求解有限MDP的最优策略. 也就是说，在本节中，我们将介绍标准的规划算法. 我们介绍这些算法是因为后面的强化学习（RL）算法（不需要知道转移概率 <span class="arithmatex">\(p\)</span> 和奖励函数 <span class="arithmatex">\(R\)</span> ）与这些算法密切相关（它们可以被视为这些规划算法的随机近似）. 我们从如何计算策略的值函数这个问题开始. </p>
 <h2 id="1">1 策略评估<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<p>在这里，我们考虑这样一个问题：给定一个策略 <span class="arithmatex">\(\pi\)</span> ，如何有效地计算 <span class="arithmatex">\(v^{\pi}\)</span> ？注意，贝尔曼方程为我们提供了 <span class="arithmatex">\(|S|\)</span> 个方程和 <span class="arithmatex">\(|S|\)</span> 个未知变量，即 <span class="arithmatex">\(v^{\pi}(s_{1}), v^{\pi}(s_{2}), \cdots, v^{\pi}(s_{|S|})\)</span> . 这些方程为：
-$$
-v^{\pi}(s_{1}) = \sum_{a \in \mathcal{A}} \pi(s_{1}, a) \sum_{s' \in \mathcal{S}} p(s_{1}, a, s') (R(s_{1}, a) + \gamma v^{\pi}(s'))$$
-<span class="arithmatex">\(<span class="arithmatex">\(v^{\pi}(s_{2}) = \sum_{a \in \mathcal{A}} \pi(s_{2}, a) \sum_{s' \in \mathcal{S}} p(s_{2}, a, s') (R(s_{2}, a) + \gamma v^{\pi}(s'))\)</span>\)</span>
-$$v^{\pi}(s_{|\mathcal{S}|}) = \sum_{a \in \mathcal{A}} \pi(s_{|\mathcal{S}|}, a) \sum_{s' \in \mathcal{S}} p(s_{|\mathcal{S}|}, a, s') (R(s_{|\mathcal{S}|}, a) + \gamma v^{\pi}(s')) 
-$$
-注意，这是一个线性方程组，我们知道它有唯一解. 这个系统可以用 <span class="arithmatex">\(O(|S|^{3})\)</span> 次运算求解（一般来说，这个问题至少需要 <span class="arithmatex">\(\Omega(|S|^{2})\)</span> 次运算，在2018年秋季，渐近运行时间最优的算法是Coppersmith和Winograd在1987年提出的算法，需要 <span class="arithmatex">\(O(n^{2.736})\)</span> 次运算）. </p>
+<p>在这里，我们考虑这样一个问题：给定一个策略 <span class="arithmatex">\(\pi\)</span> ，如何有效地计算 <span class="arithmatex">\(v^{\pi}\)</span> ？注意，贝尔曼方程为我们提供了 <span class="arithmatex">\(|S|\)</span> 个方程和 <span class="arithmatex">\(|S|\)</span> 个未知变量，即 <span class="arithmatex">\(v^{\pi}(s_{1}), v^{\pi}(s_{2}), \cdots, v^{\pi}(s_{|S|})\)</span> . 这些方程为：</p>
+<div class="arithmatex">\[
+v^{\pi}(s_{1}) = \sum_{a \in \mathcal{A}} \pi(s_{1}, a) \sum_{s' \in \mathcal{S}} p(s_{1}, a, s') (R(s_{1}, a) + \gamma v^{\pi}(s'))
+\]</div>
+<div class="arithmatex">\[
+v^{\pi}(s_{2}) = \sum_{a \in \mathcal{A}} \pi(s_{2}, a) \sum_{s' \in \mathcal{S}} p(s_{2}, a, s') (R(s_{2}, a) + \gamma v^{\pi}(s'))
+\]</div>
+<div class="arithmatex">\[
+v^{\pi}(s_{|\mathcal{S}|}) = \sum_{a \in \mathcal{A}} \pi(s_{|\mathcal{S}|}, a) \sum_{s' \in \mathcal{S}} p(s_{|\mathcal{S}|}, a, s') (R(s_{|\mathcal{S}|}, a) + \gamma v^{\pi}(s')) 
+\]</div>
+<p>我们定义：</p>
+<ul>
+<li><strong>状态值函数向量</strong>：<span class="arithmatex">\(\mathbf{v}^{\pi}=\begin{bmatrix}v^{\pi}(s_1)\\v^{\pi}(s_2)\\\vdots\\v^{\pi}(s_{|S|})\end{bmatrix}\)</span></li>
+<li><strong>奖励向量</strong>：对于每个状态 <span class="arithmatex">\(s_i\)</span>，<span class="arithmatex">\(R_i=\sum_{a \in A}\pi(s_i,a)\sum_{s' \in S}p(s_i,a,s')R(s_i,a)\)</span>，则 <span class="arithmatex">\(\mathbf{R}=\begin{bmatrix}R_1\\R_2\\\vdots\\R_{|S|}\end{bmatrix}\)</span></li>
+<li><strong>状态转移概率矩阵</strong>：矩阵元素 <span class="arithmatex">\(P_{ij}=\sum_{a \in A}\pi(s_i,a)p(s_i,a,s_j)\)</span>，表示从状态 <span class="arithmatex">\(s_i\)</span> 依据策略 <span class="arithmatex">\(\pi\)</span> 转移到状态 <span class="arithmatex">\(s_j\)</span> 的概率，<span class="arithmatex">\(\mathbf{P}\)</span> 是一个 <span class="arithmatex">\(|S|\times|S|\)</span> 的矩阵. </li>
+</ul>
+<p>将上述 <span class="arithmatex">\(|S|\)</span> 个方程组合起来，就可以写成矩阵 - 向量的形式：</p>
+<div class="arithmatex">\[
+\begin{bmatrix}v^{\pi}(s_1)\\v^{\pi}(s_2)\\\vdots\\v^{\pi}(s_{|S|})\end{bmatrix}=\begin{bmatrix}R_1\\R_2\\\vdots\\R_{|S|}\end{bmatrix}+\gamma\begin{bmatrix}P_{11}&amp;P_{12}&amp;\cdots&amp;P_{1|S|}\\P_{21}&amp;P_{22}&amp;\cdots&amp;P_{2|S|}\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\P_{|S|1}&amp;P_{|S|2}&amp;\cdots&amp;P_{|S||S|}\end{bmatrix}\begin{bmatrix}v^{\pi}(s_1)\\v^{\pi}(s_2)\\\vdots\\v^{\pi}(s_{|S|})\end{bmatrix}
+\]</div>
+<p>即 <span class="arithmatex">\(\mathbf{v}^{\pi}=\mathbf{R}+\gamma\mathbf{P}\mathbf{v}^{\pi}\)</span> 且 <span class="arithmatex">\((\mathbf{I}-\gamma \mathbf{P})\mathbf{v}^{\pi}=\mathbf{R}\)</span></p>
+<p>注意，这是一个线性方程组，它有唯一解（因为<span class="arithmatex">\((\mathbf{I}-\gamma \mathbf{P})\mathbf{v}^{\pi}\)</span>可逆）. 这个系统可以用 <span class="arithmatex">\(O(|S|^{3})\)</span> 次运算求解（一般来说，这个问题至少需要 <span class="arithmatex">\(\Omega(|S|^{2})\)</span> 次运算，在2018年秋季，渐近运行时间最优的算法是Coppersmith和Winograd在1987年提出的算法，需要 <span class="arithmatex">\(O(n^{2.736})\)</span> 次运算）. </p>
 <p>另一种方法是使用动态规划. 虽然不一定更高效，但这种动态规划方法稍后将使我们能够有效地交替进行评估当前策略和改进当前策略的步骤. 在这里，当我们谈到评估一个策略或策略评估时，我们指的是估计与该策略相关的状态值函数或动作值函数. 稍后我们将讨论另一种形式的策略评估，其目标是估计 <span class="arithmatex">\(J(\pi)\)</span> ，而不是整个值函数 <span class="arithmatex">\(v^{\pi}\)</span> . </p>
 <p>令 <span class="arithmatex">\(v_{0}, v_{1}, v_{2}, \cdots\)</span> 表示一个函数序列，其中每个 <span class="arithmatex">\(v_{i}: S \to \mathbb{R}\)</span> . 注意，有些人喜欢在估计值上加上帽子符号. 在本笔记中，我们将继续用 <span class="arithmatex">\(v_{i}\)</span> 表示 <span class="arithmatex">\(v^{\pi}\)</span> 的第 <span class="arithmatex">\(i\)</span> 个估计值，但在作业中，你可以自由地用 <span class="arithmatex">\(\hat{v}_{i}\)</span> （就像我们在课堂上所做的那样）来代替 <span class="arithmatex">\(v_{i}\)</span> . 直观地说，这个函数序列表示由一个以增量方式估计 <span class="arithmatex">\(v^{\pi}\)</span> 的算法产生的 <span class="arithmatex">\(v^{\pi}\)</span> 的估计值序列. 过去，这一点让学生们感到困惑，他们没有意识到 <span class="arithmatex">\(v_{i}\)</span> 和 <span class="arithmatex">\(v^{\pi}\)</span> 是不同的. 所以，再次强调，注意 <span class="arithmatex">\(v_{i}\)</span> 是我们对 <span class="arithmatex">\(v^{\pi}\)</span> 的第 <span class="arithmatex">\(i\)</span> 个近似值. 它不一定是 <span class="arithmatex">\(v^{\pi}\)</span> . 此外，虽然我们通常 “知道” <span class="arithmatex">\(v_{i}\)</span> （我们有它的解析形式，或者有代码来计算它），但我们往往并不精确地知道 <span class="arithmatex">\(v^{\pi}\)</span> （如果我们知道，就没有必要去近似它了！）. </p>
-<p>考虑任意选择 <span class="arithmatex">\(v_{0}\)</span> 的情况. 一种改进我们估计的方法是尝试使贝尔曼方程的两边相等. 回想一下，<span class="arithmatex">\(v^{\pi}\)</span> 的贝尔曼方程是：
-<span class="arithmatex">\(<span class="arithmatex">\(v^{\pi}(s) = \sum_{a \in \mathcal{A}} \pi(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') (R(s, a) + \gamma v^{\pi}(s')) \tag{135}\)</span>\)</span>
-因此，我们可以通过以下更新来尝试使贝尔曼方程的两边相等：
-<span class="arithmatex">\(<span class="arithmatex">\(v_{i + 1}(s) = \sum_{a \in \mathcal{A}} \pi(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') (R(s, a) + \gamma v_{i}(s')) \tag{136}\)</span>\)</span>
-给定 <span class="arithmatex">\(v_{i}\)</span> ，对每个状态 <span class="arithmatex">\(s\)</span> 应用此更新来计算 <span class="arithmatex">\(v_{i + 1}(s)\)</span> ，称为完全备份. 对单个状态 <span class="arithmatex">\(s\)</span> 应用此更新来计算 <span class="arithmatex">\(v_{i + 1}(s)\)</span> ，称为备份. </p>
+<p>考虑任意选择 <span class="arithmatex">\(v_{0}\)</span> 的情况. 一种改进我们估计的方法是尝试使贝尔曼方程的两边相等. 回想一下，<span class="arithmatex">\(v^{\pi}\)</span> 的贝尔曼方程是：</p>
+<div class="arithmatex">\[
+v^{\pi}(s) = \sum_{a \in \mathcal{A}} \pi(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') (R(s, a) + \gamma v^{\pi}(s')) 
+\]</div>
+<p>因此，我们可以通过以下更新来尝试使贝尔曼方程的两边相等：</p>
+<div class="arithmatex">\[
+v_{i + 1}(s) = \sum_{a \in \mathcal{A}} \pi(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') (R(s, a) + \gamma v_{i}(s')) 
+\]</div>
+<p>给定 <span class="arithmatex">\(v_{i}\)</span> ，对每个状态 <span class="arithmatex">\(s\)</span> 应用此更新来计算 <span class="arithmatex">\(v_{i + 1}(s)\)</span> ，称为完全备份. 对单个状态 <span class="arithmatex">\(s\)</span> 应用此更新来计算 <span class="arithmatex">\(v_{i + 1}(s)\)</span> ，称为备份. </p>
 <p>为了理解为什么这是一种动态规划方法，假设我们将 <span class="arithmatex">\(v_{0}, v_{1}, \cdots\)</span> 存储为一个矩阵，其中 <span class="arithmatex">\(v_{0}\)</span> 作为第一列，<span class="arithmatex">\(v_{1}\)</span> 作为第二列，依此类推. 这个更新规则从左到右填充这个矩阵，其中每个元素的值取决于前一列中先前计算的值. </p>
 <p>从我们对贝尔曼方程的推导中应该清楚，<span class="arithmatex">\(v^{\pi}\)</span> 是这个迭代过程的一个不动点（也就是说，如果 <span class="arithmatex">\(v_{i} = v^{\pi}\)</span> ，那么 <span class="arithmatex">\(v_{i + 1} = v^{\pi}\)</span> ）. 不太明显的是，<span class="arithmatex">\(v_{i} \to v^{\pi}\)</span> . 我们不会证明这个性质（这个更新是通向我们稍后介绍的值迭代更新的一个垫脚石，我们将专注于证明值迭代更新的收敛性）. </p>
-<p><strong>问题21</strong>：考虑一个 <span class="arithmatex">\(4×4\)</span> 的网格世界，智能体从左上角开始，右下角的状态是终止状态，奖励始终为1，<span class="arithmatex">\(\gamma = 1\)</span> ，并且状态转移是确定性的. 考虑这样一个策略，除了在底部行时选择向右移动的动作外，总是选择向下移动的动作. 从对所有 <span class="arithmatex">\(s\)</span> 都有 <span class="arithmatex">\(v_{0}(s) = 0\)</span> 开始，计算 <span class="arithmatex">\(v_{1}, v_{2}, \cdots, v_{7}\)</span> . </p>
-<p><strong>答案21</strong>：注意，在问题21中，信息似乎在状态转移中反向流动. 还要注意，在这个例子中，该过程仅在七次迭代后就达到了其不动点. 一般来说，这个策略评估算法只保证在极限情况下收敛，因此在实际实现中，当当前状态值近似的所有变化都小于某个预定义的常数值时，可能会停止该过程. </p>
-<p>到目前为止我们所描述的用于策略评估的动态规划算法可以通过存储 <span class="arithmatex">\(2|S|\)</span> 个值来实现——在计算出 <span class="arithmatex">\(v_{i + 1}\)</span> 之前一直存储 <span class="arithmatex">\(v_{i}\)</span> . 当计算出 <span class="arithmatex">\(v^{\pi}(s)\)</span> 的新估计值时，将其放入 <span class="arithmatex">\(v_{i + 1}(s)\)</span> 中，以免覆盖存储在 <span class="arithmatex">\(v_{i}(s)\)</span> 中的值，因为在计算其他状态的下一个值时可能会用到 <span class="arithmatex">\(v_{i}(s)\)</span> . 另一种原地实现方法只保留一个表，执行单个状态备份（而不是完全备份），并将更新后的状态值近似直接存储在计算它们的同一个表中. 这种变体也已被证明是收敛的，即使状态以任何顺序更新，或者某些状态比其他状态更新得更频繁（只要每个状态被无限次更新）. 注意，在这些原地变体中，状态更新的顺序很重要. 在问题21中，从左下角到右上角更新状态可能会使算法在单次遍历状态空间后就达到其不动点，而从左上角到右下角更新状态则需要多次遍历才能收敛. </p>
-<h4 id="42">4.2 策略改进<a class="headerlink" href="#42" title="Permanent link">&para;</a></h4>
+<p>到目前为止我们所描述的用于策略评估的动态规划算法可以通过存储 <span class="arithmatex">\(2|S|\)</span> 个值来实现——在计算出 <span class="arithmatex">\(v_{i + 1}\)</span> 之前一直存储 <span class="arithmatex">\(v_{i}\)</span> . 当计算出 <span class="arithmatex">\(v^{\pi}(s)\)</span> 的新估计值时，将其放入 <span class="arithmatex">\(v_{i + 1}(s)\)</span> 中，以免覆盖存储在 <span class="arithmatex">\(v_{i}(s)\)</span> 中的值，因为在计算其他状态的下一个值时可能会用到 <span class="arithmatex">\(v_{i}(s)\)</span> . 另一种原地实现方法只保留一个表，执行单个状态备份（而不是完全备份），并将更新后的状态值近似直接存储在计算它们的同一个表中. 这种变体也已被证明是收敛的，即使状态以任何顺序更新，或者某些状态比其他状态更新得更频繁（只要每个状态被无限次更新）. 注意，在这些原地变体中，状态更新的顺序很重要. 在网格图世界中，从左下角到右上角更新状态可能会使算法在单次遍历状态空间后就达到其不动点，而从左上角到右下角更新状态则需要多次遍历才能收敛. </p>
+<h2 id="2">2 策略改进<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>一旦我们为某个初始策略 <span class="arithmatex">\(\pi\)</span> 估计出了 <span class="arithmatex">\(v^{\pi}\)</span> 或 <span class="arithmatex">\(q^{\pi}\)</span> ，如何找到一个至少与 <span class="arithmatex">\(\pi\)</span> 一样好的新策略呢？注意，如果我们有了 <span class="arithmatex">\(v^{\pi}\)</span> ，可以通过方程 <span class="arithmatex">\(q^{\pi}(s, a) = \sum_{s' \in S} p(s, a, s') (R(s, a) + \gamma v^{\pi}(s'))\)</span> 轻松计算出任何 <span class="arithmatex">\((s, a)\)</span> 的 <span class="arithmatex">\(q^{\pi}(s, a)\)</span> . 那么，现在考虑如果我们已经计算出了 <span class="arithmatex">\(q^{\pi}\)</span> ，如何找到一个策略 <span class="arithmatex">\(\pi'\)</span> ，使其总是至少与 <span class="arithmatex">\(\pi\)</span> 一样好. </p>
-<p>考虑一种贪心方法，我们将 <span class="arithmatex">\(\pi'\)</span> 定义为一个确定性策略，当处于状态 <span class="arithmatex">\(s\)</span> 时，它选择使 <span class="arithmatex">\(q^{\pi}(s, \cdot)\)</span> 最大化的动作. 也就是说，<span class="arithmatex">\(\pi': S \to A\)</span> 是一个确定性策略，定义为：
-<span class="arithmatex">\(<span class="arithmatex">\(\pi'(s) \in \underset{a \in \mathcal{A}}{arg max } q^{\pi}(s, a) \tag{137}\)</span>\)</span>
-这个策略是关于 <span class="arithmatex">\(q^{\pi}\)</span> 的贪心策略. 它之所以贪心，是因为它只优化眼前的利益，而不考虑长期后果. 回想一下，<span class="arithmatex">\(q^{\pi}(s, a)\)</span> 是指如果智能体在状态 <span class="arithmatex">\(s\)</span> 采取动作 <span class="arithmatex">\(a\)</span> ，然后遵循策略 <span class="arithmatex">\(\pi\)</span> 之后的期望折扣回报. 所以，当 <span class="arithmatex">\(\pi'\)</span> 选择使 <span class="arithmatex">\(q^{\pi}(s, a)\)</span> 最大化的动作 <span class="arithmatex">\(a\)</span> 时，并不一定是在选择使 <span class="arithmatex">\(q^{\pi'}(s, a)\)</span> 或 <span class="arithmatex">\(v^{\pi'}(s)\)</span> 最大化的动作. 它选择的是在当前步骤选择该动作时，能使期望折扣回报最大化的动作，之后则使用策略 <span class="arithmatex">\(\pi\)</span> （而不是 <span class="arithmatex">\(\pi'\)</span> ！）. 这种只考虑让 <span class="arithmatex">\(\pi'\)</span> 采取单个动作的贪心策略更新，会使 <span class="arithmatex">\(\pi'\)</span> 比 <span class="arithmatex">\(\pi\)</span> 更差吗？</p>
-<p>也许令人惊讶的是，关于 <span class="arithmatex">\(q^{\pi}\)</span> 的贪心策略总是至少与 <span class="arithmatex">\(\pi\)</span> 一样好，即 <span class="arithmatex">\(\pi' \geq \pi\)</span> （回想一下在式（115）中给出的策略之间 <span class="arithmatex">\(\geq\)</span> 的定义）. 这个结果由策略改进定理（定理2）描述. 
-<strong>定理2（策略改进定理）</strong>：对于任何策略 <span class="arithmatex">\(\pi\)</span> ，如果 <span class="arithmatex">\(\pi'\)</span> 是一个确定性策略，使得对于所有 <span class="arithmatex">\(s \in S\)</span> ，有：
-<span class="arithmatex">\(<span class="arithmatex">\(q^{\pi}(s, \pi'(s)) \geq v^{\pi}(s) \tag{138}\)</span>\)</span>
-那么 <span class="arithmatex">\(\pi' \geq \pi\)</span> . 
-<strong>证明</strong>：
-<span class="arithmatex">\(<span class="arithmatex">\(\begin{array}{rlrl} v^{\pi}(s) &amp; \leq q^{\pi}(s, \pi'(s)) \\ &amp;= E[R_{t} + \gamma v^{\pi}(S_{t + 1}) | S_{t} = s, \pi'] \tag{140} \\ &amp;\leq E[R_{t} + \gamma q^{\pi}(S_{t + 1}, \pi'(S_{t + 1}, \pi'(S_{t + 1})) | S_{t} = s, \pi'] \tag{141} \\ &amp;= E[R_{t} + \gamma E[R_{t + 1} + \gamma v^{\pi}(S_{t + 2}) | S_{t} = s, \pi'] | S_{t} = s, \pi'] \tag{142} \\ &amp;= E[R_{t} + \gamma R_{t + 1} + \gamma^{2} v^{\pi}(S_{t + 2}) | S_{t} = s, \pi'] \tag{143} \\ &amp;\leq E[R_{t} + \gamma R_{t + 1} + \gamma^{2} R_{t + 2} + \gamma^{3} v^{\pi}(S_{t + 3}) | S_{t} = s, \pi'] \tag{144} \\ &amp; \cdots \tag{145} \\ &amp;\leq E[R_{t} + \gamma R_{t + 1} + \gamma^{2} \end{array}\)</span>\)</span>
-其中每一步都是根据值函数的定义和定理陈述中的假设从前一步推导出来的. 注意，式（140）是基于 <span class="arithmatex">\(\pi'\)</span> 进行条件设定的，而不是 <span class="arithmatex">\(\pi\)</span> . 这是因为这种条件设定影响的唯一动作是 <span class="arithmatex">\(A_{t}\)</span> ，所有后续动作都由 <span class="arithmatex">\(v^{\pi}(S_{t + 1})\)</span> 项捕获，该项使用的是策略 <span class="arithmatex">\(\pi\)</span> . 还要注意，式（142）中的内期望并没有对 <span class="arithmatex">\(S_{t + 1}\)</span> 取特定值进行条件设定，考虑到它是 <span class="arithmatex">\(q^{\pi}(S_{t + 1}, \pi'(S_{t + 1}))\)</span> 的展开式，人们可能会期望有这样的条件设定. 这是因为 <span class="arithmatex">\(q^{\pi}(S_{t + 1}, \pi'(S_{t + 1}))\)</span> 的第一个参数 <span class="arithmatex">\(S_{t + 1}\)</span> 是一个随机变量. 所以，在展开 <span class="arithmatex">\(q^{\pi}(S_{t + 1}, \pi'(S_{t + 1}))\)</span> 时，人们可能期望在式（142）中出现的条件是 <span class="arithmatex">\(S_{t + 1} = S_{t + 1}\)</span> . 这个条件是一个恒真式，因此可以忽略. </p>
-<p>策略改进定理对于随机贪心策略也成立，如定理3所述，我们在此不给出证明. 
-<strong>定理3（随机策略的策略改进定理）</strong>：对于任何策略 <span class="arithmatex">\(\pi\)</span> ，如果 <span class="arithmatex">\(\pi'\)</span> 满足对于所有 <span class="arithmatex">\(s \in S\)</span> ：
+<p>考虑一种贪心方法，我们将 <span class="arithmatex">\(\pi'\)</span> 定义为一个确定性策略，当处于状态 <span class="arithmatex">\(s\)</span> 时，它选择使 <span class="arithmatex">\(q^{\pi}(s, \cdot)\)</span> 最大化的动作. 也就是说，<span class="arithmatex">\(\pi': S \to A\)</span> 是一个确定性策略，定义为：</p>
+<div class="arithmatex">\[
+\pi'(s) \in \underset{a \in \mathcal{A}}{\arg \max }\ q^{\pi}(s, a) 
+\]</div>
+<p>这个策略是关于 <span class="arithmatex">\(q^{\pi}\)</span> 的贪心策略. 它之所以贪心，是因为它只优化眼前的利益，而不考虑长期后果. 回想一下，<span class="arithmatex">\(q^{\pi}(s, a)\)</span> 是指如果智能体在状态 <span class="arithmatex">\(s\)</span> 采取动作 <span class="arithmatex">\(a\)</span> ，然后遵循策略 <span class="arithmatex">\(\pi\)</span> 之后的期望折扣回报. 所以，当 <span class="arithmatex">\(\pi'\)</span> 选择使 <span class="arithmatex">\(q^{\pi}(s, a)\)</span> 最大化的动作 <span class="arithmatex">\(a\)</span> 时，并不一定是在选择使 <span class="arithmatex">\(q^{\pi'}(s, a)\)</span> 或 <span class="arithmatex">\(v^{\pi'}(s)\)</span> 最大化的动作. 它选择的是在当前步骤选择该动作时，能使期望折扣回报最大化的动作，之后则使用策略 <span class="arithmatex">\(\pi\)</span> （而不是 <span class="arithmatex">\(\pi'\)</span> ！）. 这种只考虑让 <span class="arithmatex">\(\pi'\)</span> 采取单个动作的贪心策略更新，会使 <span class="arithmatex">\(\pi'\)</span> 比 <span class="arithmatex">\(\pi\)</span> 更差吗？</p>
+<p>也许令人惊讶的是，关于 <span class="arithmatex">\(q^{\pi}\)</span> 的贪心策略总是至少与 <span class="arithmatex">\(\pi\)</span> 一样好，即 <span class="arithmatex">\(\pi' \geq \pi\)</span> （回想一下在式（115）中给出的策略之间 <span class="arithmatex">\(\geq\)</span> 的定义）. 这个结果由策略改进定理（定理1）描述. </p>
+<p><strong>定理1（策略改进定理）</strong>：对于任何策略 <span class="arithmatex">\(\pi\)</span> ，如果 <span class="arithmatex">\(\pi'\)</span> 是一个确定性策略，使得对于所有 <span class="arithmatex">\(s \in S\)</span> ，有：
+$$q^{\pi}(s, \pi'(s)) \geq v^{\pi}(s) $$
+那么 <span class="arithmatex">\(\pi' \geq \pi\)</span> . </p>
+<p><strong>证明</strong>
+$$
+\begin{align<em>}
+v^{\pi}(s) &amp;\leq q^{\pi}(s, \pi'(s)) \
+&amp;= \mathbb{E}\left[R_t + \gamma v^{\pi}(S_{t + 1}) \big| S_t = s, \pi'\right] \
+&amp;\leq \mathbb{E}\left[R_t + \gamma q^{\pi}(S_{t + 1}, \pi'(S_{t + 1})) \big| S_t = s, \pi'\right] \
+&amp;= \mathbb{E}\left[R_t + \gamma \mathbb{E}\left[R_{t + 1} + \gamma v^{\pi}(S_{t + 2}) \big| S_t = s, \pi'\right] \big| S_t = s, \pi'\right] \
+&amp;= \mathbb{E}\left[R_t + \gamma R_{t + 1} + \gamma^{2} v^{\pi}(S_{t + 2}) \big| S_t = s, \pi'\right] \
+&amp;\leq \mathbb{E}\left[R_t + \gamma R_{t + 1} + \gamma^{2} R_{t + 2} + \gamma^{3} v^{\pi}(S_{t + 3}) \big| S_t = s, \pi'\right] \
+&amp;\cdots \
+&amp;\leq \mathbb{E}\left[R_t + \gamma R_{t + 1} + \gamma^{2} R_{t + 2} + \gamma^{4} R_{t + 3} + \cdots \big| S_t = s, \pi'\right] \
+&amp;= v^{\pi'}(s), 
+\end{align</em>}
+$$</p>
+<p>策略改进定理对于随机贪心策略也成立，如定理2所述，我们在此不给出证明. </p>
+<p><strong>定理2（随机策略的策略改进定理）</strong>：对于任何策略 <span class="arithmatex">\(\pi\)</span> ，如果 <span class="arithmatex">\(\pi'\)</span> 满足对于所有 <span class="arithmatex">\(s \in S\)</span> ：
 <span class="arithmatex">\(<span class="arithmatex">\(\sum_{a \in \mathcal{A}} \pi'(s, a) q^{\pi}(s, a) \geq v^{\pi}(s)\)</span>\)</span>
 那么 <span class="arithmatex">\(\pi' \geq \pi\)</span> . </p>
-<p>现在我们有了创建第一个规划算法——策略迭代的要素. 策略迭代算法交替使用动态规划方法进行策略评估步骤和策略改进步骤. 这个过程如图11所示，并在算法3中用伪代码表示. 
-<img alt="策略迭代算法" src="https://pic1.zhimg.com/v2-87766665575577666666666666666666_b.jpg" />
-*图11：策略迭代算法示意图. 它从一个任意策略 <span class="arithmatex">\(\pi_{0}\)</span> 开始，使用前面描述的动态规划方法对其进行评估，以产生 <span class="arithmatex">\(v^{\pi_{0}}\)</span> . 然后执行贪心策略改进，选择一个至少与 <span class="arithmatex">\(\pi_{0}\)</span> 一样好的新确定性策略 <span class="arithmatex">\(\pi_{1}\)</span> . 然后重复这个过程，评估 <span class="arithmatex">\(\pi_{1}\)</span> ，并使用得到的值函数获得一个新策略 <span class="arithmatex">\(\pi_{2}\)</span> ，依此类推. *</p>
-<p><strong>算法3：策略迭代（此伪代码假设策略是确定性的）</strong>
-1. 任意初始化 <span class="arithmatex">\(\pi_{0}\)</span> ；
-2. 对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：
+<p>现在我们有了创建第一个规划算法——策略迭代的要素. 策略迭代算法交替使用动态规划方法进行策略评估步骤和策略改进步骤. 这个过程如下图所示，它从一个任意策略 <span class="arithmatex">\(\pi_{0}\)</span> 开始，使用前面描述的动态规划方法对其进行评估，以产生 <span class="arithmatex">\(v^{\pi_{0}}\)</span> . 然后执行贪心策略改进，选择一个至少与 <span class="arithmatex">\(\pi_{0}\)</span> 一样好的新确定性策略 <span class="arithmatex">\(\pi_{1}\)</span> . 然后重复这个过程，评估 <span class="arithmatex">\(\pi_{1}\)</span> ，并使用得到的值函数获得一个新策略 <span class="arithmatex">\(\pi_{2}\)</span> ，依此类推. </p>
+<p><img alt="alt text" src="image.png" /></p>
+<p><strong>算法1：策略迭代（此伪代码假设策略是确定性的）</strong>
+- 任意初始化 <span class="arithmatex">\(\pi_{0}\)</span> ；
+- 对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：
     - <strong>策略评估</strong>：
         - 任意初始化 <span class="arithmatex">\(v_{0}\)</span> ；
         - 对于 <span class="arithmatex">\(k = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：
-            - 对于所有 <span class="arithmatex">\(s \in S\)</span> ：<span class="arithmatex">\(v_{k + 1}(s) = \cdots\)</span> （原文此处公式不完整，推测是根据贝尔曼期望方程进行的计算式）
+            - 对于所有 <span class="arithmatex">\(s \in S\)</span> ：<span class="arithmatex">\(v_{k + 1}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_i(s), s') \left( R(s, \pi_i(s)) + \gamma v_{k}(s') \right)\)</span> 
             - 如果 <span class="arithmatex">\(v_{k + 1} = v_{k}\)</span> ，则：
                 - <span class="arithmatex">\(v^{\pi_{i}} = v_{k}\)</span> ；
                 - 跳出循环；
-    - <strong>检查终止条件</strong>：如果对于所有 <span class="arithmatex">\(s \in S\)</span> ，<span class="arithmatex">\(\pi_{i}(s) \in \underset{a \in \mathcal{A}}{arg max } \sum_{s' \in \mathcal{S}} p(s, a, s') (R(s, a) + \gamma v^{\pi_{i}}(s'))\)</span> ，则终止. 
-    - <strong>策略改进</strong>：计算 <span class="arithmatex">\(\pi_{i + 1}\)</span> ，使得对于所有 <span class="arithmatex">\(s\)</span> ，<span class="arithmatex">\(\pi_{i + 1}(s) \in \underset{a \in \mathcal{A}}{arg max } \sum_{s' \in \mathcal{S}} p(s, a, s') (R(s, a) + \gamma v^{\pi_{i}}(s'))\)</span> ，在出现平局时，根据 <span class="arithmatex">\(\mathcal{A}\)</span> 上的某个严格全序选择动作. </p>
-<p>注意，对于有限MDP，确定性策略的数量是有限的. 所以，要么策略迭代在有限次迭代后终止（如果奖励是有界的且 <span class="arithmatex">\(\gamma &lt; 1\)</span> ），要么某个策略至少出现两次（策略序列中存在一个循环）. 现在我们证明策略序列中不会出现循环，所以可以得出策略迭代在有限次迭代后终止的结论. 
-<strong>定理4</strong>：在使用策略迭代算法时，不可能出现 <span class="arithmatex">\(j \neq k\)</span> 但 <span class="arithmatex">\(\pi_{j} = \pi_{k}\)</span> 的情况. </p>
-<p><strong>证明（续）</strong>：<br />
-我们不失一般性地假设 <span class="arithmatex">\(j &lt; k\)</span>. 根据策略改进定理，我们有 <span class="arithmatex">\(\pi_{j} \leq \pi_{j+1} \leq \cdots \leq \pi_{k}\)</span>. 由于 <span class="arithmatex">\(\pi_{j} = \pi_{k}\)</span>，因此 <span class="arithmatex">\(v^{\pi_{j}} = v^{\pi_{k}}\)</span>，进而可得 <span class="arithmatex">\(v^{\pi_{j}} = v^{\pi_{j+1}} = \cdots = v^{\pi_{k}}\)</span>. 于是（注意策略是确定性策略）：<br />
-$$
-v^{\pi_{j}}(s) = v^{\pi_{j+1}}(s) \tag{151}
-$$<br />
-$$
+    - <strong>检查终止条件</strong>：如果对于所有 <span class="arithmatex">\(s \in S\)</span> ，<span class="arithmatex">\(\pi_{i}(s) \in \underset{a \in \mathcal{A}}{\arg \max } \sum_{s' \in \mathcal{S}} p(s, a, s') (R(s, a) + \gamma v^{\pi_{i}}(s'))\)</span> ，则终止. 
+    - <strong>策略改进</strong>：计算 <span class="arithmatex">\(\pi_{i + 1}\)</span> ，使得对于所有 <span class="arithmatex">\(s\)</span> ，<span class="arithmatex">\(\pi_{i + 1}(s) \in \underset{a \in \mathcal{A}}{\arg \max } \sum_{s' \in \mathcal{S}} p(s, a, s') (R(s, a) + \gamma v^{\pi_{i}}(s'))\)</span> ，在出现平局时，根据 <span class="arithmatex">\(\mathcal{A}\)</span> 上的某个严格全序选择动作. </p>
+<p>注意，对于有限MDP，确定性策略的数量是有限的. 所以，要么策略迭代在有限次迭代后终止（如果奖励是有界的且 <span class="arithmatex">\(\gamma &lt; 1\)</span> ），要么某个策略至少出现两次（策略序列中存在一个循环）. 现在我们证明策略序列中不会出现循环，所以可以得出策略迭代在有限次迭代后终止的结论. </p>
+<p><strong>定理3</strong>：在使用策略迭代算法时，不可能出现 <span class="arithmatex">\(j \neq k\)</span> 但 <span class="arithmatex">\(\pi_{j} = \pi_{k}\)</span> 的情况. </p>
+<p><strong>证明</strong>：<br />
+我们不失一般性地假设 <span class="arithmatex">\(j &lt; k\)</span>. 根据策略改进定理，我们有 <span class="arithmatex">\(\pi_{j} \leq \pi_{j+1} \leq \cdots \leq \pi_{k}\)</span>. 由于 <span class="arithmatex">\(\pi_{j} = \pi_{k}\)</span>，因此 <span class="arithmatex">\(v^{\pi_{j}} = v^{\pi_{k}}\)</span>，进而可得 <span class="arithmatex">\(v^{\pi_{j}} = v^{\pi_{j+1}} = \cdots = v^{\pi_{k}}\)</span>. 于是（注意策略是确定性策略）：  </p>
+<div class="arithmatex">\[
+v^{\pi_{j}}(s) = v^{\pi_{j+1}}(s) \tag{1}
+\]</div>
+<div class="arithmatex">\[
 \stackrel{(a)}{=} R(s, \pi_{j+1}(s)) + \sum_{s' \in \mathcal{S}} p(s, \pi_{j+1}(s), s') \gamma v^{\pi_{j+1}}(s')
-$$<br />
-$$
+\]</div>
+<div class="arithmatex">\[
 \stackrel{(b)}{=} R(s, \pi_{j+1}(s)) + \sum_{s' \in \mathcal{S}} p(s, \pi_{j+1}(s), s') \gamma v^{\pi_{j}}(s')
-$$<br />
-$$
+\]</div>
+<div class="arithmatex">\[
 \stackrel{(c)}{=} \max_{a \in \mathcal{A}} \left[ R(s, a) + \sum_{s' \in \mathcal{S}} p(s, a, s') \gamma v^{\pi_{j}}(s') \right],
-$$<br />
-其中（a）来自贝尔曼方程，（b）成立是因为 <span class="arithmatex">\(v^{\pi_{j}} = v^{\pi_{j+1}}\)</span>，（c）由 <span class="arithmatex">\(\pi_{j+1}\)</span> 的定义（贪心策略）得出. 此外，根据 <span class="arithmatex">\(v^{\pi_{j}}\)</span> 的贝尔曼方程，我们有：<br />
-$$
-v^{\pi_{j}}(s) = R(s, \pi_{j}(s)) + \sum_{s' \in \mathcal{S}} p(s, \pi_{j}(s), s') \gamma v^{\pi_{j}}(s') \tag{155}
-$$<br />
-为了使（155）和（154）同时成立，必须满足：<br />
-$$
+\]</div>
+<p>其中（a）来自贝尔曼方程，（b）成立是因为 <span class="arithmatex">\(v^{\pi_{j}} = v^{\pi_{j+1}}\)</span>，（c）由 <span class="arithmatex">\(\pi_{j+1}\)</span> 的定义（贪心策略）得出. 此外，根据 <span class="arithmatex">\(v^{\pi_{j}}\)</span> 的贝尔曼方程，我们有：</p>
+<div class="arithmatex">\[
+v^{\pi_{j}}(s) = R(s, \pi_{j}(s)) + \sum_{s' \in \mathcal{S}} p(s, \pi_{j}(s), s') \gamma v^{\pi_{j}}(s') \tag{2}
+\]</div>
+<p>为了使（1）和（2）同时成立，必须满足： </p>
+<div class="arithmatex">\[
 \max_{a \in \mathcal{A}} \left[ R(s, a) + \sum_{s' \in \mathcal{S}} p(s, a, s') \gamma v^{\pi_{j}}(s') \right] = R(s, \pi_{j}(s)) + \sum_{s' \in \mathcal{S}} p(s, \pi_{j}(s), s') \gamma v^{\pi_{j}}(s'),
-$$<br />
-因此：<br />
-$$
+\]</div>
+<p>因此： </p>
+<div class="arithmatex">\[
 \pi_{j}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \left[ R(s, a) + \sum_{s' \in \mathcal{S}} p(s, a, s') \gamma v^{\pi_{j}}(s') \right].
-$$<br />
-这意味着策略迭代的终止条件在 <span class="arithmatex">\(\pi_{j}\)</span> 时就已满足，矛盾. 故策略序列中不存在循环，定理得证.   </p>
-<p>现在我们知道策略迭代会终止，接下来考虑它收敛到的策略性质. 当算法终止时，对于所有 <span class="arithmatex">\(s \in S\)</span>，有：<br />
-$$
-\begin{array}{rlrl} 
-v^{\pi_{i+1}}(s) &amp; \stackrel{(a)}{=} \sum_{a \in \mathcal{A}} \pi_{i+1}(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\pi_{i+1}}(s') \right) \tag{158} \ 
-&amp; \stackrel{(b)}{=} \sum_{a \in \mathcal{A}} \pi_{i+1}(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\pi_{i}}(s') \right) \tag{159} \ 
-&amp; \stackrel{(c)}{=} \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\pi_{i}}(s') \right) \tag{160} \ 
-&amp; \stackrel{(b)}{=} \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\pi_{i+1}}(s') \right), \tag{161} 
-\end{array}
-$$<br />
-其中（a）是贝尔曼方程（将 <span class="arithmatex">\(\pi_{i+1}\)</span> 视为状态到动作的分布），（b）基于终止条件 <span class="arithmatex">\(\pi_{i+1} = \pi_{i}\)</span>，（c）源于 <span class="arithmatex">\(\pi_{i+1}\)</span> 是关于 <span class="arithmatex">\(v^{\pi_{i}}\)</span> 的贪心策略. 由于（161）是贝尔曼最优性方程，<span class="arithmatex">\(\pi_{i+1}\)</span> 是最优策略——策略迭代终止时，得到的策略即为最优策略.   </p>
+\]</div>
+<p>这意味着策略迭代的终止条件在 <span class="arithmatex">\(\pi_{j}\)</span> 时就已满足，矛盾. 故策略序列中不存在循环，定理得证.   </p>
+<p>现在我们知道策略迭代会终止，接下来考虑它收敛到的策略性质. 当算法终止时，对于所有 <span class="arithmatex">\(s \in S\)</span>，有： </p>
+<div class="arithmatex">\[
+\begin{align*}
+v^{\pi_{i + 1}}(s) &amp;\stackrel{\text{(a)}}{=} \sum_{a \in \mathcal{A}} \pi_{i + 1}(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\pi_{i + 1}}(s') \right) \\
+&amp;\stackrel{\text{(b)}}{=} \sum_{a \in \mathcal{A}} \pi_{i + 1}(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\pi_{i}}(s') \right) \\
+&amp;\stackrel{\text{(c)}}{=} \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\pi_{i}}(s') \right) \\
+&amp;\stackrel{\text{(b)}}{=} \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\pi_{i + 1}}(s') \right), 
+\end{align*}
+\]</div>
+<p>其中（a）是贝尔曼方程（将 <span class="arithmatex">\(\pi_{i+1}\)</span> 视为状态到动作的分布），（b）基于终止条件 <span class="arithmatex">\(\pi_{i+1} = \pi_{i}\)</span>，（c）源于 <span class="arithmatex">\(\pi_{i+1}\)</span> 是关于 <span class="arithmatex">\(v^{\pi_{i}}\)</span> 的贪心策略. 由于最后一个等式是贝尔曼最优性方程，<span class="arithmatex">\(\pi_{i+1}\)</span> 是最优策略——策略迭代终止时，得到的策略即为最优策略.   </p>
 <p>注意，策略评估算法可在 <span class="arithmatex">\(v^{\pi_{i+1}} = v^{\pi_{i}}\)</span> 时终止. 使用此终止条件无需 <span class="arithmatex">\(\pi_{i+1}\)</span> 以特定顺序处理平局，且等价于原条件，但会使最终策略的分析稍显复杂.   </p>
-<h4 id="43">4.3 值迭代<a class="headerlink" href="#43" title="Permanent link">&para;</a></h4>
+<h2 id="3">3 值迭代<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>策略迭代算法效率不高. 尽管使用动态规划的策略评估保证收敛到 <span class="arithmatex">\(v^{\pi}\)</span>，但除非策略评估的迭代次数趋于无穷，否则无法保证达到 <span class="arithmatex">\(v^{\pi}\)</span>. 因此，策略迭代中外层循环（对 <span class="arithmatex">\(i\)</span> 的循环）的每一次迭代可能需要无限计算量. 一个自然的问题是：能否提前停止策略评估——当 <span class="arithmatex">\(v_{k+1} \neq v_{k}\)</span> 时，但在固定次数迭代后停止（例如，对 <span class="arithmatex">\(k\)</span> 的循环从 <span class="arithmatex">\(0\)</span> 到 <span class="arithmatex">\(K\)</span>，<span class="arithmatex">\(K\)</span> 为常数）.   </p>
-<p>如果提前停止策略评估，<span class="arithmatex">\(v^{\pi_{i}}\)</span> 的估计会有误差，因此基于该估计的贪心策略可能不会比当前策略更好. 但令人惊讶的是，该过程仍会收敛到最优策略. 一种特别流行的变体是值迭代，它设置 <span class="arithmatex">\(K=1\)</span>——在策略改进步骤之间仅执行一次策略评估的迭代. 重要的是，每次策略评估迭代都从上一步的值函数估计开始（而非随机初始值函数）. 值迭代的伪代码如算法4所示.   </p>
-<p><strong>算法4：值迭代（低效实现，作为推导常用伪代码的铺垫）</strong><br />
-1. 任意初始化 <span class="arithmatex">\(\pi_{0}\)</span> 和 <span class="arithmatex">\(v_{0}\)</span>；<br />
-2. 对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：<br />
+<p>如果提前停止策略评估，<span class="arithmatex">\(v^{\pi_{i}}\)</span> 的估计会有误差，因此基于该估计的贪心策略可能不会比当前策略更好. 但令人惊讶的是，该过程仍会收敛到最优策略. 一种特别流行的变体是值迭代，它设置 <span class="arithmatex">\(K=1\)</span>——在策略改进步骤之间仅执行一次策略评估的迭代. 重要的是，每次策略评估迭代都从上一步的值函数估计开始（而非随机初始值函数）. 值迭代的伪代码如算法2所示.   </p>
+<p><strong>算法2：值迭代（低效实现，作为推导常用伪代码的铺垫）</strong><br />
+- 任意初始化 <span class="arithmatex">\(\pi_{0}\)</span> 和 <span class="arithmatex">\(v_{0}\)</span>；<br />
+- 对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：<br />
     - <strong>策略评估</strong>：<br />
       对所有 <span class="arithmatex">\(s \in S\)</span>：<br />
       $$
@@ -1207,46 +1243,42 @@ $$<br />
       $$
       \pi_{i+1}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i+1}(s') \right)
       $$  </p>
-<p>按照算法4的伪代码，我们会得到如下策略和值函数序列：<br />
-$$
-v_{0} \text{：任意值} \tag{164}
-$$<br />
-$$
-\pi_{0} \text{：任意策略} \tag{165}
-$$<br />
-$$
-v_{1}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{0}(s), s') \left( R(s, \pi_{0}(s)) + \gamma v_{0}(s') \right) \tag{166}
-$$<br />
-$$
+<p>按照算法2的伪代码，我们会得到如下策略和值函数序列：  </p>
+<div class="arithmatex">\[
+v_{0} \text{：任意值} 
+\]</div>
+<div class="arithmatex">\[
+\pi_{0} \text{：任意策略} 
+\]</div>
+<div class="arithmatex">\[
+v_{1}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{0}(s), s') \left( R(s, \pi_{0}(s)) + \gamma v_{0}(s') \right) 
+\]</div>
+<div class="arithmatex">\[
 \pi_{1}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{1}(s') \right)
-$$<br />
-$$
+\]</div>
+<div class="arithmatex">\[
 v_{2}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{1}(s), s') \left( R(s, \pi_{1}(s)) + \gamma v_{1}(s') \right)
-$$<br />
+$$  
 $$
 \pi_{2}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{2}(s') \right)
-$$<br />
-$$
-v_{3}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{2}(s), s') \left( R(s, \pi_{2}(s)) + \gamma v_{2}(s') \right) \tag{170}
-$$<br />
-$$
-\pi_{3}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{3}(s') \right) \tag{171}
-$$<br />
-$$
-\cdots \tag{172}
-$$  </p>
-<p>注意策略和值函数估计的更新具有相似性. 计算 <span class="arithmatex">\(v_{2}(s)\)</span> 时，使用 <span class="arithmatex">\(\pi_{1}(s)\)</span>，即最大化（167）式右侧的动作 <span class="arithmatex">\(a\)</span>. 该表达式与（168）式右侧相同，因此 <span class="arithmatex">\(v_{2}(s)\)</span> 可写为：<br />
-$$
-v_{2}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{1}(s') \right).
-$$<br />
-<span class="arithmatex">\(v_{3}\)</span> 和 <span class="arithmatex">\(v_{2}\)</span> 的关系同理. 一般地，我们可直接从 <span class="arithmatex">\(v_{i}\)</span> 计算 <span class="arithmatex">\(v_{i+1}\)</span>，无需显式计算 <span class="arithmatex">\(\pi_{i}\)</span>，得到更高效的值迭代更新式：<br />
-$$
-v_{i+1}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i}(s') \right). \tag{174}
-$$<br />
-注意，策略评估算法是贝尔曼方程的迭代形式，而（174）中的值迭代更新是贝尔曼最优性方程的迭代形式. 使用此高效更新的值迭代伪代码如算法5所示.   </p>
-<p><strong>算法5：值迭代</strong><br />
-1. 任意初始化 <span class="arithmatex">\(v_{0}\)</span>；<br />
-2. 对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：<br />
+\]</div>
+<div class="arithmatex">\[
+v_{3}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{2}(s), s') \left( R(s, \pi_{2}(s)) + \gamma v_{2}(s') \right) 
+\]</div>
+<div class="arithmatex">\[
+\pi_{3}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{3}(s') \right) 
+\]</div>
+<div class="arithmatex">\[
+\cdots 
+\]</div>
+<p>注意策略和值函数估计的更新具有相似性. 一般地，我们可直接从 <span class="arithmatex">\(v_{i}\)</span> 计算 <span class="arithmatex">\(v_{i+1}\)</span>，无需显式计算 <span class="arithmatex">\(\pi_{i}\)</span>，得到更高效的值迭代更新式：  </p>
+<div class="arithmatex">\[
+v_{i+1}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i}(s') \right). 
+\]</div>
+<p>注意，策略评估算法是贝尔曼方程的迭代形式，而上式中的值迭代更新是贝尔曼最优性方程的迭代形式. 使用此高效更新的值迭代伪代码如算法3所示.   </p>
+<p><strong>算法3：值迭代</strong><br />
+- 任意初始化 <span class="arithmatex">\(v_{0}\)</span>；<br />
+- 对于 <span class="arithmatex">\(i = 0\)</span> 到 <span class="arithmatex">\(\infty\)</span> 执行：<br />
     - <strong>值迭代更新</strong>：<br />
       对所有 <span class="arithmatex">\(s \in S\)</span>：<br />
       $$
@@ -1254,86 +1286,86 @@ $$<br />
       $$<br />
     - <strong>检查终止条件</strong>：<br />
       如果 <span class="arithmatex">\(v_{i+1} = v_{i}\)</span>，则终止；  </p>
-<h4 id="44">4.4 贝尔曼算子与值迭代的收敛性<a class="headerlink" href="#44" title="Permanent link">&para;</a></h4>
+<h2 id="4">4 贝尔曼算子与值迭代的收敛性<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>在本小节中，我们证明值迭代收敛到唯一的值函数，并由此推导出之前提到的所有结论：对于奖励有界且 <span class="arithmatex">\(\gamma &lt; 1\)</span> 的有限MDP，存在确定性最优策略，且贝尔曼最优性方程仅对最优策略 <span class="arithmatex">\(\pi^{*}\)</span> 的值函数 <span class="arithmatex">\(v^{\pi^{*}}\)</span> 成立.   </p>
-<p>在给出本小节的主要定理前，先建立额外的符号. 对于有限MDP，值函数估计可视为 <span class="arithmatex">\(\mathbb{R}^{|S|}\)</span> 中的向量，每个元素对应一个状态的值. 回忆：算子是将一个空间中的元素映射到同一空间中元素的函数. 令 <span class="arithmatex">\(T: \mathbb{R}^{|S|} \to \mathbb{R}^{|S|}\)</span> 为贝尔曼算子，它将值函数估计作为输入，输出新的值函数估计，满足：<br />
-$$
-\mathcal{T}(v_{i}) := v_{i+1}, \tag{176}
-$$<br />
-即：<br />
-$$
-\mathcal{T}(v_{i})(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i}(s') \right). \tag{177}
-$$<br />
-贝尔曼算子编码了值迭代的单次迭代. 我们简化符号，写作 <span class="arithmatex">\(\mathcal{T}v_{i} = v_{i+1}\)</span>，并假设运算顺序优先计算贝尔曼算子，因此 <span class="arithmatex">\(\mathcal{T}v(s)\)</span> 表示 <span class="arithmatex">\(\mathcal{T}(v)\)</span> 在状态 <span class="arithmatex">\(s\)</span> 处的值.   </p>
+<p>在给出本小节的主要定理前，先建立额外的符号. 对于有限MDP，值函数估计可视为 <span class="arithmatex">\(\mathbb{R}^{|S|}\)</span> 中的向量，每个元素对应一个状态的值. 回忆：算子是将一个空间中的元素映射到同一空间中元素的函数. 令 <span class="arithmatex">\(T: \mathbb{R}^{|S|} \to \mathbb{R}^{|S|}\)</span> 为贝尔曼算子，它将值函数估计作为输入，输出新的值函数估计，满足：  </p>
+<div class="arithmatex">\[
+\mathcal{T}(v_{i}) := v_{i+1}, 
+\]</div>
+<p>即：  </p>
+<div class="arithmatex">\[
+\mathcal{T}(v_{i})(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i}(s') \right). 
+\]</div>
+<p>贝尔曼算子编码了值迭代的单次迭代. 我们简化符号，写作 <span class="arithmatex">\(\mathcal{T}v_{i} = v_{i+1}\)</span>，并假设运算顺序优先计算贝尔曼算子，因此 <span class="arithmatex">\(\mathcal{T}v(s)\)</span> 表示 <span class="arithmatex">\(\mathcal{T}(v)\)</span> 在状态 <span class="arithmatex">\(s\)</span> 处的值.   </p>
 <p>若存在 <span class="arithmatex">\(\lambda \in [0, 1)\)</span>，使得对任意 <span class="arithmatex">\(x, y \in X\)</span>，有 <span class="arithmatex">\(d(f(x), f(y)) \leq \lambda d(x, y)\)</span>（其中 <span class="arithmatex">\(d\)</span> 为距离函数），则称算子 <span class="arithmatex">\(f\)</span> 为<strong>压缩映射</strong>. 图12展示了帮助理解压缩映射定义的示意图.   </p>
-<p><strong>问题22</strong>：若 <span class="arithmatex">\(f\)</span> 是压缩映射，序列 <span class="arithmatex">\(x_{i+1} = f(x_{i})\)</span> 是否一定收敛？是否一定收敛到 <span class="arithmatex">\(X\)</span> 内的唯一一点？  </p>
-<p><strong>答案22</strong>：<br />
-如上述问题的答案所述，若 <span class="arithmatex">\(f\)</span> 是压缩映射，则序列一定收敛到唯一的不动点. 这一结论由巴拿赫不动点定理形式化：  </p>
-<p><strong>定理5（巴拿赫不动点定理）</strong>：若 <span class="arithmatex">\(f\)</span> 是非空完备赋范向量空间上的压缩映射，则 <span class="arithmatex">\(f\)</span> 有唯一的不动点 <span class="arithmatex">\(x^{*}\)</span>，且对任意初始点 <span class="arithmatex">\(x_{0}\)</span>，序列 <span class="arithmatex">\(x_{k+1} = f(x_{k})\)</span> 收敛到 <span class="arithmatex">\(x^{*}\)</span>. <br />
-<strong>证明</strong>：本课程不提供证明，可在维基百科中找到.   </p>
-<p>我们将巴拿赫不动点定理应用于 <span class="arithmatex">\(f \leftarrow \mathcal{T}\)</span>，<span class="arithmatex">\(x \in \mathbb{R}^{|S|}\)</span>，距离函数 <span class="arithmatex">\(d(v, v') := \max_{s \in S} |v(s) - v'(s)|\)</span>（即最大范数 <span class="arithmatex">\(\|v - v'\|_{\infty}\)</span>）. 首先，<span class="arithmatex">\(\mathbb{R}^{|S|}\)</span> 在最大范数下是完备的（由Riesz-Fisher定理，<span class="arithmatex">\(L^{p}\)</span> 空间在 <span class="arithmatex">\(1 \leq p \leq \infty\)</span> 时完备）. 接下来需证明贝尔曼算子是压缩映射（定理6）.   </p>
-<p><strong>定理6（贝尔曼算子是压缩映射）</strong>：当 <span class="arithmatex">\(\gamma &lt; 1\)</span> 时，贝尔曼算子在 <span class="arithmatex">\(\mathbb{R}^{|S|}\)</span> 上关于距离函数 <span class="arithmatex">\(d(v, v') := \max_{s \in S} |v(s) - v'(s)|\)</span> 是压缩映射. <br />
-<strong>证明</strong>：<br />
-$$
+<p><strong>定理4（巴拿赫不动点定理）</strong>：若 <span class="arithmatex">\(f\)</span> 是非空完备赋范向量空间上的压缩映射，则 <span class="arithmatex">\(f\)</span> 有唯一的不动点 <span class="arithmatex">\(x^{*}\)</span>，且对任意初始点 <span class="arithmatex">\(x_{0}\)</span>，序列 <span class="arithmatex">\(x_{k+1} = f(x_{k})\)</span> 收敛到 <span class="arithmatex">\(x^{*}\)</span>. </p>
+<p><strong>证明</strong>：本课程不提供证明，可在维基百科中找到.   </p>
+<p>我们将巴拿赫不动点定理应用于 <span class="arithmatex">\(f \leftarrow \mathcal{T}\)</span>，<span class="arithmatex">\(x \in \mathbb{R}^{|S|}\)</span>，距离函数 <span class="arithmatex">\(d(v, v') := \max_{s \in S} |v(s) - v'(s)|\)</span>（即最大范数 <span class="arithmatex">\(\|v - v'\|_{\infty}\)</span>）. 首先，<span class="arithmatex">\(\mathbb{R}^{|S|}\)</span> 在最大范数下是完备的（由Riesz-Fisher定理，<span class="arithmatex">\(L^{p}\)</span> 空间在 <span class="arithmatex">\(1 \leq p \leq \infty\)</span> 时完备）. 接下来需证明贝尔曼算子是压缩映射（定理5）.   </p>
+<p><strong>定理5（贝尔曼算子是压缩映射）</strong>：当 <span class="arithmatex">\(\gamma &lt; 1\)</span> 时，贝尔曼算子在 <span class="arithmatex">\(\mathbb{R}^{|S|}\)</span> 上关于距离函数 <span class="arithmatex">\(d(v, v') := \max_{s \in S} |v(s) - v'(s)|\)</span> 是压缩映射.  </p>
+<p><strong>证明</strong>：  </p>
+<div class="arithmatex">\[
 \begin{aligned} 
-|\mathcal{T}v - \mathcal{T}v'|<em _in="\in" _mathcal_S="\mathcal{S" s="s">{\infty} &amp;= \max</em>v'(s) \right| \
-&amp;= \max_{s \in \mathcal{S}} \left| \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v(s') \right) - \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v'(s') \right) \right|,
+\|\mathcal{T}v - \mathcal{T}v'\|_{\infty} &amp;= \max_{s \in \mathcal{S}} \left| \mathcal{T}v(s) - \mathcal{T}v'(s) \right| \\
+&amp;= \max_{s \in \mathcal{S}} \left| \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v(s') \right) - \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v'(s') \right) \right|, \tag{3}
 \end{aligned}
-$$}} \left| \mathcal{T}v(s) - \mathcal{T<br />
-根据贝尔曼算子的定义. 为继续推导，考虑任意函数 <span class="arithmatex">\(f, g: X \to \mathbb{R}\)</span> 的性质：<br />
-$$
-\forall x,  f(x) - g(x) \leq |f(x) - g(x)| \tag{180}
-$$<br />
-$$
-\forall x,  f(x) \leq |f(x) - g(x)| + g(x)
-$$<br />
-$$
+\]</div>
+<p>根据贝尔曼算子的定义. 为继续推导，考虑任意函数 <span class="arithmatex">\(f, g: X \to \mathbb{R}\)</span> 的性质： </p>
+<div class="arithmatex">\[
+\forall x, \ f(x) - g(x) \leq |f(x) - g(x)| 
+\]</div>
+<div class="arithmatex">\[
+\forall x, \ f(x) \leq |f(x) - g(x)| + g(x)
+\]</div>
+<div class="arithmatex">\[
 \max_{x \in \mathcal{X}} f(x) \leq \max_{x \in \mathcal{X}} \left( |f(x) - g(x)| + g(x) \right)
-$$<br />
-$$
+\]</div>
+<div class="arithmatex">\[
 \max_{x \in \mathcal{X}} f(x) \leq \max_{x \in \mathcal{X}} |f(x) - g(x)| + \max_{x \in \mathcal{X}} g(x)
-$$<br />
-$$
-\max_{x \in \mathcal{X}} f(x) - \max_{x \in \mathcal{X}} g(x) \leq \max_{x \in \mathcal{X}} |f(x) - g(x)|. \tag{184}
-$$<br />
-若 <span class="arithmatex">\(\max_{x \in X} f(x) - \max_{x \in X} g(x) \geq 0\)</span>，则由（184）得：<br />
-$$
-\left| \max_{x \in \mathcal{X}} f(x) - \max_{x \in \mathcal{X}} g(x) \right| \leq \max_{x \in \mathcal{X}} |f(x) - g(x)|. \tag{185}
-$$<br />
-若 <span class="arithmatex">\(\max_{x \in X} f(x) - \max_{x \in X} g(x) &lt; 0\)</span>，则：<br />
-$$
-\max_{x \in \mathcal{X}} g(x) - \max_{x \in \mathcal{X}} f(x) \leq \max_{x \in \mathcal{X}} |g(x) - f(x)|, \tag{186}
-$$<br />
-这也蕴含（185），因为 <span class="arithmatex">\(|f(x) - g(x)| = |g(x) - f(x)|\)</span>. 将（185）应用于（179）：<br />
-$$
-\begin{aligned} 
-|\mathcal{T}v - \mathcal{T}v'|<em _in="\in" _mathcal_S="\mathcal{S" s="s">{\infty} &amp;\leq \max</em> p(s, a, s') \gamma (v(s') - v'(s')) \right| \
-&amp;= \gamma \max_{s \in \mathcal{S}} \max_{a \in \mathcal{A}} \left| \sum_{s' \in \mathcal{S}} p(s, a, s') (v(s') - v'(s')) \right| \
-&amp;\leq \gamma \max_{s \in \mathcal{S}} \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') |v(s') - v'(s')| \tag{189} \
-&amp;\leq \gamma \max_{s \in \mathcal{S}} \max_{s' \in \mathcal{S}} |v(s') - v'(s')| \tag{190} \
-&amp;= \gamma |v - v'|_{\infty}.
-\end{aligned}
-$$}} \max_{a \in \mathcal{A}} \left| \sum_{s' \in \mathcal{S}<br />
-证毕.   </p>
+\]</div>
+<div class="arithmatex">\[
+\max_{x \in \mathcal{X}} f(x) - \max_{x \in \mathcal{X}} g(x) \leq \max_{x \in \mathcal{X}} |f(x) - g(x)|. \tag{4}
+\]</div>
+<p>若 <span class="arithmatex">\(\max_{x \in X} f(x) - \max_{x \in X} g(x) \geq 0\)</span>，则由（4）得：  </p>
+<div class="arithmatex">\[
+\left| \max_{x \in \mathcal{X}} f(x) - \max_{x \in \mathcal{X}} g(x) \right| \leq \max_{x \in \mathcal{X}} |f(x) - g(x)|. \tag{5}
+\]</div>
+<p>若 <span class="arithmatex">\(\max_{x \in X} f(x) - \max_{x \in X} g(x) &lt; 0\)</span>，则： </p>
+<div class="arithmatex">\[
+\max_{x \in \mathcal{X}} g(x) - \max_{x \in \mathcal{X}} f(x) \leq \max_{x \in \mathcal{X}} |g(x) - f(x)|, 
+\]</div>
+<p>这也蕴含（5），因为 <span class="arithmatex">\(|f(x) - g(x)| = |g(x) - f(x)|\)</span>. 将（5）应用于（3）： </p>
+<div class="arithmatex">\[
+\begin{align*}
+\|\mathcal{T}v - \mathcal{T}v'\| 
+&amp;\leq \max_{s\in\mathcal{S}}\max_{a\in\mathcal{A}}\left|\sum_{s'\in\mathcal{S}}p(s,a,s')\left(R(s,a) + \gamma v(s')\right) - \sum_{s'\in\mathcal{S}}p(s,a,s')\left(R(s,a) + \gamma v'(s')\right)\right| \\
+&amp;= \gamma\max_{s\in\mathcal{S}}\max_{a\in\mathcal{A}}\left|\sum_{s'\in\mathcal{S}}p(s,a,s')\left(v(s') - v'(s')\right)\right| \\
+&amp;\leq \gamma\max_{s\in\mathcal{S}}\max_{a\in\mathcal{A}}\sum_{s'\in\mathcal{S}}p(s,a,s')\left|v(s') - v'(s')\right| \\
+&amp;\leq \gamma\max_{s\in\mathcal{S}}\max_{a\in\mathcal{A}}\max_{s'\in\mathcal{S}}\left|v(s') - v'(s')\right| \\
+&amp;= \gamma\max_{s'\in\mathcal{S}}\left|v(s') - v'(s')\right| \\
+&amp;= \gamma\|v - v'\|_{\infty}. 
+\quad\square
+\end{align*}
+\]</div>
+<p>证毕.   </p>
 <p>因此，贝尔曼算子是压缩映射，由巴拿赫不动点定理可知，值迭代算法收敛到唯一的不动点，记为 <span class="arithmatex">\(v^{\infty}\)</span>.   </p>
-<p><strong>定理7</strong>：对于所有状态和动作集有限、奖励有界且 <span class="arithmatex">\(\gamma &lt; 1\)</span> 的MDP，值迭代收敛到唯一的不动点 <span class="arithmatex">\(v^{\infty}\)</span>. <br />
-<strong>证明</strong>：由巴拿赫不动点定理（定理5）和贝尔曼算子是压缩映射（定理6）直接得出.   </p>
+<p><strong>定理6</strong>：对于所有状态和动作集有限、奖励有界且 <span class="arithmatex">\(\gamma &lt; 1\)</span> 的MDP，值迭代收敛到唯一的不动点 <span class="arithmatex">\(v^{\infty}\)</span>.  </p>
+<p><strong>证明</strong>：由巴拿赫不动点定理（定理4）和贝尔曼算子是压缩映射（定理5）直接得出.   </p>
 <p>尽管我们不提供证明，但策略迭代和值迭代的收敛次数均为关于 <span class="arithmatex">\(|S|\)</span> 和 <span class="arithmatex">\(|A|\)</span> 的多项式. 注意，贝尔曼算子的压缩因子为 <span class="arithmatex">\(\gamma\)</span>——当 <span class="arithmatex">\(\gamma\)</span> 趋近于1时，收敛速度变慢；<span class="arithmatex">\(\gamma\)</span> 较小时，收敛速度加快. 这符合直觉，因为小 <span class="arithmatex">\(\gamma\)</span> 意味着远期事件的重要性低，值函数在较少备份后即可准确.   </p>
 <p>现在我们可以证明确定性最优策略的存在性：  </p>
-<p><strong>定理8</strong>：所有状态和动作集有限、奖励有界且 <span class="arithmatex">\(\gamma &lt; 1\)</span> 的MDP至少存在一个最优策略. <br />
-<strong>证明</strong>：由定理7，值迭代收敛到唯一的不动点 <span class="arithmatex">\(v^{\infty}\)</span>. 考虑任意满足以下条件的确定性策略 <span class="arithmatex">\(\pi^{\infty}\)</span>：<br />
-$$
+<p><strong>定理7</strong>：所有状态和动作集有限、奖励有界且 <span class="arithmatex">\(\gamma &lt; 1\)</span> 的MDP至少存在一个最优策略.  </p>
+<p><strong>证明</strong>：由定理6，值迭代收敛到唯一的不动点 <span class="arithmatex">\(v^{\infty}\)</span>. 考虑任意满足以下条件的确定性策略 <span class="arithmatex">\(\pi^{\infty}\)</span>：  </p>
+<div class="arithmatex">\[
 \pi^{\infty}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\infty}(s') \right).
-$$<br />
-由于动作集 <span class="arithmatex">\(\mathcal{A}\)</span> 有限，至少存在一个这样的策略. 回忆值迭代对应策略迭代的一次迭代，其中策略评估仅执行一次完全备份. <span class="arithmatex">\(\pi^{\infty}\)</span> 是关于 <span class="arithmatex">\(v^{\infty}\)</span> 的贪心策略. 由于 <span class="arithmatex">\(v^{\infty}\)</span> 是值迭代的不动点，对 <span class="arithmatex">\(\pi^{\infty}\)</span> 执行一次策略评估的完全备份后仍得到 <span class="arithmatex">\(v^{\infty}\)</span>，即：<br />
-$$
-v^{\infty}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi^{\infty}(s), s') \left( R(s, \pi^{\infty}(s)) + \gamma v^{\infty}(s') \right), \tag{194}
-$$<br />
-这正是贝尔曼方程，故 <span class="arithmatex">\(v^{\infty}\)</span> 是 <span class="arithmatex">\(\pi^{\infty}\)</span> 的状态值函数. 此外，由于 <span class="arithmatex">\(v^{\infty}\)</span> 是值迭代的不动点，对所有 <span class="arithmatex">\(s \in S\)</span>：<br />
-$$
+\]</div>
+<p>由于动作集 <span class="arithmatex">\(\mathcal{A}\)</span> 有限，至少存在一个这样的策略. 回忆值迭代对应策略迭代的一次迭代，其中策略评估仅执行一次完全备份. <span class="arithmatex">\(\pi^{\infty}\)</span> 是关于 <span class="arithmatex">\(v^{\infty}\)</span> 的贪心策略. 由于 <span class="arithmatex">\(v^{\infty}\)</span> 是值迭代的不动点，对 <span class="arithmatex">\(\pi^{\infty}\)</span> 执行一次策略评估的完全备份后仍得到 <span class="arithmatex">\(v^{\infty}\)</span>，即： </p>
+<div class="arithmatex">\[
+v^{\infty}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi^{\infty}(s), s') \left( R(s, \pi^{\infty}(s)) + \gamma v^{\infty}(s') \right), 
+\]</div>
+<p>这正是贝尔曼方程，故 <span class="arithmatex">\(v^{\infty}\)</span> 是 <span class="arithmatex">\(\pi^{\infty}\)</span> 的状态值函数. 此外，由于 <span class="arithmatex">\(v^{\infty}\)</span> 是值迭代的不动点，对所有 <span class="arithmatex">\(s \in S\)</span>： </p>
+<div class="arithmatex">\[
 v^{\infty}(s) = \max_{a \in \mathcal{A}} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v^{\infty}(s') \right),
-$$<br />
-即贝尔曼最优性方程. 由定理1，满足贝尔曼最优性方程的策略是最优策略，故 <span class="arithmatex">\(\pi^{\infty}\)</span> 是最优策略.   </p>
+\]</div>
+<p>即贝尔曼最优性方程. 由<a href="../Bellman_eq/">贝尔曼方程对应的文章的</a>定理1，满足贝尔曼最优性方程的策略是最优策略，故 <span class="arithmatex">\(\pi^{\infty}\)</span> 是最优策略.   </p>
 
 
 
@@ -1356,7 +1388,7 @@ $$<br />
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 29, 2025 20:52:16">April 29, 2025 20:52:16</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 30, 2025 12:32:13">April 30, 2025 12:32:13</span>
   </span>
 
     
