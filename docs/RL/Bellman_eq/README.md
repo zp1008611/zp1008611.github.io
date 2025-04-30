@@ -181,6 +181,7 @@ v^{\pi}(s) &:= \mathbb{E}\left[\sum_{k = 0}^{\infty} \gamma^{k} R_{t + k} \Bigg|
 &= \sum_{a \in \mathcal{A}} \pi(s, a)R(s, a) + \sum_{a \in \mathcal{A}} \pi(s, a) \left(\sum_{s' \in \mathcal{S}} p(s, a, s') \mathbb{E}\left[\gamma\sum_{k = 0}^{\infty} \gamma^{k} R_{t + k + 1} \Bigg| S_{t} = s, A_{t} = a, S_{t + 1} = s', \pi\right]\right)  \\
 &\stackrel{\text{Markov property}}{=} \sum_{a \in \mathcal{A}} \pi(s, a)R(s, a) + \sum_{a \in \mathcal{A}} \pi(s, a) \left(\sum_{s' \in \mathcal{S}} p(s, a, s')\gamma\mathbb{E}\left[\sum_{k = 0}^{\infty} \gamma^{k} R_{t + k + 1} \Bigg| S_{t + 1} = s', \pi\right]\right)  \\
 &= \sum_{a \in \mathcal{A}} \pi(s, a)R(s, a) + \sum_{a \in \mathcal{A}} \pi(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s')\gamma v^{\pi}(s')  \\
+&= \sum_{a \in \mathcal{A}} \pi(s, a)R(s, a)\sum_{s' \in \mathcal{S}} p(s, a, s') + \sum_{a \in \mathcal{A}} \pi(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s')\gamma v^{\pi}(s') \\ &\quad\quad (\pi(s, a)R(s, a)和s'无关且\sum_{s' \in \mathcal{S}} p(s, a, s')=1，可以乘以这一项) \\
 &= \sum_{a \in \mathcal{A}} \pi(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') \left(R(s, a) + \gamma v^{\pi}(s')\right) 
 \end{align*}
 $$
@@ -254,6 +255,25 @@ $v^{\pi}$的贝尔曼方程是$v^{\pi}$的递归表达式，而$q^{\pi}$的贝�
 $$
 q^{\pi}(s,a)=R(s,a)+\gamma\sum_{s'\in\mathcal{S}}p(s,a,s')\sum_{a'\in\mathcal{A}}\pi(s',a')q^{\pi}(s',a') 
 $$
+
+$$
+\begin{align*}
+q^{\pi}(s,a) &:= \mathbb{E}\left[\sum_{k = 0}^{\infty} \gamma^{k} R_{t + k} \big| S_t = s, A_t = a, \pi \right] \\
+&= \mathbb{E}[R_t \big| S_t = s, A_t = a, \pi] + \mathbb{E}\left[\sum_{k = 1}^{\infty} \gamma^{k} R_{t + k} \big| S_t = s, A_t = a, \pi \right] \\
+&= \mathbb{E}[R_t \big| S_t = s, A_t = a, \pi] + \gamma\mathbb{E}\left[\sum_{k = 1}^{\infty} \gamma^{k - 1} R_{t + k} \big| S_t = s, A_t = a, \pi \right] \\
+&= \mathbb{E}[R_t \big| S_t = s, A_t = a, \pi] + \gamma\mathbb{E}\left[\sum_{k = 0}^{\infty} \gamma^{k} R_{t + k + 1} \big| S_t = s, A_t = a, \pi \right] \\
+&= \mathbb{E}[R_t \big| S_t = s, A_t = a, \pi] + \gamma\sum_{s' \in \mathcal{S}} \Pr(S_{t + 1} = s' \big| S_t = s, A_t = a, \pi) \\
+&\quad\times \sum_{a' \in \mathcal{A}} \Pr(A_{t + 1} = a' \big| S_{t + 1} = s', S_t = s, A_t = a, \pi) \\
+&\quad\times \mathbb{E}\left[\sum_{k = 0}^{\infty} \gamma^{k} R_{t + k + 1} \big| S_t = s, A_t = a, S_{t + 1} = s', A_{t + 1} = a', \pi \right] \\
+&= R(s,a) + \gamma\sum_{s' \in \mathcal{S}} p(s,a,s') \sum_{a' \in \mathcal{A}} \pi(s',a') q^{\pi}(s',a') \\
+&= \sum_{s' \in \mathcal{S}} p(s,a,s')\left(R(s,a)+\gamma v^{\pi}(s')\right)
+\end{align*}
+$$
+
+
+
+可以把  $v^{\pi}(s)$  理解为在状态  $s$  下，按照策略  $\pi$  对所有可能动作  $a$  的  $q^{\pi}(s, a)$  进行加权求和得到的. 即  $v^{\pi}(s)=\sum_{a\in A}\pi(s,a)q^{\pi}(s,a)$  . 这是因为  $q^{\pi}(s, a)$  描述了在状态  $s$  采取特定动作  $a$  后的期望累计折扣奖励，而  $v^{\pi}(s)$  是在状态  $s$  下，依据策略  $\pi$  采取所有可能动作后的综合期望累计折扣奖励. 
+
 
 
 
