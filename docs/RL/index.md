@@ -20,6 +20,7 @@
 - DQN
 - TD($\lambda$)
 - Policy Gradient and Actor Critic
+- TRPO
 - PPO
 - DDPG
 - SAC

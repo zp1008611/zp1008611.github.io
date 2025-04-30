@@ -1,4 +1,3 @@
-
 # 策略迭代和值迭代
 
 ## Reference
@@ -124,7 +123,7 @@ $$\sum_{a \in \mathcal{A}} \pi'(s, a) q^{\pi}(s, a) \geq v^{\pi}(s)$$
     - **策略评估**：
         - 任意初始化 $v_{0}$ ；
         - 对于 $k = 0$ 到 $\infty$ 执行：
-            - 对于所有 $s \in S$ ：$v_{k + 1}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_i(s), s') \left( R(s, \pi_i(s)) + \gamma v_{k}(s') \right)$ 
+            - 对于所有 $s \in S$ ：$v_{k + 1}(s) = \sum_{a \in \mathcal{A}} \pi_i(s, a) \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{k}(s') \right)$ 
             - 如果 $v_{k + 1} = v_{k}$ ，则：
                 - $v^{\pi_{i}} = v_{k}$ ；
                 - 跳出循环；
@@ -196,6 +195,7 @@ $$
 如果提前停止策略评估，$v^{\pi_{i}}$ 的估计会有误差，因此基于该估计的贪心策略可能不会比当前策略更好. 但令人惊讶的是，该过程仍会收敛到最优策略. 一种特别流行的变体是值迭代，它设置 $K=1$——在策略改进步骤之间仅执行一次策略评估的迭代. 重要的是，每次策略评估迭代都从上一步的值函数估计开始（而非随机初始值函数）. 值迭代的伪代码如算法2所示.   
 
 **算法2：值迭代（低效实现，作为推导常用伪代码的铺垫）**  
+
 - 任意初始化 $\pi_{0}$ 和 $v_{0}$；  
 - 对于 $i = 0$ 到 $\infty$ 执行：  
     - **策略评估**：  
@@ -211,42 +211,6 @@ $$
       \pi_{i+1}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i+1}(s') \right)
       $$  
 
-按照算法2的伪代码，我们会得到如下策略和值函数序列：  
-
-$$
-v_{0} \text{：任意值} 
-$$  
-
-$$
-\pi_{0} \text{：任意策略} 
-$$ 
-
-$$
-v_{1}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{0}(s), s') \left( R(s, \pi_{0}(s)) + \gamma v_{0}(s') \right) 
-$$  
-
-$$
-\pi_{1}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{1}(s') \right)
-$$  
-
-$$
-v_{2}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{1}(s), s') \left( R(s, \pi_{1}(s)) + \gamma v_{1}(s') \right)
-$$  
-$$
-\pi_{2}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{2}(s') \right)
-$$  
-
-$$
-v_{3}(s) = \sum_{s' \in \mathcal{S}} p(s, \pi_{2}(s), s') \left( R(s, \pi_{2}(s)) + \gamma v_{2}(s') \right) 
-$$  
-
-$$
-\pi_{3}(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{3}(s') \right) 
-$$  
-
-$$
-\cdots 
-$$  
 
 注意策略和值函数估计的更新具有相似性. 一般地，我们可直接从 $v_{i}$ 计算 $v_{i+1}$，无需显式计算 $\pi_{i}$，得到更高效的值迭代更新式：  
 
@@ -257,6 +221,7 @@ $$
 注意，策略评估算法是贝尔曼方程的迭代形式，而上式中的值迭代更新是贝尔曼最优性方程的迭代形式. 使用此高效更新的值迭代伪代码如算法3所示.   
 
 **算法3：值迭代**  
+
 - 任意初始化 $v_{0}$；  
 - 对于 $i = 0$ 到 $\infty$ 执行：  
     - **值迭代更新**：  
@@ -266,6 +231,11 @@ $$
       $$  
     - **检查终止条件**：  
       如果 $v_{i+1} = v_{i}$，则终止；  
+
+- 返回策略$\pi$，对所有 $s$，  
+  $$
+  \pi(s) \in \underset{a \in \mathcal{A}}{\arg \max} \sum_{s' \in \mathcal{S}} p(s, a, s') \left( R(s, a) + \gamma v_{i+1}(s') \right)
+  $$ 
 
 ## 4 贝尔曼算子与值迭代的收敛性  
 

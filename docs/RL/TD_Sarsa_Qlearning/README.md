@@ -2,17 +2,18 @@
 
 ## Reference
 
+- http://incompleteideas.net/book/RLbook2018.pdf
 - https://people.cs.umass.edu/~bsilva/courses/CMPSCI_687/Fall2022/Lecture_Notes_v1.0_687_F22.pdf
 
 
 ## 1 时序差分（TD）学习
 
-时序差分学习由萨顿（Sutton，1988a）提出，是一种策略评估算法. 与蒙特卡洛算法一样，它从经验中学习（通过采样，即根据策略π选择行动并观察结果），而无需知道转移概率p和奖励R的相关知识. 然而，与动态规划方法类似，它基于其他估计值来生成新的估计值，也就是自举法. 后一个特性意味着它可以在一个情节结束前进行更新（这是蒙特卡洛方法所不具备的）. 
+时序差分学习由萨顿（Sutton，1988a）提出，是一种策略评估算法. 与蒙特卡洛算法一样，它从经验中学习（通过采样，即根据策略 $\pi$ 选择行动并观察结果），而无需知道转移概率 $p$ 和奖励 $R$ 的相关知识. 然而，与动态规划方法类似，它基于其他估计值来生成新的估计值，也就是自举法. 后一个特性意味着它可以在一个情节结束前进行更新（这是蒙特卡洛方法所不具备的）. 
 
-与之前的算法一样，TD算法从初始值函数估计v开始. 作为一种评估算法而非控制算法，它估计的是$v^{\pi}$（与通过估计$q^{*}$来获得$\pi^{*}$的控制算法不同） . 假设智能体处于状态s，采取行动a，转移到状态$s'$并获得奖励r，那么TD更新公式为：
+与之前的算法一样，TD算法从初始值函数估计 $v$开始. 作为一种评估算法而非控制算法，它估计的是 $v^{\pi}$（与通过估计 $q^{*}$ 来获得 $\pi^{*}$ 的控制算法不同） . 假设智能体处于状态 $s$，采取行动 $a$，转移到状态 $s'$ 并获得奖励$r$，那么TD更新公式为：
 
 $$
-v(s) \leftarrow v(s)+\alpha\left(r+\gamma v\left(s'\right)-v(s)\right)  \quad(215)
+v(s) \leftarrow v(s)+\alpha\left(r+\gamma v\left(s'\right)-v(s)\right)  
 $$
 
 用其他符号表示，它也可以等价地定义为：
@@ -25,13 +26,13 @@ $$
 时序差分误差（TD误差）$\delta_{t}$定义为：
 
 $$
-\delta_{t}=R_{t}+\gamma v\left(S_{t+1}\right)-v\left(S_{t}\right) \quad(217)
+\delta_{t}=R_{t}+\gamma v\left(S_{t+1}\right)-v\left(S_{t}\right) 
 $$
 
 这使得我们可以将TD更新写为：
 
 $$
-v\left(S_{t}\right) \leftarrow v\left(S_{t}\right)+\alpha \delta_{t} \quad(218)
+v\left(S_{t}\right) \leftarrow v\left(S_{t}\right)+\alpha \delta_{t} 
 $$
 
 注意，正的TD误差意味着观察到的结果（奖励$R_{t}$加上后续状态的价值$v(S_{t+1})$）比当前状态的预期值（即$v(S_{t})$ ）更好. 此外，TD误差可以涉及不同的术语：它可以使用当前的值估计，也可以使用真实的状态价值函数$v^{\pi}$ . 在这两种情况下，$\delta_{t}$都被称为TD误差. 
