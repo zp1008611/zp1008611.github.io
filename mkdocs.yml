@@ -50,8 +50,9 @@ nav:
         - Temporal Differenence (TD) Learning:Sarsa, Q-learning: RL/TD_Sarsa_Qlearning/README.md
 
     - LEETCODE:
+        - LEETCODE/index.md
         - 动态规划:
-            - LEETCODE/dp/index.md
+            - LEETCODE/dp/README.md
     
     - 面试八股:
         - 抱佛脚版: 

@@ -17,8 +17,8 @@
 - Policy Iteration and Value Iteration 
 - Monte Carlo Methods
 - Temporal Differenence (TD) Learning: Sarsa, Q-learning
-- DQN
 - TD($\lambda$)
+- DQN
 - Policy Gradient and Actor Critic
 - TRPO
 - PPO
