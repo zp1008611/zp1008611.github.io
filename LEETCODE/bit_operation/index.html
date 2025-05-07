@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://zp1008611.github.io/OROPT/or_exact/IP_branch_and_price/">
+        <link rel="canonical" href="https://zp1008611.github.io/LEETCODE/bit_operation/">
       
       
-        <link rel="prev" href="../IP_dw_decomposition/">
+        <link rel="prev" href="../dfs_bfs/">
       
       
-        <link rel="next" href="../../../DL/">
+        <link rel="next" href="../shortest_path/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
-        <title>Branch and Price - ZP's docs</title>
+        <title>位运算 - ZP's docs</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -54,9 +54,9 @@
     
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -96,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+    <a href="../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Branch and Price
+              位运算
             
           </span>
         </div>
@@ -234,7 +234,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -251,8 +251,6 @@
   
   
   
-    
-  
   
     
     
@@ -260,13 +258,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../OROPT/or_exact/" class="md-tabs__link">
           
   
   
@@ -291,7 +287,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../DL/" class="md-tabs__link">
+        <a href="../../DL/" class="md-tabs__link">
           
   
   
@@ -313,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../GNN/" class="md-tabs__link">
+        <a href="../../GNN/" class="md-tabs__link">
           
   
   
@@ -335,7 +331,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../RL/" class="md-tabs__link">
+        <a href="../../RL/" class="md-tabs__link">
           
   
   
@@ -353,11 +349,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../LEETCODE/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -386,7 +384,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../RESUME_QandA/summary/" class="md-tabs__link">
+        <a href="../../RESUME_QandA/summary/" class="md-tabs__link">
           
   
   
@@ -427,7 +425,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+    <a href="../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -457,7 +455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -476,36 +474,37 @@
       
   
   
+  
+  
     
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
   
   
   
     
-    
+  
+  
+  
+    <a href="../../OROPT/or_exact/" class="md-nav__link">
       
-        
-      
-    
-    
-    
-      
-        
-        
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
   
   
   <span class="md-ellipsis">
@@ -514,564 +513,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            运筹与优化
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
       
-        
-          
-        
+        <span class="md-nav__icon md-icon"></span>
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-    
-    
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
-              
+    </a>
   
-  
-  <span class="md-ellipsis">
-    精确式算法
-    
-  </span>
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_1">
-            <span class="md-nav__icon md-icon"></span>
-            精确式算法
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../optimality_conditions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Optimality Conditions
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../dual_theory/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Dual Theory
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../LP_intro/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    LP Introduction
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../LP_simplex/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    LP Simplex Method
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../LP_interior/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    LP Interior Point Method
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../LP_cg/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Column Generation for LP
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../LP_dw_decompostition/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Dantzig-Wolfe Decomposition for LP
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IP_intro/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Integer Programming
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IP_convex_hull_and_valid_ineq/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Convex Hull and Valid Inequalities
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IP_branch_and_bound/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Branch and Bound
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IP_relaxation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Relaxation
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IP_cutting_planes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Cutting Planes
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IP_branch_and_cut/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Branch and Cut
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../LP_large_scale_models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Row and column generation for large-scale models
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IP_dw_decomposition/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Dantzig-Wolfe Decomposition for IP
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Branch and Price
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    Branch and Price
-    
-  </span>
-  
-
-      </a>
-      
-        
 
   
 
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#2-dantzig-wolfe" class="md-nav__link">
-    <span class="md-ellipsis">
-      2 基于Dantzig-Wolfe分解的分支定价法
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../IP_beaders_decomposition/README.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Benders Decomposition for IP
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -1124,7 +573,7 @@
   
   
   
-    <a href="../../../DL/" class="md-nav__link">
+    <a href="../../DL/" class="md-nav__link">
       
   
   
@@ -1176,7 +625,7 @@
   
   
   
-    <a href="../../../GNN/" class="md-nav__link">
+    <a href="../../GNN/" class="md-nav__link">
       
   
   
@@ -1240,7 +689,7 @@
   
   
   
-    <a href="../../../RL/" class="md-nav__link">
+    <a href="../../RL/" class="md-nav__link">
       
   
   
@@ -1264,6 +713,8 @@
       
       
   
+  
+    
   
   
   
@@ -1290,6 +741,67 @@
     
     
       
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    LEETCODE
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            LEETCODE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
       
     
     
@@ -1304,12 +816,12 @@
   
   
   
-    <a href="../../../LEETCODE/" class="md-nav__link">
+    <a href="../dp/" class="md-nav__link">
       
   
   
   <span class="md-ellipsis">
-    LEETCODE
+    动态规划
     
   </span>
   
@@ -1320,6 +832,287 @@
     </a>
   
 
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../backtrack/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    回溯
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../dfs_bfs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    DFS和BFS
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../windows_pointer/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    滑动窗口和双指针
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="./" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    位运算
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            位运算
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../shortest_path/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    最短路
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1358,7 +1151,7 @@
   
   
   
-    <a href="../../../RESUME_QandA/summary/" class="md-nav__link">
+    <a href="../../RESUME_QandA/summary/" class="md-nav__link">
       
   
   
@@ -1400,168 +1193,13 @@
   
 
 
-<h1 id="_1">分支定价<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="_1">位运算<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 663 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 2 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 5 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间不到 1 分钟</p>
 </div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
-<li>https://dabeenl.github.io/IE631_lecture23_note.pdf</li>
-<li>https://www.zib.de/userpage/gamrath/publications/gamrath2010_genericBCP.pdf</li>
-</ul>
-<h3 id="2-dantzig-wolfe">2 基于Dantzig-Wolfe分解的分支定价法<a class="headerlink" href="#2-dantzig-wolfe" title="Permanent link">&para;</a></h3>
-<p>考虑如下混合整数规划：  </p>
-<div class="arithmatex">\[
-\begin{align*}
-z_I = \max &amp; \quad c^\top x \\
-\text{s.t.} &amp; \quad Ax \leq b \\
-&amp; \quad Ex \leq f \tag{MIP} \\
-&amp; \quad x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p.
-\end{align*}
-\]</div>
-<p>定义集合 <span class="arithmatex">\(Q\)</span> 如下：</p>
-<div class="arithmatex">\[
-Q = \left\{ x \in \mathbb{Z}_+^d \times \mathbb{R}_+^p : Ax \leq b \right\}.
-\]</div>
-<p>假设 <span class="arithmatex">\(\text{conv}(Q)\)</span> 可表示为：</p>
-<div class="arithmatex">\[
-\text{conv}(Q) = \text{conv}\{v^1, \ldots, v^n\} + \text{cone}\{r^1, \ldots, r^\ell\}
-\]</div>
-<p>其中为某些向量 <span class="arithmatex">\(v^1, \ldots, v^n\)</span> 和 <span class="arithmatex">\(r^1, \ldots, r^\ell\)</span>. 回顾，（MIP）的丹齐格－沃尔夫松弛由下式给出： </p>
-<div class="arithmatex">\[
-\begin{align*}
-z_{\text{LD}} = \max &amp; \sum_{k \in [n]} (c^\top v^k) \alpha_k + \sum_{h \in [\ell]} (c^\top r^h) \beta_k \\
-\text{s.t.} &amp; \sum_{k \in [n]} (E v^k) \alpha_k + \sum_{h \in [\ell]} (E r^h) \beta_k \leq f \tag{DW} \\
-&amp; \sum_{k \in [n]} \alpha_k = 1 \\
-&amp; \alpha \in \mathbb{R}_+^k,\ \beta \in \mathbb{R}_+^\ell.
-\end{align*}
-\]</div>
-<p>（DW）是（MIP）的一种松弛，为恢复整数约束，通过添加  </p>
-<div class="arithmatex">\[
-x_j = \sum_{k \in [n]} \alpha_k v_j^k + \sum_{h \in [\ell]} \beta_h r_j^h \in \mathbb{Z},\quad j \in [d].
-\]</div>
-<p>进而，可将分支定界框架应用于Dantzig-Wolfe松弛（DW），基本工作流程如下：  </p>
-<ol>
-<li>使用列生成算法求解（DW），获得最优解 <span class="arithmatex">\((\alpha^*, \beta^*)\)</span>，由此得到  </li>
-</ol>
-<div class="arithmatex">\[
-x^* = \sum_{k \in [n]} \alpha_k^* v^k + \sum_{h \in [\ell]} \beta_h^* r^h.
-\]</div>
-<ol>
-<li>若对某些 <span class="arithmatex">\(j \in [d]\)</span>，有 <span class="arithmatex">\(x_j^* \notin \mathbb{Z}\)</span>，则基于析取创建两个子问题：  </li>
-</ol>
-<div class="arithmatex">\[
-\sum_{k \in [n]} \alpha_k v_j^k + \sum_{h \in [\ell]} \beta_h r_j^h \geq \lceil x_j^* \rceil\ \text{ 或 }\ \sum_{k \in [n]} \alpha_k v_j^k + \sum_{h \in [\ell]} \beta_h r_j^h \leq \lfloor x_j^* \rfloor.
-\]</div>
-<ol>
-<li>对各子问题重复上述流程. </li>
-</ol>
-<p>由于使用列生成算法求解线性规划问题时需要求解定价子问题，所以在分支定界中使用列生成算法求解松弛问题（线性松弛或者Dantzig-Wolfe松弛）的算法叫做<strong>分支定价算法</strong>. </p>
-<p><strong>算法1 分支定价法</strong>  </p>
-<ul>
-<li>令 <span class="arithmatex">\(\mathcal{L} = \mathcal{D}\)</span>，初始化 <span class="arithmatex">\(\hat{x}\)</span>  </li>
-<li><strong>while</strong> <span class="arithmatex">\(\mathcal{L} \neq \emptyset\)</span> <strong>do</strong>  </li>
-<li>
-<ul>
-<li>从 <span class="arithmatex">\(\mathcal{L}\)</span> 中选择待探索的子集合 <span class="arithmatex">\(\mathcal{S}\)</span> </li>
-</ul>
-</li>
-<li>
-<ul>
-<li>使用列生成算法求 <span class="arithmatex">\((\mathcal{S},f)\)</span> 的松弛问题的解 <span class="arithmatex">\(\hat{x}'\)</span> </li>
-</ul>
-</li>
-<li>
-<ul>
-<li><strong>if</strong> <span class="arithmatex">\(\hat{x}'\)</span> 是不可行解 <strong>or</strong> <span class="arithmatex">\(\hat{x}'\)</span> 是分数可行解，且 <span class="arithmatex">\(f（\hat{x}'）\leq f(\hat{x})\)</span> <strong>then</strong> </li>
-</ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li><span class="arithmatex">\(\mathcal{S}\)</span> 赋予可以剪枝属性 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li><strong>else if</strong>  <span class="arithmatex">\(\hat{x}'\)</span> 是分数可行解，且<span class="arithmatex">\(f
-（\hat{x}'）&gt; f(\hat{x})\)</span> <strong>then</strong> </li>
-</ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li><span class="arithmatex">\(\mathcal{S}\)</span> 赋予不可剪枝属性 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li><strong>else if</strong> <span class="arithmatex">\(\hat{x}'\)</span> 是整数可行解 <strong>then</strong> </li>
-</ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li><span class="arithmatex">\(\hat{x} = \hat{x}'\)</span>  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li><span class="arithmatex">\(\mathcal{S}\)</span> 赋予可以剪枝属性 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li><strong>end if</strong> </li>
-</ul>
-</li>
-<li>
-<ul>
-<li><strong>if</strong> <span class="arithmatex">\(\mathcal{S}\)</span> 不可剪枝 <strong>then</strong> </li>
-</ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li>将 <span class="arithmatex">\(\mathcal{S}\)</span> 划分为 <span class="arithmatex">\(\mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r\)</span>  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>
-<ul>
-<li>将 <span class="arithmatex">\(\mathcal{S}_1, \mathcal{S}_2, \dots, \mathcal{S}_r\)</span> 加入 <span class="arithmatex">\(\mathcal{L}\)</span> </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li><strong>end if</strong>  </li>
-</ul>
-</li>
-<li>
-<ul>
-<li>从 <span class="arithmatex">\(\mathcal{L}\)</span> 中移除 <span class="arithmatex">\(\mathcal{S}\)</span>  </li>
-</ul>
-</li>
-<li><strong>end while</strong>  </li>
-<li><strong>return</strong> <span class="arithmatex">\(\hat{x}\)</span> </li>
+<li>https://leetcode.cn/discuss/post/dHn9Vk/</li>
 </ul>
 
 
@@ -1585,7 +1223,7 @@ x^* = \sum_{k \in [n]} \alpha_k^* v^k + \sum_{h \in [\ell]} \beta_h^* r^h.
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 26, 2025 21:05:30">April 26, 2025 21:05:30</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 7, 2025 17:28:45">May 7, 2025 17:28:45</span>
   </span>
 
     
@@ -1595,7 +1233,7 @@ x^* = \sum_{k \in [n]} \alpha_k^* v^k + \sum_{h \in [\ell]} \beta_h^* r^h.
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 21, 2025 13:02:15">April 21, 2025 13:02:15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 7, 2025 17:28:45">May 7, 2025 17:28:45</span>
   </span>
 
     
@@ -1645,7 +1283,7 @@ x^* = \sum_{k \in [n]} \alpha_k^* v^k + \sum_{h \in [\ell]} \beta_h^* r^h.
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../IP_dw_decomposition/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Dantzig-Wolfe Decomposition for IP">
+          <a href="../dfs_bfs/" class="md-footer__link md-footer__link--prev" aria-label="上一页: DFS和BFS">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1655,20 +1293,20 @@ x^* = \sum_{k \in [n]} \alpha_k^* v^k + \sum_{h \in [\ell]} \beta_h^* r^h.
                 上一页
               </span>
               <div class="md-ellipsis">
-                Dantzig-Wolfe Decomposition for IP
+                DFS和BFS
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../../DL/" class="md-footer__link md-footer__link--next" aria-label="下一页: 深度学习">
+          <a href="../shortest_path/" class="md-footer__link md-footer__link--next" aria-label="下一页: 最短路">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                深度学习
+                最短路
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1708,20 +1346,20 @@ x^* = \sum_{k \in [n]} \alpha_k^* v^k + \sum_{h \in [\ell]} \beta_h^* r^h.
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
       
         <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
       
-        <script src="../../../javascripts/tablesort.js"></script>
+        <script src="../../javascripts/tablesort.js"></script>
       
-        <script src="../../../javascripts/extra.js"></script>
+        <script src="../../javascripts/extra.js"></script>
       
-        <script src="../../../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
