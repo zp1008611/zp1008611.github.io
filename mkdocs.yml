@@ -53,6 +53,16 @@ nav:
         - LEETCODE/index.md
         - 动态规划:
             - LEETCODE/dp/README.md
+        - 回溯:
+            - LEETCODE/backtrack/README.md
+        - DFS和BFS:
+            - LEETCODE/dfs_bfs/README.md
+        - 滑动窗口和双指针:
+            - LEETCODE/windows_pointer/README.md
+        - 位运算:
+            - LEETCODE/bit_operation/README.md
+        - 最短路:
+            - LEETCODE/shortest_path/README.md
     
     - 面试八股:
         - 抱佛脚版: 
