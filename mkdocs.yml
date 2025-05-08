@@ -57,12 +57,24 @@ nav:
             - LEETCODE/backtrack/README.md
         - DFS和BFS:
             - LEETCODE/dfs_bfs/README.md
+        - 最短路:
+            - LEETCODE/shortest_path/README.md
+        - 二叉树:
+            - LEETCODE/binary_tree/README.md
         - 滑动窗口和双指针:
             - LEETCODE/windows_pointer/README.md
         - 位运算:
             - LEETCODE/bit_operation/README.md
-        - 最短路:
-            - LEETCODE/shortest_path/README.md
+        - 链表:
+            - LEETCODE/linked_list/README.md
+        - 单调栈:
+            - LEETCODE/monotonic_stack/README.md
+        - 常用数据结构:
+            - LEETCODE/data_structure/README.md
+        - HW机考实战:
+            - LEETCODE/huawei/README.md
+        
+        
     
     - 面试八股:
         - 抱佛脚版: 

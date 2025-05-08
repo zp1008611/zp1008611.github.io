@@ -65,3 +65,51 @@ for node, distance in shortest_distances.items():
 ## 全源最短路：Floyd 算法
 
 Floyd-Warshall 算法（通常简称为 Floyd 算法）是一种用于求解图中所有节点对之间最短路径的算法，它可以处理有向图和无向图，并且允许图中存在负权边，但不能存在负权环.
+
+
+```python
+INF = float('inf')
+
+
+def floyd(graph):
+    # 获取图中所有的节点
+    nodes = list(graph.keys())
+    num_nodes = len(nodes)
+    # 初始化距离矩阵
+    dist = {node: {neighbor: INF for neighbor in nodes} for node in nodes}
+    # 填充初始距离
+    for node in nodes:
+        dist[node][node] = 0
+        for neighbor, weight in graph[node].items():
+            dist[node][neighbor] = weight
+
+    # 三重循环更新距离矩阵
+    for k in nodes:
+        for i in nodes:
+            for j in nodes:
+                if dist[i][k] != INF and dist[k][j] != INF and dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+
+    return dist
+
+
+# 示例图用字典表示
+graph = {
+    'A': {'B': 5, 'D': 10},
+    'B': {'C': 3},
+    'C': {'D': 1},
+    'D': {}
+}
+
+# 调用 Floyd 算法
+shortest_distances = floyd(graph)
+
+# 输出结果
+for start_node in shortest_distances:
+    for end_node in shortest_distances[start_node]:
+        if shortest_distances[start_node][end_node] == INF:
+            print(f"从节点 {start_node} 到节点 {end_node} 的最短距离: 无穷大")
+        else:
+            print(f"从节点 {start_node} 到节点 {end_node} 的最短距离: {shortest_distances[start_node][end_node]}")
+    
+```
