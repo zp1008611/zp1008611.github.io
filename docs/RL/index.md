@@ -24,4 +24,14 @@
 - PPO
 - DDPG
 - SAC
+- Backup Diagram
 - Algorithm Summary
+
+
+## Exercise
+
+- policy iteration and value iteration for Cliff Walking
+
+- Sarsa and Q-learning for Cliff Walking
+
+- DQN for CartPole-v0
