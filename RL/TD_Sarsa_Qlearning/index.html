@@ -950,15 +950,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      示例1：开车回家
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -971,31 +962,22 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2 TD预测方法的优势">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sarsatd" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Sarsa：在线策略TD控制
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Sarsa：在线策略TD控制">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#62" class="md-nav__link">
+  <a href="#sarsatdq-approx-q" class="md-nav__link">
     <span class="md-ellipsis">
-      示例6.2：随机游走
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.1 函数逼近
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.2 马尔可夫决策过程的最大似然模型与时序差分学习
+      Sarsa（在线策略TD控制）用于估计\(Q \approx q^*\)
     </span>
   </a>
   
@@ -1007,56 +989,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-sarsatd" class="md-nav__link">
+  <a href="#4-qtd" class="md-nav__link">
     <span class="md-ellipsis">
-      2 Sarsa：使用TD进行控制
+      4 Q学习：离策略TD控制
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2 Sarsa：使用TD进行控制">
+    <nav class="md-nav" aria-label="4 Q学习：离策略TD控制">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1sarsa" class="md-nav__link">
+  <a href="#qtdpi-approx-pi_" class="md-nav__link">
     <span class="md-ellipsis">
-      算法1：表格形式的Sarsa算法
+      Q学习（离策略TD控制）用于估计\(\pi \approx \pi_{*}\)
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2sarsa" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      算法2：Sarsa算法
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-qtd" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 Q学习：离策略TD控制
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3 Q学习：离策略TD控制">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#3q" class="md-nav__link">
-    <span class="md-ellipsis">
-      算法3：表格形式的Q学习算法
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4q" class="md-nav__link">
-    <span class="md-ellipsis">
-      算法4：Q学习算法
+      示例：悬崖行走
     </span>
   </a>
   
@@ -1064,6 +1018,34 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sarsa" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 期望Sarsa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 最大化偏差和双学习
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 最大化偏差和双学习">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qq_1-approx-q_2-approx-q_" class="md-nav__link">
+    <span class="md-ellipsis">
+      双Q学习，用于估计\(Q_{1} \approx Q_{2} \approx q_{*}\)
+    </span>
+  </a>
   
 </li>
         
@@ -1295,7 +1277,7 @@
 
 <h1 id="td-sarsa-q-learning">时序差分（TD）学习: Sarsa, Q learning<a class="headerlink" href="#td-sarsa-q-learning" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 9727 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 2 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 32 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6710 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 22 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1305,7 +1287,7 @@
 <p>如果非要找出一个在强化学习中处于核心且新颖的概念，那无疑是时序差分（TD）学习. TD学习融合了蒙特卡罗方法和动态规划（DP）的思想. 与蒙特卡罗方法一样，TD方法无需了解环境动态模型，就能直接从原始经验中学习. 和DP类似，TD方法部分地基于其他已学习的估计值来更新估值，而无需等待最终结果（它们采用自举法）. TD、DP和蒙特卡罗方法之间的关系，是强化学习理论中反复出现的主题；后续会引入TD(<span class="arithmatex">\(\lambda\)</span>)算法，它将TD和蒙特卡罗方法无缝统一. </p>
 <p>和往常一样，我们首先聚焦于策略评估或预测问题，即对于给定策略<span class="arithmatex">\(\pi\)</span>，估计值函数<span class="arithmatex">\(v_{\pi}\)</span>的问题. 对于控制问题（寻找最优策略），DP、TD和蒙特卡罗方法都采用了广义策略迭代（GPI）的某种变体. 这些方法的差异，主要体现在解决预测问题的方式上. </p>
 <h2 id="1-td">1 TD预测<a class="headerlink" href="#1-td" title="Permanent link">&para;</a></h2>
-<p>TD和蒙特卡罗方法都利用经验来解决预测问题. 在遵循策略<span class="arithmatex">\(\pi\)</span>获得一些经验后，两种方法都会针对该经验中出现的非终止状态<span class="arithmatex">\(S_{t}\)</span>，更新其对<span class="arithmatex">\(v^{\pi}\)</span>的估计值<span class="arithmatex">\(V\)</span>. 大致来说，蒙特卡罗方法会一直等到访问后的回报确定后，才将该回报作为<span class="arithmatex">\(V(S_{t})\)</span>的目标值. 一种适用于非平稳环境的简单的每次访问蒙特卡罗方法为：</p>
+<p>TD和蒙特卡罗方法都利用经验来解决预测问题. 在遵循策略 <span class="arithmatex">\(\pi\)</span> 获得一些经验后，两种方法都会针对该经验中出现的非终止状态 <span class="arithmatex">\(S_{t}\)</span>，更新其对 <span class="arithmatex">\(v^{\pi}\)</span> 的估计值 <span class="arithmatex">\(V\)</span>. 大致来说，蒙特卡罗方法会一直等到访问后的回报确定后，才将该回报作为 <span class="arithmatex">\(V(S_{t})\)</span> 的目标值. 一种适用于非平稳环境的简单的每次访问蒙特卡罗方法为：</p>
 <div class="arithmatex">\[
 V\left(S_{t}\right) \leftarrow V\left(S_{t}\right)+\alpha\left[G_{t}-V\left(S_{t}\right)\right]
 \]</div>
@@ -1348,220 +1330,118 @@ v^{\pi}(s) &amp; := \mathbb{E}_{\pi}\left[G_{t} | S_{t}=s\right] \label{eq:MC} \
 \begin{aligned} G_{t}-V\left(S_{t}\right) &amp; =R_{t+1}+\gamma G_{t+1}-V\left(S_{t}\right)+\gamma V\left(S_{t+1}\right)-\gamma V\left(S_{t+1}\right)  \\ &amp; =\delta_{t}+\gamma\left(G_{t+1}-V\left(S_{t+1}\right)\right) \\ &amp; =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2}\left(G_{t+2}-V\left(S_{t+2}\right)\right) \\ &amp; =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2} \delta_{t+2}+\cdots+\gamma^{T-t-1} \delta_{T-1}+\gamma^{T-t}\left(G_{T}-V\left(S_{T}\right)\right) \\ &amp; =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2} \delta_{t+2}+\cdots+\gamma^{T-t-1} \delta_{T-1}+\gamma^{T-t}(0 - 0) \\ &amp; =\sum_{k=t}^{T-1} \gamma^{k-t} \delta_{k} \end{aligned}
 \]</div>
 <p>如果<span class="arithmatex">\(V\)</span>在episode中发生更新（如在<span class="arithmatex">\(TD(0)\)</span>中），这个等式就不精确了，但如果步长很小，它仍然可以近似成立. 这个等式的推广在时序差分学习的理论和算法中起着重要作用. </p>
-<h3 id="1">示例1：开车回家<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<p>每天下班开车回家时，你都试着预测到家需要多长时间. 离开办公室时，你会留意时间、星期几、天气以及其他可能相关的因素. 假设在这个周五，你正好6点离开办公室，估计到家需要30分钟. 当你走到车旁时是6:05，你发现开始下雨了. 下雨天交通通常比较慢，所以你重新估计从那时起还需要35分钟到家，也就是总共需要40分钟. 15分钟后，你顺利完成了高速公路路段的行程. 当你驶离高速公路进入一条二级公路时，你将总行程时间的估计值缩短到35分钟. 不幸的是，这时你被一辆慢车挡在了后面，而且道路太窄无法超车. 你最终不得不一直跟着这辆卡车，直到6:40转到你住的街道. 3分钟后你到家了. 因此，状态、时间和预测的序列如下：
-| 状态 | 已用时间（分钟） | 预计剩余时间 | 预计总时间 |
-| --- | --- | --- | --- |
-| 周五6点离开办公室 | 0 | 30 | 30 |
-| 走到车旁，正在下雨 | 5  | 35 | 40 |
-| 驶离高速公路 | 20 | 15 | 35 |
-| 在二级公路上，被卡车挡住 | 30 | 10 | 40 |
-| 进入住家街道 | 40 | 3 | 43 |
-| 到家 | 43 | 0 | 43 |</p>
-<p>在这个例子中，奖励是旅程中每一段的已用时间. 我们不进行折扣（<span class="arithmatex">\(\gamma = 1\)</span>），因此每个状态的回报是从该状态到家的实际剩余时间. 每个状态的价值是期望剩余时间. 第二列数字给出了遇到的每个状态的当前估计值. </p>
-<p>一种简单理解蒙特卡罗方法运作的方式，是绘制预测总时间（最后一列）随序列的变化，如图6.1（左）所示. 红色箭头表示固定α的MC方法（公式(6.1)）建议的预测变化，这里α = 1. 这些变化正是每个状态的估计值（预计剩余时间）与实际回报（实际剩余时间）之间的误差. 例如，当你驶离高速公路时，你认为再花15分钟就能到家，但实际上花了23分钟. 此时公式(6.1)适用，并确定了驶离高速公路后预计剩余时间估计值的增量. 此时的误差<span class="arithmatex">\(G_{t}-V(S_{t})\)</span>是8分钟. 假设步长参数α是1/2，那么由于这次经历，驶离高速公路后的预计剩余时间将向上修正4分钟. 在这种情况下，这个变化可能太大了；遇到卡车可能只是运气不好. 无论如何，这个变化只能在离线时进行，也就是在你到家之后. 只有到这时，你才知道任何实际回报. </p>
-<p>是否必须等到最终结果确定后才能开始学习呢？假设另一天你离开办公室时，再次估计开车回家需要30分钟，但随后陷入了严重的交通堵塞. 离开办公室25分钟后，你还在高速公路上拥堵着. 现在你估计还需要25分钟才能到家，总共需要50分钟. 当你在堵车时等待，你已经知道最初估计的30分钟过于乐观. 你必须等到到家后才能增加对初始状态的估计值吗？根据蒙特卡罗方法，你必须这样做，因为你还不知道真正的回报. </p>
-<p>另一方面，根据TD方法，你会立即学习，将初始估计值从30分钟调整为接近50分钟. 实际上，每个估计值都会朝着紧随其后的估计值调整. 回到我们第一天开车的例子，图6.1（右）展示了TD规则（公式(6.2)）建议的预测变化（如果α = 1，这些就是规则所做的变化）. 每个误差都与预测值随时间的变化成正比，也就是与预测值的时序差分成正比. 
-<img alt="图6.1：蒙特卡罗方法（左）和TD方法（右）在开车回家示例中建议的变化" src="https://pic1.zhimg.com/v2-f9667c2c969c897c9c99c276999c9777_r.jpg" /></p>
-<p>除了让你在堵车时有事情可做之外，基于当前预测进行学习，而不是等到知道实际回报后再学习，还有几个计算方面的优势. 我们将在下一节简要讨论其中一些优势. </p>
 <h2 id="2-td">2 TD预测方法的优势<a class="headerlink" href="#2-td" title="Permanent link">&para;</a></h2>
 <p>TD方法部分地基于其他估计值来更新自己的估计值. 它们从一个猜测学习另一个猜测——它们进行自举. 这是一件好事吗？TD方法相对于蒙特卡罗和DP方法有哪些优势呢？提出并回答这些问题将贯穿本书以及更多的研究. 在本节中，我们简要地预先给出一些答案. </p>
 <p>显然，TD方法相对于DP方法的一个优势在于，它不需要环境模型，即不需要知道奖励和下一个状态的概率分布. </p>
 <p>TD方法相对于蒙特卡罗方法的另一个明显优势是，它自然地以在线、完全增量的方式实现. 使用蒙特卡罗方法时，必须等到一个episode结束，因为只有那时回报才已知，而使用TD方法时，只需要等待一个时间步. 令人惊讶的是，这往往是一个关键的考虑因素. 一些应用场景中的episode非常长，以至于将所有学习都推迟到episode结束时进行会太慢. 其他应用场景是持续进行的任务，根本没有episode之分. 最后，正如我们在上一章提到的，一些蒙特卡罗方法必须忽略或折扣采取实验性行动的episode，这会大大减慢学习速度. TD方法受这些问题的影响要小得多，因为无论后续采取什么行动，它都能从每个转移中学习. </p>
-<p>但是TD方法可靠吗？当然，不等待实际结果，直接从下一个猜测学习当前猜测是很方便的，但我们还能保证收敛到正确答案吗？令人高兴的是，答案是肯定的. 对于任何固定的策略<span class="arithmatex">\(\pi\)</span>，已经证明<span class="arithmatex">\(TD(0)\)</span>会收敛到<span class="arithmatex">\(v_{\pi}\)</span>：如果步长参数足够小，它在均值意义下收敛；如果步长参数按照通常的随机逼近条件（2.7）递减，它以概率1收敛. 大多数收敛性证明只适用于上述基于表格的算法（公式(6.2)），但也有一些证明适用于一般的线性函数逼近情况. 这些结果将在9.4节更一般的背景下讨论. </p>
-<p>如果TD和蒙特卡罗方法都渐近收敛到正确的预测，那么下一个自然的问题是 “哪个收敛得更快？” 换句话说，哪种方法学习得更快？哪种方法能更有效地利用有限的数据？目前，这还是一个开放性问题，因为还没有人能够从数学上证明一种方法比另一种方法收敛得更快. 事实上，甚至都不清楚用什么最恰当的形式来表述这个问题！然而，在实践中，人们通常发现，在随机任务上，TD方法比固定α的MC方法收敛得更快，如示例6.2所示. </p>
-<h3 id="62">示例6.2：随机游走<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
-<p>在这个示例中，我们通过实验比较<span class="arithmatex">\(TD(0)\)</span>和固定α的MC在应用于以下马尔可夫奖励过程时的预测能力：
-<img alt="一个马尔可夫奖励过程（MRP）" src="https://pic2.zhimg.com/v2-8976c89769c9697c9c99c276999c9777_r.jpg" /></p>
-<p>马尔可夫奖励过程（MRP）是没有动作的马尔可夫决策过程. 当我们关注预测问题时，通常会使用MRP，因为在预测问题中，无需区分环境动态和智能体动态. 在这个MRP中，所有episode都从中心状态C开始，然后每一步以相等的概率向左或向右移动一个状态. episode在最左边或最右边的状态终止. 当episode在右边终止时，会获得+1的奖励；其他所有奖励都是0. 例如，一个典型的episode可能由以下状态和奖励序列</p>
-<p>时序差分学习由萨顿（Sutton，1988a）提出，是一种策略评估算法. 与蒙特卡洛算法一样，它从经验中学习（通过采样，即根据策略 <span class="arithmatex">\(\pi\)</span> 选择行动并观察结果），而无需知道转移概率 <span class="arithmatex">\(p\)</span> 和奖励 <span class="arithmatex">\(R\)</span> 的相关知识. 然而，与动态规划方法类似，它基于其他估计值来生成新的估计值，也就是自举法. 后一个特性意味着它可以在一个episode结束前进行更新（这是蒙特卡洛方法所不具备的）. </p>
-<p>与之前的算法一样，TD算法从初始值函数估计 <span class="arithmatex">\(v\)</span>开始. 作为一种评估算法而非控制算法，它估计的是 <span class="arithmatex">\(v^{\pi}\)</span>（与通过估计 <span class="arithmatex">\(q^{*}\)</span> 来获得 <span class="arithmatex">\(\pi^{*}\)</span> 的控制算法不同） . 假设智能体处于状态 <span class="arithmatex">\(s\)</span>，采取行动 <span class="arithmatex">\(a\)</span>，转移到状态 <span class="arithmatex">\(s'\)</span> 并获得奖励<span class="arithmatex">\(r\)</span>，那么TD更新公式为：</p>
+<p>但是TD方法可靠吗？当然，不等待实际结果，直接从下一个猜测学习当前猜测是很方便的，但我们还能保证收敛到正确答案吗？令人高兴的是，答案是肯定的. 对于任何固定的策略 <span class="arithmatex">\(\pi\)</span>，已经证明 <span class="arithmatex">\(TD(0)\)</span> 会收敛到<span class="arithmatex">\(v^{\pi}\)</span>：如果步长参数足够小，它在均值意义下收敛；如果步长参数按照通常的随机逼近条件递减，它以概率1收敛. 大多数收敛性证明只适用于上述基于表格的算法，但也有一些证明适用于一般的线性函数逼近情况.</p>
+<p>如果TD和蒙特卡罗方法都渐近收敛到正确的预测，那么下一个自然的问题是 “哪个收敛得更快？” 换句话说，哪种方法学习得更快？哪种方法能更有效地利用有限的数据？目前，这还是一个开放性问题，因为还没有人能够从数学上证明一种方法比另一种方法收敛得更快. 事实上，甚至都不清楚用什么最恰当的形式来表述这个问题！然而，在实践中，人们通常发现，在随机任务上，TD方法比固定α的MC方法收敛得更快.</p>
+<h2 id="3-sarsatd">3 Sarsa：在线策略TD控制<a class="headerlink" href="#3-sarsatd" title="Permanent link">&para;</a></h2>
+<p>现在我们转向将TD预测方法用于控制问题. 和往常一样，我们遵循广义策略迭代（GPI）的模式，只是这次在评估或预测部分使用TD方法. 与蒙特卡罗方法一样，我们面临着探索和利用之间的权衡，方法也主要分为两类：在线策略和离策略. 在本节中，我们介绍一种在线策略TD控制方法. </p>
+<p>第一步是学习动作价值函数，而不是状态价值函数. 特别地，对于在线策略方法，我们必须为当前行为策略<span class="arithmatex">\(\pi\)</span>以及所有状态<span class="arithmatex">\(s\)</span>和动作<span class="arithmatex">\(a\)</span>估计<span class="arithmatex">\(q^{\pi}(s, a)\)</span> . 这基本上可以使用上面描述的用于学习<span class="arithmatex">\(v^{\pi}\)</span>的相同TD方法来完成. 回想一下，一个episode由状态和状态 - 动作对的交替序列组成：</p>
 <div class="arithmatex">\[
-v(s) \leftarrow v(s)+\alpha\left(r+\gamma v\left(s'\right)-v(s)\right)  
+\cdots \to S_{t}-A_{t} \cdot \frac{R_{t+1}}{A_{t+1}} \cdot \frac{R_{t+2}}{A_{t+1}} \cdot \frac{R_{t+2}}{A_{t+2}} \cdot \frac{R_{t+3}}{A_{t+2}} \cdot \frac{R_{t+3}}{A_{t+3}} \cdots
 \]</div>
-<p>用其他符号表示，它也可以等价地定义为：
-$$
-v\left(S_{t}\right) \leftarrow v\left(S_{t}\right)+\alpha\left(R_{t}+\gamma v\left(S_{t+1}\right)-v\left(S_{t}\right)\right)
-$$</p>
-<p>这与5.2节中基于梯度的蒙特卡洛算法非常相似，不同之处在于，它不是使用<span class="arithmatex">\(G_{t}\)</span>作为目标，而是使用<span class="arithmatex">\(R_{t}+\gamma v(S_{t+1})\)</span> . </p>
-<p>时序差分误差（TD误差）<span class="arithmatex">\(\delta_{t}\)</span>定义为：</p>
+<p>在上一节中，我们考虑了状态到状态的转移，并学习了状态的值. 现在我们考虑状态 - 动作对到状态 - 动作对的转移，并学习状态 - 动作对的值. 从形式上讲，这些情况是相同的：它们都是带有奖励过程的马尔可夫链. 保证<span class="arithmatex">\(TD(0)\)</span>下状态值收敛的定理，也适用于相应的动作值算法：</p>
 <div class="arithmatex">\[
-\delta_{t}=R_{t}+\gamma v\left(S_{t+1}\right)-v\left(S_{t}\right) 
+Q\left(S_{t}, A_{t}\right) \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{t+1}+\gamma Q\left(S_{t+1}, A_{t+1}\right)-Q\left(S_{t}, A_{t}\right)\right]
 \]</div>
-<p>这使得我们可以将TD更新写为：</p>
+<p>在每次从非终止状态<span class="arithmatex">\(S_{t}\)</span>转移后进行此更新. 如果<span class="arithmatex">\(S_{t+1}\)</span>是终止状态，则<span class="arithmatex">\(Q(S_{t+1}, A_{t+1})\)</span>定义为零. 这个规则使用了构成从一个状态 - 动作对到下一个状态 - 动作对转移的五元组事件（<span class="arithmatex">\((S_{t}, A_{t}, R_{t+1}, S_{t+1}, A_{t+1})\)</span> ）中的每个元素. 这个五元组为该算法带来了Sarsa这个名字. </p>
+<p>基于Sarsa预测方法设计一个在线策略控制算法很简单. 与所有在线策略方法一样，我们不断为行为策略<span class="arithmatex">\(\pi\)</span>估计<span class="arithmatex">\(q_{\pi}\)</span> ，同时使<span class="arithmatex">\(\pi\)</span>朝着相对于<span class="arithmatex">\(q_{\pi}\)</span>的贪婪策略变化. Sarsa控制算法的一般形式如下页方框中所示. </p>
+<p>Sarsa算法的收敛性取决于策略对<span class="arithmatex">\(Q\)</span>的依赖性质. 例如，可以使用<span class="arithmatex">\(\varepsilon\)</span>-贪婪或<span class="arithmatex">\(\varepsilon\)</span>-软策略. 只要所有状态 - 动作对都被无限次访问，并且策略在极限情况下收敛到贪婪策略（例如，通过设置<span class="arithmatex">\(\varepsilon = 1/t\)</span>的<span class="arithmatex">\(\varepsilon\)</span>-贪婪策略可以实现），Sarsa就会以概率1收敛到最优策略和动作价值函数. </p>
+<h3 id="sarsatdq-approx-q">Sarsa（在线策略TD控制）用于估计<span class="arithmatex">\(Q \approx q^*\)</span><a class="headerlink" href="#sarsatdq-approx-q" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>算法参数</strong>：步长<span class="arithmatex">\(\alpha \in (0, 1]\)</span>，小的<span class="arithmatex">\(\varepsilon &gt; 0\)</span></li>
+<li><strong>初始化</strong>：对于所有<span class="arithmatex">\(s \in S^+\)</span>，<span class="arithmatex">\(a \in A(s)\)</span> ，任意初始化<span class="arithmatex">\(Q(s, a)\)</span> ，但<span class="arithmatex">\(Q(终止状态, \cdot)=0\)</span></li>
+<li><strong>循环（针对每个episode）</strong>：<ul>
+<li>初始化状态<span class="arithmatex">\(S\)</span></li>
+<li>根据<span class="arithmatex">\(Q\)</span>导出的策略（例如<span class="arithmatex">\(\varepsilon\)</span>-贪婪）从<span class="arithmatex">\(S\)</span>中选择动作<span class="arithmatex">\(A\)</span></li>
+<li><strong>循环（针对episode的每一步）</strong>：<ul>
+<li>执行动作<span class="arithmatex">\(A\)</span>，观察奖励<span class="arithmatex">\(R\)</span>和下一个状态<span class="arithmatex">\(S'\)</span></li>
+<li><span class="arithmatex">\(Q(S, A) \leftarrow Q(S, A)+\alpha[R+\gamma Q(S', A') - Q(S, A)]\)</span></li>
+<li>根据<span class="arithmatex">\(Q\)</span>导出的策略（例如<span class="arithmatex">\(\varepsilon\)</span>-贪婪）从<span class="arithmatex">\(S'\)</span>中选择动作<span class="arithmatex">\(A'\)</span></li>
+<li><span class="arithmatex">\(S \leftarrow S'\)</span> ；<span class="arithmatex">\(A \leftarrow A'\)</span></li>
+</ul>
+</li>
+<li><strong>直到</strong>：<span class="arithmatex">\(S\)</span>为终止状态</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-qtd">4 Q学习：离策略TD控制<a class="headerlink" href="#4-qtd" title="Permanent link">&para;</a></h2>
+<p>强化学习早期的一项重大突破是开发了一种离策略TD控制算法，称为Q学习（Watkins, 1989），其定义为：</p>
 <div class="arithmatex">\[
-v\left(S_{t}\right) \leftarrow v\left(S_{t}\right)+\alpha \delta_{t} 
+Q(S_{t}, A_{t}) \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \max_{a} Q(S_{t+1}, a)-Q(S_{t}, A_{t})\right]\tag{6.8}
 \]</div>
-<p>注意，正的TD误差意味着观察到的结果（奖励<span class="arithmatex">\(R_{t}\)</span>加上后续状态的价值<span class="arithmatex">\(v(S_{t+1})\)</span>）比当前状态的预期值（即<span class="arithmatex">\(v(S_{t})\)</span> ）更好. 此外，TD误差可以涉及不同的术语：它可以使用当前的值估计，也可以使用真实的状态价值函数<span class="arithmatex">\(v^{\pi}\)</span> . 在这两种情况下，<span class="arithmatex">\(\delta_{t}\)</span>都被称为TD误差. </p>
-<p>进一步考虑产生正TD误差的所有可能原因. 正TD误差可能是因为：1）<span class="arithmatex">\(v(s)\)</span>过小；2）奖励和状态转移的随机性，加上运气成分；3）<span class="arithmatex">\(v(s')\)</span>过大. 如果<span class="arithmatex">\(v = v^{\pi}\)</span> ，那么TD误差是由原因2）造成的，但这些误差的平均值为零（这是由贝尔曼方程得出的） . 如果<span class="arithmatex">\(v\neq v^{\pi}\)</span> ，那么TD更新试图纠正原因1），但不会纠正原因3）. 这是因为根据马尔可夫性质，我们知道<span class="arithmatex">\(v^{\pi}(s')\)</span>不依赖于我们如何到达状态<span class="arithmatex">\(s'\)</span> ，而TD误差是由转移<span class="arithmatex">\((s, a, r, s')\)</span>引起的，即TD误差描述的是到达<span class="arithmatex">\(s'\)</span>之前的事件，不应该影响我们对状态<span class="arithmatex">\(s'\)</span>价值的估计. </p>
-<p>注意，TD更新也可以看作是将贝尔曼方程转化为更新规则，就像使用动态规划进行策略评估一样. 然而，在使用动态规划时，我们可以精确计算贝尔曼方程的右边（因为我们假设p和R是已知的） ，而TD算法不假设p和R已知，而是使用采样，根据<span class="arithmatex">\(\pi\)</span>、p和R对<span class="arithmatex">\(A_{t}\)</span>、<span class="arithmatex">\(R_{t}\)</span>和<span class="arithmatex">\(S_{t+1}\)</span>进行采样. </p>
-<p>注意，我们可以使用函数逼近将TD更新写为：
-<span class="arithmatex">\(<span class="arithmatex">\(w \leftarrow w+\alpha\left(R_{t}+\gamma v_{w}\left(S_{t+1}\right)-v_{w}\left(S_{t}\right)\right) \frac{\partial v_{w}\left(S_{t}\right)}{\partial w} \quad(227)\)</span>\)</span></p>
-<p>有人可能认为TD算法是一种梯度算法，与5.2节中基于梯度的蒙特卡洛算法类似，只是目标被替换为<span class="arithmatex">\(R_{t}+\gamma v(S_{t+1})\)</span> . 然而，事实并非如此. 考虑一下如何尝试将TD推导为梯度算法. 我们首先定义损失函数：
-<span class="arithmatex">\(<span class="arithmatex">\(\begin{array}{rlrl} L(w) &amp; =E\left[\frac{1}{2}\left(R_{t}+\gamma v_{w}\left(S_{t+1}\right)-v_{w}\left(S_{t}\right)\right)^{2}\right] &amp; (228) \\ &amp; =E\left[\frac{1}{2} \delta_{t}^{2}\right] &amp; (229) \end{array}\)</span>\)</span></p>
-<p>然后我们计算梯度：
-<span class="arithmatex">\(<span class="arithmatex">\(\begin{aligned} \frac{\partial}{\partial w} L(w) &amp; =\frac{\partial}{\partial w} E\left[\frac{1}{2}\left(R_{t}+\gamma v_{w}\left(S_{t+1}\right)-v_{w}\left(S_{t}\right)\right)^{2}\right] \\ &amp; =E\left[\delta_{t}\left(\gamma \frac{\partial v_{w}\left(S_{t+1}\right)}{\partial w}-\frac{\partial v_{w}\left(S_{t}\right)}{\partial w}\right)\right] \\ &amp; =E\left[-\delta_{t}\left(\frac{\partial v_{w}\left(S_{t}\right)}{\partial w}-\gamma \frac{\partial v_{w}\left(S_{t+1}\right)}{\partial w}\right)\right], \end{aligned}\)</span>\)</span>
-最后一项的符号变化是为了得到标准形式. 这表明了一种随机梯度下降更新（注意，由于这是一个下降算法，这里的负号与<span class="arithmatex">\(\delta_{t}\)</span>前的负号抵消） ：
-<span class="arithmatex">\(<span class="arithmatex">\(w \leftarrow w+\alpha \delta_{t}\left(\frac{\partial v_{w}\left(S_{t}\right)}{\partial w}-\gamma \frac{\partial v_{w}\left(S_{t+1}\right)}{\partial w}\right)\)</span>\)</span></p>
-<p>注意，我们开始使用的损失函数是<span class="arithmatex">\(L(w)=E[\delta_{t}^{2} / 2]\)</span> . 但这实际上并不是我们想要的目标！即使我们的估计器<span class="arithmatex">\(v_{w}\)</span>完全正确（等于<span class="arithmatex">\(v^{\pi}\)</span> ） ，由于<span class="arithmatex">\(R_{t}\)</span>和<span class="arithmatex">\(S_{t+1}\)</span>的随机性，TD误差也不为零. 因此，当价值估计正确时，期望的TD误差为零，但期望的平方TD误差不为零. 最小化期望的平方TD误差并不能得到状态价值函数，而最小化平方期望TD误差（称为均方贝尔曼误差MSBE）才能得到. 稍后我们会回过头来重新考虑对平方期望TD误差求导. 现在，让我们继续分析最小化期望平方TD误差的更新. </p>
-<p>当TD误差为正时，考虑这个更新会产生什么效果：它会改变w，使得<span class="arithmatex">\(v_{w}(S_{t})\)</span>增加，<span class="arithmatex">\(v_{w}(S_{t+1})\)</span>减小，而TD更新只增加<span class="arithmatex">\(v_{w}(S_{t})\)</span> . 为了更清楚地说明这一点，注意使用表格函数逼近的公式（233）可以写成：
-<span class="arithmatex">\(<span class="arithmatex">\(v\left(S_{t}\right) \leftarrow v\left(S_{t}\right)+\alpha \delta_{t} \quad(234)\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(v\left(S_{t+1}\right) \leftarrow v\left(S_{t+1}\right)-\alpha \gamma \delta_{t} \quad(235)\)</span>\)</span></p>
-<p>这种替代算法不是残差梯度算法（Baird，1995），但与之类似. （注释8：残差梯度算法对均方贝尔曼误差<span class="arithmatex">\(E[\delta_{t}]^{2}\)</span>求梯度，而不是对均方TD误差<span class="arithmatex">\(E[\delta_{t}^{2}]\)</span>求梯度. 然而，这样做需要双重采样才能得到无偏的梯度估计（Baird，1995） .  ）</p>
-<p>仅仅因为我们试图将TD算法推导为损失函数的梯度，并得到了一个不同的算法，并不意味着TD算法不是梯度算法，这只是意味着它不是我们定义的损失函数L的（随机）梯度. 然而，可以证明，TD算法不是任何目标函数的随机梯度算法. 如果它是，那么期望的TD更新必须是损失函数的梯度（目标函数的梯度） . 也就是说，
-<span class="arithmatex">\(<span class="arithmatex">\(E\left[\delta_{t} \frac{\partial v_{w}\left(S_{t}\right)}{\partial w}\right]\)</span>\)</span>
-将是某个函数的梯度. 我们可以证明情况并非如此：公式（236）不是任何具有连续二阶导数的损失函数的梯度. 更准确地说，回想一下，对于任何在w处具有连续二阶偏导数的函数L，海森矩阵<span class="arithmatex">\(\partial^{2} L(w) / \partial w^{2}\)</span>必须是对称的（见施瓦茨定理） . 如果公式（236）是函数的梯度，那么它的导数将是海森矩阵. 我们不计算完整的导数，而是计算损失函数关于<span class="arithmatex">\(w_{i}\)</span>对公式（236）第j个元素的偏导数<span class="arithmatex">\(\partial^{2} / \partial w_{i} \partial w_{j}\)</span> . 这个项是：
-<span class="arithmatex">\(<span class="arithmatex">\(\begin{aligned} \frac{\partial}{\partial w_{i}} \delta_{t} \frac{\partial v_{w}\left(S_{t}\right)}{\partial w_{j}} &amp; =\delta_{t} \frac{\partial^{2} v_{w}\left(S_{t}\right)}{\partial w_{i} \partial w_{j}}+\frac{\partial v_{w}\left(S_{t}\right)}{\partial w_{j}} \frac{\partial}{\partial w_{i}}\left(R_{t}+\gamma v_{w}\left(S_{t+1}\right)-v\left(S_{t}\right)\right) \quad(237) \\ &amp; =\underbrace{\delta_{t} \frac{\partial^{2} v_{w}\left(S_{t}\right)}{\partial w_{i} \partial w_{j}}}_{(a)}+\underbrace{\frac{\partial v_{w}\left(S_{t}\right)}{\partial w_{j}}\left(\gamma \frac{\partial v_{w}\left(S_{t+1}\right)}{\partial w_{i}}-\frac{\partial v\left(S_{t}\right)}{\partial w_{i}}\right)}_{(b)} \end{aligned}\)</span>\)</span></p>
-<p>注意，虽然项（a）是对称的（假设<span class="arithmatex">\(v_{w}\)</span>具有连续二阶导数，交换i和j时该项不变） ，但项（b）不是对称的（交换i和j会改变其值） . 为了理解原因，考虑使用表格函数逼近，假设<span class="arithmatex">\(w_{j}\)</span>是<span class="arithmatex">\(S_{t}\)</span>的权重，<span class="arithmatex">\(w_{i}\)</span>是<span class="arithmatex">\(S_{t+1}\)</span>的权重，且<span class="arithmatex">\(S_{t} \neq S_{t+1}\)</span> ，项（b）不一定为零，但如果<span class="arithmatex">\(w_{j}\)</span>是<span class="arithmatex">\(S_{t+1}\)</span>的权重，那么该项将为零. 因此，期望TD更新的导数不是对称的，所以TD更新不是具有连续二阶偏导数的损失函数的随机梯度更新. </p>
-<p>尽管TD算法不是梯度算法，但它具有良好的收敛性. 在使用表格表示进行价值函数逼近时，在标准假设和衰减步长的情况下，TD以概率1收敛到<span class="arithmatex">\(v^{\pi}\)</span>（Dayan和Sejnowski，1994；Jaakkola等人，1994） ，如果步长足够小，它在均值上收敛到<span class="arithmatex">\(v^{\pi}\)</span>（Sutton，1988b） . 在使用线性函数逼近时（当<span class="arithmatex">\(v_{w}(s)\)</span>可以写成<span class="arithmatex">\(v_{w}(s)=w^{\top} \phi(s)\)</span> ，其中<span class="arithmatex">\(\phi: S \to \mathbb{R}^{n}\)</span> （对于某个n） ） ，在标准假设下，TD以概率1收敛到某个权重向量<span class="arithmatex">\(w_{\infty}\)</span>（Tsitsiklis和Van Roy，1997） . 如果存在一个权重向量使得<span class="arithmatex">\(v_{w}=v^{\pi}\)</span> ，那么<span class="arithmatex">\(v_{w_{\infty}}=v^{\pi}\)</span> ，即TD将收敛到使<span class="arithmatex">\(v_{w}\)</span>等于<span class="arithmatex">\(v^{\pi}\)</span>的权重. 然而，如果不存在权重向量w使得<span class="arithmatex">\(v_{w}=v^{\pi}\)</span>（如果给定由<span class="arithmatex">\(v_{w}\)</span>生成的函数类，无法精确表示状态价值函数） ，那么TD以概率1收敛到的权重向量不一定是“最佳”的权重向量<span class="arithmatex">\(w^{*}\)</span>：
-<span class="arithmatex">\(<span class="arithmatex">\(w^{*} \in \underset{w}{arg min } E\left[\left(v_{w}\left(S_{t}\right)-v^{\pi}\left(S_{t}\right)\right)^{2}\right] \quad(239)\)</span>\)</span></p>
-<p>但是，<span class="arithmatex">\(w_{\infty}\)</span>满足以下不等式，确保TD以概率1收敛到的权重不会与这些最优权重“相差太远”（Tsitsiklis和Van Roy，1997，定理1） ：
-<span class="arithmatex">\(<span class="arithmatex">\(E\left[\left(v_{w_{\infty}}\left(S_{t}\right)-v^{\pi}\left(S_{t}\right)\right)^{2}\right] \leq \frac{1}{1-\gamma} E\left[\left(v_{w^{*}}\left(S_{t}\right)-v^{\pi}\left(S_{t}\right)\right)^{2}\right] \quad(240)\)</span>\)</span></p>
-<p>在使用非线性函数逼近时，TD可能会发散. </p>
-<p>蒙特卡洛回报<span class="arithmatex">\(G_{t}\)</span>和TD使用的目标<span class="arithmatex">\(R_{t}+\gamma v(S_{t+1})\)</span> ，哪个是更好的目标呢？它们都是<span class="arithmatex">\(v^{\pi}(S_{t})\)</span>的估计器. 均方误差（MSE）是衡量一个估计器“好坏”的常用指标. 设随机变量X是实数<span class="arithmatex">\(\theta\)</span>的估计器. X的均方误差定义为：
-<span class="arithmatex">\(<span class="arithmatex">\(MSE(X):=E\left[(X-\theta)^{2}\right] \quad(241)\)</span>\)</span></p>
-<p>均方误差可以分解为两个部分：偏差的平方和方差：
-<span class="arithmatex">\(<span class="arithmatex">\(MSE(X)=Bias(X)^{2}+Var(X) \quad(242)\)</span>\)</span>
-其中<span class="arithmatex">\(Bias(X)=E[X-\theta]\)</span> ，<span class="arithmatex">\(Var(X)\)</span>是X的方差. 再次考虑这两个可能的目标，它们都是<span class="arithmatex">\(v^{\pi}\)</span>的估计器，哪个是“更好”的估计器呢？</p>
-<p>蒙特卡洛回报是无偏的，因此偏差为零. 然而，它通常具有高方差，因为它依赖于一个episode中出现的所有奖励. 如果<span class="arithmatex">\(v\neq v^{\pi}\)</span> ，TD目标可能是有偏的，因为它用有偏估计<span class="arithmatex">\(v(S_{t+1})\)</span>（因为<span class="arithmatex">\(v\neq v^{\pi}\)</span> ，所以有偏）取代了蒙特卡洛回报中除第一个奖励外的所有奖励. 然而，它的方差可能要低得多，因为它只向前看一个时间步：<span class="arithmatex">\(R_{t}\)</span>和<span class="arithmatex">\(S_{t+1}\)</span>（TD目标中仅有的随机项）在一个时间步后就可以计算出来. 因此，TD和蒙特卡洛处于两个极端：蒙特卡洛目标方差高但无偏差，TD目标方差低但偏差高. 稍后我们将讨论如何创建能够在偏差和方差之间提供更好权衡的估计器，以获得对<span class="arithmatex">\(v^{\pi}\)</span>“更好”的估计目标. </p>
-<h3 id="11">1.1 函数逼近<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
-<p>在继续之前，有必要更详细地讨论函数逼近. 首先，我们说如果<span class="arithmatex">\(v_{w}\)</span>是w的线性函数，那么它是一个线性函数逼近器. 这并不意味着<span class="arithmatex">\(v_{w}\)</span>必须是状态的线性函数. 此外，我们通常将线性函数逼近器写为：
-<span class="arithmatex">\(<span class="arithmatex">\(v_{w}(s)=w^{\top} \phi(s) \quad(243)\)</span>\)</span>
-其中<span class="arithmatex">\(\phi: S \to \mathbb{R}^{n}\)</span>将状态映射到特征向量. </p>
-<p><span class="arithmatex">\(\phi\)</span>的一种可能选择是多项式基，它假设s是实值的（它可以扩展到多元多项式基，此时s是一个实向量） . 大多数基都有一个我们称为阶数的参数，它控制生成的特征数量. k阶多项式基为：
-<span class="arithmatex">\(<span class="arithmatex">\(\phi(s)=\left[\begin{array}{c} 1 \\ s \\ s^{2} \\ \vdots \\ s^{k} \end{array}\right] \quad(244)\)</span>\)</span></p>
-<p>根据斯通 - 魏尔斯特拉斯定理，任何连续函数都可以通过足够高的阶数逼近到任何所需的精度. </p>
-<p>用于价值函数逼近的傅里叶基是一种常见的线性函数逼近器，对于大多数标准的强化学习基准问题都非常有效. 介绍傅里叶基的论文（Konidaris等人，2011b）在此时应该很容易理解，可以在这里找到. 请阅读这篇论文. 注意，在应用多元傅里叶基之前，需要对状态进行归一化. </p>
-<h3 id="12">1.2 马尔可夫决策过程的最大似然模型与时序差分学习<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
-<p>如果我们有关于许多转移<span class="arithmatex">\((s, a, r, s')\)</span>的数据，我们可以使用这些数据来估计<span class="arithmatex">\(p\)</span>和<span class="arithmatex">\(d_R\)</span> . 注意，无论这些数据是如何生成的（通过运行完整的episode、随机采样状态等），我们都可以进行这样的估计. 目前，我们假设动作<span class="arithmatex">\(a\)</span>是根据策略<span class="arithmatex">\(\pi\)</span>采样得到的. 一种常见的估计方法是最大似然模型，即估计<span class="arithmatex">\(p\)</span>和<span class="arithmatex">\(d_R\)</span>，使得我们观测到现有数据的概率最大化. 对于具有有限状态和动作的马尔可夫决策过程（MDP），其最大似然模型恰如我们所预期的那样：
-<span class="arithmatex">\(<span class="arithmatex">\(\hat{P}(s, a, s')=\frac{\#(s, a, s')}{\#(s, a)}\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\hat{R}(s, a)=\text{mean}(r|s, a)\)</span>\)</span>
-其中，<span class="arithmatex">\(\#(s, a, s')\)</span>是数据中<span class="arithmatex">\((s, a, s')\)</span>出现的次数，<span class="arithmatex">\(\#(s, a)\)</span>是<span class="arithmatex">\((s, a)\)</span>出现的次数，<span class="arithmatex">\(\text{mean}(r|s, a)\)</span>是在状态<span class="arithmatex">\(s\)</span>下采取动作<span class="arithmatex">\(a\)</span>的样本中<span class="arithmatex">\(r\)</span>的平均值. </p>
-<p>一旦我们得到了估计值<span class="arithmatex">\(\hat{P}\)</span>和<span class="arithmatex">\(\hat{R}\)</span>，如果它们是真实的转移函数和奖励函数，我们就可以使用动态规划评估方法来求解<span class="arithmatex">\(v^{\pi}\)</span> . 一个有趣的问题是：这个价值函数估计与在相同数据上反复运行TD算法直至收敛所产生的结果相比如何？也许令人惊讶的是，TD算法会收敛到完全相同的价值函数估计（前提是每个状态至少被观测到一次或更多次）. 因此，人们可以将TD算法视为一种高效的计算价值函数的方法，就好像我们构建了最大似然模型，然后为策略<span class="arithmatex">\(\pi\)</span>求解价值函数一样. </p>
-<p>在实践中，TD算法的用处要大得多. 注意，估计模型至少需要存储<span class="arithmatex">\(|S|^2|A|\)</span>个数字，而TD算法只需要存储<span class="arithmatex">\(|S|\)</span>个数字. 此外，当状态是连续的时候，估计<span class="arithmatex">\(p\)</span>（和<span class="arithmatex">\(R\)</span>）是很困难的，而使用函数逼近器（如神经网络）估计价值函数则很直接. 这是因为<span class="arithmatex">\(p\)</span>是一个分布，所以估计<span class="arithmatex">\(p\)</span>不仅仅是回归，还需要进行密度估计. </p>
-<h2 id="2-sarsatd">2 Sarsa：使用TD进行控制<a class="headerlink" href="#2-sarsatd" title="Permanent link">&para;</a></h2>
-<p>思路：我们可以使用TD算法来估计<span class="arithmatex">\(q^{\pi}\)</span> ，同时将策略<span class="arithmatex">\(\pi\)</span>改变为相对于<span class="arithmatex">\(q^{\pi}\)</span>（近乎）贪婪的策略. 首先，我们必须确定如何使用TD算法来估计动作价值函数，而不是状态价值函数. 给定一个转移<span class="arithmatex">\((s, a, r, s', a')\)</span> ，表格形式的<span class="arithmatex">\(q\)</span>的TD更新公式为：
-<span class="arithmatex">\(<span class="arithmatex">\(q(s, a) \leftarrow q(s, a)+\alpha\left(r+\gamma q(s', a') - q(s, a)\right)\)</span>\)</span>
-使用任意函数逼近时，<span class="arithmatex">\(q_w\)</span>的TD更新公式为：
-<span class="arithmatex">\(<span class="arithmatex">\(w \leftarrow w+\alpha\left(r+\gamma q_w(s', a') - q_w(s, a)\right)\frac{\partial q_w(s, a)}{\partial w}\)</span>\)</span></p>
-<p>我们将<span class="arithmatex">\(r+\gamma q(s', a') - q(s, a)\)</span>这一项称为TD误差. 不过，如果有人提到TD误差，他们通常指的是使用状态价值函数的TD误差. </p>
-<p>就（使用动作价值函数的）TD误差而言，使用状态、动作和奖励的随机变量，我们可以将使用任意函数逼近的TD更新写为：
-<span class="arithmatex">\(<span class="arithmatex">\(\delta_t = R_t+\gamma q_w(S_{t + 1}, A_{t + 1}) - q_w(S_t, A_t)\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(w_{t + 1} \leftarrow w_t+\alpha\delta_t\frac{\partial q_w(S_t, A_t)}{\partial w}\)</span>\)</span></p>
-<p>人们可以将动作价值函数的TD更新看作是在一个不同的马尔可夫决策过程上对状态价值函数进行TD更新，在这个新的马尔可夫决策过程中，状态被扩充为包含根据被评估策略选择的动作. 也就是说，考虑一个马尔可夫决策过程<span class="arithmatex">\(M\)</span> . 我们可以构造一个新的马尔可夫决策过程<span class="arithmatex">\(M'\)</span> ，其状态为<span class="arithmatex">\(x = (s, a)\)</span> ，其中<span class="arithmatex">\(s\)</span>是<span class="arithmatex">\(M\)</span>中的一个状态，<span class="arithmatex">\(a\)</span>是<span class="arithmatex">\(M\)</span>中的一个动作. <span class="arithmatex">\(M'\)</span>的转移函数使<span class="arithmatex">\(s\)</span>像在<span class="arithmatex">\(M\)</span>中一样转移，并根据要评估的策略<span class="arithmatex">\(\pi\)</span>选择动作<span class="arithmatex">\(a\)</span> . <span class="arithmatex">\(M'\)</span>中的动作并不重要，我们假设<span class="arithmatex">\(|A| = 1\)</span> ，即只有一个动作. 如果我们对这个新的马尔可夫决策过程应用TD算法来估计<span class="arithmatex">\(v(x)\)</span>（因为只有一个策略，所以我们省略策略上标），我们得到：
-<span class="arithmatex">\(<span class="arithmatex">\(v(x)=E[G_t|X_t = x]\)</span>\)</span>
-$$ [对于M]=E[G_t|S_t = s, A_t = a]$$
-$$ [对于M]=q^{\pi}(s, a)$$
-其中，<span class="arithmatex">\(X_t\)</span>是<span class="arithmatex">\(M'\)</span>在时间<span class="arithmatex">\(t\)</span>的状态. 此外，用状态<span class="arithmatex">\(x\)</span>写出<span class="arithmatex">\(M'\)</span>的TD更新，我们就得到了公式(247)中<span class="arithmatex">\(q\)</span>的TD更新. 因此，应用TD算法来学习动作价值函数等同于在一个不同的马尔可夫决策过程上应用TD算法来学习状态价值函数，因此它继承了完全相同的收敛特性. </p>
-<p>现在我们可以使用TD算法来估计<span class="arithmatex">\(q^{\pi}\)</span> ，然后相对于<span class="arithmatex">\(q^{\pi}\)</span>采取贪婪行动. 这可以看作是一种近似形式的价值迭代，或者是一种广义策略迭代算法. 这个算法被称为Sarsa，因为用于更新的数据是<span class="arithmatex">\((s, a, r, s', a')\)</span> . 表格形式的Sarsa算法的伪代码在算法9中给出，使用任意函数逼近的Sarsa算法的伪代码在算法10中给出. 注意：我们不需要存储<span class="arithmatex">\(q(s_{\infty}, a)\)</span>的估计值，因为我们知道它为零，无需学习这个值. </p>
-<h4 id="1sarsa">算法1：表格形式的Sarsa算法<a class="headerlink" href="#1sarsa" title="Permanent link">&para;</a></h4>
-<ol>
-<li>任意初始化<span class="arithmatex">\(q(s, a)\)</span>；</li>
-<li>对于每个episode：<ul>
-<li>从初始状态分布<span class="arithmatex">\(d_0\)</span>中采样得到状态<span class="arithmatex">\(s\)</span>；</li>
-<li>根据<span class="arithmatex">\(q\)</span>导出的策略（例如<span class="arithmatex">\(\epsilon\)</span>-贪婪策略或softmax策略）从状态<span class="arithmatex">\(s\)</span>中选择动作<span class="arithmatex">\(a\)</span>；</li>
-<li>对于每个时间步，直到<span class="arithmatex">\(s\)</span>是终端吸收状态：<ul>
-<li>执行动作<span class="arithmatex">\(a\)</span>，观察奖励<span class="arithmatex">\(r\)</span>和新状态<span class="arithmatex">\(s'\)</span>；</li>
-<li>根据<span class="arithmatex">\(q\)</span>导出的策略从状态<span class="arithmatex">\(s'\)</span>中选择动作<span class="arithmatex">\(a'\)</span>；</li>
-<li><span class="arithmatex">\(q(s, a)\leftarrow q(s, a)+\alpha(r+\gamma q(s', a') - q(s, a))\)</span>；</li>
-<li><span class="arithmatex">\(s\leftarrow s'\)</span>；</li>
-<li><span class="arithmatex">\(a\leftarrow a'\)</span>. </li>
+<p>在这种情况下，学习到的动作价值函数Q直接逼近最优动作价值函数 <span class="arithmatex">\(q_{*}\)</span> ，而与所遵循的策略无关. 这极大地简化了算法的分析，并使得早期的收敛性证明成为可能. 策略仍然有影响，因为它决定了哪些状态 - 动作对被访问和更新. 然而，对于正确的收敛，所需要的只是所有的状态 - 动作对都持续被更新. 正如我们在第5章中所观察到的，从任何在一般情况下保证找到最优行为的方法都必须满足这个要求的意义上来说，这是一个最小的要求. 在这个假设以及对步长参数序列的通常随机逼近条件的一个变体下，已经证明Q以概率1收敛到 <span class="arithmatex">\(q_{*}\)</span> . Q学习算法的程序形式如下所示. </p>
+<h3 id="qtdpi-approx-pi_">Q学习（离策略TD控制）用于估计<span class="arithmatex">\(\pi \approx \pi_{*}\)</span><a class="headerlink" href="#qtdpi-approx-pi_" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>算法参数</strong>：步长<span class="arithmatex">\(\alpha \in (0, 1]\)</span>，小的<span class="arithmatex">\(\varepsilon &gt; 0\)</span></li>
+<li><strong>初始化</strong>：对于所有<span class="arithmatex">\(s \in S^+\)</span>，<span class="arithmatex">\(a \in A(s)\)</span> ，任意初始化<span class="arithmatex">\(Q(s, a)\)</span> ，但<span class="arithmatex">\(Q(终止状态, \cdot)=0\)</span></li>
+<li><strong>循环（针对每个episode）</strong>：<ul>
+<li>初始化状态<span class="arithmatex">\(S\)</span></li>
+<li><strong>循环（针对episode的每一步）</strong>：<ul>
+<li>根据<span class="arithmatex">\(Q\)</span>导出的策略（例如<span class="arithmatex">\(\varepsilon\)</span>-贪婪）从<span class="arithmatex">\(S\)</span>中选择动作<span class="arithmatex">\(A\)</span></li>
+<li>执行动作<span class="arithmatex">\(A\)</span>，观察奖励<span class="arithmatex">\(R\)</span>和下一个状态<span class="arithmatex">\(S'\)</span></li>
+<li><span class="arithmatex">\(Q(S, A) \leftarrow Q(S, A)+\alpha[R+\gamma \max_{a} Q(S', a)-Q(S, A)]\)</span></li>
+<li><span class="arithmatex">\(S \leftarrow S'\)</span></li>
+</ul>
+</li>
+<li><strong>直到</strong>：<span class="arithmatex">\(S\)</span>为终止状态</li>
 </ul>
 </li>
 </ul>
+<h3 id="_1">示例：悬崖行走<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>这个网格世界示例比较了Sarsa和Q学习，突出了在线策略（Sarsa）和离策略（Q学习）方法之间的差异. 考虑右图所示的网格世界. 这是一个标准的无折扣、episode性任务，有起始状态和目标状态，并且通常的动作会导致向上、向下、向右和向左移动. 除了进入标记为 “悬崖” 的区域的转移之外，所有转移的奖励都是 -1 . 踏入这个区域会产生 -100的奖励，并使智能体立即回到起始状态. 
+图中展示了使用<span class="arithmatex">\(\varepsilon\)</span>-贪婪动作选择（<span class="arithmatex">\(\varepsilon = 0.1\)</span> ）的Sarsa和Q学习方法的性能. 在初始的过渡阶段之后，Q学习学习到了最优策略的值，即沿着悬崖边缘向右走的策略. 不幸的是，由于<span class="arithmatex">\(\varepsilon\)</span>-贪婪动作选择，这导致它偶尔会从悬崖上掉下去. 另一方面，Sarsa考虑了动作选择，学习到了通过网格上部更长但更安全的路径. 虽然Q学习实际上学习到了最优策略的值，但它的在线性能比学习迂回策略的Sarsa更差. 当然，如果逐渐减小<span class="arithmatex">\(\varepsilon\)</span> ，那么两种方法都会渐近地收敛到最优策略. </p>
+<p><img alt="alt text" src="image.png" /></p>
+<h2 id="5-sarsa">5 期望Sarsa<a class="headerlink" href="#5-sarsa" title="Permanent link">&para;</a></h2>
+<p>考虑一种学习算法，它与Q学习类似，不同之处在于它不是对下一个状态 - 动作对取最大值，而是使用期望值，同时考虑在当前策略下每个动作的可能性. 也就是说，考虑具有以下更新规则的算法：
+<span class="arithmatex">\(<span class="arithmatex">\(\begin{align*}
+Q(S_{t}, A_{t}) &amp; \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \mathbb{E}_{\pi}[Q(S_{t+1}, A_{t+1}) | S_{t+1}]-Q(S_{t}, A_{t})\right] \\
+&amp; \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \sum_{a} \pi(a | S_{t+1}) Q(S_{t+1}, a)-Q(S_{t}, A_{t})\right]\tag{6.9}
+\end{align*}\)</span>\)</span>
+因此，它被称为期望Sarsa. </p>
+<p>期望Sarsa在计算上比Sarsa更复杂，但作为回报，它消除了由于随机选择<span class="arithmatex">\(A_{t+1}\)</span>而产生的方差. 在相同的经验量下，我们可能期望它的表现略好于Sarsa，实际上它通常也是如此. 图6.3展示了在悬崖行走任务上期望Sarsa与Sarsa和Q学习的比较结果. 期望Sarsa保留了Sarsa相对于Q学习在这个问题上的显著优势. 此外，在广泛的步长参数<span class="arithmatex">\(\alpha\)</span>值范围内，期望Sarsa相对于Sarsa有显著的性能提升. 在悬崖行走中，状态转移都是确定性的，所有的随机性都来自策略. 在这种情况下，期望Sarsa可以安全地将<span class="arithmatex">\(\alpha\)</span>设置为1，而不会导致渐近性能下降，而Sarsa只有在步长<span class="arithmatex">\(\alpha\)</span>较小时才能在长期内表现良好，但此时短期性能较差. 在这个和其他示例中，期望Sarsa在经验上始终优于Sarsa. </p>
+<p>在这些悬崖行走的结果中，期望Sarsa是在线策略使用的，但一般来说，它可能使用与目标策略<span class="arithmatex">\(\pi\)</span>不同的策略来生成行为，在这种情况下，它就变成了一种离策略算法. 例如，假设<span class="arithmatex">\(\pi\)</span>是贪婪策略，而行为更具探索性：那么期望Sarsa就完全等同于Q学习. 从这个意义上说，期望Sarsa包含并推广了Q学习，同时可靠地改进了Sarsa. 除了稍微增加的计算成本外，期望Sarsa可能完全优于其他两种更知名的TD控制算法. </p>
+<h2 id="6">6 最大化偏差和双学习<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>到目前为止我们讨论的所有控制算法在构建目标策略时都涉及最大化操作. 例如，在Q学习中，目标策略是基于当前动作值的贪婪策略，由max定义；在Sarsa中，策略通常是<span class="arithmatex">\(\varepsilon\)</span>-贪婪的，这也涉及最大化操作. 在这些算法中，对估计值取最大值被隐含地用作对最大值的估计，这可能会导致显著的正偏差. 为了理解原因，考虑一个单一状态s，在这个状态下有许多动作a，它们的真实值<span class="arithmatex">\(q(s, a)\)</span>都为零，但估计值<span class="arithmatex">\(Q(s, a)\)</span>是不确定的，因此有些高于零，有些低于零. 真实值的最大值是零，但估计值的最大值是正的，这就是正偏差. 我们称这种偏差为最大化偏差. </p>
+<p>有没有避免最大化偏差的算法呢？首先，考虑一个多臂老虎机的情况，我们对许多动作中每个动作的值都有噪声估计，这些估计是通过对每个动作所有试验中获得的奖励进行样本平均得到的. 如前所述，如果我们用估计值的最大值作为真实值最大值的估计，就会存在正的最大化偏差. 一种看待这个问题的方式是，这是因为我们使用相同的样本（试验）来确定最大化动作并估计其值. 假设我们将试验分为两组，用它们来学习两个独立的估计值，分别称为<span class="arithmatex">\(Q_{1}(a)\)</span>和<span class="arithmatex">\(Q_{2}(a)\)</span> ，每个都是对真实值<span class="arithmatex">\(q(a)\)</span>的估计，对于所有<span class="arithmatex">\(a \in A\)</span> . 然后我们可以使用一个估计值，比如<span class="arithmatex">\(Q_{1}\)</span> ，来确定最大化动作<span class="arithmatex">\(A^{*}=\arg\max_{a} Q_{1}(a)\)</span> ，另一个估计值<span class="arithmatex">\(Q_{2}\)</span>来提供其值的估计，即<span class="arithmatex">\(Q_{2}(A^{*}) = Q_{2}(\arg\max_{a} Q_{1}(a))\)</span> . 这样的估计在<span class="arithmatex">\(\mathbb{E}[Q_{2}(A^{*})]=q(A^{*})\)</span>的意义上是无偏的. 我们也可以颠倒两个估计值的角色来产生第二个无偏估计<span class="arithmatex">\(Q_{1}(\arg\max_{a} Q_{2}(a))\)</span> . 这就是双学习的思想. 注意，虽然我们学习了两个估计值，但每次试验只更新一个估计值；双学习使内存需求翻倍，但不会增加每步的计算量. </p>
+<p>双学习的思想自然地扩展到完整MDP的算法中. 例如，与Q学习类似的双学习算法，称为双Q学习，将时间步分为两组，也许可以通过在每一步抛硬币来实现. 如果硬币正面朝上，更新为：
+<span class="arithmatex">\(<span class="arithmatex">\(Q_{1}(S_{t}, A_{t}) \leftarrow Q_{1}(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma Q_{2}(S_{t+1}, \arg\max_{a} Q_{1}(S_{t+1}, a))-Q_{1}(S_{t}, A_{t})\right]\tag{6.10}\)</span>\)</span>
+如果硬币反面朝上，那么在更新时交换<span class="arithmatex">\(Q_{1}\)</span>和<span class="arithmatex">\(Q_{2}\)</span> ，以便更新<span class="arithmatex">\(Q_{2}\)</span> . 两个近似价值函数被完全对称地处理. 行为策略可以使用两个动作价值估计. 例如，双Q学习的<span class="arithmatex">\(\varepsilon\)</span>-贪婪策略可以基于两个动作价值估计的平均值（或总和）. 下面的方框给出了双Q学习的完整算法. 这就是用于生成图6.5中结果的算法. 在那个例子中，双学习似乎消除了最大化偏差造成的危害. 当然，也有双Sarsa和双期望Sarsa版本. </p>
+<h3 id="qq_1-approx-q_2-approx-q_">双Q学习，用于估计<span class="arithmatex">\(Q_{1} \approx Q_{2} \approx q_{*}\)</span><a class="headerlink" href="#qq_1-approx-q_2-approx-q_" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>初始化</strong>：对于所有<span class="arithmatex">\(s \in S^+\)</span>，<span class="arithmatex">\(a \in A(s)\)</span> ，初始化<span class="arithmatex">\(Q_{1}(s, a)\)</span>和<span class="arithmatex">\(Q_{2}(s, a)\)</span> ，使得<span class="arithmatex">\(Q(终止状态, \cdot)=0\)</span></li>
+<li><strong>算法参数</strong>：步长<span class="arithmatex">\(\alpha \in (0, 1]\)</span>，小的<span class="arithmatex">\(\varepsilon &gt; 0\)</span></li>
+<li><strong>循环（针对每个episode）</strong>：<ul>
+<li>初始化状态<span class="arithmatex">\(S\)</span></li>
+<li><strong>循环（针对episode的每一步）</strong>：<ul>
+<li>根据<span class="arithmatex">\(Q_{1} + Q_{2}\)</span>上的<span class="arithmatex">\(\varepsilon\)</span>-贪婪策略从<span class="arithmatex">\(S\)</span>中选择动作<span class="arithmatex">\(A\)</span></li>
+<li>执行动作<span class="arithmatex">\(A\)</span>，观察奖励<span class="arithmatex">\(R\)</span>和下一个状态<span class="arithmatex">\(S'\)</span></li>
+<li>以0.5的概率：<ul>
+<li><span class="arithmatex">\(Q_{1}(S, A) \leftarrow Q_{1}(S, A)+\alpha[R+\gamma Q_{2}(S', \arg\max_{a} Q_{1}(S', a))-Q_{1}(S, A)]\)</span></li>
+</ul>
 </li>
-</ol>
-<h4 id="2sarsa">算法2：Sarsa算法<a class="headerlink" href="#2sarsa" title="Permanent link">&para;</a></h4>
-<ol>
-<li>任意初始化<span class="arithmatex">\(w\)</span>；</li>
-<li>对于每个episode：<ul>
-<li>从初始状态分布<span class="arithmatex">\(d_0\)</span>中采样得到状态<span class="arithmatex">\(s\)</span>；</li>
-<li>根据<span class="arithmatex">\(q\)</span>导出的策略（例如<span class="arithmatex">\(\epsilon\)</span>-贪婪策略或softmax策略）从状态<span class="arithmatex">\(s\)</span>中选择动作<span class="arithmatex">\(a\)</span>；</li>
-<li>对于每个时间步，直到<span class="arithmatex">\(s\)</span>是终端吸收状态：<ul>
-<li>执行动作<span class="arithmatex">\(a\)</span>，观察奖励<span class="arithmatex">\(r\)</span>和新状态<span class="arithmatex">\(s'\)</span>；</li>
-<li>根据<span class="arithmatex">\(q\)</span>导出的策略从状态<span class="arithmatex">\(s'\)</span>中选择动作<span class="arithmatex">\(a'\)</span>；</li>
-<li><span class="arithmatex">\(w\leftarrow w+\alpha(r+\gamma q_w(s', a') - q_w(s, a))\frac{\partial q_w(s, a)}{\partial w}\)</span>；</li>
-<li><span class="arithmatex">\(s\leftarrow s'\)</span>；</li>
-<li><span class="arithmatex">\(a\leftarrow a'\)</span>. </li>
+<li>否则：<ul>
+<li><span class="arithmatex">\(Q_{2}(S, A) \leftarrow Q_{2}(S, A)+\alpha[R+\gamma Q_{1}(S', \arg\max_{a} Q_{2}(S', a))-Q_{2}(S, A)]\)</span></li>
+</ul>
+</li>
+<li><span class="arithmatex">\(S \leftarrow S'\)</span></li>
+</ul>
+</li>
+<li><strong>直到</strong>：<span class="arithmatex">\(S\)</span>为终止状态</li>
 </ul>
 </li>
 </ul>
-</li>
-</ol>
-<p>为了确保Sarsa算法几乎肯定收敛到最优动作价值函数，我们需要一些常规假设（有限的状态、有限的动作、有界的奖励、<span class="arithmatex">\(\gamma\in[0, 1)\)</span> ，适当衰减的步长），以及另外两个假设. 第一，所有的状态 - 动作对必须被无限次访问. 第二，策略必须在极限情况下收敛到贪婪策略（例如，<span class="arithmatex">\(\epsilon_t=\frac{1}{t}\)</span> ）. 这两个额外的假设有时被称为GLIE假设：在无限探索下渐近贪婪（greedy in the limit with infinite exploration）. 
-<strong>问题27</strong>：如果根据<span class="arithmatex">\(q\)</span>采取贪婪动作而不是近乎贪婪动作会发生什么？
-<strong>答案27</strong>：（此处文档未给出答案内容，需补充相关信息才能完整翻译）
-<strong>问题28</strong>：如果<span class="arithmatex">\(q\)</span>估计值被乐观地（设置得过大）初始化会怎样？如果悲观地初始化呢？在这两种情况下，如果<span class="arithmatex">\(\epsilon = 0\)</span>又会怎样？
-<strong>答案28</strong>：（此处文档未给出答案内容，需补充相关信息才能完整翻译）</p>
-<p>我们将Sarsa算法称为一种在线策略算法. 这是因为它在每个时间步都为当前策略估计<span class="arithmatex">\(q\)</span>函数. 接下来，我们将考虑一种类似的算法，它为与当前执行策略不同的策略估计<span class="arithmatex">\(q\)</span>函数. </p>
-<h3 id="3-qtd">3 Q学习：离策略TD控制<a class="headerlink" href="#3-qtd" title="Permanent link">&para;</a></h3>
-<p>Sarsa更新可以看作是将贝尔曼方程转换为更新规则，而Q学习可以看作是将贝尔曼最优性方程转换为更新规则. 基于转移<span class="arithmatex">\((s, a, r, s')\)</span>的Q学习更新公式（由Watkins在1989年提出）为：
-<span class="arithmatex">\(<span class="arithmatex">\(q(s, a)=q(s, a)+\alpha\left(r+\gamma\max_{a'\in\mathcal{A}}q(s', a') - q(s, a)\right)\)</span>\)</span>
-使用任意函数逼近时的公式为：
-<span class="arithmatex">\(<span class="arithmatex">\(w = w+\alpha\left(r+\gamma\max_{a'\in\mathcal{A}}q_w(s', a') - q_w(s, a)\right)\frac{\partial q_w(s, a)}{\partial w}\)</span>\)</span></p>
-<p>因此，Sarsa算法在每一步都朝着<span class="arithmatex">\(q^{\pi}\)</span>的估计值更新<span class="arithmatex">\(q\)</span>（其中<span class="arithmatex">\(\pi\)</span>是生成动作的策略），而Q学习在每一步都朝着<span class="arithmatex">\(q^{*}\)</span>的估计值更新<span class="arithmatex">\(q\)</span> ，无论生成动作使用的是哪个策略. 从这个意义上说，它是离策略的，即无论用于生成数据的策略是什么，它都估计<span class="arithmatex">\(q^{*}\)</span> . 还要注意，Q学习在采样到<span class="arithmatex">\(S_{t + 1}\)</span>后就可以立即更新，而无需等待采样到<span class="arithmatex">\(A_{t + 1}\)</span> ，而Sarsa算法必须等待采样到<span class="arithmatex">\(A_{t + 1}\)</span> . 在标准假设下，如果所有的<span class="arithmatex">\((s, a)\)</span>对都被无限次访问，Q学习会收敛到<span class="arithmatex">\(q^{*}\)</span> . 这意味着Q学习不需要GLIE假设，即采样策略在极限情况下不需要变成贪婪策略. </p>
-<p>由于Q学习在更新时不需要<span class="arithmatex">\(A_{t + 1}\)</span> ，所以它的伪代码不是简单地修改Sarsa算法中的<span class="arithmatex">\(q\)</span>更新部分. Q学习的伪代码在算法11和算法12中给出. </p>
-<h4 id="3q">算法3：表格形式的Q学习算法<a class="headerlink" href="#3q" title="Permanent link">&para;</a></h4>
-<ol>
-<li>任意初始化<span class="arithmatex">\(q(s, a)\)</span>；</li>
-<li>对于每个episode：<ul>
-<li>从初始状态分布<span class="arithmatex">\(d_0\)</span>中采样得到状态<span class="arithmatex">\(s\)</span>；</li>
-<li>对于每个时间步，直到<span class="arithmatex">\(s\)</span>是终端吸收状态：<ul>
-<li>根据<span class="arithmatex">\(q\)</span>导出的策略从状态<span class="arithmatex">\(s\)</span>中选择动作<span class="arithmatex">\(a\)</span>；</li>
-<li>执行动作<span class="arithmatex">\(a\)</span>，观察奖励<span class="arithmatex">\(r\)</span>和新状态<span class="arithmatex">\(s'\)</span>；</li>
-<li><span class="arithmatex">\(q(s, a)\leftarrow q(s, a)+\alpha(r+\gamma\max_{a'\in\mathcal{A}}q(s', a') - q(s, a))\)</span>；</li>
-<li><span class="arithmatex">\(s\leftarrow s'\)</span>. </li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h4 id="4q">算法4：Q学习算法<a class="headerlink" href="#4q" title="Permanent link">&para;</a></h4>
-<ol>
-<li>任意初始化<span class="arithmatex">\(w\)</span>；</li>
-<li>对于每个episode：<ul>
-<li>从初始状态分布<span class="arithmatex">\(d_0\)</span>中采样得到状态<span class="arithmatex">\(s\)</span>；</li>
-<li>对于每个时间步，直到<span class="arithmatex">\(s\)</span>是终端吸收状态：<ul>
-<li>根据<span class="arithmatex">\(q\)</span>导出的策略从状态<span class="arithmatex">\(s\)</span>中选择动作<span class="arithmatex">\(a\)</span>；</li>
-<li>执行动作<span class="arithmatex">\(a\)</span>，观察奖励<span class="arithmatex">\(r\)</span>和新状态<span class="arithmatex">\(s'\)</span>；</li>
-<li><span class="arithmatex">\(w\leftarrow w+\alpha(r+\gamma\max_{a'\in\mathcal{A}}q_w(s', a') - q_w(s, a))\frac{\partial q_w(s, a)}{\partial w}\)</span>；</li>
-<li><span class="arithmatex">\(s\leftarrow s'\)</span>. </li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p>TD、Sarsa和Q学习的收敛特性在下表中给出. </p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>TD</th>
-<th>Sarsa</th>
-<th>Q学习</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>表格形式</td>
-<td>收敛到<span class="arithmatex">\(v^{\pi}\)</span>（Tsitsiklis和Van Roy，1997）</td>
-<td>收敛到<span class="arithmatex">\(q^{*}\)</span>（Singh等人，2000）</td>
-<td>收敛到<span class="arithmatex">\(q^{*}\)</span>（Watkins和Dayan，1992；Tsitsiklis，1994）</td>
-</tr>
-<tr>
-<td>线性</td>
-<td>收敛到接近<span class="arithmatex">\(v^{\pi}\)</span>的策略（Tsitsiklis和Van Roy，1997）</td>
-<td>收敛（Perkins和Precup，2003）</td>
-<td>可能发散（Wiering，2004；Baird，1995）</td>
-</tr>
-<tr>
-<td>非线性</td>
-<td>可能发散</td>
-<td>可能发散</td>
-<td>可能发散</td>
-</tr>
-</tbody>
-</table>
+<blockquote>
+<p>在强化学习中，从动作价值函数<span class="arithmatex">\(Q\)</span>导出策略，核心是依据<span class="arithmatex">\(Q\)</span>值确定在不同状态下采取的动作，从而平衡探索与利用。常见的是基于<span class="arithmatex">\(\epsilon\)</span>-贪婪策略和贪婪策略来实现，不同策略适用于不同阶段和场景。
+1. <strong><span class="arithmatex">\(\epsilon\)</span>-贪婪策略</strong>：在很多强化学习算法，如Sarsa、Q学习中广泛应用。以概率<span class="arithmatex">\(1 - \epsilon\)</span>选择当前状态下<span class="arithmatex">\(Q\)</span>值最大的动作，这是利用已有经验选择最优动作；以概率<span class="arithmatex">\(\epsilon\)</span>随机选择其他动作，用于探索新的动作和状态。比如在一个有<span class="arithmatex">\(n\)</span>个可选动作的状态下，计算<span class="arithmatex">\(Q(s, a_1), Q(s, a_2), \cdots, Q(s, a_n)\)</span>，找到最大<span class="arithmatex">\(Q\)</span>值对应的动作<span class="arithmatex">\(a_{max}\)</span>，<span class="arithmatex">\(1 - \epsilon\)</span>的概率选<span class="arithmatex">\(a_{max}\)</span>，<span class="arithmatex">\(\epsilon\)</span>概率从除<span class="arithmatex">\(a_{max}\)</span>外的<span class="arithmatex">\(n - 1\)</span>个动作中随机选。训练初期，<span class="arithmatex">\(\epsilon\)</span>可设大些，充分探索环境；随着训练推进，<span class="arithmatex">\(\epsilon\)</span>逐渐减小，更多利用已有经验。
+2. <strong>贪婪策略</strong>：直接选择当前状态下<span class="arithmatex">\(Q\)</span>值最大的动作，即对于给定状态<span class="arithmatex">\(s\)</span>，选择动作<span class="arithmatex">\(a = \arg\max_{a \in A(s)} Q(s, a)\)</span>。在已知<span class="arithmatex">\(Q\)</span>函数能准确反映最优动作价值时适用，如算法收敛到最优策略后。像解决一些简单确定性问题，或复杂问题训练后期，可采用贪婪策略，利用已学习到的<span class="arithmatex">\(Q\)</span>值高效选择最优动作，获取最大奖励。 </p>
+<p>在强化学习算法中使用<span class="arithmatex">\(\epsilon\)</span>-贪婪策略，主要是为了有效平衡探索（exploration）和利用（exploitation）之间的关系，使智能体既能不断尝试新的动作以发现更好的策略，又能利用已有的经验选择当前认为最优的动作来获取更大的奖励。
+1. <strong>促进探索新策略</strong>：在强化学习中，环境和任务往往具有不确定性。如果智能体仅选择当前认为最优的动作（即完全利用已有经验），可能会陷入局部最优解，错过其他潜在的更优策略。<span class="arithmatex">\(\epsilon\)</span>-贪婪策略通过以<span class="arithmatex">\(\epsilon\)</span>的概率随机选择动作，让智能体有机会探索那些当前估计价值不高但实际上可能通向更好结果的动作。在“悬崖行走”的网格世界任务中，智能体如果一直选择当前认为最优的动作，可能永远不会尝试其他路径，从而无法发现全局最优策略。而<span class="arithmatex">\(\epsilon\)</span>-贪婪策略使得智能体有一定概率选择非最优动作，增加了探索新路径的可能性，有可能找到更好的解决方案。
+2. <strong>基于经验进行利用</strong>：以<span class="arithmatex">\(1-\epsilon\)</span>的概率选择当前最优动作，能让智能体利用在之前学习过程中积累的经验。随着学习的进行，智能体对环境的了解逐渐加深，对动作价值的估计也更加准确。此时，利用这些经验选择最优动作可以使智能体获得更大的奖励。在“有风网格世界”任务中，智能体通过不断学习，会逐渐了解哪些动作在特定状态下更有利于到达目标，<span class="arithmatex">\(\epsilon\)</span>-贪婪策略中的利用部分可以让它在大部分情况下选择这些经验证有效的动作，提高到达目标的效率。
+3. <strong>确保收敛到最优策略</strong>：从理论上来说，只要所有状态 - 动作对都能被无限次访问，采用<span class="arithmatex">\(\epsilon\)</span>-贪婪策略的强化学习算法（如Sarsa算法）就能以概率1收敛到最优策略。这是因为<span class="arithmatex">\(\epsilon\)</span>-贪婪策略保证了智能体不会永远局限于当前的局部最优解，而是持续探索其他可能性，最终能够找到全局最优策略。如果不使用类似<span class="arithmatex">\(\epsilon\)</span>-贪婪这样的策略来平衡探索和利用，智能体可能会在未充分探索环境的情况下就过早地确定策略，导致无法收敛到真正的最优策略。 </p>
+</blockquote>
 
 
 
@@ -1584,7 +1464,7 @@ $$ [对于M]=q^{\pi}(s, a)$$
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 9, 2025 15:32:56">May 9, 2025 15:32:56</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 9, 2025 16:34:14">May 9, 2025 16:34:14</span>
   </span>
 
     
