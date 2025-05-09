@@ -18,7 +18,7 @@ $$
 V\left(S_{t}\right) \leftarrow V\left(S_{t}\right)+\alpha\left[G_{t}-V\left(S_{t}\right)\right]
 $$
 
-其中，$G_{t}$是时间t之后的实际回报，α是一个固定的步长参数（见公式2.4）. 我们将这种方法称为固定α的MC方法. 蒙特卡罗方法必须等到一个episode结束，才能确定$V(S_{t})$的增量（只有那时$G_{t}$才已知），而TD方法只需等到下一个时间步. 在时间$t + 1$时，它们立即根据观察到的奖励$R_{t+1}$和估计值$V(S_{t+1})$，形成一个目标值并进行有效的更新. 最简单的TD方法在转移到$S_{t+1}$并收到$R_{t+1}$后，立即进行如下更新：
+其中，$G_{t}$ 是时间t之后的实际回报，$\alpha$ 是一个固定的步长参数. 我们将这种方法称为固定 $\alpha$ 的MC方法. 蒙特卡罗方法必须等到一个episode结束，才能确定 $V(S_{t})$ 的增量（只有那时 $G_{t}$ 才已知），而TD方法只需等到下一个时间步. 在时间 $t + 1$ 时，它们立即根据观察到的奖励 $R_{t+1}$ 和估计值 $V(S_{t+1})$，形成一个目标值并进行有效的更新. 最简单的TD方法在转移到 $S_{t+1}$ 并收到 $R_{t+1}$ 后，立即进行如下更新：
 
 $$
 V\left(S_{t}\right) \leftarrow V\left(S_{t}\right)+\alpha\left[R_{t+1}+\gamma V\left(S_{t+1}\right)-V\left(S_{t}\right)\right]
@@ -26,7 +26,7 @@ $$
 
 实际上，蒙特卡罗更新的目标值是 $G_{t}$，而TD更新的目标值是 $R_{t+1}+\gamma V(S_{t+1})$. 这种TD方法被称为 $\text{TD}(0)$，即一步TD.
 
-### 用于估计 $v_{\pi}$ 的表格型 $\text{TD}(0)$ 算法
+### 用于估计 $v^{\pi}$ 的表格型 $\text{TD}(0)$ 算法
 
 - **输入**：待评估的策略$\pi$
 - **算法参数**：步长$\alpha\in(0, 1]$
@@ -43,23 +43,24 @@ $$
 因为$\text{TD}(0)$的更新部分基于现有估计值，所以我们说它和DP一样，是一种自举法. 我们知道：
 
 $$
-\begin{array}{rlrl} 
-v^{\pi}(s) & := \mathbb{E}_{\pi}\left[G_{t} | S_{t}=s\right] \\ & =\mathbb{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1} | S_{t}=s\right]  \\ & =\mathbb{E}_{\pi}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right) | S_{t}=s\right] .  
-\end{array}
+\begin{align}
+v^{\pi}(s) & := \mathbb{E}_{\pi}\left[G_{t} | S_{t}=s\right] \label{eq:MC} \\ & =\mathbb{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1} | S_{t}=s\right] \notag \\ & =\mathbb{E}_{\pi}\left[R_{t+1}+\gamma v^{\pi}\left(S_{t+1}\right) | S_{t}=s\right] \label{eq:TD0}.  
+\end{align}
 $$
 
-大致来说，蒙特卡罗方法用公式(6.3)的估计值作为目标值，而DP方法用公式(6.4)的估计值作为目标值. 蒙特卡罗方法的目标值是一个估计值，因为公式(6.3)中的期望值是未知的，它用一个样本回报来代替真实的期望回报. DP方法的目标值是估计值，不是因为期望值（假设环境模型能完全提供这些期望值），而是因为$v_{\pi}(S_{t+1})$是未知的，它使用当前估计值$V(S_{t+1})$来代替. TD方法的目标值是估计值，原因有两个：它对公式(6.4)中的期望值进行采样，并且使用当前估计值$V$而不是真实的$v_{\pi}$. 因此，TD方法结合了蒙特卡罗方法的采样和DP方法的自举法. 正如我们将看到的，通过谨慎思考和发挥想象力，这能让我们在获得蒙特卡罗和DP方法的优势方面取得很大进展. 
+大致来说，蒙特卡罗方法用公式 $\eqref{eq:MC}$ 的估计值作为目标值，而DP方法用公式 $\eqref{eq:TD0}$ 的估计值作为目标值. 蒙特卡罗方法的目标值是一个估计值，因为公式 $\eqref{eq:MC}$ 中的期望值是未知的，它用一个样本回报来代替真实的期望回报. DP方法的目标值是估计值，不是因为期望值（假设环境模型能完全提供这些期望值），而是因为$v^{\pi}(S_{t+1})$是未知的，它使用当前估计值$V(S_{t+1})$来代替. TD方法的目标值是估计值，原因有两个：它对公式 $\eqref{eq:TD0}$ 中的期望值进行采样，并且使用当前估计值$V$而不是真实的$v^{\pi}$. 因此，TD方法结合了蒙特卡罗方法的采样和DP方法的自举法. 正如我们将看到的，通过谨慎思考和发挥想象力，这能让我们在获得蒙特卡罗和DP方法的优势方面取得很大进展. 
 
-右侧展示的是表格型$TD(0)$的备份图. 备份图顶部状态节点的价值估计值，是基于从它到紧随其后状态的单个样本转移来更新的. 我们将TD和蒙特卡罗更新称为样本更新，因为它们都涉及向前查看一个样本后继状态（或状态 - 动作对），利用后继状态的价值和沿途的奖励来计算一个备份价值，然后相应地更新原始状态（或状态 - 动作对）的价值. 样本更新与DP方法的期望更新不同，因为样本更新基于单个样本后继状态，而不是所有可能后继状态的完整分布. 
 
-最后，注意$TD(0)$更新公式中括号内的量是一种误差，它衡量了$S_{t}$的估计值与更好的估计值$R_{t+1}+\gamma V(S_{t+1})$之间的差异. 这个量被称为TD误差，在整个强化学习中以各种形式出现：
+最后，注意 $TD(0)$ 更新公式中括号内的量是一种误差，它衡量了$S_{t}$的估计值与更好的估计值$R_{t+1}+\gamma V(S_{t+1})$之间的差异. 这个量被称为TD误差，在整个强化学习中以各种形式出现：
+
 $$
-\delta_{t} := R_{t+1}+\gamma V\left(S_{t+1}\right)-V\left(S_{t}\right)\tag{6.5}
+\delta_{t} := R_{t+1}+\gamma V\left(S_{t+1}\right)-V\left(S_{t}\right)
 $$
+
 注意，每个时刻的TD误差是该时刻估计值的误差. 由于TD误差取决于下一个状态和下一个奖励，实际上直到下一个时间步它才可用. 也就是说，$\delta_{t}$是$V(S_{t})$的误差，在时间$t + 1$时可用. 还要注意，如果数组$V$在episode中不发生变化（蒙特卡罗方法中就是如此），那么蒙特卡罗误差可以写成TD误差的和：
 
 $$
-\begin{aligned} G_{t}-V\left(S_{t}\right) & =R_{t+1}+\gamma G_{t+1}-V\left(S_{t}\right)+\gamma V\left(S_{t+1}\right)-\gamma V\left(S_{t+1}\right) \quad \text{(由(3.9)可得)} \\ & =\delta_{t}+\gamma\left(G_{t+1}-V\left(S_{t+1}\right)\right) \\ & =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2}\left(G_{t+2}-V\left(S_{t+2}\right)\right) \\ & =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2} \delta_{t+2}+\cdots+\gamma^{T-t-1} \delta_{T-1}+\gamma^{T-t}\left(G_{T}-V\left(S_{T}\right)\right) \\ & =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2} \delta_{t+2}+\cdots+\gamma^{T-t-1} \delta_{T-1}+\gamma^{T-t}(0 - 0) \\ & =\sum_{k=t}^{T-1} \gamma^{k-t} \delta_{k} \end{aligned}
+\begin{aligned} G_{t}-V\left(S_{t}\right) & =R_{t+1}+\gamma G_{t+1}-V\left(S_{t}\right)+\gamma V\left(S_{t+1}\right)-\gamma V\left(S_{t+1}\right)  \\ & =\delta_{t}+\gamma\left(G_{t+1}-V\left(S_{t+1}\right)\right) \\ & =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2}\left(G_{t+2}-V\left(S_{t+2}\right)\right) \\ & =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2} \delta_{t+2}+\cdots+\gamma^{T-t-1} \delta_{T-1}+\gamma^{T-t}\left(G_{T}-V\left(S_{T}\right)\right) \\ & =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2} \delta_{t+2}+\cdots+\gamma^{T-t-1} \delta_{T-1}+\gamma^{T-t}(0 - 0) \\ & =\sum_{k=t}^{T-1} \gamma^{k-t} \delta_{k} \end{aligned}
 $$
 
 如果$V$在episode中发生更新（如在$TD(0)$中），这个等式就不精确了，但如果步长很小，它仍然可以近似成立. 这个等式的推广在时序差分学习的理论和算法中起着重要作用. 
