@@ -17,11 +17,21 @@
 - Neural Network Training Tips
 - Word2Vec
 - CNN
-- RCNN
+- RNN
 - LSTM and GRU
 - Encoder Decoder Models and  Attention Mechanism
 - Transformers
 
 ## Exercise
+
+- FNN from scratch
+
+- CNN from scratch
+    - https://github.com/vzhou842/cnn-from-scratch
+
+- RNN from scratch
+
+- Transformer from scatch
+
 
 

@@ -36,6 +36,9 @@ nav:
         - Autoencoders: DL/Autoencoders/README.md
         - Regularization: DL/Regularization/README.md
         - Neural Network Training Tips: DL/nn_training_tips/README.md
+        - Word2Vec: DL/word2vec/README.md
+        - CNN: DL/CNN/README.md
+        - RNN: DL/RNN/README.md
 
     - GNN:
         - GNN/index.md
@@ -47,7 +50,11 @@ nav:
         - Bellman Equation: RL/Bellman_eq
         - Policy Iteration and Value Iteration: RL/PI_and_VI/README.md
         - Monte Carlo Methods: RL/MCM/README.md
-        - Temporal Differenence (TD) Learning:Sarsa, Q-learning: RL/TD_Sarsa_Qlearning/README.md
+        - TD Learning:Sarsa, Q-learning: RL/TD_Sarsa_Qlearning/README.md
+
+    - LLMs:
+        - LLMs/index.md
+
 
     - LEETCODE:
         - LEETCODE/index.md
@@ -61,16 +68,20 @@ nav:
             - LEETCODE/shortest_path/README.md
         - 二叉树:
             - LEETCODE/binary_tree/README.md
-        - 滑动窗口和双指针:
-            - LEETCODE/windows_pointer/README.md
-        - 位运算:
-            - LEETCODE/bit_operation/README.md
+        - 滑动窗口:
+            - LEETCODE/sliding_window/README.md
+        - 双指针:
+            - LEETCODE/double_pointer/README.md
+        - 二分算法:
+            - LEETCODE/binary_search_algorithm/README.md
         - 链表:
             - LEETCODE/linked_list/README.md
         - 单调栈:
             - LEETCODE/monotonic_stack/README.md
         - 常用数据结构:
             - LEETCODE/data_structure/README.md
+        - 位运算:
+            - LEETCODE/bit_operation/README.md
         - HW机考实战:
             - LEETCODE/huawei/README.md
         

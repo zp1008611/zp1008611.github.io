@@ -5,7 +5,7 @@
 - https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture9.pdf
 
 
-## 模块9.1：深度神经网络训练快速回顾
+## 1：深度神经网络训练快速回顾
 
 我们已经了解了如何训练这个网络：
 $$w = w - \eta\nabla w$$
