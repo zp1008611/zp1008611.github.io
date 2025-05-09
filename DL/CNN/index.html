@@ -1,0 +1,1672 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/DL/CNN/">
+      
+      
+        <link rel="prev" href="../word2vec/">
+      
+      
+        <link rel="next" href="../RNN/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>CNN - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cnn" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CNN
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../OROPT/or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../GNN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GNN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../LLMs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLMs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../LEETCODE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LEETCODE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RESUME_QandA/summary/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  面试八股
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../OROPT/or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    运筹与优化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    DL
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            DL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MLPs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multilayer Perceptrons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sigmoid_nn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sigmoid Neurons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Feedforward Neural Networks and Backpropagation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GD_Variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GD Variants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PCA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PCA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Autoencoders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoencoders
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regularization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Regularization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nn_training_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Network Training Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../word2vec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Word2Vec
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    CNN
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    CNN
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 卷积操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 输入大小、输出大小和滤波器大小之间的关系
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 卷积神经网络
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-imagenet" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 卷积神经网络在ImageNet上的成功案例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 卷积神经网络在ImageNet上的成功案例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alexnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlexNet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zfnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      ZFNet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vggnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      VGGNet
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-googlenetresnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 图像分类（续）（GoogLeNet和ResNet）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 图像分类（续）（GoogLeNet和ResNet）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一些技巧
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../GNN/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    GNN
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../RL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    RL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../LLMs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LLMs
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../LEETCODE/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LEETCODE
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../RESUME_QandA/summary/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    面试八股
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="cnn">卷积神经网络（CNN）<a class="headerlink" href="#cnn" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 3751 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 33 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 13 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture11.pdf</li>
+</ul>
+<h2 id="1">1 卷积操作<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>假设我们使用激光传感器在离散的时间间隔跟踪飞机的位置. 现在假设我们的传感器存在噪声. 为了获得噪声较小的估计值，我们希望对多个测量值进行平均. 由于最近的测量值更重要，所以我们希望进行加权平均. </p>
+<p><img alt="alt text" src="image.png" /></p>
+<p>在实践中，我们通常只在一个小窗口内进行求和. 权重数组（w）被称为滤波器. 我们只需将滤波器在输入上滑动，并根据 <span class="arithmatex">\(x_t\)</span> 周围的窗口计算 <span class="arithmatex">\(s_t\)</span> 的值. </p>
+<p><img alt="alt text" src="image-1.png" /></p>
+<p><img alt="alt text" src="image-2.png" /></p>
+<p>...</p>
+<p><img alt="alt text" src="image-3.png" /></p>
+<p>这里的输入（和内核）是一维的. 那么，我们也可以在二维输入上使用卷积操作吗？</p>
+<p>我们可以将图像看作是二维输入. 现在我们想用一个二维滤波器（<span class="arithmatex">\(m×n\)</span>）. 首先让我们看看二维卷积的公式是什么样子. </p>
+<div class="arithmatex">\[
+S_{ij} = (I * K)_{ij} = \sum_{a = 0}^{m - 1} \sum_{b = 0}^{n - 1} I_{i - a, j - b} K_{a, b} I_{i + a, j + b} K_{a, b}
+\]</div>
+<p>例子：</p>
+<p><img alt="alt text" src="image-4.png" /></p>
+<p>在接下来的讨论中，我们将使用下面这个卷积公式：</p>
+<div class="arithmatex">\[
+S_{ij} = (I * K)_{ij} = \sum_{a=\left\lfloor -\frac{m}{2} \right\rfloor}^{\left\lfloor \frac{m}{2} \right\rfloor} \sum_{b=\left\lfloor -\frac{n}{2} \right\rfloor}^{\left\lfloor \frac{n}{2} \right\rfloor} I_{i - a, j - b} K_{\frac{m}{2}+a,\frac{n}{2}+b}
+\]</div>
+<p>换句话说，我们假设内核以感兴趣的像素为中心. 这样我们就会同时考虑前面和后面的相邻像素. </p>
+<p><img alt="alt text" src="image-5.png" /></p>
+<ul>
+<li>第一个公式： <span class="arithmatex">\(S_{ij} = (I * K)_{ij} = \sum_{a = 0}^{m - 1} \sum_{b = 0}^{n - 1} I_{i - a, j - b} K_{a, b} I_{i + a, j + b} K_{a, b}\)</span>  ，求和范围是从  <span class="arithmatex">\(a = 0\)</span>  到  <span class="arithmatex">\(m - 1\)</span>  、  <span class="arithmatex">\(b = 0\)</span>  到  <span class="arithmatex">\(n - 1\)</span>  ，它只考虑了滤波器（内核）  <span class="arithmatex">\(K\)</span>  中从起始位置开始的元素 ，是基于一种从图像左上角开始以滤波器大小为窗口逐步滑动计算的思路 ，没有考虑滤波器元素关于中心对称等情况. </li>
+<li>第二个公式： <span class="arithmatex">\(S_{ij} = (I * K)_{ij} = \sum_{a=\left\lfloor -\frac{m}{2} \right\rfloor}^{\left\lfloor \frac{m}{2} \right\rfloor} \sum_{b=\left\lfloor -\frac{n}{2} \right\rfloor}^{\left\lfloor \frac{n}{2} \right\rfloor} I_{i - a, j - b} K_{\frac{m}{2}+a,\frac{n}{2}+b}\)</span>  ，求和范围是以滤波器中心为基准 ，  <span class="arithmatex">\(a\)</span>  和  <span class="arithmatex">\(b\)</span>  的取值范围关于0对称. 这种方式假设滤波器以感兴趣的像素为中心，同时考虑了像素周围前后的相邻像素 ，更符合将滤波器中心放置在目标像素上进行卷积计算的思想. </li>
+</ul>
+<p>让我们看一些对图像应用二维卷积的例子：
+- 用全为1的滤波器卷积会模糊图像. </p>
+<p><img alt="alt text" src="image-6.png" /></p>
+<ul>
+<li>用 $ \begin{bmatrix}0 &amp; -1 &amp; 0 \ -1 &amp; 5 &amp; -1 \ 0 &amp; -1 &amp; 0\end{bmatrix} $ 这个滤波器卷积会锐化图像. </li>
+</ul>
+<p><img alt="alt text" src="image-7.png" /></p>
+<ul>
+<li>用 $ \begin{bmatrix}1 &amp; 1 &amp; 1 \ 1 &amp; -8 &amp; 1 \ 1 &amp; 1 &amp; 1\end{bmatrix} $ 这个滤波器卷积会检测边缘. </li>
+</ul>
+<p><img alt="alt text" src="image-8.png" /></p>
+<p>我们只需将内核在输入图像上滑动. 每次滑动内核，我们都会在输出中得到一个值. 得到的输出被称为特征图. 我们可以使用多个滤波器来获得多个特征图. </p>
+<p><img alt="alt text" src="image-9.png" /></p>
+<p>问题：在一维情况下，我们在一维输入上滑动一维滤波器；在二维情况下，我们在二维输出上滑动二维滤波器. 那么在三维情况下会发生什么呢？</p>
+<p>三维滤波器会是什么样子？它将是三维的，我们将其称为体（volume）. 同样，我们将这个体在三维输入上滑动并计算卷积操作. 需要注意的是，在本讲中，我们假设滤波器总是延伸到图像的深度. 实际上，我们是在三维输入上进行二维卷积操作（因为滤波器沿着高度和宽度移动，但不沿着深度移动）. 因此，输出将是二维的（只有宽度和高度，没有深度）. 同样，我们可以应用多个滤波器来获得多个特征图. </p>
+<p><img alt="alt text" src="image-10.png" /></p>
+<h2 id="2">2 输入大小、输出大小和滤波器大小之间的关系<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>到目前为止，我们还没有明确说明输入、滤波器、输出的维度以及它们之间的关系. 我们将了解它们是如何关联的，但在此之前，我们先定义一些量：</p>
+<ul>
+<li>原始输入的宽度（<span class="arithmatex">\(W_1\)</span>）、高度（<span class="arithmatex">\(H_1\)</span>）和深度（<span class="arithmatex">\(D_1\)</span>）. </li>
+<li>步长S（我们稍后会详细介绍）. </li>
+<li>滤波器的数量K. </li>
+<li>每个滤波器的空间范围（<span class="arithmatex">\(F\)</span>）（每个滤波器的深度与每个输入的深度相同）. </li>
+<li>输出是 <span class="arithmatex">\(W_2×H_2×D_2\)</span> （我们很快会看到计算 <span class="arithmatex">\(W_2\)</span>、<span class="arithmatex">\(H_2\)</span> 和 <span class="arithmatex">\(D_2\)</span> 的公式）. </li>
+</ul>
+<p><img alt="alt text" src="image-11.png" /></p>
+<p>让我们计算输出的维度（<span class="arithmatex">\(W_2\)</span>, <span class="arithmatex">\(H_2\)</span>）. 注意，我们不能将内核放置在角落，因为这样会超出输入边界. 对于所有阴影点都是如此（内核超出输入边界）. 这导致输出的维度比输入小. 一般来说，<span class="arithmatex">\(W_2 = W_1 - F + 1\)</span> ，<span class="arithmatex">\(H_2 = H_1 - F + 1\)</span>. 我们将进一步完善这个公式. </p>
+<p>如果我们希望输出与输入大小相同呢？我们可以使用一种称为填充的方法. 用适当数量的0输入对输入进行填充，这样就可以在内核放置在角落时应用它. 例如，对于一个3×3的内核，我们使用填充 <span class="arithmatex">\(P = 1\)</span> ，这意味着我们在顶部、底部、左侧和右侧各添加一行和一列0输入. </p>
+<p><img alt="alt text" src="image-12.png" /></p>
+<p>这样我们有，<span class="arithmatex">\(W_2 = W_1 - F + 2P+ 1\)</span> ，<span class="arithmatex">\(H_2 = H_1 - F + 2P+ 1\)</span>. 我们将进一步完善这个公式. </p>
+<p>步长S有什么作用呢？它定义了应用滤波器的间隔（这里 <span class="arithmatex">\(S = 2\)</span> ）. 这里，我们实际上是每隔一个像素进行一次操作，这又会导致输出的维度变小. </p>
+<p><img alt="alt text" src="image-13.png" /></p>
+<p>那么我们最终的公式应该是什么样的呢？<span class="arithmatex">\(W_2=\frac{W_1 - F + 2P}{S}+1\)</span> ，<span class="arithmatex">\(H_2=\frac{H_1 - F + 2P}{S}+1\)</span>. </p>
+<p>最后，关于输出的深度. 每个滤波器给我们一个二维输出. <span class="arithmatex">\(K\)</span> 个滤波器将给我们 <span class="arithmatex">\(K\)</span> 个这样的二维输出. 我们可以将得到的输出看作是 <span class="arithmatex">\(K×W_2×H_2\)</span> 的体. 因此，<span class="arithmatex">\(D_2 = K\)</span>. </p>
+<p><img alt="alt text" src="image-14.png" /></p>
+<p>让我们做一些练习：</p>
+<ul>
+<li>
+<p>对于输入大小为227×227×3，有96个滤波器，步长为4，填充为0，计算可得 <span class="arithmatex">\(H_2 = 55 = \frac{227 - 11}{4}+1\)</span> ，<span class="arithmatex">\(W_2 = 55 = \frac{227 - 11}{4}+1\)</span> ，<span class="arithmatex">\(D_2 = 96\)</span>. </p>
+<p><img alt="alt text" src="image-15.png" /></p>
+</li>
+<li>
+<p>对于输入大小为32×32×5，有6个滤波器，步长为1，填充为0，计算可得 <span class="arithmatex">\(H_2 = 28 = \frac{32 - 5}{1}+1\)</span> ，<span class="arithmatex">\(W_2 = 28 = \frac{32 - 5}{1}+1\)</span> ，<span class="arithmatex">\(D_2 = 6\)</span>. </p>
+<p><img alt="alt text" src="image-16.png" /></p>
+</li>
+</ul>
+<h2 id="3">3 卷积神经网络<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>把这些内容联系起来看，卷积操作和神经网络之间有什么联系呢？我们通过考虑“图像分类”任务来理解这一点. </p>
+<p>在图像分类中，传统的方法是使用手工制作的特征，如边缘检测器、SIFT/HOG等进行静态特征提取（没有学习过程），然后学习分类器的权重. </p>
+<p><img alt="alt text" src="image-17.png" /></p>
+<p>而现在我们思考，除了学习分类器的权重，能否学习有意义的内核/滤波器，而不是使用手工制作的内核（如边缘检测器）呢？甚至更进一步，能否学习多层有意义的内核/滤波器，同时学习分类器的权重呢？答案是肯定的！我们只需将这些内核视为参数，并使用反向传播与分类器的权重一起学习. 这样的网络就称为卷积神经网络. </p>
+<p><img alt="alt text" src="image-18.png" /></p>
+<p><img alt="alt text" src="image-19.png" /></p>
+<p>那么，这与常规的前馈神经网络有什么不同呢？这是一个常规前馈神经网络的样子，其中有很多密集连接. 例如，所有16个输入神经元都参与 <span class="arithmatex">\(h_{11}\)</span> 的计算. </p>
+<p><img alt="alt text" src="image-20.png" /></p>
+<p>相比之下，在卷积的情况下，只有少数局部神经元参与 <span class="arithmatex">\(h_{11}\)</span> 的计算. 例如，只有像素1、2、5、6参与 <span class="arithmatex">\(h_{11}\)</span> 的计算. 连接要稀疏得多，我们利用了图像的结构（相邻像素之间的相互作用更有意义）. 这种稀疏连接减少了模型中的参数数量. </p>
+<p><img alt="alt text" src="image-21.png" /></p>
+<p>但是稀疏连接真的是一件好事吗？我们难道不会因为失去一些输入像素之间的相互作用而丢失信息吗？实际上并非如此. 例如，在第一层中两个突出显示的神经元（<span class="arithmatex">\(x_1\)</span> 和 <span class="arithmatex">\(x_5\)</span>）没有直接相互作用，但它们间接对 <span class="arithmatex">\(g_3\)</span> 的计算有贡献，因此存在间接相互作用. </p>
+<p><img alt="alt text" src="image-22.png" /></p>
+<p>卷积神经网络的另一个特点是权重共享. 考虑一个网络，我们是否希望图像不同部分的内核权重不同呢？假设我们试图学习一个检测边缘的内核，难道不应该在图像的所有部分应用相同的内核吗？换句话说，橙色和粉色的内核难道不应该相同吗？是的，确实应该相同. 这会使学习更容易（而不是在不同位置反复学习相同的权重/内核）. 但这并不意味着我们只能有一个内核. 我们可以有很多这样的内核，并且这些内核会在图像的所有位置共享，这就是“权重共享”. </p>
+<p><img alt="alt text" src="image-23.png" /></p>
+<p><img alt="alt text" src="image-24.png" /></p>
+<p>到目前为止，我们只关注了卷积操作. 让我们看看一个完整的卷积神经网络是什么样子. </p>
+<p><img alt="alt text" src="image-25.png" /></p>
+<p>卷积神经网络有交替的卷积层和池化层. 那么池化层的作用是什么呢？</p>
+<p><img alt="alt text" src="image-26.png" /></p>
+<p>除了最大池化，我们也可以进行平均池化. </p>
+<p>那么如何训练一个卷积神经网络呢？我们可以将卷积神经网络看作是一个具有稀疏连接的前馈神经网络，并使用反向传播来训练它. 其中只有少数权值（用颜色表示）是激活的，其余的权值（用灰色表示）为零</p>
+<p><img alt="alt text" src="image-27.png" /></p>
+<h2 id="4-imagenet">4 卷积神经网络在ImageNet上的成功案例<a class="headerlink" href="#4-imagenet" title="Permanent link">&para;</a></h2>
+<p>ImageNet成功案例
+包括AlexNet、ZFNet、VGGNet等. </p>
+<h3 id="alexnet">AlexNet<a class="headerlink" href="#alexnet" title="Permanent link">&para;</a></h3>
+<p>总参数：2755万. </p>
+<p><img alt="alt text" src="image-28.png" /></p>
+<p>让我们更详细地看看全连接层中的连接. 我们首先将最后一个卷积层或最大池化层拉伸成一维向量. 然后这个一维向量像在常规前馈神经网络中一样与其他层密集连接.</p>
+<p><img alt="alt text" src="image-29.png" /></p>
+<h3 id="zfnet">ZFNet<a class="headerlink" href="#zfnet" title="Permanent link">&para;</a></h3>
+<p><img alt="alt text" src="image-30.png" /></p>
+<h3 id="vggnet">VGGNet<a class="headerlink" href="#vggnet" title="Permanent link">&para;</a></h3>
+<p>内核大小始终为3×3. 非全连接层的总参数约为1600万，全连接层的总参数 <span class="arithmatex">\(=(512×7×7×4096)+(4096×4096)+(4096×1024)\approx12.2\)</span> 亿，大部分参数在第一个全连接层（约10.2亿）. </p>
+<p><img alt="alt text" src="image-31.png" /></p>
+<h2 id="5-googlenetresnet">5 图像分类（续）（GoogLeNet和ResNet）<a class="headerlink" href="#5-googlenetresnet" title="Permanent link">&para;</a></h2>
+<p>考虑卷积神经网络某一层的输出. 在这一层之后，我们可以应用最大池化层、1×1卷积层、3×3卷积层或5×5卷积层. 问题是，为什么要在这些选项（卷积、最大池化、滤波器大小）中选择呢？一种想法是，为什么不同时应用所有这些操作，然后连接特征图呢？</p>
+<p><img alt="alt text" src="image-32.png" /></p>
+<p>但是这个简单的想法可能会导致大量的计算. 如果 <span class="arithmatex">\(P = 0\)</span> 且 <span class="arithmatex">\(S = 1\)</span> ，用一个 <span class="arithmatex">\(F×F×D\)</span> 的滤波器对一个 <span class="arithmatex">\(W×H×D\)</span> 的输入进行卷积，会得到一个 <span class="arithmatex">\((W - F + 1)(H - F + 1)\)</span> 大小的输出. 输出的每个元素需要 <span class="arithmatex">\(O(F×F×D)\)</span> 的计算量. 我们能减少计算量吗？</p>
+<p>可以，通过使用1×1卷积. 1×1卷积可以沿着深度方向进行聚合. 用 <span class="arithmatex">\(D_1\)</span> 个1×1（<span class="arithmatex">\(D_1 &lt; D\)</span>）的滤波器对一个 <span class="arithmatex">\(D×W×H\)</span> 的输入进行卷积，会得到一个 <span class="arithmatex">\(D_1×W×H\)</span> 的输出（<span class="arithmatex">\(S = 1\)</span>，<span class="arithmatex">\(P = 0\)</span>）. 如果 <span class="arithmatex">\(D_1 &lt; D\)</span> ，这实际上减少了输入的维度，从而减少了计算量. 具体来说，我们不再需要 <span class="arithmatex">\(O(F×F×D)\)</span> 的计算量，而是只需要 <span class="arithmatex">\(O(F×F×D_1)\)</span> 的计算量. 然后我们可以在这个减少维度后的输出上应用后续的3×3、5×5滤波器. </p>
+<p>但是我们可能希望在3×3和5×5滤波器之前使用不同的维度减少策略. 所以我们可以在3×3和5×5滤波器之前分别使用 <span class="arithmatex">\(D_1\)</span> 和 <span class="arithmatex">\(D_2\)</span> 个1×1滤波器. 然后我们添加最大池化层，接着进行维度减少，再加上一组新的1×1卷积. 最后我们连接所有这些层，这就是Inception模块. 我们现在来看包含许多这样Inception模块的GoogLeNet. </p>
+<p>GoogLeNet的一个重要技巧是去掉了全连接层. 注意到最后一层的输出是7×7×1024维的. 如果我们在上面添加一个有1000个节点（对应1000个类别）的全连接层，我们将有 <span class="arithmatex">\(7×7×1024×1000 = 4900\)</span> 万个参数. 相反，他们对1024个特征图中的每一个都使用7×7的平均池化，这会得到一个1024维的输出，显著减少了参数数量. </p>
+<p>假设我们已经能够很好地训练一个浅层神经网络. 现在假设我们构建一个更深的网络，增加了一些层（橙色部分）. 直观地说，如果浅层网络效果很好，那么深层网络应该也能通过在新层中学习恒等函数而表现良好. 本质上，浅层神经网络的解空间是深层神经网络解空间的一个子集. </p>
+<p>但在实践中发现并非如此. 注意到深层网络在测试集上有更高的错误率. </p>
+<p>考虑卷积神经网络中任意两个堆叠的层. 这两层本质上是在学习输入的某个函数. 如果我们让它们只学习输入的残差函数会怎么样呢？即 <span class="arithmatex">\(H(x)=F(x)+x\)</span> . 为什么这会有帮助呢？还记得我们之前说过，深层网络可以通过在新层中学习恒等变换来表现良好，这个从输入到输出的恒等连接允许ResNet保留输入的一个副本. 利用这个想法，他们能够训练非常深的网络. </p>
+<p>ResNet有152层，在所有五个主要任务中都获得了第一名：</p>
+<ul>
+<li>ImageNet分类：“超深”152层网络. </li>
+<li>ImageNet检测：比第二好的系统好16%. </li>
+<li>ImageNet定位：比第二好的系统好27%. </li>
+<li>COCO检测：比第二好的系统好11%. </li>
+<li>COCO分割：比第二好的系统好12%. </li>
+</ul>
+<h3 id="_1">一些技巧<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>在卷积层之后进行批量归一化. </li>
+<li>采用[He等人]提出的Xavier/2初始化方法. </li>
+<li>使用随机梯度下降（SGD）+动量（0.9）. </li>
+<li>学习率：0.1，当验证误差趋于平稳时除以10. </li>
+<li>小批量大小为256. </li>
+<li>权重衰减为 <span class="arithmatex">\(1e - 5\)</span>. </li>
+<li>不使用随机失活（dropout）.  </li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 9, 2025 12:15:17">May 9, 2025 12:15:17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 9, 2025 12:15:17">May 9, 2025 12:15:17</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../word2vec/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Word2Vec">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Word2Vec
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../RNN/" class="md-footer__link md-footer__link--next" aria-label="下一页: RNN">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                RNN
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../javascripts/tablesort.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>
