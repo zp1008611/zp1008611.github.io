@@ -16,11 +16,11 @@
         <link rel="prev" href="../MCM/">
       
       
-        <link rel="next" href="../../LLMs/">
+        <link rel="next" href="../PG_REINFORCE/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.13">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -423,6 +423,28 @@
   
 
       
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Teaching_Interview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  高中数学教资面试
+
+        </a>
+      </li>
+    
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -583,6 +605,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -687,6 +715,8 @@
       
         
           
+        
+      
         
       
         
@@ -999,9 +1029,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#qtdpi-approx-pi_" class="md-nav__link">
+  <a href="#qtdpi-approx-pi" class="md-nav__link">
     <span class="md-ellipsis">
-      Q学习（离策略TD控制）用于估计\(\pi \approx \pi_{*}\)
+      Q学习（离策略TD控制）用于估计\(\pi \approx \pi^{*}\)
     </span>
   </a>
   
@@ -1058,6 +1088,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PG_REINFORCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Policy Gradient:REINFORCE
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1256,6 +1309,58 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../Teaching_Interview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    高中数学教资面试
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1277,7 +1382,7 @@
 
 <h1 id="td-sarsa-q-learning">时序差分（TD）学习: Sarsa, Q learning<a class="headerlink" href="#td-sarsa-q-learning" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6710 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 22 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 7056 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 2 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 24 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1314,14 +1419,15 @@ V\left(S_{t}\right) \leftarrow V\left(S_{t}\right)+\alpha\left[R_{t+1}+\gamma V\
 </ul>
 </li>
 </ul>
-<p>因为<span class="arithmatex">\(\text{TD}(0)\)</span>的更新部分基于现有估计值，所以我们说它和DP一样，是一种自举法. 我们知道：</p>
+<p>外层循环负责像 MCM 一样收集完整经验样本，内层循环负责像 DP 一样用已有估计值更新策略. </p>
+<p>因为 <span class="arithmatex">\(\text{TD}(0)\)</span> 的更新部分基于现有估计值，所以我们说它和DP一样，是一种自举法. 我们知道：</p>
 <div class="arithmatex">\[
 \begin{align}
 v^{\pi}(s) &amp; := \mathbb{E}_{\pi}\left[G_{t} | S_{t}=s\right] \label{eq:MC} \\ &amp; =\mathbb{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1} | S_{t}=s\right] \notag \\ &amp; =\mathbb{E}_{\pi}\left[R_{t+1}+\gamma v^{\pi}\left(S_{t+1}\right) | S_{t}=s\right] \label{eq:TD0}.  
 \end{align}
 \]</div>
 <p>大致来说，蒙特卡罗方法用公式 <span class="arithmatex">\(\eqref{eq:MC}\)</span> 的估计值作为目标值，而DP方法用公式 <span class="arithmatex">\(\eqref{eq:TD0}\)</span> 的估计值作为目标值. 蒙特卡罗方法的目标值是一个估计值，因为公式 <span class="arithmatex">\(\eqref{eq:MC}\)</span> 中的期望值是未知的，它用一个样本回报来代替真实的期望回报. DP方法的目标值是估计值，不是因为期望值（假设环境模型能完全提供这些期望值），而是因为<span class="arithmatex">\(v^{\pi}(S_{t+1})\)</span>是未知的，它使用当前估计值<span class="arithmatex">\(V(S_{t+1})\)</span>来代替. TD方法的目标值是估计值，原因有两个：它对公式 <span class="arithmatex">\(\eqref{eq:TD0}\)</span> 中的期望值进行采样，并且使用当前估计值<span class="arithmatex">\(V\)</span>而不是真实的<span class="arithmatex">\(v^{\pi}\)</span>. 因此，TD方法结合了蒙特卡罗方法的采样和DP方法的自举法. 正如我们将看到的，通过谨慎思考和发挥想象力，这能让我们在获得蒙特卡罗和DP方法的优势方面取得很大进展. </p>
-<p>最后，注意 <span class="arithmatex">\(TD(0)\)</span> 更新公式中括号内的量是一种误差，它衡量了<span class="arithmatex">\(S_{t}\)</span>的估计值与更好的估计值<span class="arithmatex">\(R_{t+1}+\gamma V(S_{t+1})\)</span>之间的差异. 这个量被称为TD误差，在整个强化学习中以各种形式出现：</p>
+<p>最后，注意 <span class="arithmatex">\(\text{TD(0)}\)</span> 更新公式中括号内的量是一种误差，它衡量了<span class="arithmatex">\(S_{t}\)</span>的估计值与更好的估计值<span class="arithmatex">\(R_{t+1}+\gamma V(S_{t+1})\)</span>之间的差异. 这个量被称为TD误差，在整个强化学习中以各种形式出现：</p>
 <div class="arithmatex">\[
 \delta_{t} := R_{t+1}+\gamma V\left(S_{t+1}\right)-V\left(S_{t}\right)
 \]</div>
@@ -1329,13 +1435,13 @@ v^{\pi}(s) &amp; := \mathbb{E}_{\pi}\left[G_{t} | S_{t}=s\right] \label{eq:MC} \
 <div class="arithmatex">\[
 \begin{aligned} G_{t}-V\left(S_{t}\right) &amp; =R_{t+1}+\gamma G_{t+1}-V\left(S_{t}\right)+\gamma V\left(S_{t+1}\right)-\gamma V\left(S_{t+1}\right)  \\ &amp; =\delta_{t}+\gamma\left(G_{t+1}-V\left(S_{t+1}\right)\right) \\ &amp; =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2}\left(G_{t+2}-V\left(S_{t+2}\right)\right) \\ &amp; =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2} \delta_{t+2}+\cdots+\gamma^{T-t-1} \delta_{T-1}+\gamma^{T-t}\left(G_{T}-V\left(S_{T}\right)\right) \\ &amp; =\delta_{t}+\gamma \delta_{t+1}+\gamma^{2} \delta_{t+2}+\cdots+\gamma^{T-t-1} \delta_{T-1}+\gamma^{T-t}(0 - 0) \\ &amp; =\sum_{k=t}^{T-1} \gamma^{k-t} \delta_{k} \end{aligned}
 \]</div>
-<p>如果<span class="arithmatex">\(V\)</span>在episode中发生更新（如在<span class="arithmatex">\(TD(0)\)</span>中），这个等式就不精确了，但如果步长很小，它仍然可以近似成立. 这个等式的推广在时序差分学习的理论和算法中起着重要作用. </p>
+<p>如果 <span class="arithmatex">\(V\)</span> 在episode中发生更新（如在 <span class="arithmatex">\(\text{TD(0)}\)</span> 中），这个等式就不精确了，但如果步长很小，它仍然可以近似成立. 这个等式的推广在时序差分学习的理论和算法中起着重要作用. </p>
 <h2 id="2-td">2 TD预测方法的优势<a class="headerlink" href="#2-td" title="Permanent link">&para;</a></h2>
 <p>TD方法部分地基于其他估计值来更新自己的估计值. 它们从一个猜测学习另一个猜测——它们进行自举. 这是一件好事吗？TD方法相对于蒙特卡罗和DP方法有哪些优势呢？提出并回答这些问题将贯穿本书以及更多的研究. 在本节中，我们简要地预先给出一些答案. </p>
 <p>显然，TD方法相对于DP方法的一个优势在于，它不需要环境模型，即不需要知道奖励和下一个状态的概率分布. </p>
 <p>TD方法相对于蒙特卡罗方法的另一个明显优势是，它自然地以在线、完全增量的方式实现. 使用蒙特卡罗方法时，必须等到一个episode结束，因为只有那时回报才已知，而使用TD方法时，只需要等待一个时间步. 令人惊讶的是，这往往是一个关键的考虑因素. 一些应用场景中的episode非常长，以至于将所有学习都推迟到episode结束时进行会太慢. 其他应用场景是持续进行的任务，根本没有episode之分. 最后，正如我们在上一章提到的，一些蒙特卡罗方法必须忽略或折扣采取实验性行动的episode，这会大大减慢学习速度. TD方法受这些问题的影响要小得多，因为无论后续采取什么行动，它都能从每个转移中学习. </p>
-<p>但是TD方法可靠吗？当然，不等待实际结果，直接从下一个猜测学习当前猜测是很方便的，但我们还能保证收敛到正确答案吗？令人高兴的是，答案是肯定的. 对于任何固定的策略 <span class="arithmatex">\(\pi\)</span>，已经证明 <span class="arithmatex">\(TD(0)\)</span> 会收敛到<span class="arithmatex">\(v^{\pi}\)</span>：如果步长参数足够小，它在均值意义下收敛；如果步长参数按照通常的随机逼近条件递减，它以概率1收敛. 大多数收敛性证明只适用于上述基于表格的算法，但也有一些证明适用于一般的线性函数逼近情况.</p>
-<p>如果TD和蒙特卡罗方法都渐近收敛到正确的预测，那么下一个自然的问题是 “哪个收敛得更快？” 换句话说，哪种方法学习得更快？哪种方法能更有效地利用有限的数据？目前，这还是一个开放性问题，因为还没有人能够从数学上证明一种方法比另一种方法收敛得更快. 事实上，甚至都不清楚用什么最恰当的形式来表述这个问题！然而，在实践中，人们通常发现，在随机任务上，TD方法比固定α的MC方法收敛得更快.</p>
+<p>但是TD方法可靠吗？当然，不等待实际结果，直接从下一个猜测学习当前猜测是很方便的，但我们还能保证收敛到正确答案吗？令人高兴的是，答案是肯定的. 对于任何固定的策略 <span class="arithmatex">\(\pi\)</span>，已经证明 <span class="arithmatex">\(\text{TD(0)}\)</span> 会收敛到<span class="arithmatex">\(v^{\pi}\)</span>：如果步长参数足够小，它在均值意义下收敛；如果步长参数按照通常的随机逼近条件递减，它以概率1收敛. 大多数收敛性证明只适用于上述基于表格的算法，但也有一些证明适用于一般的线性函数逼近情况.</p>
+<p>如果TD和蒙特卡罗方法都渐近收敛到正确的预测，那么下一个自然的问题是 “哪个收敛得更快？” 换句话说，哪种方法学习得更快？哪种方法能更有效地利用有限的数据？目前，这还是一个开放性问题，因为还没有人能够从数学上证明一种方法比另一种方法收敛得更快. 事实上，甚至都不清楚用什么最恰当的形式来表述这个问题！然而，在实践中，人们通常发现，在随机任务上，TD方法比固定 <span class="arithmatex">\(\alpha\)</span> 的MC方法收敛得更快.</p>
 <h2 id="3-sarsatd">3 Sarsa：在线策略TD控制<a class="headerlink" href="#3-sarsatd" title="Permanent link">&para;</a></h2>
 <p>现在我们转向将TD预测方法用于控制问题. 和往常一样，我们遵循广义策略迭代（GPI）的模式，只是这次在评估或预测部分使用TD方法. 与蒙特卡罗方法一样，我们面临着探索和利用之间的权衡，方法也主要分为两类：在线策略和离策略. 在本节中，我们介绍一种在线策略TD控制方法. </p>
 <p>第一步是学习动作价值函数，而不是状态价值函数. 特别地，对于在线策略方法，我们必须为当前行为策略<span class="arithmatex">\(\pi\)</span>以及所有状态<span class="arithmatex">\(s\)</span>和动作<span class="arithmatex">\(a\)</span>估计<span class="arithmatex">\(q^{\pi}(s, a)\)</span> . 这基本上可以使用上面描述的用于学习<span class="arithmatex">\(v^{\pi}\)</span>的相同TD方法来完成. 回想一下，一个episode由状态和状态 - 动作对的交替序列组成：</p>
@@ -1370,10 +1476,10 @@ Q\left(S_{t}, A_{t}\right) \leftarrow Q\left(S_{t}, A_{t}\right)+\alpha\left[R_{
 <h2 id="4-qtd">4 Q学习：离策略TD控制<a class="headerlink" href="#4-qtd" title="Permanent link">&para;</a></h2>
 <p>强化学习早期的一项重大突破是开发了一种离策略TD控制算法，称为Q学习（Watkins, 1989），其定义为：</p>
 <div class="arithmatex">\[
-Q(S_{t}, A_{t}) \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \max_{a} Q(S_{t+1}, a)-Q(S_{t}, A_{t})\right]\tag{6.8}
+Q(S_{t}, A_{t}) \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \max_{a} Q(S_{t+1}, a)-Q(S_{t}, A_{t})\right]
 \]</div>
-<p>在这种情况下，学习到的动作价值函数Q直接逼近最优动作价值函数 <span class="arithmatex">\(q_{*}\)</span> ，而与所遵循的策略无关. 这极大地简化了算法的分析，并使得早期的收敛性证明成为可能. 策略仍然有影响，因为它决定了哪些状态 - 动作对被访问和更新. 然而，对于正确的收敛，所需要的只是所有的状态 - 动作对都持续被更新. 正如我们在第5章中所观察到的，从任何在一般情况下保证找到最优行为的方法都必须满足这个要求的意义上来说，这是一个最小的要求. 在这个假设以及对步长参数序列的通常随机逼近条件的一个变体下，已经证明Q以概率1收敛到 <span class="arithmatex">\(q_{*}\)</span> . Q学习算法的程序形式如下所示. </p>
-<h3 id="qtdpi-approx-pi_">Q学习（离策略TD控制）用于估计<span class="arithmatex">\(\pi \approx \pi_{*}\)</span><a class="headerlink" href="#qtdpi-approx-pi_" title="Permanent link">&para;</a></h3>
+<p>在这种情况下，学习到的动作价值函数Q直接逼近最优动作价值函数 <span class="arithmatex">\(q^{*}\)</span> ，而与所遵循的策略无关. 这极大地简化了算法的分析，并使得早期的收敛性证明成为可能. 策略仍然有影响，因为它决定了哪些状态 - 动作对被访问和更新. 然而，对于正确的收敛，所需要的只是所有的状态 - 动作对都持续被更新.  在这个假设以及对步长参数序列的通常随机逼近条件的一个变体下，已经证明Q以概率1收敛到 <span class="arithmatex">\(q^{*}\)</span> . Q学习算法的程序形式如下所示. </p>
+<h3 id="qtdpi-approx-pi">Q学习（离策略TD控制）用于估计<span class="arithmatex">\(\pi \approx \pi^{*}\)</span><a class="headerlink" href="#qtdpi-approx-pi" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>算法参数</strong>：步长<span class="arithmatex">\(\alpha \in (0, 1]\)</span>，小的<span class="arithmatex">\(\varepsilon &gt; 0\)</span></li>
 <li><strong>初始化</strong>：对于所有<span class="arithmatex">\(s \in S^+\)</span>，<span class="arithmatex">\(a \in A(s)\)</span> ，任意初始化<span class="arithmatex">\(Q(s, a)\)</span> ，但<span class="arithmatex">\(Q(终止状态, \cdot)=0\)</span></li>
@@ -1391,7 +1497,7 @@ Q(S_{t}, A_{t}) \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \max_{a} Q
 </li>
 </ul>
 <h3 id="_1">示例：悬崖行走<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<p>这个网格世界示例比较了Sarsa和Q学习，突出了在线策略（Sarsa）和离策略（Q学习）方法之间的差异. 考虑右图所示的网格世界. 这是一个标准的无折扣、episode性任务，有起始状态和目标状态，并且通常的动作会导致向上、向下、向右和向左移动. 除了进入标记为 “悬崖” 的区域的转移之外，所有转移的奖励都是 -1 . 踏入这个区域会产生 -100的奖励，并使智能体立即回到起始状态. 
+<p>这个网格世界示例比较了Sarsa和Q学习，突出了在线策略（Sarsa）和离策略（Q学习）方法之间的差异. 考虑下图所示的网格世界. 这是一个标准的无折扣、episode性任务，有起始状态和目标状态，并且通常的动作会导致向上、向下、向右和向左移动. 除了进入标记为 “悬崖” 的区域的转移之外，所有转移的奖励都是 -1 . 踏入这个区域会产生 -100的奖励，并使智能体立即回到起始状态. 
 图中展示了使用<span class="arithmatex">\(\varepsilon\)</span>-贪婪动作选择（<span class="arithmatex">\(\varepsilon = 0.1\)</span> ）的Sarsa和Q学习方法的性能. 在初始的过渡阶段之后，Q学习学习到了最优策略的值，即沿着悬崖边缘向右走的策略. 不幸的是，由于<span class="arithmatex">\(\varepsilon\)</span>-贪婪动作选择，这导致它偶尔会从悬崖上掉下去. 另一方面，Sarsa考虑了动作选择，学习到了通过网格上部更长但更安全的路径. 虽然Q学习实际上学习到了最优策略的值，但它的在线性能比学习迂回策略的Sarsa更差. 当然，如果逐渐减小<span class="arithmatex">\(\varepsilon\)</span> ，那么两种方法都会渐近地收敛到最优策略. </p>
 <p><img alt="alt text" src="image.png" /></p>
 <h2 id="5-sarsa">5 期望Sarsa<a class="headerlink" href="#5-sarsa" title="Permanent link">&para;</a></h2>
@@ -1434,14 +1540,23 @@ Q(S_{t}, A_{t}) &amp; \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \mat
 </li>
 </ul>
 <blockquote>
-<p>在强化学习中，从动作价值函数<span class="arithmatex">\(Q\)</span>导出策略，核心是依据<span class="arithmatex">\(Q\)</span>值确定在不同状态下采取的动作，从而平衡探索与利用。常见的是基于<span class="arithmatex">\(\epsilon\)</span>-贪婪策略和贪婪策略来实现，不同策略适用于不同阶段和场景。
-1. <strong><span class="arithmatex">\(\epsilon\)</span>-贪婪策略</strong>：在很多强化学习算法，如Sarsa、Q学习中广泛应用。以概率<span class="arithmatex">\(1 - \epsilon\)</span>选择当前状态下<span class="arithmatex">\(Q\)</span>值最大的动作，这是利用已有经验选择最优动作；以概率<span class="arithmatex">\(\epsilon\)</span>随机选择其他动作，用于探索新的动作和状态。比如在一个有<span class="arithmatex">\(n\)</span>个可选动作的状态下，计算<span class="arithmatex">\(Q(s, a_1), Q(s, a_2), \cdots, Q(s, a_n)\)</span>，找到最大<span class="arithmatex">\(Q\)</span>值对应的动作<span class="arithmatex">\(a_{max}\)</span>，<span class="arithmatex">\(1 - \epsilon\)</span>的概率选<span class="arithmatex">\(a_{max}\)</span>，<span class="arithmatex">\(\epsilon\)</span>概率从除<span class="arithmatex">\(a_{max}\)</span>外的<span class="arithmatex">\(n - 1\)</span>个动作中随机选。训练初期，<span class="arithmatex">\(\epsilon\)</span>可设大些，充分探索环境；随着训练推进，<span class="arithmatex">\(\epsilon\)</span>逐渐减小，更多利用已有经验。
-2. <strong>贪婪策略</strong>：直接选择当前状态下<span class="arithmatex">\(Q\)</span>值最大的动作，即对于给定状态<span class="arithmatex">\(s\)</span>，选择动作<span class="arithmatex">\(a = \arg\max_{a \in A(s)} Q(s, a)\)</span>。在已知<span class="arithmatex">\(Q\)</span>函数能准确反映最优动作价值时适用，如算法收敛到最优策略后。像解决一些简单确定性问题，或复杂问题训练后期，可采用贪婪策略，利用已学习到的<span class="arithmatex">\(Q\)</span>值高效选择最优动作，获取最大奖励。 </p>
-<p>在强化学习算法中使用<span class="arithmatex">\(\epsilon\)</span>-贪婪策略，主要是为了有效平衡探索（exploration）和利用（exploitation）之间的关系，使智能体既能不断尝试新的动作以发现更好的策略，又能利用已有的经验选择当前认为最优的动作来获取更大的奖励。
-1. <strong>促进探索新策略</strong>：在强化学习中，环境和任务往往具有不确定性。如果智能体仅选择当前认为最优的动作（即完全利用已有经验），可能会陷入局部最优解，错过其他潜在的更优策略。<span class="arithmatex">\(\epsilon\)</span>-贪婪策略通过以<span class="arithmatex">\(\epsilon\)</span>的概率随机选择动作，让智能体有机会探索那些当前估计价值不高但实际上可能通向更好结果的动作。在“悬崖行走”的网格世界任务中，智能体如果一直选择当前认为最优的动作，可能永远不会尝试其他路径，从而无法发现全局最优策略。而<span class="arithmatex">\(\epsilon\)</span>-贪婪策略使得智能体有一定概率选择非最优动作，增加了探索新路径的可能性，有可能找到更好的解决方案。
-2. <strong>基于经验进行利用</strong>：以<span class="arithmatex">\(1-\epsilon\)</span>的概率选择当前最优动作，能让智能体利用在之前学习过程中积累的经验。随着学习的进行，智能体对环境的了解逐渐加深，对动作价值的估计也更加准确。此时，利用这些经验选择最优动作可以使智能体获得更大的奖励。在“有风网格世界”任务中，智能体通过不断学习，会逐渐了解哪些动作在特定状态下更有利于到达目标，<span class="arithmatex">\(\epsilon\)</span>-贪婪策略中的利用部分可以让它在大部分情况下选择这些经验证有效的动作，提高到达目标的效率。
-3. <strong>确保收敛到最优策略</strong>：从理论上来说，只要所有状态 - 动作对都能被无限次访问，采用<span class="arithmatex">\(\epsilon\)</span>-贪婪策略的强化学习算法（如Sarsa算法）就能以概率1收敛到最优策略。这是因为<span class="arithmatex">\(\epsilon\)</span>-贪婪策略保证了智能体不会永远局限于当前的局部最优解，而是持续探索其他可能性，最终能够找到全局最优策略。如果不使用类似<span class="arithmatex">\(\epsilon\)</span>-贪婪这样的策略来平衡探索和利用，智能体可能会在未充分探索环境的情况下就过早地确定策略，导致无法收敛到真正的最优策略。 </p>
+<p>在强化学习中，从动作价值函数<span class="arithmatex">\(Q\)</span>导出策略，核心是依据<span class="arithmatex">\(Q\)</span>值确定在不同状态下采取的动作，从而平衡探索与利用. 常见的是基于<span class="arithmatex">\(\epsilon\)</span>-贪婪策略和贪婪策略来实现，不同策略适用于不同阶段和场景. 
+1. <strong><span class="arithmatex">\(\epsilon\)</span>-贪婪策略</strong>：在很多强化学习算法，如Sarsa、Q学习中广泛应用. 以概率<span class="arithmatex">\(1 - \epsilon\)</span>选择当前状态下<span class="arithmatex">\(Q\)</span>值最大的动作，这是利用已有经验选择最优动作；以概率<span class="arithmatex">\(\epsilon\)</span>随机选择其他动作，用于探索新的动作和状态. 比如在一个有<span class="arithmatex">\(n\)</span>个可选动作的状态下，计算<span class="arithmatex">\(Q(s, a_1), Q(s, a_2), \cdots, Q(s, a_n)\)</span>，找到最大<span class="arithmatex">\(Q\)</span>值对应的动作<span class="arithmatex">\(a_{max}\)</span>，<span class="arithmatex">\(1 - \epsilon\)</span>的概率选<span class="arithmatex">\(a_{max}\)</span>，<span class="arithmatex">\(\epsilon\)</span>概率从除<span class="arithmatex">\(a_{max}\)</span>外的<span class="arithmatex">\(n - 1\)</span>个动作中随机选. 训练初期，<span class="arithmatex">\(\epsilon\)</span>可设大些，充分探索环境；随着训练推进，<span class="arithmatex">\(\epsilon\)</span>逐渐减小，更多利用已有经验. 
+2. <strong>贪婪策略</strong>：直接选择当前状态下<span class="arithmatex">\(Q\)</span>值最大的动作，即对于给定状态<span class="arithmatex">\(s\)</span>，选择动作<span class="arithmatex">\(a = \arg\max_{a \in A(s)} Q(s, a)\)</span>. 在已知<span class="arithmatex">\(Q\)</span>函数能准确反映最优动作价值时适用，如算法收敛到最优策略后. 像解决一些简单确定性问题，或复杂问题训练后期，可采用贪婪策略，利用已学习到的<span class="arithmatex">\(Q\)</span>值高效选择最优动作，获取最大奖励.  </p>
+<p>在强化学习算法中使用<span class="arithmatex">\(\epsilon\)</span>-贪婪策略，主要是为了有效平衡探索（exploration）和利用（exploitation）之间的关系，使智能体既能不断尝试新的动作以发现更好的策略，又能利用已有的经验选择当前认为最优的动作来获取更大的奖励. 
+1. <strong>促进探索新策略</strong>：在强化学习中，环境和任务往往具有不确定性. 如果智能体仅选择当前认为最优的动作（即完全利用已有经验），可能会陷入局部最优解，错过其他潜在的更优策略. <span class="arithmatex">\(\epsilon\)</span>-贪婪策略通过以<span class="arithmatex">\(\epsilon\)</span>的概率随机选择动作，让智能体有机会探索那些当前估计价值不高但实际上可能通向更好结果的动作. 在“悬崖行走”的网格世界任务中，智能体如果一直选择当前认为最优的动作，可能永远不会尝试其他路径，从而无法发现全局最优策略. 而<span class="arithmatex">\(\epsilon\)</span>-贪婪策略使得智能体有一定概率选择非最优动作，增加了探索新路径的可能性，有可能找到更好的解决方案. 
+2. <strong>基于经验进行利用</strong>：以<span class="arithmatex">\(1-\epsilon\)</span>的概率选择当前最优动作，能让智能体利用在之前学习过程中积累的经验. 随着学习的进行，智能体对环境的了解逐渐加深，对动作价值的估计也更加准确. 此时，利用这些经验选择最优动作可以使智能体获得更大的奖励. 在“有风网格世界”任务中，智能体通过不断学习，会逐渐了解哪些动作在特定状态下更有利于到达目标，<span class="arithmatex">\(\epsilon\)</span>-贪婪策略中的利用部分可以让它在大部分情况下选择这些经验证有效的动作，提高到达目标的效率. 
+3. <strong>确保收敛到最优策略</strong>：从理论上来说，只要所有状态 - 动作对都能被无限次访问，采用<span class="arithmatex">\(\epsilon\)</span>-贪婪策略的强化学习算法（如Sarsa算法）就能以概率1收敛到最优策略. 这是因为<span class="arithmatex">\(\epsilon\)</span>-贪婪策略保证了智能体不会永远局限于当前的局部最优解，而是持续探索其他可能性，最终能够找到全局最优策略. 如果不使用类似<span class="arithmatex">\(\epsilon\)</span>-贪婪这样的策略来平衡探索和利用，智能体可能会在未充分探索环境的情况下就过早地确定策略，导致无法收敛到真正的最优策略.  </p>
+<p>Sarsa是在线策略，Q - learning是离线策略，核心原因在于两者更新价值函数时对策略的依赖方式不同：<br />
+- <strong>Sarsa（在线策略）</strong>：<br />
+  Sarsa更新公式为 <span class="arithmatex">\(Q(S,A) \leftarrow Q(S,A) + \alpha[R + \gamma Q(S',A') - Q(S,A)]\)</span>，其中 <span class="arithmatex">\(A'\)</span> 是当前策略（如 <span class="arithmatex">\(\epsilon\)</span>-贪婪策略）在状态 <span class="arithmatex">\(S'\)</span> 下选择的动作. 这意味着Sarsa<strong>学习和执行的是同一策略</strong>，更新 <span class="arithmatex">\(Q\)</span> 函数时必须使用当前策略采样得到的数据，对当前策略有直接依赖性，因此是在线策略（on - policy）.   </p>
+<ul>
+<li><strong>Q - learning（离线策略）</strong>：<br />
+  Q - learning更新公式为 <span class="arithmatex">\(Q(S,A) \leftarrow Q(S,A) + \alpha[R + \gamma \max_{a} Q(S',a) - Q(S,A)]\)</span>，其中 <span class="arithmatex">\(\max_{a} Q(S',a)\)</span> 关注的是未来状态 <span class="arithmatex">\(S'\)</span> 下的最优动作价值，而非当前策略实际选择的动作. Q - learning<strong>学习的是最优策略（目标策略）</strong>，但与环境交互时可采用其他策略（如 <span class="arithmatex">\(\epsilon\)</span>-贪婪策略作为行为策略），更新不依赖当前执行的策略，可利用其他策略产生的数据，因此是离线策略（off - policy）.   </li>
+</ul>
+<p>简言之，Sarsa的学习与执行策略一致，直接基于自身策略采样数据更新；Q - learning学习的是独立于交互策略的最优策略，允许使用不同策略产生的数据，这就是二者分属在线、离线策略的关键原因.  </p>
 </blockquote>
+<p><img alt="alt text" src="image-1.png" /></p>
 
 
 
@@ -1464,7 +1579,7 @@ Q(S_{t}, A_{t}) &amp; \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \mat
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 9, 2025 16:34:14">May 9, 2025 16:34:14</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 10, 2025 10:31:27">May 10, 2025 10:31:27</span>
   </span>
 
     
@@ -1541,13 +1656,13 @@ Q(S_{t}, A_{t}) &amp; \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \mat
         
         
           
-          <a href="../../LLMs/" class="md-footer__link md-footer__link--next" aria-label="下一页: 大模型">
+          <a href="../PG_REINFORCE/" class="md-footer__link md-footer__link--next" aria-label="下一页: Policy Gradient:REINFORCE">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                大模型
+                Policy Gradient:REINFORCE
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1587,10 +1702,10 @@ Q(S_{t}, A_{t}) &amp; \leftarrow Q(S_{t}, A_{t})+\alpha\left[R_{t+1}+\gamma \mat
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
       
