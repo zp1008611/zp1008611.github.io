@@ -1,7 +1,8 @@
-# Word2Vec
+# Vector Semantics and Embeddings
 
 ## Reference
 
+- https://web.stanford.edu/~jurafsky/slp3/6.pdf
 - https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture10.pdf
 
 

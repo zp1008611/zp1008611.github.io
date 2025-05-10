@@ -15,8 +15,8 @@
 - Autoencoders
 - Regularization
 - Neural Network Training Tips
-- Word2Vec
 - CNN
+- Vector Semantics and Embeddings
 - RNN
 - LSTM and GRU
 - Encoder Decoder Models and  Attention Mechanism

@@ -16,6 +16,8 @@
 - llmbook：
     - https://github.com/datawhalechina/llmbook/tree/main/slides/
 
+- https://web.stanford.edu/~jurafsky/slp3/10.pdf
+
 - 项目实战
     - https://github.com/PTGWong/MovieAssistant-ChatGLM4-RAG
     - https://github.com/shubhamprajapati7748/ecommerce-chatbot
@@ -23,11 +25,14 @@
 
 ## Contents
 
-- Transfomer
-- GPT
-- LLaMA
-- MoEs
-- Pre-training
+- Large Language Models
+    - pre-traning
+        - 数据处理：质量过滤、冗余去除、隐私消除、词元切分
+        - teach a transformer to be a language model
+- Transformer变体
+    - Decoder-Only: GPT, LLaMA
+    - Encoder-Only: Bert
+    - MoEs
 - 人类对齐
 - Distributed Training
     - DeepSpeed实战
@@ -38,8 +43,7 @@
 - 复杂推理: Agent
     - 使用LangChain构建Agent
 - RAG
-    - 使用 LangChain 框架实现检索增强生
-成系统
+    - 使用 LangChain 框架实现检索增强生成系统
 - 大模型效率优化
     - vLLM实战
 - 大模型评估

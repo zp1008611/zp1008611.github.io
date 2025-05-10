@@ -36,12 +36,12 @@ nav:
         - Autoencoders: DL/Autoencoders/README.md
         - Regularization: DL/Regularization/README.md
         - Neural Network Training Tips: DL/nn_training_tips/README.md
-        - Word2Vec: DL/word2vec/README.md
         - CNN: DL/CNN/README.md
+        - Vector Semantics and Embeddings: DL/VectorSemantics_and_Embeddings/README.md
         - RNN: DL/RNN/README.md
         - LSTM and GRU: DL/LSTM_GRU/README.md
         - Encoder Decoder models and Attention Mechanism: DL/ENCODER_DECODER_ATTENTION/README.md
-        - Transformer:
+        - Transformer: DL/Transformer/README.md
 
     - GNN:
         - GNN/index.md
@@ -87,13 +87,14 @@ nav:
         - 位运算:
             - LEETCODE/bit_operation/README.md
         - HW机考实战:
-            - LEETCODE/huawei/README.md
-        
-        
+            - LEETCODE/huawei/README.md   
     
     - 面试八股:
         - 抱佛脚版: 
             - 面试问题总结: RESUME_QandA/summary/README.md
+
+    - 高中数学教资面试:
+        - Teaching_Interview/index.md
 
 edit_uri: edit/main/docs
 docs_dir: docs/
