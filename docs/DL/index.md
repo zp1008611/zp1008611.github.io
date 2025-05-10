@@ -31,6 +31,9 @@
 
 - RNN from scratch
 
+- LSTM from scratch
+    - https://github.com/CallMeTwitch/Neural-Network-Zoo/blob/main/LongShortTermMemoryNetwork.py
+
 - Transformer from scatch
 
 

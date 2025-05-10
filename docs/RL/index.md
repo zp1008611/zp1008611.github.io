@@ -19,7 +19,8 @@
 - Temporal Differenence (TD) Learning: Sarsa, Q-learning
 - TD($\lambda$)
 - DQN
-- Policy Gradient and Actor Critic
+- Policy Gradient: REINFORCE
+- Actor Critic
 - TRPO
 - PPO
 - DDPG
@@ -35,3 +36,15 @@
 - Sarsa and Q-learning for Cliff Walking
 
 - DQN for CartPole-v0
+
+- REINFORCE for CartPole-v0
+
+- Actor-Critic for CartPole-v0
+
+- TRPO for CartPole-v0 and Pendulum-v0
+
+- PPO for CartPole-v0 and Pendulum-v0
+
+- DDPG for Pendulum-v0
+
+- SAC for Pendulum-v0

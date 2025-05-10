@@ -39,6 +39,9 @@ nav:
         - Word2Vec: DL/word2vec/README.md
         - CNN: DL/CNN/README.md
         - RNN: DL/RNN/README.md
+        - LSTM and GRU: DL/LSTM_GRU/README.md
+        - Encoder Decoder models and Attention Mechanism: DL/ENCODER_DECODER_ATTENTION/README.md
+        - Transformer:
 
     - GNN:
         - GNN/index.md
@@ -51,6 +54,7 @@ nav:
         - Policy Iteration and Value Iteration: RL/PI_and_VI/README.md
         - Monte Carlo Methods: RL/MCM/README.md
         - TD Learning:Sarsa, Q-learning: RL/TD_Sarsa_Qlearning/README.md
+        - Policy Gradient:REINFORCE: RL/PG_REINFORCE/README.md
 
     - LLMs:
         - LLMs/index.md
