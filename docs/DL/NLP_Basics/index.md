@@ -1,7 +1,10 @@
-# Vector Semantics and Embeddings
+# NLP基础
 
 ## Reference
 
+- https://www.geeksforgeeks.org/natural-language-processing-nlp-tutorial/
+- https://web.stanford.edu/~jurafsky/slp3/2.pdf
+- https://web.stanford.edu/~jurafsky/slp3/3.pdf
 - https://web.stanford.edu/~jurafsky/slp3/6.pdf
 - https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture10.pdf
 

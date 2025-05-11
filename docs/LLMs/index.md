@@ -26,9 +26,6 @@
 ## Contents
 
 - Large Language Models
-    - pre-traning
-        - 数据处理：质量过滤、冗余去除、隐私消除、词元切分
-        - teach a transformer to be a language model
 - Transformer变体
     - Decoder-Only: GPT, LLaMA
     - Encoder-Only: Bert

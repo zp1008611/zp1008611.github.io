@@ -36,8 +36,10 @@ nav:
         - Autoencoders: DL/Autoencoders/README.md
         - Regularization: DL/Regularization/README.md
         - Neural Network Training Tips: DL/nn_training_tips/README.md
+        - NLP Basics:
+            - DL/NLP_Basics/index.md
+            - Normalizing Textual Data in NLP: DL/NLP_Basics/normalizing/README.md
         - CNN: DL/CNN/README.md
-        - Vector Semantics and Embeddings: DL/VectorSemantics_and_Embeddings/README.md
         - RNN: DL/RNN/README.md
         - LSTM and GRU: DL/LSTM_GRU/README.md
         - Encoder Decoder models and Attention Mechanism: DL/ENCODER_DECODER_ATTENTION/README.md
@@ -89,6 +91,9 @@ nav:
         - HW机考实战:
             - LEETCODE/huawei/README.md   
     
+    - Reading:
+        
+
     - 面试八股:
         - 抱佛脚版: 
             - 面试问题总结: RESUME_QandA/summary/README.md
