@@ -1,4 +1,4 @@
-# 大模型
+# 大语言模型（Large Language Models, LLMs）
 
 
 ## Reference
