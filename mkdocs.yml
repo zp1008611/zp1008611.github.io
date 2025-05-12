@@ -38,7 +38,8 @@ nav:
         - Neural Network Training Tips: DL/nn_training_tips/README.md
         - NLP Basics:
             - DL/NLP_Basics/index.md
-            - Normalizing Textual Data in NLP: DL/NLP_Basics/normalizing/README.md
+            - Normalizing Textual Data in NLP: DL/NLP_Basics/Normalizing/README.md
+            - Text representation: DL/NLP_Basics/Text_Representation/README.md
         - CNN: DL/CNN/README.md
         - RNN: DL/RNN/README.md
         - LSTM and GRU: DL/LSTM_GRU/README.md
