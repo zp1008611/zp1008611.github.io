@@ -42,7 +42,7 @@ nav:
         - CNN: DL/CNN/README.md
         - RNN: DL/RNN/README.md
         - LSTM and GRU: DL/LSTM_GRU/README.md
-        - Encoder Decoder models and Attention Mechanism: DL/ENCODER_DECODER_ATTENTION/README.md
+        - Encoder Decoder models and Seq2Seq: DL/ENCODER_DECODER_ATTENTION/README.md
         - Transformer: DL/Transformer/README.md
 
     - GNN:

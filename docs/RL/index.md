@@ -9,6 +9,7 @@
 - https://deeprlcourse.github.io/course_notes/intro-to-rl/
 - https://sites.google.com/view/deep-rl-bootcamp/lectures
 - https://people.cs.umass.edu/~bsilva/courses/CMPSCI_687/Fall2022/Lecture_Notes_v1.0_687_F22.pdf
+- https://webee.technion.ac.il/shimkin/LCS11/LCS11index.html
 
 ## Content
 
