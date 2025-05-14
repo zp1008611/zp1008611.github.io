@@ -101,6 +101,9 @@ nav:
 
     - 高中数学教资面试:
         - Teaching_Interview/index.md
+        - 试讲真题练习: 
+            - Teaching_Interview/Real_Questions/index.md
+            - 三角函数: Teaching_Interview/Real_Questions/Textbook_Trial_Compulsory1_ch5
 
 edit_uri: edit/main/docs
 docs_dir: docs/
