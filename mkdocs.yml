@@ -41,6 +41,7 @@ nav:
             - Normalizing Textual Data in NLP: DL/NLP_Basics/Normalizing/README.md
             - Text representation: DL/NLP_Basics/Text_Representation/README.md
         - CNN: DL/CNN/README.md
+        - 关于激活函数: DL/Activation_Function/README.md
         - RNN: DL/RNN/README.md
         - LSTM and GRU: DL/LSTM_GRU/README.md
         - Encoder Decoder models and Seq2Seq: DL/ENCODER_DECODER_ATTENTION/README.md

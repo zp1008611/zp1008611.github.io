@@ -14,7 +14,19 @@
 - PCA
 - Autoencoders
 - Regularization
+    -  $l_{2}$ 正则化
+    - 数据集增强
+    - 参数共享与绑定
+    - 输入添加噪声
+    - 输出添加噪声
+    - 提前停止
+    - 集成方法
+    - 随机失活（Dropout）
 - Neural Network Training Tips
+    - 无监督预训练
+    - 变更激活函数
+    - 变更初始化策略
+    - 批量归一化（Batch Normalization）
 - NLP Basics
     - Normalizing Textual Data in NLP
         - Regular Expressions (RE)
@@ -39,10 +51,20 @@
             - BERT (Bidirectional Encoder Representations from Transformers)
         - Document Embedding - Doc2Vec
 - CNN
+- 关于激活函数
 - RNN
 - LSTM and GRU
 - Encoder Decoder Models and Seq2Seq
 - Transformers
+- Other Famous Nets
+    - LeNet-5
+    - AlexNet
+    - ResNet
+    - Swin Transformer
+    - BERT
+    - GPT 
+    - ViT（Vision Transformer）
+
 
 ## Exercise
 
