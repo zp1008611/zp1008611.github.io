@@ -104,6 +104,8 @@ nav:
         - 试讲真题练习: 
             - Teaching_Interview/Real_Questions/index.md
             - 三角函数: Teaching_Interview/Real_Questions/Textbook_Trial_Compulsory1_ch5
+        - 结构化:
+            - Teaching_Interview/Structuring/README.md
 
 edit_uri: edit/main/docs
 docs_dir: docs/
