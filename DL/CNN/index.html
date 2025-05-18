@@ -16,7 +16,7 @@
         <link rel="prev" href="../NLP_Basics/Normalizing/">
       
       
-        <link rel="next" href="../RNN/">
+        <link rel="next" href="../Activation_Function/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -635,6 +635,8 @@
       
         
       
+        
+      
     
     
     
@@ -992,18 +994,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#1-motivation" class="md-nav__link">
     <span class="md-ellipsis">
-      1 卷积操作
+      1 Motivation
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1 Motivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      卷积操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      输入大小、输出大小和滤波器大小之间的关系
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      引入卷积神经网络
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
-      2 输入大小、输出大小和滤波器大小之间的关系
+      2 卷积神经网络
     </span>
   </a>
   
@@ -1012,75 +1047,9 @@
         <li class="md-nav__item">
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
-      3 卷积神经网络
+      3 一些技巧
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-imagenet" class="md-nav__link">
-    <span class="md-ellipsis">
-      4 卷积神经网络在ImageNet上的成功案例
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4 卷积神经网络在ImageNet上的成功案例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#alexnet" class="md-nav__link">
-    <span class="md-ellipsis">
-      AlexNet
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#zfnet" class="md-nav__link">
-    <span class="md-ellipsis">
-      ZFNet
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vggnet" class="md-nav__link">
-    <span class="md-ellipsis">
-      VGGNet
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-googlenetresnet" class="md-nav__link">
-    <span class="md-ellipsis">
-      5 图像分类（续）（GoogLeNet和ResNet）
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5 图像分类（续）（GoogLeNet和ResNet）">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      一些技巧
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1088,6 +1057,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Activation_Function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    关于激活函数
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1625,13 +1617,17 @@
 
 <h1 id="cnn">卷积神经网络（CNN）<a class="headerlink" href="#cnn" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 3751 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 33 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 13 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 4180 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 28 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 14 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
 <li>https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture11.pdf</li>
+<li>https://slds-lmu.github.io/seminar_nlp_ss20/convolutional-neural-networks-and-their-applications-in-nlp.html</li>
+<li>池化层的理论基础：https://icml.cc/Conferences/2010/papers/638.pdf</li>
+<li>Batch Normalization：https://arxiv.org/pdf/1502.03167</li>
 </ul>
-<h2 id="1">1 卷积操作<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h2 id="1-motivation">1 Motivation<a class="headerlink" href="#1-motivation" title="Permanent link">&para;</a></h2>
+<h3 id="_1">卷积操作<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>假设我们使用激光传感器在离散的时间间隔跟踪飞机的位置. 现在假设我们的传感器存在噪声. 为了获得噪声较小的估计值，我们希望对多个测量值进行平均. 由于最近的测量值更重要，所以我们希望进行加权平均. </p>
 <p><img alt="alt text" src="image.png" /></p>
 <p>在实践中，我们通常只在一个小窗口内进行求和. 权重数组（w）被称为滤波器. 我们只需将滤波器在输入上滑动，并根据 <span class="arithmatex">\(x_t\)</span> 周围的窗口计算 <span class="arithmatex">\(s_t\)</span> 的值. </p>
@@ -1672,7 +1668,7 @@ S_{ij} = (I * K)_{ij} = \sum_{a=\left\lfloor -\frac{m}{2} \right\rfloor}^{\left\
 <p>问题：在一维情况下，我们在一维输入上滑动一维滤波器；在二维情况下，我们在二维输出上滑动二维滤波器. 那么在三维情况下会发生什么呢？</p>
 <p>三维滤波器会是什么样子？它将是三维的，我们将其称为体（volume）. 同样，我们将这个体在三维输入上滑动并计算卷积操作. 需要注意的是，在本讲中，我们假设滤波器总是延伸到图像的深度. 实际上，我们是在三维输入上进行二维卷积操作（因为滤波器沿着高度和宽度移动，但不沿着深度移动）. 因此，输出将是二维的（只有宽度和高度，没有深度）. 同样，我们可以应用多个滤波器来获得多个特征图. </p>
 <p><img alt="alt text" src="image-10.png" /></p>
-<h2 id="2">2 输入大小、输出大小和滤波器大小之间的关系<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="_2">输入大小、输出大小和滤波器大小之间的关系<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>到目前为止，我们还没有明确说明输入、滤波器、输出的维度以及它们之间的关系. 我们将了解它们是如何关联的，但在此之前，我们先定义一些量：</p>
 <ul>
 <li>原始输入的宽度（<span class="arithmatex">\(W_1\)</span>）、高度（<span class="arithmatex">\(H_1\)</span>）和深度（<span class="arithmatex">\(D_1\)</span>）. </li>
@@ -1702,7 +1698,7 @@ S_{ij} = (I * K)_{ij} = \sum_{a=\left\lfloor -\frac{m}{2} \right\rfloor}^{\left\
 <p><img alt="alt text" src="image-16.png" /></p>
 </li>
 </ul>
-<h2 id="3">3 卷积神经网络<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="_3">引入卷积神经网络<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>把这些内容联系起来看，卷积操作和神经网络之间有什么联系呢？我们通过考虑“图像分类”任务来理解这一点. </p>
 <p>在图像分类中，传统的方法是使用手工制作的特征，如边缘检测器、SIFT/HOG等进行静态特征提取（没有学习过程），然后学习分类器的权重. </p>
 <p><img alt="alt text" src="image-17.png" /></p>
@@ -1719,46 +1715,156 @@ S_{ij} = (I * K)_{ij} = \sum_{a=\left\lfloor -\frac{m}{2} \right\rfloor}^{\left\
 <p><img alt="alt text" src="image-23.png" /></p>
 <p><img alt="alt text" src="image-24.png" /></p>
 <p>到目前为止，我们只关注了卷积操作. 让我们看看一个完整的卷积神经网络是什么样子. </p>
-<p><img alt="alt text" src="image-25.png" /></p>
-<p>卷积神经网络有交替的卷积层和池化层. 那么池化层的作用是什么呢？</p>
-<p><img alt="alt text" src="image-26.png" /></p>
-<p>除了最大池化，我们也可以进行平均池化. </p>
-<p>那么如何训练一个卷积神经网络呢？我们可以将卷积神经网络看作是一个具有稀疏连接的前馈神经网络，并使用反向传播来训练它. 其中只有少数权值（用颜色表示）是激活的，其余的权值（用灰色表示）为零</p>
-<p><img alt="alt text" src="image-27.png" /></p>
-<h2 id="4-imagenet">4 卷积神经网络在ImageNet上的成功案例<a class="headerlink" href="#4-imagenet" title="Permanent link">&para;</a></h2>
-<p>ImageNet成功案例
-包括AlexNet、ZFNet、VGGNet等. </p>
-<h3 id="alexnet">AlexNet<a class="headerlink" href="#alexnet" title="Permanent link">&para;</a></h3>
-<p>总参数：2755万. </p>
-<p><img alt="alt text" src="image-28.png" /></p>
-<p>让我们更详细地看看全连接层中的连接. 我们首先将最后一个卷积层或最大池化层拉伸成一维向量. 然后这个一维向量像在常规前馈神经网络中一样与其他层密集连接.</p>
-<p><img alt="alt text" src="image-29.png" /></p>
-<h3 id="zfnet">ZFNet<a class="headerlink" href="#zfnet" title="Permanent link">&para;</a></h3>
-<p><img alt="alt text" src="image-30.png" /></p>
-<h3 id="vggnet">VGGNet<a class="headerlink" href="#vggnet" title="Permanent link">&para;</a></h3>
-<p>内核大小始终为3×3. 非全连接层的总参数约为1600万，全连接层的总参数 <span class="arithmatex">\(=(512×7×7×4096)+(4096×4096)+(4096×1024)\approx12.2\)</span> 亿，大部分参数在第一个全连接层（约10.2亿）. </p>
-<p><img alt="alt text" src="image-31.png" /></p>
-<h2 id="5-googlenetresnet">5 图像分类（续）（GoogLeNet和ResNet）<a class="headerlink" href="#5-googlenetresnet" title="Permanent link">&para;</a></h2>
-<p>考虑卷积神经网络某一层的输出. 在这一层之后，我们可以应用最大池化层、1×1卷积层、3×3卷积层或5×5卷积层. 问题是，为什么要在这些选项（卷积、最大池化、滤波器大小）中选择呢？一种想法是，为什么不同时应用所有这些操作，然后连接特征图呢？</p>
-<p><img alt="alt text" src="image-32.png" /></p>
-<p>但是这个简单的想法可能会导致大量的计算. 如果 <span class="arithmatex">\(P = 0\)</span> 且 <span class="arithmatex">\(S = 1\)</span> ，用一个 <span class="arithmatex">\(F×F×D\)</span> 的滤波器对一个 <span class="arithmatex">\(W×H×D\)</span> 的输入进行卷积，会得到一个 <span class="arithmatex">\((W - F + 1)(H - F + 1)\)</span> 大小的输出. 输出的每个元素需要 <span class="arithmatex">\(O(F×F×D)\)</span> 的计算量. 我们能减少计算量吗？</p>
-<p>可以，通过使用1×1卷积. 1×1卷积可以沿着深度方向进行聚合. 用 <span class="arithmatex">\(D_1\)</span> 个1×1（<span class="arithmatex">\(D_1 &lt; D\)</span>）的滤波器对一个 <span class="arithmatex">\(D×W×H\)</span> 的输入进行卷积，会得到一个 <span class="arithmatex">\(D_1×W×H\)</span> 的输出（<span class="arithmatex">\(S = 1\)</span>，<span class="arithmatex">\(P = 0\)</span>）. 如果 <span class="arithmatex">\(D_1 &lt; D\)</span> ，这实际上减少了输入的维度，从而减少了计算量. 具体来说，我们不再需要 <span class="arithmatex">\(O(F×F×D)\)</span> 的计算量，而是只需要 <span class="arithmatex">\(O(F×F×D_1)\)</span> 的计算量. 然后我们可以在这个减少维度后的输出上应用后续的3×3、5×5滤波器. </p>
-<p>但是我们可能希望在3×3和5×5滤波器之前使用不同的维度减少策略. 所以我们可以在3×3和5×5滤波器之前分别使用 <span class="arithmatex">\(D_1\)</span> 和 <span class="arithmatex">\(D_2\)</span> 个1×1滤波器. 然后我们添加最大池化层，接着进行维度减少，再加上一组新的1×1卷积. 最后我们连接所有这些层，这就是Inception模块. 我们现在来看包含许多这样Inception模块的GoogLeNet. </p>
-<p>GoogLeNet的一个重要技巧是去掉了全连接层. 注意到最后一层的输出是7×7×1024维的. 如果我们在上面添加一个有1000个节点（对应1000个类别）的全连接层，我们将有 <span class="arithmatex">\(7×7×1024×1000 = 4900\)</span> 万个参数. 相反，他们对1024个特征图中的每一个都使用7×7的平均池化，这会得到一个1024维的输出，显著减少了参数数量. </p>
-<p>假设我们已经能够很好地训练一个浅层神经网络. 现在假设我们构建一个更深的网络，增加了一些层（橙色部分）. 直观地说，如果浅层网络效果很好，那么深层网络应该也能通过在新层中学习恒等函数而表现良好. 本质上，浅层神经网络的解空间是深层神经网络解空间的一个子集. </p>
-<p>但在实践中发现并非如此. 注意到深层网络在测试集上有更高的错误率. </p>
-<p>考虑卷积神经网络中任意两个堆叠的层. 这两层本质上是在学习输入的某个函数. 如果我们让它们只学习输入的残差函数会怎么样呢？即 <span class="arithmatex">\(H(x)=F(x)+x\)</span> . 为什么这会有帮助呢？还记得我们之前说过，深层网络可以通过在新层中学习恒等变换来表现良好，这个从输入到输出的恒等连接允许ResNet保留输入的一个副本. 利用这个想法，他们能够训练非常深的网络. </p>
-<p>ResNet有152层，在所有五个主要任务中都获得了第一名：</p>
+<h2 id="2">2 卷积神经网络<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>卷积神经网络依次包括输入层、多个隐藏层和输出层，输入层会因应用场景不同而有所差异。隐藏层是 CNN 架构的核心模块，由一系列卷积层、池化层组成，并最终通过全连接层输出结果。</p>
+<p><img alt="alt text" src="image-33.png" /></p>
+<p>卷积层是 CNN 的核心构建块。简而言之，特定形状的输入经过卷积层后会被抽象为特征图，一组可学习的滤波器（或内核）在这一过程中起着重要作用。图 5.2 对卷积层进行了更直观的解释。</p>
+<p><img alt="alt text" src="image-34.png" /></p>
+<p>假设神经网络的输入为 6×6 矩阵，每个元素可表示为整数 0 或 1。如前所述，卷积层中有一组可学习的滤波器，每个滤波器可视为一个矩阵，类似于全连接层中的神经元。在此例中，3×3 大小的滤波器以特定步长（stride）滑过整个输入图像，矩阵或滤波器的每个元素均作为神经网络的参数（权重和偏置）。传统上，这些参数并非基于初始设置，而是通过训练数据学习得到。通常，卷积层中不止一个滤波器，每个滤波器生成相同尺寸的特征图。该卷积层的输出是多个特征图（也称为激活图），这些对应不同滤波器的特征图沿深度维度堆叠在一起。</p>
+<p>每个卷积层之后通常会接一个非线性层（或激活层），其目的是为神经网络引入非线性，因为卷积层中的操作本质上仍是线性的（逐元素乘法和求和）。然而，卷积层主要执行线性操作，因此连续的卷积层本质上等效于单个卷积层，这会限制网络的表示能力（我们知道线性操作+非线性激活函数可以逼近任何函数）。因此，需要在卷积层之间引入激活函数以避免此类问题。</p>
+<p>激活函数执行非线性变换，在 CNN 中决定神经元是否激活，是 CNN 的关键组成部分。卷积层之后可使用多种激活函数，如双曲函数和 sigmoid 函数等，其中 ReLU 是神经网络（尤其是 CNN）中最常用的激活函数（Krizhevsky 等人，2012）.</p>
+<p><strong>饱和函数 <span class="arithmatex">\(f\)</span></strong>: 设函数 <span class="arithmatex">\(f(x)\)</span> 在定义域 <span class="arithmatex">\(\mathbb{R}\)</span> 上可导，若存在常数 <span class="arithmatex">\(a, b, L_1, L_2 \in \mathbb{R}\)</span>（<span class="arithmatex">\(L_1 \leq L_2\)</span>），使得：</p>
 <ul>
-<li>ImageNet分类：“超深”152层网络. </li>
-<li>ImageNet检测：比第二好的系统好16%. </li>
-<li>ImageNet定位：比第二好的系统好27%. </li>
-<li>COCO检测：比第二好的系统好11%. </li>
-<li>COCO分割：比第二好的系统好12%. </li>
+<li>当 <span class="arithmatex">\(x \to +\infty\)</span> 时，<span class="arithmatex">\(f(x) \to L_2\)</span>（上饱和值），即  </li>
 </ul>
-<h3 id="_1">一些技巧<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\lim_{x \to +\infty} f(x) = L_2
+\]</div>
 <ul>
-<li>在卷积层之后进行批量归一化. </li>
+<li>当 <span class="arithmatex">\(x \to -\infty\)</span> 时，<span class="arithmatex">\(f(x) \to L_1\)</span>（下饱和值），即  </li>
+</ul>
+<div class="arithmatex">\[
+\lim_{x \to -\infty} f(x) = L_1
+\]</div>
+<p>在饱和区域，饱和函数的导数趋近于零，即  </p>
+<div class="arithmatex">\[
+\lim_{x \to +\infty} f'(x) = 0, \quad \lim_{x \to -\infty} f'(x) = 0
+\]</div>
+<ol>
+<li><strong>Sigmoid函数</strong>：  </li>
+</ol>
+<div class="arithmatex">\[
+f(x) = \frac{1}{1+e^{-x}}
+\]</div>
+<ul>
+<li>输出极限：<span class="arithmatex">\(\lim_{x \to +\infty} f(x) = 1\)</span>, <span class="arithmatex">\(\lim_{x \to -\infty} f(x) = 0\)</span>  </li>
+<li>
+<p>导数极限：<span class="arithmatex">\(\lim_{x \to \pm\infty} f'(x) = 0\)</span>（因 <span class="arithmatex">\(f'(x) = f(x)(1-f(x))\)</span>，在 <span class="arithmatex">\(x \to \pm\infty\)</span> 时趋近于 0）。</p>
+</li>
+<li>
+<p><strong>Tanh函数</strong>： </p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
+\]</div>
+<ul>
+<li>输出极限：<span class="arithmatex">\(\lim_{x \to +\infty} f(x) = 1\)</span>, <span class="arithmatex">\(\lim_{x \to -\infty} f(x) = -1\)</span>  </li>
+<li>导数极限：<span class="arithmatex">\(\lim_{x \to \pm\infty} f'(x) = 0\)</span>（因 <span class="arithmatex">\(f'(x) = 1 - [f(x)]^2\)</span>，在饱和区趋近于 0）。</li>
+</ul>
+<p><strong>非饱和函数 <span class="arithmatex">\(f\)</span></strong>: 当 <span class="arithmatex">\(x \to +\infty\)</span> 或 <span class="arithmatex">\(x \to -\infty\)</span> 时，<span class="arithmatex">\(f(x)\)</span> 的极限为 <span class="arithmatex">\(+\infty\)</span> 或 <span class="arithmatex">\(-\infty\)</span>，即  </p>
+<div class="arithmatex">\[
+\lim_{x \to +\infty} f(x) = \pm\infty \quad \text{或} \quad \lim_{x \to -\infty} f(x) = \pm\infty
+\]</div>
+<p>且在对应区间内，导数 <span class="arithmatex">\(f'(x)\)</span> 不趋近于零（保持非零常数或发散）。</p>
+<p>在定义域内，导数 <span class="arithmatex">\(f'(x)\)</span> 的极限不为零，即  </p>
+<div class="arithmatex">\[
+\lim_{x \to +\infty} f'(x) \neq 0 \quad \text{或} \quad \lim_{x \to -\infty} f'(x) \neq 0
+\]</div>
+<ol>
+<li><strong>线性函数</strong>：  </li>
+</ol>
+<div class="arithmatex">\[
+f(x) = kx + b \quad (k \neq 0)
+\]</div>
+<ul>
+<li>输出极限：<span class="arithmatex">\(\lim_{x \to +\infty} f(x) = \text{sign}(k)\cdot\infty\)</span>, <span class="arithmatex">\(\lim_{x \to -\infty} f(x) = -\text{sign}(k)\cdot\infty\)</span>  </li>
+<li>
+<p>导数极限：<span class="arithmatex">\(\lim_{x \to \pm\infty} f'(x) = k \neq 0\)</span>（恒为常数）。</p>
+</li>
+<li>
+<p><strong>ReLU函数（正区间）</strong>：  </p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f(x) = \max(0, x) = \begin{cases} 
+x, &amp; x \geq 0 \\
+0, &amp; x &lt; 0 
+\end{cases}
+\]</div>
+<ul>
+<li><strong>正区间（非饱和部分）</strong>：<br />
+     当 <span class="arithmatex">\(x \to +\infty\)</span> 时，<span class="arithmatex">\(\lim_{x \to +\infty} f(x) = +\infty\)</span>，且 <span class="arithmatex">\(\lim_{x \to +\infty} f'(x) = 1 \neq 0\)</span>。  </li>
+<li>
+<p><strong>负区间（可视为饱和）</strong>：<br />
+     当 <span class="arithmatex">\(x \to -\infty\)</span> 时，<span class="arithmatex">\(\lim_{x \to -\infty} f(x) = 0\)</span>，<span class="arithmatex">\(\lim_{x \to -\infty} f'(x) = 0\)</span>。<br />
+     因此，ReLU是“部分非饱和函数”（正区间非饱和，负区间饱和）。</p>
+</li>
+<li>
+<p><strong>Leaky ReLU函数</strong>： </p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f(x) = \begin{cases} 
+x, &amp; x \geq 0 \\
+\alpha x, &amp; x &lt; 0 
+\end{cases} \quad (\alpha &gt; 0 \text{为常数})
+\]</div>
+<ul>
+<li>输出极限：<br />
+<span class="arithmatex">\(\lim_{x \to +\infty} f(x) = +\infty\)</span>, <span class="arithmatex">\(\lim_{x \to -\infty} f(x) = -\infty\)</span>（因负区间斜率 <span class="arithmatex">\(\alpha \neq 0\)</span>）。  </li>
+<li>导数极限：<br />
+<span class="arithmatex">\(\lim_{x \to +\infty} f'(x) = 1\)</span>, <span class="arithmatex">\(\lim_{x \to -\infty} f'(x) = \alpha\)</span>，均不为零，<strong>全局非饱和</strong>。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>饱和函数</strong></th>
+<th><strong>非饱和函数</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输出极限（±∞）</strong></td>
+<td>收敛到固定常数 <span class="arithmatex">\(L_1, L_2\)</span></td>
+<td>发散到 <span class="arithmatex">\(\pm\infty\)</span> 或无界增长</td>
+</tr>
+<tr>
+<td><strong>导数极限（±∞）</strong></td>
+<td>趋近于 0</td>
+<td>非零常数或发散（如 <span class="arithmatex">\(\lim f'(x) = k \neq 0\)</span>）</td>
+</tr>
+<tr>
+<td><strong>典型场景</strong></td>
+<td>神经网络中的 sigmoid/tanh</td>
+<td>神经网络中的 ReLU/Leaky ReLU/线性函数</td>
+</tr>
+</tbody>
+</table>
+<p>sigmoid、tanh函数都存在一个相同的问题，称为 “梯度消失”。这两种函数的导数范围都是 (0,1)，在反向阶段，使用链式法则计算偏导数，因此，在足够大的网络中，当足够多的这些导数相乘时，梯度将呈指数级下降，这意味着训练过程中为每个层创建的权重将不准确，并会影响网络的准确性。选择ReLU函数可以有效解决梯度消失解决梯度消失：
+- 恒等梯度传递：
+    - 对于激活的神经元（<span class="arithmatex">\(x&gt;0\)</span>），ReLU 的导数为 1，梯度在反向传播中可无衰减地传递，避免了传统激活函数的指数级梯度消失。
+    - 示例：假设某层输入 <span class="arithmatex">\(x&gt;0\)</span>，其梯度为 <span class="arithmatex">\(\delta\)</span>，则反向传播时该层梯度为  <span class="arithmatex">\(\delta\times 1=\delta\)</span>，与层数无关。
+- 稀疏激活特性：
+    - ReLU 通过将负值置零，使网络产生 “稀疏激活”—— 只有部分神经元处于激活状态。这减少了参数间的依赖关系，缓解了梯度传播中的冗余计算，并增强了网络的特征选择能力。</p>
+<p>但使用ReLU函数会出现死亡ReLU问题
+- 现象：当输入 <span class="arithmatex">\(x\leq 0\)</span>
+ 时，神经元永久失活（导数为 0），导致该神经元在后续训练中无法更新权重，称为 “死亡 ReLU”。
+- 原因：初始化权重不当或学习率过高，可能使大量神经元进入负区间。
+- 改进变体Leaky ReLU：为负值引入小斜率（如 0.01），避免神经元完全失活：</p>
+<p>$$
+\text{Leaky ReLU}(x)=
+\begin{l}
+αx,
+​</p>
+<p>x≤0</p>
+<p>$$</p>
+<p>那么如何训练一个卷积神经网络呢？我们可以将卷积神经网络看作是一个具有稀疏连接的前馈神经网络，并使用反向传播来训练它. 由于使用的激活函数是ReLU函数，因此只有少数权值（用颜色表示）是激活的，其余的权值（用灰色表示）为零.</p>
+<p><img alt="alt text" src="image-27.png" /></p>
+<h2 id="3">3 一些技巧<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>在卷积层之后进行批量归一化（Batch Normalization）. </li>
 <li>采用[He等人]提出的Xavier/2初始化方法. </li>
 <li>使用随机梯度下降（SGD）+动量（0.9）. </li>
 <li>学习率：0.1，当验证误差趋于平稳时除以10. </li>
@@ -1788,7 +1894,7 @@ S_{ij} = (I * K)_{ij} = \sum_{a=\left\lfloor -\frac{m}{2} \right\rfloor}^{\left\
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 9, 2025 12:15:17">May 9, 2025 12:15:17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 18, 2025 21:51:42">May 18, 2025 21:51:42</span>
   </span>
 
     
@@ -1865,13 +1971,13 @@ S_{ij} = (I * K)_{ij} = \sum_{a=\left\lfloor -\frac{m}{2} \right\rfloor}^{\left\
         
         
           
-          <a href="../RNN/" class="md-footer__link md-footer__link--next" aria-label="下一页: RNN">
+          <a href="../Activation_Function/" class="md-footer__link md-footer__link--next" aria-label="下一页: 关于激活函数">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                RNN
+                关于激活函数
               </div>
             </div>
             <div class="md-footer__button md-icon">
