@@ -1037,6 +1037,8 @@
       
         
       
+        
+      
     
     
     
@@ -1097,26 +1099,24 @@
 
 <h1 id="_1">立体几何初步<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 2198 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 7 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 2172 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 7 分钟</p>
 </div>
 <h2 id="842">8.4.2 空间点、直线、平面之间的位置关系<a class="headerlink" href="#842" title="Permanent link">&para;</a></h2>
 <ul>
 <li>https://www.bilibili.com/video/BV1hW4y1e7ND/?spm_id_from=333.1387.homepage.video_card.click&amp;vd_source=3d4b12fb4a4bfbc98942d43612ae2fb9</li>
 </ul>
-<h3 id="2">一、引入（2分钟）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
 <p>同学们，之前我们学习过一些简单的几何图形，比如在平面几何里，研究过点、直线的位置关系。那在广阔的空间中，点、直线、平面之间又有着怎样丰富多样的位置关系呢？就像我们熟悉的教室，它是一个立体空间，里面的墙角线（直线）与地面（平面）、天花板（平面）与墙面（平面），它们的位置关系都很值得探究。再看这个长方体模型（展示长方体模型），它有8个顶点、12条棱、6个面，这些顶点、棱所在直线、面所在平面之间的位置关系更是复杂有趣。今天，我们就一起深入学习空间中直线、平面之间的位置关系，去探索立体几何的奥秘。</p>
-<h3 id="3">二、知识点讲解（3分钟）<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <p>在长方体 <span class="arithmatex">\(ABCD - A'B'C'D'\)</span> 中（结合模型或画出长方体示意图），我们来观察直线间的关系。像直线 <span class="arithmatex">\(AB\)</span> 与 <span class="arithmatex">\(DC\)</span>，它们在同一个平面 <span class="arithmatex">\(ABCD\)</span> 内，并且没有公共点，这就是平行直线；直线 <span class="arithmatex">\(AB\)</span> 与 <span class="arithmatex">\(BC\)</span> 也在平面 <span class="arithmatex">\(ABCD\)</span> 内，但它们只有一个公共点 <span class="arithmatex">\(B\)</span> ，这是相交直线；而直线 <span class="arithmatex">\(AB\)</span> 与 <span class="arithmatex">\(CC'\)</span> ，无论怎么找，都找不到一个平面能同时包含它们，像这样不同在任何一个平面内的两条直线，我们就叫做异面直线。所以，空间两条直线的位置关系总共有三种：共面直线（包括相交直线和平行直线）和异面直线。这里要注意，空间中两条直线平行和平面上两条直线平行的意义是一致的，都要满足在同一平面内且不相交。为了更直观地表示异面直线不共面的特点，我们作图时，通常会用一个或两个平面衬托（展示相关异面直线的图形示例） 。</p>
 <p>继续观察长方体，直线 <span class="arithmatex">\(AB\)</span> 与平面 <span class="arithmatex">\(ABCD\)</span> 有无数个公共点，这时候直线就在平面内；直线 <span class="arithmatex">\(AA'\)</span> 与平面 <span class="arithmatex">\(ABCD\)</span> 只有一个公共点 <span class="arithmatex">\(A\)</span> ，这种情况是直线与平面相交；直线 <span class="arithmatex">\(A'B'\)</span> 与平面 <span class="arithmatex">\(ABCD\)</span> 没有公共点，就是直线与平面平行。概括来说，直线与平面的位置关系有且只有这三种：直线在平面内（有无数个公共点）、直线与平面相交（有且只有一个公共点）、直线与平面平行（没有公共点）。当直线与平面相交或平行时，直线不在平面内，也叫做直线在平面外。我们还规定了相应的符号表示，直线 <span class="arithmatex">\(a\)</span> 与平面 <span class="arithmatex">\(\alpha\)</span> 相交于点 <span class="arithmatex">\(A\)</span> ，记作 <span class="arithmatex">\(a\cap\alpha = A\)</span> ；直线 <span class="arithmatex">\(a\)</span> 与平面 <span class="arithmatex">\(\alpha\)</span> 平行，记作 <span class="arithmatex">\(a\parallel\alpha\)</span> 。在画图表示时，直线 <span class="arithmatex">\(a\)</span> 在平面 <span class="arithmatex">\(\alpha\)</span> 内，要把直线 <span class="arithmatex">\(a\)</span> 画在表示平面 <span class="arithmatex">\(\alpha\)</span> 的平行四边形内；直线 <span class="arithmatex">\(a\)</span> 在平面 <span class="arithmatex">\(\alpha\)</span> 外，应把直线 <span class="arithmatex">\(a\)</span> 或它的一部分画在表示平面 <span class="arithmatex">\(\alpha\)</span> 的平行四边形外（结合图形讲解画法）。</p>
 <p>还是看长方体，平面 <span class="arithmatex">\(ABCD\)</span> 与平面 <span class="arithmatex">\(A'B'C'D'\)</span> 没有公共点，这两个平面就是平行的；平面 <span class="arithmatex">\(ABCD\)</span> 与平面 <span class="arithmatex">\(BCC'B'\)</span> 有一条公共直线 <span class="arithmatex">\(BC\)</span> ，这是两个平面相交的情况。所以，两个平面之间的位置关系有且只有两种：平行（没有公共点）和相交（有一条公共直线）。画两个互相平行的平面时，大家要注意使表示平面的两个平行四边形的对应边平行（展示平行平面的正确画法和错误画法对比示例），平面 <span class="arithmatex">\(\alpha\)</span> 与平面 <span class="arithmatex">\(\beta\)</span> 平行，记作 <span class="arithmatex">\(\alpha\parallel\beta\)</span> 。</p>
-<h3 id="2_1">三、总结（2分钟）<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<h3 id="2">三、总结（2分钟）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
 <p>同学们，今天我们学习了空间中直线与直线、直线与平面、平面与平面的位置关系。直线与直线有相交、平行、异面三种关系；直线与平面有在平面内、相交、平行三种关系；平面与平面有平行和相交两种关系。还学习了相关的符号表示和判断异面直线的方法。这些知识是立体几何的基础，在后续学习空间中的平行、垂直关系以及几何体的性质等内容时都会经常用到。大家课后要多观察生活中的立体图形，巩固今天所学知识，试着用今天学的知识去描述它们各部分之间的位置关系。 </p>
 <h2 id="852">8.5.2 直线与平面平行，直线与平面平行的判定<a class="headerlink" href="#852" title="Permanent link">&para;</a></h2>
-<h3 id="_2">讲稿内容<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>同学们好！在之前的学习中，我们认识了空间中直线与平面的多种位置关系，那大家能快速说出有哪些吗？没错，有直线在平面内、直线与平面相交、直线与平面平行。今天，我们就重点来研究直线与平面平行，一起探索如何判定直线与平面平行。 （板书：直线与平面平行）</p>
-<p>按照前面学习的直线与平面平行的定义，如果直线和平面没有公共点，我们就说这条直线和这个平面平行。但大家想想，直线可以无限延伸，平面可以无限延展，要直接判断它们有没有公共点是不是不太容易？所以，我们需要找到更简便的判定方法。现在，请同学们观察这张图（展示相关图形，如教材中图8.5 - 6），这是一扇门，门扇的两边是平行的。当门扇绕着一边转动时，另一边与墙面有公共点吗？对，没有公共点，而且我们能直观地看出，转动的一边与墙面是平行的。从这个例子中，我们可以总结出直线与平面平行的判定定理：如果平面外一条直线与此平面内的一条直线平行，那么该直线与此平面平行。用符号表示就是 <span class="arithmatex">\(a\not\subset\alpha\)</span> ， <span class="arithmatex">\(b\subset\alpha\)</span> ，且 <span class="arithmatex">\(a\parallel b\Rightarrow a\parallel\alpha\)</span> 。大家注意，这里有三个关键条件：一是直线 <span class="arithmatex">\(a\)</span> 在平面 <span class="arithmatex">\(\alpha\)</span> 外；二是直线 <span class="arithmatex">\(b\)</span> 在平面 <span class="arithmatex">\(\alpha\)</span> 内；三是直线 <span class="arithmatex">\(a\)</span> 和直线 <span class="arithmatex">\(b\)</span> 平行，这三个条件缺一不可。这个定理非常重要，它把判断直线与平面平行这样的空间问题，转化成了判断两条直线平行的平面问题，让我们的判断过程变得更简单。</p>
+<p>按照前面学习的直线与平面平行的定义，如果直线和平面没有公共点，我们就说这条直线和这个平面平行。但大家想想，直线可以无限延伸，平面可以无限延展，要直接判断它们有没有公共点是不是不太容易？所以，我们需要找到更简便的判定方法。现在，请同学们教室的门，门扇的两边是平行的。当门扇绕着一边转动时，另一边与墙面有公共点吗？对，没有公共点，而且我们能直观地看出，转动的一边与墙面是平行的。从这个例子中，我们可以总结出直线与平面平行的判定定理：如果平面外一条直线与此平面内的一条直线平行，那么该直线与此平面平行。用符号表示就是 <span class="arithmatex">\(a\not\subset\alpha\)</span> ， <span class="arithmatex">\(b\subset\alpha\)</span> ，且 <span class="arithmatex">\(a\parallel b\Rightarrow a\parallel\alpha\)</span> 。大家注意，这里有三个关键条件：一是直线 <span class="arithmatex">\(a\)</span> 在平面 <span class="arithmatex">\(\alpha\)</span> 外；二是直线 <span class="arithmatex">\(b\)</span> 在平面 <span class="arithmatex">\(\alpha\)</span> 内；三是直线 <span class="arithmatex">\(a\)</span> 和直线 <span class="arithmatex">\(b\)</span> 平行，这三个条件缺一不可。这个定理非常重要，它把判断直线与平面平行这样的空间问题，转化成了判断两条直线平行的平面问题，让我们的判断过程变得更简单。</p>
 <p>接下来，我们通过具体的例题来加深对这个定理的理解和运用。看例2（展示例2图形），已知空间四边形 <span class="arithmatex">\(ABCD\)</span> 中， <span class="arithmatex">\(E\)</span> 、 <span class="arithmatex">\(F\)</span> 分别是 <span class="arithmatex">\(AB\)</span> 、 <span class="arithmatex">\(AD\)</span> 的中点，要证明 <span class="arithmatex">\(EF\parallel\)</span> 平面 <span class="arithmatex">\(BCD\)</span> 。我们来分析一下，要证明直线 <span class="arithmatex">\(EF\)</span> 与平面 <span class="arithmatex">\(BCD\)</span> 平行，根据刚才学的判定定理，我们需要在平面 <span class="arithmatex">\(BCD\)</span> 内找到一条直线与 <span class="arithmatex">\(EF\)</span> 平行。那大家观察图形，能想到哪条直线呢？对，连接 <span class="arithmatex">\(BD\)</span> ，因为 <span class="arithmatex">\(E\)</span> 、 <span class="arithmatex">\(F\)</span> 分别是 <span class="arithmatex">\(AB\)</span> 、 <span class="arithmatex">\(AD\)</span> 的中点，根据三角形中位线定理，我们知道 <span class="arithmatex">\(EF\parallel BD\)</span> 。同时， <span class="arithmatex">\(EF\)</span> 不在平面 <span class="arithmatex">\(BCD\)</span> 内， <span class="arithmatex">\(BD\)</span> 在平面 <span class="arithmatex">\(BCD\)</span> 内，这就满足了判定定理的所有条件，所以可以得出 <span class="arithmatex">\(EF\parallel\)</span> 平面 <span class="arithmatex">\(BCD\)</span> 。通过这个例题，大家要记住证明直线与平面平行的一般思路：先在平面内找一条直线，再证明已知直线和这条直线平行，最后根据判定定理得出结论。 </p>
 <p>好啦，同学们，今天我们学习了直线与平面平行的判定。首先我们了解了根据定义判定直线与平面平行的方法，但由于其局限性，我们重点学习了直线与平面平行的判定定理。这个定理告诉我们，平面外一条直线与平面内一条直线平行，那么这条直线就和这个平面平行，用符号表示为 <span class="arithmatex">\(a\not\subset\alpha\)</span> ， <span class="arithmatex">\(b\subset\alpha\)</span> ，且 <span class="arithmatex">\(a\parallel b\Rightarrow a\parallel\alpha\)</span> 。通过例2和练习题，我们学会了运用这个定理证明直线与平面平行。大家课后要认真复习，多做一些相关的练习题，加深对定理的理解和掌握。下节课我们将学习直线与平面平行的性质，希望大家提前预习，思考一下如果一条直线与一个平面平行，会有哪些结论呢？今天的课就到这里，下课！ </p>
+<h2 id="_2">平面与平面垂直的判定定理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 
 
 
@@ -1139,7 +1139,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 14, 2025 15:13:50">May 14, 2025 15:13:50</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 18, 2025 10:49:54">May 18, 2025 10:49:54</span>
   </span>
 
     
