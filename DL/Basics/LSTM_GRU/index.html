@@ -1,0 +1,2170 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/DL/Basics/LSTM_GRU/">
+      
+      
+        <link rel="prev" href="../RNN/">
+      
+      
+        <link rel="next" href="../ENCODER_DECODER_ATTENTION/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>LSTM and GRU - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lstms-and-grus" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LSTM and GRU
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../OROPT/or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLMs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLMs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LEETCODE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LEETCODE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Math/index.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Math
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RESUME_QandA/summary/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  面试八股
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Teaching_Interview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  高中数学教资面试
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../OROPT/or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    运筹与优化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    DL
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            DL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MLPs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multilayer Perceptrons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sigmoid_nn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sigmoid Neurons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Feedforward Neural Networks and Backpropagation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GD_Variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GD Variants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PCA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PCA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Autoencoders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoencoders
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regularization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Regularization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nn_training_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Network Training Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../NLP_Basics/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    NLP Basics
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Activation_Function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    关于激活函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    LSTM and GRU
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    LSTM and GRU
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 选择性读取、选择性写入、选择性遗忘——白板类比
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 选择性读取、选择性写入、选择性遗忘——白板类比">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择性写入
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择性读取
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择性遗忘
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-lstmgru" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 长短期记忆（LSTM）和门控循环单元（GRU）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 长短期记忆（LSTM）和门控循环单元（GRU）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      影评示例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择性写入
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择性读取
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      选择性遗忘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gru" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRU的完整方程组
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-lstm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 LSTM如何避免梯度消失问题
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 LSTM如何避免梯度消失问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      直觉
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ENCODER_DECODER_ATTENTION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Encoder Decoder models and Seq2Seq
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../GNN/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    GNN
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../READING/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Paper Reading
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../dl_project_forecasting/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Projects:Forecasting
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../dl_project_customer_marketing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Projects:Customer&Marketing
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../RL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    RL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../LLMs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LLMs
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../LEETCODE/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LEETCODE
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../Math/index.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Math
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../RESUME_QandA/summary/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    面试八股
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../Teaching_Interview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    高中数学教资面试
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lstms-and-grus">LSTMs and GRUs<a class="headerlink" href="#lstms-and-grus" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 4523 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 6 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 15 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture15.pdf</li>
+</ul>
+<h2 id="1">1 选择性读取、选择性写入、选择性遗忘——白板类比<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>循环神经网络（RNN）的状态（<span class="arithmatex">\(s_{i}\)</span>）记录了所有先前时间步的信息. 在每个新的时间步，旧信息会被当前输入改变. 可以想象，在<span class="arithmatex">\(t\)</span>步之后，在时间步<span class="arithmatex">\(t - k\)</span>（其中<span class="arithmatex">\(k &lt; t\)</span>）存储的信息会被完全改变，以至于无法提取在时间步<span class="arithmatex">\(t - k\)</span>存储的原始信息. </p>
+<p>类似的问题也会在信息反向传播时出现. 很难将时间步<span class="arithmatex">\(t\)</span>产生的误差归因于时间步<span class="arithmatex">\(t - k\)</span>发生的事件. 这种归因当然是以梯度的形式呈现的，我们在讨论梯度反向传播问题时研究过这个问题. 在讨论梯度消失时，我们对此进行了正式的论证. </p>
+<p>让我们来看一个类比. 我们可以将状态视为一个固定大小的内存，将其与你用来记录信息的固定大小的白板进行比较. 在每个时间步（周期性间隔），我们在白板上写一些东西. 实际上，在每个时间步，我们都会改变截至该时间点记录的信息. 经过多个时间步后，就无法看出时间步<span class="arithmatex">\(t - k\)</span>的信息是如何对时间步<span class="arithmatex">\(t\)</span>的状态产生贡献的. </p>
+<p>继续我们的白板类比，假设我们想在白板上推导一个表达式. 我们在每个时间步遵循以下策略：选择性地在白板上书写、选择性地读取已经写好的内容、选择性地忘记（擦除）内容. 让我们详细看看这些操作. </p>
+<p>例如，计算 <span class="arithmatex">\(ac(bd + a)+ad\)</span>，其中 <span class="arithmatex">\(a = 1\)</span>，<span class="arithmatex">\(b = 3\)</span>，<span class="arithmatex">\(c = 5\)</span>，<span class="arithmatex">\(d = 11\)</span>. 假设“白板”一次只能写3个式子. </p>
+<ul>
+<li>步骤1：写 <span class="arithmatex">\(ac = 5\)</span></li>
+<li>步骤2：写 <span class="arithmatex">\(bd = 33\)</span></li>
+<li>步骤3：写 <span class="arithmatex">\(bd + a = 34\)</span></li>
+<li>步骤4：写 <span class="arithmatex">\(ac(bd + a)=170\)</span></li>
+<li>步骤5：写 <span class="arithmatex">\(ad = 11\)</span></li>
+<li>步骤6：写 <span class="arithmatex">\(ac(bd + a)+ad = 181\)</span></li>
+</ul>
+<h3 id="_1">选择性写入<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>在推导过程中可能有很多步骤，但我们可能会跳过一些. 换句话说，我们选择要写的内容. </p>
+<h3 id="_2">选择性读取<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>在写下一步时，我们通常会读取之前已经写好的一些步骤，然后决定下一步写什么. 例如，在步骤3中，步骤2的信息很重要. 换句话说，我们选择要读取的内容. </p>
+<h3 id="_3">选择性遗忘<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>一旦白板写满了，我们就需要删除一些过时的信息. 但是我们如何决定删除哪些内容呢？我们通常会删除最没用的信息. 换句话说，我们选择要遗忘的内容. </p>
+<p>还有很多其他场景可以说明选择性写入、读取和遗忘的必要性. 例如，我们可以把大脑想象成只能存储有限数量事实的器官. 在不同的时间步，我们有选择地读取、写入和遗忘一些事实. 由于RNN也有有限的状态大小，我们需要找到一种方法，让它能够<strong>选择性地读取、写入和遗忘</strong>. </p>
+<h2 id="2-lstmgru">2 长短期记忆（LSTM）和门控循环单元（GRU）<a class="headerlink" href="#2-lstmgru" title="Permanent link">&para;</a></h2>
+<h3 id="_4">问题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>我们能给出一个RNN也需要选择性读取、写入和遗忘的具体例子吗？我们如何将这种直觉转化为数学方程？</p>
+<h3 id="_5">影评示例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>影评：电影的前半部分很枯燥，但后半部分节奏明显加快. 主演的表演非常精彩. </p>
+<p>考虑预测影评情感倾向（正面/负面）的任务. RNN从左到右读取文档，每读取一个单词就更新一次状态. 当我们读到文档末尾时，从开头几个单词获得的信息就完全丢失了. 理想情况下，我们希望：忘记停用词（如“a”“the”等）添加的信息；有选择地读取之前带有情感倾向的单词（如“awesome”“amazing”等）添加的信息；有选择地将当前单词的新信息写入状态. </p>
+<p><img alt="alt text" src="image.png" /></p>
+<p>请记住，蓝色向量（<span class="arithmatex">\(s_{t}\)</span>）被称为RNN的状态. 它的大小是有限的（<span class="arithmatex">\(s_{t} \in \mathbb{R}^{n}\)</span>），用于存储直到时间步 <span class="arithmatex">\(t\)</span> 的所有信息. 这个状态类似于白板，迟早会过载，初始状态的信息会被改变得面目全非. 我们期望：通过选择性写入、读取和遗忘，确保这个有限大小的状态向量得到有效利用. </p>
+<p>需要明确的是，我们在时间步 <span class="arithmatex">\(t - 1\)</span> 计算出了状态 <span class="arithmatex">\(s_{t - 1}\)</span>，现在我们想用新信息（<span class="arithmatex">\(x_{t}\)</span>）对其进行更新，并计算新的状态（<span class="arithmatex">\(s_{t}\)</span>）. 在这个过程中，我们要确保使用选择性写入、读取和遗忘，以便只有重要信息保留在<span class="arithmatex">\(s_{t}\)</span>中. 现在我们来看看如何实现这些期望的功能. </p>
+<h3 id="_6">选择性写入<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>回想一下，在RNN中，我们使用 <span class="arithmatex">\(s_{t - 1}\)</span> 来计算 <span class="arithmatex">\(s_{t}\)</span>，公式为 <span class="arithmatex">\(s_{t}=\sigma(W s_{t - 1}+U x_{t})\)</span>（忽略偏置）. 但现在，我们不想将<span class="arithmatex">\(s_{t - 1}\)</span>原封不动地传递到<span class="arithmatex">\(s_{t}\)</span>，而是只想将其中的一部分传递（写入）到下一个状态. 在最严格的情况下，我们的决策可能是二元的（例如，保留第1个和第3个元素，删除其余元素）. 但更合理的做法是为每个元素分配一个0到1之间的值，以确定当前状态传递到下一个状态的比例. </p>
+<p>我们引入一个向量 <span class="arithmatex">\(o_{t - 1}\)</span>，它决定了 <span class="arithmatex">\(s_{t - 1}\)</span> 的每个元素应该传递到下一个状态的比例. <span class="arithmatex">\(o_{t - 1}\)</span> 的每个元素都与 <span class="arithmatex">\(s_{t - 1}\)</span> 的对应元素相乘. <span class="arithmatex">\(o_{t - 1}\)</span> 的每个元素都被限制在0到1之间. </p>
+<p><img alt="alt text" src="image-1.png" /></p>
+<p>但是我们如何计算 <span class="arithmatex">\(o_{t - 1}\)</span> 呢？RNN如何知道应该传递多少比例的状态呢？</p>
+<p>RNN必须与其他参数（<span class="arithmatex">\(W\)</span>、<span class="arithmatex">\(U\)</span>、<span class="arithmatex">\(V\)</span>）一起学习 <span class="arithmatex">\(o_{t - 1}\)</span>. 我们通过以下公式计算 <span class="arithmatex">\(o_{t - 1}\)</span> 和 <span class="arithmatex">\(h_{t - 1}\)</span>：</p>
+<div class="arithmatex">\[
+o_{t - 1}=\sigma\left(W_{o} h_{t - 2}+U_{o} x_{t - 1}+b_{o}\right)
+\]</div>
+<div class="arithmatex">\[
+h_{t - 1}=o_{t - 1} \odot \sigma\left(s_{t - 1}\right)
+\]</div>
+<p>参数 <span class="arithmatex">\(W_{o}\)</span>、<span class="arithmatex">\(U_{o}\)</span>、<span class="arithmatex">\(b_{o}\)</span> 需要与现有的参数<span class="arithmatex">\(W\)</span>、<span class="arithmatex">\(U\)</span>、<span class="arithmatex">\(V\)</span>一起学习. sigmoid（逻辑）函数确保值在0到1之间. <span class="arithmatex">\(o_{t}\)</span>被称为输出门，因为它决定了传递（写入）到下一个时间步的信息量. </p>
+<h3 id="_7">选择性读取<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>现在我们将使用 <span class="arithmatex">\(h_{t - 1}\)</span> 来计算下一个时间步的新状态. 我们还将使用 <span class="arithmatex">\(x_{t}\)</span>，它是时间步 <span class="arithmatex">\(t\)</span> 的新输入. </p>
+<div class="arithmatex">\[
+\tilde{s}_{t}=\sigma\left(W h_{t - 1}+U x_{t}+b\right)
+\]</div>
+<p>注意，<span class="arithmatex">\(W\)</span>、<span class="arithmatex">\(U\)</span> 和 <span class="arithmatex">\(b\)</span> 与我们在RNN中使用的参数类似（为简单起见，图中未显示偏置<span class="arithmatex">\(b\)</span>）. </p>
+<p><span class="arithmatex">\(\tilde{s}_{t}\)</span>捕获了来自上一个状态（<span class="arithmatex">\(h_{t - 1}\)</span>）和当前输入<span class="arithmatex">\(x_{t}\)</span>的所有信息. 然而，在构建新的单元状态<span class="arithmatex">\(s_{t}\)</span>之前，我们可能不想使用所有这些新信息，而只想有选择地从中读取. 为了实现这一点，我们引入另一个门，称为输入门. 
+<span class="arithmatex">\(<span class="arithmatex">\(i_{t}=\sigma\left(W_{i} h_{t - 1}+U_{i} x_{t}+b_{i}\right)\)</span>\)</span></p>
+<p>并使用<span class="arithmatex">\(i_{t} \odot \tilde{s_{t}}\)</span>作为有选择地读取的状态信息. </p>
+<p><img alt="alt text" src="image-2.png" /></p>
+<p>到目前为止，我们有以下内容：</p>
+<ul>
+<li>上一个状态：<span class="arithmatex">\(s_{t - 1}\)</span></li>
+<li>输出门：<span class="arithmatex">\(o_{t - 1}=\sigma\left(W_{o} h_{t - 2}+U_{o} x_{t - 1}+b_{o}\right)\)</span></li>
+<li>选择性写入：<span class="arithmatex">\(h_{t - 1}=o_{t - 1} \odot \sigma\left(s_{t - 1}\right)\)</span></li>
+<li>当前（临时）状态：<span class="arithmatex">\(\tilde{s_{t}}=\sigma\left(W h_{t - 1}+U x_{t}+b\right)\)</span></li>
+<li>输入门：<span class="arithmatex">\(i_{t}=\sigma\left(W_{i} h_{t - 1}+U_{i} x_{t}+b_{i}\right)\)</span></li>
+<li>选择性读取：<span class="arithmatex">\(i_{t} \odot \tilde{s}_{t}\)</span></li>
+</ul>
+<h3 id="_8">选择性遗忘<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>我们如何将 <span class="arithmatex">\(s_{t - 1}\)</span> 和 <span class="arithmatex">\(\tilde{s_{t}}\)</span> 结合起来得到新状态呢？这里有一种简单（但有效）的方法：</p>
+<div class="arithmatex">\[
+s_{t}=s_{t - 1}+i_{t} \odot \tilde{s_{t}}
+\]</div>
+<p>但我们可能不想使用整个 <span class="arithmatex">\(s_{t - 1}\)</span>，而是想忘记其中的一些部分. 为了实现这一点，我们引入遗忘门. </p>
+<div class="arithmatex">\[
+f_{t}=\sigma\left(W_{f} h_{t - 1}+U_{f} x_{t}+b_{f}\right)
+\]</div>
+<div class="arithmatex">\[
+s_{t}=f_{t} \odot s_{t - 1}+i_{t} \odot \tilde{s}_{t}
+\]</div>
+<p><img alt="alt text" src="image-3.png" /></p>
+<p>现在我们得到了LSTM的完整方程组. 绿色框及其后的选择性写入操作展示了在时间步<span class="arithmatex">\(t\)</span>发生的所有计算. 
+ - 门：
+ <span class="arithmatex">\(<span class="arithmatex">\(o_{t}=\sigma\left(W_{o} h_{t - 1}+U_{o} x_{t}+b_{o}\right)\)</span>\)</span>
+ <span class="arithmatex">\(<span class="arithmatex">\(i_{t}=\sigma\left(W_{i} h_{t - 1}+U_{i} x_{t}+b_{i}\right)\)</span>\)</span>
+ <span class="arithmatex">\(<span class="arithmatex">\(f_{t}=\sigma\left(W_{f} h_{t - 1}+U_{f} x_{t}+b_{f}\right)\)</span>\)</span>
+ - 状态：
+ <span class="arithmatex">\(<span class="arithmatex">\(\tilde{s_{t}}=\sigma\left(W h_{t - 1}+U x_{t}+b\right)\)</span>\)</span>
+ <span class="arithmatex">\(<span class="arithmatex">\(s_{t}=f_{t} \odot s_{t - 1}+i_{t} \odot \tilde{s_{t}}\)</span>\)</span>
+ <span class="arithmatex">\(<span class="arithmatex">\(h_{t}=o_{t} \odot \sigma\left(s_{t}\right) \text{ 且 } rnn_{out }=h_{t}\)</span>\)</span></p>
+<p>LSTM有很多变体，包括不同数量的门以及不同的门排列方式. 我们刚刚看到的是最流行的LSTM变体之一. 另一个同样流行的LSTM变体是门控循环单元（GRU），我们接下来会介绍. </p>
+<h3 id="gru">GRU的完整方程组<a class="headerlink" href="#gru" title="Permanent link">&para;</a></h3>
+<p><img alt="alt text" src="image-4.png" /></p>
+<ul>
+<li>门：
+ <span class="arithmatex">\(<span class="arithmatex">\(o_{t}=\sigma\left(W_{o} s_{t - 1}+U_{o} x_{t}+b_{o}\right)\)</span>\)</span>
+ <span class="arithmatex">\(<span class="arithmatex">\(i_{t}=\sigma\left(W_{i} s_{t - 1}+U_{i} x_{t}+b_{i}\right)\)</span>\)</span></li>
+<li>状态：
+ <span class="arithmatex">\(<span class="arithmatex">\(\tilde{s_{t}}=\sigma\left(W\left(o_{t} \odot s_{t - 1}\right)+U x_{t}+b\right)\)</span>\)</span>
+ <span class="arithmatex">\(<span class="arithmatex">\(s_{t}=\left(1 - i_{t}\right) \odot s_{t - 1}+i_{t} \odot \tilde{s_{t}}\)</span>\)</span></li>
+</ul>
+<p>GRU没有显式的遗忘门（遗忘门和输入门是关联的）. 门直接依赖于<span class="arithmatex">\(s_{t - 1}\)</span>，而不像LSTM那样依赖于中间的<span class="arithmatex">\(h_{t - 1}\)</span>. </p>
+<h2 id="3-lstm">3 LSTM如何避免梯度消失问题<a class="headerlink" href="#3-lstm" title="Permanent link">&para;</a></h2>
+<h3 id="_9">直觉<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>在正向传播过程中，门控制着信息的流动. 它们防止任何无关信息写入状态. 同样，在反向传播过程中，门控制着梯度的流动. 很容易看出，在反向传播过程中，梯度会与门相乘. </p>
+<p>如果时间步 <span class="arithmatex">\(t - 1\)</span> 的状态对时间步<span class="arithmatex">\(t\)</span>的状态贡献不大（即如果 <span class="arithmatex">\(\left\|f_{t}\right\| \to 0\)</span> 且 <span class="arithmatex">\(\left\|o_{t - 1}\right\| \to 0\)</span>），那么在反向传播过程中，流入 <span class="arithmatex">\(s_{t - 1}\)</span> 的梯度会消失. 但这种梯度消失是可以接受的（因为 <span class="arithmatex">\(s_{t - 1}\)</span> 对 <span class="arithmatex">\(s_{t}\)</span> 没有贡献，我们不想让它为 <span class="arithmatex">\(s_{t}\)</span> 的“错误”负责）. 与普通RNN的关键区别在于，信息和梯度的流动由门控制，这确保了梯度只在应该消失的时候消失（即当 <span class="arithmatex">\(s_{t - 1}\)</span> 对 <span class="arithmatex">\(s_{t}\)</span> 贡献不大时）. </p>
+<p>现在我们来看一个关于门如何控制梯度流动的说明性证明. </p>
+<p>回想一下，RNN中有一个乘法项会导致梯度消失. 
+<span class="arithmatex">\(<span class="arithmatex">\(\frac{\partial \mathscr{L}_{t}(\theta)}{\partial W}=\frac{\partial \mathscr{L}_{t}(\theta)}{\partial s_{t}} \sum_{k = 1}^{t} \prod_{j = k}^{t - 1} \frac{\partial s_{j + 1}}{\partial s_{j}} \frac{\partial^{+} s_{k}}{\partial W}\)</span>\)</span></p>
+<p>特别是，如果<span class="arithmatex">\(\mathscr{L}_{4}(\theta)\)</span>处的损失很高，是因为<span class="arithmatex">\(W\)</span>不够好，无法正确计算<span class="arithmatex">\(s_{1}\)</span>，那么这个信息不会通过梯度<span class="arithmatex">\(\frac{\partial \mathscr{L}_{t}(\theta)}{\partial W}\)</span>传播回<span class="arithmatex">\(W\)</span>，因为沿着这条长路径的梯度会消失. </p>
+<p>一般来说，当从 <span class="arithmatex">\(\mathscr{L}_{t}(\theta)\)</span> 到 <span class="arithmatex">\(\theta_{i}\)</span> 的每一条路径上的梯度都消失时，<span class="arithmatex">\(\frac{\partial \mathscr{L}_{t}(\theta)}{\partial \theta_{i}}\)</span> 的梯度就会消失. 另一方面，当至少有一条路径上的梯度爆炸时， <span class="arithmatex">\(\frac{\partial \mathscr{L}_{t}(\theta)}{\partial \theta_{i}}\)</span> 的梯度就会爆炸. 我们首先要论证，在LSTM的情况下，至少存在一条路径，梯度可以有效地流动（因此不会出现梯度消失）. </p>
+<p>我们从LSTM中不同变量的依赖图开始. </p>
+<p><img alt="alt text" src="image-5.png" /></p>
+<p>从时间步<span class="arithmatex">\(k - 1\)</span>的状态开始：</p>
+<div class="arithmatex">\[
+o_{k}=\sigma\left(W_{o} h_{k - 1}+U_{o} x_{k}+b_{o}\right)
+\]</div>
+<p>为了简单起见，我们暂时省略参数，稍后再讨论它们. </p>
+<div class="arithmatex">\[
+\begin{align*}
+i_{k}&amp;=\sigma\left(W_{i} h_{k - 1}+U_{i} x_{k}+b_{i}\right)\\
+f_{k}&amp;=\sigma\left(W_{f} h_{k - 1}+U_{f} x_{k}+b_{f}\right)\\
+\tilde{s_{k}}&amp;=\sigma\left(W h_{k - 1}+U x_{k}+b\right)\\
+s_{k}&amp;=f_{k} \odot s_{k - 1}+i_{k} \odot \tilde{s_{k}}\\
+h_{k}&amp;=o_{k} \odot \sigma\left(s_{k}\right)\\
+\end{align*}
+\]</div>
+<p>从<span class="arithmatex">\(h_{k - 1}\)</span>和<span class="arithmatex">\(s_{k - 1}\)</span>出发，我们得到了<span class="arithmatex">\(h_{k}\)</span>和<span class="arithmatex">\(s_{k}\)</span>. 这个递归过程将持续到最后一个时间步. 为了简单和便于说明，我们没有将参数（<span class="arithmatex">\(W\)</span>、<span class="arithmatex">\(W_{o}\)</span>、<span class="arithmatex">\(W_{i}\)</span>、<span class="arithmatex">\(W_{f}\)</span>、<span class="arithmatex">\(U\)</span>、<span class="arithmatex">\(U_{o}\)</span>、<span class="arithmatex">\(U_{i}\)</span>、<span class="arithmatex">\(U_{f}\)</span>）作为图中的单独节点，而是将它们放在了相应的边上. （我们只展示了一部分参数）</p>
+<p>例如，我们想知道梯度是否通过 <span class="arithmatex">\(s_{k}\)</span> 流向 <span class="arithmatex">\(W_{f}\)</span>. 换句话说，如果 <span class="arithmatex">\(\mathscr{L}_{t}(\theta)\)</span> 很高是因为 <span class="arithmatex">\(W_{f}\)</span> 未能为 <span class="arithmatex">\(s_{k}\)</span> 计算出合适的值，那么这个信息应该通过梯度反馈到 <span class="arithmatex">\(W_{f}\)</span>. 我们也可以对其他参数（例如<span class="arithmatex">\(W_{i}\)</span>、<span class="arithmatex">\(W_{o}\)</span>、<span class="arithmatex">\(W\)</span>等）提出类似的问题. LSTM是如何确保即使在任意时间步，这个梯度也不会消失的呢？让我们来看看. </p>
+<p>要证明这一点，只需证明 <span class="arithmatex">\(\frac{\partial L_{t}(\theta)}{\partial s_{k}}\)</span> 不会消失（因为如果这个不消失，我们就可以通过 <span class="arithmatex">\(s_{k}\)</span> 到达 <span class="arithmatex">\(W_{f}\)</span>）. 首先，我们观察到从 <span class="arithmatex">\(\mathscr{L}_{t}(\theta)\)</span> 到 <span class="arithmatex">\(s_{k}\)</span> 有多个路径（在反向传播时，只需将箭头方向反转）. 例如，有一条路径通过 <span class="arithmatex">\(s_{k + 1}\)</span>，另一条通过 <span class="arithmatex">\(h_{k}\)</span>. 此外，到达 <span class="arithmatex">\(h_{k}\)</span> 本身也有多个路径（从 <span class="arithmatex">\(h_{k}\)</span> 的出边数量就可以明显看出）. 所以现在你只需相信从 <span class="arithmatex">\(\mathscr{L}_{t}(\theta)\)</span> 到 <span class="arithmatex">\(s_{k}\)</span> 有很多路径. </p>
+<p>考虑其中一条路径（突出显示），它会对梯度产生贡献. 我们将这条路径上的梯度表示为 <span class="arithmatex">\(t_{0}\)</span>. </p>
+<div class="arithmatex">\[
+t_{0}=\frac{\partial \mathscr{L}_{t}(\theta)}{\partial h_{t}} \frac{\partial h_{t}}{\partial s_{t}} \frac{\partial s_{t}}{\partial s_{t - 1}} \cdots \frac{\partial s_{k + 1}}{\partial s_{k}}
+\]</div>
+<p>第一项 <span class="arithmatex">\(\frac{\partial \mathscr{L}_{t}(\theta)}{\partial h_{t}}\)</span> 没问题，不会消失（<span class="arithmatex">\(h_{t}\)</span>直接连接到<span class="arithmatex">\(\mathscr{L}_{t}(\theta)\)</span>，没有中间节点会导致梯度消失）. 现在我们来看其他项 <span class="arithmatex">\(\frac{\partial h_t}{\partial s_t} \frac{\partial s_t}{\partial s_{t - 1}} \ (\forall t)\)</span></p>
+<p>让我们先看 <span class="arithmatex">\(\frac{\partial h_{t}}{\partial s_{t}}\)</span> . 回想一下， <span class="arithmatex">\(h_{t}=o_{t} \odot \sigma\left(s_{t}\right)\)</span> . 注意， <span class="arithmatex">\(h_{t}\)</span> 的第 <span class="arithmatex">\(i\)</span> 个元素仅依赖于 <span class="arithmatex">\(o_{t}\)</span> 和 <span class="arithmatex">\(s_{t}\)</span> 的第 <span class="arithmatex">\(i\)</span> 个元素，而不依赖于 <span class="arithmatex">\(o_{t}\)</span> 和 <span class="arithmatex">\(s_{t}\)</span> 的其他元素. 因此， <span class="arithmatex">\(\frac{\partial h_{t}}{\partial s_{t}}\)</span> 将是一个 <span class="arithmatex">\(\in \mathbb{R}^{d×d}\)</span> 的对角方阵，其对角线元素为 <span class="arithmatex">\(o_{t} \odot \sigma'(s_{t})\in \mathbb{R}^{d}\)</span> （见第14讲的第35页幻灯片）. 我们用 <span class="arithmatex">\(D(o_{t} \odot \sigma'(s_{t}))\)</span> 表示这个对角矩阵. </p>
+<p>现在考虑 <span class="arithmatex">\(\frac{\partial s_{t}}{\partial s_{t - 1}}\)</span> . 回想一下， <span class="arithmatex">\(s_{t}=f_{t} \odot s_{t - 1}+i_{t} \odot \tilde{s_{t}}\)</span> . 注意， <span class="arithmatex">\(\tilde{s_{t}}\)</span> 也依赖于 <span class="arithmatex">\(s_{t - 1}\)</span> ，所以不能将其视为常数. 同样，我们处理的是一个有序网络，因此 <span class="arithmatex">\(\frac{\partial s_{t}}{\partial s_{t - 1}}\)</span> 将是一个显式项和一个隐式项的和（见第14讲的第37页幻灯片）. 为简单起见，我们假设隐式项的梯度消失（我们假设这是最坏的情况 ）. 将 <span class="arithmatex">\(\tilde{s_{t}}\)</span> 视为常数时，显式项的梯度由 <span class="arithmatex">\(D(f_{t})\)</span> 给出. </p>
+<p>现在回到 <span class="arithmatex">\(t_{0}\)</span> 的完整表达式：</p>
+<div class="arithmatex">\[
+\begin{align*}
+t_{0}&amp;=\frac{\partial \mathcal{L}_{t}(\theta)}{\partial h_{t}} \frac{\partial h_{t}}{\partial s_{t}} \frac{\partial s_{t}}{\partial s_{t - 1}} \cdots \frac{\partial s_{k + 1}}{\partial s_{k}}\\
+&amp;=\mathcal{L}_{t}'(h_{t}) \cdot \mathcal{D}(o_{t} \odot \sigma'(s_{t}))\mathcal{D}(f_{t}) \cdots \mathcal{D}(f_{k + 1})\\
+&amp;=\mathcal{L}_{t}'(h_{t}) \cdot \mathcal{D}(o_{t} \odot \sigma'(s_{t}))\mathcal{D}(f_{t} \odot \cdots \odot f_{k + 1})\\
+&amp;=\mathcal{L}_{t}'(h_{t}) \cdot \mathcal{D}(o_{t} \odot \sigma'(s_{t}))\mathcal{D}(\odot_{i = k + 1}^{t} f_{i})
+\end{align*}
+\]</div>
+<p>红色项不会消失，蓝色项包含遗忘门的乘积. 因此，遗忘门根据一个状态（ <span class="arithmatex">\(s_{t}\)</span> ）对下一个状态 <span class="arithmatex">\(s_{t + 1}\)</span> 的明确贡献来调节梯度流. </p>
+<p>如果在正向传播中 <span class="arithmatex">\(s_{t}\)</span> 对 <span class="arithmatex">\(s_{t + 1}\)</span> 的贡献不大（因为 <span class="arithmatex">\(f_{t} \to 0\)</span> ），那么在反向传播中，梯度也不会到达 <span class="arithmatex">\(s_{t}\)</span> . 这是合理的，因为如果 <span class="arithmatex">\(s_{t}\)</span> 对 <span class="arithmatex">\(s_{t + 1}\)</span> 的贡献不大，那么在反向传播中就没有理由让它承担责任（ <span class="arithmatex">\(f_{t}\)</span> 在正向传播和反向传播中起到相同的调节作用，这是合理的）. 因此，存在这样一条路径，当梯度不应该消失时，它不会消失. 正如所论证的，只要梯度通过其中一条路径（ <span class="arithmatex">\(t_{0}\)</span> 通过 <span class="arithmatex">\(s_{k}\)</span> ）反馈到 <span class="arithmatex">\(W_{f}\)</span> ，我们就没问题！当然，梯度仅在需要时反馈，由 <span class="arithmatex">\(f_{i}\)</span> 进行调节（但我最后再说一次，这是合理的）. </p>
+<p>现在我们来看看为什么LSTM不能解决梯度爆炸的问题. 我们将展示一条梯度可能爆炸的路径. 让我们计算 <span class="arithmatex">\(\frac{\partial L_{t}(\theta)}{\partial h_{k - 1}}\)</span> 中对应突出显示路径的一项（比如 <span class="arithmatex">\(t_{1}\)</span>  ）：
+$$\begin{align<em>}
+t_{1}&amp;=\frac{\partial \mathcal{L}<em t="t">{t}(\theta)}{\partial h</em>)\
+&amp;=\mathcal{L}}}(\frac{\partial h_{t}}{\partial o_{t}} \frac{\partial o_{t}}{\partial h_{t - 1}})\cdots(\frac{\partial h_{k}}{\partial o_{k}} \frac{\partial o_{k}}{\partial h_{k - 1}<em t="t">{t}'(h</em>)
+\end{align})(\mathcal{D}(\sigma(s_{t}) \odot o_{t}') \cdot W_{o})\cdots(\mathcal{D}(\sigma(s_{k}) \odot o_{k}') \cdot W_{o</em>}
+$$</p>
+<p><span class="arithmatex">\(\left\| t_{1}\right\| \leq\left\| \mathcal{L}_{t}'(h_{t})\right\| (\| K\| \left\| W_{o}\right\| )^{t - k + 1}\)</span> </p>
+<p>根据矩阵 <span class="arithmatex">\(W_{o}\)</span> 的范数，梯度 <span class="arithmatex">\(\frac{\partial L_{t}(\theta)}{\partial h_{k - 1}}\)</span> 可能会爆炸. 类似地， <span class="arithmatex">\(W_{i}\)</span> 、 <span class="arithmatex">\(W_{f}\)</span> 和 <span class="arithmatex">\(W\)</span> 也可能导致梯度爆炸. </p>
+<p>那么我们如何处理梯度爆炸的问题呢？一种流行的技巧是使用梯度裁剪. 在反向传播过程中，如果梯度的范数超过某个值，就对其进行缩放，使其范数保持在可接受的阈值内. 本质上，我们保留梯度的方向，但缩小其范数. </p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 19, 2025 15:07:19">May 19, 2025 15:07:19</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 10, 2025 10:31:27">May 10, 2025 10:31:27</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../RNN/" class="md-footer__link md-footer__link--prev" aria-label="上一页: RNN">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                RNN
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ENCODER_DECODER_ATTENTION/" class="md-footer__link md-footer__link--next" aria-label="下一页: Encoder Decoder models and Seq2Seq">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Encoder Decoder models and Seq2Seq
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>

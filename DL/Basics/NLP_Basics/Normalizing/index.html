@@ -1,0 +1,3020 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/DL/Basics/NLP_Basics/Normalizing/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../../CNN/">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Normalizing Textual Data in NLP - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Normalizing Textual Data in NLP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../OROPT/or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../RL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../LLMs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLMs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../LEETCODE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LEETCODE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Math/index.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Math
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../RESUME_QandA/summary/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  面试八股
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../Teaching_Interview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  高中数学教资面试
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../../OROPT/or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    运筹与优化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    DL
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            DL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MLPs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multilayer Perceptrons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sigmoid_nn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sigmoid Neurons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Feedforward Neural Networks and Backpropagation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GD_Variants/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GD Variants
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PCA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PCA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Autoencoders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoencoders
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Regularization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Regularization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nn_training_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Network Training Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    NLP Basics
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            NLP Basics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Normalizing Textual Data in NLP
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Normalizing Textual Data in NLP
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      文本规范化基本步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="文本规范化基本步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      所需步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="所需步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      文本字符串
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      案例转换（转换为小写）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除数字
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除标点符号
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除空白字符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      删除停用词
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regular-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      正则表达式（Regular Expressions）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="正则表达式（Regular Expressions）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例：电子邮件地址的正则表达式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      如何编写正则表达式？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tokenization" class="md-nav__link">
+    <span class="md-ellipsis">
+      分词（Tokenization）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分词（Tokenization）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      分词的类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分词的类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#word-tokenization" class="md-nav__link">
+    <span class="md-ellipsis">
+      单词分词（Word Tokenization）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentence-tokenization" class="md-nav__link">
+    <span class="md-ellipsis">
+      句子分词（Sentence Tokenization）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subword-tokenization" class="md-nav__link">
+    <span class="md-ellipsis">
+      子词分词（Subword Tokenization）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#character-tokenization" class="md-nav__link">
+    <span class="md-ellipsis">
+      字符分词（Character Tokenization）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      分词的必要性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      分词的实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分词的实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sent_tokenize" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用sent_tokenize进行句子分词
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sent_tokenize_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      sent_tokenize的工作原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#word_tokenize" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用word_tokenize进行单词分词
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#word_tokenize_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      word_tokenize的工作原理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      分词的局限性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lemmatization" class="md-nav__link">
+    <span class="md-ellipsis">
+      词形还原（Lemmatization）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="词形还原（Lemmatization）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      词形还原技术
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="词形还原技术">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      基于规则的词形还原
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      基于词典的词形还原
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      基于机器学习的词形还原
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      词形还原的实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="词形还原的实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nltk" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用NLTK实现词形还原
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用Spacy实现词形还原
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      词干提取简介
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="词干提取简介">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      词干提取为何重要？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nltk_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      NLTK中的词干提取器类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NLTK中的词干提取器类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-porters-stemmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 波特词干提取器（Porter's Stemmer）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      波特词干提取器的实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lovins-stemmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 洛文斯词干提取器（Lovins Stemmer）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dawson-stemmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 道森词干提取器（Dawson Stemmer）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-krovetz-stemmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 克罗维茨词干提取器（Krovetz Stemmer）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-xerox-stemmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 施乐词干提取器（Xerox Stemmer）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-n-n-gram-stemmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. N - 元语法词干提取器（N-Gram Stemmer）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-snowball-stemmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 雪球词干提取器（Snowball Stemmer）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 雪球词干提取器（Snowball Stemmer）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      雪球词干提取器的实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-lancaster-stemmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 兰卡斯特词干提取器（Lancaster Stemmer）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 兰卡斯特词干提取器（Lancaster Stemmer）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      兰卡斯特词干提取器的实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-regexp-stemmer" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 正则表达式词干提取器（Regexp Stemmer）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 正则表达式词干提取器（Regexp Stemmer）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      正则表达式词干提取器的实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      词干提取的应用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      词干提取的缺点
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="词干提取的缺点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      过度词干提取
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      词干提取不足
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      词干提取的优点
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      停用词移除
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      词性标注
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Text_Representation/README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Text representation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Activation_Function/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    关于激活函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LSTM_GRU/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LSTM and GRU
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ENCODER_DECODER_ATTENTION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Encoder Decoder models and Seq2Seq
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../GNN/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    GNN
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../READING/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Paper Reading
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../dl_project_forecasting/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Projects:Forecasting
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../dl_project_customer_marketing/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Projects:Customer&Marketing
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../RL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    RL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../LLMs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LLMs
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../LEETCODE/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LEETCODE
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../Math/index.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Math
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../../RESUME_QandA/summary/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    面试八股
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../../Teaching_Interview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    高中数学教资面试
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">文本规范化<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 7464 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"/></svg></span> 162 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 27 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://www.geeksforgeeks.org/natural-language-processing-nlp-tutorial/</li>
+<li>https://www.geeksforgeeks.org/write-regular-expressions/</li>
+<li>https://www.geeksforgeeks.org/nlp-how-tokenizing-text-sentence-words-works/</li>
+<li>https://www.geeksforgeeks.org/python-lemmatization-with-nltk/</li>
+<li>https://www.geeksforgeeks.org/introduction-to-stemming/</li>
+<li>https://www.geeksforgeeks.org/removing-stop-words-nltk-python/</li>
+<li>https://www.geeksforgeeks.org/nlp-part-of-speech-default-tagging/</li>
+</ul>
+<p>文本规范化将文本转换为一致的格式，提高了质量，使其更容易在NLP任务中处理. </p>
+<h2 id="_2">文本规范化基本步骤<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在本文中，我们将学习如何使用Python规范化文本数据. 让我们先讨论一些概念：</p>
+<ul>
+<li>文本数据是系统收集的材料，由书面、印刷或电子出版的文字组成，通常是有意撰写或从语音转录而来. </li>
+<li>文本规范化是将文本转换为一种规范形式的过程，这种规范形式可能是文本之前并不具备的. 在存储或处理文本之前对其进行规范化，有助于分离关注点，因为在对输入数据进行操作之前，确保其一致性是很重要的. 文本规范化需要清楚了解要规范化的文本类型以及后续的处理方式；并不存在通用的规范化程序. </li>
+</ul>
+<h3 id="_3">所需步骤<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>在这里，我们将讨论文本规范化所需的一些基本步骤. </p>
+<ol>
+<li>输入文本字符串. </li>
+<li>将字符串中的所有字母转换为一种大小写形式（小写或大写）. </li>
+<li>如果数字对分析很重要，就将其转换为单词，否则删除所有数字. </li>
+<li>删除标点符号和其他语法格式. </li>
+<li>删除空白字符. </li>
+<li>删除停用词. </li>
+<li>进行其他必要的计算. </li>
+</ol>
+<p>我们通过上述步骤进行文本规范化，每个步骤都有多种实现方式. 因此，我们将在整个过程中详细讨论每一个步骤. </p>
+<h4 id="_4">文本字符串<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># input string </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;       Python 3.0, released in 2008, was a major revision of the language that is not completely backward compatible and much Python 2 code does not run unmodified on Python 3. With Python 2&#39;s end-of-life, only Python 3.6.x[30] and later are supported, with older versions still supporting e.g. Windows 7 (and old installers not restricted to 64-bit Windows).&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>print<span class="o">(</span>string<span class="o">)</span>
+</code></pre></div>
+<p>output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>”<span class="w">       </span>Python<span class="w"> </span><span class="m">3</span>.0,<span class="w"> </span>released<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2008</span>,<span class="w"> </span>was<span class="w"> </span>a<span class="w"> </span>major<span class="w"> </span>revision<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>language<span class="w"> </span>that<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>completely<span class="w"> </span>backward<span class="w"> </span>compatible<span class="w"> </span>and<span class="w"> </span>much<span class="w"> </span>Python<span class="w"> </span><span class="m">2</span><span class="w"> </span>code<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>run<span class="w"> </span>unmodified<span class="w"> </span>on<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span>.<span class="w"> </span>With<span class="w"> </span>Python<span class="w"> </span><span class="m">2</span>’s<span class="w"> </span>end-of-life,<span class="w"> </span>only<span class="w"> </span>Python<span class="w"> </span><span class="m">3</span>.6.x<span class="o">[</span><span class="m">30</span><span class="o">]</span><span class="w"> </span>and<span class="w"> </span>later<span class="w"> </span>are<span class="w"> </span>supported,<span class="w"> </span>with<span class="w"> </span>older<span class="w"> </span>versions<span class="w"> </span>still<span class="w"> </span>supporting<span class="w"> </span>e.g.<span class="w"> </span>Windows<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">(</span>and<span class="w"> </span>old<span class="w"> </span>installers<span class="w"> </span>not<span class="w"> </span>restricted<span class="w"> </span>to<span class="w"> </span><span class="m">64</span>-bit<span class="w"> </span>Windows<span class="o">)</span>.”
+</code></pre></div>
+<h4 id="_5">案例转换（转换为小写）<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>在Python中，<code>lower()</code>是一个用于字符串处理的内置方法. <code>lower()</code>方法会返回给定字符串的小写形式，它会将所有大写字符转换为小写. 如果字符串中不存在大写字符，则返回原始字符串. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># input string</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;       Python 3.0, released in 2008, was a major revision of the language that is not completely backward compatible and much Python 2 code does not run unmodified on Python 3. With Python 2&#39;s end-of-life, only Python 3.6.x[30] and later are supported, with older versions still supporting e.g. Windows 7 (and old installers not restricted to 64-bit Windows).&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># convert to lower case</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">lower_string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">lower_string</span><span class="p">)</span>
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>”       python 3.0, released in 2008, was a major revision of the language that is not completely backward compatible and much python 2 code does not run unmodified on python 3. with python 2’s end-of-life, only python 3.6.x[30] and later are supported, with older versions still supporting e.g. windows 7 (and old installers not restricted to 64-bit windows).”
+</code></pre></div>
+<h4 id="_6">删除数字<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>如果数字与您的分析无关，则将其删除. 通常，会使用正则表达式来删除数字. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># import regex</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># input string </span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;       Python 3.0, released in 2008, was a major revision of the language that is not completely backward compatible and much Python 2 code does not run unmodified on Python 3. With Python 2&#39;s end-of-life, only Python 3.6.x[30] and later are supported, with older versions still supporting e.g. Windows 7 (and old installers not restricted to 64-bit Windows).&quot;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># convert to lower case</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">lower_string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># remove numbers</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">no_number_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">lower_string</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">no_number_string</span><span class="p">)</span>
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>”       python ., released in , was a major revision of the language that is not completely backward compatible and much python  code does not run unmodified on python . with python ‘s end-of-life, only python ..x[] and later are supported, with older versions still supporting e.g. windows  (and old installers not restricted to -bit windows).”
+</code></pre></div>
+<h4 id="_7">删除标点符号<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>删除标点符号这一步也可以使用正则表达式来完成. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># import regex</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># input string </span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;       Python 3.0, released in 2008, was a major revision of the language that is not completely backward compatible and much Python 2 code does not run unmodified on Python 3. With Python 2&#39;s end-of-life, only Python 3.6.x[30] and later are supported, with older versions still supporting e.g. Windows 7 (and old installers not restricted to 64-bit Windows).&quot;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># convert to lower case</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">lower_string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># remove numbers</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">no_number_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">lower_string</span><span class="p">)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1"># remove all punctuation except words and space</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="n">no_punc_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s]&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">no_number_string</span><span class="p">)</span> 
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">no_punc_string</span><span class="p">)</span>
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>‘       python  released in  was a major revision of the language that is not completely backward compatible and much python  code does not run unmodified on python  with python s endoflife only python x and later are supported with older versions still supporting eg windows  and old installers not restricted to bit windows’
+</code></pre></div>
+<h4 id="_8">删除空白字符<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p><code>strip()</code>函数是Python编程语言中的一个内置函数，它会返回字符串的副本，并删除字符串开头和结尾的字符（根据传入的字符串参数决定删除哪些字符）. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># import regex</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># input string </span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">string</span> <span class="o">=</span> <span class="s2">&quot;       Python 3.0, released in 2008, was a major revision of the language that is not completely backward compatible and much Python 2 code does not run unmodified on Python 3. With Python 2&#39;s end-of-life, only Python 3.6.x[30] and later are supported, with older versions still supporting e.g. Windows 7 (and old installers not restricted to 64-bit Windows).&quot;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># convert to lower case</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">lower_string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># remove numbers</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">no_number_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">lower_string</span><span class="p">)</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># remove all punctuation except words and space</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="n">no_punc_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s]&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">no_number_string</span><span class="p">)</span> 
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="c1"># remove white spaces</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="n">no_wspace_string</span> <span class="o">=</span> <span class="n">no_punc_string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">no_wspace_string</span><span class="p">)</span>
+</code></pre></div>
+<p>输出：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>‘python  released in  was a major revision of the language that is not completely backward compatible and much python  code does not run unmodified on python  with python s endoflife only python x and later are supported with older versions still supporting eg windows  and old installers not restricted to bit windows’
+</code></pre></div>
+<h4 id="_9">删除停用词<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>“停用词”是语言中最常见的词汇，如“the”“a”“on”“is”“all”等. 这些词不携带重要意义，通常会从文本中删除. 可以使用自然语言处理工具包（NLTK）来删除停用词，NLTK是一组用于符号和统计自然语言处理的库和程序. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># download stopwords</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">nltk</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># import nltk for stopwords</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.corpus</span><span class="w"> </span><span class="kn">import</span> <span class="n">stopwords</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">stop_words</span><span class="p">)</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># assign string</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="n">no_wspace_string</span><span class="o">=</span><span class="s1">&#39;python  released in  was a major revision of the language that is not completely backward compatible and much python  code does not run unmodified on python  with python s endoflife only python x and later are supported with older versions still supporting eg windows  and old installers not restricted to bit windows&#39;</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1"># convert string to list of words</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="n">lst_string</span> <span class="o">=</span> <span class="p">[</span><span class="n">no_wspace_string</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">lst_string</span><span class="p">)</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="c1"># remove stopwords</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="n">no_stpwords_string</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lst_string</span><span class="p">:</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>        <span class="n">no_stpwords_string</span> <span class="o">+=</span> <span class="n">i</span><span class="o">+</span><span class="s1">&#39; &#39;</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="c1"># removing last space</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="n">no_stpwords_string</span> <span class="o">=</span> <span class="n">no_stpwords_string</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="nb">print</span><span class="p">(</span><span class="n">no_stpwords_string</span><span class="p">)</span>
+</code></pre></div>
+<p>输出：</p>
+<p><img alt="alt text" src="image.png" /></p>
+<p>通过以上步骤，我们可以使用Python对文本数据进行规范化处理. </p>
+<p>下面介绍一下文本规范化的关键点. </p>
+<h2 id="regular-expressions">正则表达式（Regular Expressions）<a class="headerlink" href="#regular-expressions" title="Permanent link">&para;</a></h2>
+<p>在前面我们使用正则表达式进行数字、标点符号和空白字符的删除，现在我们来深入学一下正则表达式</p>
+<p>正则表达式（regex）是定义搜索模式的一系列字符. 以下是编写正则表达式的方法：</p>
+<ol>
+<li>首先要了解正则表达式中使用的特殊字符，如<code>.</code>, <code>^</code>, <code>+</code>, <code>?</code>等. </li>
+<li>选择支持正则表达式的编程语言或工具，如Python、Perl或grep. </li>
+<li>使用特殊字符和字面字符编写你的模式. </li>
+<li>使用适当的函数或方法在字符串中搜索该模式. </li>
+</ol>
+<h3 id="_10">示例<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ol>
+<li>要匹配一系列字面字符，只需在模式中写入这些字符即可. </li>
+<li>要从一组可能的字符中匹配单个字符，使用方括号，例如<code>[0123456789]</code>可以匹配任意数字. </li>
+<li>要匹配前一个表达式的零次或多次出现，使用星号（<code>*</code>）符号. </li>
+<li>要匹配前一个表达式的一次或多次出现，使用加号（<code>+</code>）符号. </li>
+<li>值得注意的是，正则表达式可能很复杂且难以阅读，因此建议使用正则表达式测试工具来调试和优化你的模式. </li>
+</ol>
+<p>正则表达式（有时也称为有理表达式）是定义搜索模式的一系列字符，主要用于与字符串进行模式匹配，即“查找和替换”之类的操作. </p>
+<p>正则表达式是一种通用的字符序列模式匹配方式，在像C++这样的各种编程语言中都有应用. 它还用于谷歌分析中的URL匹配，并且在大多数流行的编辑器（如Sublime、Notepad++、Brackets、谷歌文档和微软Word）中支持搜索和替换功能. </p>
+<h3 id="_11">示例：电子邮件地址的正则表达式<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>^<span class="o">([</span>a<span class="w"> </span>-<span class="w"> </span>ZA<span class="w"> </span>-<span class="w"> </span>Z0<span class="w"> </span>-<span class="w"> </span>9_1<span class="w"> </span>-<span class="w"> </span><span class="se">\.</span><span class="o">]</span>+<span class="o">)</span>@<span class="o">([</span>a<span class="w"> </span>-<span class="w"> </span>ZA<span class="w"> </span>-<span class="w"> </span>Z0<span class="w"> </span>-<span class="w"> </span>9_1<span class="w"> </span>-<span class="w"> </span><span class="se">\.</span><span class="o">]</span>+<span class="o">)</span><span class="se">\.</span><span class="o">([</span>a<span class="w"> </span>-<span class="w"> </span>zA<span class="w"> </span>-<span class="w"> </span>Z<span class="o">]{</span><span class="m">2</span>,5<span class="o">})</span>$
+</code></pre></div>
+<p>上述正则表达式可用于检查给定的一组字符是否为电子邮件地址. </p>
+<h3 id="_12">如何编写正则表达式？<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>编写正则表达式时会用到以下一些特定元素：</p>
+<ol>
+<li><strong>重复器（<code>*</code>、<code>+</code>和<code>{}</code>）</strong>：这些符号用作重复器，告诉计算机前一个字符要使用不止一次. </li>
+<li><strong>星号符号（<code>*</code>）</strong>：它告诉计算机匹配前一个字符（或一组字符）零次或多次（最多无穷次）. 例如，正则表达式 <code>ab*c</code> 可以匹配 <code>ac</code>,<code>abc,</code>abbc`“abbbc”等. </li>
+<li><strong>加号符号（<code>+</code>）</strong>：它告诉计算机重复前一个字符（或一组字符）至少一次或多次（最多无穷次）. 例如，正则表达式 <code>ab+c</code> 可以匹配 <code>abc</code>, <code>abbc</code>, <code>abbbc</code>等. </li>
+<li><strong>花括号<code>{...}</code></strong>：它告诉计算机按照花括号内的值重复前一个字符（或一组字符）. 例如，<code>{2}</code> 表示前一个字符要重复2次，<code>{min,}</code> 表示前一个字符要匹配 <code>min</code> 次或更多次，<code>{min, max}</code> 表示前一个字符至少重复 <code>min</code> 次且最多重复 <code>max</code> 次. </li>
+<li><strong>点号符号（<code>.</code>）</strong>：点号可以代替任何其他符号，因此它被称为通配符. 例如，正则表达式 <code>.*</code> 会告诉计算机可以使用任意字符，且次数不限. </li>
+<li><strong>可选字符（<code>?</code>）</strong>：这个符号告诉计算机前一个字符在要匹配的字符串中可能存在，也可能不存在. 例如，我们可以将文档文件格式写为 <code>docx?</code>，这里的 <code>?</code> 表示 <code>x</code> 在文件格式名称中可能出现，也可能不出现. </li>
+<li><strong>脱字符（<code>^</code>）符号（设置匹配位置）</strong>：脱字符告诉计算机匹配必须从字符串或行的开头开始. 例如，<code>^\d{3}</code> 会匹配像 <code>901</code>, <code>901-333-</code> 这样的模式. </li>
+<li><strong>美元符号（<code>$</code>）</strong>：它告诉计算机匹配必须出现在字符串的末尾，或者在字符串末尾的换行符（\n）之前. 例如，<code>-\d{3}$</code> 会匹配像<code>-333</code>, <code>901-333</code> 这样的模式. </li>
+<li><strong>字符类</strong>：字符类用于匹配一组字符中的任意一个，可用于匹配语言中最基本的元素，如字母、数字、空格、符号等. <ul>
+<li><code>\s</code>：匹配任何空白字符，如空格和制表符. </li>
+<li><code>\S</code>：匹配任何非空白字符. </li>
+<li><code>\d</code>：匹配任何数字字符. </li>
+<li><code>\D</code>：匹配任何非数字字符. </li>
+<li><code>\w</code>：匹配任何单词字符（基本上是字母数字字符）. </li>
+<li><code>[set_of_characters]</code>：匹配set_of_characters中的任何单个字符，默认情况下，匹配是区分大小写的. 例如，<code>[abc]</code> 会匹配任何字符串中的字符 <code>a</code>, <code>b</code>和<code>c</code>. </li>
+</ul>
+</li>
+<li><strong><code>[^set_of_characters]</code>否定</strong>：匹配不在set_of_characters中的任何单个字符，默认情况下，匹配是区分大小写的. 例如，<code>[^abc]</code> 会匹配除 <code>a</code>,<code>b</code>, <code>c</code> 之外的任何字符. </li>
+<li><strong><code>[first - last]</code>字符范围</strong>：匹配从first到last范围内的任何单个字符. 例如，<code>[a - zA - Z]</code> 会匹配从 <code>a</code> 到 <code>z</code> 或从 <code>A</code> 到 <code>Z</code> 的任何字符. </li>
+<li><strong>转义符号（<code>\</code>）</strong>：如果你想匹配实际的 <code>.</code>, <code>*</code> 等字符，在该字符前加上反斜杠（<code>\</code>）. 这会告诉计算机将后面的字符视为搜索字符，并将其纳入匹配模式中. 例如，<code>\d+[\+-\x*]\d+</code> 会在 <code>(2 + 2)*3*9</code> 中匹配像 <code>2 + 2</code> 和 <code>3*9</code> 这样的模式. </li>
+<li><strong>分组字符（<code>()</code>）</strong>：可以将正则表达式中的一组不同符号组合在一起，使其作为一个单元和块来运作. 为此，你需要用括号（<code>()</code>）将正则表达式括起来. 例如，<code>([A - Z]\w+)</code> 包含了正则表达式的两个不同元素，组合在一起后，这个表达式会匹配任何包含大写字母后跟任意字符的模式. </li>
+<li><strong>竖线（<code>|</code>）</strong>：匹配由竖线（<code>|</code>）字符分隔的任何一个元素. 例如，<code>th(el|is|at)</code> 会匹配单词 <code>the</code>, <code>this</code> 和<code>that</code>. </li>
+<li><strong><code>\number</code></strong>：在同一个正则表达式中，<code>\number</code> 表示第 <code>n</code> 个括号内的组将在当前位置重复. 例如，<code>([a - z])\1</code> 会在 <code>Geek</code> 中匹配<code>ee</code>，因为匹配位置中第二个字符与第一个字符相同. </li>
+<li><strong>注释（<code>?#comment</code>）</strong>：内联注释，注释在第一个右括号处结束. 例如，<code>\bA(?#这是一个内联注释)\w+\b</code>. </li>
+<li><strong><code>#[到行尾]</code></strong>：X模式注释，注释从一个未转义的 <code>#</code> 开始，一直延续到行尾. 例如，<code>(?x)\bA\w+\b#</code> 匹配以A开头的单词. </li>
+</ol>
+<h2 id="tokenization">分词（Tokenization）<a class="headerlink" href="#tokenization" title="Permanent link">&para;</a></h2>
+<p>分词是将文本分割成较小单元（即词元）的过程。在自然语言处理的语境中，词元通常是单词或子单词。分词在许多自然语言处理任务中都至关重要。比如，在一个句子里，一个单词就是一个词元；在一个段落中，一个句子就是一个词元。</p>
+<p>分词需要使用分词器将非结构化数据和自然语言文本分割成不同的信息块，并将它们当作不同的元素来处理。文档中的词元可以作为向量，将非结构化的文本文档转换为适合机器学习的数值数据结构。这种快速转换能让计算机立即使用这些分词后的元素来执行实际操作和做出响应。此外，它们还可以作为机器学习流程中的特征，推动更复杂的决策过程或行为。</p>
+<h3 id="_13">分词的类型<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>根据文本的分割方式，分词可分为多种类型。以下是一些常见的分词类型：</p>
+<h4 id="word-tokenization">单词分词（Word Tokenization）<a class="headerlink" href="#word-tokenization" title="Permanent link">&para;</a></h4>
+<p>单词分词将文本分割成单个单词。许多自然语言处理任务都采用这种方法，将单词视为意义的基本单位。</p>
+<ul>
+<li>示例：<ul>
+<li>输入：“Tokenization is an important NLP task.”</li>
+<li>输出：["Tokenization", "is", "an", "important", "NLP", "task", "."]</li>
+</ul>
+</li>
+</ul>
+<h4 id="sentence-tokenization">句子分词（Sentence Tokenization）<a class="headerlink" href="#sentence-tokenization" title="Permanent link">&para;</a></h4>
+<p>句子分词是将文本分割成句子。这在需要对单个句子进行分析或处理的任务中非常有用。
+- 示例：
+    - 输入：“Tokenization is an important NLP task. It helps break down text into smaller units.”
+    - 输出：["Tokenization is an important NLP task.", "It helps break down text into smaller units."]</p>
+<h4 id="subword-tokenization">子词分词（Subword Tokenization）<a class="headerlink" href="#subword-tokenization" title="Permanent link">&para;</a></h4>
+<p>子词分词是把单词分解成更小的单元，在处理形态丰富的语言或罕见词时，这种方法特别有用。
+- 示例：
+    - 输入：“tokenization”
+    - 输出：["token", "ization"]</p>
+<h4 id="character-tokenization">字符分词（Character Tokenization）<a class="headerlink" href="#character-tokenization" title="Permanent link">&para;</a></h4>
+<p>字符分词是将文本分割成单个字符。这在进行字符级语言建模时很有用。
+- 示例：
+    - 输入：“Tokenization”
+    - 输出：["T", "o", "k", "e", "n", "i", "z", "a", "t", "i", "o", "n"]</p>
+<h3 id="_14">分词的必要性<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>分词在文本处理和自然语言处理（NLP）中至关重要，原因如下：
+1. <strong>高效文本处理</strong>：分词可以减小原始文本的规模，使其更易于处理和分析。
+2. <strong>特征提取</strong>：在机器学习模型中，将词元作为特征，可以将文本数据用数字形式表示，便于算法理解。
+3. <strong>语言建模</strong>：自然语言处理中的分词有助于创建有序的语言表示形式，这对文本生成和语言建模等任务很有帮助。
+4. <strong>信息检索</strong>：在基于单词或短语高效存储和检索信息的系统中，分词对于索引和搜索至关重要。
+5. <strong>文本分析</strong>：分词在许多自然语言处理任务中都有应用，包括情感分析和命名实体识别，用于确定句子中单个单词的功能和语境。
+6. <strong>词汇管理</strong>：通过处理一组不同的词元，可以更好地管理词汇表，提高语言处理的准确性和效率。
+7. <strong>任务特定适配</strong>：分词可以根据特定的自然语言处理任务进行定制，在诸如文本摘要和机器翻译等应用中发挥最佳效果。
+8. <strong>预处理步骤</strong>：这一重要的预处理步骤将未处理的文本转换为适合进一步统计和计算分析的格式。</p>
+<h3 id="_15">分词的实现<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<h4 id="sent_tokenize">使用sent_tokenize进行句子分词<a class="headerlink" href="#sent_tokenize" title="Permanent link">&para;</a></h4>
+<p>下面的代码片段使用了NLTK库中的sent_tokenize函数。sent_tokenize函数用于将给定文本分割成句子列表。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">sent_tokenize</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello everyone. Welcome to GeeksforGeeks. You are studying NLP article.&quot;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>输出：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span><span class="s2">&quot;Hello everyone.&quot;</span>,<span class="w"> </span><span class="s2">&quot;Welcome to GeeksforGeeks.&quot;</span>,<span class="w"> </span><span class="s2">&quot;You are studying NLP article&quot;</span><span class="o">]</span>
+</code></pre></div></li>
+</ul>
+<h4 id="sent_tokenize_1">sent_tokenize的工作原理<a class="headerlink" href="#sent_tokenize_1" title="Permanent link">&para;</a></h4>
+<p>sent_tokenize函数使用了nttk.tokenize.punkt模块中的PunktSentenceTokenizer实例。这个实例已经过训练，能够很好地识别句子的起止标点和字符。</p>
+<h4 id="word_tokenize">使用word_tokenize进行单词分词<a class="headerlink" href="#word_tokenize" title="Permanent link">&para;</a></h4>
+<p>下面的代码片段使用NLTK库中的word_tokenize函数将给定文本分割成单个单词。word_tokenize函数有助于将句子或文本分解为其组成单词，便于在自然语言处理任务中进行单词级别的进一步分析或处理。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">word_tokenize</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello everyone. Welcome to GeeksforGeeks.&quot;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+- 输出：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p">[</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="s2">&quot;everyone&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;welcome&quot;</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span> <span class="s2">&quot;GeeksforGeeks&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">]</span>
+</code></pre></div></p>
+<h4 id="word_tokenize_1">word_tokenize的工作原理<a class="headerlink" href="#word_tokenize_1" title="Permanent link">&para;</a></h4>
+<p>word_tokenize()函数是一个包装函数，它对TreebankWordTokenizer类的实例调用tokenize()方法。</p>
+<p>我们已经讨论了使用NLTK库进行分词的方法。此外，还可以使用以下方法和库来实现分词：</p>
+<ul>
+<li><strong>Spacy</strong>：Spacy是一个自然语言处理库，提供强大的分词功能。</li>
+<li><strong>BERT分词器</strong>：BERT使用WordPiece分词器，这是一种用于对输入文本进行分词的子词分词器。</li>
+<li><strong>字节对编码（Byte - Pair Encoding，BPE）</strong>：字节对编码是一种数据压缩算法，在自然语言处理领域也有应用，特别是用于分词。它是一种子词分词技术，通过迭代合并给定语料库中最频繁的连续字节（或字符）对来工作。</li>
+<li><strong>SentencePiece</strong>：SentencePiece是另一种常用于自然语言处理任务的子词分词算法。它设计为与语言无关，通过迭代合并给定语料库中频繁出现的字符或子词序列来工作。</li>
+</ul>
+<h3 id="_16">分词的局限性<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>无法捕捉句子含义</strong>：分词无法捕捉句子的含义，因此可能会导致歧义。</li>
+<li><strong>部分语言分词困难</strong>：在某些语言（如中文、日文、阿拉伯文）中，单词之间没有明显的空格，缺乏清晰的边界，这使得分词过程变得复杂。</li>
+<li><strong>特殊元素分词难题</strong>：文本中可能包含多种特殊元素，如电子邮件地址、URL和特殊符号，很难确定如何对这些元素进行分词。</li>
+</ol>
+<h2 id="lemmatization">词形还原（Lemmatization）<a class="headerlink" href="#lemmatization" title="Permanent link">&para;</a></h2>
+<p>词形还原是将一个单词的不同屈折形式归为一组，以便作为单个项目进行分析的过程。词形还原与词干提取类似，但它为单词赋予了上下文信息，将含义相似的单词关联到同一个词。</p>
+<p>文本预处理既包括词干提取，也包括词形还原。很多时候，人们会混淆这两个术语，有些人甚至将它们视为相同的概念。相较于词干提取，词形还原更受青睐，因为它会对单词进行形态分析。</p>
+<p>词形还原示例：
+- “rocks”变为“rock”
+- “corpora”变为“corpus”
+- “better”变为“good”</p>
+<p>词形还原与词干提取的一个主要区别在于，词形还原需要一个词性参数“pos”，如果未提供该参数，默认值为“名词”。</p>
+<h3 id="_17">词形还原技术<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>自然语言处理（NLP）中的词形还原技术是指将单词识别并转换为其基本或词根形式（即词元）的方法。这些方法有助于文本规范化，在各种NLP应用中，能促进更精确的语言分析和处理。词形还原技术主要有以下三种类型：</p>
+<h4 id="_18">基于规则的词形还原<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<p>基于规则的词形还原是应用预定义规则来推导单词的基本或词根形式。与从数据中学习的机器学习方法不同，基于规则的词形还原依赖于语言规则和模式。</p>
+<p>下面是一个针对英语动词的简化的基于规则的词形还原示例：
+- 规则：对于以“-ed”结尾的规则动词，去掉“-ed”后缀。
+- 示例：
+    - 单词：“walked”
+    - 规则应用：去掉“ed”
+    - 结果：“walk”</p>
+<p>这种方法也适用于其他动词变位形式，为获取规则动词的词元提供了一种系统的方式。虽然基于规则的词形还原可能无法涵盖所有语言细节，但在许多情况下，它是一种透明且可解释的推导基本形式的方法。</p>
+<h4 id="_19">基于词典的词形还原<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<p>基于词典的词形还原依赖于预定义的词典或查找表，将单词映射到它们相应的基本形式或词元。每个单词都会与词典中的条目进行匹配，以找到其词元。这种方法对于规则明确的语言很有效。</p>
+<p>假设我们有一个包含一些单词词形还原形式的词典：</p>
+<ul>
+<li>“running”映射为“run”</li>
+<li>“better”映射为“good”</li>
+<li>“went”映射为“go”</li>
+</ul>
+<p>当我们对“ I was running to become a better athlete, and then I went home”这样的文本应用基于词典的词形还原时，得到的词形还原形式为：“I was run to become a good athlete, and then I go home”。</p>
+<h4 id="_20">基于机器学习的词形还原<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p>基于机器学习的词形还原利用计算模型自动学习单词与其基本形式之间的关系。与基于规则或基于词典的方法不同，机器学习模型（如神经网络或统计模型）在大型文本数据集上进行训练，以归纳语言中的模式。</p>
+<p>例如，一个基于机器学习的词形还原器在各种文本上进行训练。当遇到单词“went”时，模型根据学习到的模式，预测其基本形式为“go”。同样，对于“happier”，模型推断出“happy”为其词元。这种方法的优势在于模型能够适应各种语言细节并处理不规则情况，对于不同词汇的词形还原具有很强的适应性。</p>
+<h3 id="_21">词形还原的实现<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<h4 id="nltk">使用NLTK实现词形还原<a class="headerlink" href="#nltk" title="Permanent link">&para;</a></h4>
+<p>以下是使用NLTK对单词进行词形还原的代码实现：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># 导入这些模块</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.stem</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rocks:&quot;</span><span class="p">,</span> <span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;rocks&quot;</span><span class="p">))</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;corpora:&quot;</span><span class="p">,</span> <span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;corpora&quot;</span><span class="p">))</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="c1"># &quot;pos&quot;中的&quot;a&quot;表示形容词</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;better:&quot;</span><span class="p">,</span> <span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;better&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">))</span>
+</code></pre></div>
+<ul>
+<li>输出：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>rocks:<span class="w"> </span>rock
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>corpora:<span class="w"> </span>corpus
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>better:<span class="w"> </span>good
+</code></pre></div>
+<h4 id="spacy">使用Spacy实现词形还原<a class="headerlink" href="#spacy" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">spacy</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># 加载spaCy的英语模型</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;en_core_web_sm&#39;</span><span class="p">)</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># 定义一个示例文本</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;The quick brown foxes are jumping over the lazy dogs.&quot;</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="c1"># 使用spaCy处理文本</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="c1"># 提取词形还原后的词元</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="n">lemmatized_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">lemma_</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="c1"># 将词形还原后的词元连接成一个句子</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="n">lemmatized_text</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lemmatized_tokens</span><span class="p">)</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="c1"># 打印原始文本和词形还原后的文本</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;original Text:&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lemmatized Text:&quot;</span><span class="p">,</span> <span class="n">lemmatized_text</span><span class="p">)</span>
+</code></pre></div>
+- 输出：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Original<span class="w"> </span>Text:<span class="w"> </span>The<span class="w"> </span>quick<span class="w"> </span>brown<span class="w"> </span>foxes<span class="w"> </span>are<span class="w"> </span>jumping<span class="w"> </span>over<span class="w"> </span>the<span class="w"> </span>lazy<span class="w"> </span>dogs.
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Lemmatized<span class="w"> </span>Text:<span class="w"> </span>the<span class="w"> </span>quick<span class="w"> </span>brown<span class="w"> </span>fox<span class="w"> </span>be<span class="w"> </span>jump<span class="w"> </span>over<span class="w"> </span>the<span class="w"> </span>lazy<span class="w"> </span>dog.
+</code></pre></div>
+<h2 id="_22">词干提取简介<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
+<p>词干提取是文本处理中的一种方法，它通过去除单词的前缀和后缀，将单词转化为其基本或词根形式。词干提取器或词干提取算法可以帮助实现这一过程。例如，“chocolates”（巧克力，复数形式）会变成“chocolate”（巧克力，单数形式），“retrieval”（检索，名词形式）会变成“retrieve”（检索，动词形式）。这在自然语言处理流程中至关重要，因为自然语言处理流程使用从文档解析的第一阶段获得的分词结果，将文档分解为单个单词。</p>
+<p>在自然语言处理中，词干提取将单词简化为其基本或词根形式，有助于文本规范化，从而更易于处理。这项技术在文本分类、信息检索和文本摘要等任务中非常关键。虽然词干提取很有用，但它也有缺点，包括可能影响文本的可读性，以及在确定单词正确的词根形式时偶尔会出现不准确的情况 。</p>
+<h3 id="_23">词干提取为何重要？<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>需要注意的是，词干提取与词形还原不同。词形还原也是将单词简化为其基本形式的过程，但与词干提取不同的是，词形还原会考虑单词的上下文，并且它生成的是一个有效的单词；而词干提取生成的词根形式可能不是一个实际存在的单词。</p>
+<p>注意：务必了解分词的概念。</p>
+<p>以“like”（喜欢）为词根的词干提取的更多示例包括：
+- “likes”（第三人称单数形式）
+- “liked”（过去式和过去分词形式）
+- “likely”（副词形式，意为“可能地” ）
+- “liking”（现在分词形式）</p>
+<h3 id="nltk_1">NLTK中的词干提取器类型<a class="headerlink" href="#nltk_1" title="Permanent link">&para;</a></h3>
+<p>Python的NLTK（自然语言工具包）包含多种词干提取算法，以下是几种主要类型：</p>
+<h4 id="1-porters-stemmer">1. 波特词干提取器（Porter's Stemmer）<a class="headerlink" href="#1-porters-stemmer" title="Permanent link">&para;</a></h4>
+<p>它是1980年提出的最受欢迎的词干提取方法之一。其原理基于英语后缀是由较小、较简单的后缀组合而成。这种词干提取器以速度快和操作简单著称。波特词干提取器的主要应用领域包括数据挖掘和信息检索。不过，它仅适用于英语单词。而且，一些不同的词会被映射到相同的词干，并且输出的词干不一定是有意义的单词。该算法本质上相当冗长，是最古老的词干提取器之一。</p>
+<p>例如：<code>EED-&gt;EE</code>规则表示“如果单词至少包含一个元音和辅音，并且以EED结尾，则将结尾改为EE”，如“agreed”（同意，过去式）会变成“agree”（同意，原形）。</p>
+<h4 id="_24">波特词干提取器的实现<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.stem</span><span class="w"> </span><span class="kn">import</span> <span class="n">PorterStemmer</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1"># 创建一个波特词干提取器实例</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">porter_stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># 用于词干提取的示例单词</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;running&quot;</span><span class="p">,</span> <span class="s2">&quot;jumps&quot;</span><span class="p">,</span> <span class="s2">&quot;happily&quot;</span><span class="p">,</span> <span class="s2">&quot;running&quot;</span><span class="p">,</span> <span class="s2">&quot;happily&quot;</span><span class="p">]</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="c1"># 对每个单词应用词干提取</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="n">stemmed_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">porter_stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="c1"># 打印结果</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;original words:&quot;</span><span class="p">,</span> <span class="n">words</span><span class="p">)</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stemmed words:&quot;</span><span class="p">,</span> <span class="n">stemmed_words</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>输出：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>original<span class="w"> </span>words:<span class="w"> </span><span class="o">[</span><span class="s1">&#39;running&#39;</span>,<span class="w"> </span><span class="s1">&#39;jumps&#39;</span>,<span class="w"> </span><span class="s1">&#39;happily&#39;</span>,<span class="w"> </span><span class="s1">&#39;running&#39;</span>,<span class="w"> </span><span class="s1">&#39;happily&#39;</span><span class="o">]</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>Stemmed<span class="w"> </span>words:<span class="w"> </span><span class="o">[</span><span class="s1">&#39;run&#39;</span>,<span class="w"> </span><span class="s1">&#39;jump&#39;</span>,<span class="w"> </span><span class="s1">&#39;happili&#39;</span>,<span class="w"> </span><span class="s1">&#39;run&#39;</span>,<span class="w"> </span><span class="s1">&#39;happili&#39;</span><span class="o">]</span>
+</code></pre></div>
+<ul>
+<li><strong>优点</strong>：与其他词干提取器相比，它能产生更好的输出，错误率较低。</li>
+<li><strong>局限性</strong>：生成的词形变体并不总是实际存在的单词。</li>
+</ul>
+<h3 id="2-lovins-stemmer">2. 洛文斯词干提取器（Lovins Stemmer）<a class="headerlink" href="#2-lovins-stemmer" title="Permanent link">&para;</a></h3>
+<p>它由洛文斯在1968年提出，该方法通过删除单词中最长的后缀，然后记录转换后的词干，使其成为有效的单词。
+例如：“sitting”（坐，现在分词形式） -&gt; “sitt” -&gt; “sit”（坐，原形）</p>
+<ul>
+<li><strong>优点</strong>：速度快，能够处理像“teeth”（牙齿，复数形式）和“tooth”（牙齿，单数形式）这样的不规则复数形式。</li>
+<li><strong>局限性</strong>：耗时较长，并且经常无法从词干中生成有效的单词。</li>
+</ul>
+<h3 id="3-dawson-stemmer">3. 道森词干提取器（Dawson Stemmer）<a class="headerlink" href="#3-dawson-stemmer" title="Permanent link">&para;</a></h3>
+<p>它是洛文斯词干提取器的扩展，后缀以相反的顺序存储，并按长度和最后一个字母进行索引。
+- <strong>优点</strong>：执行速度快，涵盖的后缀更多。
+- <strong>局限性</strong>：实现起来非常复杂。</p>
+<h3 id="4-krovetz-stemmer">4. 克罗维茨词干提取器（Krovetz Stemmer）<a class="headerlink" href="#4-krovetz-stemmer" title="Permanent link">&para;</a></h3>
+<p>它由罗伯特·克罗维茨在1993年提出。其步骤如下：
+1. 将单词的复数形式转换为单数形式。
+2. 将单词的过去式转换为现在式，并去除后缀“ing”。
+例如：“children”（孩子们，复数形式） -&gt; “child”（孩子，单数形式）
+- <strong>优点</strong>：占用资源少，可以作为其他词干提取器的预处理工具。
+- <strong>局限性</strong>：在处理大型文档时效率较低。</p>
+<h3 id="5-xerox-stemmer">5. 施乐词干提取器（Xerox Stemmer）<a class="headerlink" href="#5-xerox-stemmer" title="Permanent link">&para;</a></h3>
+<p>它能够处理大量数据集并生成有效的单词，但由于过于依赖词典，容易过度词干提取，并且具有语言依赖性。这意味着它的有效性仅限于特定语言。
+例如：
+- “children” -&gt; “child”
+- “understood”（理解，过去式和过去分词形式） -&gt; “understand”（理解，原形）
+- “whom”（谁，宾格形式） -&gt; “who”（谁，主格形式）
+- “best”（最好的，最高级形式） -&gt; “good”（好的，原形）</p>
+<h3 id="6-n-n-gram-stemmer">6. N - 元语法词干提取器（N-Gram Stemmer）<a class="headerlink" href="#6-n-n-gram-stemmer" title="Permanent link">&para;</a></h3>
+<p>该算法名为 <span class="arithmatex">\(n\)</span>-元语法（通常 <span class="arithmatex">\(n = 2\)</span> 或 <span class="arithmatex">\(3\)</span>），它将单词拆分成长度为n的片段，然后应用统计分析来识别模式。n - 元语法是从单词中提取的一组n个连续字符，相似的单词会有较高比例的相同n - 元语法。
+例如：对于<span class="arithmatex">\(n = 2\)</span>，“INTRODUCTIONS”会变成：“I, IN, NT, TR, RO, OD, DU, UC, CT, TI, IO, ON, NS, S”
+- <strong>优点</strong>：基于字符串比较，并且具有语言依赖性。
+- <strong>局限性</strong>：需要空间来创建和索引n - 元语法，并且时间效率不高。</p>
+<h3 id="7-snowball-stemmer">7. 雪球词干提取器（Snowball Stemmer）<a class="headerlink" href="#7-snowball-stemmer" title="Permanent link">&para;</a></h3>
+<p>与波特词干提取器相比，雪球词干提取器具有多语言处理能力，能够处理非英语单词。它支持多种语言，基于“雪球”编程语言，该语言以高效处理小字符串而闻名。</p>
+<p>雪球词干提取器比波特词干提取器的处理方式更激进，也被称为波特2词干提取器。由于与波特词干提取器相比增加了一些改进，雪球词干提取器的计算速度更快。</p>
+<h4 id="_25">雪球词干提取器的实现<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.stem</span><span class="w"> </span><span class="kn">import</span> <span class="n">SnowballStemmer</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="c1"># 选择一种用于词干提取的语言，例如英语</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">stemmer</span> <span class="o">=</span> <span class="n">SnowballStemmer</span><span class="p">(</span><span class="n">language</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># 要进行词干提取的示例单词</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="n">words_to_stem</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;running&quot;</span><span class="p">,</span> <span class="s2">&quot;jumped&quot;</span><span class="p">,</span> <span class="s2">&quot;happily&quot;</span><span class="p">,</span> <span class="s2">&quot;quickly&quot;</span><span class="p">,</span> <span class="s2">&quot;foxes&quot;</span><span class="p">]</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="c1"># 应用雪球词干提取器</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="n">stemmed_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words_to_stem</span><span class="p">]</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="c1"># 打印结果</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;original words:&quot;</span><span class="p">,</span> <span class="n">words_to_stem</span><span class="p">)</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stemmed words:&quot;</span><span class="p">,</span> <span class="n">stemmed_words</span><span class="p">)</span>
+</code></pre></div>
+- 输出：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>original<span class="w"> </span>words:<span class="w"> </span><span class="o">[</span><span class="s1">&#39;running&#39;</span>,<span class="w"> </span><span class="s1">&#39;jumped&#39;</span>,<span class="w"> </span><span class="s1">&#39;happily&#39;</span>,<span class="w"> </span><span class="s1">&#39;quickly&#39;</span>,<span class="w"> </span><span class="s1">&#39;foxes&#39;</span><span class="o">]</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>Stemmed<span class="w"> </span>words:<span class="w"> </span><span class="o">[</span><span class="s1">&#39;run&#39;</span>,<span class="w"> </span><span class="s1">&#39;jump&#39;</span>,<span class="w"> </span><span class="s1">&#39;happili&#39;</span>,<span class="w"> </span><span class="s1">&#39;quick&#39;</span>,<span class="w"> </span><span class="s1">&#39;fox&#39;</span><span class="o">]</span>
+</code></pre></div>
+<h3 id="8-lancaster-stemmer">8. 兰卡斯特词干提取器（Lancaster Stemmer）<a class="headerlink" href="#8-lancaster-stemmer" title="Permanent link">&para;</a></h3>
+<p>兰卡斯特词干提取器的处理方式更激进、更灵活。它的处理速度非常快，但在处理小单词时，算法会比较复杂。不过，它的效率不如雪球词干提取器。兰卡斯特词干提取器将规则存储在外部，主要使用迭代算法。</p>
+<h4 id="_26">兰卡斯特词干提取器的实现<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.stem</span><span class="w"> </span><span class="kn">import</span> <span class="n">LancasterStemmer</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># 创建一个兰卡斯特词干提取器实例</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="n">stemmer</span> <span class="o">=</span> <span class="n">LancasterStemmer</span><span class="p">()</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># 要进行词干提取的示例单词</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="n">words_to_stem</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;running&quot;</span><span class="p">,</span> <span class="s2">&quot;jumped&quot;</span><span class="p">,</span> <span class="s2">&quot;happily&quot;</span><span class="p">,</span> <span class="s2">&quot;quickly&quot;</span><span class="p">,</span> <span class="s2">&quot;foxes&quot;</span><span class="p">]</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="c1"># 应用兰卡斯特词干提取器</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="n">stemmed_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words_to_stem</span><span class="p">]</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="c1"># 打印结果</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;original words:&quot;</span><span class="p">,</span> <span class="n">words_to_stem</span><span class="p">)</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stemmed words:&quot;</span><span class="p">,</span> <span class="n">stemmed_words</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>输出：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>original<span class="w"> </span>words:<span class="w"> </span><span class="o">[</span><span class="s1">&#39;running&#39;</span>,<span class="w"> </span><span class="s1">&#39;jumped&#39;</span>,<span class="w"> </span><span class="s1">&#39;happily&#39;</span>,<span class="w"> </span><span class="s1">&#39;quickly&#39;</span>,<span class="w"> </span><span class="s1">&#39;foxes&#39;</span><span class="o">]</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>Stemmed<span class="w"> </span>words:<span class="w"> </span><span class="o">[</span><span class="s1">&#39;run&#39;</span>,<span class="w"> </span><span class="s1">&#39;jump&#39;</span>,<span class="w"> </span><span class="s1">&#39;happy&#39;</span>,<span class="w"> </span><span class="s1">&#39;quick&#39;</span>,<span class="w"> </span><span class="s1">&#39;fox&#39;</span><span class="o">]</span>
+</code></pre></div>
+<h3 id="9-regexp-stemmer">9. 正则表达式词干提取器（Regexp Stemmer）<a class="headerlink" href="#9-regexp-stemmer" title="Permanent link">&para;</a></h3>
+<p>正则表达式词干提取器（Regexp Stemmer）是一种利用正则表达式识别并去除单词后缀的词干提取算法。它允许用户通过指定匹配和去除的模式来定义自定义的词干提取规则。</p>
+<p>这种方法为词干提取过程提供了灵活性和可控性，适用于需要基于自定义规则进行词干提取的特定应用场景。</p>
+<h4 id="_27">正则表达式词干提取器的实现<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.stem</span><span class="w"> </span><span class="kn">import</span> <span class="n">RegexpStemmer</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="c1"># 创建一个带有自定义规则的正则表达式词干提取器</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="n">custom_rule</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;ings&#39;</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="n">regexp_stemmer</span> <span class="o">=</span> <span class="n">RegexpStemmer</span><span class="p">(</span><span class="n">custom_rule</span><span class="p">)</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="c1"># 对一个单词应用词干提取器</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="n">word</span> <span class="o">=</span> <span class="s2">&quot;running&quot;</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="n">stemmed_word</span> <span class="o">=</span> <span class="n">regexp_stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;original word: </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;stemmed Word: </span><span class="si">{</span><span class="n">stemmed_word</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</code></pre></div>
+- 输出：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>original<span class="w"> </span>Word:<span class="w"> </span>running
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>Stemmed<span class="w"> </span>Word:<span class="w"> </span>runn
+</code></pre></div>
+<h3 id="_28">词干提取的应用<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<ol>
+<li>词干提取用于信息检索系统，如搜索引擎。</li>
+<li>在领域分析中，它用于确定领域词汇。</li>
+<li>通过对文档进行索引（将文档转化为数字形式）来展示搜索结果，并通过词干提取将文档映射到常见主题。</li>
+<li>情感分析用于分析不同用户对产品的评论，常用于产品分析，如在线零售商店。在进行情感分析之前，词干提取作为文本预处理的一种方式被广泛应用。</li>
+<li>文档聚类（也称为文本聚类）是一种对文本材料进行分组分析的方法。其重要应用包括主题提取、文档自动结构化和快速信息检索。</li>
+</ol>
+<h3 id="_29">词干提取的缺点<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<p>词干提取主要存在两种错误：</p>
+<h4 id="_30">过度词干提取<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h4>
+<p>在自然语言处理中，过度词干提取是指词干提取器生成不正确的词根形式或无效单词的情况。这可能会导致语义丢失和可读性下降。例如，“arguing”（争论，现在分词形式）可能会被词干提取为“argu”，从而丢失了原有的语义。为了解决这个问题，可以选择合适的词干提取器，在示例文本上进行测试，或者使用词形还原的方法。语义角色标注和情感分析等技术也可以增强词干提取过程中的上下文感知能力。</p>
+<h4 id="_31">词干提取不足<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h4>
+<p>在自然语言处理中，词干提取不足是指词干提取器未能生成准确的词根形式，或者未能将单词简化为其基本形式的情况。这可能会导致信息丢失，阻碍文本分析。例如，将“arguing”和“argument”（争论，名词形式）都词干提取为“argu”，可能会丢失语义。为了缓解词干提取不足的问题，可以选择合适的词干提取器，在示例文本上进行测试，或者选择词形还原的方法。语义角色标注和情感分析等技术可以提高词干提取过程中的上下文感知能力。</p>
+<h4 id="_32">词干提取的优点<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h4>
+<p>在自然语言处理中，词干提取具有诸多优点，例如文本规范化，即将单词的各种变体简化为一个共同的基本形式。它有助于信息检索、文本挖掘，并能降低机器学习中的特征维度。词干提取还可以提高计算效率，因此在各种自然语言处理应用的文本预处理阶段，它是一个非常有价值的步骤。 </p>
+<h2 id="_33">停用词移除<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h2>
+<h2 id="_34">词性标注<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h2>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 19, 2025 15:07:19">May 19, 2025 15:07:19</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 11, 2025 21:36:01">May 11, 2025 21:36:01</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: NLP基础">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                NLP基础
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../CNN/" class="md-footer__link md-footer__link--next" aria-label="下一页: CNN">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                CNN
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../../javascripts/tablesort.js"></script>
+      
+        <script src="../../../../javascripts/extra.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>
