@@ -25,8 +25,7 @@ nav:
             - Dantzig-Wolfe Decomposition for IP: OROPT/or_exact/IP_dw_decomposition/README.md
             - Branch and Price: OROPT/or_exact/IP_branch_and_price/README.md
             - Benders Decomposition for IP: OROPT/or_exact/IP_beaders_decomposition/README.md
-        - Project:Pricing Optimization: 
-            - OROPT/or_projects_pricing_opt/index.md
+        
   
     - DL: 
         - DL/index.md
@@ -52,9 +51,9 @@ nav:
             - DL/GNN/index.md
         - Paper Reading:
             - DL/READING/index.md
-        - Projects:Forecasting:
+        - Project:Forecasting:
             - DL/dl_project_forecasting/index.md
-        - Projects:Customer&Marketing:
+        - Project:Customer&Marketing:
             - DL/dl_project_customer_marketing/index.md
 
 
@@ -68,8 +67,10 @@ nav:
         - Monte Carlo Methods: RL/MCM/README.md
         - TD Learning:Sarsa, Q-learning: RL/TD_Sarsa_Qlearning/README.md
         - Policy Gradient:REINFORCE: RL/PG_REINFORCE/README.md
-        - Projects:order-dispatching:
+        - Project:Order Dispatching:
             - RL/rl_project_order_dispatching/index.md
+        - Project:Pricing Optimization: 
+            - OROPT/or_projects_pricing_opt/index.md
 
     - LLMs:
         - LLMs/index.md
