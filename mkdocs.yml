@@ -25,30 +25,39 @@ nav:
             - Dantzig-Wolfe Decomposition for IP: OROPT/or_exact/IP_dw_decomposition/README.md
             - Branch and Price: OROPT/or_exact/IP_branch_and_price/README.md
             - Benders Decomposition for IP: OROPT/or_exact/IP_beaders_decomposition/README.md
+        - Project:Pricing Optimization: 
+            - OROPT/or_projects_pricing_opt/index.md
   
     - DL: 
         - DL/index.md
-        - Multilayer Perceptrons: DL/MLPs/README.md
-        - Sigmoid Neurons: DL/sigmoid_nn/README.md
-        - Feedforward Neural Networks and Backpropagation: DL/FNN/README.md
-        - GD Variants: DL/GD_Variants/README.md
-        - PCA: DL/PCA/README.md
-        - Autoencoders: DL/Autoencoders/README.md
-        - Regularization: DL/Regularization/README.md
-        - Neural Network Training Tips: DL/nn_training_tips/README.md
+        - Multilayer Perceptrons: DL/Basics/MLPs/README.md
+        - Sigmoid Neurons: DL/Basics/sigmoid_nn/README.md
+        - Feedforward Neural Networks and Backpropagation: DL/Basics/FNN/README.md
+        - GD Variants: DL/Basics/GD_Variants/README.md
+        - PCA: DL/Basics/PCA/README.md
+        - Autoencoders: DL/Basics/Autoencoders/README.md
+        - Regularization: DL/Basics/Regularization/README.md
+        - Neural Network Training Tips: DL/Basics/nn_training_tips/README.md
         - NLP Basics:
-            - DL/NLP_Basics/index.md
-            - Normalizing Textual Data in NLP: DL/NLP_Basics/Normalizing/README.md
-            - Text representation: DL/NLP_Basics/Text_Representation/README.md
-        - CNN: DL/CNN/README.md
-        - 关于激活函数: DL/Activation_Function/README.md
-        - RNN: DL/RNN/README.md
-        - LSTM and GRU: DL/LSTM_GRU/README.md
-        - Encoder Decoder models and Seq2Seq: DL/ENCODER_DECODER_ATTENTION/README.md
-        - Transformer: DL/Transformer/README.md
+            - DL/Basics/NLP_Basics/index.md
+            - Normalizing Textual Data in NLP: DL/Basics/NLP_Basics/Normalizing/README.md
+            - Text representation: DL/Basics/NLP_Basics/Text_Representation/README.md
+        - CNN: DL/Basics/CNN/README.md
+        - 关于激活函数: DL/Basics/Activation_Function/README.md
+        - RNN: DL/Basics/RNN/README.md
+        - LSTM and GRU: DL/Basics/LSTM_GRU/README.md
+        - Encoder Decoder models and Seq2Seq: DL/Basics/ENCODER_DECODER_ATTENTION/README.md
+        - Transformer: DL/Basics/Transformer/README.md
+        - GNN:
+            - DL/GNN/index.md
+        - Paper Reading:
+            - DL/READING/index.md
+        - Projects:Forecasting:
+            - DL/dl_project_forecasting/index.md
+        - Projects:Customer&Marketing:
+            - DL/dl_project_customer_marketing/index.md
 
-    - GNN:
-        - GNN/index.md
+
 
     - RL:
         - RL/index.md
@@ -59,6 +68,8 @@ nav:
         - Monte Carlo Methods: RL/MCM/README.md
         - TD Learning:Sarsa, Q-learning: RL/TD_Sarsa_Qlearning/README.md
         - Policy Gradient:REINFORCE: RL/PG_REINFORCE/README.md
+        - Projects:order-dispatching:
+            - RL/rl_project_order_dispatching/index.md
 
     - LLMs:
         - LLMs/index.md
@@ -90,11 +101,15 @@ nav:
             - LEETCODE/data_structure/README.md
         - 位运算:
             - LEETCODE/bit_operation/README.md
+        - 计算几何:
+            - LEETCODE/computational_geometry/README.md
         - HW机考实战:
             - LEETCODE/huawei/README.md   
     
-    - Reading:
-        - READING/index.md
+    - Math:
+        - Math/index.md
+        - 图论:
+            - Math/Graph_theory/index.md
 
     - 面试八股:
         - 抱佛脚版: 
