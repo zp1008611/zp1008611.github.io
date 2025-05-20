@@ -3,6 +3,7 @@
 ## Reference
 
 - https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture5.pdf
+- https://luhengshiwo.github.io/LLMForEverybody/01-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E9%A2%84%E8%AE%AD%E7%BB%83/%E5%85%A8%E7%BD%91%E6%9C%80%E5%85%A8%E7%9A%84%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BC%98%E5%8C%96%E5%99%A8optimizer%E6%80%BB%E7%BB%93.html
 
 
 

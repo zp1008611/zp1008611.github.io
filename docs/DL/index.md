@@ -27,6 +27,7 @@
     - 变更激活函数
     - 变更初始化策略
     - 批量归一化（Batch Normalization）
+- Batch Normalization 详解
 - NLP Basics
     - Normalizing Textual Data in NLP
         - Regular Expressions (RE)
@@ -51,10 +52,10 @@
             - BERT (Bidirectional Encoder Representations from Transformers)
         - Document Embedding - Doc2Vec
 - CNN
-- 关于激活函数
 - RNN
 - LSTM and GRU
-- Encoder Decoder Models and Seq2Seq
+- 关于激活函数
+- Encoder Decoder Models
 - Transformers
 - Other Famous Nets
     - LeNet-5

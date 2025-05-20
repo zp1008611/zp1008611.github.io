@@ -3,3 +3,4 @@
 ## Reference
 
 - MATHEMATICAL ANALYSIS OF CONVOLUTIONAL NEURAL NETWORKS
+- https://luhengshiwo.github.io/LLMForEverybody/

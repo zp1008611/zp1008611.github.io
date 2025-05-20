@@ -25,6 +25,14 @@ nav:
             - Dantzig-Wolfe Decomposition for IP: OROPT/or_exact/IP_dw_decomposition/README.md
             - Branch and Price: OROPT/or_exact/IP_branch_and_price/README.md
             - Benders Decomposition for IP: OROPT/or_exact/IP_beaders_decomposition/README.md
+        - Project:Cutting stock problem:
+            - OROPT/or_project_cutting_stock_problem/index.md
+        - Project:2DRP:
+            - OROPT/or_project_2DRP/index.md
+        - Project:3DBP:
+            - OROPT/or_project_3DBP/index.md
+        - Project:VRP:
+            - OROPT/or_project_vrp/index.md
         
   
     - DL: 
@@ -33,19 +41,18 @@ nav:
         - Sigmoid Neurons: DL/Basics/sigmoid_nn/README.md
         - Feedforward Neural Networks and Backpropagation: DL/Basics/FNN/README.md
         - GD Variants: DL/Basics/GD_Variants/README.md
-        - PCA: DL/Basics/PCA/README.md
-        - Autoencoders: DL/Basics/Autoencoders/README.md
         - Regularization: DL/Basics/Regularization/README.md
         - Neural Network Training Tips: DL/Basics/nn_training_tips/README.md
+        - Batch Normalization 详解: DL/Basics/BN/README.md
         - NLP Basics:
             - DL/Basics/NLP_Basics/index.md
             - Normalizing Textual Data in NLP: DL/Basics/NLP_Basics/Normalizing/README.md
             - Text representation: DL/Basics/NLP_Basics/Text_Representation/README.md
         - CNN: DL/Basics/CNN/README.md
-        - 关于激活函数: DL/Basics/Activation_Function/README.md
         - RNN: DL/Basics/RNN/README.md
         - LSTM and GRU: DL/Basics/LSTM_GRU/README.md
-        - Encoder Decoder models and Seq2Seq: DL/Basics/ENCODER_DECODER_ATTENTION/README.md
+        - 关于激活函数: DL/Basics/Activation_Function/README.md
+        - Encoder Decoder models: DL/Basics/ENCODER_DECODER/README.md
         - Transformer: DL/Basics/Transformer/README.md
         - GNN:
             - DL/GNN/index.md
@@ -70,7 +77,7 @@ nav:
         - Project:Order Dispatching:
             - RL/rl_project_order_dispatching/index.md
         - Project:Pricing Optimization: 
-            - OROPT/or_projects_pricing_opt/index.md
+            - RL/rl_project_pricing_opt/index.md
 
     - LLMs:
         - LLMs/index.md

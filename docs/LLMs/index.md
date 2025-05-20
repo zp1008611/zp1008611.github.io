@@ -18,6 +18,8 @@
 
 - https://web.stanford.edu/~jurafsky/slp3/10.pdf
 
+- https://luhengshiwo.github.io/LLMForEverybody/
+
 - 项目实战
     - https://github.com/PTGWong/MovieAssistant-ChatGLM4-RAG
     - https://github.com/shubhamprajapati7748/ecommerce-chatbot

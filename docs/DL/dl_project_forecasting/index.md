@@ -3,3 +3,6 @@
 ## Reference
 
 - ASTGCN for Traffic Flow Forecasting: https://www.kaggle.com/code/yuhhuang/astgcn-for-traffic-flow-forecasting
+- ETA Forecasting: https://github.com/Azie88/Estimated-Time-of-Arrival-ETA-Prediction/tree/main
+
+
