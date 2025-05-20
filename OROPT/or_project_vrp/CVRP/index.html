@@ -1,0 +1,1401 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/OROPT/or_project_vrp/CVRP/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>有容量限制的车辆路径问题（Capacitated Vehicle Routing Problem, CVRP） - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#capacitated-vehicle-routing-problem-cvrp" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              有容量限制的车辆路径问题（Capacitated Vehicle Routing Problem, CVRP）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLMs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLMs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LEETCODE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LEETCODE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Math/index.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Math
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RESUME_QandA/summary/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  面试八股
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Teaching_Interview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  高中数学教资面试
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    运筹与优化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../DL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    DL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../RL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    RL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../LLMs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LLMs
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../LEETCODE/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LEETCODE
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../Math/index.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Math
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../RESUME_QandA/summary/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    面试八股
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../Teaching_Interview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    高中数学教资面试
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="capacitated-vehicle-routing-problem-cvrp">有容量限制的车辆路径问题（Capacitated Vehicle Routing Problem, CVRP）<a class="headerlink" href="#capacitated-vehicle-routing-problem-cvrp" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 3460 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 12 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://arxiv.org/pdf/1606.01935</li>
+</ul>
+<h2 id="1">1 问题概述<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>CVRP 是车辆路径问题（VRP）的经典变体，聚焦于在车辆容量受限的条件下，优化配送路径. 其核心是规划一组车辆从中心 depot 出发，访问多个客户点，在满足每个客户需求且不超过车辆容量的前提下，最小化总行驶成本（如距离、时间等）. </p>
+<p><strong>问题目标</strong><br />
+CVRP（有容量限制的车辆路径问题）的核心目标是在满足车辆容量约束的前提下，优化车辆行驶路径，以实现以下一项或多项优化指标：<br />
+- <strong>最小化总行驶距离</strong>：降低物流配送中的运输成本，这是最常见的优化目标. <br />
+- <strong>最小化总运输时间</strong>：提升配送效率，适用于对时效性要求高的场景（如生鲜配送）. <br />
+- <strong>最小化车辆使用数量</strong>：在满足需求的前提下，减少投入的车辆资源，降低运营成本.   </p>
+<p><strong>问题约束</strong><br />
+1. <strong>车辆容量约束</strong><br />
+   - 每辆车辆有固定的容量（如载重量、体积限制），每条路径上所有客户的需求总和不能超过车辆容量. 例如，若车辆容量为10吨，服务的客户需求分别为3吨、4吨、2吨，总和9吨（≤10吨）才符合约束.   </p>
+<ol>
+<li><strong>客户访问约束</strong>  </li>
+<li><strong>唯一性</strong>：每个客户必须且只能被一辆车访问一次，确保需求被满足且不重复服务.   </li>
+<li>
+<p><strong>需求满足</strong>：客户的货物需求必须被完全满足，即车辆对客户的配送量等于客户需求.   </p>
+</li>
+<li>
+<p><strong>车辆运行逻辑约束</strong>  </p>
+</li>
+<li><strong>起点与终点</strong>：所有车辆必须从中心 depot（如仓库、配送中心）出发，完成任务后返回 depot，形成闭合路径.   </li>
+<li>
+<p><strong>路径连贯性</strong>：车辆在路径中按顺序访问客户，行驶逻辑需符合实际交通规则（如无向图中双向可达，有向图中按指定方向行驶）.   </p>
+</li>
+<li>
+<p><strong>变量取值约束</strong>  </p>
+</li>
+<li>决策变量（如车辆是否行驶某条路径）通常为二进制（0或1），表示“是否选择”该路径或服务关系.   </li>
+</ol>
+<p>这些目标与约束的结合，使CVRP成为复杂的组合优化问题，需通过算法平衡优化效果与约束满足，广泛应用于物流、供应链等实际场景. </p>
+<p><strong>求解方法</strong><br />
+1. <strong>精确算法</strong>：<br />
+   - 适用于小规模问题，如分支定界法、动态规划，但计算复杂度高（随问题规模呈指数增长）. <br />
+2. <strong>启发式与元启发式算法</strong>：<br />
+   - <strong>构造算法</strong>：如节约算法（Clarke-Wright），通过合并路径减少总距离. <br />
+   - <strong>元启发式算法</strong>：遗传算法、模拟退火、蚁群优化、禁忌搜索等，通过迭代搜索近似最优解，适用于大规模问题. <br />
+3. <strong>近似算法</strong>：如基于扫描法的路径构建，快速生成可行解. </p>
+<p><strong>应用场景</strong><br />
+- <strong>物流与配送</strong>：快递运输、货物配送路线规划. <br />
+- <strong>供应链管理</strong>：原材料运输、库存补货路径优化. <br />
+- <strong>服务行业</strong>：移动服务（如维修、家政）的路线安排，平衡服务需求与车辆/人员容量.   </p>
+<p>CVRP 因其复杂的约束和实际价值，成为组合优化领域的研究热点，推动了算法设计、运筹学等领域的发展. </p>
+<h2 id="2">2 问题数学公式表达（双指标车辆流公式）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>用<span class="arithmatex">\(\mathcal{C}=\{ 1, \dots, n \}\)</span> 标记客户，<span class="arithmatex">\(\{0,n+1\}\)</span>标记仓库depot. 令<span class="arithmatex">\(\mathcal{N}=\mathcal{C}\cup\{0,n+1\}\)</span>.</p>
+<p>在双指标VF公式中，对于<span class="arithmatex">\(i， j\in\mathcal{N}\)</span>，我们定义二元决策变量<span class="arithmatex">\(x_{ij}\)</span>，<span class="arithmatex">\(x_{ij}=1\)</span>当且仅当存在从顾客i直接到达j的路径. </p>
+<p>CVRP对应的双指标车辆流公式需要用到的变量：
+- $$ 
+    x_{ij}= 
+    \begin{cases} 
+    1 &amp; \text{路径从城市 } i \text{ 到城市 } j \ 
+    0 &amp; \text{否则} 
+    \end{cases} 
+    $$<br />
+- $ c_{ij} &gt; 0 $ 定义为从城市 $ i $ 到城市 $ j $ 的成本（距离）. </p>
+<ul>
+<li><span class="arithmatex">\(K\)</span>: 仓库depot中的车辆数目</li>
+<li><span class="arithmatex">\(Q\)</span>: 每辆车的最大容量</li>
+<li><span class="arithmatex">\(q_i\)</span>: 客户<span class="arithmatex">\(i\)</span>的需求量</li>
+<li>$ y_i <span class="arithmatex">\(:  车辆在订单\)</span>i<span class="arithmatex">\(（对应客户\)</span>i$）的出发地开始装货的重量.</li>
+</ul>
+<p>CVRP为以下整数线性规划问题：</p>
+<p>$$
+\begin{align*}
+&amp;\min \sum_{i=0}^{n+1} \sum_{j=0}^{n+1} c_{ij}x_{ij} &amp;\quad (2.1)\
+&amp;\sum_{\substack{j=1 \ j \neq i}}^{n+1} x_{ij} = 1, \quad i = 1, \dots, n, &amp;\quad (2.2)\
+&amp;\sum_{\substack{i=0 \ i \neq h}}^{n} x_{ih} - \sum_{\substack{j=1 \ j \neq h}}^{n+1} x_{hj} = 0, \quad h = 1, \dots, n, &amp;\quad (2.3)\
+&amp;\sum_{j=1}^{n} x_{0j} \leq K, &amp;\quad (2.4)\</p>
+<p>&amp;y_{j} \geq y_{i} + q_{j}x_{ij} - Q(1 - x_{ij}), \quad i,j = 0, \dots, n + 1, &amp;\quad (2.5)\</p>
+<p>&amp;q_{i} \leq y_{i} \leq Q, \quad i = 0, \dots, n + 1, &amp;\quad (2.6)\</p>
+<p>&amp;x_{ij} \in {0,1}, \quad i,j = 0, \dots, n + 1. &amp;\quad (2.7)
+\end{align*}
+$$  </p>
+<p>约束 (2.2) 确保所有客户恰好被访问一次. 约束 (2.3) 保证车辆在弧线上的正确流向，即若车辆到达节点 $ h $，则必须从该节点出发. 约束 (2.4) 将最大路径数量限制为 $ K $（车辆数量）. 约束 (2.5) 和 (2.6) 共同确保不超过车辆容量. 目标函数由 (2.1) 定义，要求最小化路径的总行驶成本.   </p>
+<p>约束 (2.5) 其实也是是MTZ公式的变形，还可以避免解中出现子回路（即不经过配送中心的循环路径）. 使用 (2.5) 和 (2.6) 的优势在于：就客户数量而言，该模型的约束数量呈多项式级. 然而，该模型线性松弛提供的下界相比其他模型更弱. </p>
+<h2 id="3-sp">3 问题数学公式表达（集合划分公式，SP）<a class="headerlink" href="#3-sp" title="Permanent link">&para;</a></h2>
+<p>目前，求解车辆路径问题（VRP）变体最有效的精确方法基于集合划分（SP）公式. SP公式中的变量对应问题的可行路径. 设 $ \mathcal{R} $ 为满足问题要求的路径集合. 例如，在有容量限制的车辆路径问题（CVRP）中，$ \mathcal{R} $ 中的路径必须从配送中心出发并返回，最多访问客户一次，遵守车辆容量限制，并确保若路径到达某客户，则必须离开该客户. </p>
+<p>设 $ \lambda_r $ 为二进制决策变量，当且仅当选择路径 $ r \in \mathcal{R} $ 时，$ \lambda_r = 1 $. SP公式如下：<br />
+$$
+\begin{alignat<em>}{3}
+\min &amp; \quad \sum_{r \in \mathcal{R}} c_r \lambda_r \quad &amp; (3.1) \
+\text{s.t.} &amp; \quad \sum_{r \in \mathcal{R}} a_{ri} \lambda_r = 1, &amp; \quad i \in \mathcal{C}, \quad (3.2) \
+&amp; \quad \sum_{r \in \mathcal{R}} \lambda_r \leq K, &amp; \quad (3.3) \
+&amp; \quad \lambda_r \in {0,1}, &amp; \quad r \in \mathcal{R}. \quad (3.4)
+\end{alignat</em>}
+$$<br />
+这可用于为CVRP、VRPTW和许多其他VRP变体建模，具体取决于对路径集合 $ \mathcal{R} $ 的定义. 目标函数（3.1）最小化所选路径的总成本. 路径 $ r \in \mathcal{R} $ 的成本 $ c_r $，使用弧成本 $ c_{ij} $ 计算. 即，给定依次访问节点 $ i_0, i_1, \dots, i_p <span class="arithmatex">\(（\)</span> p &gt; 0 $）的路径 $ r $，其总成本为：<br />
+$$
+c_r = \sum_{j=0}^{p-1} c_{i_j i_{j+1}}. \quad (3.5)
+$$<br />
+约束（3.2）强制每个客户节点恰好被访问一次. 每一列 $ a_r = (a_{r1}, \dots, a_{rn})^T $ 是二进制向量，其中 $ a_{ri} = 1 $ 当且仅当路径 $ r $ 访问客户 $ i $. 约束（3.3）限制配送中心可用车辆的最大数量. 若 $ K $ 对问题足够大，可删除该约束.   </p>
+<p>通常，一般来说，生成<span class="arithmatex">\(\mathcal{R}\)</span>中的所有路径是不切实际的，因其数量随客户数呈指数增长. 因此，集合划分公式需要使用列生成技术求解模型（3.1）-（3.4）的线性松弛. 为获得最优整数解，需借助分支定价方法. </p>
+<p>在列生成技术中，我们从路径的一个小子集 <span class="arithmatex">\(\overline{\mathcal{R}} \subset \mathcal{R}\)</span> 开始，该子集用于创建以下受限主问题（RMP）：<br />
+$$
+\begin{alignat<em>}{3}
+\min &amp; \quad \sum_{r \in \overline{\mathcal{R}}} c_r \lambda_r \quad &amp; (3.6) \
+\text{s.t.} &amp; \quad \sum_{r \in \overline{\mathcal{R}}} a_{ri} \lambda_r = 1, &amp; \quad i \in \mathcal{C}, \quad (3.7) &amp;\quad \text{(RMP)}\
+&amp; \quad \sum_{r \in \overline{\mathcal{R}}} \lambda_r \leq K, &amp; \quad (3.8) \
+&amp; \quad \lambda_r \geq 0, &amp; \quad r \in \overline{\mathcal{R}}. \quad (3.9)
+\end{alignat</em>}
+$$<br />
+注意，RMP 是（3.1）–（3.4）的线性松弛，但仅考虑变量的一个子集. 设 $ u = (u_1, \dots, u_n) \in \mathbb{R}^n $ 和 $ \sigma \geq 0 $ 分别为与约束（3.7）和（3.8）相关的对偶变量. 在列生成方法的每次迭代中，我们求解(RMP)以获得对偶解 <span class="arithmatex">\((\bar{u}, \bar{\sigma})\)</span>，该解用于生成尚未在 (RMP)中的变量/列<span class="arithmatex">\(\lambda_{r}(r\in\mathcal{R}\backslash \overline{\mathcal{R}})\)</span>. 需要加入的列的对应下标<span class="arithmatex">\(r\)</span>通过求解以下子问题得到：<br />
+$$
+\overline{s}=\min_{r\in\mathcal{R}} c_r - \sum_{i \in \mathcal{C}} \overline{u}<em ri="ri">i a</em>} - \overline{\sigma} =\sum_{i \in \mathcal{N}} \sum_{j \in \mathcal{N}} (c_{ij} - \bar{u<em rij="rij">i)x</em> \quad (3.10)
+$$} - \bar{\sigma</p>
+<p>其中，<span class="arithmatex">\(\bar{u}_0 = \bar{u}_{n+1} = 0\)</span>，且 <span class="arithmatex">\(x_r = \{x_{rij}\}_{i,j \in N}\)</span> 是一个二进制向量，当且仅当路径 <span class="arithmatex">\(r \in \mathcal{R}\)</span> 访问节点 <span class="arithmatex">\(i\)</span> 并直接前往节点 <span class="arithmatex">\(j\)</span> 时，<span class="arithmatex">\(x_{rij} = 1\)</span>. 这个子问题是一个<strong>资源受限基本最短路问题（ESPPRC）</strong>. 若<span class="arithmatex">\(\overline{s}\)</span>为负数且有限，则<span class="arithmatex">\(\lambda_{\overline{r}}\)</span> 被添加到(RMP)中，然后重新求解新的(RMP). 如果<span class="arithmatex">\(\overline{s}\)</span> 非负，且 <span class="arithmatex">\((\bar{u}, \bar{\sigma})\)</span> 是当前 RMP 的最优对偶解，那么当前(RMP)的最优解对于主问题（MP）的线性松弛也是最优的. 至此，列生成方法终止. （注意：只要求出最小成本路径加入(RMP)即可，下标<span class="arithmatex">\(r\)</span>无需求出，这里只是为了保证理论严谨）.</p>
+<p>列生成算法的计算实现性能在很大程度上取决于 RMP 和子问题的求解方式. 为确保成功，实现过程应快速求解 RMP，并使用稳定的对偶解以减少总迭代次数. 有效求解 ESPPRC 也是列生成算法处理 VRP 变体的重要要求. 尽管存在 ESPPRC 的整数规划公式，但当前最先进的优化求解器无法有效求解它们. 目前最佳策略是使用基于动态规划的<strong>标签设置算法</strong>. </p>
+<blockquote>
+<hr />
+<p>求解(RMP)对偶问题：<span class="arithmatex">\(\\\)</span>
+引入拉格朗日乘子 $ u_i $（对应等式约束 $ \sum_{r \in \overline{\mathcal{R}}} a_{ri} \lambda_r = 1 $）和 $ \sigma \geq 0 $（对应不等式约束 $ \sum_{r \in \overline{\mathcal{R}}} \lambda_r \leq K $），拉格朗日函数为：<br />
+$$
+L(\lambda, u, \sigma) = \sum_{r \in \overline{\mathcal{R}}} c_r \lambda_r + \sum_{i \in \mathcal{C}} u_i \left(1 - \sum_{r \in \overline{\mathcal{R}}} a_{ri} \lambda_r \right) + \sigma \left(K - \sum_{r \in \overline{\mathcal{R}}} \lambda_r \right).
+$$ <br />
+对<span class="arithmatex">\(\lambda\)</span>求导：$ \frac{\partial L(\lambda, u, \sigma)}{\partial \lambda} =\sum\limits_{r\in\overline{R}}\big( c_r - \sum_{i \in \mathcal{C}} u_i a_{ri} - \sigma \big)$ . 由于 $ \lambda_r \geq 0 $，当 $ c_r - \sum_{i \in \mathcal{C}} u_i a_{ri} - \sigma \geq 0 $ 时，$ \lambda_r $ 取 $ 0 $ 可最小化 $ L $；若存在 $ r $ 使 $ c_r - \sum_{i \in \mathcal{C}} u_i a_{ri} - \sigma &lt; 0 $，则 $ L $ 无下界（趋于 $ -\infty $）. 因此：<br />
+$$
+\min_{\lambda}L(\lambda, u, \sigma) = \
+\begin{cases} 
+\sum_{i \in \mathcal{C}} u_i + \sigma K, &amp; \text{若 } c_r - \sum_{i \in \mathcal{C}} u_i a_{ri} - \sigma \geq 0, \forall r \in \overline{\mathcal{R}}, \
+-\infty, &amp; \text{否则}.
+\end{cases}
+$$<br />
+因此，对偶问题<br />
+$$
+\begin{alignat<em>}{3}
+\max &amp; \quad \sum_{i \in \mathcal{C}} u_i + K\sigma \
+\text{s.t.} &amp; \quad \sum_{i \in \mathcal{C}} a_{ri} u_i + \sigma \leq c_r, &amp; \quad \forall r \in \overline{\mathcal{R}}, \
+&amp; \quad \sigma \geq 0.
+\end{alignat</em>}
+$$<br />
+根据<a href="../../or_exact/LP_large_scale_models/">行生成和列生成在大规模线性规划中的使用</a>的列生成算法，假设对偶问题的最优解为<span class="arithmatex">\((\overline{u},\overline{\sigma})\)</span>，那么子问题求解
+$$
+\overline{r} = \arg\min_{r\in\mathcal{R}} c_r - \sum_{i \in \mathcal{C}} \overline{u}<em ri="ri">i a</em> 
+$$} - \overline{\sigma</p>
+<hr />
+<p>为什么(3.10)是一个资源受限基本最短路问题（ESPPRC）？<span class="arithmatex">\(\\\)</span>
+该问题被认定为资源受限基本最短路径问题（ESPPRC），原因如下：<br />
+资源受限体现在：(3.10)的可行解需要对应CVRP的可行路径，受到载重约束、路径联通约束的限制. <br />
+基本最短路径体现在：目标函数 $ \bar{s} = \min_{r \in \mathcal{R}} c_r - \sum_{i \in C} \bar{u}<em ri="ri">i a</em> $ 本质是在资源约束下寻找成本最低的可行路径.} - \bar{\sigma</p>
+</blockquote>
+<p>CVRPTW子问题ESPPRC的数学公式表达：</p>
+<ol>
+<li>
+<p>变量定义
+   $$ x_{ij} = 
+   \begin{cases} 
+   1, &amp; \text{如果最短路径中包含弧 } (i,j) \in \mathcal{N}  \times \mathcal{N}  \
+   0, &amp; \text{否则}
+   \end{cases}
+   $$
+   $ s_i $：到达点 $ i \in \mathcal{N} $ 的时刻</p>
+</li>
+<li>
+<p>数学模型表达式</p>
+</li>
+<li>
+<p>目标函数
+      $$
+      \min \sum_{i \in \mathcal{N}} \sum_{j \in \mathcal{N}} （c_{ij}-\overline{u}<em ij="ij">i)x</em> \quad (1.1)
+      $$
+      目标是最小化路径中所有弧的成本总和. } -\overline{\sigma</p>
+</li>
+<li>
+<p><strong>容量约束</strong>：
+      $$
+      \sum_{i \in C} q_i \sum_{j \in \mathcal{N}} x_{ij} \leq Q \quad (1.2)
+      $$
+      确保客户节点需求量总和不超过车辆容量 $ Q $. </p>
+</li>
+<li>
+<p><strong>从起点出发</strong>：
+      $$
+      \sum_{j \in \mathcal{N}} x_{0j} = 1 \quad (1.3)
+      $$
+      保证路径从起点（节点 $ 0 $）出发. </p>
+</li>
+<li>
+<p><strong>流量守恒</strong>：
+      $$
+      \sum_{i \in \mathcal{N}} x_{ih} = \sum_{j \in \mathcal{N}} x_{hj} \quad \forall h \in C \quad (1.4)
+      $$
+      对每个客户节点 $ h $，流入弧的数量等于流出弧的数量. </p>
+</li>
+<li>
+<p><strong>到达终点</strong>：
+      $$
+      \sum_{i \in \mathcal{N}} x_{i,n+1} = 1 \quad (1.5)
+      $$
+      确保路径最终到达终点. </p>
+</li>
+<li>
+<p><strong>时间约束</strong>：
+      $$
+      s_i + t_{ij} \leq s_j + M_{ij}(1 - x_{ij}) \quad \forall i \in \mathcal{N}, \forall j \in \mathcal{N} \quad (1.6)
+      $$
+      利用大 $ M $ 法保证时间逻辑，若弧 $ (i,j) $ 未被选择（$ x_{ij}=0 <span class="arithmatex">\(），约束自动满足；若被选择（\)</span> x_{ij}=1 $），则保证时间先后关系. </p>
+</li>
+<li>
+<p><strong>时间窗约束</strong>：
+      $$
+      a_i \leq s_i \leq b_i \quad \forall i \in \mathcal{N} \quad (1.7)
+      $$
+      确保到达每个节点 $ i $ 的时刻 $ s_i $ 在规定的时间窗 $ [a_i, b_i] $ 内. </p>
+</li>
+<li>
+<p><strong>节点自身约束</strong>：</p>
+<p>由于任何节点都不能是自己的前继节点或者后继节点，因此需添加以下约束：</p>
+<p>$$
+  x_{ii} = 0 \quad \forall i \in V \quad (1.9)
+  $$</p>
+</li>
+<li>
+<p><strong>变量取值约束</strong>：
+      $$
+      x_{ij} \in {0,1} \quad \forall i \in \mathcal{N}, \forall j \in \mathcal{N} \quad (1.8)
+      $$
+      明确 $ x_{ij} $ 为 0-1 变量. </p>
+</li>
+</ol>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 20, 2025 22:00:48">May 20, 2025 22:00:48</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 22, 2025 20:59:11">April 22, 2025 20:59:11</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>

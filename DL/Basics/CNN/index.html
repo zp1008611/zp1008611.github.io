@@ -16,7 +16,7 @@
         <link rel="prev" href="../NLP_Basics/Normalizing/">
       
       
-        <link rel="next" href="../Activation_Function/">
+        <link rel="next" href="../RNN/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -525,6 +525,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -583,8 +591,6 @@
       
         
           
-        
-      
         
       
         
@@ -770,52 +776,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../PCA/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    PCA
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Autoencoders/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Autoencoders
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../Regularization/" class="md-nav__link">
         
   
@@ -845,6 +805,29 @@
   
   <span class="md-ellipsis">
     Neural Network Training Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Batch Normalization 详解
     
   </span>
   
@@ -1016,6 +999,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cnnfnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      CNN与FNN的区别
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1028,6 +1020,57 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2 卷积神经网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      卷积层
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      激活层
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      池化层
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      全连接层
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cnn_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      CNN训练
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1039,33 +1082,43 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 总结
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cnnfnn_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      CNN与FNN的区别
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cnn_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      CNN网络很深的原因
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Activation_Function/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    关于激活函数
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1124,12 +1177,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../ENCODER_DECODER_ATTENTION/" class="md-nav__link">
+      <a href="../Activation_Function/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Encoder Decoder models and Seq2Seq
+    关于激活函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ENCODER_DECODER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Encoder Decoder models
     
   </span>
   
@@ -1769,7 +1845,7 @@
 
 <h1 id="cnn">卷积神经网络（CNN）<a class="headerlink" href="#cnn" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 4180 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 28 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 14 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6644 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 30 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 22 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1852,11 +1928,17 @@ S_{ij} = (I * K)_{ij} = \sum_{a=\left\lfloor -\frac{m}{2} \right\rfloor}^{\left\
 </ul>
 <h3 id="_3">引入卷积神经网络<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>把这些内容联系起来看，卷积操作和神经网络之间有什么联系呢？我们通过考虑“图像分类”任务来理解这一点. </p>
-<p>在图像分类中，传统的方法是使用手工制作的特征，如边缘检测器、SIFT/HOG等进行静态特征提取（没有学习过程），然后学习分类器的权重. </p>
+<p>在图像分类的发展历程中，传统方法与现代深度学习方法的核心差异之一在于<strong>特征提取方式</strong>。传统方法的“手工特征+分类器”范式：
+| 阶段         | 核心操作                  | 是否需要学习 | 依赖因素               |
+|--------------|---------------------------|--------------|------------------------|
+| <strong>特征提取</strong> | 边缘检测、SIFT/HOG计算    | 否           | 人工设计的算法规则     |
+| <strong>分类器训练</strong> | SVM/随机森林权重学习      | 是           | 特征向量与标签的映射关系 |</p>
+<p>传统方法的本质是“<strong>人工定义特征提取逻辑，机器学习优化分类边界</strong>。</p>
 <p><img alt="alt text" src="image-17.png" /></p>
-<p>而现在我们思考，除了学习分类器的权重，能否学习有意义的内核/滤波器，而不是使用手工制作的内核（如边缘检测器）呢？甚至更进一步，能否学习多层有意义的内核/滤波器，同时学习分类器的权重呢？答案是肯定的！我们只需将这些内核视为参数，并使用反向传播与分类器的权重一起学习. 这样的网络就称为卷积神经网络. </p>
+<p>而现在我们思考，除了分类器需要学习，特征提取是否也可以学习呢？而不是使用手工制作的内核（如边缘检测器）来提取特征呢？甚至更进一步，能否学习多层有意义的内核/滤波器，同时学习分类器的权重呢？答案是肯定的！我们只需将这些内核视为参数，并使用反向传播与分类器的权重一起学习. 这样的网络就称为卷积神经网络. </p>
 <p><img alt="alt text" src="image-18.png" /></p>
 <p><img alt="alt text" src="image-19.png" /></p>
+<h3 id="cnnfnn">CNN与FNN的区别<a class="headerlink" href="#cnnfnn" title="Permanent link">&para;</a></h3>
 <p>那么，这与常规的前馈神经网络有什么不同呢？这是一个常规前馈神经网络的样子，其中有很多密集连接. 例如，所有16个输入神经元都参与 <span class="arithmatex">\(h_{11}\)</span> 的计算. </p>
 <p><img alt="alt text" src="image-20.png" /></p>
 <p>相比之下，在卷积的情况下，只有少数局部神经元参与 <span class="arithmatex">\(h_{11}\)</span> 的计算. 例如，只有像素1、2、5、6参与 <span class="arithmatex">\(h_{11}\)</span> 的计算. 连接要稀疏得多，我们利用了图像的结构（相邻像素之间的相互作用更有意义）. 这种稀疏连接减少了模型中的参数数量. </p>
@@ -1870,9 +1952,11 @@ S_{ij} = (I * K)_{ij} = \sum_{a=\left\lfloor -\frac{m}{2} \right\rfloor}^{\left\
 <h2 id="2">2 卷积神经网络<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>卷积神经网络依次包括输入层、多个隐藏层和输出层，输入层会因应用场景不同而有所差异。隐藏层是 CNN 架构的核心模块，由一系列卷积层、池化层组成，并最终通过全连接层输出结果。</p>
 <p><img alt="alt text" src="image-33.png" /></p>
+<h3 id="_4">卷积层<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>卷积层是 CNN 的核心构建块。简而言之，特定形状的输入经过卷积层后会被抽象为特征图，一组可学习的滤波器（或内核）在这一过程中起着重要作用。图 5.2 对卷积层进行了更直观的解释。</p>
 <p><img alt="alt text" src="image-34.png" /></p>
 <p>假设神经网络的输入为 6×6 矩阵，每个元素可表示为整数 0 或 1。如前所述，卷积层中有一组可学习的滤波器，每个滤波器可视为一个矩阵，类似于全连接层中的神经元。在此例中，3×3 大小的滤波器以特定步长（stride）滑过整个输入图像，矩阵或滤波器的每个元素均作为神经网络的参数（权重和偏置）。传统上，这些参数并非基于初始设置，而是通过训练数据学习得到。通常，卷积层中不止一个滤波器，每个滤波器生成相同尺寸的特征图。该卷积层的输出是多个特征图（也称为激活图），这些对应不同滤波器的特征图沿深度维度堆叠在一起。</p>
+<h3 id="_5">激活层<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>每个卷积层之后通常会接一个非线性层（或激活层），其目的是为神经网络引入非线性，因为卷积层中的操作本质上仍是线性的（逐元素乘法和求和）。然而，卷积层主要执行线性操作，因此连续的卷积层本质上等效于单个卷积层，这会限制网络的表示能力（我们知道线性操作+非线性激活函数可以逼近任何函数）。因此，需要在卷积层之间引入激活函数以避免此类问题。</p>
 <p>激活函数执行非线性变换，在 CNN 中决定神经元是否激活，是 CNN 的关键组成部分。卷积层之后可使用多种激活函数，如双曲函数和 sigmoid 函数等，其中 ReLU 是神经网络（尤其是 CNN）中最常用的激活函数（Krizhevsky 等人，2012）.</p>
 <p><strong>饱和函数 <span class="arithmatex">\(f\)</span></strong>: 设函数 <span class="arithmatex">\(f(x)\)</span> 在定义域 <span class="arithmatex">\(\mathbb{R}\)</span> 上可导，若存在常数 <span class="arithmatex">\(a, b, L_1, L_2 \in \mathbb{R}\)</span>（<span class="arithmatex">\(L_1 \leq L_2\)</span>），使得：</p>
@@ -2006,12 +2090,30 @@ x, &amp; x \geq 0 \\
 - 原因：初始化权重不当或学习率过高，可能使大量神经元进入负区间。
 - 改进变体Leaky ReLU：为负值引入小斜率（如 0.01），避免神经元完全失活：</p>
 <p>$$
-\text{Leaky ReLU}(x)=
-\begin{l}
-αx,
-​</p>
-<p>x≤0</p>
-<p>$$</p>
+\left{\begin{matrix}
+  x&amp; \text{如果} x\geq 0\
+  \alpha x&amp;\text{如果} x&lt;0
+\end{matrix}\right.
+$$
+其中 <span class="arithmatex">\(\alpha\)</span> 是一个较小的常数（通常为0.01）</p>
+<h3 id="_6">池化层<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>池化层是一个可以直观理解的概念，其目的是逐步减小从前一个卷积层生成的特征图的空间大小，并识别重要特征。
+池化操作有多种，如平均池化、<span class="arithmatex">\(l_2\)</span> 范数池化和最大池化等。其中，最大池化是最常用的函数（Scherer、Mulle 和 Behnke，2010），最大池化的思想是，特征的精确位置相对于其他特征的大致位置来说不那么重要（Yamaguchi 等人，1990）。
+同时，这个过程在一定程度上有助于控制过拟合。下图展示了一个构建最大池化基本运算结构的示例。</p>
+<p><img alt="alt text" src="image-35.png" /></p>
+<p>上述示例表明，根据两个不同的滤波器生成了两个特征图。在这种情况下，这些 4×4 大小的特征图被划分为四个不重叠的 2×2 大小的子区域，每个子区域称为深度切片。每个子区域的最大值将存储在池化层的输出中。结果，输入维度从 4×4 进一步减小到 2×2。
+在神经网络中添加最大池化层的一些最重要原因包括以下几点：</p>
+<ul>
+<li>降低计算复杂度：由于最大池化减小了卷积层给定输出的维度，网络将能够检测输出的更大区域。这个过程减少了神经网络中的参数数量，从而降低了计算负载。</li>
+<li>控制过拟合：当过拟合出现时，模型过于复杂或过于拟合训练数据，可能会失去真实结构，然后难以推广到测试数据中的新情况。通过最大池化操作，不是提取所有特征，而是提取每个子区域的主要特征。因此，最大池化操作在很大程度上降低了过拟合的概率。</li>
+</ul>
+<p>除了在 NLP 中最常用的这种操作外，针对不同目的的池化操作还包括以下几种：
+- 平均池化通常用于主题模型。如果一个句子有不同的主题，并且研究人员认为最大池化提取的信息不足，则可以考虑使用平均池化作为替代。
+- Kalchbrenner、Grefenstette 和 Blunsom（2014）提出的动态池化能够根据网络结构动态调整特征的数量。更具体地说，通过将底部的相邻单词信息组合起来并逐步传递，在上层重新组合新的语义信息，使得句子中较远的单词也有交互行为（或某种语义连接）。最终，通过池化层提取句子中最重要的语义信息。</p>
+<h3 id="_7">全连接层<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>如前所述，在多个卷积层和池化层之后连接一个或多个全连接层，全连接层中的每个神经元都与倒数第二层的所有神经元完全连接。如下图所示，全连接层可以将卷积层或池化层中具有类别区分的局部信息进行整合。为了提高 CNN 网络的性能，全连接层中每个神经元的激励函数通常使用 ReLU 函数。</p>
+<p><img alt="alt text" src="image-36.png" /></p>
+<h3 id="cnn_1">CNN训练<a class="headerlink" href="#cnn_1" title="Permanent link">&para;</a></h3>
 <p>那么如何训练一个卷积神经网络呢？我们可以将卷积神经网络看作是一个具有稀疏连接的前馈神经网络，并使用反向传播来训练它. 由于使用的激活函数是ReLU函数，因此只有少数权值（用颜色表示）是激活的，其余的权值（用灰色表示）为零.</p>
 <p><img alt="alt text" src="image-27.png" /></p>
 <h2 id="3">3 一些技巧<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
@@ -2024,6 +2126,94 @@ x, &amp; x \geq 0 \\
 <li>权重衰减为 <span class="arithmatex">\(1e - 5\)</span>. </li>
 <li>不使用随机失活（dropout）.  </li>
 </ul>
+<h2 id="4">4 总结<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="cnnfnn_1">CNN与FNN的区别<a class="headerlink" href="#cnnfnn_1" title="Permanent link">&para;</a></h3>
+<p>CNN（卷积神经网络）与FNN（全连接神经网络，如传统多层感知机）在结构设计、功能特性和应用场景上有显著差异，核心区别如下：</p>
+<p><strong>1. 连接方式：局部连接 vs 全连接</strong>
+- <strong>FNN（全连接神经网络）</strong><br />
+  - 每层神经元与前一层所有神经元<strong>全连接</strong>，即每个神经元接收前一层所有神经元的输出。<br />
+  - <strong>问题</strong>：参数量随输入尺寸呈<strong>二次方增长</strong>，例如输入为28×28×1的图像，全连接层第一个隐藏层若有1000个神经元，则参数数量为 <span class="arithmatex">\(28 \times 28 \times 1000 = 784,000\)</span>，易导致过拟合和计算爆炸。  </p>
+<ul>
+<li><strong>CNN（卷积神经网络）</strong>  </li>
+<li>采用<strong>局部连接</strong>（每个神经元仅连接输入的局部区域，如3×3窗口）和<strong>权值共享</strong>（同一卷积核的参数在所有空间位置复用）。  </li>
+<li><strong>优势</strong>：参数量仅由卷积核尺寸决定，与输入尺寸无关。例如，3×3卷积核处理28×28图像时，参数仅9个（单通道），大幅减少计算量和过拟合风险。</li>
+</ul>
+<p><strong>2. 特征提取：人工设计 vs 自动学习</strong>
+- <strong>FNN</strong><br />
+  - 无显式特征提取机制，依赖人工预处理（如手工设计图像特征：SIFT、HOG），难以捕捉图像的空间层次结构。<br />
+  - 对原始图像直接全连接处理时，需浅层网络先学习低级特征（如边缘），再由深层组合为高级特征，但效率低且易受噪声干扰。  </p>
+<ul>
+<li><strong>CNN</strong>  </li>
+<li>通过<strong>卷积层</strong>自动提取<strong>层次化特征</strong>：  <ul>
+<li>底层卷积层学习低级特征（如边缘、纹理）；  </li>
+<li>高层卷积层通过堆叠组合学习高级语义特征（如物体部件、整体结构）。  </li>
+</ul>
+</li>
+<li><strong>池化层</strong>进一步强化特征的平移不变性，减少空间维度，提升鲁棒性。</li>
+</ul>
+<p><strong>3. 对空间结构的利用：平移不变性 vs 无</strong>
+- <strong>FNN</strong><br />
+  - 无法利用图像的<strong>空间局部性</strong>和<strong>平移不变性</strong>（即同一特征在不同位置需重复学习）。<br />
+  - 例如，检测图像中不同位置的“横线”需为每个位置单独训练参数，效率极低。  </p>
+<ul>
+<li><strong>CNN</strong>  </li>
+<li><strong>权值共享</strong>强制同一特征在任意位置的检测方式一致，天然适配图像中特征重复出现的特性。  </li>
+<li>例如，一个卷积核学会检测左上角的“横线”后，可直接用于检测右下角的“横线”，仅需通过滑动窗口定位位置。</li>
+</ul>
+<p><strong>4. 计算复杂度与 scalability</strong>
+- <strong>FNN</strong><br />
+  - 计算复杂度随输入尺寸呈<strong>指数级增长</strong>，难以处理高分辨率图像（如1024×1024）。<br />
+  - 例如，输入尺寸翻倍，全连接层参数数量变为4倍。  </p>
+<ul>
+<li><strong>CNN</strong>  </li>
+<li>计算复杂度主要由卷积核尺寸和通道数决定，与输入尺寸的线性关系更优（如滑动窗口操作）。  </li>
+<li>可通过<strong>分层下采样</strong>（池化或步长卷积）逐步降低特征图尺寸，保持计算量可控，适合处理大尺寸图像。</li>
+</ul>
+<p><strong>5. 典型应用场景</strong>
+- <strong>FNN</strong><br />
+  - 适用于<strong>非结构化数据</strong>（如文本、表格数据）或<strong>简单分类任务</strong>，例如：<br />
+    - 手写数字识别（简单图像，可展平为向量）；<br />
+    - 信用评分预测（表格数据）。  </p>
+<ul>
+<li><strong>CNN</strong>  </li>
+<li>专为<strong>结构化空间数据</strong>设计，尤其是图像、视频、音频等，例如：  <ul>
+<li>图像分类（ResNet、AlexNet）；  </li>
+<li>目标检测（YOLO、Faster R-CNN）；  </li>
+<li>语义分割（U-Net）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>6. 深层网络训练：易退化 vs 可优化</strong>
+- <strong>FNN</strong><br />
+  - 深层全连接网络易出现<strong>梯度消失/爆炸</strong>，训练困难（需依赖批量归一化、残差连接等技巧，但本质结构仍低效）。  </p>
+<ul>
+<li><strong>CNN</strong>  </li>
+<li>结构设计（如残差连接、密集连接）结合权值共享，更易训练深层网络，例如：  <ul>
+<li>ResNet通过跳层连接缓解梯度消失，可训练上百层网络；  </li>
+<li>卷积层的层级结构天然支持特征复用，减少信息丢失。</li>
+</ul>
+</li>
+</ul>
+<p><strong>总结：核心差异对比表</strong>
+| <strong>维度</strong>         | <strong>FNN（全连接神经网络）</strong>                | <strong>CNN（卷积神经网络）</strong>                |
+|------------------|-----------------------------------------|---------------------------------------|
+| <strong>连接方式</strong>     | 全连接，参数多且冗余                   | 局部连接+权值共享，参数高效复用       |
+| <strong>特征提取</strong>     | 依赖人工设计，无显式层次化机制         | 自动学习层次化特征，从低级到高级       |
+| <strong>空间不变性</strong>   | 无，需数据增强模拟                     | 天然支持平移不变性，特征检测位置无关   |
+| <strong>计算复杂度</strong>   | <span class="arithmatex">\(O(N^2)\)</span>（<span class="arithmatex">\(N\)</span>为输入尺寸）       | <span class="arithmatex">\(O(k^2 \times H \times W)\)</span>（<span class="arithmatex">\(k\)</span>为卷积核尺寸） |
+| <strong>典型应用</strong>     | 非结构化数据、简单分类任务             | 图像、视频等空间结构化数据             |
+| <strong>深层网络</strong>     | 易梯度消失，训练困难                   | 结构优化（残差连接等）支持深层网络     |</p>
+<p><strong>本质区别：对“空间相关性”的建模能力</strong>
+FNN将图像视为一维向量，忽略其二维空间结构；而CNN通过<strong>局部连接+权值共享+层次化堆叠</strong>，显式建模图像的空间局部相关性和平移不变性，这使其在视觉任务中远超FNN的性能。这种结构差异是CNN成为计算机视觉基石的核心原因。</p>
+<h3 id="cnn_2">CNN网络很深的原因<a class="headerlink" href="#cnn_2" title="Permanent link">&para;</a></h3>
+<p>卷积神经网络（CNN）能够构建深层网络（如几十层甚至上百层）的核心原因： </p>
+<ol>
+<li><strong>结构设计</strong>：局部连接与权值共享减少参数，层次化提取从低级到高级特征，池化/步长卷积降低计算量。  </li>
+<li><strong>训练技术</strong>：残差连接缓解梯度消失，批量归一化稳定激活分布，ReLU等非饱和激活函数改善梯度传递，优化算法与初始化策略提升收敛效率。  </li>
+<li><strong>硬件支持</strong>：GPU/TPU并行计算加速训练，深度学习框架优化底层运算。  </li>
+<li><strong>性能优势</strong>：深层网络特征表达能力更强，迁移学习效果显著。<br />
+<strong>挑战</strong>：需平衡过拟合、计算成本与网络退化问题（如轻量化设计）。</li>
+</ol>
 
 
 
@@ -2046,7 +2236,7 @@ x, &amp; x \geq 0 \\
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 19, 2025 15:07:19">May 19, 2025 15:07:19</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 20, 2025 22:00:48">May 20, 2025 22:00:48</span>
   </span>
 
     
@@ -2123,13 +2313,13 @@ x, &amp; x \geq 0 \\
         
         
           
-          <a href="../Activation_Function/" class="md-footer__link md-footer__link--next" aria-label="下一页: 关于激活函数">
+          <a href="../RNN/" class="md-footer__link md-footer__link--next" aria-label="下一页: RNN">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                关于激活函数
+                RNN
               </div>
             </div>
             <div class="md-footer__button md-icon">

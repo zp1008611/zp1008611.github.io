@@ -1,2 +1,0 @@
-Arc Routing Problem
-===================
