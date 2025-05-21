@@ -1376,8 +1376,6 @@
     
       
         
-          
-        
       
     
     
@@ -1397,12 +1395,12 @@
   
   
   
-    <a href="../monotonic_stack/" class="md-nav__link">
+    <a href="../monotonic_stack/README.md" class="md-nav__link">
       
   
   
   <span class="md-ellipsis">
-    单调栈
+    单调栈与单调队列
     
   </span>
   
@@ -1823,7 +1821,7 @@
 
 <h1 id="_1">动态规划<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6200 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"/></svg></span> 52 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 21 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 5080 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"/></svg></span> 59 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 18 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1834,26 +1832,50 @@
 <p>方案i和方案i-j有关</p>
 </blockquote>
 <ol>
+<li>假设你正在爬楼梯. 需要 n 阶你才能到达楼顶. 每次你可以爬 1 或 2 个台阶. 你有多少种不同的方法可以爬到楼顶呢？<a href="https://leetcode.cn/problems/climbing-stairs/description/">LC70爬楼梯</a> [x]</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">          </span>---
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">       </span>---<span class="p">|</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>---<span class="p">|</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>- n=2，求到达第n+1平台的方法数， 
+- dp[0]：到达第1个平台的方法数，直接到，dp[0]=1
+- dp[1]：到达第2个平台的方法数，直接到，dp[1]=1
+- dp[n]: 到达第n+1个平台的方法数，
+- dp[i]：到达第i+1个平台的方法数，dp[i]=dp[i-1]+dp[i-2]
+- 注意，这里传n=1，至少有一个楼梯，不需要特判
+</code></pre></div>
+<ol>
 <li>
-<p>假设你正在爬楼梯. 需要 n 阶你才能到达楼顶. 每次你可以爬 1 或 2 个台阶. 你有多少种不同的方法可以爬到楼顶呢？</p>
+<p>给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i 个台阶向上爬需要支付的费用. 一旦你支付此费用，即可选择向上爬一个或者两个台阶. 你可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯. 请你计算并返回达到楼梯顶部的最低花费. <a href="https://leetcode.cn/problems/min-cost-climbing-stairs/description/">LC746使用最小花费爬楼梯</a> [x]</p>
 <ul>
-<li>设 dp[i] 表示到达第 i 阶楼梯的不同方法数. 因为每次可以爬 1 或 2 个台阶，所以到达第 i 阶楼梯的方法数等于到达第 i-1 阶楼梯的方法数加上到达第 i-2 阶楼梯的方法数. 即 dp[i] = dp[i-1] + dp[i-2]，初始条件为 dp[0] = 1（站在原地算一种方法），dp[1] = 1. </li>
+<li>cost = [10,15,20], dp[0,0,10,15]</li>
+<li>n=3，代表有三个平台，但是我们最终要知道第四个平台</li>
+<li>所以dp长度为4</li>
+<li>dp[0]：到达第1个平台的费用，直接到，dp[0]=0</li>
+<li>dp[1]：到达第2个平台的费用，直接到，dp[1]=0</li>
+<li>dp[n]：</li>
+<li>因为可以从第 i-1 或 i-2 个平台到达第 i 个平台，所以 dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2]).  </li>
+<li>注意，这里题目给的cost数组长度最小为2，因此至少有2个楼梯（3个平台），可以不进行特判</li>
 </ul>
 </li>
 <li>
-<p>给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i 个台阶向上爬需要支付的费用. 一旦你支付此费用，即可选择向上爬一个或者两个台阶. 你可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯. 请你计算并返回达到楼梯顶部的最低花费. </p>
+<p>给你一个由不同整数组成的数组 nums ，和一个目标整数 target . 请你从 nums 中找出并返回总和为 target 的元素组合的个数. 1 &lt;= nums[i] &lt;= 1000. nums 中的所有元素 互不相同. <a href="https://leetcode.cn/problems/combination-sum-iv/description/">LC377组合总和IV</a> [x]</p>
 <ul>
-<li>设 dp[i] 表示到达第 i 个台阶的最低花费. 因为可以从第 i-1 或 i-2 个台阶到达第 i 个台阶，所以 dp[i] = min(dp[i-1], dp[i-2]) + cost[i]. 初始条件为 dp[0] = cost[0]，dp[1] = cost[1]. </li>
-</ul>
-</li>
-<li>
-<p>给你一个由不同整数组成的数组 nums ，和一个目标整数 target . 请你从 nums 中找出并返回总和为 target 的元素组合的个数. 1 &lt;= nums[i] &lt;= 1000. nums 中的所有元素 互不相同</p>
-<ul>
-<li>设 dp[i] 表示总和为 i 的元素组合的个数. 对于每个 nums[j]，如果 i &gt;= nums[j]，则 dp[i] += dp[i - nums[j]]. 初始条件为 dp[0] = 1，表示总和为 0 的组合只有一种（即不选任何元素）. </li>
+<li>类比爬楼梯</li>
+<li>到达target的方法数c </li>
 </ul>
 </li>
 </ol>
-<p>在问题一中，通过不断累加前两个台阶的方法数来得到当前台阶的方法数；在问题二中，通过取前两个台阶的最小花费数来得到当前台阶的最小花费；问题三中则是通过不断累加由不同元素组合得到的和为 i - num 的组合数来得到和为 i 的组合数. 问题一、问题二的台阶数是连续的，而问题三中的数字组合是离散的，来自给定的数组 nums. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">if</span> <span class="n">num</span><span class="o">&lt;=</span><span class="n">target</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="n">c</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="p">(</span><span class="n">target</span><span class="o">-</span><span class="n">num</span> <span class="n">对应的方法数</span><span class="p">)</span> 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>- dp[0]: 到达0的方法数，啥都不用加也是0，dp[0]=1
+- dp[target]: 到达target的方法数
+- 特判，nums长度为1时，对于上面的循环内部if判断，如果num&lt;target，可以得到c=0，如果num==target，会算出c=1，正确，因此不需要特判
+</code></pre></div>
 <h2 id="_3">打家劫舍<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>选择元素a，就不能选择元素a附近的</p>
@@ -1899,44 +1921,54 @@
 </blockquote>
 <ol>
 <li>
-<p>给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小. 说明：每次只能向下或者向右移动一步. </p>
+<p>给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小. 说明：每次只能向下或者向右移动一步. <a href="https://leetcode.cn/problems/minimum-path-sum/description/">LC64最小路径和</a> [x]</p>
 <ul>
-<li>状态定义：设 dp[i][j] 表示从左上角 (0, 0) 到位置 (i, j) 的最小路径和. </li>
-<li>状态转移方程：因为每次只能向下或向右移动一步，所以 dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j]（当 i &gt; 0 且 j &gt; 0 时）. 对于边界情况，当 i == 0 且 j &gt; 0 时，dp[0][j] = dp[0][j - 1] + grid[0][j]；当 j == 0 且 i &gt; 0 时，dp[i][0] = dp[i - 1][0] + grid[i][0]；当 i == 0 且 j == 0 时，dp[0][0] = grid[0][0]. </li>
-<li>最终结果：dp[m - 1][n - 1] 即为从左上角到右下角的最小路径和. </li>
+<li>m=0, return 0</li>
+<li>m\neq 0, n=0 ,return 0</li>
+<li>dp[0][0]：就是grid[0][0]本身</li>
+<li>dp[0][j]：就是grid[0,:j+1]的和,1&lt;=j&lt;=n-1</li>
+<li>dp[i][0]：就是grid[:i+1,0]的和,1&lt;=i&lt;=m-1</li>
+<li>dp[i][j] = min(dp[i-1][j],dp[i][j-1])+grid[i][j], 1&lt;=i,j</li>
+<li>dp[m-1][n-1]: 右下角</li>
 </ul>
 </li>
 <li>
-<p>一个机器人位于一个 m x n 网格的左上角. 机器人每次只能向下或者向右移动一步. 机器人试图达到网格的右下角. 问总共有多少条不同的路径？</p>
+<p>一个机器人位于一个 m x n 网格的左上角. 机器人每次只能向下或者向右移动一步. 机器人试图达到网格的右下角. 问总共有多少条不同的路径？<a href="https://leetcode.cn/problems/unique-paths/description/">LC62不同路径</a> [x]</p>
 <ul>
-<li>状态定义：设 dp[i][j] 表示从左上角 (0, 0) 到位置 (i, j) 的不同路径数量. </li>
-<li>状态转移方程：因为每次只能向下或向右移动一步，所以 dp[i][j] = dp[i - 1][j] + dp[i][j - 1]（当 i &gt; 0 且 j &gt; 0 时）. 对于边界情况，当 i == 0 且 j &gt; 0 时，dp[0][j] = 1；当 j == 0 且 i &gt; 0 时，dp[i][0] = 1；当 i == 0 且 j == 0 时，dp[0][0] = 1. </li>
-<li>最终结果：dp[m - 1][n - 1] 即为从左上角到右下角的不同路径数量. </li>
+<li>m=1 or n=1 return 1</li>
+<li>dp[0][0] = 1</li>
+<li>dp[0][j] = 1</li>
+<li>dp[i][0] = 1</li>
+<li>dp[i][j] = dp[i-1][j] + dp[i][j-1]</li>
 </ul>
 </li>
 <li>
-<p>给定一个 m x n 的整数数组 grid. 一个机器人初始位于 左上角（即 grid[0][0]）. 机器人尝试移动到 右下角（即 grid[m - 1][n - 1]）. 机器人每次只能向下或者向右移动一步. 网格中的障碍物和空位置分别用 1 和 0 来表示. 机器人的移动路径中不能包含 任何 有障碍物的方格. 返回机器人能够到达右下角的不同路径数量. </p>
+<p>给定一个 m x n 的整数数组 grid. 一个机器人初始位于 左上角（即 grid[0][0]）. 机器人尝试移动到 右下角（即 grid[m - 1][n - 1]）. 机器人每次只能向下或者向右移动一步. 网格中的障碍物和空位置分别用 1 和 0 来表示. 机器人的移动路径中不能包含 任何 有障碍物的方格. 返回机器人能够到达右下角的不同路径数量. <a href="https://leetcode.cn/problems/unique-paths-ii/">LC62不同路径||</a> [x]</p>
 <ul>
-<li>状态定义：设 dp[i][j] 表示从左上角 (0, 0) 到位置 (i, j) 的不同路径数量，其中 grid[i][j] == 0 表示该位置为空，grid[i][j] == 1 表示该位置有障碍物. </li>
-<li>状态转移方程：如果 grid[i][j] == 1，则 dp[i][j] = 0；否则，dp[i][j] = dp[i - 1][j] + dp[i][j - 1]（当 i &gt; 0 且 j &gt; 0 时）. 对于边界情况，当 i == 0 且 j &gt; 0 时，如果 grid[0][j] == 0，dp[0][j] = dp[0][j - 1]，否则 dp[0][j] = 0；当 j == 0 且 i &gt; 0 时，如果 grid[i][0] == 0，dp[i][0] = dp[i - 1][0]，否则 dp[i][0] = 0；当 i == 0 且 j == 0 时，如果 grid[0][0] == 0，dp[0][0] = 1，否则 dp[0][0] = 0. </li>
-<li>最终结果：dp[m - 1][n - 1] 即为从左上角到右下角的不同路径数量. </li>
+<li>dp[0][0] = 1 if grid[0][0]==0 else dp[0][0] = 0</li>
+<li>dp[0][j]: 
+    if grid[0][j]==0: 
+        dp[0][j] = dp[0][j-1]
+    else:
+        dp[0][j] = 0</li>
+<li>dp[i][0]: 
+    if grid[i][0]==0: 
+        dp[i][0] = dp[i-1][0]
+    else:
+        dp[i][0] = 0</li>
+<li>dp[i][j]:
+    if grid[i][j]==0:
+        dp[i][j] = dp[i-1][j] + dp[i][j-1]
+    else:
+        dp[i][j] = 0</li>
+<li>dp[m-1][n-1]：右下角</li>
 </ul>
 </li>
 <li>
 <p>给你一个 n x n 的 方形 整数数组 matrix ，请你找出并返回通过 matrix 的下降路径 的 最小和 . 下降路径 可以从第一行中的任何元素开始，并从每一行中选择一个元素. 在下一行选择的元素和当前行所选元素最多相隔一列（即位于正下方或者沿对角线向左或者向右的第一个元素）. 具体来说，位置 (row, col) 的下一个元素应当是 (row + 1, col - 1)、(row + 1, col) 或者 (row + 1, col + 1) . </p>
-<ul>
-<li>状态定义：设 dp[i][j] 表示从第一行到第 i 行第 j 列的下降路径的最小和. </li>
-<li>状态转移方程：dp[i][j] = min(dp[i - 1][max(0, j - 1)], dp[i - 1][j], dp[i - 1][min(n - 1, j + 1)]) + matrix[i][j]（当 i &gt; 0 时）. 对于第一行，dp[0][j] = matrix[0][j]. </li>
-<li>最终结果：min(dp[n - 1]) 即为通过 matrix 的下降路径的最小和. </li>
-</ul>
 </li>
 <li>
 <p>给定一个三角形 triangle ，找出自顶向下的最小路径和. 每一步只能移动到下一行中相邻的结点上. 相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1 的两个结点. 也就是说，如果正位于当前行的下标 i ，那么下一步可以移动到下一行的下标 i 或 i + 1 . </p>
-<ul>
-<li>状态定义：设 dp[i][j] 表示从顶部到第 i 行第 j 列的最小路径和. </li>
-<li>状态转移方程：dp[i][j] = min(dp[i - 1][j], dp[i - 1][j - 1 if j &gt; 0 else 0]) + triangle[i][j]（当 i &gt; 0 时）. 对于第一行，dp[0][0] = triangle[0][0]. </li>
-<li>最终结果：min(dp[-1]) 即为自顶向下的最小路径和</li>
-</ul>
 </li>
 </ol>
 <h2 id="_4">背包<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
@@ -1956,34 +1988,34 @@ dp[i][0] = 0，表示背包容量为 0 时，价值为 0.
 - 最终答案
 dp[n][C]即为将n个物品放入容量为C的背包中所能获得的最大价值. </p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">knapsack_01_2d</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="c1"># 创建一个二维数组 dp，dp[i][j] 表示前 i 个物品放入容量为 j 的背包中能获得的最大价值</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="c1"># 遍历每个物品</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="c1"># 遍历每个可能的背包容量</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>            <span class="c1"># 如果当前物品的重量大于当前背包容量，不能放入该物品</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>            <span class="k">if</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">:</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                <span class="c1"># 考虑放入或不放入当前物品，取价值较大的情况</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">C</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">knapsack_01_2d</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="c1"># 创建一个二维数组 dp，dp[i][j] 表示前 i 个物品放入容量为 j 的背包中能获得的最大价值</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="c1"># 遍历每个物品</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="c1"># 遍历每个可能的背包容量</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="c1"># 如果当前物品的重量大于当前背包容量，不能放入该物品</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            <span class="k">if</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>                <span class="c1"># 考虑放入或不放入当前物品，取价值较大的情况</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">C</span><span class="p">]</span>
 </code></pre></div>
 <p>一维优化代码：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">knapsack_01_space_optimized</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="c1"># 创建一维数组并初始化</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="c1"># 动态规划计算</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>            <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">C</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">knapsack_01_space_optimized</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="c1"># 创建一维数组并初始化</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="c1"># 动态规划计算</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>            <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">C</span><span class="p">]</span>
 </code></pre></div>
 <ol>
 <li>
@@ -2022,37 +2054,37 @@ dp[n][C]即为将n个物品放入容量为C的背包中所能获得的最大价�
 - 计算顺序：一般先遍历物品，再遍历背包容量. 对于每种物品，从背包容量为 0 开始逐步计算到背包的总容量. 这样可以保证在计算dp[i][j]时，dp[i][j - w[i]]已经是考虑了前i种物品（包括当前物品i可多次选）放入容量为j - w[i]的背包中的最大价值. 
 - 最终答案：dp[n][C]即为将n种物品放入容量为C的背包中所能获得的最大价值. </p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">complete_knapsack_2d</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="c1"># 创建二维数组 dp，dp[i][j] 表示前 i 种物品放入容量为 j 的背包能获得的最大价值</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="c1"># 遍历每种物品</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="c1"># 遍历每个可能的背包容量</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="c1"># 不选第 i 种物品的情况</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>                <span class="c1"># 选第 i 种物品，由于每种物品可以选多次，状态转移到 dp[i][j - w[i - 1]]</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">C</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">complete_knapsack_2d</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="c1"># 创建二维数组 dp，dp[i][j] 表示前 i 种物品放入容量为 j 的背包能获得的最大价值</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="n">dp</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="c1"># 遍历每种物品</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>        <span class="c1"># 遍历每个可能的背包容量</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>            <span class="c1"># 不选第 i 种物品的情况</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>            <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>                <span class="c1"># 选第 i 种物品，由于每种物品可以选多次，状态转移到 dp[i][j - w[i - 1]]</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">C</span><span class="p">]</span>
 </code></pre></div>
 <blockquote>
 <p>注意：在 01 背包问题中，我们是从背包容量的最大值m开始递减遍历到w[i]，以保证每个物品只能使用一次. 而在完全背包问题中，我们需要从w[i]开始递增遍历到m，这样才能保证每种物品可以被多次放入背包. </p>
 </blockquote>
 <p>一维优化代码</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">knapsack_complete</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="c1"># 创建一维数组并初始化</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="c1"># 遍历每种物品</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        <span class="c1"># 遍历背包容量，注意这里是从小到大遍历</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>            <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">C</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">knapsack_complete</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="c1"># 创建一维数组并初始化</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="c1"># 遍历每种物品</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="c1"># 遍历背包容量，注意这里是从小到大遍历</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">C</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>            <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">C</span><span class="p">]</span>
 </code></pre></div>
 <ol>
 <li>
@@ -2244,11 +2276,11 @@ dp[n][C]即为将n个物品放入容量为C的背包中所能获得的最大价�
 <p>对于给定的由 <span class="arithmatex">\(n\)</span> 个正整数构成的数组 <span class="arithmatex">\(\{a_1, a_2, \ldots, a_n\}\)</span>，从中选择至多 <span class="arithmatex">\(k\)</span> 个数，使得这些数的乘积恰好为 <span class="arithmatex">\(p\)</span> 的倍数。一共有多少种满足条件的选数方案？</p>
 </li>
 </ol>
-<h2 id="dp_4">前后缀分解结合DP<a class="headerlink" href="#dp_4" title="Permanent link">&para;</a></h2>
-<h2 id="dp_5">区间DP<a class="headerlink" href="#dp_5" title="Permanent link">&para;</a></h2>
-<h2 id="dp_6">状压DP<a class="headerlink" href="#dp_6" title="Permanent link">&para;</a></h2>
-<h2 id="dp_7">数位DP<a class="headerlink" href="#dp_7" title="Permanent link">&para;</a></h2>
-<h2 id="dp_8">树形DP<a class="headerlink" href="#dp_8" title="Permanent link">&para;</a></h2>
+<h2 id="dp_4">树形DP<a class="headerlink" href="#dp_4" title="Permanent link">&para;</a></h2>
+<h2 id="dp_5">前后缀分解结合DP<a class="headerlink" href="#dp_5" title="Permanent link">&para;</a></h2>
+<h2 id="dp_6">区间DP<a class="headerlink" href="#dp_6" title="Permanent link">&para;</a></h2>
+<h2 id="dp_7">状压DP<a class="headerlink" href="#dp_7" title="Permanent link">&para;</a></h2>
+<h2 id="dp_8">数位DP<a class="headerlink" href="#dp_8" title="Permanent link">&para;</a></h2>
 
 
 
@@ -2271,7 +2303,7 @@ dp[n][C]即为将n个物品放入容量为C的背包中所能获得的最大价�
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 7, 2025 17:28:45">May 7, 2025 17:28:45</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 21, 2025 21:07:07">May 21, 2025 21:07:07</span>
   </span>
 
     
