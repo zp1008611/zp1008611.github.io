@@ -40,7 +40,7 @@ nav:
         - Multilayer Perceptrons: DL/Basics/MLPs/README.md
         - Sigmoid Neurons: DL/Basics/sigmoid_nn/README.md
         - Feedforward Neural Networks and Backpropagation: DL/Basics/FNN/README.md
-        - GD Variants: DL/Basics/GD_Variants/README.md
+        - NN Optimizer: DL/Basics/nn_optimizer/README.md
         - Regularization: DL/Basics/Regularization/README.md
         - Neural Network Training Tips: DL/Basics/nn_training_tips/README.md
         - Batch Normalization 详解: DL/Basics/BN/README.md
@@ -103,7 +103,7 @@ nav:
             - LEETCODE/binary_search_algorithm/README.md
         - 链表:
             - LEETCODE/linked_list/README.md
-        - 单调栈:
+        - 单调栈与单调队列:
             - LEETCODE/monotonic_stack/README.md
         - 常用数据结构:
             - LEETCODE/data_structure/README.md

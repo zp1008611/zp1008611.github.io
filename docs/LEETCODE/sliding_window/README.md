@@ -65,55 +65,40 @@ class Solution:
 - **时间复杂度**：$O(n)$，其中 $n$ 是 $s$ 的长度. 
 - **空间复杂度**：$O(1)$. 仅用到若干额外变量.  
 
-1. 给你字符串 s 和整数 k . 请返回字符串 s 中长度为 k 的单个子字符串中可能包含的最大元音字母数. 英文中的 元音字母 为（a, e, i, o, u）. [LC1456](https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/description/)
 
-    - 初始化窗口：统计前 k 个字符中的元音字母数量. 
-    - 滑动窗口：从第 k 个字符开始，每次向右移动一位，添加新字符并移除最左边的字符. 
-    - 更新计数：如果新字符是元音，计数加 1；如果移除的字符是元音，计数减 1. 
-    - 维护最大值：在滑动过程中记录最大的元音字母数. 
+> 定长滑窗中，初始化的长度为k-1，只有在更新的时候长度为k，只有这样才能保证先入再更新
+> 虽然代码没有写一个滑窗数组，但是从入-更新-出这个步骤就隐含着滑窗操作
+> 如果要求滑窗内的元素不重复，那么还需要维护一个哈希表，在入元素和出元素时对哈希表进行更新
 
-2. 给你一个整数数组 arr 和两个整数 k 和 threshold . 请你返回长度为 k 且平均值大于等于 threshold 的子数组数目. [LC1343](https://leetcode.cn/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/description/)
+1. 给你字符串 s 和整数 k . 请返回字符串 s 中长度为 k 的单个子字符串中可能包含的最大元音字母数. 英文中的 元音字母 为（a, e, i, o, u）. [LC1456定长子串中元音的最大数目](https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/description/) [x]
 
-    - 计算目标总和：将 threshold 乘以 k 得到目标总和 target. 
-    - 初始化窗口：计算前 k 个元素的总和. 
-    - 滑动窗口：每次向右移动一位，添加新元素并移除最左边的元素，更新当前总和. 
-    - 比较判断：如果当前总和大于等于 target，计数器加 1. 
+    - 初始化滑窗 [0,k-2]（长度为k-1） 计算元音字母数c
+    - 从左往右 i入，如果i对应为元音字母，c+=1，与最大值比并更新最大值，再看i-k+1，如果i-k+1对应为元音字母，c-=1，不断重复
+
+2. 给你一个整数数组 arr 和两个整数 k 和 threshold . 请你返回长度为 k 且平均值大于等于 threshold 的子数组数目. [LC1343](https://leetcode.cn/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/description/) [x]
+
+    - 初始化滑窗 [0,k-2]（长度为k-1）计算和 c = sum(lis[0:k-1])
+    - 从左往右 i入，如果arr[i]+c>=k*threshold, 满足条件的子数组数目+1，将i-k+1对应的数退出滑窗 c-= arr[i-k+1]，不断重复
 
 3. 给你一个整数数组 nums 和一个整数 k . 请你从 nums 中满足下述条件的全部子数组中找出最大子数组和：子数组的长度是 k，且子数组中的所有元素 各不相同 . 返回满足题面要求的最大子数组和. 如果不存在子数组满足这些条件，返回 0 . 子数组 是数组中一段连续非空的元素序列. [LC2461](https://leetcode.cn/problems/maximum-sum-of-distinct-subarrays-with-length-k/description/)
 
-    - 初始化窗口和哈希表：使用哈希表记录元素出现的次数，窗口大小为 k. 
-    - 滑动窗口：每次添加新元素并移除最左边的元素，更新哈希表. 
-    - 检查合法性：如果窗口内元素数量等于 k 且所有元素出现次数均为 1，计算当前和. 
-    - 维护最大值：在所有合法窗口中记录最大和. 
+
+    - 初始化滑窗[0,k-2]（长度为k-1），计算滑窗的和c，用哈希表记录滑窗元素出现的个数
+    - 从左到右 入arr[i]， 
+
 
 4. 交换 定义为选中一个数组中的两个 互不相同 的位置并交换二者的值. 环形 数组是一个数组，可以认为 第一个 元素和 最后一个 元素 相邻 . 给你一个 二进制环形 数组 nums ，返回在 任意位置 将数组中的所有 1 聚集在一起需要的最少交换次数. [LC2134](https://leetcode.cn/problems/minimum-swaps-to-group-all-1s-together-ii/description/)
 
-    - 统计 1 的总数：计算数组中 1 的个数 m. 
-    - 处理环形数组：将数组复制一份接在原数组后面，形成长度为 2n 的新数组. 
-    - 固定窗口滑动：在新数组上滑动大小为 m 的窗口，统计窗口内 1 的数量. 
-    - 计算最小交换次数：m 减去最大的 1 的数量即为最少交换次数. 
 
 5. 给你一个字符串 s ，请你返回满足以下条件且出现次数最大的 任意 子串的出现次数：子串中不同字母的数目必须小于等于 maxLetters . 子串的长度必须大于等于 minSize 且小于等于 maxSize . [LC1297](https://leetcode.cn/problems/maximum-number-of-occurrences-of-a-substring/description/)
 
-    - 贪心策略：直接考虑最小长度 minSize 的子串（因为如果长串满足条件，其短子串必然满足）. 
-    - 滑动窗口：遍历所有长度为 minSize 的子串. 
-    - 统计频率：使用哈希表记录每个子串的出现次数. 
-    - 过滤合法子串：检查子串中不同字母的数量是否不超过 maxLetters，维护最大频率. 
 
 6. 给定两个字符串 s 和 p，找到 s 中所有 p 的 异位词 的子串，返回这些子串的起始索引. 不考虑答案输出的顺序. （字母异位词是通过重新排列不同单词或短语的字母而形成的单词或短语，并使用所有原字母一次. ）[LC438](https://leetcode.cn/problems/find-all-anagrams-in-a-string/description/)
 
-    - 统计目标字符频率：使用哈希表记录字符串 p 中每个字符的出现次数. 
-    - 初始化窗口：统计字符串 s 前 len (p) 个字符的频率. 
-    - 滑动窗口：每次向右移动一位，更新窗口内字符频率. 
-    - 比较频率：如果当前窗口的字符频率与目标频率完全相同，记录起始索引. 
     
 
 7. 给你两个字符串 s1 和 s2 ，写一个函数来判断 s2 是否包含 s1 的 排列. 如果是，返回 true ；否则，返回 false . 换句话说，s1 的排列之一是 s2 的 子串 . [LC567](https://leetcode.cn/problems/permutation-in-string/description/)
 
-    - 统计目标字符频率：使用哈希表记录字符串 s1 中每个字符的出现次数. 
-    - 初始化窗口：统计字符串 s2 前 len (s1) 个字符的频率. 
-    - 滑动窗口：每次向右移动一位，更新窗口内字符频率. 
-    - 比较频率：如果当前窗口的字符频率与目标频率完全相同，返回 True. 
 
 
 8. 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧. 你只可以看到在滑动窗口内的 k 个数字. 滑动窗口每次只向右移动一位. 返回 滑动窗口中的最大值 . [LC239](https://leetcode.cn/problems/sliding-window-maximum/description/?envType=study-plan-v2&envId=top-100-liked)

@@ -89,13 +89,22 @@ print("BFS starting from 'A':", bfs(example_graph, 'A'))
 ## DFS
 
 > 找连通块、判断是否有环
+> DFS：找来一个栈，把起点入栈，出栈访问，若出栈点还没访问，访问出栈点，并把逆序邻居入栈（邻居入栈要写在if访问判断内，否则写在外面的话，已经访问过的节点的邻居又入栈，会造成死循环）
+> 起点入栈->循环：（出栈->没访问过的出栈的邻居逆序入栈）
+> 注意邻居入栈是要写出栈点是否被访问的if判断内
 
-1. 有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。给你一个 n x n 的矩阵 isConnected ，其中 isConnected[i][j] = 1 表示第 i 个城市和第 j 个城市直接相连，而 isConnected[i][j] = 0 表示二者不直接相连。返回矩阵中 省份 的数量。[LC547](https://leetcode.cn/problems/number-of-provinces/description/)
+1. 有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。给你一个 n x n 的矩阵 isConnected ，其中 isConnected[i][j] = 1 表示第 i 个城市和第 j 个城市直接相连，而 isConnected[i][j] = 0 表示二者不直接相连。返回矩阵中 省份 的数量。[LC547](https://leetcode.cn/problems/number-of-provinces/description/) [x]
 
-2. 有一个具有 n 个顶点的 双向 图，其中每个顶点标记从 0 到 n - 1（包含 0 和 n - 1）。图中的边用一个二维整数数组 edges 表示，其中 edges[i] = [ui, vi] 表示顶点 ui 和顶点 vi 之间的双向边。 每个顶点对由 最多一条 边连接，并且没有顶点存在与自身相连的边。请你确定是否存在从顶点 source 开始，到顶点 destination 结束的 有效路径 。给你数组 edges 和整数 n、source 和 destination，如果从 source 到 destination 存在 有效路径 ，则返回 true，否则返回 false 。[LC1971](https://leetcode.cn/problems/find-if-path-exists-in-graph/description/)
+    - 从点i=0开始DFS，arr记录遍历的点，DFS断了之后就是一个省份，从未访问的点中剔除arr的点（做差集），arr清空，继续找点做DFS
+
+2. 有一个具有 n 个顶点的 双向 图，其中每个顶点标记从 0 到 n - 1（包含 0 和 n - 1）。图中的边用一个二维整数数组 edges 表示，其中 edges[i] = [ui, vi] 表示顶点 ui 和顶点 vi 之间的双向边。 每个顶点对由 最多一条 边连接，并且没有顶点存在与自身相连的边。请你确定是否存在从顶点 source 开始，到顶点 destination 结束的 有效路径 。给你数组 edges 和整数 n、source 和 destination，如果从 source 到 destination 存在 有效路径 ，则返回 true，否则返回 false 。[LC1971](https://leetcode.cn/problems/find-if-path-exists-in-graph/description/) [x]
+
+    - 从source开始DFS，记录遍历的点，如果destination在遍历的点中，则为True
 
 
-3. 给你一个有 n 个节点的 有向无环图（DAG），请你找出所有从节点 0 到节点 n-1 的路径并输出（不要求按特定顺序）。graph[i] 是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点 graph[i][j]存在一条有向边）。[LC797](https://leetcode.cn/problems/all-paths-from-source-to-target/description/)
+3. 给你一个有 n 个节点的 有向无环图（DAG），请你找出所有从节点 0 到节点 n-1 的路径并输出（不要求按特定顺序）。graph[i] 是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点 graph[i][j]存在一条有向边）。[LC797所有可能路径](https://leetcode.cn/problems/all-paths-from-source-to-target/description/)
+
+    - 
 
 
 4. 有 n 个房间，房间按从 0 到 n - 1 编号。最初，除 0 号房间外的其余所有房间都被锁住。你的目标是进入所有的房间。然而，你不能在没有获得钥匙的时候进入锁住的房间。当你进入一个房间，你可能会在里面找到一套 不同的钥匙，每把钥匙上都有对应的房间号，即表示钥匙可以打开的房间。你可以拿上所有钥匙去解锁其他房间。给你一个数组 rooms 其中 rooms[i] 是你进入 i 号房间可以获得的钥匙集合。如果能进入 所有 房间返回 true，否则返回 false。[LC841](https://leetcode.cn/problems/keys-and-rooms/description/)
@@ -115,7 +124,12 @@ print("BFS starting from 'A':", bfs(example_graph, 'A'))
 
 ## 网格图DFS
 
-1. 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。此外，你可以假设该网格的四条边均被水包围。[LC200](https://leetcode.cn/problems/number-of-islands/description/)
+> 要注意网格图的x，y坐标表示，假设m=len(grid),n=len(grid[0])，那么x的范围为0-n，y的范围为0-m
+
+1. 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。此外，你可以假设该网格的四条边均被水包围。[LC200岛屿数量](https://leetcode.cn/problems/number-of-islands/description/) [x]
+
+    - 遍历grid[0][0]找到第一个陆地点，对陆地点做dfs，邻居为上下左右旁边为‘1’的点，grid中遍历过的点记为‘0’，dfs每断一次，岛屿数量+1
+    - 网格图m，n特判，特判m=1，n=1
 
 2. 给你一个大小为 m x n 的二进制矩阵 grid 。岛屿 是由一些相邻的 1 (代表土地) 构成的组合，这里的「相邻」要求两个 1 必须在 水平或者竖直的四个方向上 相邻。你可以假设 grid 的四个边缘都被 0（代表水）包围着。岛屿的面积是岛上值为 1 的单元格的数目。计算并返回 grid 中最大的岛屿面积。如果没有岛屿，则返回面积为 0 。[LC695](https://leetcode.cn/problems/max-area-of-island/description/)
 
