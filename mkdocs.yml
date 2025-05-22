@@ -87,14 +87,14 @@ nav:
         - LEETCODE/index.md
         - 动态规划:
             - LEETCODE/dp/README.md
-        - 回溯:
-            - LEETCODE/backtrack/README.md
         - DFS和BFS:
             - LEETCODE/dfs_bfs/README.md
         - 最短路:
             - LEETCODE/shortest_path/README.md
         - 二叉树:
             - LEETCODE/binary_tree/README.md
+        - 回溯:
+            - LEETCODE/backtrack/README.md
         - 滑动窗口:
             - LEETCODE/sliding_window/README.md
         - 双指针:
@@ -111,6 +111,8 @@ nav:
             - LEETCODE/bit_operation/README.md
         - 计算几何:
             - LEETCODE/computational_geometry/README.md
+        - Hot150:
+            - LEETCODE/hot150/README.md
         - HW机考实战:
             - LEETCODE/huawei/README.md   
     

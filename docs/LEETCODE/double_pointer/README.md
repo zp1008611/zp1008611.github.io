@@ -12,11 +12,41 @@
 
 两个指针 `left=0, right=n−1`，从数组的两端开始，向中间移动，这叫**相向双指针**.
 
-1. 编写一个函数，其作用是将输入的字符串反转过来. 输入字符串以字符数组 s 的形式给出. 不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题. [LC344](https://leetcode.cn/problems/reverse-string/description/)
+1. 编写一个函数，其作用是将输入的字符串反转过来. 输入字符串以字符数组 s 的形式给出. 不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题. [LC344反转字符串](https://leetcode.cn/problems/reverse-string/description/) [x]
 
-2. 如果在将所有大写字符转换为小写字符、并移除所有非字母数字字符之后，短语正着读和反着读都一样. 则可以认为该短语是一个 回文串 . 字母和数字都属于字母数字字符. 给你一个字符串 s，如果它是 回文串 ，返回 true ；否则，返回 false . [LC125](https://leetcode.cn/problems/valid-palindrome/description/)
+    - 首尾两个指针 i=0,j=len(s)-1，闭区间
+    - s的长度为偶数时，i，j循环交换，直到i>j
+    - s的长度为奇数时，i,j循环交换，直到i=j
+    - 整合，循环终止于i>=j
 
-3. 给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序. [LC977](https://leetcode.cn/problems/squares-of-a-sorted-array/description/)
+2. 如果在将所有大写字符转换为小写字符、并移除所有非字母数字字符之后，短语正着读和反着读都一样. 则可以认为该短语是一个 回文串 . 字母和数字都属于字母数字字符. 给你一个字符串 s，如果它是 回文串 ，返回 true ；否则，返回 false . [LC125验证回文串](https://leetcode.cn/problems/valid-palindrome/description/) [x]
+
+    - 首尾两个指针 i=0,j=len(s)-1，闭区间
+    - s的长度为偶数时，i，j循环比较，直到i>j
+    - s的长度为奇数时，i,j循环比较，直到i=j
+    - 整合，循环终止于i>=j 
+
+1. 给你两个按 非递减顺序 排列的整数数组 nums1 和 nums2，另有两个整数 m 和 n ，分别表示 nums1 和 nums2 中的元素数目。请你 合并 nums2 到 nums1 中，使合并后的数组同样按 非递减顺序 排列。注意：最终，合并后数组不应由函数返回，而是存储在数组 nums1 中。为了应对这种情况，nums1 的初始长度为 m + n，其中前 m 个元素表示应合并的元素，后 n 个元素为 0 ，应忽略。nums2 的长度为 n 。[LC88](合并两个有序数组)(https://leetcode.cn/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    ```python
+    for i in range(m,m+n):
+            nums1[i] = nums2[i-m]
+        # 不能用sort(nums1)，这个方法是返回一个新的数组
+        nums1.sort()
+    ```
+    - 如果不用sort方法呢？
+    - 两个数组都是非递减的，那么可以从尾巴开始比较，i=m-1,j=n-1,p=m+n-1
+    - 如果nums1[i]>nums2[j]，那么把nums[i]放到p的位置，i--,j不动，p--，循环比较，直到p<0,i<0,j<0
+    - 注意如果i<0，就是nums1的数已经比较完了，直接把nums2的数把空位补好，如果j<0，同理
+    - while循环判断p>=0，依次判断i<0 and j>=0，j<0 and i<=0 ,i<=0 and j<=0, i>=0,j>=0的情况.
+
+
+
+3. 给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序. [LC977有序数组的平方](https://leetcode.cn/problems/squares-of-a-sorted-array/
+description/)
+
+    
+
 
 4. 给定一个 排序好 的数组 arr ，两个整数 k 和 x ，从数组中找到最靠近 x（两数之差最小）的 k 个数. 返回的结果必须要是按升序排好的. 整数 a 比整数 b 更接近 x 需要满足：|a - x| < |b - x| 或者 |a - x| == |b - x| 且 a < b. [LC658](https://leetcode.cn/problems/find-k-closest-elements/description/)
 
