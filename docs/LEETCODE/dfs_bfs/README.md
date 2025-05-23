@@ -82,7 +82,45 @@ print("DFS (Iterative) starting from 'A':", dfs_iterative(example_graph, 'A'))
 print("BFS starting from 'A':", bfs(example_graph, 'A'))
 ```
 
-**三色标记找环：**
+**DFS找环：**
+
+```python
+def has_cycle(graph):
+    visited = set()
+    
+    for node in graph:
+        if node not in visited:
+            stack = [(node, False)]  # (节点, 是否已处理所有邻接节点)
+            recursion_stack = set()
+            
+            while stack:
+                current, processed = stack.pop()
+                
+                if processed:
+                    # 回溯：移除当前节点的递归路径标记
+                    recursion_stack.remove(current)
+                    continue
+                
+                if current in recursion_stack:
+                    return True
+                
+                # 标记当前节点为已访问并加入递归栈
+                visited.add(current)
+                recursion_stack.add(current)
+                
+                # 将当前节点重新压入栈，并标记为已处理
+                stack.append((current, True))
+                
+                # 将所有邻接节点压入栈（按逆序，确保正序处理）
+                for neighbor in reversed(graph[current]):
+                    if neighbor not in visited:
+                        stack.append((neighbor, False))
+                    elif neighbor in recursion_stack:
+                        return True
+    
+    return False
+```
+
 
 
 

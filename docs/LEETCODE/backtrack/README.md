@@ -5,6 +5,32 @@
 - https://www.bilibili.com/video/BV1mG4y1A7Gu?spm_id_from=333.788.player.switch&vd_source=3d4b12fb4a4bfbc98942d43612ae2fb9
 - https://leetcode.cn/discuss/post/3142882/fen-xiang-gun-ti-dan-lian-biao-er-cha-sh-6srp/
 
+
+```python
+
+def backtrack_stack(initial_state):
+    stack = [initial_state]
+    result = []
+    
+    while stack:
+        state = stack.pop()
+        
+        # 检查是否为终止状态
+        if is_terminal(state):
+            result.append(get_solution(state))
+            continue
+        
+        # 生成所有可能的下一步状态
+        for next_state in generate_next_states(state):
+            # 剪枝：排除无效状态
+            if is_valid(next_state):
+                stack.append(next_state)
+    
+    return result
+
+```
+
+
 ## 二叉树上的回溯
 
 1. 给你一个二叉树的根节点 root ，按 任意顺序 ，返回所有从根节点到叶子节点的路径. 叶子节点是指没有子节点的节点. 
