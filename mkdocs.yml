@@ -34,7 +34,12 @@ nav:
         - Project:VRP:
             - OROPT/or_project_vrp/index.md
         
-  
+    - ML:
+        - Supervised Learning:
+            - ML/supervised_learning/index.md
+            - Tree: ML/supervised_learning/tree/README.md
+
+
     - DL: 
         - DL/index.md
         - Multilayer Perceptrons: DL/Basics/MLPs/README.md
