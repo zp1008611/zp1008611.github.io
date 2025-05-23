@@ -1876,7 +1876,7 @@
 
 <h1 id="_1">常用数据结构<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 254 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 1 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 793 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 3 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1897,11 +1897,40 @@
 </li>
 </ol>
 <h2 id="_6">栈<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<h2 id="_7">队列<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<h2 id="_8">堆<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<h2 id="_9">字典树<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<h2 id="_10">并查集<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<h2 id="_11">树状数组和线段树<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="_7">基础<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>给你一个数组 target 和一个整数 n。每次迭代，需要从  list = { 1 , 2 , 3 ..., n } 中依次读取一个数字。请使用下述操作来构建目标数组 target ："Push"：从 list 中读取一个新元素， 并将其推入数组中。"Pop"：删除数组中的最后一个元素。如果目标数组构建完成，就停止读取更多元素。题目数据保证目标数组严格递增，并且只包含 1 到 n 之间的数字。请返回构建目标数组所用的操作序列。如果存在多个可行方案，返回任一即可。<a href="https://leetcode.cn/problems/build-an-array-with-stack-operations/description/">LC1441用栈操作构建数组</a></p>
+<ul>
+<li>初始化空栈</li>
+<li>遍历list，list[i]先入栈，如果list[i]不在target，则出栈，</li>
+<li>入-更新-出</li>
+<li>特判：len(target)==1，没问题</li>
+</ul>
+</li>
+</ol>
+<h2 id="_8">队列<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_9">堆<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="k">第 K 小/大<a class="headerlink" href="#k" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>如果数量关系满足 (i,j)对应&lt; (i,j+1)对应or (i,j+1)对应&lt; (i,j)对应，方法：result数组长度小于k时，(i,j)出堆并存入result，如果(i+1,j)有效且没有访问过，入堆；如果(i,j+1)有效且没有访问过，入堆，当result数组长度大于k，则退出循环，result的末尾就是第k小</p>
+</blockquote>
+<ol>
+<li>
+<p>给定两个以 非递减顺序排列 的整数数组 nums1 和 nums2 , 以及一个整数 k 。定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2 。请找到和最小的 k 个数对 (u1,v1),  (u2,v2)  ...  (uk,vk) 。<a href="https://leetcode.cn/problems/find-k-pairs-with-smallest-sums/description/">LC373</a></p>
+</li>
+<li>
+<p>给你一个 n x n 矩阵 matrix ，其中每行和每列元素均按升序排序，找到矩阵中第 k 小的元素。请注意，它是 排序后 的第 k 小元素，而不是第 k 个 不同 的元素。你必须找到一个内存复杂度优于 O(n2) 的解决方案。</p>
+<ul>
+<li>可以直到 m[i][j]&lt;m[i+1][j] or m[i][j+1] &lt; m[i+1][j+1]</li>
+<li>找到一个 堆 heap = [m[0][0]]</li>
+<li>m[i][j] 出堆，那么下一个最小值从 (i+1,j)或者(i,j+1)取，再下一个从(i+1,j+1)，注意(i+1,j+1)可以从(i+1,j)推来也可以从(i,j+1)中推来，因此要注意判断是否重复</li>
+</ul>
+</li>
+</ol>
+<h2 id="_10">字典树<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_11">并查集<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h2 id="_12">树状数组和线段树<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 
 
 
@@ -1924,7 +1953,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 21, 2025 21:07:07">May 21, 2025 21:07:07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 23, 2025 20:56:11">May 23, 2025 20:56:11</span>
   </span>
 
     
