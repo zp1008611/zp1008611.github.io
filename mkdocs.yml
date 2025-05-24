@@ -25,6 +25,10 @@ nav:
             - Dantzig-Wolfe Decomposition for IP: OROPT/or_exact/IP_dw_decomposition/README.md
             - Branch and Price: OROPT/or_exact/IP_branch_and_price/README.md
             - Benders Decomposition for IP: OROPT/or_exact/IP_beaders_decomposition/README.md
+        - 元启发式算法:
+            - OROPT/or_metaheuristics/index.md
+            - ALNS: OROPT/or_metaheuristics/ANLNS/README.md
+
         - Project:Cutting stock problem:
             - OROPT/or_project_cutting_stock_problem/index.md
         - Project:2DRP:
@@ -33,6 +37,9 @@ nav:
             - OROPT/or_project_3DBP/index.md
         - Project:VRP:
             - OROPT/or_project_vrp/index.md
+            - CVRP: OROPT/or_project_vrp/CVRP/README.md
+        - Project:FJSP:
+            - OROPT/or_project_FJSP/index.md
         
     - ML:
         - Supervised Learning:
