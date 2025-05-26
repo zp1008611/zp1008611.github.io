@@ -1,0 +1,1592 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/DL/dl_project_nlp/NNLM/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Neural Probabilistic Language Model to Predict Next Word - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#neural-probabilistic-language-model-to-predict-next-word" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Neural Probabilistic Language Model to Predict Next Word
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../OROPT/or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ML/supervised_learning/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ML
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLMs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLMs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LEETCODE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LEETCODE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Math/index.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Math
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RESUME_QandA/summary/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  面试八股
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Teaching_Interview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  高中数学教资面试
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611/zp1008611.github.io.git" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../OROPT/or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    运筹与优化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../ML/supervised_learning/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    ML
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    DL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../RL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    RL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../LLMs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LLMs
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../LEETCODE/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LEETCODE
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../Math/index.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Math
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../RESUME_QandA/summary/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    面试八股
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../Teaching_Interview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    高中数学教资面试
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="neural-probabilistic-language-model-to-predict-next-word">Neural Probabilistic Language Model to Predict Next Word<a class="headerlink" href="#neural-probabilistic-language-model-to-predict-next-word" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 5240 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 17 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A Neural Probabilistic Language Model：https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf</li>
+<li>https://www.cs.toronto.edu/~lczhang/321/notes/notes07.pdf</li>
+</ul>
+<h2 id="_1">语言建模<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>我们的目标是对英语句子的分布进行建模（这一任务被称为语言建模），我们通过将其转化为序列预测任务来实现这一目标。也就是说，我们要学习在给定句子中前面单词的情况下，预测下一个单词的分布。本讲还将作为神经网络中最重要概念之一——分布式表示的示例。我们可以通过与局部表示对比来理解这一概念，在局部表示中，特定的信息仅存储在一个位置，而在分布式表示中，信息分布在整个表示中。事实证明，这非常有用，因为它使我们能够在相关实体之间共享信息——在语言建模的情况下，就是在相关单词之间共享信息。</p>
+<p>语言建模是对自然语言文本的概率分布进行建模的问题。也就是说，我们希望能够确定一个给定句子被说出的可能性有多大。这是更一般的分布建模问题的一个实例，即学习一个试图近似某个数据集所来自的分布的模型。我们为什么要拟合这样的模型呢？最重要的应用场景之一是贝叶斯推理。</p>
+<p>假设我们正在构建一个语音识别系统，即给定一个声学信号a，我们希望推断出可能被说出的句子s（或一组候选句子）。实现这一点的一种方法是构建一个生成模型。在这种情况下，这样的模型由两个概率分布组成：</p>
+<ul>
+<li>观察模型，表示为 <span class="arithmatex">\(p(a|s)\)</span> ，它告诉我们一个句子导致给定声学信号的可能性有多大。例如，你可能会构建一个人类发声系统的模型。这方面已经有很多研究，但我们在这里不会讨论它。</li>
+<li>先验，表示为 <span class="arithmatex">\(p(s)\)</span> ，它告诉我们在看到a之前，一个给定句子被说出的可能性有多大。这就是我们进行语言建模时试图估计的东西。</li>
+</ul>
+<p>给定这两个分布，我们可以使用贝叶斯规则将它们结合起来，以推断句子的后验分布，即考虑到观察结果的句子上的概率分布。回想一下贝叶斯规则如下：</p>
+<div class="arithmatex">\[
+p(s|a) = \frac{p(s)p(a|s)}{\sum_{s'} p(s')p(a|s')}
+\]</div>
+<p>分母只是一个归一化项，我们很少需要显式计算或处理它。因此，我们可以隐含地保留归一化，使用符号“∝”表示成比例：</p>
+<div class="arithmatex">\[
+p(s|a) \propto p(s)p(a|s)
+\]</div>
+<p>因此，贝叶斯规则让我们能够以一种有原则且优雅的方式将我们的先验信念与观察模型结合起来。</p>
+<p>拥有一个好的先验分布 <span class="arithmatex">\(p(s)\)</span> 非常有用，因为语音信号本质上是模糊的。例如，“recognize speech”听起来与“wreck a nice beach”非常相似，但前者更有可能被说出。这是我们希望我们的语言模型能够捕捉到的那种东西。</p>
+<h2 id="_2">自回归模型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>现在我们将把分布建模任务重新表述为一个序列预测任务。假设我们给定一个句子语料库 <span class="arithmatex">\(s^{(1)}, ..., s^{(N)}\)</span> 。我们将做一个简化的假设，即这些句子是独立的。这意味着它们的概率相乘：</p>
+<div class="arithmatex">\[
+p(s^{(1)}, ..., s^{(N)}) = \prod_{i=1}^{N} p(s^{(i)})
+\]</div>
+<p>因此，我们可以转而讨论对句子上的分布进行建模。</p>
+<p>我们将尝试拟合一个表示分布 <span class="arithmatex">\(p_{\theta}(s)\)</span> 的模型，该模型由θ参数化。最大似然准则表明，我们希望选择使似然（即观察数据的概率）最大化的 <span class="arithmatex">\(\theta\)</span>：</p>
+<div class="arithmatex">\[
+\max_{\theta} \prod_{i=1}^{N} p_{\theta}(s^{(i)})
+\]</div>
+<p>此时，你可能会担心任何特定句子的概率都会小得可以忽略不计。这是事实，但我们可以通过使用对数概率来解决这个问题。然后，语料库的概率方便地分解为一个和：</p>
+<div class="arithmatex">\[
+\log \prod_{i=1}^{N} p(s^{(i)}) = \sum_{i=1}^{N} \log p(s^{(i)})
+\]</div>
+<p>一个句子是单词的序列 <span class="arithmatex">\(w_1, w_2, ..., w_T\)</span> 。条件概率的链式法则意味着 <span class="arithmatex">\(p(s)\)</span> 可以分解为各个单词的条件概率的乘积：</p>
+<div class="arithmatex">\[
+p(s) = p(w_1, ..., w_T) = p(w_1)p(w_2|w_1)\cdots p(w_T|w_1, ..., w_{T-1}) 
+\]</div>
+<p>因此，语言建模问题等价于能够预测下一个单词！</p>
+<p>注意，链式法则适用于任何分布，即我们在这里没有做任何假设。</p>
+<p>我们通常会做一个马尔可夫假设，即下一个单词的分布只依赖于前面的几个单词。也就是说，如果我们使用长度为3的上下文，这意味着：</p>
+<div class="arithmatex">\[
+p(w_t|w_1, ..., w_{t-1}) = p(w_t|w_{t-3}, w_{t-2}, w_{t-1}) 
+\]</div>
+<p>这样的模型被称为无记忆模型，因为它对句子中更早发生的事情没有记忆。当我们将分布建模问题分解为具有有限上下文长度的序列预测任务时，我们称之为自回归模型。“回归”是因为这是一个预测问题，“自”是因为这些序列既用作输入又用作目标。</p>
+<p>统计学家使用“回归”来指代一般的监督预测问题，而不仅仅是最小二乘法。</p>
+<h2 id="n-n-gram-language-models">n元语法语言模型 (n-Gram Language Models)<a class="headerlink" href="#n-n-gram-language-models" title="Permanent link">&para;</a></h2>
+<p>最简单的马尔可夫模型是条件概率表（CPT），其中我们显式地表示给定上下文单词时下一个单词的分布。这是一个表，每一行对应每一个可能的上下文单词序列，每一列对应每一个单词，表项给出条件概率。由于每一行代表一个概率分布，表项必须是非负的，并且每一行的表项必须求和为1。否则，这些数字可以是任何值。</p>
+<p>估计CPT的最简单方法是使用经验计数，即在训练语料库中单词序列出现的次数。例如：</p>
+<div class="arithmatex">\[
+p(w_3 = \text{cat} | w_1 = \text{the}, w_2 = \text{fat}) = \frac{\text{count(the fat cat)}}{\text{count(the fat)}} 
+\]</div>
+<p>这需要计算所有长度为2和3的序列的出现次数。长度为 <span class="arithmatex">\(n\)</span> 的序列被称为 <span class="arithmatex">\(n\)</span> 元语法，基于计数此类序列的模型被称为n元语法模型。对于 <span class="arithmatex">\(n=1,2,3\)</span>，这些被称为一元语法、二元语法和三元语法模型。注意，一元语法模型是完全不连贯的（因为它们从单词的边缘分布中独立地采样所有单词），但三元语法模型捕捉到了相当多的句法结构。</p>
+<p>注意：这个例子是一个 <span class="arithmatex">\(3\)</span> 元语法模型，尽管它使用了长度为 <span class="arithmatex">\(2\)</span> 的上下文。</p>
+<p>观察到，可能的上下文数量随 <span class="arithmatex">\(n\)</span> 呈指数增长。这意味着，除了非常小的 <span class="arithmatex">\(n\)</span> 之外，你不太可能在训练语料库中看到所有可能的 <span class="arithmatex">\(n\)</span> 元语法，并且许多或大多数计数将为 <span class="arithmatex">\(0\)</span>。这个问题被称为数据稀疏性。上面描述的模型有点像稻草人，自然语言处理研究人员想出了各种巧妙的方法来处理数据稀疏性，包括添加所有单词的虚构计数，以及组合不同上下文长度的预测。</p>
+<p>但是，<span class="arithmatex">\(n\)</span> 元语法方法有一个根本问题：很难在相关单词之间共享信息。如果我们看到句子 “The cat got squashed in the garden on Friday” ，我们应该估计看到句子 “The dog got flattened in the yard on Monday” 的概率更高，尽管这两个句子几乎没有共同的单词。分布式表示提供了一种很好的方法来做到这一点。</p>
+<h2 id="_3">分布式表示<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>条件概率表是一种局部表示，这意味着给定的一条信息（例如，在“the fat”之后看到“cat”的概率）仅存储在一个位置。如果我们想在相关单词之间共享信息，我们可能希望使用分布式表示，其中同一条信息将分布在整个表示中。例如，假设我们构建一个单词属性表，以及这些属性对看到可能的下一个单词的概率的影响（+或−）.</p>
+<p>“银行（bank）是一种金融机构，它接受公众存款并创造信贷.  ” 这里的想法是使用伴随的单词（“金融（financial）”、“存款（deposits）”、“信贷（credit）”）来表示 “银行（bank）”.  </p>
+<p>“你应通过一个词的语境来了解它.  ”——弗斯，J.R.，1957:11</p>
+<p>这种基于分布相似性的表示方法引出了共现矩阵（co-occurrence matrix）的概念.  </p>
+<p>共现矩阵是一个 “词项×词项” 的矩阵，它记录了一个词项在另一个词项的语境中出现的次数.  语境被定义为围绕词项的 <span class="arithmatex">\(k\)</span> 个单词的窗口.  让我们为一个小型语料库构建一个 <span class="arithmatex">\(k = 2\)</span> 的共现矩阵，这也被称为 “词×语境” 矩阵.  你可以选择词集和语境集相同或不同.  共现矩阵的每一行（列）都给出了相应单词（语境）的向量表示.  </p>
+<p>语料库：</p>
+<ul>
+<li>Human machine interface for computer applications</li>
+<li>User opinion of computer system response
+time</li>
+<li>User interface management system</li>
+<li>System engineering for improved response
+time</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>human</th>
+<th>machine</th>
+<th>system</th>
+<th>for</th>
+<th><span class="arithmatex">\(\dots\)</span></th>
+<th>user</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>human</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td><span class="arithmatex">\(\dots\)</span></td>
+<td>0</td>
+</tr>
+<tr>
+<td>machine</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td><span class="arithmatex">\(\dots\)</span></td>
+<td>0</td>
+</tr>
+<tr>
+<td>system</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td><span class="arithmatex">\(\dots\)</span></td>
+<td>2</td>
+</tr>
+<tr>
+<td>for</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td><span class="arithmatex">\(\dots\)</span></td>
+<td>0</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+<td><span class="arithmatex">\(\vdots\)</span></td>
+</tr>
+<tr>
+<td>user</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td><span class="arithmatex">\(\dots\)</span></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">神经概率语言模型简述<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>现在我们来谈谈一个学习语言分布式表示的网络，称为神经概率语言模型，或简称神经语言模型。简而言之，所提出方法的思想可总结如下：</p>
+<ol>
+<li><strong>为每个单词关联分布式特征向量</strong>：给词汇表中的每个单词分配一个实值向量（如 <span class="arithmatex">\(\mathbb{R}^m\)</span> 中的向量），每个向量代表单词的不同语义/句法属性。  </li>
+<li><strong>基于特征向量建模概率函数</strong>：通过单词的特征向量来表示单词序列的联合概率，例如用多层神经网络将前 <span class="arithmatex">\(n-1\)</span> 个单词的特征向量映射到下一个单词的概率分布。  </li>
+<li><strong>联合学习特征向量与模型参数</strong>：在训练中同时优化单词特征向量和神经网络的权重（如隐藏层、输出层参数），最大化训练数据的对数似然（或正则化后的目标）。  </li>
+</ol>
+<p><strong>特征向量的作用</strong>：每个单词对应低维空间中的点（如 <span class="arithmatex">\(m=30\)</span> 维，远小于词汇表大小 <span class="arithmatex">\(17,000\)</span> ），相似单词（如“dog”和“cat”）的向量在空间中接近。如果概率函数是特征向量的<strong>平滑函数</strong>（比如software），即特征的微小变化仅导致概率的微小变化，从而实现语义泛化（如从“cat walking”泛化到“dog running”）。  </p>
+<p><strong>泛化原理</strong>：训练数据中一个句子（如“The cat is walking...”）的特征向量序列会“激活”其邻居（相似特征向量的句子），使模型对这些未见过的句子也分配较高概率。这是因为：<br />
+- 相似单词的特征向量接近（语义/句法相似性）。<br />
+- 概率函数对特征向量的变化敏感但平滑（避免离散符号的突变）。  </p>
+<p><strong>正则化与初始化</strong>：<br />
+- 权重衰减（类似岭回归）惩罚参数的平方范数，防止过拟合。<br />
+- 特征向量可通过语义先验（如共现统计）初始化，实验中随机初始化也有效。  </p>
+<p><strong>对比n-gram</strong>：传统n-gram因数据稀疏性只能处理短上下文（如3-gram），而分布式表示通过低维向量和神经网络，可高效处理长上下文（如10词），参数规模仅随上下文长度线性增长（而非指数）。  </p>
+<h2 id="_5">神经概率语言模型详细<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">一、核心思想与背景<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>提出</strong>：由Yoshua Bengio团队于2003年提出，首次将神经网络与语言建模结合，为深度学习在NLP的应用及 <strong>词嵌入(Word Embedding)</strong> 奠定基础。  </li>
+<li><strong>目标</strong>：建模自然语言序列的条件概率，预测给定上下文时下一个单词的分布，解决传统n-gram模型的<strong>维度灾难</strong>（参数指数增长）和<strong>语义泛化不足</strong>（无法利用单词相似性）问题。  </li>
+<li><strong>创新</strong>：引入<strong>分布式表示（Distributed Representation）</strong>，将单词映射为低维连续向量（词嵌入），使相似单词在向量空间中接近，实现语义/句法泛化。</li>
+</ul>
+<h3 id="mlp">二、模型架构（以经典MLP结构为例）<a class="headerlink" href="#mlp" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>输入层（词嵌入层）</strong>：  </li>
+<li>
+<p>将上下文单词（如前  <span class="arithmatex">\(n-1\)</span>  个词）的独热编码映射为低维实向量（嵌入矩阵  <span class="arithmatex">\(C\)</span>  学习得到），拼接为输入向量  <span class="arithmatex">\(x = [C(w_{t-1}), \dots, C(w_{t-n+1})]\)</span> ，维度为  <span class="arithmatex">\((n-1)m\)</span> （ <span class="arithmatex">\(m\)</span>  为嵌入维度）。  </p>
+</li>
+<li>
+<p><strong>隐藏层（非线性变换）</strong>：  </p>
+</li>
+<li>采用双曲正切（ <span class="arithmatex">\(\tanh\)</span> ）激活的全连接层，捕捉上下文的复杂依赖：  </li>
+</ol>
+<div class="arithmatex">\[
+h = \tanh(d + Hx)
+\]</div>
+<p>（ <span class="arithmatex">\(H\)</span>  为隐藏层权重， <span class="arithmatex">\(d\)</span>  为偏置， <span class="arithmatex">\(h\)</span>  为隐藏层输出，维度为  <span class="arithmatex">\(h\)</span> ）。  </p>
+<blockquote>
+<p>why <span class="arithmatex">\(\tanh\)</span> ?</p>
+</blockquote>
+<ol>
+<li><strong>输出层（概率预测）</strong>：  </li>
+<li>通过softmax将隐藏层输出转换为词汇表上的概率分布：  </li>
+</ol>
+<div class="arithmatex">\[ 
+\hat{P}(w_t | \text{上下文}) = \frac{e^{b + Wx + Uh}}{\sum_{i=1}^{|V|} e^{b_i + W_ix + U_ih}} 
+\]</div>
+<p>（ <span class="arithmatex">\(W\)</span>  为直接连接权重， <span class="arithmatex">\(U\)</span>  为隐藏层到输出层权重， <span class="arithmatex">\(b\)</span>  为输出偏置， <span class="arithmatex">\(|V|\)</span>  为词汇表大小）。  </p>
+<p><img alt="alt text" src="image.png" /></p>
+<h3 id="_7">三、训练与优化<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>损失函数</strong>：最小化<strong>负对数似然（NLL）</strong>，等价于交叉熵损失，联合优化嵌入矩阵  <span class="arithmatex">\(C\)</span>  和神经网络参数（ <span class="arithmatex">\(W, U, H, b, d\)</span> ）：</li>
+</ul>
+<p>$$
+\mathcal{L} = -\frac{1}{T} \sum_t \log \hat{P}(w_t | \text{上下文}) + R(\theta) 
+$$
+（ <span class="arithmatex">\(R(\theta)\)</span>  为权重衰减正则化，防止过拟合）。  </p>
+<ul>
+<li><strong>优化算法</strong>：使用<strong>随机梯度上升（SGA）</strong>，通过反向传播更新参数，同时学习词嵌入和网络权重，使相似单词的向量在训练中逐渐接近（如“cat”与“dog”因共享上下文梯度而向量距离缩小）。</li>
+</ul>
+<blockquote>
+<p>在机器学习中，<strong>最小化负对数似然（NLL）等价于最小化交叉熵损失</strong>，这一结论源于两者在数学上的紧密联系，尤其在分类任务（如语言模型的单词预测）中，当真实标签为独热编码（one-hot encoding）时，二者完全等价。以下是详细推导与解释：</p>
+</blockquote>
+<h3 id="_8"><strong>一、核心概念定义</strong><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h4 id="1-negative-log-likelihood-nll">1. <strong>负对数似然（Negative Log-Likelihood, NLL）</strong><a class="headerlink" href="#1-negative-log-likelihood-nll" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>最大似然估计（MLE）</strong>：假设数据独立同分布，目标是找到参数<span class="arithmatex">\(\theta\)</span>使训练数据的联合概率（似然）最大化：<br />
+  [
+  \max_{\theta} \prod_{t=1}^{T} P(w_t | \text{上下文}; \theta)
+  ]<br />
+  取对数后转化为最大化对数似然（便于数学处理）：<br />
+  [
+  \max_{\theta} \sum_{t=1}^{T} \log P(w_t | \text{上下文}; \theta)
+  ]  </li>
+<li><strong>负对数似然（NLL）</strong>：最大化对数似然等价于最小化其负数：<br />
+  [
+  \min_{\theta} -\sum_{t=1}^{T} \log P(w_t | \text{上下文}; \theta)
+  ]</li>
+</ul>
+<h4 id="2-cross-entropy-loss">2. <strong>交叉熵损失（Cross-Entropy Loss）</strong><a class="headerlink" href="#2-cross-entropy-loss" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>交叉熵（Cross-Entropy）</strong>：衡量两个概率分布<span class="arithmatex">\(p(\text{真实})\)</span>和<span class="arithmatex">\(q(\text{预测})\)</span>的差异，公式为：<br />
+  [
+  H(p, q) = -\sum_{x} p(x) \log q(x)
+  ]  </li>
+<li><strong>分类任务中的交叉熵损失</strong>：若真实标签为独热向量（如单词预测中，真实单词对应位置为1，其余为0），则交叉熵简化为：<br />
+  [
+  \mathcal{L}<em _text_true="\text{true">{\text{CE}} = -\log q(x</em>)
+  ]}<br />
+  其中<span class="arithmatex">\(q(x_{\text{true}})\)</span>是模型对真实类别<span class="arithmatex">\(x_{\text{true}}\)</span>的预测概率。</li>
+</ul>
+<h3 id="_9"><strong>二、等价性推导：以单样本为例</strong><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>假设单个样本的真实标签为独热向量<span class="arithmatex">\(\mathbf{y} = [0, \dots, 1, \dots, 0]\)</span>（仅第<span class="arithmatex">\(k\)</span>位为1），模型预测概率为<span class="arithmatex">\(\hat{\mathbf{p}} = [\hat{p}_1, \dots, \hat{p}_k, \dots, \hat{p}_{|V|}]\)</span>。<br />
+- <strong>交叉熵损失</strong>：<br />
+  [
+  \mathcal{L}<em i="1">{\text{CE}} = -\sum</em>}^{|V|} y_i \log \hat{p<em _text_NLL="\text{NLL">i = -\log \hat{p}_k
+  ]<br />
+- <strong>负对数似然</strong>：<br />
+  真实分布的概率<span class="arithmatex">\(P_{\text{true}}(x) = 1\)</span>（当<span class="arithmatex">\(x = x_{\text{true}}\)</span>），因此对数似然为<span class="arithmatex">\(\log \hat{p}_k\)</span>，负对数似然为：<br />
+  [
+  \mathcal{L}</em>}} = -\log \hat{p<em t="1">k
+  ]<br />
+<strong>结论</strong>：单样本情况下，<span class="arithmatex">\(\mathcal{L}_{\text{CE}} = \mathcal{L}_{\text{NLL}}\)</span>。对于<span class="arithmatex">\(T\)</span>个样本的批量数据，求和后依然等价：<br />
+[
+\sum</em>}^{T} \mathcal{L<em t="1">{\text{CE}}^{(t)} = \sum</em>
+]}^{T} \mathcal{L}_{\text{NLL}}^{(t)</p>
+<h3 id="_10"><strong>三、本质联系：最大似然与交叉熵的统一</strong><a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>最大似然的概率视角</strong>：假设数据由分布<span class="arithmatex">\(P_{\theta}(x)\)</span>生成，目标是让模型分布<span class="arithmatex">\(P_{\theta}(x)\)</span>尽可能接近真实数据分布<span class="arithmatex">\(P_{\text{data}}(x)\)</span>。  </li>
+<li><strong>交叉熵的信息论视角</strong>：交叉熵<span class="arithmatex">\(H(P_{\text{data}}, P_{\theta}) = H(P_{\text{data}}) + \text{KL}(P_{\text{data}} || P_{\theta})\)</span>，其中<span class="arithmatex">\(H(P_{\text{data}})\)</span>是数据的熵（固定值），因此最小化交叉熵等价于最小化KL散度（相对熵），即让模型分布逼近真实分布。  </li>
+<li><strong>独热标签的特殊性</strong>：当真实标签为独热编码时，<span class="arithmatex">\(P_{\text{data}}(x)\)</span>是离散分布（仅真实类别概率为1），此时交叉熵退化为负对数似然，KL散度与NLL的优化目标完全一致。</li>
+</ul>
+<h3 id="_11"><strong>四、应用场景：以神经语言模型为例</strong><a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>在神经语言模型中，模型输出通过softmax生成单词概率分布<span class="arithmatex">\(\hat{P}(w_t | \text{上下文})\)</span>，真实标签为单词的独热编码。此时：<br />
+- 最小化交叉熵损失：<br />
+  [
+  \mathcal{L}<em t="1">{\text{CE}} = -\frac{1}{T} \sum</em>)
+  ]}^{T} \log \hat{P}(w_t | \text{上下文<br />
+- 最小化负对数似然：<br />
+  [
+  \mathcal{L}<em t="1">{\text{NLL}} = -\frac{1}{T} \sum</em>)
+  ]}^{T} \log \hat{P}(w_t | \text{上下文<br />
+<strong>二者完全等价</strong>，均通过反向传播优化模型参数（如嵌入矩阵、神经网络权重），使模型预测概率与真实分布的差异最小。</p>
+<h3 id="_12"><strong>五、关键前提与注意事项</strong><a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>独热编码假设</strong>：等价性仅在真实标签为独热编码时成立。若真实分布为非独热的概率分布（如多标签分类），交叉熵需计算所有类别的加权和，与NLL含义不同。  </li>
+<li><strong>模型输出要求</strong>：NLL适用于任何概率模型，而交叉熵损失要求模型输出为合法概率分布（如softmax归一化）。  </li>
+<li><strong>数值稳定性</strong>：实际应用中常对logits加偏移（如减去最大值）避免指数溢出，但这是实现细节，不影响理论等价性。</li>
+</ol>
+<h3 id="_13"><strong>总结</strong><a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>在分类任务（如语言模型的单词预测）中，<strong>最小化负对数似然与最小化交叉熵损失是同一优化目标的不同表述</strong>，本质上均通过最大似然估计使模型分布逼近真实数据分布。这一等价性是神经网络训练中使用交叉熵损失的理论基础，也是理解深度学习与统计建模关联的关键。</p>
+<h3 id="_14">四、优势与贡献<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>突破维度灾难</strong>：  </li>
+<li>
+<p>词嵌入将单词表示为低维向量（如  <span class="arithmatex">\(m=30\)</span>  维，远小于词汇表大小），参数规模随上下文长度线性增长（对比n-gram的指数增长），可处理更长上下文（如10词）。  </p>
+</li>
+<li>
+<p><strong>语义泛化能力</strong>：  </p>
+</li>
+<li>
+<p>利用向量相似性，模型可对未见过的单词组合（如“dog running”）分配合理概率（n-gram因数据稀疏性常输出零概率），例如从训练数据“The cat is walking”泛化到“A dog was running”。  </p>
+</li>
+<li>
+<p><strong>奠定词嵌入基础</strong>：  </p>
+</li>
+<li>
+<p>首次证明通过神经网络训练可自动学习单词的分布式表示（词嵌入），为后续Word2Vec、GloVe、BERT等模型提供理论支撑，开启“连续向量表示”的NLP研究范式。  </p>
+</li>
+<li>
+<p><strong>长距离依赖建模</strong>：  </p>
+</li>
+<li>神经网络的非线性层（如 <span class="arithmatex">\(\tanh\)</span> ）可捕捉跨越多个单词的语义关联（如主谓一致、修饰关系），而n-gram因上下文长度限制（通常3-gram）难以处理。</li>
+</ol>
+<h3 id="_15">五、局限与发展<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>局限</strong>：  </li>
+<li>计算成本高（词汇表大时，softmax计算复杂度为  <span class="arithmatex">\(O(|V|)\)</span> ，可通过层次化Softmax优化）。  </li>
+<li>未引入递归结构（如RNN），对极长上下文的依赖建模能力有限（后续LSTM、Transformer等模型改进）。  </li>
+<li><strong>发展</strong>：  </li>
+<li>后续模型（如RNN-LM、Transformer-LM）在此基础上引入递归或自注意力机制，进一步提升长上下文建模能力，成为现代大语言模型（如GPT、BERT）的核心组件。</li>
+</ul>
+<h3 id="_16">总结<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>NPLM是神经语言模型的里程碑，通过<strong>分布式表示+神经网络</strong>的架构，解决了传统统计模型的维度灾难和语义泛化问题，首次实现单词向量的自动学习，为深度学习在NLP的爆发奠定了基础。其核心创新（词嵌入、连续概率建模）至今仍是NLP研究的核心要素。</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 26, 2025 20:56:12 CST">May 26, 2025 20:56:12</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 26, 2025 20:56:12 CST">May 26, 2025 20:56:12</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>
