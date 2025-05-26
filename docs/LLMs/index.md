@@ -47,3 +47,18 @@
     - vLLM实战
 - 大模型评估
 - 大模型本地部署实战
+
+## Paper Reading
+
+- LLMs:
+    - GPT-4
+    - LLAMA
+    - DEEPSEEK
+
+- Position Embedding:
+    - ROPE
+
+- SFT:
+    - LoRA
+
+- RAG:

@@ -64,12 +64,14 @@ nav:
         - RNN: DL/Basics/RNN/README.md
         - LSTM and GRU: DL/Basics/LSTM_GRU/README.md
         - 关于激活函数: DL/Basics/Activation_Function/README.md
-        - Encoder Decoder models: DL/Basics/ENCODER_DECODER/README.md
+        - Encoder Decoder models and Attention: DL/Basics/ENCODER_DECODER_Attention/README.md
         - Transformer: DL/Basics/Transformer/README.md
         - GNN:
             - DL/GNN/index.md
         - Paper Reading:
             - DL/READING/index.md
+        - Project:NLP:
+            - DL/dl_project_nlp/index.md
         - Project:Forecasting:
             - DL/dl_project_forecasting/index.md
         - Project:Customer&Marketing:

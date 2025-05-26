@@ -40,8 +40,6 @@
         - One-Hot Encoding
         - Bag of Words (BOW)
         - N-Grams
-        - Term Frequency-Inverse Document Frequency (TF-IDF)
-        - N-Gram Language Modeling with NLTK
     - Text Embedding Techniques in NLP
         - Word Embedding
             - Word2Vec (SkipGram, Continuous Bag of Words - CBOW)
@@ -57,14 +55,7 @@
 - 关于激活函数
 - Encoder Decoder Models
 - Transformers
-- Other Famous Nets
-    - LeNet-5
-    - AlexNet
-    - ResNet
-    - Swin Transformer
-    - BERT
-    - GPT 
-    - ViT（Vision Transformer）
+- Paper Reading
 
 
 ## Exercise
