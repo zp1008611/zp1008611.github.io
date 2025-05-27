@@ -14,12 +14,12 @@
 
 同向指针，从右边往左边
 
-    ```python
-    for i in range(m,m+n):
-            nums1[i] = nums2[i-m]
-        # 不能用sort(nums1)，这个方法是返回一个新的数组
-        nums1.sort()
-    ```
+```python
+for i in range(m,m+n):
+        nums1[i] = nums2[i-m]
+    # 不能用sort(nums1)，这个方法是返回一个新的数组
+    nums1.sort()
+```
     - 如果不用sort方法呢？
     - 两个数组都是非递减的，那么可以从尾巴开始比较，i=m-1,j=n-1,p=m+n-1
     - 如果nums1[i]>nums2[j]，那么把nums[i]放到p的位置，i--,j不动，p--，循环比较，直到p<0,i<0,j<0
@@ -117,6 +117,41 @@
 1. 
 
 ## 二叉树
+
+1. 给定一个二叉树的根节点 root ，返回 它的 中序 遍历 。[LC94 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 找来一个result=[]存结果
+    - 中序，根在中间，result.append(node.val)在中间
+    
+
+2. 给定一个二叉树 root ，返回其最大深度。二叉树的 最大深度 是指从根节点到最远叶子节点的最长路径上的节点数。[LC104二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/?envType=study-plan-v2&envId=top-interview-150)
+
+
+    - 到一个新的根节点，子树的深度就可以+1
+    - 所以用前序遍历，到新的根节点，就可以将目前的深度和最大深度ans做比较
+    - 注意ans在递归函数里面，要做`nonlocal ans`说明
+
+3. 给你两棵二叉树的根节点 p 和 q ，编写一个函数来检验这两棵树是否相同。如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。[LC100相同的树](https://leetcode.cn/problems/same-tree/description/?envType=study-plan-v2&envId=top-interview-150)
+ 
+    - 找来一个flag做标记
+    - 同时做前序遍历，判断节点值是否相等，如果都不为空且不相等的话，flag=False，然后return，都为空的话，flag = True and flag，然后return，都不为空写在最下面，判断是否相等，然后接着遍历都不为空节点的左子树和右子树.
+
+4. 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。[LC226翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 前序遍历，到根节点后，把左子节点和右子节点互换
+
+5. 给你一个二叉树的根节点 root ， 检查它是否轴对称。[LC101对称二叉树](https://leetcode.cn/problems/symmetric-tree/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 前序遍历，判断子树1的右子树和子树2的左子树是否相等
+
+6. 给你一棵二叉树的根节点，返回该树的 直径 。二叉树的 直径 是指树中任意两个节点之间最长路径的 长度 。这条路径可能经过也可能不经过根节点 root 。两节点之间路径的 长度 由它们之间边数表示。[LC543二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 前序遍历，节点的直径是左子树的最大深度+右子树的最大深度，递归函数返回该节点的最大深度
+    - 注意这里直径的计算不一定经过根节点
+
+7. 给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。[LC102二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - BFS遍历
 
 ## 栈
 

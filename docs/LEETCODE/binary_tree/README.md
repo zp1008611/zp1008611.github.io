@@ -5,6 +5,163 @@
 - https://leetcode.cn/discuss/post/3142882/fen-xiang-gun-ti-dan-lian-biao-er-cha-sh-6srp/
 
 
+## 三种遍历写法
+
+以下是二叉树三种遍历（前序、中序、后序）的递归和栈（迭代）实现方法，以Python为例：
+
+
+### **二叉树节点定义**
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+```
+
+
+### **一、前序遍历（根→左→右）**
+#### **递归写法**
+```python
+def preorderTraversal_recursive(root):
+    result = []
+    def helper(node):
+        if not node:
+            return
+        result.append(node.val)  # 访问根节点
+        helper(node.left)        # 递归左子树
+        helper(node.right)       # 递归右子树
+    helper(root)
+    return result
+```
+
+#### **栈（迭代）写法**
+**思路**：  
+1. 用栈模拟递归过程，先将根节点入栈。  
+2. 每次弹出栈顶节点，访问该节点。  
+3. 先将右子节点入栈，再将左子节点入栈（确保左子树先被处理）。  
+```python
+def preorderTraversal_iterative(root):
+    result = []
+    if not root:
+        return result
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        result.append(node.val)
+        # 先右后左入栈，保证左子树先被处理
+        if node.right:
+            stack.append(node.right)
+        if node.left:
+            stack.append(node.left)
+    return result
+```
+
+
+### **二、中序遍历（左→根→右）**
+#### **递归写法**
+```python
+def inorderTraversal_recursive(root):
+    result = []
+    def helper(node):
+        if not node:
+            return
+        helper(node.left)        # 递归左子树
+        result.append(node.val)  # 访问根节点
+        helper(node.right)       # 递归右子树
+    helper(root)
+    return result
+```
+
+#### **栈（迭代）写法**
+**思路**：  
+1. 用栈跟踪遍历路径，先遍历到最左节点。  
+2. 弹出栈顶节点（最左节点），访问该节点。  
+3. 转向右子树，重复上述过程。  
+```python
+def inorderTraversal_iterative(root):
+    result = []
+    stack = []
+    current = root
+    while current or stack:
+        # 遍历到最左节点
+        while current:
+            stack.append(current)
+            current = current.left
+        # 弹出最左节点并访问
+        current = stack.pop()
+        result.append(current.val)
+        # 转向右子树
+        current = current.right
+    return result
+```
+
+
+### **三、后序遍历（左→右→根）**
+#### **递归写法**
+```python
+def postorderTraversal_recursive(root):
+    result = []
+    def helper(node):
+        if not node:
+            return
+        helper(node.left)        # 递归左子树
+        helper(node.right)       # 递归右子树
+        result.append(node.val)  # 访问根节点
+    helper(root)
+    return result
+```
+
+#### **栈（迭代）写法**
+**思路**：  
+1. 使用栈模拟递归，记录节点是否已访问。  
+2. 第一次访问节点时，标记为未访问，先入右子节点，再入左子节点。  
+3. 第二次访问时（已访问过左右子树），将节点值加入结果。  
+```python
+def postorderTraversal_iterative(root):
+    result = []
+    if not root:
+        return result
+    stack = [(root, False)]  # (节点, 是否已访问)
+    while stack:
+        node, visited = stack.pop()
+        if visited:
+            result.append(node.val)  # 访问根节点
+        else:
+            stack.append((node, True))
+            if node.right:
+                stack.append((node.right, False))
+            if node.left:
+                stack.append((node.left, False))
+    return result
+```
+
+深度为2的树最多只能有 **7个节点**（即满二叉树），其结构如下：
+
+```
+        1
+      /   \
+     2     3
+    / \   / \
+   4   5 6   7
+```
+
+下面分别展示前序、中序、后序遍历的过程和结果：
+
+
+
+
+| 遍历方式 | 路径顺序               | 结果               |
+|----------|------------------------|--------------------|
+| 前序     | 根→左→右               | `[1,2,4,5,3,6,7]`  |
+| 中序     | 左→根→右               | `[4,2,5,1,6,3,7]`  |
+| 后序     | 左→右→根               | `[4,5,2,6,7,3,1]`  |
+
+
+
+
+
+
 ## 遍历二叉树
 
 1. 给你二叉树的根节点 root ，返回它节点值的 前序 遍历 [LC144](https://leetcode.cn/problems/binary-tree-preorder-traversal/description/)

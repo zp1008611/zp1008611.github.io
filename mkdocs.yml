@@ -28,7 +28,6 @@ nav:
         - 元启发式算法:
             - OROPT/or_metaheuristics/index.md
             - ALNS: OROPT/or_metaheuristics/ANLNS/README.md
-
         - Project:Cutting stock problem:
             - OROPT/or_project_cutting_stock_problem/index.md
         - Project:2DRP:
@@ -72,6 +71,7 @@ nav:
             - DL/READING/index.md
         - Project:NLP:
             - DL/dl_project_nlp/index.md
+            - NNLM: DL/dl_project_nlp/NNLM/README.md
         - Project:Forecasting:
             - DL/dl_project_forecasting/index.md
         - Project:Customer&Marketing:

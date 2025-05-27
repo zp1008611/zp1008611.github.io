@@ -20,6 +20,10 @@
 - 栈 stack=[]，入栈 stack.append(i)，出栈 stack.pop()
 - 匹配对(a,b)相消（如有效的括号），入栈的只能是第一个匹配点a，匹配点b用于判断匹配
 
+- 二叉树遍历：前中后对应根的遍历顺序，前（根左右），中（左根右），后（左右根）
+- 前序，根在前，result.append(node.val)在前面，中序，根在中，result.append(node.val)在中间，后序，根在后，result.append(node.val)在后面，递归入口都是`递归函数(root)`.
+- 前中后序遍历，用dfs，层序遍历用bfs
+
 ## 刷题优先级
 
 刷题顺序：dp->dfs&bfs->二叉树->树形dp->回溯，

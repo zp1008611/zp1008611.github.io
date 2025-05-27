@@ -4,6 +4,7 @@
 
 - https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture11.pdf
 - https://slds-lmu.github.io/seminar_nlp_ss20/convolutional-neural-networks-and-their-applications-in-nlp.html
+- https://www.cs.toronto.edu/~lczhang/321/notes/notes11.pdf
 - 池化层的理论基础：https://icml.cc/Conferences/2010/papers/638.pdf
 - Batch Normalization：https://arxiv.org/pdf/1502.03167
 
