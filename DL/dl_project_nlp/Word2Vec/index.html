@@ -1,0 +1,1515 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/DL/dl_project_nlp/Word2Vec/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Word2Vec - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#word2vec" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Word2Vec
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../OROPT/or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ML/supervised_learning/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ML
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLMs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLMs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LEETCODE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LEETCODE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MATH/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Math
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../RESUME_QandA/summary/Resume/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  面试八股
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../DEVELOPMENT/python_e/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  开发经验
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Teaching_Interview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  高中数学教资面试
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../OROPT/or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    运筹与优化
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../ML/supervised_learning/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    ML
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    DL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../RL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    RL
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../LLMs/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LLMs
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../LEETCODE/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    LEETCODE
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../MATH/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    Math
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../RESUME_QandA/summary/Resume/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    面试八股
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../../DEVELOPMENT/python_e/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    开发经验
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../Teaching_Interview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    高中数学教资面试
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="word2vec">Word2Vec<a class="headerlink" href="#word2vec" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 3115 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 10 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Distributed Representations of Words and Phrases and their Compositionality: https://arxiv.org/pdf/1310.4546</p>
+</li>
+<li>
+<p>https://web.stanford.edu/~jurafsky/slp3/slides/vector2.pdf</p>
+</li>
+<li>
+<p>https://web.stanford.edu/class/cs224n/readings/cs224n_winter2023_lecture1_notes_draft.pdf</p>
+</li>
+<li>
+<p>https://arxiv.org/pdf/1411.2738</p>
+</li>
+</ul>
+<p>Word2Vec的灵感来源于连续词袋模型（CBOW），首先先介绍一下CBOW</p>
+<h2 id="cbow">连续词袋模型（CBOW）<a class="headerlink" href="#cbow" title="Permanent link">&para;</a></h2>
+<h1 id="word2vec_1">word2vec参数学习详解<a class="headerlink" href="#word2vec_1" title="Permanent link">&para;</a></h1>
+<p>Xin Rong
+ronxin@umich.edu</p>
+<h2 id="_1">摘要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>近两年来，Mikolov等人提出的word2vec模型及应用引起了广泛关注。word2vec模型学习到的词向量表示被证明具有语义含义，并在各种自然语言处理任务中非常有用。随着越来越多的研究人员希望尝试word2vec或类似技术，我注意到目前缺乏全面详细解释词嵌入模型参数学习过程的资料，这使得非神经网络专家的研究人员难以理解此类模型的工作机制。</p>
+<p>本笔记提供了word2vec模型参数更新方程的详细推导和解释，包括原始的连续词袋（CBOW）和跳字（Skip-Gram）模型，以及层次Softmax和负采样等高级优化技术。在数学推导的同时，还提供了梯度方程的直观解释。</p>
+<p>在附录中，回顾了神经网络和反向传播的基础知识。我还创建了一个交互式演示wevi，以帮助直观理解模型。</p>
+<h2 id="1">1 连续词袋模型<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 单词上下文<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>我们从Mikolov等人（2013a）介绍的连续词袋模型（CBOW）的最简单版本开始。我们假设每个上下文只考虑一个词，这意味着模型将根据一个上下文词预测一个目标词，类似于二元语法模型。对于刚接触神经网络的读者，建议先阅读附录A，快速回顾重要概念和术语，然后再继续阅读。</p>
+<p>图1展示了简化上下文定义下的网络模型。在我们的设定中，词汇表大小为V，隐藏层大小为N。相邻层的单元是全连接的。输入是一个独热编码向量，这意味着对于给定的输入上下文词，在V个单元{x₁,⋯,x_V}中只有一个单元为1，其他单元均为0。</p>
+<p>输入层和输出层之间的权重可以用一个V×N矩阵W表示。W的每一行都是输入层相关词的N维向量表示v_w。形式上，W的第i行是v_w^T。给定一个上下文（一个词），假设x_k=1且对于k'≠k，x_k'=0，我们有：
+[ h = W^T x = W_{(k,·)}^T := v_{w_I}^T ] (1)
+这实际上是将W的第k行复制到h中，v_{w_I}是输入词w_I的向量表示。这意味着隐藏层单元的激活函数只是线性的（即直接将输入的加权和传递到下一层）。</p>
+<p>从隐藏层到输出层，有一个不同的权重矩阵W'={w'<em w_j="w_j">ij}，这是一个N×V矩阵。利用这些权重，我们可以为词汇表中的每个词计算一个分数u_j：
+[ u_j = v'</em>^T h ] (2)
+其中，v'<em j_="1">{w_j}是矩阵W'的第j列。然后，我们可以使用softmax（一种对数线性分类模型）来获得词的后验分布，这是一种多项式分布：
+[ p(w_j|w_I) = y_j = \frac{\exp(u_j)}{\sum</em> ] (3)
+其中，y_j是输出层第j个单元的输出。将（1）和（2）代入（3），我们得到：
+[ p(w_j|w_I) = \frac{\exp(v'}^V \exp(u_{j'})<em w_I="w_I">{w_j}^T v</em>^V \exp(v'})}{\sum_{j'=1<em j_="j'">{w</em> ] (4)}}^T v_{w_I})</p>
+<p>注意，v_w和v'_w是词w的两种表示。v_w来自输入-隐藏权重矩阵W的行，称为词w的“输入向量”；v'_w来自隐藏-输出矩阵W'的列，称为词w的“输出向量”。在后续分析中，我们将v_w称为词w的“输入向量”，v'_w称为词w的“输出向量”。</p>
+<h4 id="_2">隐藏层到输出层权重的更新方程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>现在我们推导该模型的权重更新方程。尽管实际计算不切实际（如下所述），但我们进行推导是为了深入了解这个未应用任何技巧的原始模型。关于反向传播的基础知识，请参见附录A。</p>
+<p>（单个训练样本的）训练目标是关于权重最大化（4）式，即在给定输入上下文词w_I的情况下，观察到实际输出词w_O（在输出层的索引为j<em>）的条件概率。
+[
+\begin{align</em>}
+\max p(w_O|w_I) &amp;= \max y_{j<em>} \quad (5) \
+&amp;= \max \log y_{j</em>} \quad (6) \
+&amp;= u_{j<em>} - \log \sum_{j'=1}^V \exp(u_{j'}) := -E \quad (7)
+\end{align</em>}
+]
+其中，E = -log p(w_O|w_I)是我们的损失函数（我们希望最小化E），j*是实际输出词在输出层中的索引。注意，这个损失函数可以理解为两个概率分布之间交叉熵度量的一个特例。</p>
+<p>现在我们推导隐藏层和输出层之间权重的更新方程。对E关于第j个单元的净输入u_j求导，得到：
+[
+\frac{\partial E}{\partial u_j} = y_j - t_j := e_j
+] (8)
+其中，t_j = 1(j=j*)，即当第j个单元是实际输出词时，t_j=1，否则t_j=0。注意，这个导数只是输出层的预测误差e_j。</p>
+<p>接下来，我们对w'_ij求导，得到隐藏层到输出层权重的梯度：
+[
+\frac{\partial E}{\partial w'_ij} = \frac{\partial E}{\partial u_j} \cdot \frac{\partial u_j}{\partial w'_ij} = e_j \cdot h_i
+] (9)</p>
+<p>因此，使用随机梯度下降，我们得到隐藏层到输出层权重的更新方程：
+[
+w'<em w_j="w_j">ij^{(new)} = w'_ij^{(old)} - \eta \cdot e_j \cdot h_i
+] (10)
+或者
+[
+v'</em> = v'}^{(new)<em w_j="w_j">{w_j}^{(old)} - \eta \cdot e_j \cdot h \quad \text{对于} \quad j=1,2,\cdots,V
+] (11)
+其中，η&gt;0是学习率，e_j = y_j - t_j，h_i是隐藏层的第i个单元；v'</em>是w_j的输出向量。注意，这个更新方程意味着我们必须遍历词汇表中的每个词，检查其输出概率y_j，并将y_j与其期望输出t_j（0或1）进行比较。如果y_j&gt;t_j（“高估”），则从v'<em w_I="w_I">{w_j}中减去隐藏向量h（即v</em>）的一部分，从而使v'<em w_I="w_I">{w_j}远离v</em>；如果y_j&lt;t_j（“低估”，仅当t_j=1时成立，即w_j=w_O），则向v'<em w_O="w_O">{w_O}添加一些h，从而使v'</em>。如果y_j非常接近t_j，那么根据更新方程，权重的变化将非常小。再次注意，v_w（输入向量）和v'_w（输出向量）是词w的两种不同向量表示。}更接近v_{w_I</p>
+<h4 id="_3">输入层到隐藏层权重的更新方程<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>在获得W'的更新方程后，我们现在转向W。我们对E关于隐藏层的输出求导，得到：
+[
+\frac{\partial E}{\partial h_i} = \sum_{j=1}^V \frac{\partial E}{\partial u_j} \cdot \frac{\partial u_j}{\partial h_i} = \sum_{j=1}^V e_j \cdot w'_ij := EH_i
+] (12)
+其中，h_i是隐藏层第i个单元的输出；u_j在（2）式中定义，是输出层第j个单元的净输入；e_j = y_j - t_j是输出层第j个词的预测误差。EH是一个N维向量，是词汇表中所有词的输出向量乘以其预测误差的加权和。</p>
+<p>接下来，我们应该对E关于W求导。首先，回想一下隐藏层对输入层的值进行线性计算。将（1）式中的向量符号展开，我们得到：
+[
+h_i = \sum_{k=1}^V x_k \cdot w_{ki}
+] (13)</p>
+<p>现在，我们可以对E关于W的每个元素求导，得到：
+[
+\frac{\partial E}{\partial w_{ki}} = \frac{\partial E}{\partial h_i} \cdot \frac{\partial h_i}{\partial w_{ki}} = EH_i \cdot x_k
+] (14)</p>
+<p>这相当于x和EH的张量积，即：
+[
+\frac{\partial E}{\partial W} = x \otimes EH = x EH^T
+] (15)
+从中我们得到一个V×N矩阵。由于x中只有一个分量是非零的，因此\frac{\partial E}{\partial W}中只有一行是非零的，该行的值是EH^T，一个N维向量。我们得到W的更新方程为：
+[
+v_{w_I}^{(new)} = v_{w_I}^{(old)} - \eta EH^T
+] (16)
+其中，v_{w_I}是W的一行，是唯一上下文词的“输入向量”，也是W中导数非零的唯一一行。W的所有其他行在这次迭代后将保持不变，因为它们的导数为零。</p>
+<p>直观地说，由于向量EH是词汇表中所有词的输出向量乘以其预测误差e_j = y_j - t_j的加权和，我们可以将（16）式理解为将词汇表中每个输出向量的一部分添加到上下文词的输入向量中。如果在输出层中，词w_j作为输出词的概率被高估（y_j&gt;t_j），那么上下文词w_I的输入向量将倾向于远离w_j的输出向量；相反，如果w_j作为输出词的概率被低估（y_j&lt;t_j），那么输入向量w_I将倾向于靠近w_j的输出向量；如果w_j的概率被相当准确地预测，那么它对w_I输入向量的移动影响将很小。w_I输入向量的移动由词汇表中所有向量的预测误差决定；预测误差越大，词对上下文词输入向量移动的影响就越显著。</p>
+<p>随着我们通过遍历训练语料库生成的上下文-目标词对来迭代更新模型参数，向量的影响将累积起来。我们可以想象，词w的输出向量被其共现邻居的输入向量“来回拉动”，就好像w的向量和其邻居的向量之间有物理绳子一样。类似地，一个输入向量也可以被视为被许多输出向量拉动。这种解释可以让我们联想到重力，或力导向的图布局。每条想象中的绳子的平衡长度与相关词对的共现强度以及学习率有关。经过多次迭代后，输入和输出向量的相对位置最终将稳定下来。</p>
+<h3 id="12">1.2 多词上下文<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>图2展示了多词上下文设置下的CBOW模型。在计算隐藏层输出时，CBOW模型不是直接复制输入上下文词的输入向量，而是取输入上下文词向量的平均值，并将输入-隐藏权重矩阵与平均向量的乘积作为输出。
+[
+h = \frac{1}{C} W^T (x_1 + x_2 + \cdots + x_C) = \frac{1}{C} (v_{w_1} + v_{w_2} + \cdots + v_{w_C})^T
+] (18)
+其中，C是上下文中的词数，w₁,⋯,w_C是上下文中的词，v_w是词w的输入向量。损失函数为：
+[
+\begin{align<em>}
+E &amp;= -\log p(w_O|w_{I,1},\cdots,w_{I,C}) \quad (19) \
+&amp;= -u_{j</em>} + \log \sum_{j'=1}^V \exp(u_{j'}) \quad (20) \
+&amp;= -v'<em j_="1">{w_O}^T \cdot h + \log \sum</em>^T \cdot h) \quad (21)
+\end{align*}
+]
+这与单词上下文模型的目标函数（7）式相同，只是h不同，如（18）式所定义，而不是（1）式。}^V \exp(v'_{w_j</p>
+<p>隐藏层到输出层权重的更新方程与单词上下文模型（11）式相同。我们在此复制：
+[
+v'<em w_j="w_j">{w_j}^{(new)} = v'</em> \quad j=1,2,\cdots,V
+] (22)}^{(old)} - \eta \cdot e_j \cdot h \quad \text{对于</p>
+<p>注意，对于每个训练实例，我们需要对隐藏层到输出层权重矩阵的每个元素应用此更新。</p>
+<p>输入层到隐藏层权重的更新方程与（16）式类似，不同之处在于现在我们需要对上下文中的每个词w_{I,c}应用以下方程：
+[
+v_{w_{I,c}}^{(new)} = v_{w_{I,c}}^{(old)} - \frac{1}{C} \cdot \eta \cdot EH^T \quad \text{对于} \quad c=1,2,\cdots,C
+] (23)
+其中，v_{w_{I,c}}是输入上下文中第c个词的输入向量；η是正的学习率；EH = \frac{\partial E}{\partial h_i}由（12）式给出。这个更新方程的直观理解与（16）式相同。</p>
+<h2 id="2">2 跳字模型<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>跳字模型由Mikolov等人（2013a,b）提出。图3展示了跳字模型。它与CBOW模型相反，目标词现在在输入层，上下文词在输出层。</p>
+<p>我们仍然使用v_{w_I}表示输入层唯一词的输入向量，因此隐藏层输出h的定义与（1）式相同，这意味着h只是复制（并转置）输入-隐藏权重矩阵W中与输入词w_I相关的行。我们在下面复制h的定义：
+[
+h = W_{(k,·)}^T := v_{w_I}^T
+] (24)</p>
+<p>在输出层，我们不是输出一个多项式分布，而是输出C个多项式分布。每个输出使用相同的隐藏-输出矩阵计算：
+[
+p(w_{c,j}=w_{O,c}|w_I) = y_{c,j} = \frac{\exp(u_{c,j})}{\sum_{j'=1}^V \exp(u_{j'})}
+] (25)
+其中，w_{c,j}是输出层第c个面板的第j个词；w_{O,c}是输出上下文中实际的第c个词；w_I是唯一的输入词；y_{c,j}是输出层第c个面板的第j个单元的输出；u_{c,j}是输出层第c个面板的第j个单元的净输入。由于输出层面板共享相同的权重，因此：
+[
+u_{c,j} = u_j = v'<em w_j="w_j">{w_j}^T \cdot h, \quad \text{对于} \quad c=1,2,\cdots,C
+] (26)
+其中，v'</em>取自隐藏-输出权重矩阵W'的一列。}是词汇表中第j个词w_j的输出向量，并且v'_{w_j</p>
+<p>参数更新方程的推导与单词上下文模型没有太大不同。损失函数变为：
+[
+\begin{align<em>}
+E &amp;= -\log p(w_{O,1},w_{O,2},\cdots,w_{O,C}|w_I) \quad (27) \
+&amp;= -\log \prod_{c=1}^C \frac{\exp(u_{c,j_c<sup>*})}{\sum_{j'=1}</sup>V \exp(u_{j'})} \quad (28) \
+&amp;= -\sum_{c=1}^C u_{j_c^</em>} + C \cdot \log \sum_{j'=1}^V \exp(u_{j'}) \quad (29)
+\end{align<em>}
+]
+其中，j_c^</em>是实际第c个输出上下文词在词汇表中的索引。</p>
+<p>我们对E关于输出层每个面板的每个单元的净输入u_{c,j}求导，得到：
+[
+\frac{\partial E}{\partial u_{c,j}} = y_{c,j} - t_{c,j} := e_{c,j}
+] (30)
+这是该单元的预测误差，与（8）式相同。为了符号简单，我们定义一个V维向量EI={EI₁,⋯,EI_V}为所有上下文词的预测误差之和：
+[
+EI_j = \sum_{c=1}^C e_{c,j}
+] (31)</p>
+<p>接下来，我们对E关于隐藏-输出矩阵W'求导，得到：
+[
+\frac{\partial E}{\partial w'<em c="1">ij} = \sum</em> = EI_j \cdot h_i
+] (32)}^C \frac{\partial E}{\partial u_{c,j}} \cdot \frac{\partial u_{c,j}}{\partial w'_ij</p>
+<p>因此，我们得到隐藏-输出矩阵W'的更新方程：
+[
+w'<em w_j="w_j">ij^{(new)} = w'_ij^{(old)} - \eta \cdot EI_j \cdot h_i
+] (33)
+或者
+[
+v'</em> \quad j=1,2,\cdots,V
+] (34)}^{(new)} = v'_{w_j}^{(old)} - \eta \cdot EI_j \cdot h \quad \text{对于</p>
+<p>这个更新方程的直观理解与（11）式相同，只是预测误差是输出层所有上下文词的总和</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 28, 2025 12:10:57 CST">May 28, 2025 12:10:57</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="May 28, 2025 12:10:57 CST">May 28, 2025 12:10:57</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../../javascripts/tablesort.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>
