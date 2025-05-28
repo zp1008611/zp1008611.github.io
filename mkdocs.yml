@@ -125,19 +125,24 @@ nav:
             - LEETCODE/bit_operation/README.md
         - 计算几何:
             - LEETCODE/computational_geometry/README.md
-        - Hot150:
+        - Hot100&150:
             - LEETCODE/hot150/README.md
         - HW机考实战:
             - LEETCODE/huawei/README.md   
     
     - Math:
-        - Math/index.md
+        - MATH/index.md
         - 图论:
-            - Math/Graph_theory/index.md
+            - MATH/Graph_theory/index.md
 
     - 面试八股:
-        - 抱佛脚版: 
-            - 面试问题总结: RESUME_QandA/summary/README.md
+        - 简历问题总结: RESUME_QandA/summary/Resume/README.md
+        - DL问题总结: RESUME_QandA/summary/DL/README.md
+
+    - 开发经验:
+        - Python: 
+            - DEVELOPMENT/python_e/index.md
+            - 虚拟环境配置: DEVELOPMENT/python_e/env_config/README.md
 
     - 高中数学教资面试:
         - Teaching_Interview/index.md
@@ -200,8 +205,8 @@ theme:
     
   icon: 
     repo: fontawesome/brands/github #右上角图标
-repo_name: zp1008611.github.io # 右上角的名
-repo_url: https://github.com/zp1008611/zp1008611.github.io.git # 右上角点击跳转的链接
+repo_name: zp1008611 # 右上角的名
+repo_url: https://github.com/zp1008611 # 右上角点击跳转的链接
 
 
 
