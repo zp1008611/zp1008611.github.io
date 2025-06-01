@@ -95,6 +95,8 @@ nav:
 
     - LLMs:
         - LLMs/index.md
+        - 效率优化:
+            - LLMs/efficiency_optimization/
 
 
     - LEETCODE:
