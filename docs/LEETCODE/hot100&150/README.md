@@ -77,27 +77,6 @@ for i in range(m,m+n):
 
 ## 动态规划
 
-## 回溯
-
-> 入栈的是(下一个处理的索引a，暂时结果)，循环：（出栈，先看暂时结果是否满足输出结果条件，不满足的话，则处理索引a对应的信息加入到暂时结果中，再将(下一个处理的索引b，暂时结果)入栈. 类似DFS把邻居存入栈
-
-1. 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。[LC17电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - 回溯，这里索引对应一个字符串
-    - 初始化一个栈 stack = [(0,[])]
-    - 循环：出栈，如果暂时结果满足结果条件(暂时结果数组长度==规定数组长度)，存入结果，并循环跳到下一个出栈元素，否则得到索引所有对应的值，分别加入暂时结果中，将(下一个索引，暂时结果)存入栈.
-
-
-2. 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。你可以按 任何顺序 返回答案。[LC77组合](https://leetcode.cn/problems/combinations/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    
-
-3. 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。[LC46全排列](https://leetcode.cn/problems/permutations/description/?envType=study-plan-v2&envId=top-interview-150)
-
-
-4. 给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。[LC78子集](https://leetcode.cn/problems/subsets/description/?envType=study-plan-v2&envId=top-100-liked)
-
-
 ## 图
 
 ### DFS
@@ -133,6 +112,16 @@ for i in range(m,m+n):
     - 根节点入队列，队列非空循环：（我们希望每次while循环时此时队列的节点就是同一层的），对于目前队列的节点进行for遍历，使用一个新列表vals存储值，然后节点的左右节点入队列（新进的节点不会影响for循环），for循环完毕后，同一层的节点遍历完成，将vals存入result数组中.
     - 注意要对空root进行特判
 
+3. 给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。初始状态下，所有 next 指针都被设置为 NULL。[LC116填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/)
+
+    - 层序遍历
+    - 找来一个队列queue，根节点先入队列，记录根节点，队列不为空时，对队列当前元素进行备份queue_copy，queue_copy和queue同时出左元素，当queue_copy不为空时，node的下一个元素就是queue的头元素，否则就是None
+
+4. 给定一个二叉树：
+填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL 。初始状态下，所有 next 指针都被设置为 NULL 。[LC117填充每个节点的下一个右侧节点指针II](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 层序遍历
+
 ### 前序遍历维护值
 
 1. 给定一个二叉树 root ，返回其最大深度。二叉树的 最大深度 是指从根节点到最远叶子节点的最长路径上的节点数。[LC104二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/?envType=study-plan-v2&envId=top-interview-150)
@@ -160,6 +149,11 @@ for i in range(m,m+n):
     - 前序遍历，节点的直径是左子树的最大深度+右子树的最大深度，递归函数返回该节点的最大深度
     - 注意这里直径的计算不一定经过根节点
 
+6. 给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。有效 二叉搜索树定义如下：节点的左子树只包含 小于 当前节点的数。节点的右子树只包含 大于 当前节点的数。所有左子树和右子树自身必须也是二叉搜索树。[LC98验证二叉树](https://leetcode.cn/problems/validate-binary-search-tree/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 前序遍历
+    - 注意有效二叉搜索树，左边“所有”节点小于根节点，右边所有节点大于根几点
+
 ### 数组 -> 二叉树
 
 1. 给定两个整数数组 preorder 和 inorder ，其中 preorder 是二叉树的先序遍历， inorder 是同一棵树的中序遍历，请构造二叉树并返回其根节点。[LC105从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/?envType=study-plan-v2&envId=top-interview-150)
@@ -183,6 +177,27 @@ for i in range(m,m+n):
 ### 中序遍历维护值
 
 1. 
+
+
+## 回溯
+
+> 入栈的是(下一个处理的索引a，暂时结果)，循环：（出栈，先看暂时结果是否满足输出结果条件，不满足的话，则处理索引a对应的信息加入到暂时结果中，再将(下一个处理的索引b，暂时结果)入栈. 类似DFS把邻居存入栈
+
+1. 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。[LC17电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 回溯，这里索引对应一个字符串
+    - 初始化一个栈 stack = [(0,[])]
+    - 循环：出栈，如果暂时结果满足结果条件(暂时结果数组长度==规定数组长度)，存入结果，并循环跳到下一个出栈元素，否则得到索引所有对应的值，分别加入暂时结果中，将(下一个索引，暂时结果)存入栈.
+
+
+2. 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。你可以按 任何顺序 返回答案。[LC77组合](https://leetcode.cn/problems/combinations/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    
+
+3. 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。[LC46全排列](https://leetcode.cn/problems/permutations/description/?envType=study-plan-v2&envId=top-interview-150)
+
+
+4. 给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。[LC78子集](https://leetcode.cn/problems/subsets/description/?envType=study-plan-v2&envId=top-100-liked)
 
 
 ## 栈
