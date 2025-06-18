@@ -26,6 +26,10 @@
 - 前序，根在前，result.append(node.val)在前面，中序，根在中，result.append(node.val)在中间，后序，根在后，result.append(node.val)在后面，递归入口都是`递归函数(root)`.
 - 前中后序遍历，用dfs，层序遍历用bfs
 - 如果二叉树增加一个节点对应某个性质就会发生改变，那么用前序遍历，性质操作（深度+1，判断相等）在子节点递归前面做
+- 二叉搜索树（BST）的中序遍历结果一定是一个有序数组
+- stack（栈）: stack = [], stack.append(val), stack.pop()
+- queue（队列）：queue = [],queue.append(val),queue.pop(0)
+- 优先队列
 
 ## 刷题优先级
 
