@@ -79,22 +79,6 @@
 
 ## 能力
 
-### 八股
 
-CNN
-
-RNN
-
-Transformer
-
-CLIP
-
-BLIP
-
-LLAVA
-
-DeepSeek
-
-Qwen
 
 
