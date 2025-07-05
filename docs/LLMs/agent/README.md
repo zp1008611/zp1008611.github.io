@@ -1,11 +1,25 @@
-# MCP（Model Context Protocol，模型上下文协议）
+# Agent
 
-## MCP协议概述  
+
+## Reference
+
+- https://lilianweng.github.io/posts/2023-06-23-agent/
+- https://medium.com/ai-cloud-lab/building-multi-agent-ai-app-with-googles-a2a-agent2agent-protocol-adk-and-mcp-a-deep-a94de2237200
+
+## 什么是agent
+
+## Agent Memory
+
+## Agent Planning
+
+## A2A，ADK，MCP
+
+### MCP（Model Context Protocol，模型上下文协议）
 
 **MCP（Model Context Protocol，模型上下文协议）** 是专为大语言模型设计的开源通信协议，旨在标准化模型与外部数据源、工具或服务的交互，使模型具备调用外部工具（如获取数据、执行操作）的能力。  
 
 
-## MCP协议与API调用的核心区别  
+MCP协议与API调用的核心区别  
 
 1. **上下文感知与会话状态管理**  
    - **MCP协议**：支持模型在多轮交互中保持上下文记忆，自动关联历史信息（如对话历史、用户偏好），提供个性化响应。  
@@ -22,17 +36,16 @@
      *例：用户请求“帮我订机票”，MCP可自动调用航班查询工具和支付接口，无需提前配置。*  
    - **API调用**：需预先定义接口，无法动态发现新工具，集成成本较高。  
 
-
-## MCP协议的意义  
+MCP协议的意义  
 
 类比USB-C接口统一设备连接标准，MCP为不同API创建了通用交互规范，解决了传统API调用中上下文割裂、集成僵化等问题，推动大语言模型与外部工具的高效协同。
 
 ![alt text](image.png)
 
 
-## MCP 协议的两种连接方式详解  
+MCP 协议的两种连接方式详解  
 
-### **一、SSE（Server-Sent Events）连接方式**  
+**一、SSE（Server-Sent Events）连接方式**  
 
 1. **基本原理**  
 SSE 是一种基于 HTTP 的单向通信协议，由服务端主动向客户端推送数据，客户端通过长连接持续接收数据流。其核心特点是：  
@@ -48,7 +61,7 @@ SSE 是一种基于 HTTP 的单向通信协议，由服务端主动向客户端�
 客户端（如浏览器、Python 程序）通过该 URL 发起请求，服务端响应后保持连接，并以文本流形式持续发送数据（如 JSON 格式的消息）。  
 
 
-### **二、stdio（标准输入输出）连接方式** 
+**二、stdio（标准输入输出）连接方式** 
  
 1. **基本原理**  
 stdio 利用操作系统的标准输入（stdin）和标准输出（stdout）流进行通信，本质是进程间通信的一种方式：  

@@ -115,4 +115,6 @@ Qwen系列模型是阿里巴巴推出的大语言模型，随着版本迭代，�
 
 ### RAG流程
 
+### Deepspeed ZeRO-1，ZeRO-2，ZeRO-3
 
+- https://huggingface.co/docs/trl/deepspeed_integration
