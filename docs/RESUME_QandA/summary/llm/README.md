@@ -1,16 +1,14 @@
 # 大模型面试
 
-
 ## 梯度消失
 
 ## Transformer
 
-
-
-
 ## 模型参数量计算
 
 ## 上下文处理能力
+
+- RoPe
 
 ## DEEPSEEK系列模型、Qwen系列模型
 
@@ -118,3 +116,4 @@ Qwen系列模型是阿里巴巴推出的大语言模型，随着版本迭代，�
 ### Deepspeed ZeRO-1，ZeRO-2，ZeRO-3
 
 - https://huggingface.co/docs/trl/deepspeed_integration
+

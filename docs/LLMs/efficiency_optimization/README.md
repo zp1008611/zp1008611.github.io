@@ -6,8 +6,9 @@
 - https://intro-llm.github.io/chapter/LLM-TAP-v2.pdf
 - https://medium.com/@florian_algo/model-quantization-1-basic-concepts-860547ec6aa9
 
+## 模型参数计算
 
-- KV 缓存
-- 模型量化
-- 训练显存计算
-- 低精度训练
+## 模型量化
+## 训练/推理显存计算
+## 混合精度训练
+## deepspeed
