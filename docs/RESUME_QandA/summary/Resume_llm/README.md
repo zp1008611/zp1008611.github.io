@@ -22,7 +22,7 @@
   - PPO训练流程：
     - 采样一批prompt，用actor对每个prompt生成response，用奖励函数对reponse打分，得到奖励r
     - 用价值模型（Critic）预测当前 prompt 的状态价值，使用 GAE 计算优势值
-    - 计算actor损失和critic损失
+    - 计算actor损失（希望actor产生更高奖励的response）和critic损失（希望critic的状态价值预测值更加准确）
     - 一般用神经网络表示actor和critic，使用反向传播更新actor和critic的参数
   - GRPO训练流程：
     - 从任务分布中采样一批 prompt，对每个 prompt，用 actor 生成 $N$ 个回复（$N \geq$ 2，形成 “回复组”）。用奖励模型对组内每个回复打分，得到奖励值 $r_1,r_2,\dots r_N$
@@ -72,8 +72,7 @@
   - cot
 
 
-- 介绍 LoRa，LoRa 的参数是怎么选的？
-- 介绍 DeepSpeed，介绍 Deepspeed ZeRO-1，ZeRO-2，ZeRO-3
+
 - Qwen2.5-Coder-7B-Instruct的特点？模型结构以及是怎么训练的？与其他qwen系列模型的区别是什么？
 - Qwen3-8B的特点？模型结构以及是怎么训练的？与其他qwen系列模型的区别是什么？
 
@@ -81,46 +80,138 @@
 ## 天池
 
 - RAG的流程
-- 介绍 Jina-Embeddings-v2，模型结构以及是怎么训练的？
-- 还有使用其他文本嵌入模型吗？
-- 介绍一下 Colpali，模型结构以及是怎么训练的？
+- 介绍 Jina-Embeddings-v2，模型结构以及是怎么训练的？还有使用其他文本嵌入模型吗？
+  - sentence-bert
+      - 输入：两个sentence
+      - 结构：双塔模型，共享参数，bert->pooling->u, bert->pooling-v, 
+      - output：
+          - 分类型：softmax(u,v,|u-v|)，训练数据：{(s_a1,s_b1,-1),(s_a2,s_b2,1),...}，1是相关，-1是不相关，优化损失函数是交叉熵
+          - 回归型：余弦相似度(u,v)，训练数据：{(s_a1,s_b1,余弦相似度),(s_a2,s_b2,余弦相似度),...}，优化损失函数是均方根误差
+          
+
+  - jina-embedding-v1
+      - 二元训练；子网络初始化为T5；损失函数
+      - 三元组训练；子网络初始化为二元训练后的模型；损失函数
+
+  - jina-embedding-v2
+      - 预训练修改后的 BERT；注意力机制修改为 ALiBi 注意力机制，使模型能处理长序列；损失函数：
+      - 二元训练；子网络初始化为修改后的bert；损失函数：
+      - 三元组训练；子网络初始化为二元训练后的模型；损失函数：
+
 - 向量库使用的是什么？与其他向量库的区别？
 - 有什么方法创建向量索引？
-- 介绍 DenseRetrival
 - 密集检索与稀疏检索、混合检索的区别
+- 介绍一下 Colpali，模型结构以及是怎么训练的？
 - 提示词是怎么写的？
 - Qwen2.5-VL 的特点？模型结构以及是怎么训练的？与其他多模态模型的区别是什么？
+
 
 ## agent
 
 - 每个agent的输入和输出是什么？
+
+
+各模块通过 LangGraph 的工作流定义形成有序执行逻辑，核心是 “生成 - 分析 - 优化 - 迭代” 的闭环，具体流程如下：
+
+1. 初始启动：工作流从 task_generation_node（任务生成）开始，作为入口点。
+2. 单向流程（首次执行）：
+    - task_generation_node → task_dependency_node：生成任务后，立即分析任务依赖；
+    - task_dependency_node → task_scheduler_node：基于依赖生成初始进度计划；
+    - task_scheduler_node → task_allocation_node：根据进度计划分配团队成员；
+    - task_allocation_node → risk_assessment_node：评估当前计划的风险。
+3. 迭代优化（循环流程）：
+    - risk_assessment_node → router（路由节点）：风险评估后，由路由节点判断是否继续优化；
+        - 若未达最大迭代次数：路由到insight_generation_node（生成优化建议）；
+        - 若达到最大迭代次数或风险已显著降低：路由到END（终止流程）；否则回到insight_generation_node
+    - insight_generator → task_scheduler_node：生成优化建议后，回到进度计划节点，基于建议重新调度任务，开始下一轮迭代（重复 “调度→分配→风险评估→路由” 流程）。
+
+- tasks : List, [(任务编号,任务名称，任务描述，完成该任务需要的时间),...]
+- dependencies ：List，[(任务A，[任务A完成后才可开始的任务B，任务A完成后才可开始的任务C])]
+- schedule : List, [(任务，任务开始时间，任务结束时间)]
+- task_allocations: List, [(任务，任务所分配的人员)]
+- risks: List, [(任务，风险评分)]
+- project_risk_score：int，项目风险评分
+- insight_generator：string，项目改进建议
+
+
+
 - 介绍一下每一个模块的prompt怎么写的？
-- 什么是 agent？
-- Agent Memory
-- Agent Planning
-- A2A，ADK，MCP
+
+  - 输入
+    - 项目描述：比如我要做一个关于宠物店预约管理的app，工期是1个月
+    - 人员情况：产品策划，前端，后端
+
+  - 任务生成agent：根据给定的项目描述，提取出可执行、现实的任务，并按照工期估计任务执行的大概天数；若任务超过5天，需拆分为更小的独立子任务
+
+  - 依赖关系分析agent：为每个任务确定“必须先完成的前置任务”以及“依赖该任务完成得后续任务”
+
+  - 任务调度节点：基于任务、依赖、历史洞察和之前的调度，为每个任务分配开始/结束天数（需尊重依赖）；
+
+  - 任务分配节点：根据任务、调度、团队成员技能和可用性分配任务；确保成员无重叠任务，平衡工作量；遵循“一人一次一任务”约束，利用历史洞察优化分配。
+
+
+  - 风险评估节点：分析当前分配、调度和风险，识别改进点（如瓶颈、资源冲突、高风险任务）；给予风险评分（0-10）；
+  
+  - 提供建议节点：给予分配建议，并回到任务调度节点
+
+  - router节点：若未达最大迭代次数：路由到insight_generation_node（生成优化建议）；若达到最大迭代次数或风险已显著降低：路由到END（终止流程）；否则回到insight_generation_node
+
+  - 输出：字典对象，键是“任务”，值是列表[任务执行者，开始时间，结束时间]
+
+
+
+
+
+
 
 
 ## 八股
 
+- 介绍一下有什么优化器？
 - 模型参数如何计算？
 - 模型训练/推理显存如何计算？
-- 介绍一下有什么优化器？
+- Lora训练显存占用分析
+- 大模型训练节约显存的方法？
+- 介绍 LoRa，LoRa 的参数是怎么选的？
+- 介绍 DeepSpeed，介绍 Deepspeed ZeRO-1，ZeRO-2，ZeRO-3
 - 介绍 transformer，和 rnn，cnn的区别
 - 介绍 Tokenizer 方法
+- 手撕 BPE
 - 介绍 embedding 方法
 - 介绍 位置编码方法，固定位置编码（正余弦绝对位置编码），相对位置编码（旋转位置编码 RoPE）
 - 介绍 残差连接
 - 介绍 batch normalize， layer normlize，
 - mask 的作用
-- 激活函数有哪些？
+- 激活函数有哪些？范围是多少？导数是多少？
+- 什么是梯度消失？
+- 哪些激活函数容易出现梯度消失的情况？
+- lstm，transformer如何解决梯度消失的问题？
 - 损失函数有哪些？
-- decoding 方法有哪些？
+  - 对比学习
+    - InfoNCE loss
+    - Contrastive Loss
+  - 三元loss
+    - Triplet Loss
+  - 回归
+    - RMSE
+  - 分类
+    - cross entropy
+- transformer decoding 方法有哪些？
+- 手撕 beam search
+- 如何缓解LLM复读机现象？
 - 介绍 deepseek 系列模型，模型结构以及是怎么训练的？
 - 介绍 MOE 模型，和 dense模型的区别
 - 简述 PPO，DPO，GRPO
 - 介绍 Qwen 系列模型，模型结构以及是怎么训练的？
-- 为什么大部分大模型是decoder-only?
-- 介绍 CLIP，BLIP，LLAVA，Qwen2.5-VL，模型结构以及是怎么训练的？
-- 手撕 PPO，DPO，GRPO的 loss
+- 为什么大部分大模型是 decoder-only?
+- 介绍 CLIP，BLIP-2，LLAVA，Qwen-VL，Qwen2.5-VL模型结构以及是怎么训练的？
+  - Qwen-VL: 先冻大模型，对齐编码器；全部解冻，多任务训练；冻编码器，有监督微调大模型
+- 手撕 PPO，DPO，GRPO 的 loss
 - 手撕 MHA，MLA，GQA
+- 手撕 MOE
+- 什么是 agent？
+  - agent = 大模型+planning+memory+工具使用
+- Agent Memory
+- Agent Planning
+- A2A，ADK，MCP
+- Function calling 是如何训练的？

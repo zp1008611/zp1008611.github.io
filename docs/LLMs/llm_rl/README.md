@@ -8,7 +8,9 @@
 
 - https://mloasisblog.com/blog/ML/AttentionOptimization#pagedattentionvllm
 
+- https://anukriti-ranjan.medium.com/preference-tuning-llms-ppo-dpo-grpo-a-simple-guide-135765c87090
 
+- https://zhuanlan.zhihu.com/p/642569664
 
 ## 预训练
 

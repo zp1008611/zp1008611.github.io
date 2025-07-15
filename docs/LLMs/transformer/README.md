@@ -1,4 +1,4 @@
-# Transformer
+   # Transformer
 
 
 ## Reference
@@ -10,7 +10,10 @@
 - https://medium.com/@mariaprokofieva/attention-in-transformers-residual-connection-layer-a-shortcut-that-makes-it-work-165b52566167
 - https://medium.com/@sachinsoni600517/layer-normalization-in-transformer-1a2efbff8b85
 - https://medium.com/@joaolages/kv-caching-explained-276520203249
-
+- https://medium.com/nlplanet/two-minutes-nlp-most-used-decoding-methods-for-language-models-9d44b2375612
+- https://zhuanlan.zhihu.com/p/56382372
+- https://mp.weixin.qq.com/s/j5J2qRCNDa7NTOHirx4kvA
+- https://www.zhihu.com/tardis/zm/art/647109286?source_id=1003
 
 ![alt text](image-1.png)
 
@@ -437,9 +440,15 @@ $$
 总之，层归一化在 Transformer 架构中提供了一种更合理、更有效的方法，确保即使存在填充，数据也能被准确归一化，从而提升模型的性能和稳定性.   
 
 
-
 ## Encoder-Decoder
+
+encoder的输出作为decoder第二个MHA的key和value，decoder的第一个masked MHA的输出是第二个MHA的query
 
 ## 解码（Decoding）
 
 ## KV Cache
+
+
+
+
+## MHA，MQA，GQA，MLA
