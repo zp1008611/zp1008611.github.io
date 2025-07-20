@@ -735,8 +735,6 @@
       
         
       
-        
-      
     
     
     
@@ -1223,104 +1221,301 @@
 
 <h1 id="llm">llm面试问题总结<a class="headerlink" href="#llm" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 849 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 3 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 3112 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 10 分钟</p>
 </div>
-<h2 id="_1">实习<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="_2">八股<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<h3 id="_3">项目细节<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h2 id="nl2sql">NL2SQL<a class="headerlink" href="#nl2sql" title="Permanent link">&para;</a></h2>
+<ul>
+<li>为什么要做难度分类？如何确定 sql 难度？配比率是怎么确定的？</li>
+<li>难度分类的核心目的是平衡训练数据的分布，避免模型因过度拟合简单样本而在复杂场景下泛化能力不足</li>
+<li>难度分级prompt<ul>
+<li>简单：select 指定字段，where 简单条件，简单排序</li>
+<li>中等：简单基础上，加上聚合函数 Group By，范围查询 BETWEEN... AND，多表关联 JOIN</li>
+<li>复杂：子查询</li>
+</ul>
+</li>
+<li>
+<p>该配比通过多次微调测试得到，测试过的配比率有 5:3:2, 3:2:1, 4:4:2</p>
+</li>
+<li>
+<p>只做有监督微调不行吗，为什么还需要使用强化学习微调？</p>
+</li>
+<li>
+<p>SFT 依赖标注数据的分布，生成的回应受训练数据的影响，在nl2sql任务中，一个自然语言查询可能对应多个语法正确的SQL，但有部分SQL虽然能执行，却存在冗余字段和多余的关联，SFT仅能学到“学到符合训练数据模式”的SQL，却无法判断“哪个SQL更优”（如结果更匹配）。而 RL 通过奖励函数（如 “结果精准度”）可引导模型偏好更优解。</p>
+</li>
+<li>
+<p>对于项目，只做有监督微调会出现什么情况？</p>
+</li>
+<li>
+<p>复杂查询容易失效：在处理多表连接、子查询等场景时，生成的 SQL 结构错误，比如多表连接，本来需要查询的字段来自表A，然后连接的表是表B，但是SFT给出的结果中，from和join后的表可能会调换</p>
+</li>
+<li>
+<p>为什么不用 PPO 和 DPO，而是用GRPO？</p>
+</li>
+<li>PPO，DPO的数据构建需要有chosen response和rejected response，数据构造比较麻烦</li>
+<li>PPO 需要同时训练策略模型（Actor）和价值模型（Critic），训练复杂度大，GRPO无需训练价值模型</li>
+<li>PPO训练流程：<ul>
+<li>采样一批prompt，用actor对每个prompt生成response，用奖励函数对reponse打分，得到奖励r</li>
+<li>用价值模型（Critic）预测当前 prompt 的状态价值，使用 GAE 计算优势值</li>
+<li>计算actor损失（希望actor产生更高奖励的response）和critic损失（希望critic的状态价值预测值更加准确）</li>
+<li>一般用神经网络表示actor和critic，使用反向传播更新actor和critic的参数</li>
+</ul>
+</li>
+<li>
+<p>GRPO训练流程：</p>
+<ul>
+<li>从任务分布中采样一批 prompt，对每个 prompt，用 actor 生成 <span class="arithmatex">\(N\)</span> 个回复（<span class="arithmatex">\(N \geq\)</span> 2，形成 “回复组”）。用奖励模型对组内每个回复打分，得到奖励值 <span class="arithmatex">\(r_1,r_2,\dots r_N\)</span></li>
+<li>对每个回复组，计算组内平均奖励，计算每个回复的 “相对优势”</li>
+<li>计算actor损失</li>
+<li>一般用神经网络表示actor，使用反向传播更新actor的参数</li>
+</ul>
+</li>
+<li>
+<p>PPO的奖励函数是根据对应的数据集训练得到的，一般用神经网络表示，损失函数为<span class="arithmatex">\(-\log(\sigma(s_{w}-s_{l}))\)</span>，chosen response评分值-rejected response评分值，取sigmoid，再取-log，-log(sigma(d))是单调减函数，d为负数时，损失函数很大</p>
+</li>
+<li>
+<p>GRPO的损失函数可以自定义</p>
+</li>
+<li>
+<p>奖励函数是怎么设计的，为什么要这样设计？</p>
+</li>
+</ul>
+<p>每个部分的奖励求和，然后加权</p>
 <ol>
-<li><strong>数据去重标准</strong><br />
-   在法律领域的NL2SQL任务中，我制定了三级去重标准：  </li>
-<li><strong>语义级</strong>：使用Sentence-BERT计算查询语句相似度（阈值≥0.95），过滤同义改写的查询（如“如何起诉”与“起诉流程”）。  </li>
-<li><strong>结构级</strong>：通过SQL解析器提取查询结构（如SELECT-FROM-WHERE子句），排除仅字段名不同但逻辑相同的SQL（如<code>WHERE id=1</code>与<code>WHERE id=2</code>）。  </li>
+<li>格式奖励（format，权重 1.0），评估目标：确保生成内容符合<code>&lt;reasoning&gt;</code>（推理过程）和<code>&lt;sql&gt;</code>（SQL 语句）的结构化格式，便于后续解析和执行。严格检查内容是否包含<code>&lt;reasoning&gt;...&lt;/reasoning&gt;</code>和<code>&lt;sql&gt;...&lt;/sql&gt;</code>标签。</li>
+<li>推理质量奖励（reasoning，权重 0.7），评估目标：评估<reasoning>部分的合理性，鼓励模型生成逻辑清晰、步骤明确、关联数据库 schema 的推理过程。多因素评分：长度：推理内容越长（如 <span class="arithmatex">\(\geq 50\)</span> 词）得分越高（最高 0.2）；步骤性：包含 “第一步”“然后” 等步骤词得分更高（最高 0.15）；schema 关联：提及数据库中真实表名、列名越多，得分越高（最高 0.3）。</li>
 <li>
-<p><strong>业务级</strong>：结合法律专家建议，保留具有法律语义差异的相似查询（如“合同无效”与“合同可撤销”）。<br />
-<em>成果</em>：清洗后数据集减少32%冗余，模型训练速度提升25%。</p>
+<p>SQL 正确性奖励（sql_correctness，权重 1.2），评估目标：评估生成 SQL 的语法正确性、执行有效性及结果与 “黄金 SQL”（参考标准答案）的一致性。执行成功，给予基础奖励，比较两者的查询结果（行数、列名、数据内容）：完全匹配：最高奖励；部分匹配：通过行列交集比例计算内容相似度，按比例给予奖励。若执行报错，根据错误类型给分，比如语法错误奖励为0，但是数据格式错误，则给0.2奖励，因为可能只是传的数值有问题，语法没问题</p>
 </li>
 <li>
-<p><strong>难度配比策略</strong><br />
-   采用三维度难度评估体系：  </p>
-</li>
-<li><strong>查询复杂度</strong>：基于SQL嵌套层数、聚合函数数量、JOIN表数量划分L1-L5级。  </li>
-<li><strong>领域知识深度</strong>：普通查询（如“法条查询”）vs 复合查询（如“结合XX法和XX条例的判决案例”）。  </li>
-<li>
-<p><strong>数据稀缺性</strong>：低频法律场景（如“海事仲裁”）数据占比提升至20%。<br />
-<em>方法</em>：使用分层抽样，确保各难度区间F1分数均衡提升。</p>
+<p>评价指标分数是怎么计算的？</p>
 </li>
 <li>
-<p><strong>One-Shot CoT Prompt设计</strong>  </p>
+<p>等价匹配：两个sql结构等价，则EM为1，所有sql的EM求平均数为总EM</p>
 </li>
-<li><strong>设计思路</strong>：参考法律推理的三段论（大前提-小前提-结论），构建“法条引用→事实分析→SQL生成”的思维链模板。  </li>
+<li>执行匹配：两个sql执行结果是否匹配，完全匹配 EX为1，不完全匹配按重合度计算，所有sql的EX求平均数为总EX</li>
 <li>
-<p><strong>验证方法</strong>：  </p>
+<p>总score为0.3<em> EM + 0.7</em> EX</p>
+</li>
+<li>
+<p>有监督微调的训练数据是什么？</p>
+</li>
+<li>
+<p>{"prompt":xxxx,"sql":xxx}</p>
+</li>
+<li>
+<p>GRPO微调的训练数据是什么？</p>
+</li>
+<li>
+<p>试了两种，sft训练数据中生成结果评分较低对应的数据，sft训练数据，我做的选择数据集大小较小的，加快训练速度</p>
+</li>
+<li>
+<p>有监督微调的prompt怎么写的？</p>
+</li>
+<li>角色设定：sql大师，根据给定的查询给出对应的sql代码</li>
+<li>
+<p>输出格式要求：输出sql</p>
+</li>
+<li>
+<p>GRPO的prompt怎么写的？</p>
+</li>
+<li>角色设定：sql大师，根据给定的查询给出对应的sql代码</li>
+<li>示例：cot示例，三个难度各一个示例</li>
+<li>
+<p>输出格式要求：推理包含在reasoning标签中，sql包含在sql标签中</p>
+</li>
+<li>
+<p>有监督微调的训练时间大概多少？</p>
+</li>
+<li>
+<p>单机8卡，48小时</p>
+</li>
+<li>
+<p>GRPO的训练时间大概多少？</p>
+</li>
+<li>
+<p>单机8卡，56小时</p>
+</li>
+<li>
+<p>介绍 有哪些提示词工程技术？</p>
+</li>
+<li>
+<p>cot</p>
+</li>
+<li>
+<p>Qwen2.5-Coder-7B-Instruct的特点？模型结构以及是怎么训练的？与其他qwen系列模型的区别是什么？</p>
+</li>
+<li>Qwen3-8B的特点？模型结构以及是怎么训练的？与其他qwen系列模型的区别是什么？</li>
+</ol>
+<h2 id="_1">天池<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li>对照组：普通指令微调（无思维链），模型在复杂查询上错误率42%。  </li>
-<li>实验组：One-Shot CoT微调，错误率降至28%（尤其在需要跨表关联的查询中提升显著）。<br />
-<em>案例</em>：对“同时涉及商标法和反不正当竞争法的案例查询”，思维链引导模型正确关联两个法律表，准确率从15%提升至62%。</li>
-</ul>
-</li>
+<li>RAG的流程</li>
+<li>介绍 Jina-Embeddings-v2，模型结构以及是怎么训练的？还有使用其他文本嵌入模型吗？</li>
 <li>
-<p><strong>训练数据集量级调整</strong>  </p>
-</li>
-<li><strong>调整依据</strong>：  <ul>
-<li>观察验证集上的Loss曲线，当Loss不再下降但未过拟合时，增加20%数据量。  </li>
-<li>使用主动学习筛选高不确定性样本（如模型预测置信度&lt;0.6的查询）。  </li>
-</ul>
-</li>
-<li>
-<p><strong>效果判断</strong>：  </p>
+<p>sentence-bert</p>
 <ul>
-<li>引入“难度覆盖度”指标（各难度级别查询的准确率方差），理想方差&lt;0.15。  </li>
-<li>最终数据集从8k扩展至12k时，复杂查询（L4-L5）准确率提升18%。</li>
+<li>输入：两个sentence</li>
+<li>结构：双塔模型，共享参数，bert-&gt;pooling-&gt;u, bert-&gt;pooling-v, </li>
+<li>output：<ul>
+<li>分类型：softmax(u,v,|u-v|)，训练数据：{(s_a1,s_b1,-1),(s_a2,s_b2,1),...}，1是相关，-1是不相关，优化损失函数是交叉熵</li>
+<li>回归型：余弦相似度(u,v)，训练数据：{(s_a1,s_b1,余弦相似度),(s_a2,s_b2,余弦相似度),...}，优化损失函数是均方根误差</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
-<p><strong>多维度奖励函数设计</strong>  </p>
-</li>
-<li><strong>新增维度</strong>：  <ul>
-<li><strong>法律合规性</strong>：通过法律知识库验证生成SQL是否违反强制性规定（如“不得查询未公开的个人隐私数据”）。  </li>
-<li><strong>查询效率</strong>：使用执行计划分析工具，奖励执行时间≤500ms的SQL（权重0.2）。  </li>
+<p>jina-embedding-v1</p>
+<ul>
+<li>二元训练；子网络初始化为T5；损失函数</li>
+<li>三元组训练；子网络初始化为二元训练后的模型；损失函数</li>
 </ul>
 </li>
 <li>
-<p><strong>协同机制</strong>：采用加权求和<code>R = 0.5R_match + 0.3R_legal + 0.2R_efficiency</code>，通过强化学习动态调整权重。</p>
-</li>
-<li>
-<p><strong>GRPO微调 vs 有监督微调</strong>  </p>
-</li>
-<li><strong>流程差异</strong>：  <ul>
-<li>有监督：固定数据集迭代训练，缺乏实时反馈。  </li>
-<li>GRPO：通过奖励模型实时评估生成SQL，使用策略梯度更新生成器。  </li>
+<p>jina-embedding-v2</p>
+<ul>
+<li>预训练修改后的 BERT；注意力机制修改为 ALiBi 注意力机制，使模型能处理长序列；损失函数：</li>
+<li>二元训练；子网络初始化为修改后的bert；损失函数：</li>
+<li>三元组训练；子网络初始化为二元训练后的模型；损失函数：</li>
 </ul>
 </li>
-<li><strong>效果对比</strong>：<br />
-     | 指标         | 有监督微调 | GRPO微调 |
-     |--------------|------------|----------|
-     | 复杂查询准确率 | 58%        | 73%      |
-     | 平均奖励分数   | 0.62       | 0.85     |</li>
 <li>
-<p><strong>难点</strong>：奖励函数的稀疏性导致训练不稳定，通过引入课程学习（从简单查询到复杂查询逐步训练）解决。</p>
+<p>向量库使用的是什么？与其他向量库的区别？</p>
+</li>
+<li>有什么方法创建向量索引？</li>
+<li>密集检索与稀疏检索、混合检索的区别</li>
+<li>介绍一下 Colpali，模型结构以及是怎么训练的？</li>
+<li>提示词是怎么写的？</li>
+<li>Qwen2.5-VL 的特点？模型结构以及是怎么训练的？与其他多模态模型的区别是什么？</li>
+</ul>
+<h2 id="agent">agent<a class="headerlink" href="#agent" title="Permanent link">&para;</a></h2>
+<ul>
+<li>每个agent的输入和输出是什么？</li>
+</ul>
+<p>各模块通过 LangGraph 的工作流定义形成有序执行逻辑，核心是 “生成 - 分析 - 优化 - 迭代” 的闭环，具体流程如下：</p>
+<ol>
+<li>初始启动：工作流从 task_generation_node（任务生成）开始，作为入口点。</li>
+<li>单向流程（首次执行）：<ul>
+<li>task_generation_node → task_dependency_node：生成任务后，立即分析任务依赖；</li>
+<li>task_dependency_node → task_scheduler_node：基于依赖生成初始进度计划；</li>
+<li>task_scheduler_node → task_allocation_node：根据进度计划分配团队成员；</li>
+<li>task_allocation_node → risk_assessment_node：评估当前计划的风险。</li>
+</ul>
 </li>
 <li>
-<p>评估函数</p>
+<p>迭代优化（循环流程）：</p>
+<ul>
+<li>risk_assessment_node → router（路由节点）：风险评估后，由路由节点判断是否继续优化；<ul>
+<li>若未达最大迭代次数：路由到insight_generation_node（生成优化建议）；</li>
+<li>若达到最大迭代次数或风险已显著降低：路由到END（终止流程）；否则回到insight_generation_node</li>
+</ul>
+</li>
+<li>insight_generator → task_scheduler_node：生成优化建议后，回到进度计划节点，基于建议重新调度任务，开始下一轮迭代（重复 “调度→分配→风险评估→路由” 流程）。</li>
+</ul>
+</li>
+<li>
+<p>tasks : List, [(任务编号,任务名称，任务描述，完成该任务需要的时间),...]</p>
+</li>
+<li>dependencies ：List，[(任务A，[任务A完成后才可开始的任务B，任务A完成后才可开始的任务C])]</li>
+<li>schedule : List, [(任务，任务开始时间，任务结束时间)]</li>
+<li>task_allocations: List, [(任务，任务所分配的人员)]</li>
+<li>risks: List, [(任务，风险评分)]</li>
+<li>project_risk_score：int，项目风险评分</li>
+<li>
+<p>insight_generator：string，项目改进建议</p>
+</li>
+<li>
+<p>介绍一下每一个模块的prompt怎么写的？</p>
+</li>
+<li>
+<p>输入</p>
+<ul>
+<li>项目描述：比如我要做一个关于宠物店预约管理的app，工期是1个月</li>
+<li>人员情况：产品策划，前端，后端</li>
+</ul>
+</li>
+<li>
+<p>任务生成agent：根据给定的项目描述，提取出可执行、现实的任务，并按照工期估计任务执行的大概天数；若任务超过5天，需拆分为更小的独立子任务</p>
+</li>
+<li>
+<p>依赖关系分析agent：为每个任务确定“必须先完成的前置任务”以及“依赖该任务完成得后续任务”</p>
+</li>
+<li>
+<p>任务调度节点：基于任务、依赖、历史洞察和之前的调度，为每个任务分配开始/结束天数（需尊重依赖）；</p>
+</li>
+<li>
+<p>任务分配节点：根据任务、调度、团队成员技能和可用性分配任务；确保成员无重叠任务，平衡工作量；遵循“一人一次一任务”约束，利用历史洞察优化分配。</p>
+</li>
+<li>
+<p>风险评估节点：分析当前分配、调度和风险，识别改进点（如瓶颈、资源冲突、高风险任务）；给予风险评分（0-10）；</p>
+</li>
+<li>
+<p>提供建议节点：给予分配建议，并回到任务调度节点</p>
+</li>
+<li>
+<p>router节点：若未达最大迭代次数：路由到insight_generation_node（生成优化建议）；若达到最大迭代次数或风险已显著降低：路由到END（终止流程）；否则回到insight_generation_node</p>
+</li>
+<li>
+<p>输出：字典对象，键是“任务”，值是列表[任务执行者，开始时间，结束时间]</p>
 </li>
 </ol>
-<h2 id="_4">项目<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h3 id="_5">八股<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<h3 id="_6">项目细节<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p>每个agent的作用</p>
+<h2 id="_2">八股<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>介绍一下有什么优化器？</li>
+<li>模型参数如何计算？</li>
+<li>模型训练/推理显存如何计算？</li>
+<li>Lora训练显存占用分析</li>
+<li>大模型训练节约显存的方法？</li>
+<li>介绍 LoRa，LoRa 的参数是怎么选的？</li>
+<li>介绍 DeepSpeed，介绍 Deepspeed ZeRO-1，ZeRO-2，ZeRO-3</li>
+<li>介绍 transformer，和 rnn，cnn的区别</li>
+<li>介绍 Tokenizer 方法</li>
+<li>手撕 BPE</li>
+<li>介绍 embedding 方法</li>
+<li>介绍 位置编码方法，固定位置编码（正余弦绝对位置编码），相对位置编码（旋转位置编码 RoPE）</li>
+<li>介绍 残差连接</li>
+<li>介绍 batch normalize， layer normlize，</li>
+<li>mask 的作用</li>
+<li>激活函数有哪些？范围是多少？导数是多少？</li>
+<li>什么是梯度消失？</li>
+<li>哪些激活函数容易出现梯度消失的情况？</li>
+<li>lstm，transformer如何解决梯度消失的问题？</li>
+<li>损失函数有哪些？</li>
+<li>对比学习<ul>
+<li>InfoNCE loss</li>
+<li>Contrastive Loss</li>
+</ul>
 </li>
-<li>
-<p>prompt怎么写的？</p>
+<li>三元loss<ul>
+<li>Triplet Loss</li>
+</ul>
 </li>
-</ol>
-<h2 id="_7">比赛<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<h3 id="_8">八股<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>嵌入模型</p>
-<h3 id="_9">项目细节<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<h2 id="_10">能力<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<li>回归<ul>
+<li>RMSE</li>
+</ul>
+</li>
+<li>分类<ul>
+<li>cross entropy</li>
+</ul>
+</li>
+<li>transformer decoding 方法有哪些？</li>
+<li>手撕 beam search</li>
+<li>如何缓解LLM复读机现象？</li>
+<li>介绍 deepseek 系列模型，模型结构以及是怎么训练的？</li>
+<li>介绍 MOE 模型，和 dense模型的区别</li>
+<li>简述 PPO，DPO，GRPO</li>
+<li>介绍 Qwen 系列模型，模型结构以及是怎么训练的？</li>
+<li>为什么大部分大模型是 decoder-only?</li>
+<li>介绍 CLIP，BLIP-2，LLAVA，Qwen-VL，Qwen2.5-VL模型结构以及是怎么训练的？</li>
+<li>Qwen-VL: 先冻大模型，对齐编码器；全部解冻，多任务训练；冻编码器，有监督微调大模型</li>
+<li>手撕 PPO，DPO，GRPO 的 loss</li>
+<li>手撕 MHA，MLA，GQA</li>
+<li>手撕 MOE</li>
+<li>什么是 agent？</li>
+<li>agent = 大模型+planning+memory+工具使用</li>
+<li>Agent Memory</li>
+<li>Agent Planning</li>
+<li>A2A，ADK，MCP</li>
+<li>Function calling 是如何训练的？</li>
+</ul>
 
 
 
@@ -1343,7 +1538,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 4, 2025 17:51:20 CST">July 4, 2025 17:51:20</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 15, 2025 11:34:19 CST">July 15, 2025 11:34:19</span>
   </span>
 
     

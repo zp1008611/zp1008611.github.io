@@ -735,8 +735,6 @@
       
         
       
-        
-      
     
     
     
@@ -1223,12 +1221,80 @@
 
 <h1 id="mixture-of-experts-moes">Mixture of Experts (MOEs)<a class="headerlink" href="#mixture-of-experts-moes" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间不到 1 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 1314 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 4 分钟</p>
 </div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
 <li>https://huggingface.co/blog/moe</li>
+<li>https://spaces.ac.cn/archives/10699</li>
+<li>https://spaces.ac.cn/archives/10735</li>
+<li>https://apxml.com/zh/courses/how-to-build-a-large-language-model/chapter-14-advanced-architectural-modifications/load-balancing-moe-layers</li>
 </ul>
+<h2 id="moe">MoE相关概念<a class="headerlink" href="#moe" title="Permanent link">&para;</a></h2>
+<ul>
+<li>MoEs 的核心工作原理是什么？<ul>
+<li>MoEs 通过稀疏 MoE 层替代 Transformer 的稠密 FFN 层，该层包含多个 “专家”（如 FFN）和一个路由网络. 路由网络（如 Noisy Top-k Gating）学习决定每个 token 流向哪些专家（如 top-1 或 top-2），仅激活部分专家进行计算，从而在减少计算量的同时保持模型规模优势，实现更快的预训练和推理. </li>
+</ul>
+</li>
+</ul>
+<p><img alt="alt text" src="image.png" /></p>
+<ul>
+<li>
+<p>稀疏 MoE 层: 这些层代替了传统 Transformer 模型中的前馈网络 (FFN) 层. MoE 层包含若干“专家”(例如 4 个)，每个专家本身是一个独立的神经网络. 在实际应用中，这些专家通常是前馈网络 (FFN)，但它们也可以是更复杂的网络结构，甚至可以是 MoE 层本身，从而形成层级式的 MoE 结构. </p>
+</li>
+<li>
+<p>门控网络或路由: 这个部分用于决定哪些 token 被发送到哪个专家. 例如，在下图中，“More”这个 token 可能被发送到第二个专家，而“Parameters”这个 token 被发送到第一个专家. 有时，一个 token 甚至可以被发送到多个专家.  token 的路由方式是 MoE 使用中的一个关键点，因为路由器由学习的参数组成，并且与网络的其他部分一同进行预训练. </p>
+</li>
+<li>
+<p>与稠密模型相比，MoEs 的主要优势和劣势是什么？</p>
+<ul>
+<li>优势包括：<ul>
+<li>预训练更快（相同计算预算下比稠密模型更快达到同等质量）；<ul>
+<li>稠密模型的预训练中，所有参数会被所有输入数据激活. 例如，一个 100B 参数的稠密模型，每处理一个令牌都需要经过全部 100B 参数的计算，计算成本随参数规模线性增长. </li>
+<li>而 MoEs 通过 “条件计算” 实现稀疏性：仅激活部分专家</li>
+</ul>
+</li>
+<li>推理更快（相同参数下计算量更低，如 Mixtral 8x7B 推理计算量相当于 12B 稠密模型）. <ul>
+<li>稠密模型的推理速度受限于其总参数对应的计算量：例如，一个 50B 参数的稠密模型，每个令牌必须经过全部 50B 参数的矩阵运算，计算量（FLOPs）与参数规模直接挂钩. </li>
+<li>而 MoEs 的推理速度优势来自：仅激活少数专家，实际计算量低；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>劣势包括：<ul>
+<li>需高 VRAM（所有专家需加载到内存，如 Mixtral 8x7B 需 47B 参数内存）；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="moe_1">MOE 负载均衡<a class="headerlink" href="#moe_1" title="Permanent link">&para;</a></h2>
+<p>虽然路由机制（例如 top-k 门控）会将输入令牌导向专家混合 (MoE) 层中的特定专家，但它们本身不保证计算负载在所有专家之间均匀分配. 如果 Expert 的分配不均衡，就可能出现如下局面：某些 Expert（Dead Expert）几乎一直闲置，浪费算力；某些 Expert 要处理的 Token 太多，根本忙不过来，只能 Token Drop（即放弃处理部分Token）. 从理论上来说，出现 Dead Expert 意味着 MoE 没有达到预期的参数量，即花了大参数量的显存，结果只训出来小参数量的效果. </p>
+<h3 id="_1">辅助负载均衡损失<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h4 id="_2">一、目标<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>辅助损失的目标是激励路由器为每个专家分配大致相同数量的令牌。Switch Transformer论文和后续工作中介绍的一种被广泛采用的公式，旨在最小化每个专家处理的令牌数量的变异。</p>
+<h4 id="_3">二、定义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>令 <span class="arithmatex">\(N\)</span> 为专家数量， <span class="arithmatex">\(B\)</span> 为当前批次（或微批次）中的令牌数量。对于每个专家 <span class="arithmatex">\(i \in \{1, \dots, N\}\)</span> ，定义两个量：
+- ** <span class="arithmatex">\(f_i\)</span> <strong>：路由到专家 <span class="arithmatex">\(i\)</span> 的批次内令牌分数。通过对批次中所有令牌的专家 <span class="arithmatex">\(i\)</span> 路由决策（硬路由如top-k为0或1）求和，再除以 <span class="arithmatex">\(B\)</span> 计算。公式为：
+$$
+f_i = \frac{1}{B} \sum_{x \in \text{Batch}} \mathbb{I}(\text{为令牌 } x \text{ 选择的专家 } i)
+$$
+- ** <span class="arithmatex">\(P_i\)</span> </strong>：门控网络分配给专家 <span class="arithmatex">\(i\)</span> 的总路由概率质量的分数，对批次中的令牌进行平均。若 <span class="arithmatex">\(g(x)_i\)</span> 是给定令牌 <span class="arithmatex">\(x\)</span> 时门控网络输出的专家 <span class="arithmatex">\(i\)</span> 概率，则：
+$$
+P_i = \frac{1}{B} \sum_{x \in \text{Batch}} g(x)_i
+$$</p>
+<h4 id="_4">三、计算<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>辅助负载均衡损失 <span class="arithmatex">\(L_{\text{balance}}\)</span> 通常计算为这两个向量的点积，并乘以专家数量 <span class="arithmatex">\(N\)</span> 和一个可调超参数 <span class="arithmatex">\(\alpha\)</span> ：
+$$
+L_{\text{balance}} = \alpha \cdot N \cdot \sum_{i=1}^N f_i \cdot P_i
+$$</p>
+<h4 id="_5">四、总损失<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>用于反向传播的总损失是主要任务损失 <span class="arithmatex">\(L_{\text{task}}\)</span> 和均衡损失之和：
+$$
+L_{\text{total}} = L_{\text{task}} + L_{\text{balance}}
+$$</p>
+<h4 id="_6">五、直观理解<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>最小化 <span class="arithmatex">\(L_{\text{balance}}\)</span> 促使所有专家的 <span class="arithmatex">\(f_i\)</span> 和 <span class="arithmatex">\(P_i\)</span> 都接近 <span class="arithmatex">\(1/N\)</span> 。如果某个专家接收了大量令牌份额（ <span class="arithmatex">\(f_i\)</span> 较高），损失就会增加。类似地，如果门控网络分配给某个专家高概率（ <span class="arithmatex">\(P_i\)</span> 较高），损失也会增加。当实际分配（ <span class="arithmatex">\(f_i\)</span> ）和路由器的置信度（ <span class="arithmatex">\(P_i\)</span> ）均匀分布时，损失最小化。超参数 <span class="arithmatex">\(\alpha\)</span> 控制这种均衡激励相对于主要任务目标的强度；典型值通常很小（例如0.01）。</p>
 
 
 
@@ -1251,7 +1317,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 5, 2025 16:19:27 CST">July 5, 2025 16:19:27</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 15, 2025 11:34:19 CST">July 15, 2025 11:34:19</span>
   </span>
 
     
