@@ -1307,7 +1307,8 @@
 <p>给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请你返回所有和为 0 且不重复的三元组。
 注意：答案中不可以包含重复的三元组。<a href="https://leetcode.cn/problems/3sum/description/?envType=study-plan-v2&amp;envId=top-100-liked">15三数之和</a></p>
 <ul>
-<li>先排序，</li>
+<li>先排序，首尾指针j,k，一个哈希表</li>
+<li>首指针往右走，看 -(nums[j]+nums[k]) 在不在哈希表里面，在的话就返回，如果 -(nums[j]+nums[k]) 大于0，说明 nums[j]为负数且绝对值大于 nums[k] 的绝对值，此时nums[j]左边的数肯定也是负数，因此不存在i使条件成立，因此此时j往右边移动，j对应数字入哈希表，如果 -(nums[j]+nums[k]) 小于0，说明nums[k]为正数，且绝对值大于nums[j]，因此</li>
 </ul>
 </li>
 </ol>
@@ -1679,7 +1680,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 22, 2025 08:48:18 CST">July 22, 2025 08:48:18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 22, 2025 09:49:12 CST">July 22, 2025 09:49:12</span>
   </span>
 
     
