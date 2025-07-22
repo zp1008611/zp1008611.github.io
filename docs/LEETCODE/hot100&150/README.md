@@ -80,7 +80,8 @@ for i in range(m,m+n):
 9. 给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请你返回所有和为 0 且不重复的三元组。
 注意：答案中不可以包含重复的三元组。[15三数之和](https://leetcode.cn/problems/3sum/description/?envType=study-plan-v2&envId=top-100-liked)
 
-    - 先排序，
+    - 先排序，首尾指针j,k，一个哈希表
+    - 首指针往右走，看 -(nums[j]+nums[k]) 在不在哈希表里面，在的话就返回，如果 -(nums[j]+nums[k]) 大于0，说明 nums[j]为负数且绝对值大于 nums[k] 的绝对值，此时nums[j]左边的数肯定也是负数，因此不存在i使条件成立，因此此时j往右边移动，j对应数字入哈希表，如果 -(nums[j]+nums[k]) 小于0，说明nums[k]为正数，且绝对值大于nums[j]，因此
 
 
 
