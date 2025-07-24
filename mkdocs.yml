@@ -124,7 +124,7 @@ nav:
         - 计算几何:
             - LEETCODE/computational_geometry/README.md
         - Hot100&150:
-            - LEETCODE/hot150/README.md
+            - LEETCODE/hot100&150/README.md
         - HW机考实战:
             - LEETCODE/huawei/README.md   
     
