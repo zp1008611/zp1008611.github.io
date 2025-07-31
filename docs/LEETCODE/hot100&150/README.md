@@ -128,12 +128,18 @@ for i in range(m,m+n):
 
 1. 给定一个整数数组  nums，处理以下类型的多个查询:计算索引 left 和 right （包含 left 和 right）之间的 nums 元素的 和 ，其中 left <= right 实现 NumArray 类：NumArray(int[] nums) 使用数组 nums 初始化对象 int sumRange(int i, int j) 返回数组 nums 中索引 left 和 right 之间的元素的 总和 ，包含 left 和 right 两点（也就是 nums[left] + nums[left + 1] + ... + nums[right] ）[303.区域和检索-数组不可变](https://leetcode.cn/problems/range-sum-query-immutable/description/)
 
-    - 
+    - init方法用于构造前缀和数组 s ,s的大小为len(nums)+1, s[i+1]=s[i]+nums[i],0<=i<=len(nums)-1
+    - sumRange方法用于计算区间之间的和，sum[i:j+1]=s[j+1]-s[i]
 
 2. 给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。子数组是数组中元素的连续非空序列。[560.和为 K 的子数组](https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=study-plan-v2&envId=top-100-liked)
 
     - 由于数组不是单调的，用不了滑动窗口
-    - 
+    - 计算数组的前缀和数组，那么我们想找到sum[区间]=s[j]-s[i]=k，类似两数之和，遍历右边j，将左边的数s[i]用哈希存起来，如果s[j]-k在哈希表中，那么就是和为k的子数组
+
+
+## 排序
+
+1. 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。[56. 合并区间](https://leetcode.cn/problems/merge-intervals/description/?envType=study-plan-v2&envId=top-100-liked)
 
 ## 二分查找
 
@@ -195,6 +201,8 @@ for i in range(m,m+n):
 ## 动态规划
 
 1. 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。子数组是数组中的一个连续部分。[53.最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/?envType=study-plan-v2&envId=top-100-liked)
+
+2. 
 
 
 ## DFS
