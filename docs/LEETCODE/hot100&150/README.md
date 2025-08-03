@@ -5,6 +5,112 @@
 - https://leetcode.cn/studyplan/top-interview-150/
 - https://leetcode.cn/studyplan/top-100-liked/
 
+
+
+## 动态规划
+
+动规遍历的都是子目标
+
+### 爬楼梯
+
+爬楼梯问题的本质：到达子目标的方式有多种，计算到达总目标的方式个数.
+
+- 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？[70.爬楼梯](https://leetcode.cn/problems/climbing-stairs/description/)
+
+    - 要爬n阶，则最后到达第n+1个平台
+    - dp，长度为n+1，dp[0]=1，dp[1]=1，在第一和第二个平台都就只有一种方式
+    - dp[i] = dp[i-1]+dp[i-2]，i>=2
+    - 返回dp[-1]
+
+
+- 给你一个整数数组 cost ，其中 cost[i] 是从楼梯第 i 个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。你可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯。请你计算并返回达到楼梯顶部的最低花费。[746.使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/description/)
+
+    - 假设cost的长度为n，则有n+1个平台
+    - dp，长度为n+1，dp[0]=0，到达第0个平台的费用，dp[1]=min(cost[0],0)，到达第1个平台的最下费用，dp[2] = min(dp[0]+cost[0],dp[1]+cost[1])
+    - dp[i] = min(dp[i-1]+cost[i-1],cost[i-2]+dp[i-2]),i>=3
+    - 返回dp[-1]
+
+
+- 给你一个由 不同 整数组成的数组 nums ，和一个目标整数 target 。请你从 nums 中找出并返回总和为 target 的元素组合的个数。题目数据保证答案符合 32 位整数范围。1 <= nums[i] <= 1000.[377.组合总和IV](https://leetcode.cn/problems/combination-sum-iv/description/)
+
+    - dp,长度为target+1,dp[0]=1，总和为0的元素组合个数（由于nums的数都是正数，所以元素组合=[]时，和为0
+    - dp[i] += dp[i-nums[j]] for j in range(len(nums)) if i>=nums[j] 
+    - 返回dp[-1]
+
+### 打家劫舍
+
+1. 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。[198.打家劫舍](https://leetcode.cn/problems/house-robber/description/)
+
+    - dp，长度为房屋数量n，dp[0]=nums[0]，偷第一个房子拿到最多的钱, dp[1] = max(dp[0],nums[1])，偷到第二个房子拿到最多的钱,dp[2] = max(dp[0]+nums[2],dp[1])，偷到第三个房子拿到最多的钱, dp[3] = max(dp[1]+nums[3],dp[2])，偷到第四个房子拿到最多的钱.
+    - dp[i] = max(dp[i-2]+nums[i],dp[i-1])，i>=2
+    - 返回dp[-1]
+
+2. 你是一个专业的小偷，计划偷窃沿街的房屋，每间房内都藏有一定的现金。这个地方所有的房屋都 围成一圈 ，这意味着第一个房屋和最后一个房屋是紧挨着的。同时，相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警 。给定一个代表每个房屋存放金额的非负整数数组，计算你 在不触动警报装置的情况下 ，今晚能够偷窃到的最高金额。[213.打家劫舍II](https://leetcode.cn/problems/house-robber-ii/description/)
+
+    - 分类讨论：偷nums[0]和不偷nums[0]
+    - 如果偷nums[0]，那么nums[1],nums[n-1]不能偷，那么nums[2]到nums[n-2]按I的方法做就行，后面再加上nums[0]
+    - 如果不偷nums[0]，那么nums[1]，nums[n-1]可以偷，那么nums[1]到nums[n-1]按I的方法做就行
+    - 最后比较哪个大
+
+3. 小偷又发现了一个新的可行窃的地区。这个地区只有一个入口，我们称之为 root 。除了 root 之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果 两个直接相连的房子在同一天晚上被打劫 ，房屋将自动报警。给定二叉树的 root 。返回 在不触动警报的情况下 ，小偷能够盗取的最高金额 。[337.打家劫舍III](https://leetcode.cn/problems/house-robber-iii/description/)
+
+    - 由于知道子目标的结果，才能知道总目标的结果，所以遍历树的形式是自底向上遍历树（后序遍历），遍历返回选和不选的结果
+    - 如果选择父节点，那么左右节点就不选，rob = left_not_rob+right_not_rob+node.val, 如果不选父节点，那么左右节点可以选，那么看not_rob = max(left_rob,left_not_rob)+max(right_rob,right_not_rob)
+    - 最后回到根节点比较not_rob和rob
+
+
+### 最大子数组和
+
+1. 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。子数组是数组中的一个连续部分。[53.最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/?envType=study-plan-v2&envId=top-100-liked)
+
+
+
+### 网格DP
+
+### 背包问题
+
+- 零钱兑换
+- 完全平方数
+
+### 状态机
+
+### 最长公共子序列（LCS）
+
+### 最长递增子序列（LIS）
+
+### 最长回文子序列
+
+### 一维DP
+
+- 最低票价
+- 最低加油次数
+
+### 不相交区间
+
+- 规划兼职工作
+- 最多可以参加的会议数目
+
+
+### 状压 DP
+
+- 优美的排列
+- 最小不兼容性
+- 最短超级串
+- 访问所有节点的最短路径
+
+## 跳跃游戏
+
+## 数位DP
+
+## 树形DP
+
+- 监控二叉树
+- 最小高度树
+
+### 前后缀分解
+2. 给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。请 不要使用除法，且在 O(n) 时间复杂度内完成此题。[238.除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=top-100-liked)
+
+
 ## 双指针
 
 > 如果是原地修改，用快慢指针，慢指针用于写，快指针用于读
@@ -98,6 +204,8 @@ for i in range(m,m+n):
 
 ## 滑动窗口
 
+- 最长/最短子数组问题，用滑窗
+
 1. 给定一个字符串 s ，请你找出其中不含有重复字符的 最长 子串 的长度。[3.无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/?envType=study-plan-v2&envId=top-100-liked)
 
     - 不定长滑动窗口，最长型
@@ -143,12 +251,57 @@ for i in range(m,m+n):
 
 ## 二分查找
 
+二分查找推荐用开区间的写法，即开始left=-1,right=len(nums)，在left=right的时候终止查找，二分查找的数组一般是有序的
+
+1. 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。请必须使用时间复杂度为 O(log n) 的算法。[35.搜索插入位置](https://leetcode.cn/problems/search-insert-position/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 即找到>=target的第一个数
+    - left = -1, right = len(nums)
+    - mid = (left + right)//2,如果nums[mid]>=target,那么mid右边的数都>=target，这时right = mid，如果nums[mid]<target，那么mid的左边的数都是<target，这是left=mid;当left+1=right时，查找暂停，最后right就是对应>=target的第一个数
+
+2. 给你一个满足下述两条属性的 m*n 整数矩阵：每行中的整数从左到右按非严格递增顺序排列。每行的第一个整数大于前一行的最后一个整数。给你一个整数 target ，如果 target 在矩阵中，返回 true ；否则，返回 false 。[74.搜索二维矩阵](https://leetcode.cn/problems/search-a-2d-matrix/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 将矩阵拉成一维数组，left = -1,right = m*n
+    - mid=(left+right)//2, 则对应的row=mid//n,col=mid%n,若target<matrix[row][col]，则right=mid，若target>matrix[row][col]，则left=mid，若等于则返回True；当left+1=right时，查找暂停
+
+3. 给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。如果数组中不存在目标值 target，返回 [-1, -1]。你必须设计并实现时间复杂度为 O(log n) 的算法解决此问题。[34.在排序数组中查找第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 即找到>=target的第一个数对应的下标index1，和>=target+1的第一个数对应的下标index2，index1就是第一个位置，index2-1就是最后一个位置
+
+4. 已知一个长度为 n 的数组，预先按照升序排列，经由 1 到 n 次 旋转 后，得到输入数组。例如，原数组 nums = [0,1,2,4,5,6,7] 在变化后可能得到：若旋转 4 次，则可以得到 [4,5,6,7,0,1,2]；若旋转 7 次，则可以得到 [0,1,2,4,5,6,7]。注意，数组 [a[0], a[1], a[2], ..., a[n-1]] 旋转一次 的结果为数组 [a[n-1], a[0], a[1], a[2], ..., a[n-2]]。给你一个元素值 互不相同 的数组 nums ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。请你找出并返回数组中的 最小元素。你必须设计一个时间复杂度为 O(log n) 的算法解决此问题。[153.寻找旋转排序数组中的最小值](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - left = -1,right = len(nums),mid = (left+right)//2
+    - mid和最后一个数比，如果nums[mid]<nums[n-1]，那么最小值一定在mid的左边，此时right = mid, 如果nums[mid]>nums[n-1]，那么最小值一定在mid的右边，此时left = mid，当left+1=right时，查找结果；最后比较left和right，哪个更新返回哪个
+
+5. 整数数组 nums 按升序排列，数组中的值 互不相同 。在传递给函数之前，nums 在预先未知的某个下标 k（0 <= k < nums.length）上进行了 旋转，使数组变为 [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]（下标 从 0 开始 计数）。例如， [0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2] 。给你 旋转后 的数组 nums 和一个整数 target ，如果 nums 中存在这个目标值 target ，则返回它的下标，否则返回 -1 。你必须设计一个时间复杂度为 O(log n) 的算法解决此问题。[33.搜索旋转排序数组](https://leetcode.cn/problems/search-in-rotated-sorted-array/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - left = -1,right=len(nums),mid=(left+right)//2
+    - target先和最后一个数比，如果target<=nums[n-1]，那么target在nums[n-1]的左边，如果nums[mid]<target或者nums[mid]>=target但是nums[mid]>nums[n-1]，那么target在mid的右边，此时left = mid，如果nums[mid]>target但是nums[mid]<=nums[n-1]，那么target在mid的左边，此时right=mid
+    - 如果target>nums[n-1]，那么target在nums[0]的右边，如果nums[mid]<target但是nums[mid]>nums[n-1]，那么target在mid的右边，此时left = mid，如果nums[mid]>target或者nums[mid]<target但是nums[mid]<nums[n-1]，那么target在mid的左边，此时right=mid.
+    - 最后看left和right哪个等于target返回哪个
+    
 
 ## 哈希
 
 1. 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。你可以按任意顺序返回答案。[1两数之和](https://leetcode.cn/problems/two-sum/description/?envType=study-plan-v2&envId=top-100-liked)
 
     - 一个指针，一个哈希表，指针往右边走一个，看看哈希表里面有没有和指针数相加和等于target的数，有就返回答案，没有指针数就在哈希里存一下，
+
+
+
+## 数学
+
+5. 给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。[LC189轮转数组](https://leetcode.cn/problems/rotate-array/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 每个下标i轮转k之后得到得新下标为 (i+k)%len(nums)
+    - 0+3->3,6+3%7->2
+    - 注意要先用一个temp数组储存nums原来的数
+    - 特判: k=0时，i%len(nums)=i，没错，len(nums)=1是，假设k=3，(0+3)%1 = 0，没错
+
+
+
+
+
 
 ## 链表
 
@@ -181,28 +334,6 @@ for i in range(m,m+n):
     - 两个链表，一起往下递归，如果node1.val>node2.val，则下面递归node1和node2.next，递归返回后node2.next = 递归结果，返回node2；如果node1.val<=node2.val，则下面递归node2和node1，递归返回后node1.next = 递归结果，返回node1；next，递归时，当node1为空时，返回node2，当node2为空时，返回node1
 
 7. 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。请你将两个数相加，并以相同形式返回一个表示和的链表。你可以假设除了数字 0 之外，这两个数都不会以 0 开头。
-
-## 数学
-
-5. 给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。[LC189轮转数组](https://leetcode.cn/problems/rotate-array/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - 每个下标i轮转k之后得到得新下标为 (i+k)%len(nums)
-    - 0+3->3,6+3%7->2
-    - 注意要先用一个temp数组储存nums原来的数
-    - 特判: k=0时，i%len(nums)=i，没错，len(nums)=1是，假设k=3，(0+3)%1 = 0，没错
-    
-
-
-
-
-
-
-
-## 动态规划
-
-1. 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。子数组是数组中的一个连续部分。[53.最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/?envType=study-plan-v2&envId=top-100-liked)
-
-2. 
 
 
 ## DFS
@@ -376,18 +507,19 @@ for i in range(m,m+n):
     - 选与不选，但是自己可以重复选，传参是candidates的索引
     - candidates先升序排序，
 
+6. 给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用 一次 。注意：解集不能包含重复的组合。[40.组合总和II](https://leetcode.cn/problems/combination-sum-ii/description/)
+
+
+6. 找出所有相加之和为 n 的 k 个数的组合，且满足下列条件：只使用数字1到9，每个数字 最多使用一次，返回 所有可能的有效组合的列表 。该列表不能包含相同的组合两次，组合可以以任何顺序返回。[216.组合总和III](https://leetcode.cn/problems/combination-sum-iii/description/)
+
 ## 栈
 
 
+1. 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。有效字符串需满足：左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。每个右括号都有一个对应的相同类型的左括号。[LC20有效的括号](https://leetcode.cn/problems/valid-parentheses/description/?envType=study-plan-v2&envId=top-interview-150)
 
-1. 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。有效字符串需满足：左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。每个右括号都有一个对应的相同类型的左括号。[LC20
-有效的括号](https://leetcode.cn/problems/valid-parentheses/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - 匹配对(a,b)相消，入栈的只能是第一个匹配点a，匹配点b用于判断匹配
-    - 找来一个栈,flag记录是否合法
-    - 注意只有左括号可以入栈，所以用一个字典维护左括号和右括号的对应关系
-    - 首先判断s[i]是不是左括号，如果是就入栈，如果不是左括号那么就是右括号，如果字符串合法，那么这个右括号一定与栈顶的左括号匹配，如果不匹配，那么这个字符串非法，如果最后栈非空，那么字符串也是非法的
-    - 特判：len(s)==1，且s[0]为左括号入栈后就跳出，非空为False，没错，如果s[0]为右括号，直接返回false
+    - 只有左括号可以入栈
+    - 遍历s，如果遇到右括号，如果栈非空，看栈顶是不是对应的左括号，如果栈时空的，那么直接False了，如果遍历完s，栈非空，那么也是False.
+    - 直接遍历全程都是True，且最后栈空，才是True
 
 2. 给你一个字符串 path ，表示指向某一文件或目录的 Unix 风格 绝对路径 （以 '/' 开头），请你将其转化为 更加简洁的规范路径。在 Unix 风格的文件系统中规则如下：一个点 '.' 表示当前目录本身。此外，两个点 '..' 表示将目录切换到上一级（指向父目录）。任意多个连续的斜杠（即，'//' 或 '///'）都被视为单个斜杠 '/'。任何其他格式的点（例如，'...' 或 '....'）均被视为有效的文件/目录名称。返回的 简化路径 必须遵循下述格式：始终以斜杠 '/' 开头。两个目录名之间必须只有一个斜杠 '/' 。最后一个目录名（如果存在）不能 以 '/' 结尾。此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 '.' 或 '..'）。返回简化后得到的 规范路径 。[LC71简化路径](https://leetcode.cn/problems/simplify-path/description/?envType=study-plan-v2&envId=top-interview-150)
 
@@ -400,21 +532,41 @@ for i in range(m,m+n):
     - 如果第一个文件名就是'..'，空stack出栈会报错，所以要加一个判断
     - 特判：如果字符串长度为1，那么就只有'/'，直接返回
 
-3. 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。实现 MinStack 类:MinStack() 初始化堆栈对象。void push(int val) 将元素val推入堆栈。void pop() 删除堆栈顶部的元素。int top() 获取堆栈顶部的元素。int getMin() 获取堆栈中的最小元素。[LC155最小栈](https://leetcode.cn/problems/min-stack/description/?envType=study-plan-v2&envId=top-interview-150)
+3. 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。实现 MinStack 类: MinStack() 初始化堆栈对象。void push(int val) 将元素val推入堆栈。void pop() 删除堆栈顶部的元素。int top() 获取堆栈顶部的元素。int getMin() 获取堆栈中的最小元素。[155.最小栈](https://leetcode.cn/problems/min-stack/description/?envType=study-plan-v2&envId=top-100-liked)
 
-    - 
+    - 栈的元素是一个元组(入栈元素，当前最小值)
+    - 栈初始化为 [(0,float('inf'))]
+    - 第二元素，在入栈的时候，和历史最小值相比来更新
 
-4. 给你一个字符串数组 tokens ，表示一个根据 逆波兰表示法 表示的算术表达式。请你计算该表达式。返回一个表示表达式值的整数。注意：有效的算符为 '+'、'-'、'*' 和 '/' 。每个操作数（运算对象）都可以是一个整数或者另一个表达式。两个整数之间的除法总是 向零截断 。表达式中不含除零运算。输入是一个根据逆波兰表示法表示的算术表达式。答案及所有中间计算结果可以用 32 位 整数表示。[LC150逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/?envType=study-plan-v2&envId=top-interview-150)
+4. 给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，其中 answer[i] 是指对于第 i 天，下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用 0 来代替。[739.每日温度](https://leetcode.cn/problems/daily-temperatures/description/?envType=study-plan-v2&envId=top-100-liked)
+
+5. 下一个更大的元素I
+
+6. 下一个更大的元素 II
 
 
-## 单调队列
+7. 柱状图中最大的矩形
 
-1. 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值. [239.滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/description/?envType=study-plan-v2&envId=top-100-liked) 
-    
+5. 给你一个字符串数组 tokens ，表示一个根据 逆波兰表示法 表示的算术表达式。请你计算该表达式。返回一个表示表达式值的整数。
+注意：有效的算符为 '+'、'-'、'*' 和 '/' 。每个操作数（运算对象）都可以是一个整数或者另一个表达式。两个整数之间的除法总是 向零截断 。表达式中不含除零运算。输入是一个根据逆波兰表示法表示的算术表达式。答案及所有中间计算结果可以用 32 位 整数表示。[150.逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/?envType=study-plan-v2&envId=top-interview-150)
+
+
+6. 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 eval() 。[224.基本计算器](https://leetcode.cn/problems/basic-calculator/description/?envType=study-plan-v2&envId=top-interview-150)
+
+
+
+
+
+7. 给定一个经过编码的字符串，返回它解码后的字符串。编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。[394.字符串解码](https://leetcode.cn/problems/decode-string/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 这里的 `3[a]`类似乘法计算3*"a"，`3[a]2[c]`这里类似加法运算3*"a"+2*"c"，`3[a2[c]]`这里类似带括号的运算 3*(a+2*c)
+
+ 
+
 ## 堆
 
 
-2. 给定两个以 非递减顺序排列 的整数数组 nums1 和 nums2 , 以及一个整数 k 。定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2 。请找到和最小的 k 个数对 (u1,v1),  (u2,v2)  ...  (uk,vk) 。
+1. 给定两个以 非递减顺序排列 的整数数组 nums1 和 nums2 , 以及一个整数 k 。定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2 。请找到和最小的 k 个数对 (u1,v1),  (u2,v2)  ...  (uk,vk) 。
 
     - 找来一个最小堆 heap=[]
     - 由于nums1和nums2非递减，所以对于(nums1[i],nums2[j])，大小顺序一定为 nums1[i]+num2[j] < nums1[i+1]+nums2[j] or nums1[i]+nums2[j+1] < nums1[i+1][j+1]
@@ -423,6 +575,14 @@ for i in range(m,m+n):
     - 出堆的元素数量到达k即可结束出堆.
     - 如果数量关系满足 (i,j)对应< (i,j+1)对应or (i,j+1)对应< (i,j)对应，方法：result数组长度小于k时，(i,j)出堆并存入result，如果(i+1,j)有效且没有访问过，入堆；如果(i,j+1)有效且没有访问过，入堆，当result数组长度大于k，则退出循环，result的末尾就是第k小
 
-1. 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。你必须设计并实现时间复杂度为 O(n) 的算法解决此问题。[LC215数组中的第k个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/description/?envType=study-plan-v2&envId=top-interview-150)
+2. 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。你必须设计并实现时间复杂度为 O(n) 的算法解决此问题。[LC215数组中的第k个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/description/?envType=study-plan-v2&envId=top-interview-150)
 
     - 固定长度的堆，遍历元素入堆，当堆的长度大于k，则最小值出堆
+
+
+## 单调队列
+
+1. 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值. [239.滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/description/?envType=study-plan-v2&envId=top-100-liked) 
+    
+
+## 优先队列

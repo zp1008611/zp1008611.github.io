@@ -15,7 +15,8 @@
 - DFS的检查集检测是对节点，BFS的检查集检测是对邻居
 - 对于网格DFS，要注意网格图的x，y坐标表示，假设m=len(grid),n=len(grid[0])，那么x的范围为0-n，y的范围为0-m
 - 如果是原地修改，用快慢指针，慢指针用于写，快指针用于读
-
+- 已排序的数组二分查找，开区间写法：left=-1，right=len(nums)，mid = (left+right)//2，如果nums[mid]<target,left = mid，如果nums[mid]>target,right = mid, 如果nums[mid]=target，则找到了，直到left+1=right停止查找
+- 已排序的数组二分查找寻找>=target的第一个数，开区间写法：left=-1,right=len(nums),mid=(left+right)//2，如果nums[mid]<target，left=mid，如果nums[mid]>=target，right=mid，直到left+1=right停止查找，查找结束，right就是对应的>=target的第一个数.
 - python下判断两个集合是否有交集，`set([1,2,3]) & set([2,3,4])`为True，则有交集
 - python中将字符串s全部变成小写用s.lower()
 - python中将字符串s中的非字母数字字符全部移除，s = re.sub(r'[^a-zA-Z0-9]', '', s)
@@ -30,13 +31,20 @@
 - stack（栈）: stack = [], stack.append(val), stack.pop()
 - queue（队列）：queue = [],queue.append(val),queue.pop(0)
 - 优先队列
+- 链表，树（DFS，BFS），回溯都是递归的思想
+- 最长/最短子数组问题，用滑窗
+- 最长/最短子序列问题，用动规
+- 动态规划爬楼梯：到达子目标的方式有多种，计算到达总目标的方式个数.
 
 ## 刷题优先级
 
 刷题顺序：dp->dfs&bfs->二叉树->树形dp->回溯，
 双指针->滑窗->枚举技巧->二分，链表->栈->队列
 
-dp,dfs&bfs,二叉树，回溯我分为一类题（递归），枚举，双指针，滑窗，二分我分为另一类题（指针）
+dp,dfs&bfs,二叉树，回溯，我分为一类题（递归），枚举，双指针，滑窗，二分我分为另一类题（指针）
+
+
+个人感觉滑窗和动规的可变性较高，难度较高
 
 一类题刷累了，可以刷另一类
 
