@@ -63,11 +63,54 @@
 
 1. 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。子数组是数组中的一个连续部分。[53.最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/?envType=study-plan-v2&envId=top-100-liked)
 
+    - 子数组不能使用回溯的选与不选，因为要保持顺序，一般使用拼接的形式
+    - 假设nums的长度为n
+    - dp的长度为n，dp[0]=nums[0]，以nums[0]结尾的最大子数组和为nums[0]，dp[1]=max(dp[0],0)+nums[1]，以nums[1]结尾的最大子数组和，只有当前面的最大子数组和大于0时，拼接nums[1]才能使子数组的和可能增加.
+    - dp[i] = max(dp[i-1],0)+nums[i],i>=2
+    - 最后返回max(dp)
+
+
+5. 给你一个整数数组，返回它的某个 非空 子数组（连续元素）在执行一次可选的删除操作后，所能得到的最大元素总和。换句话说，你可以从原数组中选出一个子数组，并可以决定要不要从中删除一个元素（只能删一次哦），（删除后）子数组中至少应当有一个元素，然后该子数组（剩下）的元素总和是所有子数组之中最大的。注意，删除一个元素后，子数组 不能为空。[1186.删除一次得到子数组最大和](https://leetcode.cn/problems/maximum-subarray-sum-with-one-deletion/description/)
+
+
+6. 给你一个整数数组 nums ，请你找出数组中乘积最大的非空连续 子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。测试用例的答案是一个 32-位 整数。[152.乘积最大子数组](https://leetcode.cn/problems/maximum-product-subarray/description/)
+
+
+3. 给定一个整数数组 arr 和一个整数 k ，通过重复 k 次来修改数组。例如，如果 arr = [1, 2] ， k = 3 ，那么修改后的数组将是 [1, 2, 1, 2, 1, 2] 。返回修改后的数组中的最大的子数组之和。注意，子数组长度可以是 0，在这种情况下它的总和也是 0。由于 结果可能会很大，需要返回的 109 + 7 的 模 。[1191.K次串联后最大子数组之和](https://leetcode.cn/problems/k-concatenation-maximum-sum/description/)
+
+4. 给定一个长度为 n 的环形整数数组 nums ，返回 nums 的非空 子数组 的最大可能和 。环形数组 意味着数组的末端将会与开头相连呈环状。形式上， nums[i] 的下一个元素是 nums[(i + 1) % n] ， nums[i] 的前一个元素是 nums[(i - 1 + n) % n] 。子数组 最多只能包含固定缓冲区 nums 中的每个元素一次。形式上，对于子数组 nums[i], nums[i + 1], ..., nums[j] ，不存在 i <= k1, k2 <= j 其中 k1 % n == k2 % n 。[918.环形子数组的最大和](https://leetcode.cn/problems/maximum-sum-circular-subarray/description/)
+
 
 
 ### 网格DP
 
+1. 给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。说明：每次只能向下或者向右移动一步。[64.最小路径和](https://leetcode.cn/problems/minimum-path-sum/description/)
+
+    - 二维dp，维度为m*n
+    - dp[0][0]=grid[0][0]，到达(0,0)的最小路径和为grid[0][0]; dp[0][j] = dp[0][j-1] + grid[0][j],j>=1; dp[i][0] = dp[i-1][0]+grid[i][0],i>=1;
+    - dp[i][j] = min(dp[i-1][j],dp[i][j-1])+grid[i][j],i>=1,j>=1;
+    - 返回dp[-1][-1]
+
+2. 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。问总共有多少条不同的路径？[62.不同路径](https://leetcode.cn/problems/unique-paths/description/)
+
+    - 二维dp
+
+3. 给定一个 m x n 的整数数组 grid。一个机器人初始位于 左上角（即 grid[0][0]）。机器人尝试移动到 右下角（即 grid[m - 1][n - 1]）。机器人每次只能向下或者向右移动一步。网格中的障碍物和空位置分别用 1 和 0 来表示。机器人的移动路径中不能包含 任何 有障碍物的方格。返回机器人能够到达右下角的不同路径数量。测试用例保证答案小于等于 2 * 109。[63.不同路径II](https://leetcode.cn/problems/unique-paths-ii/description/)
+
+4. 在二维网格 grid 上，有 4 种类型的方格：1 表示起始方格。且只有一个起始方格。2 表示结束方格，且只有一个结束方格。0 表示我们可以走过的空方格。-1 表示我们无法跨越的障碍。返回在四个方向（上、下、左、右）上行走时，从起始方格到结束方格的不同路径的数目。每一个无障碍方格都要通过一次，但是一条路径中不能重复通过同一个方格。[980.不同路径III](https://leetcode.cn/problems/unique-paths-iii/description/)
+
+5. 给定一个 m x n 整数矩阵 matrix ，找出其中 最长递增路径 的长度。对于每个单元格，你可以往上，下，左，右四个方向移动。 你 不能 在 对角线 方向上移动或移动到 边界外（即不允许环绕）。[329.矩阵中的最长递增路径](https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/description/)
+
+
+6. 给你一个 n x n 的网格 grid ，代表一块樱桃地，每个格子由以下三种数字的一种来表示：0 表示这个格子是空的，所以你可以穿过它。1 表示这个格子里装着一个樱桃，你可以摘到樱桃然后穿过它。-1 表示这个格子里有荆棘，挡着你的路。请你统计并返回：在遵守下列规则的情况下，能摘到的最多樱桃数：从位置 (0, 0) 出发，最后到达 (n - 1, n - 1) ，只能向下或向右走，并且只能穿越有效的格子（即只可以穿过值为 0 或者 1 的格子）；当到达 (n - 1, n - 1) 后，你要继续走，直到返回到 (0, 0) ，只能向上或向左走，并且只能穿越有效的格子；当你经过一个格子且这个格子包含一个樱桃时，你将摘到樱桃并且这个格子会变成空的（值变为 0 ）；如果在 (0, 0) 和 (n - 1, n - 1) 之间不存在一条可经过的路径，则无法摘到任何一个樱桃。[741.摘樱桃](https://leetcode.cn/problems/cherry-pickup/description/)
+
+
+7. 给你一个 rows x cols 的矩阵 grid 来表示一块樱桃地。 grid 中每个格子的数字表示你能获得的樱桃数目。你有两个机器人帮你收集樱桃，机器人 1 从左上角格子 (0,0) 出发，机器人 2 从右上角格子 (0, cols-1) 出发。请你按照如下规则，返回两个机器人能收集的最多樱桃数目：从格子 (i,j) 出发，机器人可以移动到格子 (i+1, j-1)，(i+1, j) 或者 (i+1, j+1) 。当一个机器人经过某个格子时，它会把该格子内所有的樱桃都摘走，然后这个位置会变成空格子，即没有樱桃的格子。当两个机器人同时到达同一个格子时，它们中只有一个可以摘到樱桃。两个机器人在任意时刻都不能移动到 grid 外面。两个机器人最后都要到达 grid 最底下一行。[1463.摘樱桃II](https://leetcode.cn/problems/cherry-pickup-ii/description/)
+
 ### 背包问题
+
+
+1. 给你一个 只包含正整数 的 非空 数组 nums 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。[416.分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/description/)
 
 - 零钱兑换
 - 完全平方数
@@ -110,6 +153,8 @@
 ### 前后缀分解
 2. 给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。请 不要使用除法，且在 O(n) 时间复杂度内完成此题。[238.除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=top-100-liked)
 
+
+## 数论
 
 ## 双指针
 
@@ -228,7 +273,9 @@ for i in range(m,m+n):
 
 4. 给你一个整数数组 nums 和一个整数 k ，找出 nums 中和至少为 k 的 最短非空子数组 ，并返回该子数组的长度。如果不存在这样的 子数组 ，返回 -1 。子数组 是数组中 连续 的一部分。[862.和至少为k的最短子数组](https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/description/)
 
-4. 给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。[76.最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked)
+
+
+5. 给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" 。[76.最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/description/?envType=study-plan-v2&envId=top-100-liked)
 
     - 不定长滑动窗口，最短型
 
@@ -243,6 +290,19 @@ for i in range(m,m+n):
 
     - 由于数组不是单调的，用不了滑动窗口
     - 计算数组的前缀和数组，那么我们想找到sum[区间]=s[j]-s[i]=k，类似两数之和，遍历右边j，将左边的数s[i]用哈希存起来，如果s[j]-k在哈希表中，那么就是和为k的子数组
+
+1. 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。子数组是数组中的一个连续部分。[53.最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 一维前缀和+股票买卖最佳时机
+
+
+2. 给定一个二维矩阵 matrix，以下类型的多个请求：计算其子矩形范围内元素的总和，该子矩阵的 左上角 为 (row1, col1) ，右下角 为 (row2, col2) 。
+实现 NumMatrix 类：NumMatrix(int[][] matrix) 给定整数矩阵 matrix 进行初始化。int sumRegion(int row1, int col1, int row2, int col2) 返回 左上角 (row1, col1) 、右下角 (row2, col2) 所描述的子矩阵的元素 总和 。[304.二维区域和检索-矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable/description/)
+
+2. 给你一个 m x n 的矩阵 matrix 和一个整数 k ，找出并返回矩阵内部矩形区域的不超过 k 的最大数值和。题目数据保证总会存在一个数值和不超过 k 的矩形区域。[363.矩形区域不超过K的最大值和](https://leetcode.cn/problems/max-sum-of-rectangle-no-larger-than-k/description/)
+
+    - 二维前缀和
+
 
 
 ## 排序
