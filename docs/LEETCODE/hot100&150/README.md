@@ -109,9 +109,50 @@
 
 ### 背包问题
 
+- 01背包
+    - 核心场景：有 n 个物品和一个容量为 C 的背包。第 i 个物品的重量为 w[i]，价值为 v[i]。每个物品只能选择一次（要么放入背包，要么不放入），求在背包容量不超过 C 的前提下，能装入背包的最大总价值
+    - 二维dp，维度为(n+1)*(C+1)，因为要考虑C=0，和全部元素不选的情况；dp[0][0]=0,dp[i][0]=0,dp[0][j]=0; dp[i][j]表示前i个对象性质A的和<=j时性质B的最大和；分类讨论，不选i，dp[i][j]=dp[i-1][j]，选i，要找到能装i对应的位置，dp[i][j] = dp[i-1][j-A[i]]+B[i]；因此，dp[i][j] = max(dp[i-1][j],dp[i-1][j-A[i]]+B[i]); 最后返回dp[-1][-1]
+    - 代码：
+        ```bash
+        def knapsack_01(w, v, C):
+            n = len(w)
+            # 初始化dp数组（n+1行，C+1列）
+            dp = [[0]*(C+1) for _ in range(n+1)]
+            
+            for i in range(1, n+1):  # 遍历物品
+                for j in range(1, C+1):  # 遍历容量
+                    # 不选第i个物品
+                    dp[i][j] = dp[i-1][j]
+                    # 若能选，则取最大值
+                    if w[i-1] <= j:  # 注意物品索引从0开始
+                        dp[i][j] = max(dp[i][j], dp[i-1][j - w[i-1]] + v[i-1])
+            return dp[-1][-1]
+        ```
+    - 注意这里是`w[i-1]`和`v[i-1]`
+    - 判断能不能的问题，返回值是布尔类型；计算最大、最小、方案数等问题，返回值是整型
 
 1. 给你一个 只包含正整数 的 非空 数组 nums 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。[416.分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/description/)
 
+    - 如果sum(nums)是奇数，那么不可能分成两个子集的元素和相等
+    - 如果sum(nums)是偶数，那么就相当于证明是否存在一些元素可以使元素和=sum(nums)/2
+    - 二维dp，假设n=len(nums)，s=sum(nums), dp的维度为(n+1)*(s/2+1)，要考虑s=0，和全部元素不选; dp[i][j]=True 表示前i个元素里面存在元素使得元素和=j；dp[0][0] = True，所有元素都不选的话，和就是0，dp[i][0] = False, dp[0][j] = False; 
+    - 如果能选nums[i-1]，dp[i][j] = dp[i-1][j-nums[i-1]]，不选nums[i]，dp[i][j] = dp[i-1][j]；因此dp[i][j] = dp[i-1][j-nums[i-1]] or dp[i-1][j].
+    - 返回 dp[-1][-1]
+
+2. 给你一个非负整数数组 nums 和一个整数 target 。向数组中的每个整数前添加 '+' 或 '-' ，然后串联起所有整数，可以构造一个 表达式 ：例如，nums = [2, 1] ，可以在 2 之前添加 '+' ，在 1 之前添加 '-' ，然后串联起来得到表达式 "+2-1" 。返回可以通过上述方法构造的、运算结果等于 target 的不同 表达式 的数目。[494.目标和](https://leetcode.cn/problems/target-sum/description/)
+
+    - 假设s=sum(nums)，添加正号的元素之和为p, 添加负号的元素之和为q，则有 p+q=s，又因为p-q=target，所以有p=(s+target)/2, q=(s-target)/2；只要证明存在元素使得p=(s+target)/2或q=(s-target)/2即可
+    - 如果target>=0，那么q<p，则选q=(s-target)/2，dp矩阵维度更小
+    - 如果target<0，那么p<q，则选p=(s+target)/2，dp矩阵维度更小
+    - 因此只要证明存在元素的元素和=(s-abs(target))/2即可.
+    - 二维dp，假设n=len(nums),a=(s-abs(target))/2，dp的维度为(n+1)*(a+1)，要考虑s=0和全部元素不选；dp[i][j] 表示前i个元素元素和=(s-abs(target))/2的方案数; dp[0][0]=1, dp[i][0]=, dp[0][j]=Fales
+    - 不选nums[i-1]，dp[i][j] = dp[i-1][j]，如果能选nums[i-1]，则dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]]
+    - 特判：如果s-abs(target)<0，由于nums的数都是非负，则方案数为0
+    - 特判：如果s-abs(target)是奇数，则方案数为0
+
+3. 给你一个下标从 0 开始的整数数组 nums 和一个整数 target 。返回和为 target 的 nums 子序列中，子序列 长度的最大值 。如果不存在和为 target 的子序列，返回 -1 。子序列 指的是从原数组中删除一些或者不删除任何元素后，剩余元素保持原来的顺序构成的数组。[2915.和为目标值的最长子序列的长度](https://leetcode.cn/problems/length-of-the-longest-subsequence-that-sums-to-target/description/)
+
+- 完全背包
 - 零钱兑换
 - 完全平方数
 
@@ -153,6 +194,68 @@
 ### 前后缀分解
 2. 给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。请 不要使用除法，且在 O(n) 时间复杂度内完成此题。[238.除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=top-100-liked)
 
+
+## DFS
+
+
+adj_matrix：邻接矩阵，两个节点有边，则邻居矩阵为1，否则为0
+```bash
+n = len(adj_matrix)
+stack = [start]
+visited = set()
+while stack:
+    node = stack.pop()
+    if node not in visited:
+        visited.append(node)
+        # 这里for循环要在if内，避免节点重复进入stack
+        # 比如1和2是邻居，1先入栈，接着就是2入栈，如果for在if外，那么下一次1又会入栈，从而导致死循环
+        for i in range(adj_matrix[node]):
+            if adj_matrix[node]:
+                stack.append(adj_matrix[node])
+```
+
+```bash
+
+
+```
+
+
+
+1. 有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。给你一个 n x n 的矩阵 isConnected ，其中 isConnected[i][j] = 1 表示第 i 个城市和第 j 个城市直接相连，而 isConnected[i][j] = 0 表示二者不直接相连。返回矩阵中 省份 的数量。[547.省份数量](https://leetcode.cn/problems/number-of-provinces/description/)
+
+    - 用一个node_set存放所有节点
+    - 从node_set里面随机抽取一个node，以这个node为起点做dfs，访问到一个节点，就将这个节点从node_set中移除，dfs结束之后省份数量+1，接着又从node_set里面抽取一个node，重复前述步骤
+
+
+2. 给你一个有 n 个节点的 有向无环图（DAG），请你找出从节点 0 到节点 n-1 的所有路径并输出（不要求按特定顺序）。graph[i] 是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点 graph[i][j]存在一条有向边）。[797.所有可能的路径](https://leetcode.cn/problems/all-paths-from-source-to-target/description/)
+
+    - 以0为起点的DFS
+    - 因为这里要得到路径，所以这里要用递归写法的DFS
+
+
+3. 用以太网线缆将 n 台计算机连接成一个网络，计算机的编号从 0 到 n-1。线缆用 connections 表示，其中 connections[i] = [a, b] 连接了计算机 a 和 b。网络中的任何一台计算机都可以通过网络直接或者间接访问同一个网络中其他任意一台计算机。给你这个计算机网络的初始布线 connections，你可以拔开任意两台直连计算机之间的线缆，并用它连接一对未直连的计算机。请你计算并返回使所有计算机都连通所需的最少操作次数。如果不可能，则返回 -1 。[1319.连通网络的操作数](https://leetcode.cn/problems/number-of-operations-to-make-network-connected/description/)
+
+
+4. 给定一个列表 accounts，每个元素 accounts[i] 是一个字符串列表，其中第一个元素 accounts[i][0] 是 名称 (name)，其余元素是 emails 表示该账户的邮箱地址。现在，我们想合并这些账户。如果两个账户都有一些共同的邮箱地址，则两个账户必定属于同一个人。请注意，即使两个账户具有相同的名称，它们也可能属于不同的人，因为人们可能具有相同的名称。一个人最初可以拥有任意数量的账户，但其所有账户都具有相同的名称。合并账户后，按以下格式返回账户：每个账户的第一个元素是名称，其余元素是 按字符 ASCII 顺序排列 的邮箱地址。账户本身可以以 任意顺序 返回。[721.账户合并](https://leetcode.cn/problems/accounts-merge/description/)
+
+5. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。在选修某些课程之前需要一些先修课程。 先修课程按数组prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi 。例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false 。[207.课程表](https://leetcode.cn/problems/course-schedule/description/)
+
+    - DFS找环
+
+6. 有一个有 n 个节点的有向图，节点按 0 到 n - 1 编号。图由一个 索引从 0 开始 的 2D 整数数组 graph表示， graph[i]是与节点 i 相邻的节点的整数数组，这意味着从节点 i 到 graph[i]中的每个节点都有一条边。如果一个节点没有连出的有向边，则该节点是 终端节点 。如果从该节点开始的所有可能路径都通向 终端节点（或另一个安全节点），则该节点为 安全节点。返回一个由图中所有 安全节点 组成的数组作为答案。答案数组中的元素应当按 升序 排列。[802.找到最终的安全状态](https://leetcode.cn/problems/find-eventual-safe-states/description/)
+
+
+## BFS
+
+1. 
+
+## 网格DFS
+
+1. 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。此外，你可以假设该网格的四条边均被水包围。
+
+    - 网格图 grid ,m = len(grid), n = len(grid[0]), (x,y) ，x:0-n, y:0-m
+    - 遍历grid[i][j]，如果grid[i][j]=='1'，那么做DFS，上下左右方向为'1'的才能做邻居
+    - DFS断了，就算一个陆地
 
 ## 数论
 
@@ -396,21 +499,7 @@ for i in range(m,m+n):
 7. 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。请你将两个数相加，并以相同形式返回一个表示和的链表。你可以假设除了数字 0 之外，这两个数都不会以 0 开头。
 
 
-## DFS
 
-1. 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。此外，你可以假设该网格的四条边均被水包围。
-
-    - 网格图 grid ,m = len(grid), n = len(grid[0]), (x,y) ，x:0-n, y:0-m
-    - 遍历grid[i][j]，如果grid[i][j]=='1'，那么做DFS，上下左右方向为'1'的才能做邻居
-    - DFS断了，就算一个陆地
-
-2. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。在选修某些课程之前需要一些先修课程。 先修课程按数组prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi 。例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false 。
-
-    - DFS找环
-
-## BFS
-
-1. 
 
 ## 二叉树
 
