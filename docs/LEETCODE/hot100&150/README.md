@@ -152,19 +152,144 @@
 
 3. 给你一个下标从 0 开始的整数数组 nums 和一个整数 target 。返回和为 target 的 nums 子序列中，子序列 长度的最大值 。如果不存在和为 target 的子序列，返回 -1 。子序列 指的是从原数组中删除一些或者不删除任何元素后，剩余元素保持原来的顺序构成的数组。[2915.和为目标值的最长子序列的长度](https://leetcode.cn/problems/length-of-the-longest-subsequence-that-sums-to-target/description/)
 
+    - 假设n=len(nums)
+    - 二维dp，dp的维度为(n+1)*(target+1)；dp[i][j]表示前i个数中和为j的最长子序列长度；注意这里dp初始化是用负无穷，这样可以满足max的逻辑，且不与有效长度混淆；dp[0][0]=0，空序列的和就是0；dp[i][0] = 0，由于nums的数都是正数，因此空序列的和为0；dp[0][j] = -float('inf')；
+    - 不选nums[i-1]，dp[i][j] = dp[i-1][j]；如果能选nums[i-1]（nums[i-1]<=j且dp[i-1][j-nums[i]]!=-float('inf')，则dp[i][j] = max(dp[i-1][j],dp[i-1][j-nums[i-1]]+1)
+
+
+4. 给你两个 正 整数 n 和 x 。请你返回将 n 表示成一些 互不相同 正整数的 x 次幂之和的方案数。换句话说，你需要返回互不相同整数 [n1, n2, ..., nk] 的集合数目，满足 n = n1^x + n2^x + ... + nk^x 。由于答案可能非常大，请你将它对 10^9 + 7 取余后返回。比方说，n = 160 且 x = 3 ，一个表示 n 的方法是 n = 2^3 + 3^3 + 5^3 。[2787.将一个数字表示成幂的和的方案数](https://leetcode.cn/problems/ways-to-express-an-integer-as-sum-of-powers/description/)
+
+    - 二维dp，dp的维度为(n+1)*(n+1)；dp[i][j] 表示前i个数，满足j是某些互不相同的正整数的x次幂之和的方案数; dp[0][0]=1，dp[i][0] = 1, dp[0][j] = 0;
+    - 不选nums[i-1]，则dp[i][j] = dp[i-1][j]；如果能够选nums[i-1](nums[i-1]^x<=j)，dp[i][j] = dp[i-1][j] + dp[i-1][j-math.pow(nums[i-1],x)]
+    - 由于 (a+b) mod M = ((a mod M) + (b mod M))mod M，所以不选nums[i-1]，则dp[i][j] = dp[i-1][j] % M；如果能够选nums[i-1](nums[i-1]^x<=j)，dp[i][j] = dp[i-1][j] + dp[i-1][j-math.pow(nums[i-1],x)]%M, dp[i][j] = dp[i][j] % M.
+
 - 完全背包
 - 零钱兑换
 - 完全平方数
 
-### 状态机
-
 ### 最长公共子序列（LCS）
+
+1. 给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。例如，"ace" 是 "abcde" 的子序列，但 "aec" 不是 "abcde" 的子序列。两个字符串的 公共子序列 是这两个字符串所共同拥有的子序列。[1143.最长公共子序列](https://leetcode.cn/problems/longest-common-subsequence/description/)
+
+    - 假设m=len(text1)，n=len(text2)
+    - 二维dp，维度为(m+1)*(n+1)，因为要考虑空串；dp[i][j]表示text1的前i个字符和text2的前j个字符的最长公共子序列; dp[0][0] = 0,dp[i][0] = 0,dp[0][j] = 0;
+    - 如果text1[i-1]！=text2[j-1]，那么dp[i][j] = max(dp[i][j-1],dp[i-1][j])；如果text1[i-1]==text2[j-1]，那么dp[i][j] = dp[i-1][j-1]+1
+
+2. 给定两个单词 word1 和 word2 ，返回使得 word1 和  word2 相同所需的最小步数。每步 可以删除任意一个字符串中的一个字符。[583.两个字符串的删除操作](https://leetcode.cn/problems/delete-operation-for-two-strings/description/)
+
+    - 先求出最长公共子序列长度，然后最长公共子序列以外的字符计数就是对应最小步数。
+
+3. 给定两个字符串s1 和 s2，返回 使两个字符串相等所需删除字符的 ASCII 值的最小和 。[712.两个字符串的最小ASCII删除和](https://leetcode.cn/problems/minimum-ascii-delete-sum-for-two-strings/description/)
+
+    - 假设m=len(s1),n=len(s2)
+    - 二维dp，维度为(m+1)*(n+1)，因为要考虑空串；dp[i][j]表示s1的前i个字符和s2的前j个字符相等的最小ASIIC删除和;dp[0][0]=0,dp[i][0]=sum(ASIIC_{i}),dp[0][j] = sum(ASIIC_{j})
+    - 如果s1[i-1]==s2[j-1]，则dp[i][j] = dp[i-1][j-1]；如果s1[i-1]!=s2[j-1]，则dp[i][j] = min(dp[i-1][j]+ASIIC_{i-1},dp[i][j-1]+ASIIC_{j-1})
+
+
+
+4. 给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数。你可以对一个单词进行如下三种操作：插入一个字符，删除一个字符，替换一个字符。[72.编辑距离](https://leetcode.cn/problems/edit-distance/description/)
+
+    - 从 A 到 B 的一次插入，相当于从 B 到 A 的一次删除（因为两者都是消除了一个字符的差异，操作方向相反但效果相同，所以在计算最小操作次数时，它们的贡献是一样的，因此等价。）
+    - 从 B 到 A 的一次插入，相等于从 A 到 B 的一次删除；从 A 到 B 的一次替换，等价于从 B 到 A 的一次替换。
+    - 因此等价地就只有三种操作：在A中删除一个元素，在B中删除一个元素，在A中替换一个元素；
+    - 假设m=len(word1),n=len(word2)；
+    - 二维dp，dp的维度为(m+1)*(n+1)，因为考虑空串；dp[i][j] 表示word1的前i个字符转换成word2所使用的最小操作数; dp[0][0] = 0; dp[i][0] = i; dp[0][j] = j;
+    - 如果word1[i-1]==word2[j-1]，那么这个字符可以不动，dp[i][j] = dp[i-1][j-1]；如果word1[i-1]!=word2[j-1]，那么dp[i][j]=min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1])+1（分别对应删除word1[i-1]，删除word2[j-1]，替换word1[i-1]变成word2[j-1]）
+    - 返回dp[-1][-1]
+
+5. 给两个整数数组 nums1 和 nums2 ，返回 两个数组中 公共的 、长度最长的子数组的长度 。[718.最长重复子数组](https://leetcode.cn/problems/maximum-length-of-repeated-subarray/description/)
+
+    - 假设m=len(nums1)，n=len(nums2)
+    - 二维dp，维度为(m+1)*(n+1)，因为要考虑空串；
+
+与最长公共子序列的区别
+
+- nums1:[0,1,1,1,1]，nums2:[1,0,1,0,1]，最长公共子序列长度为3，最长重复子数组长度为2
+
+- 表的区别
+
+最长公共子序列：
+|       |    | 0  | 1  | 1  | 1  | 1  |
+|-------|----|----|----|----|----|----|
+|       | 0  | 0  | 0  | 0  | 0  | 0  |
+| **1** | 0  | 0  | 1  | 1  | 1  | 1  |
+| **0** | 0  | 1  | 1  | 1  | 1  | 1  |
+| **0** | 0  | 1  | 2  | 2  | 2  | 2  |
+| **1** | 0  | 1  | 2  | 2  | 2  | 2  |
+| **1** | 0  | 1  | 2  | 3  | 3  | 3  |
+
+最长重复子数组
+|       |    | 0  | 1  | 1  | 0  | 1  |
+|-------|----|----|----|----|----|----|
+|       | 0  | 0  | 0  | 0  | 0  | 0  |
+| **1** | 0  | 0  | 1  | 1  | 1  | 1  |
+| **0** | 0  | 1  | 1  | 1  | 1  | 1  |
+| **1** | 0  | 1  | 2  | 2  | 2  | 2  |
+| **0** | 0  | 1  | 2  | 2  | 2  | 2  |
+| **1** | 0  | 1  | 2  | 2  | 2  | 3  |
+
+在最后出现最长重复子数组应该时'101'，但是在前面的时候最长重复子数组为'01'占据较多，所以这里不能单纯地用最长公共子序列的方程，因为这里不是简单拼接子序列，而是会出现比较，所以这里最后返回的应该时max(什么)的情况，所以这里dp表应该改为若nums[i-1]==nums[j-1]，则dp[i][j] = dp[i-1][j-1]+1，若nums[i-1]!=nums[j-1]，则dp[i][j] = 0 ，最后返回max(dp)
+
+|       |    | 0  | 1  | 1  | 0  | 1  |
+|-------|----|----|----|----|----|----|
+|       | 0  | 0  | 0  | 0  | 0  | 0  |
+| **1** | 0  | 0  | 1  | 1  | 1  | 1  |
+| **0** | 0  | 1  | 0  | 0  | 2  | 0  |
+| **1** | 0  | 0  | 2  | 1  | 0  | 3  |
+| **0** | 0  | 0  | 0  | 0  | 2  | 0  |
+| **1** | 0  | 0  | 1  | 1  | 0  | 3  |
+
 
 ### 最长递增子序列（LIS）
 
+1. 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。子序列 是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。[300.最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/)
+
+    - [4,10,4,3,8,9]，这里在前面最长的递增子序列为[4,10]，后面为[3,8,9]，需要换头比较，所有最后返回的是max(什么)
+    - 假设n=len(nums)
+    - 二维dp，dp的维度为(n)*(n)；dp[i][j]表示存在以nums[i]结尾长度为j的严格递增子序列
+    - dp[i][0] = False, dp[i][1] = True；
+    - dp[i][j] = True (如果存在 k<i and nums[k]<nums[i],dp[k][j-1]=True)
+    - 只要j那一列有一个True，那么长度j就存在，返回最大的j
+    - 但是二维会超时，压缩成一维
+    - 一维dp，dp的维度为n；dp[i]表示以nums[i]结尾的严格递增子序列长度；初始化，dp[i]=1
+    - dp[i] = max(dp[i],dp[k]) for k<i and nums[k]<nums[i]
+    - 最后返回max(dp[i])
+
+    - 时间优化，可以用二分来做
+
+2. 给你一个整数数组 nums 。nums 的每个元素是 1，2 或 3。在每次操作中，你可以删除 nums 中的一个元素。返回使 nums 成为 非递减 顺序所需操作数的 最小值。[2826.将三个组排序](https://leetcode.cn/problems/sorting-three-groups/description/)
+
+    - 找出最长公共子序列的长度l，然后len(nums)-l就是答案
+
+3. 假设你是球队的经理。对于即将到来的锦标赛，你想组合一支总体得分最高的球队。球队的得分是球队中所有球员的分数 总和 。然而，球队中的矛盾会限制球员的发挥，所以必须选出一支 没有矛盾 的球队。如果一名年龄较小球员的分数 严格大于 一名年龄较大的球员，则存在矛盾。同龄球员之间不会发生矛盾。给你两个列表 scores 和 ages，其中每组 scores[i] 和 ages[i] 表示第 i 名球员的分数和年龄。请你返回 所有可能的无矛盾球队中得分最高那支的分数 。[1626.无矛盾的最佳球队](https://leetcode.cn/problems/best-team-with-no-conflicts/description/)
+
+    - 先将(age，score)按age进行升序排序，age相同的按升序排列（这样age相同的才能都被选中），接着在socre的序列中计算递增子序列对应的分数，并且找到最大分数
+
+
+4. 给你一个二维整数数组 envelopes ，其中 envelopes[i] = [wi, hi] ，表示第 i 个信封的宽度和高度。当另一个信封的宽度和高度都比这个信封大的时候，这个信封就可以放进另一个信封里，如同俄罗斯套娃一样。请计算 最多能有多少个 信封能组成一组“俄罗斯套娃”信封（即可以把一个信封放到另一个信封里面）。注意：不允许旋转信封。[354.俄罗斯套娃信封问题](https://leetcode.cn/problems/russian-doll-envelopes/description/)
+
+    - 先将(w,h)按w进行升序排序，w相同的按降序排列（避免w相同的被同时选中），接着在h的序列中找到最长递增子序列长度.
+
+    - 超时了，找最长递增子序列长度的部分用二分来做
+
+5. 给你 n 个长方体 cuboids ，其中第 i 个长方体的长宽高表示为 cuboids[i] = [widthi, lengthi, heighti]（下标从 0 开始）。请你从 cuboids 选出一个 子集 ，并将它们堆叠起来。如果 widthi <= widthj 且 lengthi <= lengthj 且 heighti <= heightj ，你就可以将长方体 i 堆叠在长方体 j 上。你可以通过旋转把长方体的长宽高重新排列，以将它放在另一个长方体上。返回 堆叠长方体 cuboids 可以得到的 最大高度 。[1691.堆叠长方体的最大高度](https://leetcode.cn/problems/maximum-height-by-stacking-cuboids/description/)
+
+ 
+
 ### 最长回文子序列
 
-### 一维DP
+1. 给你一个字符串 s ，找出其中最长的回文子序列，并返回该序列的长度。子序列定义为：不改变剩余字符顺序的情况下，删除某些字符或者不删除任何字符形成的一个序列。[516.最长回文子序列](https://leetcode.cn/problems/longest-palindromic-subsequence/description/)
+
+
+
+
+### 最优划分
+
+### 状态机
+
+
+
+### 前后缀转移DP
 
 - 最低票价
 - 最低加油次数
@@ -182,11 +307,11 @@
 - 最短超级串
 - 访问所有节点的最短路径
 
-## 跳跃游戏
+### 跳跃游戏
 
-## 数位DP
+### 数位DP
 
-## 树形DP
+### 树形DP
 
 - 监控二叉树
 - 最小高度树
@@ -209,45 +334,112 @@ while stack:
         visited.append(node)
         # 这里for循环要在if内，避免节点重复进入stack
         # 比如1和2是邻居，1先入栈，接着就是2入栈，如果for在if外，那么下一次1又会入栈，从而导致死循环
-        for i in range(adj_matrix[node]):
-            if adj_matrix[node]:
-                stack.append(adj_matrix[node])
+        for i in range(len(adj_matrix[node])):
+            if adj_matrix[node][i] and i!=node:
+                stack.append(i)
 ```
+
+```bash
+def dfs(node):
+    if node not in visited:
+        visited.add(node)
+        for i in range(len(adj_matrix[node])):
+            if adj_matrix[node][i] and i!=node:
+                dfs(i)
+```
+
+
+
+1. 有一个具有 n 个顶点的 双向 图，其中每个顶点标记从 0 到 n - 1（包含 0 和 n - 1）。图中的边用一个二维整数数组 edges 表示，其中 edges[i] = [ui, vi] 表示顶点 ui 和顶点 vi 之间的双向边。 每个顶点对由 最多一条 边连接，并且没有顶点存在与自身相连的边。请你确定是否存在从顶点 source 开始，到顶点 destination 结束的 有效路径 。给你数组 edges 和整数 n、source 和 destination，如果从 source 到 destination 存在 有效路径 ，则返回 true，否则返回 false 。[1971.寻找图中是否存在路径](https://leetcode.cn/problems/find-if-path-exists-in-graph/description/)
+
+    - 无向图的建图，两边都要建，从source开始DFS，如果最后遍历结束，destination在visited中，则True
+
+2. 给你一个有 n 个节点的 有向无环图（DAG），请你找出从节点 0 到节点 n-1 的所有路径并输出（不要求按特定顺序）。graph[i] 是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点 graph[i][j]存在一条有向边）。[797.所有可能的路径](https://leetcode.cn/problems/all-paths-from-source-to-target/description/)
+
+    - 以0为起点的DFS
+    - 因为这里要得到路径，所以这里要用递归写法的DFS，这里不使用visited，因为要记录路径，加入path数组，在dfs中，如果path[-1]==n-1，那么result加入path的副本，然后return，如果不等于，遍历node的nei在dfs前path.append(nei)，在dfs后path.pop()
+
+
+DFS寻找连通分量个数
+
+```bash
+num = 0
+while node_set:
+    start = node_set.pop()
+    node_set.add(start)
+    stack = [start]
+    visited = set()
+    while stack:
+        node = stack.pop()
+        if node not in visited:
+            visited.add(node)
+            for nei in graph[node]:
+                stack.append(nei)
+    num += 1
+    node_set = node_set - visited
+```
+
+
+3. 有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。给你一个 n x n 的矩阵 isConnected ，其中 isConnected[i][j] = 1 表示第 i 个城市和第 j 个城市直接相连，而 isConnected[i][j] = 0 表示二者不直接相连。返回矩阵中 省份 的数量。[547.省份数量](https://leetcode.cn/problems/number-of-provinces/description/)
+
+    - 用一个node_set存放所有节点
+    - 从node_set里面随机抽取一个node，以这个node为起点做dfs，访问到一个节点，就将这个节点从node_set中移除，dfs结束之后省份数量+1，接着又从node_set里面抽取一个node，重复前述步骤
+
+
+4. 有 n 个房间，房间按从 0 到 n - 1 编号。最初，除 0 号房间外的其余所有房间都被锁住。你的目标是进入所有的房间。然而，你不能在没有获得钥匙的时候进入锁住的房间。当你进入一个房间，你可能会在里面找到一套 不同的钥匙，每把钥匙上都有对应的房间号，即表示钥匙可以打开的房间。你可以拿上所有钥匙去解锁其他房间。给你一个数组 rooms 其中 rooms[i] 是你进入 i 号房间可以获得的钥匙集合。如果能进入 所有 房间返回 true，否则返回 false。[841.钥匙和房间](https://leetcode.cn/problems/keys-and-rooms/description/)
+
+    - 检测连通分量个数，如果连通分量个数大于1，那么则无法访问所有房间
+
+
+并查集寻找连通分量
 
 ```bash
 
 
 ```
 
+5. 给你一个整数 n ，表示一张 无向图 中有 n 个节点，编号为 0 到 n - 1 。同时给你一个二维整数数组 edges ，其中 edges[i] = [ai, bi] 表示节点 ai 和 bi 之间有一条 无向 边。请你返回 无法互相到达 的不同 点对数目 。[2316.统计无向图中无法互相到达点对数](https://leetcode.cn/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/description/)
 
 
-1. 有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。给你一个 n x n 的矩阵 isConnected ，其中 isConnected[i][j] = 1 表示第 i 个城市和第 j 个城市直接相连，而 isConnected[i][j] = 0 表示二者不直接相连。返回矩阵中 省份 的数量。[547.省份数量](https://leetcode.cn/problems/number-of-provinces/description/)
+6. 用以太网线缆将 n 台计算机连接成一个网络，计算机的编号从 0 到 n-1。线缆用 connections 表示，其中 connections[i] = [a, b] 连接了计算机 a 和 b。网络中的任何一台计算机都可以通过网络直接或者间接访问同一个网络中其他任意一台计算机。给你这个计算机网络的初始布线 connections，你可以拔开任意两台直连计算机之间的线缆，并用它连接一对未直连的计算机。请你计算并返回使所有计算机都连通所需的最少操作次数。如果不可能，则返回 -1 。[1319.连通网络的操作数](https://leetcode.cn/problems/number-of-operations-to-make-network-connected/description/)
 
-    - 用一个node_set存放所有节点
-    - 从node_set里面随机抽取一个node，以这个node为起点做dfs，访问到一个节点，就将这个节点从node_set中移除，dfs结束之后省份数量+1，接着又从node_set里面抽取一个node，重复前述步骤
-
-
-2. 给你一个有 n 个节点的 有向无环图（DAG），请你找出从节点 0 到节点 n-1 的所有路径并输出（不要求按特定顺序）。graph[i] 是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点 graph[i][j]存在一条有向边）。[797.所有可能的路径](https://leetcode.cn/problems/all-paths-from-source-to-target/description/)
-
-    - 以0为起点的DFS
-    - 因为这里要得到路径，所以这里要用递归写法的DFS
-
-
-3. 用以太网线缆将 n 台计算机连接成一个网络，计算机的编号从 0 到 n-1。线缆用 connections 表示，其中 connections[i] = [a, b] 连接了计算机 a 和 b。网络中的任何一台计算机都可以通过网络直接或者间接访问同一个网络中其他任意一台计算机。给你这个计算机网络的初始布线 connections，你可以拔开任意两台直连计算机之间的线缆，并用它连接一对未直连的计算机。请你计算并返回使所有计算机都连通所需的最少操作次数。如果不可能，则返回 -1 。[1319.连通网络的操作数](https://leetcode.cn/problems/number-of-operations-to-make-network-connected/description/)
-
+    - 
 
 4. 给定一个列表 accounts，每个元素 accounts[i] 是一个字符串列表，其中第一个元素 accounts[i][0] 是 名称 (name)，其余元素是 emails 表示该账户的邮箱地址。现在，我们想合并这些账户。如果两个账户都有一些共同的邮箱地址，则两个账户必定属于同一个人。请注意，即使两个账户具有相同的名称，它们也可能属于不同的人，因为人们可能具有相同的名称。一个人最初可以拥有任意数量的账户，但其所有账户都具有相同的名称。合并账户后，按以下格式返回账户：每个账户的第一个元素是名称，其余元素是 按字符 ASCII 顺序排列 的邮箱地址。账户本身可以以 任意顺序 返回。[721.账户合并](https://leetcode.cn/problems/accounts-merge/description/)
 
-5. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。在选修某些课程之前需要一些先修课程。 先修课程按数组prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi 。例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false 。[207.课程表](https://leetcode.cn/problems/course-schedule/description/)
+5. 有一个有 n 个节点的有向图，节点按 0 到 n - 1 编号。图由一个 索引从 0 开始 的 2D 整数数组 graph表示， graph[i]是与节点 i 相邻的节点的整数数组，这意味着从节点 i 到 graph[i]中的每个节点都有一条边。如果一个节点没有连出的有向边，则该节点是 终端节点 。如果从该节点开始的所有可能路径都通向 终端节点（或另一个安全节点），则该节点为 安全节点。返回一个由图中所有 安全节点 组成的数组作为答案。答案数组中的元素应当按 升序 排列。[802.找到最终的安全状态](https://leetcode.cn/problems/find-eventual-safe-states/description/)
 
-    - DFS找环
 
-6. 有一个有 n 个节点的有向图，节点按 0 到 n - 1 编号。图由一个 索引从 0 开始 的 2D 整数数组 graph表示， graph[i]是与节点 i 相邻的节点的整数数组，这意味着从节点 i 到 graph[i]中的每个节点都有一条边。如果一个节点没有连出的有向边，则该节点是 终端节点 。如果从该节点开始的所有可能路径都通向 终端节点（或另一个安全节点），则该节点为 安全节点。返回一个由图中所有 安全节点 组成的数组作为答案。答案数组中的元素应当按 升序 排列。[802.找到最终的安全状态](https://leetcode.cn/problems/find-eventual-safe-states/description/)
 
 
 ## BFS
 
-1. 
+
+```bash
+visited = set()
+queue = [start]
+visited.add(start)
+while queue:
+    node = queue[0]
+    queue = queue[1:]
+    for nei in graph[node]:
+        if nei not in visited:
+            visited.add(nei)
+            queue.append(nei)
+
+```
+
+1. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。在选修某些课程之前需要一些先修课程。 先修课程按数组prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi 。例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false 。[207.课程表](https://leetcode.cn/problems/course-schedule/description/)
+
+    - ![alt text](image-2.png)
+    - 每次只能选入度为 0 的课，因为它不依赖别的课，是当下你能上的课。假设选了 0，课 3 的先修课少了一门，入度由 2 变 1。接着选 1，导致课 3 的入度变 0，课 4 的入度由 2 变 1。接着选 2，导致课 4 的入度变 0。现在，课 3 和课 4 的入度为 0。继续选入度为 0 的课……直到选不到入度为 0 的课
+    - 用字典建邻接矩阵，并且用一个数组记录每一个节点的入度，首先先让入度为0的节点进入队列，然后依次出队列，已完成的课程数+1，接着其邻居的入度-1，并且入度为0的邻居入队列，最后已完成的课程数==所有课程数（节点），则True，否则False
+
+
+
+
+
+    - 
 
 ## 网格DFS
 
