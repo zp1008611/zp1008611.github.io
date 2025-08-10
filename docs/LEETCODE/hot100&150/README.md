@@ -360,7 +360,7 @@ def dfs(node):
     - 因为这里要得到路径，所以这里要用递归写法的DFS，这里不使用visited，因为要记录路径，加入path数组，在dfs中，如果path[-1]==n-1，那么result加入path的副本，然后return，如果不等于，遍历node的nei在dfs前path.append(nei)，在dfs后path.pop()
 
 
-DFS寻找连通分量个数
+DFS寻找连通分量，每一次visited留下来的就是一个连通分量的点
 
 ```bash
 num = 0
@@ -379,6 +379,32 @@ while node_set:
     node_set = node_set - visited
 ```
 
+DFS寻找连通分量数量（时间优化）
+
+```bash
+num = 0
+visited = [False for i in range(n)]
+for i in range(n):
+    if not visited[i]:
+        stack = [i]
+        while stack:
+            node = stack.pop()
+            if not visited[node]:
+                visited[node] = True
+                for nei in graph[node]:
+                    stack.append(nei)
+        num += 1
+```
+
+
+
+并查集寻找连通分量
+
+```bash
+
+
+```
+
 
 3. 有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。给你一个 n x n 的矩阵 isConnected ，其中 isConnected[i][j] = 1 表示第 i 个城市和第 j 个城市直接相连，而 isConnected[i][j] = 0 表示二者不直接相连。返回矩阵中 省份 的数量。[547.省份数量](https://leetcode.cn/problems/number-of-provinces/description/)
 
@@ -391,30 +417,40 @@ while node_set:
     - 检测连通分量个数，如果连通分量个数大于1，那么则无法访问所有房间
 
 
-并查集寻找连通分量
 
-```bash
-
-
-```
 
 5. 给你一个整数 n ，表示一张 无向图 中有 n 个节点，编号为 0 到 n - 1 。同时给你一个二维整数数组 edges ，其中 edges[i] = [ai, bi] 表示节点 ai 和 bi 之间有一条 无向 边。请你返回 无法互相到达 的不同 点对数目 。[2316.统计无向图中无法互相到达点对数](https://leetcode.cn/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/description/)
+
+    - bfs寻找连通分量
+    - 找来一个node_set存储所有节点，随机出一个节点开始做dfs，每一次dfs结束后，对应的visited里面的元素就是一个连通分量的节点，不同连通分量的节点无法互相到达，假设有y个连通分量，第i个连通分量内的点有x_i，则无法互相到达的点对数为 sum_{i=1,...y}sum_{j=i+1,...,y}x_ix_j
 
 
 6. 用以太网线缆将 n 台计算机连接成一个网络，计算机的编号从 0 到 n-1。线缆用 connections 表示，其中 connections[i] = [a, b] 连接了计算机 a 和 b。网络中的任何一台计算机都可以通过网络直接或者间接访问同一个网络中其他任意一台计算机。给你这个计算机网络的初始布线 connections，你可以拔开任意两台直连计算机之间的线缆，并用它连接一对未直连的计算机。请你计算并返回使所有计算机都连通所需的最少操作次数。如果不可能，则返回 -1 。[1319.连通网络的操作数](https://leetcode.cn/problems/number-of-operations-to-make-network-connected/description/)
 
-    - 
+    - 如果边数<n-1，那么不可能全部计算机能够连通在一起
+    - 如果边数>=n-1，那么用bfs寻找连通分量，最少操作次数=连通分量-1
 
-4. 给定一个列表 accounts，每个元素 accounts[i] 是一个字符串列表，其中第一个元素 accounts[i][0] 是 名称 (name)，其余元素是 emails 表示该账户的邮箱地址。现在，我们想合并这些账户。如果两个账户都有一些共同的邮箱地址，则两个账户必定属于同一个人。请注意，即使两个账户具有相同的名称，它们也可能属于不同的人，因为人们可能具有相同的名称。一个人最初可以拥有任意数量的账户，但其所有账户都具有相同的名称。合并账户后，按以下格式返回账户：每个账户的第一个元素是名称，其余元素是 按字符 ASCII 顺序排列 的邮箱地址。账户本身可以以 任意顺序 返回。[721.账户合并](https://leetcode.cn/problems/accounts-merge/description/)
 
-5. 有一个有 n 个节点的有向图，节点按 0 到 n - 1 编号。图由一个 索引从 0 开始 的 2D 整数数组 graph表示， graph[i]是与节点 i 相邻的节点的整数数组，这意味着从节点 i 到 graph[i]中的每个节点都有一条边。如果一个节点没有连出的有向边，则该节点是 终端节点 。如果从该节点开始的所有可能路径都通向 终端节点（或另一个安全节点），则该节点为 安全节点。返回一个由图中所有 安全节点 组成的数组作为答案。答案数组中的元素应当按 升序 排列。[802.找到最终的安全状态](https://leetcode.cn/problems/find-eventual-safe-states/description/)
+7. 给你一个正整数 n ，表示总共有 n 个城市，城市从 1 到 n 编号。给你一个二维数组 roads ，其中 roads[i] = [ai, bi, distancei] 表示城市 ai 和 bi 之间有一条 双向 道路，道路距离为 distancei 。城市构成的图不一定是连通的。两个城市之间一条路径的 分数 定义为这条路径中道路的 最小 距离。城市 1 和城市 n 之间的所有路径的 最小 分数。注意：一条路径指的是两个城市之间的道路序列。一条路径可以 多次 包含同一条道路，你也可以沿着路径多次到达城市 1 和城市 n 。测试数据保证城市 1 和城市n 之间 至少 有一条路径。[2492.两个城市间路径的最小分数](https://leetcode.cn/problems/minimum-score-of-a-path-between-two-cities/description/)
+
+    - 由于1和n-1一定有路可达，说明1和n-1一定在同一个连通分量，bfs遍历，并记录下遍历过程中最小分数的边
+
+8. 你正在维护一个项目，该项目有 n 个方法，编号从 0 到 n - 1。给你两个整数 n 和 k，以及一个二维整数数组 invocations，其中 invocations[i] = [ai, bi] 表示方法 ai 调用了方法 bi。已知如果方法 k 存在一个已知的 bug。那么方法 k 以及它直接或间接调用的任何方法都被视为 可疑方法 ，我们需要从项目中移除这些方法。只有当一组方法没有被这组之外的任何方法调用时，这组方法才能被移除。返回一个数组，包含移除所有 可疑方法 后剩下的所有方法。你可以以任意顺序返回答案。如果无法移除 所有 可疑方法，则 不 移除任何方法。[3310.移除可疑的方法](https://leetcode.cn/problems/remove-methods-from-project/description/)
+
+    - 先dfs找k可达的节点，然后dfs剩余的节点里面，看是否有经过k的连通分量的节点，如果有就标记这些节点，剩余的节点就是可返回的节点
+
+7. 给定一个列表 accounts，每个元素 accounts[i] 是一个字符串列表，其中第一个元素 accounts[i][0] 是 名称 (name)，其余元素是 emails 表示该账户的邮箱地址。现在，我们想合并这些账户。如果两个账户都有一些共同的邮箱地址，则两个账户必定属于同一个人。请注意，即使两个账户具有相同的名称，它们也可能属于不同的人，因为人们可能具有相同的名称。一个人最初可以拥有任意数量的账户，但其所有账户都具有相同的名称。合并账户后，按以下格式返回账户：每个账户的第一个元素是名称，其余元素是 按字符 ASCII 顺序排列 的邮箱地址。账户本身可以以 任意顺序 返回。[721.账户合并](https://leetcode.cn/problems/accounts-merge/description/)
+
+    - 把邮箱对应节点，进行建图，在同一个列表的就有一条边，然后找连通分量个数
+
+8. 有一个有 n 个节点的有向图，节点按 0 到 n - 1 编号。图由一个 索引从 0 开始 的 2D 整数数组 graph表示， graph[i]是与节点 i 相邻的节点的整数数组，这意味着从节点 i 到 graph[i]中的每个节点都有一条边。如果一个节点没有连出的有向边，则该节点是 终端节点 。如果从该节点开始的所有可能路径都通向 终端节点（或另一个安全节点），则该节点为 安全节点。返回一个由图中所有 安全节点 组成的数组作为答案。答案数组中的元素应当按 升序 排列。[802.找到最终的安全状态](https://leetcode.cn/problems/find-eventual-safe-states/description/)
 
 
 
 
 ## BFS
 
-
+BFS遍历
 ```bash
 visited = set()
 queue = [start]
@@ -429,17 +465,75 @@ while queue:
 
 ```
 
-1. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。在选修某些课程之前需要一些先修课程。 先修课程按数组prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi 。例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false 。[207.课程表](https://leetcode.cn/problems/course-schedule/description/)
+BFS遍历，且知道层数
+```bash
+visited = set()
+queue = [(start,0)]
+visited.add(start)
+while queue:
+    node = queue[0]
+    queue = queue[1:]
+    for nei in graph[node]:
+        if nei not in visited:
+            visited.add(nei)
+            queue.append((nei,node[1]+1))
+
+```
+
+
+
+BFS可用于求边权为1的图的单源最短路。
+BFS 的遍历过程是 “由近及远” 的：
+从起点出发，先访问所有距离为 1的节点（直接相邻节点）；再访问所有距离为 2的节点（通过距离为 1 的节点间接可达）；以此类推，每层节点的距离（路径长度）严格递增，且等于其所在的 “层次”。假设存在一个节点v，其最短路径长度为d（即需要d条边到达）。根据 BFS 的遍历顺序：节点v会在第d层被首次访问（因为前d-1层访问的是路径长度小于d的节点，无法到达v）；由于 BFS 不会重复访问节点（通常用visited数组标记），首次访问v时的路径长度d就是最短路径。
+
+
+2. 给你一个整数 n 和一个二维整数数组 queries。有 n 个城市，编号从 0 到 n - 1。初始时，每个城市 i 都有一条单向道路通往城市 i + 1（ 0 <= i < n - 1）。queries[i] = [ui, vi] 表示新建一条从城市 ui 到城市 vi 的单向道路。每次查询后，你需要找到从城市 0 到城市 n - 1 的最短路径的长度。返回一个数组 answer，对于范围 [0, queries.length - 1] 中的每个 i，answer[i] 是处理完前 i + 1 个查询后，从城市 0 到城市 n - 1 的最短路径的长度。[3243.新增道路查询后的最短距离I](https://leetcode.cn/problems/shortest-distance-after-road-addition-queries-i/description/)
+
+    - 这是边权为1的图，
+    - 每增加一个query，就跑一次BFS，返回遍历到n-1对应的层数
+
+
+3. 有 n 个人，每个人都有一个  0 到 n-1 的唯一 id 。给你数组 watchedVideos  和 friends ，其中 watchedVideos[i]  和 friends[i] 分别表示 id = i 的人观看过的视频列表和他的好友列表。Level 1 的视频包含所有你好友观看过的视频，level 2 的视频包含所有你好友的好友观看过的视频，以此类推。一般的，Level 为 k 的视频包含所有从你出发，最短距离为 k 的好友观看过的视频。给定你的 id  和一个 level 值，请你找出所有指定 level 的视频，并将它们按观看频率升序返回。如果有频率相同的视频，请将它们按字母顺序从小到大排列。[1311.获取你好友已观看的视频](https://leetcode.cn/problems/get-watched-videos-by-your-friends/description/)
+
+    - 根据friends建图，bfs遍历，找到对应level对应的节点，然后把节点对应的movies集合返回
+
+
+4. 给定一个整数 n，即有向图中的节点数，其中节点标记为 0 到 n - 1。图中的每条边为红色或者蓝色，并且可能存在自环或平行边。给定两个数组 redEdges 和 blueEdges，其中：redEdges[i] = [ai, bi] 表示图中存在一条从节点 ai 到节点 bi 的红色有向边，blueEdges[j] = [uj, vj] 表示图中存在一条从节点 uj 到节点 vj 的蓝色有向边。返回长度为 n 的数组 answer，其中 answer[X] 是从节点 0 到节点 X 的红色边和蓝色边交替出现的最短路径的长度。如果不存在这样的路径，那么 answer[x] = -1。[1129.颜色交替的最短路径](https://leetcode.cn/problems/shortest-path-with-alternating-colors/description/)
+
+    - 
+
+
+5. 给你一个数组 routes ，表示一系列公交线路，其中每个 routes[i] 表示一条公交线路，第 i 辆公交车将会在上面循环行驶。例如，路线 routes[0] = [1, 5, 7] 表示第 0 辆公交车会一直按序列 1 -> 5 -> 7 -> 1 -> 5 -> 7 -> 1 -> ... 这样的车站路线行驶。现在从 source 车站出发（初始时不在公交车上），要前往 target 车站。 期间仅可乘坐公交车。求出 最少乘坐的公交车数量 。如果不可能到达终点车站，返回 -1 。[815.公交路线](https://leetcode.cn/problems/bus-routes/description/)
+
+
+
+拓扑排序
+
+
+1. 给你一个 有向无环图 ， n 个节点编号为 0 到 n-1 ，以及一个边数组 edges ，其中 edges[i] = [fromi, toi] 表示一条从点  fromi 到点 toi 的有向边。找到最小的点集使得从这些点出发能到达图中所有点。题目保证解存在且唯一。你可以以任意顺序返回这些节点编号。[1557.可以到达所有点的最少数目](https://leetcode.cn/problems/minimum-number-of-vertices-to-reach-all-nodes/description/)
+
+    - 找到没有入的边的点，从拓扑排序可知，没有入边的点一定是前源点，可以到达后续其他点.
+
+
+2. 你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1 。在选修某些课程之前需要一些先修课程。 先修课程按数组prerequisites 给出，其中 prerequisites[i] = [ai, bi] ，表示如果要学习课程 ai 则 必须 先学习课程  bi 。例如，先修课程对 [0, 1] 表示：想要学习课程 0 ，你需要先完成课程 1 。请你判断是否可能完成所有课程的学习？如果可以，返回 true ；否则，返回 false 。[207.课程表](https://leetcode.cn/problems/course-schedule/description/)
 
     - ![alt text](image-2.png)
     - 每次只能选入度为 0 的课，因为它不依赖别的课，是当下你能上的课。假设选了 0，课 3 的先修课少了一门，入度由 2 变 1。接着选 1，导致课 3 的入度变 0，课 4 的入度由 2 变 1。接着选 2，导致课 4 的入度变 0。现在，课 3 和课 4 的入度为 0。继续选入度为 0 的课……直到选不到入度为 0 的课
     - 用字典建邻接矩阵，并且用一个数组记录每一个节点的入度，首先先让入度为0的节点进入队列，然后依次出队列，已完成的课程数+1，接着其邻居的入度-1，并且入度为0的邻居入队列，最后已完成的课程数==所有课程数（节点），则True，否则False
 
+3. 现在你总共有 numCourses 门课需要选，记为 0 到 numCourses - 1。给你一个数组 prerequisites ，其中 prerequisites[i] = [ai, bi] ，表示在选修课程 ai 前 必须 先选修 bi 。例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示：[0,1] 。返回你为了学完所有课程所安排的学习顺序。可能会有多个正确的顺序，你只要返回 任意一种 就可以了。如果不可能完成所有课程，返回 一个空数组 。
+
+    - 最开始入度为0的点入对队列，出队列，存结果result，有联系的点入度-1，接着有联系的点仲入度为0的点入队列，出队列，存结果，有联系的点入度-1反复；最后看result的长度是否等于numCourses，等于就返回result，不等于就返回[]
+
+4. 你有 n 道不同菜的信息。给你一个字符串数组 recipes 和一个二维字符串数组 ingredients 。第 i 道菜的名字为 recipes[i] ，如果你有它 所有 的原材料 ingredients[i] ，那么你可以 做出 这道菜。一份食谱也可以是 其它 食谱的原料，也就是说 ingredients[i] 可能包含 recipes 中另一个字符串。同时给你一个字符串数组 supplies ，它包含你初始时拥有的所有原材料，每一种原材料你都有无限多。请你返回你可以做出的所有菜。你可以以 任意顺序 返回它们。注意两道菜在它们的原材料中可能互相包含。[2115.从给定原材来仲找到所有可以做出的菜](https://leetcode.cn/problems/find-all-possible-recipes-from-given-supplies/)
+
+    - 根据建图recipes和ingredients建图
 
 
+5. 有 n 个项目，每个项目或者不属于任何小组，或者属于 m 个小组之一。group[i] 表示第 i 个项目所属的小组，如果第 i 个项目不属于任何小组，则 group[i] 等于 -1。项目和小组都是从零开始编号的。可能存在小组不负责任何项目，即没有任何项目属于这个小组。请你帮忙按要求安排这些项目的进度，并返回排序后的项目列表：同一小组的项目，排序后在列表中彼此相邻。项目之间存在一定的依赖关系，我们用一个列表 beforeItems 来表示，其中 beforeItems[i] 表示在进行第 i 个项目前（位于第 i 个项目左侧）应该完成的所有项目。如果存在多个解决方案，只需要返回其中任意一个即可。如果没有合适的解决方案，就请返回一个 空列表 。[1203.项目管理](https://leetcode.cn/problems/sort-items-by-groups-respecting-dependencies/description/)
 
 
-    - 
+## Dijkstra
 
 ## 网格DFS
 
@@ -448,6 +542,58 @@ while queue:
     - 网格图 grid ,m = len(grid), n = len(grid[0]), (x,y) ，x:0-n, y:0-m
     - 遍历grid[i][j]，如果grid[i][j]=='1'，那么做DFS，上下左右方向为'1'的才能做邻居
     - DFS断了，就算一个陆地
+
+## 网格BFS
+
+## 栈
+
+
+1. 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。有效字符串需满足：左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。每个右括号都有一个对应的相同类型的左括号。[LC20有效的括号](https://leetcode.cn/problems/valid-parentheses/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 只有左括号可以入栈
+    - 遍历s，如果遇到右括号，如果栈非空，看栈顶是不是对应的左括号，如果栈时空的，那么直接False了，如果遍历完s，栈非空，那么也是False.
+    - 直接遍历全程都是True，且最后栈空，才是True
+
+2. 给你一个字符串 path ，表示指向某一文件或目录的 Unix 风格 绝对路径 （以 '/' 开头），请你将其转化为 更加简洁的规范路径。在 Unix 风格的文件系统中规则如下：一个点 '.' 表示当前目录本身。此外，两个点 '..' 表示将目录切换到上一级（指向父目录）。任意多个连续的斜杠（即，'//' 或 '///'）都被视为单个斜杠 '/'。任何其他格式的点（例如，'...' 或 '....'）均被视为有效的文件/目录名称。返回的 简化路径 必须遵循下述格式：始终以斜杠 '/' 开头。两个目录名之间必须只有一个斜杠 '/' 。最后一个目录名（如果存在）不能 以 '/' 结尾。此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 '.' 或 '..'）。返回简化后得到的 规范路径 。[LC71简化路径](https://leetcode.cn/problems/simplify-path/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 找来一个栈，
+    - path = "/.../a/../b/c/../d/./"
+    - ...入栈，a入栈，看到..，a出栈，b入栈，c入栈，看到..，c出栈，d入栈，.不用动
+    - 依次出栈，然后字符串往左边加文件名和'/'
+        - /.../b/d'
+    - 一些处理，字符串以'/'进行分割，对于'//'的情况，会出现空字符串，看到空字符串，直接跳过
+    - 如果第一个文件名就是'..'，空stack出栈会报错，所以要加一个判断
+    - 特判：如果字符串长度为1，那么就只有'/'，直接返回
+
+3. 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。实现 MinStack 类: MinStack() 初始化堆栈对象。void push(int val) 将元素val推入堆栈。void pop() 删除堆栈顶部的元素。int top() 获取堆栈顶部的元素。int getMin() 获取堆栈中的最小元素。[155.最小栈](https://leetcode.cn/problems/min-stack/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 栈的元素是一个元组(入栈元素，当前最小值)
+    - 栈初始化为 [(0,float('inf'))]
+    - 第二元素，在入栈的时候，和历史最小值相比来更新
+
+4. 给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，其中 answer[i] 是指对于第 i 天，下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用 0 来代替。[739.每日温度](https://leetcode.cn/problems/daily-temperatures/description/?envType=study-plan-v2&envId=top-100-liked)
+
+5. 下一个更大的元素I
+
+6. 下一个更大的元素 II
+
+
+7. 柱状图中最大的矩形
+
+5. 给你一个字符串数组 tokens ，表示一个根据 逆波兰表示法 表示的算术表达式。请你计算该表达式。返回一个表示表达式值的整数。
+注意：有效的算符为 '+'、'-'、'*' 和 '/' 。每个操作数（运算对象）都可以是一个整数或者另一个表达式。两个整数之间的除法总是 向零截断 。表达式中不含除零运算。输入是一个根据逆波兰表示法表示的算术表达式。答案及所有中间计算结果可以用 32 位 整数表示。[150.逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/?envType=study-plan-v2&envId=top-interview-150)
+
+
+6. 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 eval() 。[224.基本计算器](https://leetcode.cn/problems/basic-calculator/description/?envType=study-plan-v2&envId=top-interview-150)
+
+
+
+
+
+7. 给定一个经过编码的字符串，返回它解码后的字符串。编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。[394.字符串解码](https://leetcode.cn/problems/decode-string/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 这里的 `3[a]`类似乘法计算3*"a"，`3[a]2[c]`这里类似加法运算3*"a"+2*"c"，`3[a2[c]]`这里类似带括号的运算 3*(a+2*c)
+
 
 ## 数论
 
@@ -853,54 +999,6 @@ for i in range(m,m+n):
 
 6. 找出所有相加之和为 n 的 k 个数的组合，且满足下列条件：只使用数字1到9，每个数字 最多使用一次，返回 所有可能的有效组合的列表 。该列表不能包含相同的组合两次，组合可以以任何顺序返回。[216.组合总和III](https://leetcode.cn/problems/combination-sum-iii/description/)
 
-## 栈
-
-
-1. 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。有效字符串需满足：左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。每个右括号都有一个对应的相同类型的左括号。[LC20有效的括号](https://leetcode.cn/problems/valid-parentheses/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - 只有左括号可以入栈
-    - 遍历s，如果遇到右括号，如果栈非空，看栈顶是不是对应的左括号，如果栈时空的，那么直接False了，如果遍历完s，栈非空，那么也是False.
-    - 直接遍历全程都是True，且最后栈空，才是True
-
-2. 给你一个字符串 path ，表示指向某一文件或目录的 Unix 风格 绝对路径 （以 '/' 开头），请你将其转化为 更加简洁的规范路径。在 Unix 风格的文件系统中规则如下：一个点 '.' 表示当前目录本身。此外，两个点 '..' 表示将目录切换到上一级（指向父目录）。任意多个连续的斜杠（即，'//' 或 '///'）都被视为单个斜杠 '/'。任何其他格式的点（例如，'...' 或 '....'）均被视为有效的文件/目录名称。返回的 简化路径 必须遵循下述格式：始终以斜杠 '/' 开头。两个目录名之间必须只有一个斜杠 '/' 。最后一个目录名（如果存在）不能 以 '/' 结尾。此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 '.' 或 '..'）。返回简化后得到的 规范路径 。[LC71简化路径](https://leetcode.cn/problems/simplify-path/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - 找来一个栈，
-    - path = "/.../a/../b/c/../d/./"
-    - ...入栈，a入栈，看到..，a出栈，b入栈，c入栈，看到..，c出栈，d入栈，.不用动
-    - 依次出栈，然后字符串往左边加文件名和'/'
-        - /.../b/d'
-    - 一些处理，字符串以'/'进行分割，对于'//'的情况，会出现空字符串，看到空字符串，直接跳过
-    - 如果第一个文件名就是'..'，空stack出栈会报错，所以要加一个判断
-    - 特判：如果字符串长度为1，那么就只有'/'，直接返回
-
-3. 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。实现 MinStack 类: MinStack() 初始化堆栈对象。void push(int val) 将元素val推入堆栈。void pop() 删除堆栈顶部的元素。int top() 获取堆栈顶部的元素。int getMin() 获取堆栈中的最小元素。[155.最小栈](https://leetcode.cn/problems/min-stack/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 栈的元素是一个元组(入栈元素，当前最小值)
-    - 栈初始化为 [(0,float('inf'))]
-    - 第二元素，在入栈的时候，和历史最小值相比来更新
-
-4. 给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，其中 answer[i] 是指对于第 i 天，下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用 0 来代替。[739.每日温度](https://leetcode.cn/problems/daily-temperatures/description/?envType=study-plan-v2&envId=top-100-liked)
-
-5. 下一个更大的元素I
-
-6. 下一个更大的元素 II
-
-
-7. 柱状图中最大的矩形
-
-5. 给你一个字符串数组 tokens ，表示一个根据 逆波兰表示法 表示的算术表达式。请你计算该表达式。返回一个表示表达式值的整数。
-注意：有效的算符为 '+'、'-'、'*' 和 '/' 。每个操作数（运算对象）都可以是一个整数或者另一个表达式。两个整数之间的除法总是 向零截断 。表达式中不含除零运算。输入是一个根据逆波兰表示法表示的算术表达式。答案及所有中间计算结果可以用 32 位 整数表示。[150.逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/?envType=study-plan-v2&envId=top-interview-150)
-
-
-6. 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 eval() 。[224.基本计算器](https://leetcode.cn/problems/basic-calculator/description/?envType=study-plan-v2&envId=top-interview-150)
-
-
-
-
-
-7. 给定一个经过编码的字符串，返回它解码后的字符串。编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。[394.字符串解码](https://leetcode.cn/problems/decode-string/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 这里的 `3[a]`类似乘法计算3*"a"，`3[a]2[c]`这里类似加法运算3*"a"+2*"c"，`3[a2[c]]`这里类似带括号的运算 3*(a+2*c)
 
  
 
