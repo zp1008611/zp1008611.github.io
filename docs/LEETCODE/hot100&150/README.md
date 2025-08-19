@@ -255,7 +255,18 @@
     - dp[i] = max(dp[i],dp[k]) for k<i and nums[k]<nums[i]
     - 最后返回max(dp[i])
 
-    - 时间优化，可以用二分来做
+    - 时间优化，可以用二分来做，在二维dp中更新dp，需要把i前面的所有k都遍历一边，比较慢；我们可以换一个角度，把dp[i]表示长度为i的严格递增子序列的最小的末尾元素，那么dp的长度就是最长严格递增子序列的长度。
+    - 我们知道dp一定是严格单调递增的，假设存在j<i，有dp[j]>dp[i]. 由dp[i],dp[j]的定义，则存在a_1,a_2,..,a_j,...,a_i=dp[i],有a_1<a_2<...<a_j<...<a_i=dp[i]，存在b_1,...,b_j=dp[j]，有b_1<...<b_j=dp[j]，由于b_j<=a_j（dp[j]是长度为j的严格递增子序列最小末尾元素）,则dp[j]<=a_j<a_i=dp[i]，则有dp[j]<dp[i]，矛盾！故对于j<=i,dp[j]<=dp[i].
+    - dp的元素更新：初始化dp,dp[0]=nums[0]，遍历nums[i]，在dp中找到第一个大于nums[i]的坐标，并替换它，如果不存在则在末尾加入.
+    - nums = [10,9,2,5,3,7,101,18]
+    - 在dp中找到第一个大于nums[i]的坐标，并替换它，相当于加了一个分支，沿着新的分支走
+
+                     18 
+               3  7  101    
+           2   5 
+           9   
+    - dp : 10
+
 
 2. 给你一个整数数组 nums 。nums 的每个元素是 1，2 或 3。在每次操作中，你可以删除 nums 中的一个元素。返回使 nums 成为 非递减 顺序所需操作数的 最小值。[2826.将三个组排序](https://leetcode.cn/problems/sorting-three-groups/description/)
 
@@ -280,10 +291,81 @@
 
 1. 给你一个字符串 s ，找出其中最长的回文子序列，并返回该序列的长度。子序列定义为：不改变剩余字符顺序的情况下，删除某些字符或者不删除任何字符形成的一个序列。[516.最长回文子序列](https://leetcode.cn/problems/longest-palindromic-subsequence/description/)
 
+    - 假设n = len(s)
+    - 区间dp（大区间的状态由小区间决定），dp的维度为s*s,dp[i][j]表示区间[i,j]之间的最长回文子序列，dp[i][i]=1,dp[i][j]=0(i>j).
+    - 长度从l=1到l=n遍历，左端点从i=0开始遍历，即j=i+l,这样可以从长度最小的区间一直遍历长度最大的区间
+    - s[i]==s[j]时,dp[i][j]=dp[i+1][j-1]+2;s[i]!=s[j]时，dp[i][j]=max(dp[i+1][j],dp[i][j-1])
 
 
 
 ### 最优划分
+
+最多（最少）可以把序列分割成满足某些要求的序列数
+
+1. 给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文串。返回符合要求的 最少分割次数 。[132.分割回文串II](https://leetcode.cn/problems/palindrome-partitioning-ii/description/)
+
+    - 分割次数少，就意味着每一段尽可能长
+    - 先用一个矩阵matrix记录下每个区间的是否是回文串,matrix[i][j]=True意味着s[i:j+1]是回文串；判定回文串可以使用长度遍历l+左端点i遍历+计算右端点j=i+l-1的方法进行判断，注意但i==j和j==i+1需要进行特判
+    - 一维dp，维度为n，dp[i]表示把前i个字符组成的序列分割成回文串的最小分割次数；
+    - dp初始化，dp=[i for i in range(n)]
+    - i从1到n-1，k从0到i，对于dp[i]，从后面往前切，则往前找下标最小的可分割点即可，dp[i] = min(dp[k-1]+1,dp[i]) for k in range(i+1) if matrix[k][i]==True，if k==0,dp[i]=0;
+    - 返回dp[-1]
+
+2. 给你一个下标从 0 开始的字符串 s 和一个单词字典 dictionary 。你需要将 s 分割成若干个 互不重叠 的子字符串，每个子字符串都在 dictionary 中出现过。s 中可能会有一些 额外的字符 不在任何子字符串中。请你采取最优策略分割 s ，使剩下的字符 最少 。[2707.字符串中的额外字符](https://leetcode.cn/problems/extra-characters-in-a-string/description/)
+
+    - 一维dp，维度为n，dp[i]表示把前i个字符组成的序列采用最优分割，剩下的最少字符；
+    - dp初始化，dp=[i+1 for i in range(n)]
+    - 如果s[0] in dictionary, dp[0]=0
+    - i从1到n-1，k从0到i：
+        - 如果s[0:i+1] in dictionary, 则dp[i] = 0
+        - 如果s[k:i+1] in dictionary, 则dp[i] = (前k-1个字符结果dp[k-1]，dp[i])
+        - 如果s[k:i+1] not in dictionary，dp[i]= (前k-1个字符结果dp[k-1]+(i-k+1)，dp[i])
+    - 返回dp[-1]
+ 
+3. 给你一个二进制字符串 s ，你需要将字符串分割成一个或者多个 子字符串  ，使每个子字符串都是 美丽 的。如果一个字符串满足以下条件，我们称它是 美丽 的：它不包含前导 0 。它是 5 的幂的 二进制 表示。请你返回分割后的子字符串的 最少 数目。如果无法将字符串 s 分割成美丽子字符串，请你返回 -1 。子字符串是一个字符串中一段连续的字符序列。[2767.将字符串分割为最少的美丽子字符串](https://leetcode.cn/problems/partition-string-into-minimum-beautiful-substrings/description/)
+    - n=len(s)
+    - 一维dp，维度为n，dp[i]表示把前i个字符分成成美丽字符串的个数
+    - dp初始化, dp不能初始化为[0 for i in range(n)]，如果后续使用dp[i] = max(dp[k-1]+1,1)，这里则默认[0:k-1]是有效分割
+    - dp初始化，dp=[float('inf') for i in range(n)]
+    - 判断子串t是美丽串的函数：t[0]==0 (return False), t[0]==1, 判断是否是5的幂，先二进制转十进制 (num=0, for i in t: num=num*2+(1 if i=='1' else 0))，再看是否是5的倍数 (num%5==0)，再看一直除以5之后最后是否只剩下1 (while num>1: num = num//5) 
+    - 如果s[0:i+1]是美丽串，那么dp[i]=0
+    - i从1到n-1，k从1到n，如果dp[k:i+1]是美丽串，那么dp[i]=min(dp[k-1]+1,dp[i])
+
+4. 一条包含字母 A-Z 的消息通过以下映射进行了 编码 ：
+"1" -> 'A',"2" -> 'B',...,"25" -> 'Y',"26" -> 'Z'
+然而，在 解码 已编码的消息时，你意识到有许多不同的方式来解码，因为有些编码被包含在其它编码当中（"2" 和 "5" 与 "25"）。
+例如，"11106" 可以映射为：
+"AAJF" ，将消息分组为 (1, 1, 10, 6)
+"KJF" ，将消息分组为 (11, 10, 6)
+消息不能分组为  (1, 11, 06) ，因为 "06" 不是一个合法编码（只有 "6" 是合法的）。
+注意，可能存在无法解码的字符串。给你一个只含数字的 非空 字符串 s ，请计算并返回 解码 方法的 总数 。如果没有合法的方式解码整个字符串，返回 0。题目数据保证答案肯定是一个 32 位 的整数。[91.解码方法](https://leetcode.cn/problems/decode-ways/description/)
+
+    - 有点类似爬楼梯，
+    - n = len(s)
+    - 一位dp，维度为n，dp[i]表示由s的前i个字符组成的子串的解码方法总数
+    - dp初始化，dp=[0 for i in range(n)]
+    - dp[0] = 1，如果是s[0]!=0
+    - i从2到n-1，if s[i-1:i+1]有效且s[i]有效，那么dp[i] = dp[i-1]+dp[i-2]，如果s[i-1:i+1]无效且s[i]有效，那么dp[i] = dp[i-1]，如果s[i-1:i+1]有效但是s[i]无效，那么dp[i] = dp[i-2]，如果s[i-1:i+1]无效且s[i]无效，那么说明存在子串'00'，这样s无法有效编码，返回0
+
+5. 给你一个整数数组 arr，请你将该数组分隔为长度 最多 为 k 的一些（连续）子数组。分隔完成后，每个子数组的中的所有值都会变为该子数组中的最大值。返回将数组分隔变换后能够得到的元素最大和。本题所用到的测试用例会确保答案是一个 32 位整数。[1043.分隔数组以得到最大和](https://leetcode.cn/problems/partition-array-for-maximum-sum/description/)
+
+    - n=len(arr)
+    - 一维dp，dp维度为dp[i]表示前i个数组成的子数组的分隔最大和
+    - dp初始化, dp[0 for i in range(n)]
+    - dp[0] = arr[0]
+    - i从1到n-1，长度le从k到1, 左端点left = i-k+1，如果left<0，则到下一个i，如果left==0, dp[i] = max(max(arr[left:i+1])*le,dp[i])，如果left>0: dp[i]=max(dp[left-1]+max(arr[left:i+1])*le,dp[i]).
+    - 这里le可以从1到k，这样可以把当前的最大值mx存起来，然后下次只要算max(mx,arr[left]),就不用反复计算max[left:i+1]，但是le从k到1就要反复计算
+
+
+
+
+### 恰好划分
+
+
+1. 给定数组 nums 和一个整数 k 。我们将给定的数组 nums 分成 最多 k 个非空子数组，且数组内部是连续的 。 分数 由每个子数组内的平均值的总和构成。注意我们必须使用 nums 数组中的每一个数进行分组，并且分数不一定需要是整数。返回我们所能得到的最大 分数 是多少。答案误差在 10-6 内被视为是正确的。[813.最大平均值和的分组](https://leetcode.cn/problems/largest-sum-of-averages/description/)
+
+    - 平均值和最大的分组的子数组数目必定是k，假设目前分组的子数组数目为m<k，那么必有一个子数组的元素数目c>1，假设这个子数组为第i个子数组，假设我们在这个子数组的x,y处再次进行分割，假设这个子数组目前的平均值和为a，那么分割后新的平均值和为 (a*c-sum(x:y))/(c-count(x:y))+ave(x:y) >a，因此继续分割会使平均值和变大，故分割到k个子数组的平均值和会最大。
+    - 
 
 ### 状态机
 
@@ -317,7 +399,11 @@
 - 最小高度树
 
 ### 前后缀分解
-2. 给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。请 不要使用除法，且在 O(n) 时间复杂度内完成此题。[238.除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=top-100-liked)
+1. 给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。题目数据 保证 数组 nums之中任意元素的全部前缀元素和后缀的乘积都在  32 位 整数范围内。请 不要使用除法，且在 O(n) 时间复杂度内完成此题。[238.除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=top-100-liked)
+
+
+
+
 
 
 ## DFS
@@ -547,12 +633,45 @@ BFS 的遍历过程是 “由近及远” 的：
 
 ## 栈
 
+1. 给定 pushed 和 popped 两个序列，每个序列中的 值都不重复，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 true；否则，返回 false 。[946.验证栈序列](https://leetcode.cn/problems/validate-stack-sequences/description/)
 
-1. 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。有效字符串需满足：左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。每个右括号都有一个对应的相同类型的左括号。[LC20有效的括号](https://leetcode.cn/problems/valid-parentheses/description/?envType=study-plan-v2&envId=top-interview-150)
+    - 用一个辅助栈stack，把pushed的元素依次入栈，然后一直监控栈顶元素是否和popped的首元素相等，如果相等后面就出栈，如果最后stack可以全部出栈为空，那么就是True
+
+
+2. 有一个 单线程 CPU 正在运行一个含有 n 道函数的程序。每道函数都有一个位于  0 和 n-1 之间的唯一标识符。函数调用 存储在一个 调用栈 上 ：当一个函数调用开始时，它的标识符将会推入栈中。而当一个函数调用结束时，它的标识符将会从栈中弹出。标识符位于栈顶的函数是 当前正在执行的函数 。每当一个函数开始或者结束时，将会记录一条日志，包括函数标识符、是开始还是结束、以及相应的时间戳。给你一个由日志组成的列表 logs ，其中 logs[i] 表示第 i 条日志消息，该消息是一个按 "{function_id}:{"start" | "end"}:{timestamp}" 进行格式化的字符串。例如，"0:start:3" 意味着标识符为 0 的函数调用在时间戳 3 的 起始开始执行 ；而 "1:end:2" 意味着标识符为 1 的函数调用在时间戳 2 的 末尾结束执行。注意，函数可以 调用多次，可能存在递归调用 。函数的 独占时间 定义是在这个函数在程序所有函数调用中执行时间的总和，调用其他函数花费的时间不算该函数的独占时间。例如，如果一个函数被调用两次，一次调用执行 2 单位时间，另一次调用执行 1 单位时间，那么该函数的 独占时间 为 2 + 1 = 3 。以数组形式返回每个函数的 独占时间 ，其中第 i 个下标对应的值表示标识符 i 的函数的独占时间。[636.函数的独占时间](https://leetcode.cn/problems/exclusive-time-of-functions/description/)
+
+    - 用一个栈记录函数，遍历logs，遍历到start的函数，如果栈顶此时有正在运行的函数，这个函数先end，并计算执行时间，然后start函数入栈，如果此时遍历到end函数，栈顶的函数出栈，并计算执行时间，然后栈顶的元素恢复start并且时间戳变为end函数对应的时间戳
+
+
+3. 给出由小写字母组成的字符串 s，重复项删除操作会选择两个相邻且相同的字母，并删除它们。在 s 上反复执行重复项删除操作，直到无法继续删除。在完成所有重复项删除操作后返回最终的字符串。答案保证唯一。[1047.删除字符串中的所有相邻重复项](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/description/)
+
+    - 用一个栈记录字符，遍历字符入栈（监控：如果栈的最后两个字符为相等，那么这两个字符出栈）
+
+
+4. 给你一个字符串 s，「k 倍重复项删除操作」将会从 s 中选择 k 个相邻且相等的字母，并删除它们，使被删去的字符串的左侧和右侧连在一起。你需要对 s 重复进行无限次这样的删除操作，直到无法继续为止。在执行完所有删除操作后，返回最终得到的字符串。本题答案保证唯一。[1209.删除字符串中的所有相邻重复项II](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string-ii/description/)
+
+
+
+5. 给你一个字符串 s ，请你判断它是否 有效 。字符串 s 有效 需要满足：假设开始有一个空字符串 t = "" ，你可以执行 任意次 下述操作将 t 转换为 s ：将字符串 "abc" 插入到 t 中的任意位置。形式上，t 变为 tleft + "abc" + tright，其中 t == tleft + tright 。注意，tleft 和 tright 可能为 空 。如果字符串 s 有效，则返回 true；否则，返回 false。[1003.检查替换后的词是否有效](https://leetcode.cn/problems/check-if-word-is-valid-after-substitutions/description/)
+
+    - 用一个栈记录字符，遍历字符入栈（监控：如果栈的最后三个字符为abc，那么这三个字符出栈）
+
+ 
+
+6. 给定一个整数数组 asteroids，表示在同一行的小行星。数组中小行星的索引表示它们在空间中的相对位置。对于数组中的每一个元素，其绝对值表示小行星的大小，正负表示小行星的移动方向（正表示向右移动，负表示向左移动）。每一颗小行星以相同的速度移动。找出碰撞后剩下的所有小行星。碰撞规则：两个小行星相互碰撞，较小的小行星会爆炸。如果两颗小行星大小相同，则两颗小行星都会爆炸。两颗移动方向相同的小行星，永远不会发生碰撞。[735.小行星碰撞](https://leetcode.cn/problems/asteroid-collision/description/)
+
+
+
+8. 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。有效字符串需满足：左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。每个右括号都有一个对应的相同类型的左括号。[20.有效的括号](https://leetcode.cn/problems/valid-parentheses/description/?envType=study-plan-v2&envId=top-interview-150)
 
     - 只有左括号可以入栈
     - 遍历s，如果遇到右括号，如果栈非空，看栈顶是不是对应的左括号，如果栈时空的，那么直接False了，如果遍历完s，栈非空，那么也是False.
     - 直接遍历全程都是True，且最后栈空，才是True
+
+
+
+ 
+
 
 2. 给你一个字符串 path ，表示指向某一文件或目录的 Unix 风格 绝对路径 （以 '/' 开头），请你将其转化为 更加简洁的规范路径。在 Unix 风格的文件系统中规则如下：一个点 '.' 表示当前目录本身。此外，两个点 '..' 表示将目录切换到上一级（指向父目录）。任意多个连续的斜杠（即，'//' 或 '///'）都被视为单个斜杠 '/'。任何其他格式的点（例如，'...' 或 '....'）均被视为有效的文件/目录名称。返回的 简化路径 必须遵循下述格式：始终以斜杠 '/' 开头。两个目录名之间必须只有一个斜杠 '/' 。最后一个目录名（如果存在）不能 以 '/' 结尾。此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 '.' 或 '..'）。返回简化后得到的 规范路径 。[LC71简化路径](https://leetcode.cn/problems/simplify-path/description/?envType=study-plan-v2&envId=top-interview-150)
 
@@ -580,20 +699,33 @@ BFS 的遍历过程是 “由近及远” 的：
 
 7. 柱状图中最大的矩形
 
+7. 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。[56. 合并区间](https://leetcode.cn/problems/merge-intervals/description/?envType=study-plan-v2&envId=top-100-liked)
+
+
 5. 给你一个字符串数组 tokens ，表示一个根据 逆波兰表示法 表示的算术表达式。请你计算该表达式。返回一个表示表达式值的整数。
 注意：有效的算符为 '+'、'-'、'*' 和 '/' 。每个操作数（运算对象）都可以是一个整数或者另一个表达式。两个整数之间的除法总是 向零截断 。表达式中不含除零运算。输入是一个根据逆波兰表示法表示的算术表达式。答案及所有中间计算结果可以用 32 位 整数表示。[150.逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/?envType=study-plan-v2&envId=top-interview-150)
 
-
-6. 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 eval() 。[224.基本计算器](https://leetcode.cn/problems/basic-calculator/description/?envType=study-plan-v2&envId=top-interview-150)
-
+    - 栈消消乐，数字入栈，如果遇到符号，则栈最后两个数出栈做运算，运算结果入栈，最后的栈顶元素就是结果
 
 
+8. 通常，正整数 n 的阶乘是所有小于或等于 n 的正整数的乘积。例如，factorial(10) = 10 * 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1。相反，我们设计了一个笨阶乘 clumsy：在整数的递减序列中，我们以一个固定顺序的操作符序列来依次替换原有的乘法操作符：乘法(*)，除法(/)，加法(+)和减法(-)。例如，clumsy(10) = 10 * 9 / 8 + 7 - 6 * 5 / 4 + 3 - 2 * 1。然而，这些运算仍然使用通常的算术运算顺序：我们在任何加、减步骤之前执行所有的乘法和除法步骤，并且按从左到右处理乘法和除法步骤。另外，我们使用的除法是地板除法（floor division），所以 10 * 9 / 8 等于 11。这保证结果是一个整数。实现上面定义的笨函数：给定一个整数 N，它返回 N 的笨阶乘。[1006.笨阶乘](https://leetcode.cn/problems/clumsy-factorial/description/)
 
+
+    - 相当于在减法之间加括号，数字入栈，遇到符号（*，/，+），栈顶元素和符号右边的数做运算，运算结果入栈，遇到减号（-），后面的数字前面加负号入栈，最后stack中的元素做和就行。
+
+
+
+9. 给定一个平衡括号字符串 S，按下述规则计算该字符串的分数：() 得 1 分。AB 得 A + B 分，其中 A 和 B 是平衡括号字符串。(A) 得 2 * A 分，其中 A 是平衡括号字符串。[856.括号的分数](https://leetcode.cn/problems/score-of-parentheses/description/)
+
+    - 一个栈
+    - 左括号入栈，如果遇到右括号，得到分数，如果又遇到右括号，得到乘法分数
 
 7. 给定一个经过编码的字符串，返回它解码后的字符串。编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。[394.字符串解码](https://leetcode.cn/problems/decode-string/description/?envType=study-plan-v2&envId=top-100-liked)
 
     - 这里的 `3[a]`类似乘法计算3*"a"，`3[a]2[c]`这里类似加法运算3*"a"+2*"c"，`3[a2[c]]`这里类似带括号的运算 3*(a+2*c)
 
+
+6. 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 eval() 。[224.基本计算器](https://leetcode.cn/problems/basic-calculator/description/?envType=study-plan-v2&envId=top-interview-150)
 
 ## 数论
 
@@ -645,11 +777,7 @@ for i in range(m,m+n):
     - 注意这里要特判，因为我们的指针从2开始，如果数组长度小于等于2的数组，直接返回数组长度·
 
 
-5. 如果在将所有大写字符转换为小写字符、并移除所有非字母数字字符之后，短语正着读和反着读都一样。则可以认为该短语是一个 回文串 。
-
-字母和数字都属于字母数字字符。
-
-给你一个字符串 s，如果它是 回文串 ，返回 true ；否则，返回 false 。
+5. 如果在将所有大写字符转换为小写字符、并移除所有非字母数字字符之后，短语正着读和反着读都一样。则可以认为该短语是一个 回文串 。字母和数字都属于字母数字字符。给你一个字符串 s，如果它是 回文串 ，返回 true ；否则，返回 false 。
 
 
 6. 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。请注意 ，必须在不复制数组的情况下原地对数组进行操作。[283移动零](https://leetcode.cn/problems/move-zeroes/description/?envType=study-plan-v2&envId=top-100-liked)
@@ -727,18 +855,51 @@ for i in range(m,m+n):
     - init方法用于构造前缀和数组 s ,s的大小为len(nums)+1, s[i+1]=s[i]+nums[i],0<=i<=len(nums)-1
     - sumRange方法用于计算区间之间的和，sum[i:j+1]=s[j+1]-s[i]
 
+
+2. 给你一个长度为 n 的整数数组 nums 。对于 每个 下标 i（0 <= i < n），定义对应的子数组 nums[start ... i]（start = max(0, i - nums[i])）。返回为数组中每个下标定义的子数组中所有元素的总和。子数组 是数组中的一个连续、非空 的元素序列。[3427.变长子数组求和](https://leetcode.cn/problems/sum-of-variable-length-subarrays/description/)
+
+    - 前缀和维度为n+1
+    - 先计算前缀和数组，然后再算各个子数组的和
+
+
+
+3. 给你一个下标从 0 开始的字符串数组 words 以及一个二维整数数组 queries 。每个查询 queries[i] = [li, ri] 会要求我们统计在 words 中下标在 li 到 ri 范围内（包含 这两个值）并且以元音开头和结尾的字符串的数目。返回一个整数数组，其中数组的第 i 个元素对应第 i 个查询的答案。注意：元音字母是 'a'、'e'、'i'、'o' 和 'u' 。[2559.统计范围内的元音字符串数](https://leetcode.cn/problems/count-vowel-strings-in-ranges/description/)
+
+    - 这里的前缀和维护是前面有多少个字符以元音开头和结尾
+
+
+4. 给你一个二元数组 nums ，和一个整数 goal ，请你统计并返回有多少个和为 goal 的 非空 子数组。子数组 是数组的一段连续部分。[930.和相同的二元子数组](https://leetcode.cn/problems/binary-subarrays-with-sum/description/)
+
+    - 在前缀和数组中寻找两个数a,b，满足b-a=goal
+    - 注意哈希初始化为 dic = {0:1}，因为前缀和数组中第一个位置就已经是0了，后续遍历可以从i=1开始
+
+
 2. 给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。子数组是数组中元素的连续非空序列。[560.和为 K 的子数组](https://leetcode.cn/problems/subarray-sum-equals-k/description/?envType=study-plan-v2&envId=top-100-liked)
 
     - 由于数组不是单调的，用不了滑动窗口
     - 计算数组的前缀和数组，那么我们想找到sum[区间]=s[j]-s[i]=k，类似两数之和，遍历右边j，将左边的数s[i]用哈希存起来，如果s[j]-k在哈希表中，那么就是和为k的子数组
+
+3. 给你一个整数数组 arr 。请你返回和为 奇数 的子数组数目。由于答案可能会很大，请你将结果对 10^9 + 7 取余后返回。
+
+    - 所有数都取2的余数，然后再计算前缀和，用一个哈希表记录偶数前缀和出现的次数和奇数前缀和出现的次数，遍历前缀和数组，如果当前的前缀和为偶数，那么找奇数前缀和（偶-奇=奇），如果当前的前缀和为奇数，那么找偶数前缀和（奇-偶=奇）
+
 
 1. 给你一个整数数组 nums ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。子数组是数组中的一个连续部分。[53.最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/?envType=study-plan-v2&envId=top-100-liked)
 
     - 一维前缀和+股票买卖最佳时机
 
 
-2. 给定一个二维矩阵 matrix，以下类型的多个请求：计算其子矩形范围内元素的总和，该子矩阵的 左上角 为 (row1, col1) ，右下角 为 (row2, col2) 。
-实现 NumMatrix 类：NumMatrix(int[][] matrix) 给定整数矩阵 matrix 进行初始化。int sumRegion(int row1, int col1, int row2, int col2) 返回 左上角 (row1, col1) 、右下角 (row2, col2) 所描述的子矩阵的元素 总和 。[304.二维区域和检索-矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable/description/)
+2. 给定一个二维矩阵 matrix，以下类型的多个请求：计算其子矩形范围内元素的总和，该子矩阵的 左上角 为 (row1, col1) ，右下角 为 (row2, col2) 。实现 NumMatrix 类：NumMatrix(int[][] matrix) 给定整数矩阵 matrix 进行初始化。int sumRegion(int row1, int col1, int row2, int col2) 返回 左上角 (row1, col1) 、右下角 (row2, col2) 所描述的子矩阵的元素 总和 。[304.二维区域和检索-矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable/description/)
+
+    - 二维前缀和
+    - 假设matrix的维度为m*n
+    - prefix_s2，维度为m*n, prefix[i+1][j+1]表示左上角为matrix[0][0]，右下角为matrix[i+1][j+1]的矩阵范围内的元素的总和
+    - prefix_s2[i+1][j+1] = prefix_s2[i+1][j]+prefix_s2[i][j+1]-prefix_s2[i][j]+matrix[i+1][j+1]
+    - ![alt text](image-3.png)
+    - 计算任意矩阵范围的元素总和：
+    - 假设子矩阵的左上角元素为matrix[r_1][c_1]，右下角元素为matrix[r_2][c_2]
+    - 子矩阵的元素和 = prefix_s2[r_1+1][c_1+1]-prefix_s2[r_2+1][c_1]-prefix_s2[r_1][c_2+1]+prefix_s2[r_1][c_1]
+
 
 2. 给你一个 m x n 的矩阵 matrix 和一个整数 k ，找出并返回矩阵内部矩形区域的不超过 k 的最大数值和。题目数据保证总会存在一个数值和不超过 k 的矩形区域。[363.矩形区域不超过K的最大值和](https://leetcode.cn/problems/max-sum-of-rectangle-no-larger-than-k/description/)
 
@@ -746,9 +907,42 @@ for i in range(m,m+n):
 
 
 
-## 排序
+## 差分
 
-1. 以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。[56. 合并区间](https://leetcode.cn/problems/merge-intervals/description/?envType=study-plan-v2&envId=top-100-liked)
+数组nums的差分数组 diff，维度为n=len(nums)+1，diff[0]=0，diff[1]=nums[0], 对于i>=1, diff[i] = nums[i]-nums[i-1], diff.累加差分数组就可以得到nums
+
+如果nums[i:j+1]的元素都加a，那么diff中只有diff[i]和diff[j+1]有变化（diff[i]加了a，diff[j+1]减了a）
+
+
+1. 给你一个下标从 0 开始的二维整数数组 nums 表示汽车停放在数轴上的坐标。对于任意下标 i，nums[i] = [starti, endi] ，其中 starti 是第 i 辆车的起点，endi 是第 i 辆车的终点。返回数轴上被车 任意部分 覆盖的整数点的数目。[2828.与车相交的点](https://leetcode.cn/problems/points-that-intersect-with-cars/description/)
+
+
+    - 被覆盖的次数>0的点就是答案
+    - 先找出最远的点p，构建差分数组diff，维度为p+2（因为点p也可能要加），不过diff的最后一个数并不影响后续的计算，这里是因为每个车停放区间[a,b]上面的数都加1，即是差分数组diff[a]和diff[b+1]上的数+1，最后累加差分数组，看哪些点的被覆盖次数>0
+
+
+2. 给你一个二维整数数组 ranges 和两个整数 left 和 right 。每个 ranges[i] = [starti, endi] 表示一个从 starti 到 endi 的 闭区间 。如果闭区间 [left, right] 内每个整数都被 ranges 中 至少一个 区间覆盖，那么请你返回 true ，否则返回 false 。已知区间 ranges[i] = [starti, endi] ，如果整数 x 满足 starti <= x <= endi ，那么我们称整数x 被覆盖了。[1893.检查是否区域内所有整数都被覆盖](https://leetcode.cn/problems/check-if-all-the-integers-in-a-range-are-covered/description/)
+
+    - 求每个点的被覆盖次数
+
+
+1. 车上最初有 capacity 个空座位。车 只能 向一个方向行驶（也就是说，不允许掉头或改变方向）给定整数 capacity 和一个数组 trips ,  trip[i] = [numPassengersi, fromi, toi] 表示第 i 次旅行有 numPassengersi 乘客，接他们和放他们的位置分别是 fromi 和 toi 。这些位置是从汽车的初始位置向东的公里数。当且仅当你可以在所有给定的行程中接送所有乘客时，返回 true，否则请返回 false。[1094.拼车](https://leetcode.cn/problems/car-pooling/description/)
+
+    - 在[fromi,toi-1]+numPassengersi, 即差分数组在fromi加numPassengersi, 在toi处-numPassengersi，还原原数组，如果max(原数组)>capacity，则为False
+
+
+2. 这里有 n 个航班，它们分别从 1 到 n 进行编号。有一份航班预订表 bookings ，表中第 i 条预订记录 bookings[i] = [firsti, lasti, seatsi] 意味着在从 firsti 到 lasti （包含 firsti 和 lasti ）的 每个航班 上预订了 seatsi 个座位。请你返回一个长度为 n 的数组 answer，里面的元素是每个航班预定的座位总数。[1109.航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings/description/)
+
+    - 在[firsti,lasti]+seatsi,即差分数组在firsti加seatsi，在lasti+1处-numPassengersi, 还原原数组
+
+3. 给定一个长度为 n 的整数数组 nums 和一个二维数组 queries，其中 queries[i] = [li, ri]。对于每个查询 queries[i]：在 nums 的下标范围 [li, ri] 内选择一个下标 子集。将选中的每个下标对应的元素值减 1。零数组 是指所有元素都等于 0 的数组。如果在按顺序处理所有查询后，可以将 nums 转换为 零数组 ，则返回 true，否则返回 false。[3355.零数组变换I](https://leetcode.cn/problems/zero-array-transformation-i/description/)
+
+    - 先计算nums的差分数组，对区间[li,ri]中的元素都减1，即在diff[li]-1,diff[ri+1]+1，还原数组，负数的地方变成0，如果所有元素都为0，则返回True
+
+
+
+
+
 
 ## 二分查找
 
