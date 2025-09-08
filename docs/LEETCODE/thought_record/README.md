@@ -1,4 +1,4 @@
-# LEETCODE HOT150
+# LEETCODE 刷题思路记录
 
 ## Reference
 
@@ -209,6 +209,7 @@
 - 表的区别
 
 最长公共子序列：
+
 |       |    | 0  | 1  | 1  | 1  | 1  |
 |-------|----|----|----|----|----|----|
 |       | 0  | 0  | 0  | 0  | 0  | 0  |
@@ -218,7 +219,8 @@
 | **1** | 0  | 1  | 2  | 2  | 2  | 2  |
 | **1** | 0  | 1  | 2  | 3  | 3  | 3  |
 
-最长重复子数组
+最长重复子数组：
+
 |       |    | 0  | 1  | 1  | 0  | 1  |
 |-------|----|----|----|----|----|----|
 |       | 0  | 0  | 0  | 0  | 0  | 0  |
@@ -252,7 +254,7 @@
     - 只要j那一列有一个True，那么长度j就存在，返回最大的j
     - 但是二维会超时，压缩成一维
     - 一维dp，dp的维度为n；dp[i]表示以nums[i]结尾的严格递增子序列长度；初始化，dp[i]=1
-    - dp[i] = max(dp[i],dp[k]) for k<i and nums[k]<nums[i]
+    - dp[i] = max(dp[i],dp[k]+1) for k<i and nums[k]<nums[i]
     - 最后返回max(dp[i])
 
     - 时间优化，可以用二分来做，在二维dp中更新dp，需要把i前面的所有k都遍历一边，比较慢；我们可以换一个角度，把dp[i]表示长度为i的严格递增子序列的最小的末尾元素，那么dp的长度就是最长严格递增子序列的长度。
@@ -261,12 +263,13 @@
     - nums = [10,9,2,5,3,7,101,18]
     - 在dp中找到第一个大于nums[i]的坐标，并替换它，相当于加了一个分支，沿着新的分支走
 
-                     18 
-               3  7  101    
-           2   5 
-           9   
-    - dp : 10
-
+    ```bash
+                      18 
+              3   7  101    
+          2   5 
+          9   
+    dp : 10
+    ```
 
 2. 给你一个整数数组 nums 。nums 的每个元素是 1，2 或 3。在每次操作中，你可以删除 nums 中的一个元素。返回使 nums 成为 非递减 顺序所需操作数的 最小值。[2826.将三个组排序](https://leetcode.cn/problems/sorting-three-groups/description/)
 
@@ -367,10 +370,163 @@
     - 平均值和最大的分组的子数组数目必定是k，假设目前分组的子数组数目为m<k，那么必有一个子数组的元素数目c>1，假设这个子数组为第i个子数组，假设我们在这个子数组的x,y处再次进行分割，假设这个子数组目前的平均值和为a，那么分割后新的平均值和为 (a*c-sum(x:y))/(c-count(x:y))+ave(x:y) >a，因此继续分割会使平均值和变大，故分割到k个子数组的平均值和会最大。
     - 
 
-### 状态机
+### 状态机DP
+
+1. 给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0.[121.买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/) 
+
+    - 低买高卖
+    - 一维dp，dp[i]表示在第i天以来前面天数的最小值
+    - dp[0] = prices[0], dp[i] = min(prices[i],dp[i-1])
+    - 返回max(prices[i]-dp[i])
 
 
+2. 给你一个整数数组 prices ，其中 prices[i] 表示某支股票第 i 天的价格。在每一天，你可以决定是否购买和/或出售股票。你在任何时候 最多 只能持有 一股 股票。你也可以先购买，然后在 同一天 出售。返回 你能获得的 最大 利润 。[122.买卖股票的最佳时机II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/description/)
 
+    - 二维dp,假设n=len(prices)
+    - 维度为n*2,当天有两种状态：总得来说进行了一次买，总得来说进行了一次卖，从前面算来的最大利润；当天有一支股票，从前面算来的最大利润；
+    - dp[i][j]表示假设到达该状态的最大利润
+    - dp[0][0] = 0,dp[0][1] = -prices[0]
+    - j=0，当天没股票，可能是昨天就没有股票，或者是昨天有股票今天卖了，dp[i][0] = max(dp[i-1][0],dp[i-1][1]+prices[i])
+    - j=1，当天有股票，可能是昨天就有股票，或者是昨天没有股票今天买的，dp[i][1] = max(dp[i-1][0]-prices[i],dp[i-1][1])
+    - return max(dp[i][j])
+
+
+3. 给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你最多可以完成 两笔 交易。注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。[123.买卖股票的最佳时机III](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/)
+
+    - 二维dp，假设n=len(prices)
+    - 用一个集合记录卖出股票的对应天i
+    - dp[i][j] 初始化为 -float('inf')
+    - 维度为n*4，当天有四种状态：进行了一次买，进行了一次买一次卖，进行了两次买一次卖，进行了两次买两次卖
+    - dp[0][0] = -price[i], dp[0][1] = 0,dp[0][2]=-price[i],dp[0][3] = 0
+    - j=0，可能昨天以前就买了，或者今天买的，dp[i][0] = max(dp[i-1][0],-prices[i])
+    - j=1，可能是昨天以前就一次买一次卖了，或者是今天才一次买一次卖，或者昨天以前买的今天卖的，dp[i][1] = max(dp[i-1][1],0,dp[i-1][0]+prices[i])
+    - j=2，可能是昨天以前就两次买一次卖了，或者今天才两次买一次卖，或者昨天以前买了一次买今天一次买一次卖，或者昨天以前一次买今天一次买一次卖，dp[i][2] = max(dp[i-1][0],-prices[i],dp[i-1][1]-prices[i],dp[i-1][2])
+    - j=3，可能是昨天以前就两次买两次卖了，或者今天才两次买两次卖，或者昨天以前一次买一次卖今天一次买一次卖，或者昨天以前一次买今天一次买两次卖，或者昨天以前两次买一次卖今天卖，dp[i][3] = max(dp[i-1][3],0,dp[i-1][1],dp[i-1][0]+prices[i],dp[i-1][2]+prices[i])
+    - 取max(dp)
+
+    - 
+    - 另外一种做法
+    - 三维dp
+    - dp[i][j][0] 表示到第i天完成了至多j笔交易，第i天结束时没有股票的最大利润
+    - dp[i][j][1] 表示到第i天完成了至多j-1笔交易，第i天结束时持有第j笔交易股票的最大利润
+    - j=0,1,2，这里要注意完成一次交易，是一买一卖
+    - 第i天至多完成j笔交易且当天没有股票，可能是昨天至多完成了j笔交易没有股票了然后今天不动，也可能是昨天就有股票，今天卖，dp[i][j][0] = max(dp[i-1][j][0],dp[i-1][j][1]+prices[i])
+    - 第i天有股票，可能是昨天就有股票了，也可能是昨天没有股票今天买，dp[i][j][1] = max(dp[i-1][j][1],dp[i-1][j-1][0]-prices[i])
+    - 初始化,dp[i][j][0],dp[i][j][1]都是-float('inf')
+    - j=0特殊处理：dp[i][0][0] = 0,dp[i][0][1] = -prices[i]
+    - j从1开始到2，i从1到n，最后返回dp[-1][-1][0]
+
+
+4. 给你一个整数数组 prices 和一个整数 k ，其中 prices[i] 是某支给定的股票在第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你最多可以完成 k 笔交易。也就是说，你最多可以买 k 次，卖 k 次。注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。[188.买卖股票的最佳时机IV](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/description/)
+
+    - 二维dp，假设n=len(prices)
+    - 维度为n*2k，状态分别为：一次买0次卖，一次买一次卖，...，k次买k-1次卖，k次买k次卖
+    - dp[i][j] 初始化为 -float('inf')
+    - j为偶数时，dp[0][j] = -prices[0]
+    - j为奇数时，dp[0][j] = 0
+    - 第i天不改变策略，dp[i][j] = dp[i-1][j]
+    - 第i天改变策略
+    - for t in range(j):
+    - - if j为偶数，t为偶数：假设j为两次买一次卖，t为一次买0次卖，那么dp[i][j] = max(dp[i][j],dp[i-1][t])
+    - - if j为奇数，t为偶数：假设j为一次买一次卖，t为一次买0次卖，那么dp[i][j] = max(dp[i][j],dp[i-1][t] + prices[i])
+    - - if j为偶数，t为奇数：假设j为两次买一次卖，t为一次买一次卖，那么dp[i][j] = max(dp[i][j],dp[i-1][t] - prices[i])
+    - - if j为奇数，t为奇数：假设j为两次买两次卖，t为一次买一次卖，那么dp[i][j] = max(dp[i][j],dp[i-1][t])
+
+
+    - 
+    - 另外一种做法
+    - 三维dp
+    - dp[i][j][0] 表示到第i天完成了至多j笔交易，第i天结束时没有股票的最大利润
+    - dp[i][j][1] 表示到第i天完成了至多j-1笔交易，第i天结束时持有第j笔交易股票的最大利润
+    - j=0,1,...k，这里要注意完成一次交易，是一买一卖
+    - 第i天至多完成j笔交易且当天没有股票，可能是昨天至多完成了j笔交易没有股票了然后今天不动，也可能是昨天就有股票，今天卖，dp[i][j][0] = max(dp[i-1][j][0],dp[i-1][j][1]+prices[i])
+    - 第i天有股票，可能是昨天就有股票了，也可能是昨天没有股票今天买，dp[i][j][1] = max(dp[i-1][j][1],dp[i-1][j-1][0]-prices[i])
+    - 初始化,dp[i][j][0],dp[i][j][1]都是-float('inf')
+    - j=0特殊处理：dp[i][0][0] = 0,dp[i][0][1] = -prices[i]
+    - j从1开始到2，i从1到n，最后返回dp[-1][-1][0]
+
+
+5. 给你一个整数数组 prices，其中 prices[i] 是第 i 天股票的价格（美元），以及一个整数 k。你最多可以进行 k 笔交易，每笔交易可以是以下任一类型：普通交易：在第 i 天买入，然后在之后的第 j 天卖出，其中 i < j。你的利润是 prices[j] - prices[i]。做空交易：在第 i 天卖出，然后在之后的第 j 天买回，其中 i < j。你的利润是 prices[i] - prices[j]。注意：你必须在开始下一笔交易之前完成当前交易。此外，你不能在已经进行买入或卖出操作的同一天再次进行买入或卖出操作。通过进行 最多 k 笔交易，返回你可以获得的最大总利润。[3573.买卖股票的最佳时机V](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-v/description/)
+
+    - 三维dp
+    - dp[i][j][0] 表示到第i天完成了至多j笔交易，第i天结束时没有股票的最大利润
+    - dp[i][j][1] 表示到第i天完成了至多j-1笔交易，第i天结束时持有第j笔交易股票的最大利润
+    - dp[i][j][2] 表示到第i天完成了至多j-1笔交易，第i天结束时做空第j笔交易股票的最大利润
+    - j=0,1,...k，这里要注意完成一次交易，是一买一卖或者一卖一买
+    - 第i天至多完成j笔交易且当天没有股票，可能是昨天至多完成了j笔交易没有股票了然后今天不动，也可能是昨天就有股票，今天卖，也可能是昨天做空，今天买，dp[i][j][0] = max(dp[i-1][j][0],dp[i-1][j][1]+prices[i],dp[i-1][j][2]-prices[i])
+    - 第i天有股票，可能是昨天就有股票了，也可能是昨天没有股票今天买，dp[i][j][1] = max(dp[i-1][j][1],dp[i-1][j-1][0]-prices[i])
+    - 第i天做空股票，可能是昨天就做空了，也可能是今天才开始做空，dp[i][j][2] = max(dp[i-1][j][2],dp[i-1][j-1][0]+prices[i])
+    - 初始化,dp[i][j][0],dp[i][j][1]都是-float('inf')
+    - j=0特殊处理：dp[i][0][0] = 0,dp[i][0][1] = -prices[i],dp[i][0][2] = prices[i]
+    - j从1开始到2，i从1到n，最后返回dp[-1][-1][0]
+
+
+6. 给定一个整数数组prices，其中第  prices[i] 表示第 i 天的股票价格 。​设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。[309.买卖股票的最佳时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/)
+
+    - 二维dp
+    - dp[i][0] 表示到第i天结束时没有股票，且第i+1天不是冷冻期的最大利润
+    - dp[i][1] 表示到第i天结束时没有股票，且第i+1天是冷冻期的最大利润
+    - dp[i][2] 表示到第i天结束时持有股票的最大利润
+    - 第i天没有股票且第i+1天不是冷冻期，即第i天没有进行卖出操作，可能是第i-1天就没有股票了，也可能是第i-1天进行了卖出操作，第i天是冷冻期，dp[i][0] = max(dp[i-1][0],dp[i-1][1])
+    - 第i天没有股票且是第i+1天是冷冻期，则是第i天卖了股票，dp[i][1] = dp[i-1][2]+prices[i]
+    - 第i天有股票，可能是昨天就有股票了，也可能是今天不是冷冻期，今天买股票，dp[i][2] = max(dp[i-1][2],dp[i-1][0]-prices[i])
+    - 初始化：dp[i][j] = -float('inf')
+    - dp[0][0]=0, dp[0][1]=0,dp[0][2] = -prices[0]
+    - 返回max(dp)
+
+7. 给定一个整数数组 prices，其中 prices[i]表示第 i 天的股票价格 ；整数 fee 代表了交易股票的手续费用。你可以无限次地完成交易，但是你每笔交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。返回获得利润的最大值。注意：这里的一笔交易指买入持有并卖出股票的整个过程，每笔交易你只需要为支付一次手续费。[714.买卖股票的最佳时机含手续费](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/)
+    - 二维dp
+    - dp[i][0]：第i天结束没有股票
+    - dp[i][1]：第i天结束有股票
+    - 第i天没有股票，可能是昨天就没有股票，也可能昨天有股票，今天卖了股票，dp[i][0] = max(dp[i-1][0],dp[i-1][1]+prices[i]-fee)
+    - 第i天有股票，可能是昨天就有股票，也可能是昨天没有股票，今天卖了股票, dp[i][1] = max(dp[i-1][1],dp[i-1][0]-prices[i])
+    - 返回max(dp)
+
+
+8. 来自未来的体育科学家给你两个整数数组 energyDrinkA 和 energyDrinkB，数组长度都等于 n。这两个数组分别代表 A、B 两种不同能量饮料每小时所能提供的强化能量。你需要每小时饮用一种能量饮料来 最大化 你的总强化能量。然而，如果从一种能量饮料切换到另一种，你需要等待一小时来梳理身体的能量体系（在那个小时里你将不会获得任何强化能量）。返回在接下来的 n 小时内你能获得的 最大 总强化能量。注意 你可以选择从饮用任意一种能量饮料开始。[3259.超级饮料的最大强化能量](https://leetcode.cn/problems/maximum-energy-boost-from-two-drinks/description/)
+
+    - 二维dp
+    - dp[i][0]：在第i个小时饮用饮料A获取能量获取的最大能量
+    - dp[i][1]：在第i个小时饮用饮料B获取能量获取的最大能量
+    - 在第i个小时饮用饮料A获取能量，可能在第i-1个小时就已经开始饮用饮料A获取能量，也可能是在第i-2个小时饮用饮料B然后经过1个小时后转到饮料A, dp[i][0] = max(dp[i-1][0]+energyDrinkA[i],dp[i-2][1]+energyDrinkA[i])
+    - 在第i个小时饮用饮料B获取能量，可能在第i-1个小时就已经开始饮用饮料B获取能量，也可能是在第i-2个小时饮用饮料A然后经过1个小时后转到饮料B, dp[i][1] = max(dp[i-1][1]+energyDrinkB[i],dp[i-2][0]+energyDrinkB[i])
+    - 初始化，dp[i][j] = -float('inf')
+    - dp[0][0] = energyDrinkA[0],dp[0][1]=energyDrinkB[0], dp[1][0] = dp[0][0]+energyDrinkA[1], dp[1][1] = dp[0][1]+energyDrinkB[1]
+    - 返回max(dp)
+
+9. 给你一个下标从 0 开始的二进制字符串 s ，它表示一条街沿途的建筑类型，其中：s[i] = '0' 表示第 i 栋建筑是一栋办公楼，s[i] = '1' 表示第 i 栋建筑是一间餐厅。作为市政厅的官员，你需要随机 选择 3 栋建筑。然而，为了确保多样性，选出来的 3 栋建筑 相邻 的两栋不能是同一类型。比方说，给你 s = "001101" ，我们不能选择第 1 ，3 和 5 栋建筑，因为得到的子序列是 "011" ，有相邻两栋建筑是同一类型，所以 不合 题意。
+请你返回可以选择 3 栋建筑的 有效方案数 。[2222.选择建筑的方案数](https://leetcode.cn/problems/number-of-ways-to-select-buildings/solutions/1390143/mei-ju-by-endlesscheng-xp5r/)
+
+### 跳跃游戏
+
+1. 给你一个非负整数数组 nums ，你最初位于数组的 第一个下标 。数组中的每个元素代表你在该位置可以跳跃的最大长度。判断你是否能够到达最后一个下标，如果可以，返回 true ；否则，返回 false 。[55.跳跃游戏](https://leetcode.cn/problems/jump-game/description/)
+
+    - 一维dp
+    - dp[i] 表示能否跳到第i个下标
+    - dp[0] = True
+    - dp[i] = (dp[i] or nums[k]>=(k-i)) for k in range(i-1,-1,-1) if dp[k]=True，k最好从后往前遍历，这样可能遍历的次数会少一点，如果dp[i]为True了，就可以退出k的遍历
+    - 返回dp[-1]
+
+
+2. 给定一个长度为 n 的 0 索引整数数组 nums。初始位置在下标 0。每个元素 nums[i] 表示从索引 i 向后跳转的最大长度。换句话说，如果你在索引 i 处，你可以跳转到任意 (i + j) 处：0 <= j <= nums[i] 且 i + j < n，返回到达 n - 1 的最小跳跃次数。测试用例保证可以到达 n - 1。
+
+    - 一维dp
+    - dp[i] 表示跳到索引i的最小跳跃次数
+    - dp[i] 初始化 n+1，用float('inf')会超时，可能比较会比较久
+    - dp[0] = 0
+    - dp[i] = min(dp[i],dp[k]+1) for k in range(i-1,-1,-1) if dp[k]<n+1 and nums[i]>=(k-i)，k可以从后往前遍历，也可以从前往后遍历，
+    - 返回dp[-1]
+
+
+3. 这里有一个非负整数数组 arr，你最开始位于该数组的起始下标 start 处。当你位于下标 i 处时，你可以跳到 i + arr[i] 或者 i - arr[i]。请你判断自己是否能够跳到对应元素值为 0 的 任一 下标处。注意，不管是什么情况下，你都无法跳到数组之外。[1306.跳跃游戏III](https://leetcode.cn/problems/jump-game-iii/description/)
+
+    - dfs
+    - 
+
+4. 给你一个下标从 0 开始的整数数组 nums 和一个整数 k 。一开始你在下标 0 处。每一步，你最多可以往前跳 k 步，但你不能跳出数组的边界。也就是说，你可以从下标 i 跳到 [i + 1， min(n - 1, i + k)] 包含 两个端点的任意位置。你的目标是到达数组最后一个位置（下标为 n - 1 ），你的 得分 为经过的所有数字之和。请你返回你能得到的 最大得分 。[1696.跳跃游戏VI](https://leetcode.cn/problems/jump-game-vi/description/)
+
+
+    
 ### 前后缀转移DP
 
 - 最低票价
@@ -389,13 +545,15 @@
 - 最短超级串
 - 访问所有节点的最短路径
 
-### 跳跃游戏
 
 ### 数位DP
 
 ### 树形DP
 
 - 监控二叉树
+
+
+
 - 最小高度树
 
 ### 前后缀分解
@@ -406,8 +564,46 @@
 
 
 
-## DFS
 
+
+## 回溯
+
+1. 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。[LC46全排列](https://leetcode.cn/problems/permutations/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    ![alt text](image.png)
+
+    - 传参是路径，方便添加新的数，路径长度为len(nums)，则返回递归
+
+2. 给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。[LC78子集](https://leetcode.cn/problems/subsets/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    ![alt text](image-1.png)
+
+    - 选与不选，传参用索引，方便判断选还是不选，索引到最后一个数组索引，递归返回，不选的递归写在选的递归的前面
+
+
+3. 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。[LC17电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 递归传参用的是字符的索引，当字符的索引等于字符的长度时，递归返回
+    - 对于同一个字符，用for循环来避免重复选取数字
+
+4. 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。你可以按 任何顺序 返回答案。[LC77组合](https://leetcode.cn/problems/combinations/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 选与不选，
+
+5. 给你一个 无重复元素 的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。candidates 中的 同一个 数字可以 无限制重复被选取 。如果至少一个数字的被选数量不同，则两种组合是不同的。 对于给定的输入，保证和为 target 的不同组合数少于 150 个。[LC39组合总和](https://leetcode.cn/problems/combination-sum/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 选与不选，但是自己可以重复选，传参是candidates的索引
+    - candidates先升序排序，
+
+6. 给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用 一次 。注意：解集不能包含重复的组合。[40.组合总和II](https://leetcode.cn/problems/combination-sum-ii/description/)
+
+
+6. 找出所有相加之和为 n 的 k 个数的组合，且满足下列条件：只使用数字1到9，每个数字 最多使用一次，返回 所有可能的有效组合的列表 。该列表不能包含相同的组合两次，组合可以以任何顺序返回。[216.组合总和III](https://leetcode.cn/problems/combination-sum-iii/description/)
+
+
+
+
+## DFS
 
 adj_matrix：邻接矩阵，两个节点有边，则邻居矩阵为1，否则为0
 ```bash
@@ -593,7 +789,7 @@ BFS 的遍历过程是 “由近及远” 的：
 
 
 
-拓扑排序
+### 拓扑排序
 
 
 1. 给你一个 有向无环图 ， n 个节点编号为 0 到 n-1 ，以及一个边数组 edges ，其中 edges[i] = [fromi, toi] 表示一条从点  fromi 到点 toi 的有向边。找到最小的点集使得从这些点出发能到达图中所有点。题目保证解存在且唯一。你可以以任意顺序返回这些节点编号。[1557.可以到达所有点的最少数目](https://leetcode.cn/problems/minimum-number-of-vertices-to-reach-all-nodes/description/)
@@ -669,10 +865,6 @@ BFS 的遍历过程是 “由近及远” 的：
     - 直接遍历全程都是True，且最后栈空，才是True
 
 
-
- 
-
-
 2. 给你一个字符串 path ，表示指向某一文件或目录的 Unix 风格 绝对路径 （以 '/' 开头），请你将其转化为 更加简洁的规范路径。在 Unix 风格的文件系统中规则如下：一个点 '.' 表示当前目录本身。此外，两个点 '..' 表示将目录切换到上一级（指向父目录）。任意多个连续的斜杠（即，'//' 或 '///'）都被视为单个斜杠 '/'。任何其他格式的点（例如，'...' 或 '....'）均被视为有效的文件/目录名称。返回的 简化路径 必须遵循下述格式：始终以斜杠 '/' 开头。两个目录名之间必须只有一个斜杠 '/' 。最后一个目录名（如果存在）不能 以 '/' 结尾。此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 '.' 或 '..'）。返回简化后得到的 规范路径 。[LC71简化路径](https://leetcode.cn/problems/simplify-path/description/?envType=study-plan-v2&envId=top-interview-150)
 
     - 找来一个栈，
@@ -717,17 +909,449 @@ BFS 的遍历过程是 “由近及远” 的：
 
 9. 给定一个平衡括号字符串 S，按下述规则计算该字符串的分数：() 得 1 分。AB 得 A + B 分，其中 A 和 B 是平衡括号字符串。(A) 得 2 * A 分，其中 A 是平衡括号字符串。[856.括号的分数](https://leetcode.cn/problems/score-of-parentheses/description/)
 
-    - 一个栈
-    - 左括号入栈，如果遇到右括号，得到分数，如果又遇到右括号，得到乘法分数
+    - 首先0入栈（存储最外层括号结果），如果遇到左括号，则0入栈，遇到右括号，这一层的运算结束（出栈val），计算结果并存到上一层（加到新的栈顶元素上），如果栈顶元素是0，stack[-1] += 1，如果栈顶元素不是0，那么说明这是第二层括号以上，stack[-1] += 2*val
+    - （（）），栈的变化: [0]->[0,0]->[0,0,0]->[0,1]->[2]
+
+
+6. 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 eval() 。[224.基本计算器](https://leetcode.cn/problems/basic-calculator/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 一个栈用来装符号，一个栈用来装数字
+    - 如果遇到左括号，左括号入符号栈，然后数字入数字栈，遇到右括号，数字栈最后两个数和符号栈最后一个符号进行计算，直到遇到左括号，往下一个符号遍历
+    - 数字栈初始化为[0]，这样如果第一个数是负数，不会导致出栈报错
 
 7. 给定一个经过编码的字符串，返回它解码后的字符串。编码规则为: k[encoded_string]，表示其中方括号内部的 encoded_string 正好重复 k 次。注意 k 保证为正整数。你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 3a 或 2[4] 的输入。[394.字符串解码](https://leetcode.cn/problems/decode-string/description/?envType=study-plan-v2&envId=top-100-liked)
 
     - 这里的 `3[a]`类似乘法计算3*"a"，`3[a]2[c]`这里类似加法运算3*"a"+2*"c"，`3[a2[c]]`这里类似带括号的运算 3*(a+2*c)
 
 
-6. 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 eval() 。[224.基本计算器](https://leetcode.cn/problems/basic-calculator/description/?envType=study-plan-v2&envId=top-interview-150)
 
-## 数论
+
+## 堆
+
+1. 有一堆石头，每块石头的重量都是正整数。每一回合，从中选出两块 最重的 石头，然后将它们一起粉碎。假设石头的重量分别为 x 和 y，且 x <= y。那么粉碎的可能结果如下：如果 x == y，那么两块石头都会被完全粉碎；如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。最后，最多只会剩下一块石头。返回此石头的重量。如果没有石头剩下，就返回 0。[1046.最后一块石头的重量](https://leetcode.cn/problems/last-stone-weight/description/)
+
+    - heapq，最小堆，存入重量的相反数
+    - 弹出最小的两个元素，绝对值不相等则插入差值
+    - 如果最后堆的元素只有一个，则返回该元素的相反数，没有元素的话，就返回0
+
+
+2. 给你一个整数数组 nums ，一个整数 k  和一个整数 multiplier 。你需要对 nums 执行 k 次操作，每次操作中：找到 nums 中的 最小 值 x ，如果存在多个最小值，选择最 前面 的一个。将 x 替换为 x * multiplier 。请你返回执行完 k 次乘运算之后，最终的nums 数组。[3264.K次乘运算后的最终数组I](https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-i/description/)
+
+    - heapq，最小堆，存入（num，索引）
+    - 弹出最小值，对应索引的数乘以multiplier，然后再存入（num，索引）
+
+
+3. 给你一个整数数组 gifts ，表示各堆礼物的数量。每一秒，你需要执行以下操作：选择礼物数量最多的那一堆。如果不止一堆都符合礼物数量最多，从中选择任一堆即可。将堆中的礼物数量减少到堆中原来礼物数量的平方根，向下取整。返回在 k 秒后剩下的礼物数量。
+
+    - heapq，最小堆，存入（-num,索引）
+    - 弹出最小值，取相反数做平方运算，存入（-num,索引）
+
+
+4. 现有一个包含所有正整数的集合 [1, 2, 3, 4, 5, ...] 。实现 SmallestInfiniteSet 类：SmallestInfiniteSet() 初始化 SmallestInfiniteSet 对象以包含 所有 正整数。int popSmallest() 移除 并返回该无限集中的最小整数。void addBack(int num) 如果正整数 num 不 存在于无限集中，则将一个 num 添加 到该无限集中。[2336.无限集中的最小数字](https://leetcode.cn/problems/smallest-number-in-infinite-set/description/)
+
+
+    - 用一个变量cur记录按顺序弹出目前到达的数字，用一个最小堆heap记录add之后比cur小的数字
+    - popSmallest，如果heap空，那么弹出cur，然后cur++，如果heap非空，且heap的堆顶元素比cur小，那么弹出堆顶元素
+    - addBack，如果num比cur小且num不在heap，说明num不在无限集中，加入heap
+    - cur初始化为1，heap初始化为[]
+
+ 
+5. 给你一个下标从 0 开始的整数数组 nums 和一个整数 k 。你的 起始分数 为 0 。在一步 操作 中：选出一个满足 0 <= i < nums.length 的下标 i ，将你的 分数 增加 nums[i] ，并且将 nums[i] 替换为 ceil(nums[i] / 3) 。返回在 恰好 执行 k 次操作后，你可能获得的最大分数。向上取整函数 ceil(val) 的结果是大于或等于 val 的最小整数。
+
+    - 最大堆，存入（-num，index），每次取最大的元素，操作后再存入对应变化的-num和index
+
+
+6. 给你一个下标从 0 开始的整数数组 nums 和一个整数 k 。你可以对 nums 执行一些操作，在一次操作中，你可以：选择 nums 中 最小 的两个整数 x 和 y 。将 x 和 y 从 nums 中删除。将 min(x, y) * 2 + max(x, y) 添加到数组中的任意位置。注意，只有当 nums 至少 包含两个元素时，你才可以执行以上操作。你需要使数组中的所有元素都 大于或等于 k ，请你返回需要的 最少 操作次数。[3066.超过阈值的最少操作数](https://leetcode.cn/problems/minimum-operations-to-exceed-threshold-value-ii/description/)
+
+    - 最小堆，所有元素都大于或等于k，意味着堆顶元素大于或等于k
+
+
+7. 给你一个整数数组 piles ，数组 下标从 0 开始 ，其中 piles[i] 表示第 i 堆石子中的石子数量。另给你一个整数 k ，请你执行下述操作 恰好 k 次：选出任一石子堆 piles[i] ，并从中 移除 floor(piles[i] / 2) 颗石子。注意：你可以对 同一堆 石子多次执行此操作。返回执行 k 次操作后，剩下石子的 最小 总数。floor(x) 为 小于 或 等于 x 的 最大 整数。（即，对 x 向下取整）。[1962.移除石子使总数最小](https://leetcode.cn/problems/remove-stones-to-minimize-the-total/description/)
+
+    - 最大堆，存入(-num,index)，每次取最大的num，操作后在存入(-(math.floor(-num/2)),index)
+
+
+8. 设计一个找到数据流中第 k 大元素的类（class）。注意是排序后的第 k 大元素，不是第 k 个不同的元素。请实现 KthLargest 类：KthLargest(int k, int[] nums) 使用整数 k 和整数流 nums 初始化对象。int add(int val) 将 val 插入数据流 nums 后，返回当前数据流中第 k 大的元素。[703.数据流中的第K大元素](https://leetcode.cn/problems/kth-largest-element-in-a-stream/description/)
+
+    - 经典topK
+    - 维护一个大小为k的最小堆，往堆里面加元素，如果超过堆的大小大于k，那么就出栈顶元素，栈顶元素就是目前入堆元素中的第k大元素
+
+
+9. 有一个无限大的二维平面。给你一个正整数 k ，同时给你一个二维数组 queries ，包含一系列查询：queries[i] = [x, y] ：在平面上坐标 (x, y) 处建一个障碍物，数据保证之前的查询 不会 在这个坐标处建立任何障碍物。每次查询后，你需要找到离原点第 k 近 障碍物到原点的 距离 。
+请你返回一个整数数组 results ，其中 results[i] 表示建立第 i 个障碍物以后，离原地第 k 近障碍物距离原点的距离。如果少于 k 个障碍物，results[i] == -1 。注意，一开始 没有 任何障碍物。坐标在 (x, y) 处的点距离原点的距离定义为 |x| + |y| 。[3275.第K近障碍物查询](https://leetcode.cn/problems/k-th-nearest-obstacle-queries/description/)
+
+    - topK
+    - 维护一个大小为K的最大堆，
+
+
+10. 请你设计一个管理 n 个座位预约的系统，座位编号从 1 到 n 。请你实现 SeatManager 类：SeatManager(int n) 初始化一个 SeatManager 对象，它管理从 1 到 n 编号的 n 个座位。所有座位初始都是可预约的。
+int reserve() 返回可以预约座位的 最小编号 ，此座位变为不可预约。
+void unreserve(int seatNumber) 将给定编号 seatNumber 对应的座位变成可以预约。[1845.座位预约管理系统](https://leetcode.cn/problems/seat-reservation-manager/description/)
+
+    - 有点类似2336.无限集中的最小数字
+    - cur代表按照顺序出最小元素的话目前到达的数字
+    - 一个堆用于记录add的比cur小的元素，如果堆的元素非空，那么优先出堆的元素
+    - cur初始化为1，堆初始化为[]
+
+11. 给你一个下标从 0 开始的整数数组 costs ，其中 costs[i] 是雇佣第 i 位工人的代价。同时给你两个整数 k 和 candidates 。我们想根据以下规则恰好雇佣 k 位工人：总共进行 k 轮雇佣，且每一轮恰好雇佣一位工人。在每一轮雇佣中，从最前面 candidates 和最后面 candidates 人中选出代价最小的一位工人，如果有多位代价相同且最小的工人，选择下标更小的一位工人。比方说，costs = [3,2,7,7,1,2] 且 candidates = 2 ，第一轮雇佣中，我们选择第 4 位工人，因为他的代价最小 [3,2,7,7,1,2] 。
+第二轮雇佣，我们选择第 1 位工人，因为他们的代价与第 4 位工人一样都是最小代价，而且下标更小，[3,2,7,7,2] 。注意每一轮雇佣后，剩余工人的下标可能会发生变化。如果剩余员工数目不足 candidates 人，那么下一轮雇佣他们中代价最小的一人，如果有多位代价相同且最小的工人，选择下标更小的一位工人。一位工人只能被选择一次。返回雇佣恰好 k 位工人的总代价。[2462.雇佣K位工人的总代价](https://leetcode.cn/problems/total-cost-to-hire-k-workers/description/)
+
+
+    - 这道题在建堆和出堆的时候要注意边界的处理
+    - 维护两个最小堆，存入(num,index)，cur1记录前面加入的数现在到哪，cur2记录后面加入的数现在到哪
+    - 第一个堆存入前candidate个数，第二堆存入后candidate个数
+    - 如果前面的堆的堆顶元素比后面的堆顶元素小，那么前面堆顶元素出堆，cur1+=1，然后cur1对应的数入第一个堆；如果后面比前面小，那么cur2-=1，然后cur2对应的数入第二个堆；如果相等，那么出前面堆的堆顶元素
+    - 注意cur1+=1，cur2-=2要在cur1<cur2下进行，如果cur1>=cur2，说明此时全部元素都已经入堆了，不用再入元素了
+ 
+
+9. 给你一个二维数组 tasks ，用于表示 n​​​​​​ 项从 0 到 n - 1 编号的任务。其中 tasks[i] = [enqueueTimei, processingTimei] 意味着第 i​​​​​​​​​​ 项任务将会于 enqueueTimei 时进入任务队列，需要 processingTimei 的时长完成执行。现有一个单线程 CPU ，同一时间只能执行 最多一项 任务，该 CPU 将会按照下述方式运行：如果 CPU 空闲，且任务队列中没有需要执行的任务，则 CPU 保持空闲状态。如果 CPU 空闲，但任务队列中有需要执行的任务，则 CPU 将会选择 执行时间最短 的任务开始执行。如果多个任务具有同样的最短执行时间，则选择下标最小的任务开始执行。一旦某项任务开始执行，CPU 在 执行完整个任务 前都不会停止。CPU 可以在完成一项任务后，立即开始执行一项新任务。返回 CPU 处理任务的顺序。[1834.单线程CPU](https://leetcode.cn/problems/single-threaded-cpu/description/)
+
+    - 首先按照任务到达时间排序，存入坐标元素来排序
+    - 用一个堆存放任务元组（开始时间，执行时间，任务编号）
+    - 用一个cur记录完成一个任务后到达的时间，cur初始化为0
+    - 首先堆为空，cur直接到第一个开始的时间，找到到达时间等于cur的任务，然后把这些任务入堆，然后出堆顶元素，然后cur+堆顶元素执行时间得到新的时间，接着找到到达时间小于cur的任务，然后这些任务入堆，然后出堆顶元素，然后cur+堆顶元素执行时间得到新的时间，如果任务已经全部入堆，则依次出堆即可
+
+
+10. 给定两个以 非递减顺序排列 的整数数组 nums1 和 nums2 , 以及一个整数 k 。定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2 。请找到和最小的 k 个数对 (u1,v1),  (u2,v2)  ...  (uk,vk) 。
+
+    - 找来一个最小堆 heap=[]
+    - 由于nums1和nums2非递减，所以对于(nums1[i],nums2[j])，大小顺序一定为 nums1[i]+num2[j] < nums1[i+1]+nums2[j] or nums1[i]+nums2[j+1] < nums1[i+1][j+1]
+    - (i,j)出堆，那么下一个入堆的数对，从(i+1,j)或(i,j+1)选即可
+    - 注意，(0,0)出堆，然后(1,0),(0,1)入堆，然后(1,1)可以由(1,0)后入堆，也可以由(0,1)后入堆，那么(1,1)就入重复了，因此只要要判断是否重复入
+    - 出堆的元素数量到达k即可结束出堆.
+    - 如果数量关系满足 (i,j)对应< (i,j+1)对应or (i,j+1)对应< (i,j)对应，方法：result数组长度小于k时，(i,j)出堆并存入result，如果(i+1,j)有效且没有访问过，入堆；如果(i,j+1)有效且没有访问过，入堆，当result数组长度大于k，则退出循环，result的末尾就是第k小
+
+
+11. 给你一个链表数组，每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中，返回合并后的链表。[合并K个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/description/)
+
+
+2. 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。你必须设计并实现时间复杂度为 O(n) 的算法解决此问题。[LC215数组中的第k个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 固定长度的堆，遍历元素入堆，当堆的长度大于k，则最小值出堆
+
+## 树状数组
+
+
+
+## 链表
+
+1. 给你一个单链表的引用结点 head。链表中每个结点的值不是 0 就是 1。已知此链表是一个整数数字的二进制表示形式。请你返回该链表所表示数字的 十进制值 。最高位 在链表的头部。[1290.二进制链表转整数](https://leetcode.cn/problems/convert-binary-number-in-a-linked-list-to-integer/description/)
+
+    - 从前往后递归遍历
+    - num全局变量，初始化为0
+    - 到达一个新的节点，num=num*2+node.val
+
+2. 链表中的 临界点 定义为一个 局部极大值点 或 局部极小值点 。如果当前节点的值 严格大于 前一个节点和后一个节点，那么这个节点就是一个  局部极大值点 。如果当前节点的值 严格小于 前一个节点和后一个节点，那么这个节点就是一个  局部极小值点 。注意：节点只有在同时存在前一个节点和后一个节点的情况下，才能成为一个 局部极大值点 / 极小值点 。给你一个链表 head ，返回一个长度为 2 的数组 [minDistance, maxDistance] ，其中 minDistance 是任意两个不同临界点之间的最小距离，maxDistance 是任意两个不同临界点之间的最大距离。如果临界点少于两个，则返回 [-1，-1] 。[2058.找出临界点之间的最小和最大距离](https://leetcode.cn/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/description/)
+
+    - 从前往后递归遍历
+    - 全局变量一个数组存储临界值下标
+    - 递归结束后，计算最小距离（只需检查相邻的临界节点），计算最大距离（第一个和最后一个临界节点之间的距离）
+
+
+3. 给你一个链表的头节点 head ，该链表包含由 0 分隔开的一连串整数。链表的 开端 和 末尾 的节点都满足 Node.val == 0 。对于每两个相邻的 0 ，请你将它们之间的所有节点合并成一个节点，其值是所有已合并节点的值之和。然后将所有 0 移除，修改后的链表不应该含有任何 0 。返回修改后链表的头节点 head 。[2181.合并零之间的节点](https://leetcode.cn/problems/merge-nodes-in-between-zeros/description/)
+
+    - 从前往后递归遍历
+    - 全局变量num记录目前遇到0前数字的和,cur节点记录目前新链表的末尾节点，初始化cur=head
+    - 如果node.val不是0，那么num+=node.val，如果node.val是0，那么num=0,cur.next=ListNode(num),cur=cur.next
+    - 递归入参为head.next,最后返回head.next
+
+
+4. 给你一个头结点为 head 的单链表和一个整数 k ，请你设计一个算法将链表分隔为 k 个连续的部分。每部分的长度应该尽可能的相等：任意两部分的长度差距不能超过 1 。这可能会导致有些部分为 null 。这 k 个部分应该按照在链表中出现的顺序排列，并且排在前面的部分的长度应该大于或等于排在后面的长度。返回一个由上述 k 部分组成的数组。[725.分隔链表](https://leetcode.cn/problems/split-linked-list-in-parts/description/)【没做完】
+
+    - 先跑到最后一个节点，记录长度，可以分的段数是如果长度<=k，那么可以分k段，如果长度>k，每一段的长度为长度//k段，如果不能整除，最前面的一段长度为长度//k+长度%k
+
+
+### 删除链表节点
+
+套路：
+
+```bash
+def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        visited = set()
+        tmp = None
+        def helper(node):
+            if not node:
+                return 
+            nonlocal visited
+            nonlocal tmp
+            visited.add(node.val)
+            if node.next and node.next.val in visited:
+                tmp = node
+                while node.next and node.next.val in visited:
+                    node = node.next
+                tmp.next = node.next
+            helper(node.next)
+        helper(head)
+        return head
+```
+
+
+
+5. 给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。[203.移除链表元素](https://leetcode.cn/problems/remove-linked-list-elements/description/)
+
+    - 从前往后遍历，但遇到下一个node是val，则暂存当前node（tmp=node），然后继续往后遍历，直到遇到值不是val的节点，则tmp.next = 该节点
+    - 要设置哨兵节点dummy，因为头节点也可能会被删除，dummy = ListNode(val-1), dummy.next=head
+    - 返回dummy.next
+
+6. 给你一个整数数组 nums 和一个链表的头节点 head。从链表中移除所有存在于 nums 中的节点后，返回修改后的链表的头节点。[3217.从链表中移除在数组中的存在的节点](https://leetcode.cn/problems/delete-nodes-from-linked-list-present-in-array/description/)
+
+    - 将nums变成集合的形式，方便查询
+    - 从前往后遍历，但遇到下一个node在列表中，则暂存当前node（tmp=node），然后继续往后遍历，直到遇到值不在列表中，则tmp.next = 该节点
+    - 要设置哨兵节点dummy，因为头节点也可能会被删除，dummy = ListNode(val-1), dummy.next=head
+    - 返回dummy.next
+
+
+7. 给定一个已排序的链表的头 head ， 删除所有重复的元素，使每个元素只出现一次 。返回 已排序的链表 。[83.删除排序链表中的重复元素](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/description/)
+    
+    - 从前往后遍历，存储已经遇到的值（visited_set.add(node.val)），如果后面再遇到这个值，if node.next in visited_set, tmp = node,while node.next and node.next in visited_set:
+    node = node.next
+
+
+8. 给定一个已排序的链表的头 head ， 删除原始链表中所有重复数字的节点，只留下不同的数字 。返回 已排序的链表 。[82.删除排序链表中的重复元素II](https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/description/)
+
+    - 这个是全部都删，所以需要设置dummy节点
+    - 重点是已排序好
+    - 从前往后遍历，如果当前值和下一个值相等，那么记录当前节点的值val，往后遍历直到下一个值不是val
+    - 递归入参也要把上一个节点一起入
+
+
+
+9. 有一个单链表的 head，我们想删除它其中的一个节点 node。给你一个需要删除的节点 node 。你将 无法访问 第一个节点  head。链表的所有值都是 唯一的，并且保证给定的节点 node 不是链表中的最后一个节点。删除给定的节点。注意，删除节点并不是指从内存中删除它。这里的意思是：给定节点的值不应该存在于链表中。链表中的节点数应该减少 1。node 前面的所有值顺序相同。node 后面的所有值顺序相同。自定义测试：对于输入，你应该提供整个链表 head 和要给出的节点 node。node 不应该是链表的最后一个节点，而应该是链表中的一个实际节点。我们将构建链表，并将节点传递给你的函数。输出将是调用你函数后的整个链表。[237.删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list/description/)
+
+    - 这里没有前缀节点，无法使用改变前缀节点的next来做
+    - 把node节点的值改为下一个节点的值，然后把node的next改为node.next.next对应的节点
+
+
+10. 给你两个链表 list1 和 list2 ，它们包含的元素分别为 n 个和 m 个。请你将 list1 中下标从 a 到 b 的全部节点都删除，并将list2 接在被删除节点的位置。下图中蓝色边和节点展示了操作后的结果：请你返回结果链表的头指针。[1669.合并两个链表](https://leetcode.cn/problems/merge-in-between-linked-lists/description/)
+
+    - 要设置dummy节点，因为头节点可能会被删掉
+    - 从前往后遍历，记录遍历的节点个数，遍历到之后，改变next即可
+
+
+11. 给你一个链表的头节点 head 。移除每个右侧有一个更大数值的节点。返回修改后链表的头节点 head 。[2487.从链表中移除节点](https://leetcode.cn/problems/remove-nodes-from-linked-list/description/)【很有意思】
+
+    - 从后往前推
+    - 如果当前节点node非空且比node.next小，那么把node.next往前推，否则继续往前遍历
+    - 从后往前需要替换一些节点的时候，常常是node.next=递归函数的返回值，返回值是一些节点
+
+12. 给你一个链表的头 head ，每个结点包含一个整数值。在相邻结点之间，请你插入一个新的结点，结点值为这两个相邻结点值的 最大公约数 。请你返回插入之后的链表。两个数的 最大公约数 是可以被两个数字整除的最大正整数。[2807.在链表中插入最大公约数](https://leetcode.cn/problems/insert-greatest-common-divisors-in-linked-list/description/)
+
+
+    - 从后往前推
+    - 
+
+13. 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。[206.反转链表](https://leetcode.cn/problems/reverse-linked-list/description/)
+
+    - 从后往前推，
+    - 先跑到倒数第二个节点，然后新的头节点 new_head = node.next, node.next=None,new_head.next=node，然后返回node
+    - 然后到倒数第三个节点，然后tmp = node.next,node.next=None,tmp.next=node，返回node，依次类推
+    - 最后返回new_head
+
+14. 给你单链表的头指针 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。[92.反转链表II](https://leetcode.cn/problems/reverse-linked-list-ii/description/)【没做完】
+
+    - 从后往前推
+    - 要设置dummy，因为头节点可能会受影响
+    - 先跑到right对应的位置，然后新的节点new_left=node,记录临时节点tmp = new_left.next，然后返回new_left
+    - 然后回溯到right左边的节点node,node.next = None,prenode.next=node,然后返回node，直到到left位置
+    - 然后把new_left接到left左边的节点，tmp接到left节点的右边
+
+
+15. 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。[24.两两交换链表中的节点](https://leetcode.cn/problems/swap-nodes-in-pairs/description/)
+
+    - 
+
+
+
+
+
+16. 给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。[25.K个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/description/)
+
+    - 
+
+
+17. 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。[19.删除链表的倒数第N个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/)
+
+
+    - 从后往前推
+
+
+18. 给你一个链表的头节点 head ，旋转链表，将链表每个节点向右移动 k 个位置。[61.旋转链表](https://leetcode.cn/problems/rotate-list/description/)
+
+    - 先找到谁是头节点，然后再拆掉，重新连即可
+    - 比如对于[1,2,3,4,5],k=2，旋转后，4是头节点，那么
+    - 先跑到最后，看长度n是多少，然后计算k%n，最后一个节点是头节点则为1,倒数第二则为2，第一个节点则为0
+
+
+19. 给你单链表的头结点 head ，请你找出并返回链表的中间结点。如果有两个中间结点，则返回第二个中间结点。[876.链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list/description/)
+
+    - 先跑到最后，一个指针指着尾巴，一个指针指着头
+
+
+20. 给定一个单链表 L 的头节点 head ，单链表 L 表示为：L0 → L1 → … → Ln - 1 → Ln请将其重新排列后变为：L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。[143.重排链表](https://leetcode.cn/problems/reorder-list/description/)
+
+
+1. 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。[LC160相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 如果两个链表有交点，那么链表A首尾相连，链表B首尾相连之后，就会出现两个环，那么先遍历
+
+
+
+3. 给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。[LC234回文链表](https://leetcode.cn/problems/palindrome-linked-list/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 找来一个节点先记录头节点
+    - 然后一直递归到最后一个节点，比较最后一个和头节点，然后递归返回，头节点变为头节点.next，然后接着比较递归到的节点和目前头节点，以此类推
+
+4. 给你一个链表的头节点 head ，判断链表中是否有环。如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。注意：pos 不作为参数进行传递 。仅仅是为了标识链表的实际情况。如果链表中存在环 ，则返回 true 。 否则，返false 。[LC141环形链表](https://leetcode.cn/problems/linked-list-cycle/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 一直往下递归，记录访问的节点，如果往下递归遇到访问过的节点，则有环，如果往下递归最终遇到None，说明没有环
+
+    
+5. 给定一个链表的头节点  head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。不允许修改 链表。[LC142环形链表II](https://leetcode.cn/problems/linked-list-cycle-ii/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 一直往下递归，用字典记录访问的节点和其索引，如果往下递归遇到访问过的节点，则有环并返回其索引，如果往下递归最终遇到None，说明没有环，返回None
+
+
+
+
+
+6. 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。[LC21合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 两个链表，一起往下递归，如果node1.val>node2.val，则下面递归node1和node2.next，递归返回后node2.next = 递归结果，返回node2；如果node1.val<=node2.val，则下面递归node2和node1，递归返回后node1.next = 递归结果，返回node1；next，递归时，当node1为空时，返回node2，当node2为空时，返回node1
+
+7. 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。请你将两个数相加，并以相同形式返回一个表示和的链表。你可以假设除了数字 0 之外，这两个数都不会以 0 开头。
+
+
+
+
+## 二叉树
+
+### 遍历
+
+1. 给定一个二叉树的根节点 root ，返回 它的 中序 遍历 。[LC94 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 找来一个result=[]存结果
+    - 中序，根在中间，result.append(node.val)在中间
+
+
+2. 给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。[LC102二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - BFS遍历
+    - 但是这里不同的是，每一层要单独放在一个列表
+    - 根节点入队列，队列非空循环：（我们希望每次while循环时此时队列的节点就是同一层的），对于目前队列的节点进行for遍历，使用一个新列表vals存储值，然后节点的左右节点入队列（新进的节点不会影响for循环），for循环完毕后，同一层的节点遍历完成，将vals存入result数组中.
+    - 注意要对空root进行特判
+
+3. 给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。初始状态下，所有 next 指针都被设置为 NULL。[LC116填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/)
+
+    - 层序遍历
+    - 找来一个队列queue，根节点先入队列，记录根节点，队列不为空时，对队列当前元素进行备份queue_copy，queue_copy和queue同时出左元素，当queue_copy不为空时，node的下一个元素就是queue的头元素，否则就是None
+
+4. 给定一个二叉树：
+填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL 。初始状态下，所有 next 指针都被设置为 NULL 。[LC117填充每个节点的下一个右侧节点指针II](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 层序遍历
+
+5. 给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。[LC199二叉树的右视图](https://leetcode.cn/problems/binary-tree-right-side-view/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 层序遍历
+    - BFS，找来一个队列，根节点先入列，非空循环，遍历队列，队列出节点，并记录，节点的左右节点入队列，一层遍历结束，最后那个值就是最右边的
+
+6. 给你二叉树的根结点 root ，请你将它展开为一个单链表：展开后的单链表应该同样使用 TreeNode ，其中 right 子指针指向链表中下一个结点，而左子指针始终为 null 。展开后的单链表应该与二叉树 先序遍历 顺序相同。[LC114二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 遍历顺序用：右->左->根
+    - 用tmp记录上一个根，对左边的节点来说，上一个根就是右边的值
+    - 递归回到根时，根的左边置空，根的右边为tmp，tmp记为根
+
+     1
+    / \
+   2   5
+  / \   \
+ 3   4   6
+
+右->左->根，就是从6开始，tmp=None, 那么就是6->tmp(6->None)，tmp=6，接着回到5，5->tmp,tmp=5
+
+
+### 前序遍历维护值
+
+1. 给定一个二叉树 root ，返回其最大深度。二叉树的 最大深度 是指从根节点到最远叶子节点的最长路径上的节点数。[LC104二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/?envType=study-plan-v2&envId=top-interview-150)
+
+
+    - 到一个新的根节点，子树的深度就可以+1
+    - 所以用前序遍历，到新的根节点，就可以将目前的深度和最大深度ans做比较
+    - 注意ans在递归函数里面，要做`nonlocal ans`说明
+
+2. 给你两棵二叉树的根节点 p 和 q ，编写一个函数来检验这两棵树是否相同。如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。[LC100相同的树](https://leetcode.cn/problems/same-tree/description/?envType=study-plan-v2&envId=top-interview-150)
+ 
+    - 找来一个flag做标记
+    - 同时做前序遍历，判断节点值是否相等，如果都不为空且不相等的话，flag=False，然后return，都为空的话，flag = True and flag，然后return，都不为空写在最下面，判断是否相等，然后接着遍历都不为空节点的左子树和右子树.
+
+3. 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。[LC226翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 前序遍历，到根节点后，把左子节点和右子节点互换
+
+4. 给你一个二叉树的根节点 root ， 检查它是否轴对称。[LC101对称二叉树](https://leetcode.cn/problems/symmetric-tree/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 前序遍历，判断子树1的右子树和子树2的左子树是否相等
+
+5. 给你一棵二叉树的根节点，返回该树的 直径 。二叉树的 直径 是指树中任意两个节点之间最长路径的 长度 。这条路径可能经过也可能不经过根节点 root 。两节点之间路径的 长度 由它们之间边数表示。[LC543二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 前序遍历，节点的直径是左子树的最大深度+右子树的最大深度，递归函数返回该节点的最大深度
+    - 注意这里直径的计算不一定经过根节点
+
+6. 给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。有效 二叉搜索树定义如下：节点的左子树只包含 小于 当前节点的数。节点的右子树只包含 大于 当前节点的数。所有左子树和右子树自身必须也是二叉搜索树。[LC98验证二叉树](https://leetcode.cn/problems/validate-binary-search-tree/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 前序遍历
+    - 注意有效二叉搜索树，左边“所有”节点小于根节点，右边所有节点大于根几点
+
+7. 给你二叉树的根节点 root 和一个表示目标和的整数 targetSum 。判断该树中是否存在 根节点到叶子节点 的路径，这条路径上所有节点值相加等于目标和 targetSum 。如果存在，返回 true ；否则，返回 false 。叶子节点 是指没有子节点的节点。[LC112路径和](https://leetcode.cn/problems/path-sum/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - 前序遍历，到达根节点后，判断当前和+节点值是否等于target值，等的话flag设为True，不等的话，继续递归左右子树
+
+8. 给你一个二叉树的根节点 root ，树中每个节点都存放有一个 0 到 9 之间的数字。每条从根节点到叶节点的路径都代表一个数字：例如，从根节点到叶节点的路径 1 -> 2 -> 3 表示数字 123 。计算从根节点到叶节点生成的 所有数字之和 。叶节点 是指没有子节点的节点。[LC129求根节点到叶节点数字之和](https://leetcode.cn/problems/sum-root-to-leaf-numbers/description/?envType=study-plan-v2&envId=top-interview-150)
+    
+    - 前序遍历，到达根节点，判断是否是叶子节点，是把字符串变成数字
+    - 如果字符串是0打头，把0去掉
+
+9. 给定一个二叉树的根节点 root ，和一个整数 targetSum ，求该二叉树里节点值之和等于 targetSum 的 路径 的数目。路径 不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。[LC437路径总和III](https://leetcode.cn/problems/path-sum-iii/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 遍历每个节点，然后往下找路径和
+
+### 数组 -> 二叉树
+
+1. 给定两个整数数组 preorder 和 inorder ，其中 preorder 是二叉树的先序遍历， inorder 是同一棵树的中序遍历，请构造二叉树并返回其根节点。[LC105从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/?envType=study-plan-v2&envId=top-interview-150)
+
+    - preorder = [3,9,20,15,7]
+    - inorder = [9,3,15,20,7]
+    - 前序是 根->左->右，中序是 左->根->右，那么可以知道preorder[0]=3就是根结点，然后在inorder中找到3的位置，那么在inorder中3的左边的数的长度左子树的大小，3的右边的数的长度就是右子树的大小，然后根据大小可以在preorder中得到左右子树对应的数组值，接着再继续在preorder中子树的根，在inorder中找子树的子树的大小，再回到preorder找子树的子树对应的数组值
+    - 递归处理
+
+2. 给定两个整数数组 inorder 和 postorder ，其中 inorder 是二叉树的中序遍历， postorder 是同一棵树的后序遍历，请你构造并返回这颗 二叉树 。[LC106从中序到后序遍历序列构造二叉树]
+
+    -   inorder = [9,3,15,20,7], 
+    - postorder = [9,15,7,20,3]
+    - 后序是 左->右->根，中序是 左->根->右，因此postorder[-1]=3就是根节点，找到3在inorder中的位置，左边的数组就是左子树对应数组，记录数组大小left_len，右边的数组就是右子树对应数组，记录数组大小right_len，那么对应到postorder，postorder[-1:-1-right_len-1:-1]就是右子树的postorder，postorder[-1-right_len-1::-1]就是左子树的postorder，然后在找到两个子树的根节点，回到子树的inorder中再次寻找左右子树，递归
+
+
+3. 给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 平衡 二叉搜索树。（平衡二叉树 是指该树所有节点的左右子树的高度相差不超过 1。）[LC108将有序数组转换为二叉搜索树](https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 将数组看成是树的中序遍历，只要树的根节点一直在数组中间的位置，那么左右子树的高度相差不会超过1
+
+### 中序遍历维护值
+
+1. 给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。有效 二叉搜索树定义如下：节点的左子树只包含 小于 当前节点的数。节点的右子树只包含 大于 当前节点的数。所有左子树和右子树自身必须也是二叉搜索树。[LC98验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/description/?envType=study-plan-v2&envId=top-100-liked)
+
+    - 二叉搜索树的中序遍历是一个有序数组
+    - 把中序遍历数组弄出来和排序之后的中序遍历数组比较是否相等
+
+
+2. 给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 小的元素（从 1 开始计数）。
+
+    - 二叉搜索树的中序遍历是一个有序数组
+    - 中序遍历数组的第k个元素就是第k小的元素
+
+
+
+
+
 
 ## 双指针
 
@@ -984,6 +1608,33 @@ for i in range(m,m+n):
 
 
 
+## 字典树
+
+1. Trie（发音类似 "try"）或者说 前缀树 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补全和拼写检查。请你实现 Trie 类：Trie() 初始化前缀树对象。void insert(String word) 向前缀树中插入字符串 word 。boolean search(String word) 如果字符串 word 在前缀树中，返回 true（即，在检索之前已经插入）；否则，返回 false 。boolean startsWith(String prefix) 如果之前已经插入的字符串 word 的前缀之一为 prefix ，返回 true ；否则，返回 false 。[208. 实现 Trie (前缀树)](https://leetcode.cn/problems/implement-trie-prefix-tree/description/)
+
+    - search要完全匹配
+    - startsWith只要匹配前缀即可
+    - 每个节点有两个属性，son和end，son是一个字典，键是字母，值是node类；end是一个bool变量
+    - 使用一个现有节点cur记录遍历到那个字母
+    - insert：遇到一个字母c，node的son中存入son[c]=Node()，cur=son[c], 直到遍历word完成，cur.end=True
+    - find：遇到一个字母c，如果c in node.son那么可以cur=son[c]，然后接着遍历下一个字母，如果c not in node.son，则可以返回0，遍历完word之后，看cur.end是否为True，如果为True那么就是完全匹配，返回2，否则word就是前缀返回1
+    - search：如果find返回2，则为True，否则为False
+    - startsWith：如果find返回不会0，则为True，否则为False
+
+2. 给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。[79.单词搜索](https://leetcode.cn/problems/word-search/description/)
+
+
+3. 给定一个 m x n 二维字符网格 board 和一个单词（字符串）列表 words， 返回所有二维网格上的单词 。单词必须按照字母顺序，通过 相邻的单元格 内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。[212.单词搜索II](https://leetcode.cn/problems/word-search-ii/description/)
+
+ 
+
+## 树状数组
+
+- https://leetcode.cn/problems/range-sum-query-mutable/solutions/1540277/by-lfool-v3x9/
+
+## 线段树
+
+
 ## 数学
 
 5. 给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。[LC189轮转数组](https://leetcode.cn/problems/rotate-array/description/?envType=study-plan-v2&envId=top-interview-150)
@@ -994,224 +1645,7 @@ for i in range(m,m+n):
     - 特判: k=0时，i%len(nums)=i，没错，len(nums)=1是，假设k=3，(0+3)%1 = 0，没错
 
 
-
-
-
-
-## 链表
-
-1. 给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。[LC160相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 如果两个链表有交点，那么链表A首尾相连，链表B首尾相连之后，就会出现两个环，那么先遍历
-
-2. 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。[LC206反转链表](https://leetcode.cn/problems/reverse-linked-list/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 类似于树的自底向上遍历
-    - 1->2->3->4->5往下一直递归，一直递归到最后一个节点5返回，并记录新的头节点，然后改变5的next和4的next，变为1->2->3->4<-5，递归返回4，接着改变4的next和3的next，变为1->2->3<-4<-5，以此类推
-
-
-3. 给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。[LC234回文链表](https://leetcode.cn/problems/palindrome-linked-list/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 找来一个节点先记录头节点
-    - 然后一直递归到最后一个节点，比较最后一个和头节点，然后递归返回，头节点变为头节点.next，然后接着比较递归到的节点和目前头节点，以此类推
-
-4. 给你一个链表的头节点 head ，判断链表中是否有环。如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。注意：pos 不作为参数进行传递 。仅仅是为了标识链表的实际情况。如果链表中存在环 ，则返回 true 。 否则，返false 。[LC141环形链表](https://leetcode.cn/problems/linked-list-cycle/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 一直往下递归，记录访问的节点，如果往下递归遇到访问过的节点，则有环，如果往下递归最终遇到None，说明没有环
-
-    
-5. 给定一个链表的头节点  head ，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。不允许修改 链表。[LC142环形链表II](https://leetcode.cn/problems/linked-list-cycle-ii/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 一直往下递归，用字典记录访问的节点和其索引，如果往下递归遇到访问过的节点，则有环并返回其索引，如果往下递归最终遇到None，说明没有环，返回None
-
-6. 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。[LC21合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 两个链表，一起往下递归，如果node1.val>node2.val，则下面递归node1和node2.next，递归返回后node2.next = 递归结果，返回node2；如果node1.val<=node2.val，则下面递归node2和node1，递归返回后node1.next = 递归结果，返回node1；next，递归时，当node1为空时，返回node2，当node2为空时，返回node1
-
-7. 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。请你将两个数相加，并以相同形式返回一个表示和的链表。你可以假设除了数字 0 之外，这两个数都不会以 0 开头。
-
-
-
-
-## 二叉树
-
-### 遍历
-
-1. 给定一个二叉树的根节点 root ，返回 它的 中序 遍历 。[LC94 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 找来一个result=[]存结果
-    - 中序，根在中间，result.append(node.val)在中间
-
-
-2. 给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。[LC102二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - BFS遍历
-    - 但是这里不同的是，每一层要单独放在一个列表
-    - 根节点入队列，队列非空循环：（我们希望每次while循环时此时队列的节点就是同一层的），对于目前队列的节点进行for遍历，使用一个新列表vals存储值，然后节点的左右节点入队列（新进的节点不会影响for循环），for循环完毕后，同一层的节点遍历完成，将vals存入result数组中.
-    - 注意要对空root进行特判
-
-3. 给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。初始状态下，所有 next 指针都被设置为 NULL。[LC116填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/)
-
-    - 层序遍历
-    - 找来一个队列queue，根节点先入队列，记录根节点，队列不为空时，对队列当前元素进行备份queue_copy，queue_copy和queue同时出左元素，当queue_copy不为空时，node的下一个元素就是queue的头元素，否则就是None
-
-4. 给定一个二叉树：
-填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL 。初始状态下，所有 next 指针都被设置为 NULL 。[LC117填充每个节点的下一个右侧节点指针II](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - 层序遍历
-
-5. 给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。[LC199二叉树的右视图](https://leetcode.cn/problems/binary-tree-right-side-view/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 层序遍历
-    - BFS，找来一个队列，根节点先入列，非空循环，遍历队列，队列出节点，并记录，节点的左右节点入队列，一层遍历结束，最后那个值就是最右边的
-
-6. 给你二叉树的根结点 root ，请你将它展开为一个单链表：展开后的单链表应该同样使用 TreeNode ，其中 right 子指针指向链表中下一个结点，而左子指针始终为 null 。展开后的单链表应该与二叉树 先序遍历 顺序相同。[LC114二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 遍历顺序用：右->左->根
-    - 用tmp记录上一个根，对左边的节点来说，上一个根就是右边的值
-    - 递归回到根时，根的左边置空，根的右边为tmp，tmp记为根
-
-     1
-    / \
-   2   5
-  / \   \
- 3   4   6
-
-右->左->根，就是从6开始，tmp=None, 那么就是6->tmp(6->None)，tmp=6，接着回到5，5->tmp,tmp=5
-
-
-### 前序遍历维护值
-
-1. 给定一个二叉树 root ，返回其最大深度。二叉树的 最大深度 是指从根节点到最远叶子节点的最长路径上的节点数。[LC104二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/?envType=study-plan-v2&envId=top-interview-150)
-
-
-    - 到一个新的根节点，子树的深度就可以+1
-    - 所以用前序遍历，到新的根节点，就可以将目前的深度和最大深度ans做比较
-    - 注意ans在递归函数里面，要做`nonlocal ans`说明
-
-2. 给你两棵二叉树的根节点 p 和 q ，编写一个函数来检验这两棵树是否相同。如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。[LC100相同的树](https://leetcode.cn/problems/same-tree/description/?envType=study-plan-v2&envId=top-interview-150)
- 
-    - 找来一个flag做标记
-    - 同时做前序遍历，判断节点值是否相等，如果都不为空且不相等的话，flag=False，然后return，都为空的话，flag = True and flag，然后return，都不为空写在最下面，判断是否相等，然后接着遍历都不为空节点的左子树和右子树.
-
-3. 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。[LC226翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 前序遍历，到根节点后，把左子节点和右子节点互换
-
-4. 给你一个二叉树的根节点 root ， 检查它是否轴对称。[LC101对称二叉树](https://leetcode.cn/problems/symmetric-tree/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 前序遍历，判断子树1的右子树和子树2的左子树是否相等
-
-5. 给你一棵二叉树的根节点，返回该树的 直径 。二叉树的 直径 是指树中任意两个节点之间最长路径的 长度 。这条路径可能经过也可能不经过根节点 root 。两节点之间路径的 长度 由它们之间边数表示。[LC543二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 前序遍历，节点的直径是左子树的最大深度+右子树的最大深度，递归函数返回该节点的最大深度
-    - 注意这里直径的计算不一定经过根节点
-
-6. 给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。有效 二叉搜索树定义如下：节点的左子树只包含 小于 当前节点的数。节点的右子树只包含 大于 当前节点的数。所有左子树和右子树自身必须也是二叉搜索树。[LC98验证二叉树](https://leetcode.cn/problems/validate-binary-search-tree/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 前序遍历
-    - 注意有效二叉搜索树，左边“所有”节点小于根节点，右边所有节点大于根几点
-
-7. 给你二叉树的根节点 root 和一个表示目标和的整数 targetSum 。判断该树中是否存在 根节点到叶子节点 的路径，这条路径上所有节点值相加等于目标和 targetSum 。如果存在，返回 true ；否则，返回 false 。叶子节点 是指没有子节点的节点。[LC112路径和](https://leetcode.cn/problems/path-sum/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - 前序遍历，到达根节点后，判断当前和+节点值是否等于target值，等的话flag设为True，不等的话，继续递归左右子树
-
-8. 给你一个二叉树的根节点 root ，树中每个节点都存放有一个 0 到 9 之间的数字。每条从根节点到叶节点的路径都代表一个数字：例如，从根节点到叶节点的路径 1 -> 2 -> 3 表示数字 123 。计算从根节点到叶节点生成的 所有数字之和 。叶节点 是指没有子节点的节点。[LC129求根节点到叶节点数字之和](https://leetcode.cn/problems/sum-root-to-leaf-numbers/description/?envType=study-plan-v2&envId=top-interview-150)
-    
-    - 前序遍历，到达根节点，判断是否是叶子节点，是把字符串变成数字
-    - 如果字符串是0打头，把0去掉
-
-9. 给定一个二叉树的根节点 root ，和一个整数 targetSum ，求该二叉树里节点值之和等于 targetSum 的 路径 的数目。路径 不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。[LC437路径总和III](https://leetcode.cn/problems/path-sum-iii/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 遍历每个节点，然后往下找路径和
-
-### 数组 -> 二叉树
-
-1. 给定两个整数数组 preorder 和 inorder ，其中 preorder 是二叉树的先序遍历， inorder 是同一棵树的中序遍历，请构造二叉树并返回其根节点。[LC105从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - preorder = [3,9,20,15,7]
-    - inorder = [9,3,15,20,7]
-    - 前序是 根->左->右，中序是 左->根->右，那么可以知道preorder[0]=3就是根结点，然后在inorder中找到3的位置，那么在inorder中3的左边的数的长度左子树的大小，3的右边的数的长度就是右子树的大小，然后根据大小可以在preorder中得到左右子树对应的数组值，接着再继续在preorder中子树的根，在inorder中找子树的子树的大小，再回到preorder找子树的子树对应的数组值
-    - 递归处理
-
-2. 给定两个整数数组 inorder 和 postorder ，其中 inorder 是二叉树的中序遍历， postorder 是同一棵树的后序遍历，请你构造并返回这颗 二叉树 。[LC106从中序到后序遍历序列构造二叉树]
-
-    -   inorder = [9,3,15,20,7], 
-    - postorder = [9,15,7,20,3]
-    - 后序是 左->右->根，中序是 左->根->右，因此postorder[-1]=3就是根节点，找到3在inorder中的位置，左边的数组就是左子树对应数组，记录数组大小left_len，右边的数组就是右子树对应数组，记录数组大小right_len，那么对应到postorder，postorder[-1:-1-right_len-1:-1]就是右子树的postorder，postorder[-1-right_len-1::-1]就是左子树的postorder，然后在找到两个子树的根节点，回到子树的inorder中再次寻找左右子树，递归
-
-
-3. 给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 平衡 二叉搜索树。（平衡二叉树 是指该树所有节点的左右子树的高度相差不超过 1。）[LC108将有序数组转换为二叉搜索树](https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 将数组看成是树的中序遍历，只要树的根节点一直在数组中间的位置，那么左右子树的高度相差不会超过1
-
-### 中序遍历维护值
-
-1. 给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。有效 二叉搜索树定义如下：节点的左子树只包含 小于 当前节点的数。节点的右子树只包含 大于 当前节点的数。所有左子树和右子树自身必须也是二叉搜索树。[LC98验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 二叉搜索树的中序遍历是一个有序数组
-    - 把中序遍历数组弄出来和排序之后的中序遍历数组比较是否相等
-
-
-2. 给定一个二叉搜索树的根节点 root ，和一个整数 k ，请你设计一个算法查找其中第 k 小的元素（从 1 开始计数）。
-
-    - 二叉搜索树的中序遍历是一个有序数组
-    - 中序遍历数组的第k个元素就是第k小的元素
-
-
-## 回溯
-
-1. 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。[LC46全排列](https://leetcode.cn/problems/permutations/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    ![alt text](image.png)
-
-    - 传参是路径，方便添加新的数，路径长度为len(nums)，则返回递归
-
-2. 给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。解集 不能 包含重复的子集。你可以按 任意顺序 返回解集。[LC78子集](https://leetcode.cn/problems/subsets/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    ![alt text](image-1.png)
-
-    - 选与不选，传参用索引，方便判断选还是不选，索引到最后一个数组索引，递归返回，不选的递归写在选的递归的前面
-
-
-3. 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。答案可以按 任意顺序 返回。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。[LC17电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 递归传参用的是字符的索引，当字符的索引等于字符的长度时，递归返回
-    - 对于同一个字符，用for循环来避免重复选取数字
-
-4. 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。你可以按 任何顺序 返回答案。[LC77组合](https://leetcode.cn/problems/combinations/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - 选与不选，
-
-5. 给你一个 无重复元素 的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。candidates 中的 同一个 数字可以 无限制重复被选取 。如果至少一个数字的被选数量不同，则两种组合是不同的。 对于给定的输入，保证和为 target 的不同组合数少于 150 个。[LC39组合总和](https://leetcode.cn/problems/combination-sum/description/?envType=study-plan-v2&envId=top-100-liked)
-
-    - 选与不选，但是自己可以重复选，传参是candidates的索引
-    - candidates先升序排序，
-
-6. 给定一个候选人编号的集合 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。candidates 中的每个数字在每个组合中只能使用 一次 。注意：解集不能包含重复的组合。[40.组合总和II](https://leetcode.cn/problems/combination-sum-ii/description/)
-
-
-6. 找出所有相加之和为 n 的 k 个数的组合，且满足下列条件：只使用数字1到9，每个数字 最多使用一次，返回 所有可能的有效组合的列表 。该列表不能包含相同的组合两次，组合可以以任何顺序返回。[216.组合总和III](https://leetcode.cn/problems/combination-sum-iii/description/)
-
-
- 
-
-## 堆
-
-
-1. 给定两个以 非递减顺序排列 的整数数组 nums1 和 nums2 , 以及一个整数 k 。定义一对值 (u,v)，其中第一个元素来自 nums1，第二个元素来自 nums2 。请找到和最小的 k 个数对 (u1,v1),  (u2,v2)  ...  (uk,vk) 。
-
-    - 找来一个最小堆 heap=[]
-    - 由于nums1和nums2非递减，所以对于(nums1[i],nums2[j])，大小顺序一定为 nums1[i]+num2[j] < nums1[i+1]+nums2[j] or nums1[i]+nums2[j+1] < nums1[i+1][j+1]
-    - (i,j)出堆，那么下一个入堆的数对，从(i+1,j)或(i,j+1)选即可
-    - 注意，(0,0)出堆，然后(1,0),(0,1)入堆，然后(1,1)可以由(1,0)后入堆，也可以由(0,1)后入堆，那么(1,1)就入重复了，因此只要要判断是否重复入
-    - 出堆的元素数量到达k即可结束出堆.
-    - 如果数量关系满足 (i,j)对应< (i,j+1)对应or (i,j+1)对应< (i,j)对应，方法：result数组长度小于k时，(i,j)出堆并存入result，如果(i+1,j)有效且没有访问过，入堆；如果(i,j+1)有效且没有访问过，入堆，当result数组长度大于k，则退出循环，result的末尾就是第k小
-
-2. 给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。你必须设计并实现时间复杂度为 O(n) 的算法解决此问题。[LC215数组中的第k个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/description/?envType=study-plan-v2&envId=top-interview-150)
-
-    - 固定长度的堆，遍历元素入堆，当堆的长度大于k，则最小值出堆
-
+## 数论
 
 ## 单调队列
 

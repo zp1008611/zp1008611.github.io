@@ -123,10 +123,12 @@ nav:
             - LEETCODE/bit_operation/README.md
         - 计算几何:
             - LEETCODE/computational_geometry/README.md
-        - Hot100&150:
-            - LEETCODE/hot100&150/README.md
-        - HW机考实战:
-            - LEETCODE/huawei/README.md   
+        - 刷题思路记录:
+            - LEETCODE/thought_record/README.md
+        - HOT100快速复习:
+            - LEETCODE/hot100/README.md
+        - 机考实战:
+            - LEETCODE/comupter_testing/README.md   
     
     - Math:
         - MATH/index.md
