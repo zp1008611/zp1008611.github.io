@@ -576,3 +576,8 @@ def ppo_loss_with_gae_entropy(old_policy_logprobs, new_policy_logprobs, advantag
     return total_loss
 
 ```
+
+## DPO
+
+- DPO原理推导：https://zhuanlan.zhihu.com/p/644911957
+- DPO公式改进：https://www.arxiv.org/pdf/2506.12725

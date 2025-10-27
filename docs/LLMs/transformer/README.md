@@ -1,4 +1,4 @@
-   # Transformer
+# Transformer
 
 
 ## Reference
@@ -114,7 +114,10 @@ BPE分词流程：
 
 计算过程绝大部分与BPE一致，将挑选bigram的指标从频率换成了PMI（点互信息，[Pointwise Mutual Information](https://en.wikipedia.org/wiki/Pointwise_mutual_information)）：  
 
-$$ \text{PMI}(a, b) = \frac{P(a, b)}{P(a)P(b)} $$  
+$$ 
+\text{PMI}(a, b) = \frac{P(a, b)}{P(a)P(b)} 
+$$  
+
 其中 $a$、$b$ 为相邻的subword.   
 
 当 PMI 值较高时，表示 $a$ 和 $b$ 在一起出现的频率远高于它们各自独立出现的概率，说明它们之间的关联较强，可能是一个有意义的组合.   
@@ -155,11 +158,12 @@ $$ \text{PMI}(a, b) = \frac{P(a, b)}{P(a)P(b)} $$
 ## 多头注意力（MHA）
 
 
-
 ![alt text](image-2.png)
 
 
 ### 注意力机制的简化版本
+
+
 从本质上讲，注意力机制实际上就是上下文向量的加权和，只是在权重的计算方式以及求和对象方面存在诸多复杂情况. 我们首先来描述一种对注意力机制的简化直观理解. 在这种理解中，位置 $i$ 处的注意力输出 $\mathbf{a}_i$ ，就是所有满足 $j \leq i$ 的 $\mathbf{x}_j$ 的加权和；我们用 $\alpha_{ij}$ 来表示 $\mathbf{x}_j$ 对 $\mathbf{a}_i$ 的贡献程度：
 
 **简化版本**： $\mathbf{a}_i = \sum_{j \leq i} \alpha_{ij} \mathbf{x}_j$   
@@ -341,11 +345,19 @@ $$
      - 对于 z1：计算均值 $\mu_1$ 和标准差 $\sigma_1$.   
      - 对于 z2：计算均值 $\mu_2$ 和标准差 $\sigma_2$.   
      - 对于 z3：计算均值 $\mu_3$ 和标准差 $\sigma_3$.   
-   - 步骤 2：使用公式对每个激活值进行归一化：  
-     $$归一化值 = \frac{原始值 - \mu}{\sigma}$$  
+   - 步骤 2：使用公式对每个激活值进行归一化：
+
+     $$
+     归一化值 = \frac{原始值 - \mu}{\sigma}
+     $$  
+
      对 z1、z2 和 z3 的所有值应用此公式.   
-   - 步骤 3：归一化后，应用缩放和偏移. 每个节点有两个可学习参数：$\gamma$ 和 $\beta$.   
-     $$最终值 = (归一化值 \times \gamma) + \beta$$  
+   - 步骤 3：归一化后，应用缩放和偏移. 每个节点有两个可学习参数：$\gamma$ 和 $\beta$. 
+
+     $$
+     最终值 = (归一化值 \times \gamma) + \beta
+     $$ 
+
      这里，$\gamma$ 和 $\beta$ 最初分别设置为 1 和 0，但在训练过程中会进行调整.   
 
 3. **替换值**：  

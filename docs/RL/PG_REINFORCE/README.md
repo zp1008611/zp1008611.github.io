@@ -72,7 +72,11 @@ $$\theta_{t + 1}\doteq\theta_{t}+\alpha\sum_{a}\hat{q}(S_{t},a,w)\nabla\pi(a|S_{
 其中 $\hat{q}$ 是对 $q_{\pi}$ 的某种学习到的近似. 这个算法被称为全动作方法，因为它的更新涉及所有动作，它很有前景，值得进一步研究，但我们目前感兴趣的是经典的REINFORCE算法（Williams, 1992），其在时间 $t$ 的更新只涉及 $A_{t}$ ，即时间 $t$ 实际采取的那个动作. 
 
 我们通过与在（13.6）中引入 $S_{t}$ 相同的方式引入 $A_{t}$ 来继续推导REINFORCE算法——将对随机变量可能值的求和替换为在策略 $\pi$ 下的期望，然后对期望进行采样. 方程（13.6）涉及对动作的适当求和，但每一项并没有像在策略 $\pi$ 下的期望所需要的那样，由 $\pi(a|S_{t},\theta)$ 加权. 所以我们通过对求和项进行乘除 $\pi(a|S_{t},\theta)$ 来引入这样的加权，而不改变等式. 从（13.6）继续推导，我们有：
-$$\begin{array}{rlrl}\nabla J(\theta)&=\mathbb{E}_{\pi}\left[\sum_{a}\pi(a|S_{t},\theta)q_{\pi}(S_{t},a)\frac{\nabla\pi(a|S_{t},\theta)}{\pi(a|S_{t},\theta)}\right]\\&=\mathbb{E}_{\pi}\left[q_{\pi}(S_{t},A_{t})\frac{\nabla\pi(A_{t}|S_{t},\theta)}{\pi(A_{t}|S_{t},\theta)}\right]\quad(用样本 $A_{t}\sim\pi$ 替换 $a$ )\\&=\mathbb{E}_{\pi}\left[G_{t}\frac{\nabla\pi(A_{t}|S_{t},\theta)}{\pi(A_{t}|S_{t},\theta)}\right]\quad(因为 $\mathbb{E}_{\pi}[G_{t}|S_{t},A_{t}]=q_{\pi}(S_{t},A_{t})$ )\end{array}$$
+
+$$
+\begin{array}{rlrl}\nabla J(\theta)&=\mathbb{E}_{\pi}\left[\sum_{a}\pi(a|S_{t},\theta)q_{\pi}(S_{t},a)\frac{\nabla\pi(a|S_{t},\theta)}{\pi(a|S_{t},\theta)}\right]\\&=\mathbb{E}_{\pi}\left[q_{\pi}(S_{t},A_{t})\frac{\nabla\pi(A_{t}|S_{t},\theta)}{\pi(A_{t}|S_{t},\theta)}\right]\quad(用样本 A_{t}\sim\pi 替换 a )\\&=\mathbb{E}_{\pi}\left[G_{t}\frac{\nabla\pi(A_{t}|S_{t},\theta)}{\pi(A_{t}|S_{t},\theta)}\right]\quad(因为 \mathbb{E}_{\pi}[G_{t}|S_{t},A_{t}]=q_{\pi}(S_{t},A_{t}) )\end{array}
+$$
+
 其中 $G_{t}$ 是通常的回报. 最后括号中的表达式正是我们所需要的，它是一个可以在每个时间步进行采样的量，其期望等于梯度. 使用这个样本实例化我们的通用随机梯度上升算法（13.1），得到REINFORCE更新：
 $$\theta_{t + 1}\doteq\theta_{t}+\alpha G_{t}\frac{\nabla\pi(A_{t}|S_{t},\theta_{t})}{\pi(A_{t}|S_{t},\theta_{t})}$$
 
