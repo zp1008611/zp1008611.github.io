@@ -15,8 +15,11 @@
       
       
       
+        
+      
+      
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -24,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -56,7 +59,6 @@
     
       
 
-    
     
     
   </head>
@@ -552,9 +554,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Home
+  
+
     
   </span>
+  
   
 
       </a>
@@ -612,9 +619,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     运筹与优化
+  
+
     
   </span>
+  
   
 
       
@@ -668,9 +680,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     ML
+  
+
     
   </span>
+  
   
 
       
@@ -758,9 +775,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     DL
+  
+
     
   </span>
+  
   
 
       
@@ -828,9 +850,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     RL
+  
+
     
   </span>
+  
   
 
       
@@ -882,9 +909,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     LLMs
+  
+
     
   </span>
+  
   
 
       
@@ -966,9 +998,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     LEETCODE
+  
+
     
   </span>
+  
   
 
       
@@ -1020,9 +1057,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Math
+  
+
     
   </span>
+  
   
 
       
@@ -1074,9 +1116,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     面试八股
+  
+
     
   </span>
+  
   
 
       
@@ -1128,9 +1175,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     开发经验
+  
+
     
   </span>
+  
   
 
       
@@ -1186,9 +1238,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     高中数学教资面试
+  
+
     
   </span>
+  
   
 
       
@@ -1212,6 +1269,15 @@
           
           
             <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
               <article class="md-content__inner md-typeset">
                 
                   
@@ -1648,10 +1714,10 @@ v_{w}&amp;=v_{w}-\eta\nabla_{v_{w}}\
 \end{align</em>}
 $$</p>
 <p>这个更新规则有一个很好的解释：
-<span class="arithmatex">\(<span class="arithmatex">\(v_{w}=v_{w}+\eta u_{c}(1 - \hat{y}_{w})\)</span>\)</span></p>
+$<span class="arithmatex">\(v_{w}=v_{w}+\eta u_{c}(1 - \hat{y}_{w})\)</span>$</p>
 <p>如果<span class="arithmatex">\(\hat{y}_{w}\to1\)</span>，那么我们已经预测对了单词，<span class="arithmatex">\(v_{w}\)</span>将不会被更新。如果<span class="arithmatex">\(\hat{y}_{w}\to0\)</span>，那么<span class="arithmatex">\(v_{w}\)</span>会通过加上<span class="arithmatex">\(u_{c}\)</span>的一部分来更新。这会增加<span class="arithmatex">\(v_{w}\)</span>和<span class="arithmatex">\(u_{c}\)</span>之间的余弦相似度（为什么？参考第2讲第38页幻灯片）。训练目标是确保单词<span class="arithmatex">\((v_{w})\)</span>和语境单词<span class="arithmatex">\((u_{c})\)</span>之间的余弦相似度最大化。
-<span class="arithmatex">\(<span class="arithmatex">\(P(chair|sat, he), P(man|sat, he), P(he|sat, he), P(on|sat, he)\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(W_{word}\in\mathbb{R}^{k×2|V|}, h\in\mathbb{R}^{k}, [W_{context}, W_{context}]\in\mathbb{R}^{k×2|V|}, x\in\mathbb{R}^{2|V|}\)</span>\)</span>
+$<span class="arithmatex">\(P(chair|sat, he), P(man|sat, he), P(he|sat, he), P(on|sat, he)\)</span>$
+$<span class="arithmatex">\(W_{word}\in\mathbb{R}^{k×2|V|}, h\in\mathbb{R}^{k}, [W_{context}, W_{context}]\in\mathbb{R}^{k×2|V|}, x\in\mathbb{R}^{2|V|}\)</span>$
 $$
 \begin{array}{|c|c|}
 \hline
@@ -1666,7 +1732,7 @@ x&amp;
 \end{array}
 $$</p>
 <p>在实践中，通常使用大小为<span class="arithmatex">\(d\)</span>的窗口，而不是窗口大小为<span class="arithmatex">\(1\)</span>。所以现在，
-<span class="arithmatex">\(<span class="arithmatex">\(h=\sum_{i = 1}^{d - 1}u_{c_{i}}\)</span>\)</span>
+$<span class="arithmatex">\(h=\sum_{i = 1}^{d - 1}u_{c_{i}}\)</span>$
 <span class="arithmatex">\([W_{context}, W_{context}]\)</span>表示我们将<span class="arithmatex">\(W_{context}\)</span>矩阵堆叠两份。结果乘积就是对应“sat”和“he”的列的和。
 $$
 \begin{bmatrix}
@@ -1696,12 +1762,12 @@ $$
 \end{bmatrix}
 $$</p>
 <p>当然，在实践中我们不会进行这种昂贵的矩阵乘法。如果“he”是词汇表中的第<span class="arithmatex">\(i\)</span>个单词，“sat”是第<span class="arithmatex">\(j\)</span>个单词，那么我们将直接访问列<span class="arithmatex">\(W[i:]\)</span>和<span class="arithmatex">\(W[j:]\)</span>并将它们相加。
-<span class="arithmatex">\(<span class="arithmatex">\(P(on|sat, he)=\frac{e^{(w_{word}h)[k]}}{\sum_{j}e^{(w_{word}h)[j]}}\)</span>\)</span>
+$<span class="arithmatex">\(P(on|sat, he)=\frac{e^{(w_{word}h)[k]}}{\sum_{j}e^{(w_{word}h)[j]}}\)</span>$
 其中，‘<span class="arithmatex">\(k\)</span>’是单词“on”的索引，并且
-<span class="arithmatex">\(<span class="arithmatex">\(h=\sum_{i = 1}^{d - 1}u_{c_{i}}\)</span>\)</span></p>
+$<span class="arithmatex">\(h=\sum_{i = 1}^{d - 1}u_{c_{i}}\)</span>$</p>
 <p>回想一下，损失函数取决于<span class="arithmatex">\(\{W_{word}, u_{c_{1}}, u_{c_{2}},\cdots, u_{c_{d - 1}}\}\)</span>，并且在反向传播过程中所有这些参数都会被更新。现在尝试推导<span class="arithmatex">\(v_{w}\)</span>的更新规则，看看它与我们之前推导的有何不同。
-<span class="arithmatex">\(<span class="arithmatex">\(P(chair|sat, he), P(man|sat, he), P(he|sat, he), P(on|sat, he)\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(W_{word}\in\mathbb{R}^{k×2|V|}, h\in\mathbb{R}^{k}, [W_{context}, W_{context}]\in\mathbb{R}^{k×2|V|}, x\in\mathbb{R}^{2|V|}\)</span>\)</span>
+$<span class="arithmatex">\(P(chair|sat, he), P(man|sat, he), P(he|sat, he), P(on|sat, he)\)</span>$
+$<span class="arithmatex">\(W_{word}\in\mathbb{R}^{k×2|V|}, h\in\mathbb{R}^{k}, [W_{context}, W_{context}]\in\mathbb{R}^{k×2|V|}, x\in\mathbb{R}^{2|V|}\)</span>$
 $$
 \begin{array}{|c|c|}
 \hline
@@ -1717,12 +1783,12 @@ x&amp;
 $$</p>
 <h3 id="_4">一些问题<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>注意，输出层的softmax函数计算成本非常高。
-<span class="arithmatex">\(<span class="arithmatex">\(\hat{y}_{w}=\frac{\exp(u_{c} \cdot v_{w})}{\sum_{w'\in V}\exp(u_{c} \cdot v_{w'})}\)</span>\)</span>
+$<span class="arithmatex">\(\hat{y}_{w}=\frac{\exp(u_{c} \cdot v_{w})}{\sum_{w'\in V}\exp(u_{c} \cdot v_{w'})}\)</span>$
 分母需要对词汇表中的所有单词进行求和。我们很快会重新讨论这个问题。</p>
 <h2 id="105">模块10.5：跳字模型<a class="headerlink" href="#105" title="Permanent link">&para;</a></h2>
 <p>我们刚刚看到的模型称为连续词袋模型（它根据一组语境单词预测一个输出单词）。现在我们将介绍跳字模型（它根据一个输入单词预测语境单词）。
-<span class="arithmatex">\(<span class="arithmatex">\(he\ he\ sat\ sat\ chair\ chair\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(W_{context}\in\mathbb{R}^{k×|V|}, h\in\mathbb{R}^{k}, W_{word}\in\mathbb{R}^{k×|V|}, x\in\mathbb{R}^{|V|}\)</span>\)</span>
+$<span class="arithmatex">\(he\ he\ sat\ sat\ chair\ chair\)</span>$
+$<span class="arithmatex">\(W_{context}\in\mathbb{R}^{k×|V|}, h\in\mathbb{R}^{k}, W_{word}\in\mathbb{R}^{k×|V|}, x\in\mathbb{R}^{|V|}\)</span>$
 $$
 \begin{array}{|c|c|c|c|c|c|}
 \hline
@@ -1733,10 +1799,10 @@ x&amp;=&amp; 0 &amp; 0 &amp; 1 &amp; \cdots &amp; 0\
 \end{array}
 $$</p>
 <p>注意，现在语境和单词的角色发生了变化。在只有一个语境单词的简单情况下，我们将得到与之前<span class="arithmatex">\(v_{w}\)</span>相同的<span class="arithmatex">\(u_{c}\)</span>更新规则。注意，即使我们有多个语境单词，损失函数也只是多个交叉熵误差的总和。
-<span class="arithmatex">\(<span class="arithmatex">\(\mathscr{L}(\theta)=-\sum_{i = 1}^{d - 1}\log\hat{y}_{w_{i}}\)</span>\)</span>
+$<span class="arithmatex">\(\mathscr{L}(\theta)=-\sum_{i = 1}^{d - 1}\log\hat{y}_{w_{i}}\)</span>$
 通常，我们会预测给定单词两侧的语境单词。
-<span class="arithmatex">\(<span class="arithmatex">\(he\ sat\ a\ chair\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(W_{context}\in\mathbb{R}^{k×|V|}, h\in\mathbb{R}^{k}, W_{word}\in\mathbb{R}^{k×|V|}, x\in\mathbb{R}^{|V|}\)</span>\)</span>
+$<span class="arithmatex">\(he\ sat\ a\ chair\)</span>$
+$<span class="arithmatex">\(W_{context}\in\mathbb{R}^{k×|V|}, h\in\mathbb{R}^{k}, W_{word}\in\mathbb{R}^{k×|V|}, x\in\mathbb{R}^{|V|}\)</span>$
 $$
 \begin{array}{|c|c|c|c|c|c|}
 \hline
@@ -1753,16 +1819,16 @@ $$</p>
 - <strong>解决方案3</strong>：使用层次softmax。</p>
 <ul>
 <li>设<span class="arithmatex">\(D\)</span>是语料库中所有正确的<span class="arithmatex">\((w, c)\)</span>对的集合。
-<span class="arithmatex">\(<span class="arithmatex">\(D = [(sat, on), (sat, a), (sat, chair), (on, a), (on, chair), (a, chair), (on, sat), (a, sat), (chair, sat), (a, on), (chair, on), (chair, a)]\)</span>\)</span></li>
+$<span class="arithmatex">\(D = [(sat, on), (sat, a), (sat, chair), (on, a), (on, chair), (a, chair), (on, sat), (a, sat), (chair, sat), (a, on), (chair, on), (chair, a)]\)</span>$</li>
 <li>设<span class="arithmatex">\(D'\)</span>是语料库中所有不正确的<span class="arithmatex">\((w, r)\)</span>对的集合。
-<span class="arithmatex">\(<span class="arithmatex">\(D' = [(sat, oxygen), (sat, magic), (chair, sad), (chair, walking)]\)</span>\)</span>
+$<span class="arithmatex">\(D' = [(sat, oxygen), (sat, magic), (chair, sad), (chair, walking)]\)</span>$
 <span class="arithmatex">\(D'\)</span>可以通过随机采样一个从未与<span class="arithmatex">\(w\)</span>同时出现的语境单词<span class="arithmatex">\(r\)</span>并创建一个对<span class="arithmatex">\((w, r)\)</span>来构建。</li>
 <li>如前所述，设<span class="arithmatex">\(v_{w}\)</span>是单词<span class="arithmatex">\(w\)</span>的表示，<span class="arithmatex">\(u_{c}\)</span>是语境单词<span class="arithmatex">\(c\)</span>的表示。
-<span class="arithmatex">\(<span class="arithmatex">\(P(z = 1|w, c)\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\sigma(u_{c}^T v_{w})\)</span>\)</span></li>
+$<span class="arithmatex">\(P(z = 1|w, c)\)</span>$
+$<span class="arithmatex">\(\sigma(u_{c}^T v_{w})\)</span>$</li>
 </ul>
 <p>对于给定的<span class="arithmatex">\((w, c)\in D\)</span>，我们希望最大化
-<span class="arithmatex">\(<span class="arithmatex">\(p(z = 1|w, c)\)</span>\)</span>
+$<span class="arithmatex">\(p(z = 1|w, c)\)</span>$
 我们将这个概率建模为：
 $$
 \begin{align<em>}
@@ -1771,12 +1837,12 @@ p(z = 1|w, c)&amp;=\sigma(u_{c}^T v_{w})\
 \end{align</em>}
 $$</p>
 <p>考虑所有<span class="arithmatex">\((w, c)\in D\)</span>，我们希望：
-<span class="arithmatex">\(<span class="arithmatex">\(\underset{\theta}{\text{maximize}}\prod_{(w, c)\in D}p(z = 1|w, c)\)</span>\)</span>
+$<span class="arithmatex">\(\underset{\theta}{\text{maximize}}\prod_{(w, c)\in D}p(z = 1|w, c)\)</span>$
 其中<span class="arithmatex">\(\theta\)</span>是我们语料库中所有单词的单词表示<span class="arithmatex">\((v_{w})\)</span>和语境表示<span class="arithmatex">\((u_{c})\)</span>。
-<span class="arithmatex">\(<span class="arithmatex">\(P(z = 0|w, r)\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\sigma(-u_{r}^T v_{w})\)</span>\)</span></p>
+$<span class="arithmatex">\(P(z = 0|w, r)\)</span>$
+$<span class="arithmatex">\(\sigma(-u_{r}^T v_{w})\)</span>$</p>
 <p>对于<span class="arithmatex">\((w, r)\in D'\)</span>，我们希望最大化
-<span class="arithmatex">\(<span class="arithmatex">\(p(z = 0|w, r)\)</span>\)</span>
+$<span class="arithmatex">\(p(z = 0|w, r)\)</span>$
 我们再次将其建模为：
 $$
 \begin{align<em>}
@@ -1786,7 +1852,7 @@ p(z = 0|w, r)&amp;=1-\sigma(u_{r}^T v_{w})\
 \end{align</em>}
 $$</p>
 <p>考虑所有<span class="arithmatex">\((w, r)\in D'\)</span>，我们希望：
-<span class="arithmatex">\(<span class="arithmatex">\(\underset{\theta}{\text{maximize}}\prod_{(w, r)\in D'}p(z = 0|w, r)\)</span>\)</span></p>
+$<span class="arithmatex">\(\underset{\theta}{\text{maximize}}\prod_{(w, r)\in D'}p(z = 0|w, r)\)</span>$</p>
 <p>将两者结合，我们得到：
 $$
 \begin{align<em>}
@@ -1799,8 +1865,8 @@ $$
 $$
 其中<span class="arithmatex">\(\sigma(x)=\frac{1}{1 + e^{-x}}\)</span>。</p>
 <p>在原始论文中，米科洛夫等人（Mikolov et. al.）为每个正样本<span class="arithmatex">\((w, c)\)</span>对采样<span class="arithmatex">\(k\)</span>个负样本<span class="arithmatex">\((w, r)\)</span>对。因此，<span class="arithmatex">\(D'\)</span>的大小是<span class="arithmatex">\(D\)</span>的<span class="arithmatex">\(k\)</span>倍。随机语境单词是从修改后的一元分布中抽取的：
-<span class="arithmatex">\(<span class="arithmatex">\(r\sim p(r)^{\frac{3}{4}}\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(r\sim\frac{\text{count}(r)^{\frac{3}{4}}}{N}\)</span>\)</span>
+$<span class="arithmatex">\(r\sim p(r)^{\frac{3}{4}}\)</span>$
+$<span class="arithmatex">\(r\sim\frac{\text{count}(r)^{\frac{3}{4}}}{N}\)</span>$
 <span class="arithmatex">\(N\)</span>是语料库中单词的总数。</p>
 <h2 id="106">模块10.6：对比估计<a class="headerlink" href="#106" title="Permanent link">&para;</a></h2>
 <div class="arithmatex">\[he\ sat\ a\ chair$$
@@ -1820,12 +1886,12 @@ x&amp;=&amp; 0 &amp; 0 &amp; 1 &amp; \cdots &amp; 0\\
 - <strong>解决方案2</strong>：使用对比估计。
 - <strong>解决方案3</strong>：使用层次softmax。</p>
 <p><strong>正样本</strong>：He sat on a chair
-<span class="arithmatex">\(<span class="arithmatex">\(W_{out}\in\mathbb{R}^{h×|1|}, W_{h}\in\mathbb{R}^{2d×h}, v_{c}\ v_{w}\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(sat\ on\)</span>\)</span></p>
+$<span class="arithmatex">\(W_{out}\in\mathbb{R}^{h×|1|}, W_{h}\in\mathbb{R}^{2d×h}, v_{c}\ v_{w}\)</span>$
+$<span class="arithmatex">\(sat\ on\)</span>$</p>
 <p>我们希望<span class="arithmatex">\(s\)</span>大于<span class="arithmatex">\(s_{c}\)</span>。所以，让我们尝试最大化<span class="arithmatex">\(s - s_{c}\)</span>。但我们希望这个差值至少为<span class="arithmatex">\(m\)</span>。</p>
 <p><strong>负样本</strong>：He sat abracadabra a chair
-<span class="arithmatex">\(<span class="arithmatex">\(W_{out}\in\mathbb{R}^{h×|1|}, W_{h}\in\mathbb{R}^{2d×h}, v_{c}\ v_{w}\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(sat\ abracadabra\)</span>\)</span></p>
+$<span class="arithmatex">\(W_{out}\in\mathbb{R}^{h×|1|}, W_{h}\in\mathbb{R}^{2d×h}, v_{c}\ v_{w}\)</span>$
+$<span class="arithmatex">\(sat\ abracadabra\)</span>$</p>
 <p>所以我们可以最大化<span class="arithmatex">\(s-(s_{c}+m)\)</span>。如果<span class="arithmatex">\(s&gt;s_{c}+m\)</span>，则不做任何操作。即最大化<span class="arithmatex">\(\max(0, s-(s_{c}+m))\)</span>。</p>
 <h2 id="107softmax">模块10.7：层次softmax<a class="headerlink" href="#107softmax" title="Permanent link">&para;</a></h2>
 <div class="arithmatex">\[he\ sat\ a\ chair$$
@@ -1858,11 +1924,11 @@ x&amp;=&amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\
 \end{array}
 $$</p>
 <p>从根节点到叶节点存在唯一路径。设<span class="arithmatex">\(l(w_{1}), l(w_{2}),\cdots, l(w_{p})\)</span>是从根节点到<span class="arithmatex">\(w\)</span>的路径上的节点。设<span class="arithmatex">\(\pi(w)\)</span>是一个二进制向量，使得：如果路径在节点<span class="arithmatex">\(l(w_{k})\)</span>处向左分支，则<span class="arithmatex">\(\pi(w)_{k}=1\)</span>；否则<span class="arithmatex">\(\pi(w)_{k}=0\)</span>。最后，每个内部节点都与一个向量<span class="arithmatex">\(u_{i}\)</span>相关联。所以该模块的参数是<span class="arithmatex">\(W_{context}\)</span>和<span class="arithmatex">\(u_{1}, u_{2},\cdots, u_{V}\)</span>（实际上，我们的参数数量与之前相同）。
-<span class="arithmatex">\(<span class="arithmatex">\(\pi(on)_1 = 1, u_1\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\pi(on)_2 = 0, u_2\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\pi(on)_3 = 0, u_V\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(on\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(h = v_{c}\)</span>\)</span>
+$<span class="arithmatex">\(\pi(on)_1 = 1, u_1\)</span>$
+$<span class="arithmatex">\(\pi(on)_2 = 0, u_2\)</span>$
+$<span class="arithmatex">\(\pi(on)_3 = 0, u_V\)</span>$
+$<span class="arithmatex">\(on\)</span>$
+$<span class="arithmatex">\(h = v_{c}\)</span>$
 $$
 \begin{array}{|c|c|c|c|c|c|}
 \hline
@@ -1873,7 +1939,7 @@ x&amp;=&amp; 0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0\
 \end{array}
 $$</p>
 <p>对于给定的对<span class="arithmatex">\((w, c)\)</span>，我们关注概率<span class="arithmatex">\(p(w|v_{c})\)</span>。我们将这个概率建模为：
-<span class="arithmatex">\(<span class="arithmatex">\(p(w|v_{c})=\prod_{k}(\pi(w_{k})|v_{c})\)</span>\)</span></p>
+$<span class="arithmatex">\(p(w|v_{c})=\prod_{k}(\pi(w_{k})|v_{c})\)</span>$</p>
 <p>例如：
 $$
 \begin{align<em>}
@@ -1883,11 +1949,11 @@ P(on|v_{sat})&amp;=P(\pi(on)<em sat="sat">1 = 1|v</em>)\
 \end{align</em>}
 $$</p>
 <p>实际上，我们是说预测一个单词的概率与预测从根节点到该单词的正确唯一路径的概率相同。
-<span class="arithmatex">\(<span class="arithmatex">\(\pi(on)_1 = 1, u_1\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\pi(on)_2 = 0, u_2\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(\pi(on)_3 = 0, u_V\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(on\)</span>\)</span>
-<span class="arithmatex">\(<span class="arithmatex">\(h = v_{c}\)</span>\)</span>
+$<span class="arithmatex">\(\pi(on)_1 = 1, u_1\)</span>$
+$<span class="arithmatex">\(\pi(on)_2 = 0, u_2\)</span>$
+$<span class="arithmatex">\(\pi(on)_3 = 0, u_V\)</span>$
+$<span class="arithmatex">\(on\)</span>$
+$<span class="arithmatex">\(h = v_{c}\)</span>$
 $$
 \begin{array}{|c|c|c|c|c|c|}
 \hline
@@ -2001,10 +2067,11 @@ x&amp;</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
       
