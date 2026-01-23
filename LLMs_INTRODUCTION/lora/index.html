@@ -1,0 +1,1299 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="the notes record by ZhongPei">
+      
+      
+      
+        <link rel="canonical" href="https://zp1008611.github.io/LLMs_INTRODUCTION/lora/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>LoRA - ZP's docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.18/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lora" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="ZP&#39;s docs" class="md-header__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZP's docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LoRA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep" data-md-color-accent="deep"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/zp1008611" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../OROPT/or_exact/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  运筹与优化
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ML/supervised_learning/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ML
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../DL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  RL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../LEETCODE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LEETCODE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../LLMs_RECORDS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  大模型技术学习
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ZP&#39;s docs" class="md-nav__button md-logo" aria-label="ZP's docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ZP's docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/zp1008611" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    zp1008611
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../OROPT/or_exact/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运筹与优化
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    
+  
+  
+  
+    <a href="../../ML/supervised_learning/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../DL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DL
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../RL/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RL
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../LEETCODE/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LEETCODE
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../LLMs_RECORDS/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大模型技术学习
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lora">LoRA<a class="headerlink" href="#lora" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 3072 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 10 分钟</p>
+</div>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://axk51013.medium.com/llm%E5%B0%88%E6%AC%84-all-about-lora-5bc7e447c234</li>
+</ul>
+<h2 id="loralora">什么是 Lora，Lora 低秩自适应<a class="headerlink" href="#loralora" title="Permanent link">&para;</a></h2>
+<p>要搞懂 Lora 的基础概念，其实关键在于吃透原论文[1]中的一张图和一个公式. 我们深入浅出，先来讲“难”的部分——Lora 的公式：  </p>
+<div class="arithmatex">\[
+h = W_0 x + \Delta W x = W_0 x + B A x
+\]</div>
+<h4 id="lora_1">Lora 的公式<a class="headerlink" href="#lora_1" title="Permanent link">&para;</a></h4>
+<p>这个公式表达了一个简单的概念：假设我们原本有一个隐藏层（hidden layer），其公式为 <span class="arithmatex">\(h = Wx\)</span>，其中 <span class="arithmatex">\(W\)</span> 是该隐藏层的权重矩阵，<span class="arithmatex">\(h\)</span> 是输出.   </p>
+<p>当我们训练这个隐藏层时，通常直接“改变 <span class="arithmatex">\(W\)</span> 本身”，即用梯度下降法更新 <span class="arithmatex">\(W\)</span> 的值. 但 <span class="arithmatex">\(W\)</span> 可能是一个 100×500 这样的大型矩阵，更新时对 GPU 内存的要求极高（后续会详细讨论这一点）.   </p>
+<p>因此，Lora 将 <span class="arithmatex">\(h = Wx\)</span> 转化为上面等式的第一个等号：<span class="arithmatex">\(h = W_0 x + \Delta W x\)</span>（直接看图会更清楚），将原本的 <span class="arithmatex">\(W\)</span> 拆分为 <span class="arithmatex">\(W_0\)</span> 和 <span class="arithmatex">\(\Delta W\)</span> 两个矩阵. 其中，<span class="arithmatex">\(W_0\)</span> 代表训练初期的初始权重，<span class="arithmatex">\(\Delta W\)</span> 代表我们要“更新”的矩阵，而我们希望 <span class="arithmatex">\(\Delta W\)</span> 的参数量远小于原始的 <span class="arithmatex">\(W\)</span>，这样才能解决 GPU 内存的问题.   </p>
+<p>很多学过线性代数的同学可能会马上产生困惑：<span class="arithmatex">\(h\)</span> 的维度是固定的，<span class="arithmatex">\(x\)</span> 的维度也是固定的，理论上 <span class="arithmatex">\(W_0\)</span> 和 <span class="arithmatex">\(\Delta W\)</span> 的参数量应该受到限制才对？如果参数量减少，维度如何匹配？  </p>
+<p>这确实是一个容易陷入的思考陷阱，关键在于：从未有人说过 <span class="arithmatex">\(\Delta W\)</span> 必须是“一个矩阵”. 如果我们把 <span class="arithmatex">\(\Delta W\)</span> 拆成两个矩阵相乘——<span class="arithmatex">\(A\)</span> 矩阵和 <span class="arithmatex">\(B\)</span> 矩阵，并让 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 矩阵进行“降维再重建”的过程，就能大幅减少 <span class="arithmatex">\(\Delta W\)</span> 的参数量.   </p>
+<p>举例来说，假设原本的 <span class="arithmatex">\(W\)</span> 是 1000×1000 的参数矩阵，我们让 <span class="arithmatex">\(\Delta W\)</span> 由一个 2×1000 的 <span class="arithmatex">\(A\)</span> 矩阵和一个 1000×2 的 <span class="arithmatex">\(B\)</span> 矩阵相乘组成. <span class="arithmatex">\(B\)</span> 和 <span class="arithmatex">\(A\)</span> 相乘后可以重建出 1000×1000 的矩阵，而参数量仅为原来的 0.4%.   </p>
+<p>这种“降维再重建”的操作，被称为<strong>低秩投影（Low rank projection）</strong>.   </p>
+<p>此时我们就能看懂原论文中的这张图了：论文形象地将降维后重建的过程画成了深度学习从业者熟悉的自编码器（Auto-encoder）形式.   </p>
+<p><img alt="alt text" src="image.png" /></p>
+<h4 id="_1">需牢记的三个核心结论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>即便前面的叙述内容全部忘记，也需要记住以下三个阶段性结论：<br />
+1. Lora 的目的是降低训练的参数量. <br />
+2. 通过将原本的 <span class="arithmatex">\(W\)</span> 拆解为 <span class="arithmatex">\(W_0\)</span> 和 <span class="arithmatex">\(\Delta W\)</span> 两个矩阵（<span class="arithmatex">\(W_0\)</span> 是原始权重，<span class="arithmatex">\(\Delta W\)</span> 是对权重的更新），我们希望 <span class="arithmatex">\(\Delta W\)</span> 的总参数量远小于原始 <span class="arithmatex">\(W\)</span>. <br />
+3. 为了节省参数量，对 <span class="arithmatex">\(\Delta W\)</span> 进行低秩投影，拆分为“降维矩阵 <span class="arithmatex">\(A\)</span>”和“重建矩阵 <span class="arithmatex">\(B\)</span>”. 通过让中间的秩（rank）极低（<span class="arithmatex">\(&lt;&lt; 1/2 ~h~dim\)</span>），可以节省参数量.   </p>
+<h3 id="lora_2">二、Lora 有什么好处？<a class="headerlink" href="#lora_2" title="Permanent link">&para;</a></h3>
+<p>大部分人对 Lora 的理解止步于上述内容，却忽略了两个根本性问题：<br />
+1. 降低参数量具体有什么好处？<br />
+2. 降低参数量的方法很多，为什么 Lora 如此突出？  </p>
+<h4 id="1">1. 降低参数量的具体优势<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p>笔者曾经也直觉地认为，降低参数量意味着空间需求减少，这有什么好讨论的？但认真思考后会发现，事情并非如此简单.   </p>
+<p>首先，Lora <strong>无法减少</strong>的 GPU 内存需求包括：<br />
+- 模型仍需完整放入 GPU 内存，无法节省. <br />
+- 前向传播（Forward Pass）的各种状态，因为需要计算 <span class="arithmatex">\(\Delta W\)</span> 的梯度，所以无法节省（不存储就无法反向传播）. <br />
+- 批量数据（Batch Data）无法节省，仍需放入 GPU 内存（至少不会因 Lora 而节省）. <br />
+- 各种运算的暂存空间，无法节省.   </p>
+<p>听起来很多东西都无法节省，尤其是整个模型都需要放入内存——这往往是 LLM 领域最令人头疼的问题，动辄几十 GB 占用 GPU 内存.   </p>
+<p>正如 Llama Factory[2] 的 GPU 内存需求分析表所示，Lora 所需的 GPU 内存一定超过模型本身的大小. 例如，7B 的 LLM 需要 14GB 空间存放模型，Lora 永远无法用少于 14GB 的空间完成训练.   </p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>Gamma-2B</th>
+<th></th>
+<th></th>
+<th>Llama2-7B</th>
+<th></th>
+<th></th>
+<th>Llama2-13B</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Memory (GB)</td>
+<td>Throughput (Tokens/s)</td>
+<td>PPL</td>
+<td>Memory (GB)</td>
+<td>Throughput (Tokens/s)</td>
+<td>PPL</td>
+<td>Memory (GB)</td>
+<td>Throughput (Tokens/s)</td>
+<td>PPL</td>
+</tr>
+<tr>
+<td>Baseline</td>
+<td>1</td>
+<td>1</td>
+<td>11.83</td>
+<td>1</td>
+<td>1</td>
+<td>7.53</td>
+<td>1</td>
+<td>1</td>
+<td>6.66</td>
+</tr>
+<tr>
+<td>Full-tuning</td>
+<td>17.06</td>
+<td>3090.42</td>
+<td>10.34</td>
+<td>38.72</td>
+<td>1334.72</td>
+<td>5.56</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Freeze-tuning</td>
+<td>8.10</td>
+<td>5608.49</td>
+<td>11.33</td>
+<td>15.69</td>
+<td>2904.98</td>
+<td>6.59</td>
+<td>29.02</td>
+<td>1841.46</td>
+<td>6.56</td>
+</tr>
+<tr>
+<td>GaLore</td>
+<td>10.16</td>
+<td>2483.05</td>
+<td>10.38</td>
+<td>15.43</td>
+<td>1583.77</td>
+<td>5.88</td>
+<td>28.91</td>
+<td>956.39</td>
+<td>5.72</td>
+</tr>
+<tr>
+<td>LoRA</td>
+<td>7.91</td>
+<td>3521.05</td>
+<td>10.19</td>
+<td>16.32</td>
+<td>1954.07</td>
+<td>5.81</td>
+<td>30.09</td>
+<td>1468.19</td>
+<td>5.75</td>
+</tr>
+<tr>
+<td>QLoRA</td>
+<td>5.21</td>
+<td>3158.59</td>
+<td>10.46</td>
+<td>7.52</td>
+<td>1579.16</td>
+<td>5.91</td>
+<td>12.61</td>
+<td>973.53</td>
+<td>5.81</td>
+</tr>
+</tbody>
+</table>
+<p>但对比 Llama2-7B 的全参数微调（Full-tuning）和 Lora 的 GPU 内存需求：全参数微调需要 38.72GB，而 Lora 仅需 16.32GB. 减去模型本身的 14GB，全参数微调在模型之外需要 24GB 以上空间，而 Lora 仅需约 2GB（相同 token batch 下）.   </p>
+<p><strong>Lora 节省的关键：优化器状态（Optimizer state）</strong><br />
+Optimizer 指的是 Adam、AdamW、SGD、Momentum 等优化器. 由于过去学习深度学习时常用 SGD 推导公式，大多数人容易忽略不同优化器对 GPU 内存的需求.   </p>
+<p>以 Adam 为例，需要存储梯度的一阶梯度和二阶梯度作为优化器状态（Optimizer state），这些状态用于确定更好的更新方向. 但如果每个优化器状态参数都存储，内存占用将达到模型参数的 2 倍.   </p>
+<p>而优化器状态仅需记录“需要更新的参数”. 对 Lora 而言，只需更新 <span class="arithmatex">\(\Delta W\)</span> 的优化器状态，因此大幅节省了 GPU 内存.   </p>
+<h4 id="2-lora">2. Lora 与其他参数高效微调方法的优势<a class="headerlink" href="#2-lora" title="Permanent link">&para;</a></h4>
+<p>笔者在此给出一个相对“不负责”的答案：Lora 的优势体现在四个方向——效果好、所需空间小、使用容易（开源方案多）、宣传好.   </p>
+<p>之所以说“不负责”，是因为在笔者的经验和文献阅读中，没有文献证明 Lora 100% 优于其他方法. 例如，IA3 就展现出用更小空间获得更好结果的能力.   </p>
+<p>从 IA3 提供的对比图中可以看到，Lora 在同参数规模下胜过除 IA3 外的所有 PEFT（参数高效微调）方法，且最终效果很强. 此外，可训练参数量从 0.1% 降至 0.01% 有时帮助不大，因为消融实验表明，token batch 并非越大越好，无需无限制节省可训练参数.   </p>
+<p>因此可以这样理解：Lora 效果好、节省大量参数，但真正使其普及的可能是使用便利性和宣传力度（几乎所有 PEFT 框架都包含优化后的 Lora，且几乎所有微调项目默认使用 Lora，包括各类 SFT 模型和领域模型的开源代码）.   </p>
+<p>最经典的案例是 Azure CTO Mark Russinovich 在介绍 Azure 基础设施时提到，若需自定义 LLM，Azure 会使用 Lora 微调提供的大模型（如 GPT-3 系列的微调）.   </p>
+<h3 id="lora-lora">三、Lora 能多接近全参数微调，我们真的能用 Lora 解决所有问题吗？<a class="headerlink" href="#lora-lora" title="Permanent link">&para;</a></h3>
+<p>前两部分讨论了 Lora 的核心思想（减少更新参数量）和具体优势（节省优化器状态内存），并比较了 Lora 与其他 PEFT 方法的优劣，推测其普及原因可能超出技术本身. 现在讨论最受关注的问题：Lora 到底能多接近全参数微调（Full finetuning），即“节省参数后，我们付出了多大代价”.   </p>
+<p>理想情况下，若 Lora 在所有任务上的表现与全参数微调完全一致，它将成为“免费的午餐”，每次微调直接使用 Lora 即可. 但实际经验表明，Lora 与全参数微调仍有明显差距，理解这种差距至关重要.   </p>
+<p>理解差距可从理论和经验层面展开. 尽管已有许多理论分析论文（如《The expressive power of low-rank adaptation》[5]）从理论上探讨了不同架构使用 Lora 时所需的最小秩以保证表示能力），但理论分析在实践中仍落后于经验知识（此处“落后”指实践指导不足，而非理论不重要）.   </p>
+<h4 id="_2">三篇关键论文推荐<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>《When Scaling Meets LLM Finetuning: The Effect of Data, Model and Finetuning Method》[6]</strong>  </li>
+<li>DeepMind 出品，通过大量实验对比了 Lora、Prompt tuning 和全参数微调在不同数据规模、模型规模和预训练规模下的优劣.   </li>
+<li>
+<p>核心结论：LLM 微调中，几乎任何方法下，放大模型带来的效果提升都优于增加训练数据.   </p>
+</li>
+<li>
+<p><strong>《LoRA Land: 310 Fine-tuned LLMs that Rival GPT-4, A Technical Report》[7]</strong>  </p>
+</li>
+<li>分析主流模型和训练数据，给出不同模型经 Lora 微调后的最佳超参数组合.   </li>
+<li>
+<p>关键发现：在 Llama 3 发布前，7B 模型中最适合微调的是 Mistral 7B 和 Zephyr 7B（Llama 3 8B 发布后地位易主）.   </p>
+</li>
+<li>
+<p><strong>《Lora learns less and forgets less》[8]</strong>  </p>
+</li>
+<li>哥伦比亚大学和 Databricks Mosaic AI 团队提出，专注解释 Lora 的学习效率问题.   </li>
+<li>核心结论：  <ul>
+<li><strong>学习效率较低</strong>：相同训练 token 下，全参数微调学到的新知识更多，在新领域测试精度更高. 实验中，&lt;2B tokens 时 Lora 在新领域几乎无学习.   </li>
+<li><strong>遗忘更少</strong>：相同训练 token 下，全参数微调对原有知识的遗忘更多，Lora 能更好保持旧领域测试精度. 实验中，Lora 的遗忘量几乎固定，2B~20B tokens 内未显著恶化.   </li>
+<li><strong>学习天花板低但遗忘效率低</strong>：Lora 学习新知识的上限较低，但在相同学习情况下遗忘更少.   </li>
+</ul>
+</li>
+</ol>
+<h4 id="_3">实践决策建议<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>使用 Lora 的核心在于分析当前是受限于 GPU 内存还是数据：<br />
+- 若 10k 数据训练的 Lora 效果距目标差 5%，可考虑：<br />
+  1. 切换更大模型进行 Lora（牺牲推理效率）；<br />
+  2. 使用更多数据训练（投入资源收集数据）；<br />
+  3. 切换至全参数微调（或调大 rank 逼近全参数，牺牲 GPU 内存）.   </p>
+<h3 id="20232024-lora">四、2023~2024 年 Lora 的改进方案<a class="headerlink" href="#20232024-lora" title="Permanent link">&para;</a></h3>
+<p>过去一年，研究者提出了多种 Lora 改进方案，以下分为两类介绍：修正 Lora 固有缺陷，以及通过更多 Lora 解决问题.   </p>
+<h4 id="1-lora">1. 修正 Lora 固有缺陷<a class="headerlink" href="#1-lora" title="Permanent link">&para;</a></h4>
+<h5 id="1rank">（1）秩（rank）过小导致表示能力不足<a class="headerlink" href="#1rank" title="Permanent link">&para;</a></h5>
+<ul>
+<li><strong>ReLora[9]</strong>：通过“定期将 Lora 的 <span class="arithmatex">\(W\)</span> 合并到原始 <span class="arithmatex">\(W\)</span> 中，并重新创建新的 <span class="arithmatex">\(\Delta W\)</span> 学习新阶段任务”来提升 Lora 的秩. </li>
+</ul>
+<div class="arithmatex">\[
+\Delta W = \sum_{t=0}^{T_1} \delta W_t + \sum_{t=T_1}^{T_2} \delta W_t + \cdots + \sum_{t=T_{N-1}}^{T_N} \delta W_t = sW_A^1 W_B^1 + sW_A^2 W_B^2 + \cdots + sW_A^N W_B^N
+\]</div>
+<p>效果：微调能力未必优于 Lora，但语言模型的学习效率大幅提升，接近全参数微调.   </p>
+<ul>
+<li><strong>MoRA[10]</strong>：重新设计 Lora，最大化参数矩阵的秩. <br />
+  原 Lora 的降维和重建在 <span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(B\)</span> 矩阵中完成，MoRA 重新设计流程，使降维和重建无需权重，将所有权重用于中间的 <span class="arithmatex">\(M\)</span> 矩阵，学习所需的线性函数. <br />
+  效果：调高铁后，微调效果未必提升，但语言模型效率显著提高.   </li>
+</ul>
+<h5 id="2lora-ab-asymmetry">（2）Lora 中 <span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(B\)</span> 矩阵的非对称性（Asymmetry）<a class="headerlink" href="#2lora-ab-asymmetry" title="Permanent link">&para;</a></h5>
+<ul>
+<li>
+<p><strong>AsyLora[11]</strong>：发现 <span class="arithmatex">\(A\)</span> 矩阵几乎学不到任务相关知识，更多保留初始化信息；<span class="arithmatex">\(B\)</span> 矩阵则相反，主要学习任务信息，遗忘初始化信息. <br />
+  改进：<span class="arithmatex">\(A\)</span> 设为随机对角矩阵，仅训练 <span class="arithmatex">\(B\)</span>，可保留更好的泛化性.   </p>
+</li>
+<li>
+<p><strong>Lora+</strong>：调整 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 的学习率，让 <span class="arithmatex">\(B\)</span> 学得比 <span class="arithmatex">\(A\)</span> 快得多，提升效果.   </p>
+</li>
+</ul>
+<h3 id="_4">结语<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>Lora 是 LLM 时代最基础、最常用的技术之一，但业界对其理解常流于表面. 本文从公式原理、内存优化、与全参数微调的权衡到最新改进，全面解析了 Lora.   </p>
+<p>建议读者至少掌握 Lora 的基础概念（公式与图示），深入理解其节省 GPU 内存的本质——这将帮助你自然联想到更多优化方案. 同时，建议建立对 Lora 与全参数微调的全面认知，以便清晰决策：何时用 Lora，何时必须切换全参数，以及 Lora 效果不佳时的备选方案.   </p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 3, 2025 21:48:11 CST">July 3, 2025 21:48:11</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 3, 2025 21:48:11 CST">July 3, 2025 21:48:11</span>
+  </span>
+
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="贡献者">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:1658763666@qq.com">zp1008611</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 ZhongPei
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["header.autohide", "navigation.instant", "navigation.tracking", "content.code.annotate", "toc.integrate", "toc.follow", "navigation.path", "navigation.top", "navigation.tabs", "navigation.prune", "navigation.footer", "content.code.copy", "navigation.indexes", "search.share", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../javascripts/tablesort.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+    
+  </body>
+</html>
