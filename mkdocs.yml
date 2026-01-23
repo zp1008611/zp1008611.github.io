@@ -134,7 +134,7 @@ nav:
         - LLMs_RECORDS/index.md
         - Agentic-RL:
             - LLMs_RECORDS/Agentic-RL/index.md
-            - 绪论: LLMs_RECORDS/Agentic-RL/agent-rl-motivation/README.md
+            - 绪论: LLMs_RECORDS/Agentic-RL/agentic-rl-motivation/README.md
             - Search-R1: LLMs_RECORDS/Agentic-RL/agentic-rl-search-r1/README.md
             - AgentFlow: LLMs_RECORDS/Agentic-RL/agentic-rl-agentflow/README.md
         
