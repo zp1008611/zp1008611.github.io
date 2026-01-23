@@ -133,10 +133,8 @@ nav:
     - 大模型技术学习:
         - LLMs_RECORDS/index.md
         - Agentic-RL:
-            - LLMs_RECORDS/Agentic-RL/index.md
-            - 绪论: LLMs_RECORDS/Agentic-RL/agentic-rl-motivation/README.md
-            - Search-R1: LLMs_RECORDS/Agentic-RL/agentic-rl-search-r1/README.md
-            - AgentFlow: LLMs_RECORDS/Agentic-RL/agentic-rl-agentflow/README.md
+            - 为什么我们需要Agentic-RL: LLMs_RECORDS/Agentic-RL/agent-rl-motivation/README.md
+            
         
 
 
@@ -160,7 +158,7 @@ docs_dir: docs/
 theme:
   name: material
   language: zh # 一些提示性的文字会变成中文
-  custom_dir: docs/overrides/
+  # custom_dir: docs/overrides/
   font:
     text: Roboto
     code: Roboto Mono

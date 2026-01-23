@@ -79,9 +79,6 @@ max E[R(q,o)] - β·DKL(πθ || πref)
 
 ### 2.2 Search-R1: 代表性的Tool-integrated Reasoning Model
 
-Search-R1 是一个典型的 tool-integrated reasoning model，通过强化学习训练 LLMs 进行推理并利用搜索引擎。它展示了在网页搜索场景下的优秀表现，但也体现了这类模型在扩展性和泛化能力方面的局限。
-
-> 📖 **详细介绍**: [Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning](../agentic-rl-search-r1/README.md)
 
 
 ### 2.3 Tool-integrated Reasoning Models的根本局限
@@ -165,16 +162,3 @@ Tool-integrated reasoning models在特定领域证明了RL驱动工具学习的�
 
 这种范式试图回答:
 > 如何让agentic systems既灵活又可学习?既模块化又协调高效?
-
-### 3.3 AgentFlow: Trainable Agentic Systems的实践
-
-AgentFlow 是 trainable agentic systems 的代表性工作，展示了如何通过在线强化学习优化模块化 agent 系统。它在保持模块化架构优势的同时，实现了端到端的学习和优化。
-
-> 📖 **详细介绍**: [AgentFlow: Trainable Agentic Systems](../agentic-rl-agentflow/README.md)
-
----
-
-## 参考资源
-
-- [Search-R1 详细介绍](../agentic-rl-search-r1/README.md)
-- [AgentFlow 详细介绍](../agentic-rl-agentflow/README.md)

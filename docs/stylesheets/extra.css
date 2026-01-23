@@ -32,48 +32,6 @@
     font-size: 15px;
 }
 
-/* 不蒜子访客统计样式 */
-.busuanzi-stats {
-    font-size: 0.85rem;
-    color: var(--md-footer-fg-color);
-    opacity: 0.9;
-}
-
-.busuanzi-stats span {
-    transition: all 0.3s ease;
-}
-
-.busuanzi-stats span:hover {
-    opacity: 1;
-    transform: translateY(-2px);
-}
-
-.busuanzi-stats i {
-    margin-right: 5px;
-    color: var(--md-accent-fg-color);
-}
-
-#busuanzi_value_site_pv,
-#busuanzi_value_site_uv,
-#busuanzi_value_page_pv {
-    font-weight: bold;
-    color: var(--md-accent-fg-color);
-    margin: 0 3px;
-}
-
-/* 响应式设计：移动设备上垂直排列 */
-@media screen and (max-width: 768px) {
-    .busuanzi-stats {
-        display: flex !important;
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .busuanzi-stats span {
-        margin: 0 !important;
-    }
-}
-
 /* 
 @font-face {
     font-display: auto;
