@@ -3166,14 +3166,16 @@
 
 <h1 id="_1">绪论<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2331 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 8 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2341 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11l-3.54-4.71Z"/></svg></span> 1 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 8 分钟</p>
 </div>
 <h2 id="1-tool-integrated-reasoning-modelsagentic-systems">1. Tool-integrated Reasoning Models与Agentic Systems的定义和差异<a class="headerlink" href="#1-tool-integrated-reasoning-modelsagentic-systems" title="Permanent link">&para;</a></h2>
 <h3 id="11">1.1 研究背景<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
 <p>近年来,大型语言模型(LLMs)在推理能力上取得了显著进展,这主要得益于基于结果反馈的强化学习(Reinforcement Learning, RL)。通过微调模型以最大化可验证的奖励,LLMs如DeepSeek-R1和SimpleRL展示出了在自我纠正和多步推理方面的复杂行为能力。为了进一步增强LLMs的能力,研究者们将外部工具(如网页搜索、代码执行)引入推理过程,用于知识检索和精确计算。</p>
 <p>在工具增强的LLM推理领域,目前主要存在两种范式:<strong>Tool-integrated Reasoning Models(工具集成推理模型)</strong>和<strong>Agentic Systems with Tool Usage(具有工具使用能力的智能体系统)</strong>。</p>
+<p><img alt="two method comparison" src="pics/two_method.png" />
+图1</p>
 <h3 id="12-tool-integrated-reasoning-models">1.2 Tool-integrated Reasoning Models的定义<a class="headerlink" href="#12-tool-integrated-reasoning-models" title="Permanent link">&para;</a></h3>
-<p>Tool-integrated Reasoning Models采用<strong>单一的、整体式(monolithic)策略</strong>,在完整上下文中交替生成思考过程和工具调用。如图X所示,这类模型通过特殊token(如<code>&lt;think&gt;&lt;/think&gt;</code>、<code>&lt;tool_call&gt;&lt;/tool_call&gt;</code>)来区分推理步骤和工具使用。</p>
+<p>Tool-integrated Reasoning Models采用<strong>单一的、整体式(monolithic)策略</strong>,在完整上下文中交替生成思考过程和工具调用。如图1(a)所示,这类模型通过特殊token(如<code>&lt;think&gt;&lt;/think&gt;</code>、<code>&lt;tool_call&gt;&lt;/tool_call&gt;</code>)来区分推理步骤和工具使用。</p>
 <p>具体而言,模型生成的轨迹可表示为序列:</p>
 <div class="arithmatex">\[
 \tau = \{s_1, a_1, e_1, ..., s_t, a_t, e_t\}
@@ -3186,7 +3188,7 @@
 </ul>
 <p>策略模型πθ通过强化学习训练,目标是最大化最终的结果奖励。早期系统仅支持单一工具类型,而近期工作通过将工具元数据编码到提示中,扩展到了多工具设置。</p>
 <h3 id="13-agentic-systems-with-tool-usage">1.3 Agentic Systems with Tool Usage的定义<a class="headerlink" href="#13-agentic-systems-with-tool-usage" title="Permanent link">&para;</a></h3>
-<p>相比之下,Agentic Systems采用<strong>多模块协作架构</strong>。如图X所示,这类系统由多个专门化的模块组成,每个模块承担特定角色(如规划器planner、编码器coder、批评者critic)并配备专用工具和能力。</p>
+<p>相比之下,Agentic Systems采用<strong>多模块协作架构</strong>。如图1(b)所示,这类系统由多个专门化的模块组成,每个模块承担特定角色(如规划器planner、编码器coder、批评者critic)并配备专用工具和能力。</p>
 <p>Agentic Systems的关键特征包括:</p>
 <ul>
 <li><strong>任务分解</strong>: 将复杂问题分解为子目标</li>
@@ -3352,7 +3354,8 @@
 <h3 id="33-agentflow-trainable-agentic-systems">3.3 AgentFlow: Trainable Agentic Systems的实践<a class="headerlink" href="#33-agentflow-trainable-agentic-systems" title="Permanent link">&para;</a></h3>
 <p>AgentFlow 是 trainable agentic systems 的代表性工作，展示了如何通过在线强化学习优化模块化 agent 系统。它在保持模块化架构优势的同时，实现了端到端的学习和优化。</p>
 <blockquote>
-<p><strong>详细介绍</strong>: <a href="../agentic-rl-agentflow/">AgentFlow: Trainable Agentic Systems</a></p>
+<p><strong>详细介绍</strong>: <a href="../agentic-rl-agentflow/">IN-THE-FLOW AGENTIC SYSTEM OPTIMIZATION FOR
+EFFECTIVE PLANNING AND TOOL USE</a></p>
 </blockquote>
 <hr />
 <h2 id="_2">参考资源<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -3366,7 +3369,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 23, 2026 17:11:11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime">January 23, 2026 17:52:58</span>
       
         <br>
         创建日期:
@@ -3437,7 +3440,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2025 ZhongPei
+      Copyright &copy; 2026 ZhongPei
     </div>
   
   
