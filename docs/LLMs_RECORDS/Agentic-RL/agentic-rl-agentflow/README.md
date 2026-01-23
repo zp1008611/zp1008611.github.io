@@ -2,7 +2,8 @@
 
 ## Reference
 
-- **论文链接**: [arXiv:2510.05592](https://arxiv.org/pdf/2510.05592)
+- **论文链接**: [IN-THE-FLOW AGENTIC SYSTEM OPTIMIZATION FOR
+EFFECTIVE PLANNING AND TOOL USE arXiv:2510.05592](https://arxiv.org/pdf/2510.05592)
 - **代码仓库**: [GitHub - lupantech/AgentFlow](https://github.com/lupantech/AgentFlow)
 
 ## 1 训练目的

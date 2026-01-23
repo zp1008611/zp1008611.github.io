@@ -8,9 +8,12 @@
 
 在工具增强的LLM推理领域,目前主要存在两种范式:**Tool-integrated Reasoning Models(工具集成推理模型)**和**Agentic Systems with Tool Usage(具有工具使用能力的智能体系统)**。
 
+![two method comparison](pics/two_method.png)
+图1
+
 ### 1.2 Tool-integrated Reasoning Models的定义
 
-Tool-integrated Reasoning Models采用**单一的、整体式(monolithic)策略**,在完整上下文中交替生成思考过程和工具调用。如图X所示,这类模型通过特殊token(如`<think></think>`、`<tool_call></tool_call>`)来区分推理步骤和工具使用。
+Tool-integrated Reasoning Models采用**单一的、整体式(monolithic)策略**,在完整上下文中交替生成思考过程和工具调用。如图1(a)所示,这类模型通过特殊token(如`<think></think>`、`<tool_call></tool_call>`)来区分推理步骤和工具使用。
 
 具体而言,模型生成的轨迹可表示为序列:
 
@@ -29,7 +32,7 @@ $$
 
 ### 1.3 Agentic Systems with Tool Usage的定义
 
-相比之下,Agentic Systems采用**多模块协作架构**。如图X所示,这类系统由多个专门化的模块组成,每个模块承担特定角色(如规划器planner、编码器coder、批评者critic)并配备专用工具和能力。
+相比之下,Agentic Systems采用**多模块协作架构**。如图1(b)所示,这类系统由多个专门化的模块组成,每个模块承担特定角色(如规划器planner、编码器coder、批评者critic)并配备专用工具和能力。
 
 Agentic Systems的关键特征包括:
 
@@ -113,6 +116,7 @@ Search-R1 是一个典型的 tool-integrated reasoning model，通过强化学�
 
 
 #### 2.3.2 泛化能力不足
+
 Tool-integrated models在**跨领域泛化**方面存在脆弱性:
 
 - **搜索增强模型**(Search-R1, ReSearch)在数学任务上表现平平
@@ -195,7 +199,8 @@ Tool-integrated reasoning models在特定领域证明了RL驱动工具学习的�
 
 AgentFlow 是 trainable agentic systems 的代表性工作，展示了如何通过在线强化学习优化模块化 agent 系统。它在保持模块化架构优势的同时，实现了端到端的学习和优化。
 
-> **详细介绍**: [AgentFlow: Trainable Agentic Systems](../agentic-rl-agentflow/README.md)
+> **详细介绍**: [IN-THE-FLOW AGENTIC SYSTEM OPTIMIZATION FOR
+EFFECTIVE PLANNING AND TOOL USE](../agentic-rl-agentflow/README.md)
 
 ---
 
