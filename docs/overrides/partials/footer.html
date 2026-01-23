@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block footer %}
+  {{ super() }}
+  
+  <!-- 不蒜子访客统计 -->
+  <div class="md-footer-meta md-typeset" style="background-color: var(--md-footer-bg-color);">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright" style="width: 100%; text-align: center; padding: 12px 0;">
+        <div class="busuanzi-stats" style="display: inline-block;">
+          <span id="busuanzi_container_site_pv" style="display: inline-block; margin: 0 15px;">
+            <i class="fa fa-eye"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+          </span>
+          <span id="busuanzi_container_site_uv" style="display: inline-block; margin: 0 15px;">
+            <i class="fa fa-users"></i>
+            本站访客数 <span id="busuanzi_value_site_uv"></span> 人
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

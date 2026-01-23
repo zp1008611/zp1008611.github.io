@@ -89,10 +89,10 @@ nav:
         - Project:Pricing Optimization: 
             - RL/rl_project_pricing_opt/index.md
 
-    - LLMs:
-        - LLMs/index.md
-        - 效率优化:
-            - LLMs/efficiency_optimization/
+    # - LLMs:
+    #     - LLMs/index.md
+    #     - 效率优化:
+    #         - LLMs/efficiency_optimization/
 
 
     - LEETCODE:
@@ -130,27 +130,28 @@ nav:
         - 机考实战:
             - LEETCODE/comupter_testing/README.md   
     
-    - Math:
-        - MATH/index.md
-        - 图论:
-            - MATH/Graph_theory/index.md
+    - 大模型技术学习:
+        - LLMs_RECORDS/index.md
+        - Agentic-RL:
+            - LLMs_RECORDS/Agentic-RL/index.md
+            - 绪论: LLMs_RECORDS/Agentic-RL/agentic-rl-motivation/README.md
+            - Search-R1: LLMs_RECORDS/Agentic-RL/agentic-rl-search-r1/README.md
+            - AgentFlow: LLMs_RECORDS/Agentic-RL/agentic-rl-agentflow/README.md
+        
 
-    - 面试八股:
-        - 简历问题总结: RESUME_QandA/summary/Resume/README.md
-        - DL问题总结: RESUME_QandA/summary/DL/README.md
 
-    - 开发经验:
-        - Python: 
-            - DEVELOPMENT/python_e/index.md
-            - 虚拟环境配置: DEVELOPMENT/python_e/env_config/README.md
+    # - Math:
+    #     - MATH/index.md
+    #     - 图论:
+    #         - MATH/Graph_theory/index.md
 
-    - 高中数学教资面试:
-        - Teaching_Interview/index.md
-        - 试讲真题练习: 
-            - Teaching_Interview/Real_Questions/index.md
-            - 三角函数: Teaching_Interview/Real_Questions/Textbook_Trial_Compulsory1_ch5
-        - 结构化:
-            - Teaching_Interview/Structuring/README.md
+    # - 高中数学教资面试:
+    #     - Teaching_Interview/index.md
+    #     - 试讲真题练习: 
+    #         - Teaching_Interview/Real_Questions/index.md
+    #         - 三角函数: Teaching_Interview/Real_Questions/Textbook_Trial_Compulsory1_ch5
+    #     - 结构化:
+    #         - Teaching_Interview/Structuring/README.md
 
 edit_uri: edit/main/docs
 docs_dir: docs/
@@ -159,7 +160,7 @@ docs_dir: docs/
 theme:
   name: material
   language: zh # 一些提示性的文字会变成中文
-  # custom_dir: docs/overrides/
+  custom_dir: docs/overrides/
   font:
     text: Roboto
     code: Roboto Mono
