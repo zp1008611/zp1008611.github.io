@@ -61,6 +61,7 @@ nav:
         - 关于激活函数: DL/Basics/Activation_Function/README.md
         - Encoder Decoder models and Attention: DL/Basics/ENCODER_DECODER_Attention/README.md
         - Transformer: DL/Basics/Transformer/README.md
+        - Nav Auto Test: DL/Basics/nav_auto_test/README.md
         - GNN:
             - DL/GNN/index.md
         - Paper Reading:
