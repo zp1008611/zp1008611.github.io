@@ -145,7 +145,7 @@ nav:
             - OpenClaw使用流程: LLMs_RECORDS/Agent/openclaw_practice_record/README.md
         - Rag:
             - RAG Query 改写: LLMs_RECORDS/RAG/rag-query-rewrite/README.md
-        - Rl:
+        - RL:
             - llm强化学习算法收敛性分析: LLMs_RECORDS/RL/README.md
         - Tech Report:
             - DeepSeek V3.2: LLMs_RECORDS/Tech_report/DeepSeekV3_2/README.md
