@@ -15,6 +15,20 @@ if [ "$STOP_HOOK_ACTIVE" = "true" ]; then
   exit 0
 fi
 
+# 检查是否超过 3 次阻止尝试（防止无限循环）
+COMMIT_HOOK_COUNTER_FILE="$CLAUDE_PROJECT_DIR/.claude/hooks/.commit-hook-counter"
+if [ -f "$COMMIT_HOOK_COUNTER_FILE" ]; then
+  BLOCK_COUNT=$(cat "$COMMIT_HOOK_COUNTER_FILE")
+else
+  BLOCK_COUNT=0
+fi
+
+# 如果已经是第 3 次阻止，放行并重置计数器
+if [ "$BLOCK_COUNT" -ge 3 ]; then
+  rm -f "$COMMIT_HOOK_COUNTER_FILE"
+  exit 0
+fi
+
 # 检查是否有未提交的变更
 cd "$CLAUDE_PROJECT_DIR" 2>/dev/null || exit 0
 
@@ -25,6 +39,10 @@ if git diff --quiet 2>/dev/null && git diff --cached --quiet 2>/dev/null && [ -z
 fi
 
 # 有未提交变更，阻止 Claude 停止，让它继续执行 commit
-cat <<'EOF'
-{"decision": "block", "reason": "检测到未提交的变更，请调用 /commit 技能提交更新。"}
+# 增加阻止计数
+BLOCK_COUNT=$((BLOCK_COUNT + 1))
+echo "$BLOCK_COUNT" > "$COMMIT_HOOK_COUNTER_FILE"
+
+cat <<EOF
+{"decision": "block", "reason": "检测到未提交的变更，请调用 /commit 技能提交更新。（第 $BLOCK_COUNT/3 次）"}
 EOF
