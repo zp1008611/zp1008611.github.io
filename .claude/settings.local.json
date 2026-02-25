@@ -3,7 +3,9 @@
     "allow": [
       "Bash(python3:*)",
       "WebFetch(domain:github.com)",
-      "Bash(head:*)"
+      "Bash(head:*)",
+      "WebSearch",
+      "Bash(git add:*)"
     ]
   },
   "hooks": {
