@@ -135,9 +135,21 @@ nav:
         - LLMs_RECORDS/index.md
         - Agentic-RL:
             - LLMs_RECORDS/Agentic-RL/index.md
+            - 评测数据: LLMs_RECORDS/Agentic-RL/agentic-rl-evaluation/README.md
             - 绪论: LLMs_RECORDS/Agentic-RL/agentic-rl-motivation/README.md
             - Search-R1: LLMs_RECORDS/Agentic-RL/agentic-rl-search-r1/README.md
             - AgentFlow: LLMs_RECORDS/Agentic-RL/agentic-rl-agentflow/README.md
+        - Agent:
+            - Claude Code使用记录: LLMs_RECORDS/Agent/claudecode_practice_record/README.md
+            - Pi Practice Record: LLMs_RECORDS/Agent/pi_practice_record/README.md
+            - OpenClaw使用流程: LLMs_RECORDS/Agent/openclaw_practice_record/README.md
+        - Rag:
+            - RAG Query 改写: LLMs_RECORDS/RAG/rag-query-rewrite/README.md
+        - Rl:
+            - llm强化学习算法收敛性分析: LLMs_RECORDS/RL/README.md
+        - Tech Report:
+            - DeepSeek V3.2: LLMs_RECORDS/Tech_report/DeepSeekV3_2/README.md
+            - Tech Report: LLMs_RECORDS/Tech_report/index.md
         
 
 
