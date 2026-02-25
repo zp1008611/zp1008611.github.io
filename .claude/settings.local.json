@@ -1,4 +1,10 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "WebFetch(domain:github.com)"
+    ]
+  },
   "hooks": {
     "Stop": [
       {
@@ -9,11 +15,6 @@
           }
         ]
       }
-    ]
-  },
-  "permissions": {
-    "allow": [
-      "Bash(python3:*)"
     ]
   }
 }
