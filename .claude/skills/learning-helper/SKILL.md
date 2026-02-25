@@ -43,9 +43,17 @@ https://docs.python.org/3/tutorial/
 
 如果是 GitHub 仓库链接，需要：
 1. 获取仓库的目录结构（访问 GitHub API 或仓库主页）
-2. 查找所有 `.py` 和 `.ipynb` 文件
-3. 记录文件路径、文件名和简单用途
-4. 生成完整的原始文件链接（`https://raw.githubusercontent.com/USER/REPO/BRANCH/path/file.py`）
+2. 查找**所有可执行的代码文件**，不限于特定语言：
+   - Python: `.py`
+   - Jupyter Notebook: `.ipynb`
+   - JavaScript/TypeScript: `.js`, `.ts`, `.jsx`, `.tsx`
+   - Go: `.go`
+   - Rust: `.rs`
+   - Java: `.java`
+   - C/C++: `.c`, `.cpp`, `.h`
+   - 其他语言按需添加
+3. 记录文件路径、文件名、编程语言和简单用途
+4. 生成完整的原始文件链接（如 `https://raw.githubusercontent.com/USER/REPO/BRANCH/path/file.py`）
 
 ### 步骤三：分析内容
 
@@ -77,8 +85,8 @@ https://docs.python.org/3/tutorial/
 - [ ] **[知识点 1]**
   - 描述：[简短说明]
   - 代码资源：
-    - [文件名.py](完整GitHub链接) - 用途说明
-    - [文件名.ipynb](完整GitHub链接) - 用途说明
+    - [文件名.py](完整GitHub链接) **Python** - 用途说明
+    - [文件名.js](完整GitHub链接) **JavaScript** - 用途说明
 
 - [ ] **[知识点 2]**
   - 描述：[简短说明]
@@ -111,8 +119,9 @@ https://docs.python.org/3/tutorial/
 
 **注意**：
 - 使用 `[ ]` 表示未完成，`[x]` 表示已完成
-- 代码资源需要完整的 GitHub 原始文件链接（如 `https://raw.githubusercontent.com/USER/REPO/main/path/file.py`）
-- 每个知识点尽量附上相关的 .py 或 .ipynb 文件链接
+- 代码资源需要完整的 GitHub 原始文件链接
+- **支持所有编程语言**，根据仓库实际情况添加
+- 每个知识点尽量附上相关的代码文件链接，标注编程语言（如 Python、JavaScript、Go 等）
 
 ### 步骤五：保存文件
 
