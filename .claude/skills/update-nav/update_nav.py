@@ -197,12 +197,34 @@ def yaml_valid(lines: list[str]) -> tuple[bool, str | None]:
         return False, str(exc)
 
 
+def scan_folder(folder: Path) -> list[Path]:
+    """扫描指定文件夹下的所有候选 markdown 文件"""
+    if folder.parts[0] != "docs":
+        folder = Path("docs") / folder
+
+    abs_path = ROOT / folder
+    if not abs_path.is_dir():
+        return []
+
+    files: list[Path] = []
+    for matched in abs_path.rglob("*.md"):
+        rel = matched.relative_to(ROOT)
+        if is_candidate(rel):
+            files.append(rel)
+
+    return sorted(set(files))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Update mkdocs nav entries from changed docs markdown files.")
     parser.add_argument("paths", nargs="*", help="Optional explicit docs paths (relative to repo).")
+    parser.add_argument("-a", "--all", dest="folder", type=str,
+                        help="扫描指定文件夹下的所有 README.md/index.md 文件")
     args = parser.parse_args()
 
-    if args.paths:
+    if args.folder:
+        candidates = scan_folder(Path(args.folder))
+    elif args.paths:
         candidates = normalize_input_paths(args.paths)
     else:
         candidates = git_changed_docs_files()

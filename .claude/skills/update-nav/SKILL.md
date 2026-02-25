@@ -49,11 +49,24 @@ description: 根据 docs 变更自动更新 mkdocs.yml 的 nav，按目录推断
 python3 .claude/skills/update-nav/update_nav.py
 ```
 
-如需仅处理指定文件：
+#### 方式一：处理指定文件
 
 ```bash
 python3 .claude/skills/update-nav/update_nav.py docs/DL/Basics/<new_topic>/README.md
 ```
+
+#### 方式二：扫描整个文件夹（支持多级目录）
+
+```bash
+# 扫描指定文件夹下的所有 README.md/index.md
+python3 .claude/skills/update-nav/update_nav.py -a docs/DL/Basics/
+
+# 支持任意层级目录
+python3 .claude/skills/update-nav/update_nav.py -a docs/OROPT/or_metaheuristics/
+python3 .claude/skills/update-nav/update_nav.py -a docs/LEETCODE/
+```
+
+`-a` 参数会递归扫描目标文件夹下的所有 `README.md` 和 `index.md` 文件，并将其添加到 mkdocs.yml 的 nav 中。
 
 ### 步骤五：返回结果
 
