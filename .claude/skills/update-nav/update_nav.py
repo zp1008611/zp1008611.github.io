@@ -167,26 +167,111 @@ def line_indent(line: str) -> int:
     return len(line) - len(line.lstrip(" "))
 
 
-def locate_insertion(lines: list[str], section_span: tuple[int, int], mkdocs_path: str) -> tuple[int, int, str]:
-    section_start, section_end = section_span
-    parts = mkdocs_path.split("/")
-    prefix2 = "/".join(parts[:2]) + "/" if len(parts) >= 2 else parts[0] + "/"
+def find_subsection(lines: list[str], section_start: int, section_end: int, subsection_name: str) -> tuple[int, int, int] | None:
+    """查找指定subsection的位置和范围，返回 (subsection_header行号, 起始缩进, 结束行号)"""
+    subsection_re = re.compile(r"^(\s*)- " + re.escape(subsection_name) + r":\s*(#.*)?$")
 
-    # 优先：同二级目录的最后一个条目后插入
-    last_similar_idx = None
-    last_similar_indent = None
+    for i in range(section_start + 1, section_end):
+        line = lines[i]
+        if line.lstrip().startswith("#"):
+            continue
+        m = subsection_re.match(line.rstrip("\n"))
+        if m:
+            indent = len(m.group(1))
+            # 找到subsection header，现在找它的结束位置
+            sub_end = section_end
+            base_indent = indent + 4  # nested items are 4 more indent
+            for j in range(i + 1, section_end):
+                sub_line = lines[j]
+                if sub_line.lstrip().startswith("#") or not sub_line.strip():
+                    continue
+                sub_indent = line_indent(sub_line)
+                if sub_indent <= indent:
+                    sub_end = j
+                    break
+            return i, indent, sub_end
+    return None
+
+
+def kebab_to_title(name: str) -> str:
+    """将 kebab-case 或 snake_case 转换为标题格式"""
+    clean = name.replace("_", " ").replace("-", " ").strip()
+    return " ".join(word.capitalize() for word in clean.split())
+
+
+def find_actual_section_end(lines: list[str], section_start: int, nav_end: int) -> int:
+    """找到 section 的实际结束位置（最后一个有效内容行）"""
+    # section header indent
+    header_indent = line_indent(lines[section_start])
+
+    actual_end = section_start + 1
+    for i in range(section_start + 1, nav_end):
+        line = lines[i]
+        # Skip blank lines and comments
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+
+        indent = line_indent(line)
+        # If we hit another section header at same or lower indent, stop
+        if indent <= header_indent:
+            break
+        actual_end = i + 1
+
+    return actual_end
+
+
+def locate_insertion(lines: list[str], section_span: tuple[int, int], mkdocs_path: str, nav_end: int) -> tuple[int, int, str]:
+    section_start, _ = section_span
+
+    # 使用实际 section 结束位置
+    section_end = find_actual_section_end(lines, section_start, nav_end)
+
+    parts = mkdocs_path.split("/")
+
+    # 需要至少二级目录才有可能创建 subsection
+    if len(parts) < 2:
+        # 单级目录，直接追加
+        default_indent = 12
+        for i in range(section_end - 1, section_start, -1):
+            line = lines[i]
+            if line.lstrip().startswith("#") or not line.strip():
+                continue
+            if ".md" in line:
+                default_indent = line_indent(line)
+                break
+        return section_end, default_indent, "单级目录，追加到 section 末尾"
+
+    prefix2 = parts[0] + "/" + parts[1] + "/"
+    subsection_name = parts[1]
+
+    # 优先：查找同二级目录的已有条目
     for i in range(section_start + 1, section_end):
         line = lines[i]
         if line.lstrip().startswith("#") or ".md" not in line:
             continue
         if prefix2 in line:
-            last_similar_idx = i
-            last_similar_indent = line_indent(line)
-    if last_similar_idx is not None and last_similar_indent is not None:
-        return last_similar_idx + 1, last_similar_indent, f"按目录 {prefix2.rstrip('/')} 归位"
+            indent = line_indent(line)
+            return i + 1, indent, f"按目录 {subsection_name} 归位"
 
-    # 次优：section 末尾追加
-    return section_end, 8, "未命中二级分组，追加到一级 section 末尾"
+    # 次优：查找是否存在对应的 subsection
+    subsection = find_subsection(lines, section_start, section_end, subsection_name)
+    if subsection:
+        sub_header_idx, sub_indent, sub_end = subsection
+        return sub_end, sub_indent + 4, f"插入到现有 subsection {subsection_name}"
+
+    # 三优：section 中现有条目的缩进层级
+    default_indent = 12
+    for i in range(section_end - 1, section_start, -1):
+        line = lines[i]
+        if line.lstrip().startswith("#") or not line.strip():
+            continue
+        if ".md" in line:
+            default_indent = line_indent(line)
+            break
+
+    # 如果 section 末尾有嵌套内容，需要在嵌套内容之后创建新的 subsection
+    # 返回特殊标记，让调用者处理
+    return section_end, default_indent, f"需要创建新 subsection: {subsection_name}"
 
 
 def yaml_valid(lines: list[str]) -> tuple[bool, str | None]:
@@ -253,7 +338,31 @@ def main() -> int:
             continue
 
         label = extract_h1(md_file) or fallback_label(md_file)
-        insert_at, indent, reason = locate_insertion(lines, section_span, mkdocs_path)
+        insert_at, indent, reason = locate_insertion(lines, section_span, mkdocs_path, nav_span[1])
+
+        # 处理需要创建新 subsection 的情况
+        if reason.startswith("需要创建新 subsection:"):
+            subsection_name = reason.split(":", 1)[1].strip()
+            title = kebab_to_title(subsection_name)
+            # 新 subsection header 应该在 section header 下面（8-space indent，与 Agentic-RL 同级）
+            # 而不是嵌套在现有内容下面（12-space indent）
+            # 如果 indent >= 12，说明是嵌套在内容中，需要使用 8-space
+            if indent >= 12:
+                sub_indent = 8  # section item level
+            else:
+                sub_indent = indent
+            sub_header = f"{' ' * sub_indent}- {title}:\n"
+            item_entry = f"{' ' * (sub_indent + 4)}- {label}: {mkdocs_path}\n"
+            trial = lines[:insert_at] + [sub_header, item_entry] + lines[insert_at:]
+            ok, err = yaml_valid(trial)
+            if not ok:
+                skipped.append((mkdocs_path, f"创建 subsection 失败：{err}"))
+                continue
+            lines = trial
+            nav_span = find_nav_span(lines)
+            added.append((label, mkdocs_path, section_name, f"创建新 subsection: {title}"))
+            continue
+
         entry = f"{' ' * indent}- {label}: {mkdocs_path}\n"
 
         trial = lines[:insert_at] + [entry] + lines[insert_at:]
