@@ -72,9 +72,9 @@ https://docs.python.org/3/tutorial/
 
 ### 步骤五：保存文件
 
-文件保存路径：`docs/learning-roadmaps/[主题]/README.md`
+文件保存路径：`learning-roadmaps/[主题]/README.md`
 
-例如：`docs/learning-roadmaps/python-advanced/README.md`
+例如：`learning-roadmaps/python-advanced/README.md`
 
 ## 注意事项
 
